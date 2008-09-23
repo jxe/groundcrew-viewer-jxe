@@ -1,0 +1,52 @@
+#chatbox {
+  position: relative;
+  height: 170px;
+  z-index: 100;
+}
+#chatbox #chatter {
+  position: relative;
+  height: 136px;
+  width: 400px;
+  color: white;
+}
+#chatbox #chatter ul {
+  position: absolute;
+  left: 40px;
+  top: 0px;
+  margin: 0;
+  padding: 0;
+}
+#chatbox #chatter img {
+  position: absolute;
+  left: 0px;
+}
+#chatbox #chatbar {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+#chatbox #chatbar img {
+  border-top: white 1px solid;
+  border-left: white 1px solid;
+  border-right: black 1px solid;
+}
+#chatbox #talker {
+  position: absolute;
+  left: 32px;
+
+  border-top: white 1px solid;
+  height: 24px; 
+  top: 0px;
+  background: url(i/w60.png);
+  padding: 3px 15px;
+}
+
+#chats li a {
+  color: #a72;
+}
+
+ul#chats {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}

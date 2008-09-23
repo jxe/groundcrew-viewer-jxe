@@ -1,0 +1,81 @@
+#recent_content {
+	right: 0px; top: 59px; width: 300px;
+	font-size: 11px;
+  max-height: 350px;
+  overflow: auto;
+}
+
+
+
+#recent_content .event span.assignment, #recent_content .event span.wish, #recent_content .event span.report, #recent_content .event span.shout {
+  margin-left: 10px;
+  display: block;
+}
+
+#recent_content span.assignment, #recent_content span.wish, #recent_content span.report, #recent_content span.shout {
+  color: black;
+  padding: 2px 5px;
+}
+
+.event .assignment {
+  background: #aaf;
+}
+
+blockquote.assignment {
+  margin:0; padding: 3px;
+}
+
+.event .wish {
+  background: #79c;
+}
+
+.event  span.report {
+  background: #7c7;
+}
+
+.event  .shout {
+  background: #c77;
+}
+
+.time {
+  font-size: 11px;
+  color: gray;
+}
+
+
+.event.invisible {
+  display:none;
+}
+
+.event.grey, .event.grey a {
+  color: #aaa;
+}
+
+.event.green, .event.green a {
+  color: green;
+/*  background: #cfc;*/
+}
+
+.event.red, .event.red a {
+  color: #c00;
+/*  background: #fcc;*/
+}
+
+.event.blue, .event.blue a {
+  color: #335577;
+/*  background: #bdf;*/
+}
+
+.event.purple, .event.purple a {
+/*  background: #dcf;*/
+  color: #82c;
+}
+
+.event a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.event a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,102 @@
+<div class="troot" id="self_iw_template" style="display:none; max-width: 430px;">
+
+	<div class="you_are" style="margin-right: 12px;">
+		<a class="editable" style="font-size: 18px" href="#" poplink="#siw_status_popup">You<span id="self_iw_status">'re <b>available</b></span></a>
+		and looking for 
+		<b><a class="editable" poplink="#siw_wish_popup" id="self_iw_wish" href="#">anything</a></b>
+	</div>
+
+	<div class="popup" id="siw_status_popup">
+		<div style="left: 50px; display:none">
+			<img src="i/nose.png" class="nose"/>
+			<div class="title">
+				Are you ready for action?
+			</div>
+			<ul class="choices" id="self_iw_status_change">
+				<li>
+					<a newstatus="available" style="background: url(i/greendot.png) no-repeat left center">
+						Yes
+						<i>I'm ready to rock.</i>
+					</a>
+				</li>
+				<li>
+					<a newstatus="dead" style="background: url(i/reddot.png) no-repeat left center">
+						No
+						<i>I'm busy right now and can't take assignments.</i>
+					</a>
+				</li>
+				<li>
+					<a newstatus="off" style="background: url(i/yellowdot.png) no-repeat left center">
+						Maybe
+						<i>Contact me if something comes up; I'll reply if I'm free.</i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="popup" id="siw_wish_popup">
+		<div style="left: 120px; top: 7px; width: 350px; display:none">
+			<img src="i/nose.png" class="nose" style="left: 130px"/>
+			<div class="dreambox">
+				<form>
+					<b>I want:</b> &nbsp;
+					<input type="text" size="36" value="type something or choose below" style="color: #777"/>
+				</form>
+
+				<div widget="SelfIW" class="dreambox_popper" style="margin-left: 40px">
+					<table>
+						<tr>
+							<td popper="#wish_adv_pmenu"><img src="i/c_adv.jpg"/>Adventures</td>
+							<td popper="#wish_conn_pmenu"><img src="i/c_conn.jpg"/>Connections</td>
+							<td popper="#wish_bene_pmenu"><img src="i/c_bene.jpg"/>Goodwill</td>
+							<td popper="#wish_art_pmenu"><img src="i/c_art.jpg"/>Art</td>
+							<td popper="#wish_base_pmenu"><img src="i/c_food.jpg"/>Basics</td>
+						</tr>
+					</table>
+					<div class="insert_popper_here"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <div class="you_are" style="text-align:right; margin-right: 12px;">
+		<span style="font-size: 11px; color: #777">near</span>
+    <a title="click to change" href="#" style="font-size: 11px; color: #333" class="editable" poplink="#siw_loc_popup" id="self_iw_loc">35 Trumbull Rd, Northampton MA 01060</a>
+  </div>
+  <div class="popup" id="siw_loc_popup">
+    <div style="left: 120px; top: 10px; display:none">
+      <img src="i/nose.png" class="nose" style="left: 130px"/>
+      <div class="title">
+        Where are you?
+      </div>
+      <form id="self_iw_update_loc">
+        <input type="text" size="40"/>
+        <input type="submit" value="update location" style="float:right"/>
+      </form>
+    </div>
+  </div>
+	
+	<div class="bigbox" widget="SelfIW">
+		<div>
+			Nearby are 
+			<a pposition='bc' class="editable b" popper='#lmark_popup' id="lmark_nearby">
+				<span id="lmark_nearby_count">x</span> 
+			places of possibility</a>, 
+			and
+			<a class="editable b" href='#' id="self_iw_nearby">
+				<b><span id="self_iw_nearby_count">x</span> agents</b> 
+				to organize
+			</a>.
+		</div>
+		<div class="insert_popper_here"></div>
+	</div>
+	<div class="space right smallgray">
+		or you can <a class="editable" href="#" id="citysum">view the city summary</a>
+	</div>
+</div>
+
+
+<div id="lmark_popup" class="sub menu" style="display:none; position: absolute"><img src="i/nose.png" class="nose"/>
+	<div id="lmark_menu"></div>
+</div>

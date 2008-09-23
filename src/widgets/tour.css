@@ -1,0 +1,26 @@
+#tourbox_hud {
+  width: auto; padding: 2px 28px; left:10px; top: 65px; 
+}
+
+#tourbox_larr {
+  left: -26px;
+}
+
+#tourbox_rarr {
+  right: -26px;
+}
+
+#tourbox_larr, #tourbox_rarr {
+  position: absolute; 
+  top: -2px; 
+  display: block;
+  opacity: 0.6;
+}
+
+#tourbox_larr:hover, #tourbox_rarr:hover {
+  opacity: 1.0;
+}
+
+#tourbox_where, #tourbox_what {
+  font-weight: bold;
+}

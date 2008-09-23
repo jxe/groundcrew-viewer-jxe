@@ -1,0 +1,16 @@
+/model
+
+ - These files are used to dress up incoming json with additional calculated
+   fields so it's ready to render.  Client-side databases are also here.
+
+/view
+
+  - These files contain templates used for rendering, well organized, plus any
+    additional rendering code. Also contains "widgets" that are client side
+    only, and that don't correspond to json objects received from the server.
+
+/controller 
+
+  - These files contain jquery plugins for each kind of object that we need to
+    render. These are called on the rendered templates before they are
+    inserted in the DOM.
