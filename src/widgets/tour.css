@@ -21,6 +21,10 @@
   opacity: 1.0;
 }
 
-#tourbox_where, #tourbox_what {
+#tourbox_what {
+  font-weight: bold;
+}
+
+#tourbox_hud .city_name {
   font-weight: bold;
 }

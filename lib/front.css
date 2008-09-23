@@ -1,0 +1,366 @@
+/*
+** Some resets
+*/
+
+img { border:0; }
+textarea { display:block; }
+body { padding:0; margin:0; }
+h1, body { margin:0; padding:0; }
+p { text-align: justify; }
+
+
+/* ============== */
+/* = Page stuff = */
+/* ============== */
+
+#header {
+  overflow: hidden;
+}
+
+body {
+    background: #fff url('/i/grgrad.png') repeat-x scroll;
+}
+
+#page {
+    position: relative;
+    margin: auto;
+    width: 800px;
+    background: white;
+    padding-bottom: 20px;
+}
+
+body #load_spinner {
+  visibility: hidden;
+}
+
+
+/*
+** popups
+*/
+
+div.popup {
+  position:relative;
+}
+div.popup > div {
+  position: absolute; border: solid thin black; 
+  background: white; z-index: 300; top: 10px; width: 300px;
+}
+div.popup img.nose {
+  position: absolute; top: -14px; left: 47px;
+}
+div.popup img.rnose {
+  position: absolute; top: -14px; right: 47px;
+}
+div.popup div.title {
+  background: #cca; margin-bottom: 5px; padding: 2px 5px; font-weight: bold; font-size: 14px;
+}
+
+
+div.popup form {
+  padding: 5px;
+}
+
+/* ================ */
+/* = fuck. popup2 = */
+/* ================ */
+
+div.popup2 {
+  position: absolute; 
+  border: solid thin black; 
+  background: white; 
+  z-index: 300;
+  font-size: 14px;
+}
+div.popup2 img.nose {
+  position: absolute; 
+  top: -14px;
+}
+div.popup2 div.title {
+  background: #cca; margin-bottom: 5px; font-weight: bold; 
+}
+
+a.mchoice {
+  padding: 10px;
+  color: black;
+  display: block;
+}
+a.mchoice:hover {
+  padding: 10px;
+  color: black;
+  text-decoration:none;
+  background: #dd8;
+}
+
+
+/*
+** Header stuff
+*/
+
+.m_item {
+  padding: 1px 5px;
+  border-left: none;
+  border-right: none;
+  padding-top: 0px;
+  text-decoration: none;
+  font-size: 11px;
+  margin-left:  3px;
+  margin-right: 3px;
+  color: #aaa;
+}
+
+a.m_item:hover {
+  text-decoration: underline;
+  color: #eee;
+}
+
+#topbar {
+    text-align: center;
+}
+
+#logo {
+    padding:0;margin:0; 
+    position: relative;
+    display: block;
+}
+
+#header {
+  position: relative; 
+  height: 59px;
+  background: black /* #eee url(/i/tgrad.png) center bottom */;
+  border-bottom: #777 1px solid;  /* #d06f25 #25226A */
+  margin: auto;
+  width: 800px;
+}
+
+#footer {
+    clear:both;
+    margin: auto;
+    width: 800px;
+    border-top: #25226A 1px solid; 
+    padding-top: 6px; 
+    padding-bottom: 6px;
+    font-size: 11px;
+    background: #000; 
+    color: #ddd;
+    text-align: right;
+    font-style: italic;
+}
+
+#footer u {
+  text-decoration:none;
+  color: white;
+  font-weight: bold;
+}
+#footer a {
+  color: #ddd;
+}
+
+#footer a:hover {
+  color: white;
+}
+
+div.notice {
+    text-align: center;
+}
+div.notice span {
+    background: yellow;
+    padding: 10px;
+}
+
+
+/* ========================= */
+/* = some sitewide widgets = */
+/* ========================= */
+
+.locwidget input { display: block; }
+.locwidget div { font-size: 18px; color: gray; }
+.locwidget div.invalid { color: red; }
+
+
+.agent_bio h3 {
+  margin:0; padding:0;
+}
+.agent_bio {
+  background: #eee;
+  border-top: #bbb solid thin;
+  border-bottom: #bbb solid thin;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.agent_bio strong {
+  font-weight: normal;
+  color: #944;
+}
+
+
+
+div.squad {
+  clear:both;
+}
+div.squad h3 {
+  background:#ccf;
+  background: #ffe0c0;
+  float: left;
+  margin: 0; padding: 0;
+  font-weight: normal;
+  width: 320px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: solid thin #cb9;
+}
+div.squad a.close {
+  display: block;
+  float:right;
+  width: 15px;
+  color: gray;
+}
+
+div.membox_fr {
+  position: relative;
+  width: 365px;
+}
+div.membox {
+  display: block;
+  position: relative;
+  width: 365px;
+  height: 36px;
+  border: solid thin #cb9;
+  background: #ffe0c0;
+/*    background:#ccf;*/
+  margin-bottom: 10px;
+  /*    padding: 5px;*/
+}
+
+div.membox.off div.memtype {
+  background: #f99;
+  display: none;
+}
+
+div.membox.off div.sqline {
+  width: 360px;
+}
+
+div.membox.summonable div.memtype {
+  background: #9f9;
+}
+
+div.membox.dispatch div.memtype {
+  background: #f99;
+}
+
+div.membox:hover {
+  text-decoration: none;
+  background: #ff9;
+}
+
+div.sqline {
+  position: absolute;
+  top: 5px;
+  width: 280px;
+  padding-left: 5px;
+}
+div.memtype {
+  position: absolute;
+  height: 28px;
+  padding-top: 8px;
+  padding-left: 5px;
+  width: 80px;
+  left: 280px;
+  background: #ccc;
+  text-decoration: none;
+  color: #333;
+  font-size: 10px;
+  border-left: solid thin #cb9;
+}
+
+div.membox_fr a.dismiss {
+  color: gray;
+  display: block;
+  position: absolute;
+  right: -15px;
+  top: 0px;
+}
+
+/* ========== */
+/* = nforms = */
+/* ========== */
+
+.nform label {
+    display: block;
+    width: 600px;
+    height: 40px;
+    position: relative;
+    margin-top: 12px;
+    font-weight: bold;
+    
+}
+.nform input, .nform span {
+    position: absolute;
+    left: 120px;
+    font-weight: normal;
+}
+.nform fieldset {
+  margin-bottom: 20px;
+}
+
+.nform span input, .nform span span {
+    position: static;
+}
+
+.nform.tight label {
+    height: 30px;
+}
+
+.nform.tighter label {
+    height: 18px;
+}
+
+.nform.tight .tip {
+    top: -5px;
+}
+
+.nform textarea {
+    position: absolute;
+    padding-top: 0;
+    margin-top: 0;
+    top: 0px;
+    left: 140px;
+    height: 40px;
+}
+
+.nform label.ta {
+    height: 60px;
+}
+
+.nform .tip {
+    position: relative;
+    left: 120px;
+    color: #555;
+    top: -15px;
+}
+
+.nform input[type=checkbox], .nform input[type=submit] {
+    position: static;
+}
+
+
+.aboutbar a {
+    color: #aaa;
+    font-size: 14px;
+    text-decoration: none;
+    font-variant: small-caps;
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 5px;
+}
+.aboutbar a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.aboutbar a.active {
+    background: white;
+    border: solid thin #d06f25;
+    border-bottom: none;
+    color: black;
+}

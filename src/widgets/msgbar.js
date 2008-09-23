@@ -1,7 +1,6 @@
 Msgbar = {
 
   wire: function() {
-    $('#msgbar_agents').wire_popper_links();
     $('#msgbar_dreams').click(Dreambox.toggle_dreambox);
     $('#dream_ct').html($values(Initiatives.all).length);
     NQueue.receivers.push(Msgbar);
@@ -21,6 +20,7 @@ Msgbar = {
       $('#msgbar').hide();
     } else {
       $('#msgbar').show();
+      Msgbar.update_agent_wish_popper();
     }
   },
   
@@ -37,7 +37,7 @@ Msgbar = {
     }
   },
   
-  popper_process: function(elem) {
+  update_agent_wish_popper: function() {
     var agents = ItemDb.agents_by_city[Viewer.selected_city];
     var atags = City.agents_by_atag();
     var basic_atags = $w('pchal stretchme artsuggest art scavhunts soccer basketball ultimate convo bene hoodwork');
@@ -78,7 +78,7 @@ Msgbar = {
       html += "</a>";
     });
     
-    elem.find('.insert_content_here').html(html);
+    $('#nearagents_popper').find('.insert_content_here').html(html);
   }
   
 };

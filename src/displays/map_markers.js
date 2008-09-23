@@ -37,7 +37,7 @@ MapMarkers = {
     if (type == 'pano') return item.html;
     if (type == 'suggestion') return SuggestionIW.suggestion_DOMObj(item);
     if (type == 'lmark') return LandmarkIW.asDOMObj(item);
-    if (type == 'city') return $('<div>your city intro</div>')[0];
+    if (type == 'city') return CityIW.asDOMObj();
     return $('<div>we do not recognize this item</div>')[0];
   },
   
@@ -72,6 +72,7 @@ MapMarkers = {
   select_city: function() {
     if (!Map.available()) return;
     if (Viewer.selected_city) {
+      $('body').removeClass('zoomed_out');
       var agents = ItemDb.agents_by_city[Viewer.selected_city];
       Map.load_and_refocus(agents.map(MapMarkers.for_agent));
       var lms = LandmarkDb.landmarks_by_city[Viewer.selected_city];
@@ -80,6 +81,7 @@ MapMarkers = {
     } else {
       var cities = $keys(ItemDb.agents_by_city);
       Map.load_and_refocus(cities.map(MapMarkers.for_city));
+      $('body').addClass('zoomed_out');
     }
   },
   

@@ -19,8 +19,10 @@ ViewerUI = {
     this.activateUI();
     if (logged_in) {
       if (!ItemDb.items[agent_tag]) ItemDb.add_or_update(person_item);
+      $('body').addClass('logged_in');
       Viewer.open(agent_tag);
     } else {
+      $('body').addClass('logged_out');
       Viewer.select_city(null);
     }
     Ajax.init();
@@ -31,7 +33,6 @@ ViewerUI = {
     $('a[rel*=facebox]').facebox();
     $(document).popups().popups2();
     
-    $('.zoom_out').click(Viewer.zoom_out);
     Tour.wire();
     Dreambox.wire();
     Msgbar.wire();

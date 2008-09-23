@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+	<title>Groundcrew Viewer - Tell us what to do</title>
+	<link href="viewer.css" media="screen" rel="stylesheet" type="text/css"/>
+  <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAGqp2ukVwjWFfmC-XmCCZFRRGsPIMf82DrFSwJZKzmHDVn9CoiRSfPwbMs9LeX9Qw4ba2CuYyrEQBZw&amp;hl=" type="text/javascript"></script> 
+  <script src="viewer.js" type="text/javascript"></script>
+	<!--[if lte IE 6]>
+	<script type="text/javascript" src="/javascripts/supersleight-min.js"></script>
+	<![endif]-->
+	<script src="gc/viewer_start.js" type="text/javascript"></script>
+</head>
+<body id="body" class="viewer">
+
+<div id="header">
+  <div id="header_menubar">
+		<img id="load_spinner" src="/i/spinner.gif"/>
+		<a class="m_item" href="/help">help</a>
+		<a class="m_item" target="_" href="http://groups.google.com/group/groundcrew-users">discuss</a>
+		<a class="m_item loo" href="/login">log in</a>
+		<a class="m_item lio" href="/settings" id="settings">settings</a>
+		<a class="m_item lio" href="/logout">sign out</a>
+	</div>
+
+	<a id="logo" href="/"><img src="/i/gclogo_dd.png"/></a>
+</div>
+
+<div id="map_div"></div>
+<div id="agents_scroll_window"><div id="inner_scroll_window"><div id="agents"></div></div></div>
+
+<div id="footer">
+  <div class="fr">
+    by
+    <a class="clog_link" href="http://citizenlogistics.com"><u>Citizen Logistics</u></a>, a
+    <a href="http://blog.groundcrew.us/2008/03/18/common-good-corporate-structure/">
+			<u>C</u>ommon <u>G</u>ood <u>C</u>orporation
+		</a>.
+  </div>
+  <div style="clear:both"></div>
+</div>
+<script>
+$(function(){ViewerUI.init()});
+</script>

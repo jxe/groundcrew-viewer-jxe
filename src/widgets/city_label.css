@@ -1,0 +1,3 @@
+body.has_tour #city_label, body.zoomed_out #city_label {
+  display:none; 
+}

@@ -40,7 +40,8 @@ Dreambox = {
     
   did_change_selected_city: function() {
     var city_name = cities[Viewer.selected_city];
-    $('.city_name').html(city_name);
+    $(document).blit();
+    // $('.city_name').html(city_name);
   },
   
   show: function(args) {
@@ -160,7 +161,7 @@ Dreambox = {
 
       // print the event view      
       html += "<span class='initiative' initiative='"+ i.tag() +"'>";
-      html += '<span class="title" pposition="bcl" popper="#dreambox_pmenu" title="'+i.agreecount+' agents">';
+      html += '<span class="title" popper="#dreambox_pmenu/bcl" title="'+i.agreecount+' agents">';
       html += i.town();
       
       if (i.agreecount > 1) html += ' (+' + (i.agreecount - 1) + ')';

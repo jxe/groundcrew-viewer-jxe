@@ -7,7 +7,6 @@ Tour = {
   
   wire: function() {
     $(document).clicks({
-      '#zoom_out'     : Viewer.zoom_out,
       '#unhighlight'  : Tour.stop,
       "#tourbox_larr" : Tour.prev,
       "#tourbox_rarr" : Tour.next
@@ -30,6 +29,7 @@ Tour = {
     if (!old_crew) return;
     $.each(old_crew, function(){ delete this.highlighted; Item.calculate_fields(this); });
     if (omit_redraws !== true) {
+      $('body').removeClass('has_tour');
       $('#tourbox_hud').hide();
       Facebar.resort();
       MapMarkers.re_highlight();
@@ -52,6 +52,8 @@ Tour = {
     Facebar.resort();
     MapMarkers.re_highlight();
     Viewer.open(crew[0]);
+    
+    $('body').addClass('has_tour');
     
     $('#tourbox_hud').fillout({
       '#tourbox_count': number_plural(Tour.highlighted_crew.length, 'agent', 'agents'),

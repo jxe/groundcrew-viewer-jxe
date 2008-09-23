@@ -38,6 +38,15 @@ Initiative.prototype = {
       this.i_agree = true;
       if (Initiative.org_atypes[this.atype]) this.mine = true;
     }
+    if (this.kudos) {
+      var m;
+      this.flags = [];
+      if (m = this.kudos.match(/squadm (\d+) (\d+)/)) {
+        this.agreecount += Number(m[2]);
+      }
+      if (this.kudos.match(/lame/)) this.flags.push('lame');
+      if (this.kudos.match(/awesome/)) this.flags.push('awesome');
+    }
     if (!Initiative.org_atypes[this.atype]) this.needs_plan = true;
     this.atag = this.atag || this.atags || (this.msg[0] == '#' && this.msg.slice(1));
     NQueue.fire('did_change_initiatives');
@@ -51,6 +60,10 @@ Initiative.prototype = {
       if (ev.msg.match(/pos/)) {
         this.agreecount++;
         if (ev.actor_tag == agent_tag) this.i_agree = true;
+      }
+      if (ev.msg.match(/lame|awesome/)) {
+        if (!this.flags) this.flags = [];
+        this.flags.push(ev.msg);
       }
     } else if (ev.actor_tag == agent_tag) {
       this.mine = true;

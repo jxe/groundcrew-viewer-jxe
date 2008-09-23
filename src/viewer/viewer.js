@@ -38,12 +38,16 @@ Viewer = {
     return false;
   },
   
-
   zoom_out: function(){ 
     Viewer.select_city(null); 
     return false;
   },
 
+  go_to_self: function() {
+    Viewer.open(person_item);
+    return false;
+  },
+  
 
   // stuff to start
   

@@ -44,7 +44,7 @@
 					<input type="text" size="36" value="type something or choose below" style="color: #777"/>
 				</form>
 
-				<div widget="SelfIW" class="dreambox_popper" style="margin-left: 40px">
+				<div class="dreambox_popper widget" widget="SelfIW" style="margin-left: 40px">
 					<table>
 						<tr>
 							<td popper="#wish_adv_pmenu"><img src="i/c_adv.jpg"/>Adventures</td>
@@ -77,10 +77,10 @@
     </div>
   </div>
 	
-	<div class="bigbox" widget="SelfIW">
+	<div class="widget bigbox" widget="SelfIW">
 		<div>
 			Nearby are 
-			<a pposition='bc' class="editable b" popper='#lmark_popup' id="lmark_nearby">
+			<a class="b" popper='#lmark_popup/bc' id="lmark_nearby">
 				<span id="lmark_nearby_count">x</span> 
 			places of possibility</a>, 
 			and
@@ -97,6 +97,6 @@
 </div>
 
 
-<div id="lmark_popup" class="sub menu" style="display:none; position: absolute"><img src="i/nose.png" class="nose"/>
+<div id="lmark_popup" clickhandler="Clicker" class="sub menu" style="display:none; position: absolute"><img src="i/nose.png" class="nose"/>
 	<div id="lmark_menu"></div>
 </div>
