@@ -1,60 +1,20 @@
-<div class="troot" id="agent_iw_template" style="display:none; max-width: 460px">
+<div class="widget troot" id="agent_iw_template" style="display:none; max-width: 460px">
 
 	<img id="headshot" src="i/greendot.png" style="float:left; margin-right: 10px; margin-bottom: 10px; height: 50px;"/>
 	<div style="float:left">
-		<div id="agtitle" class="editable">
+		<div id="agtitle">
 		  agent <b id="agent_iw_name">barry</b>
-		</div>
-		<div class="popup">
-			<div style="left: 30px; display:none">
-				<img src="i/nose.png" class="nose"/>
-				<div class="title"> Their history </div>
-				<div class="content">
-					<div class="smallgray">
-						RECENTLY LIKED
-					</div>
-					<ul id="agent_iw_liked">
-						<li>&bull; Baboons</li>
-					</ul>
-					<div class="smallgray">
-						DIDN'T LIKE
-					</div>
-					<ul id="agent_iw_noliked">
-						<li>&bull; try to hurt baboons</li>
-						<li>&bull; get on your bicycle and chase a pidgeon</li>
-					</ul>
-					<div class="smallgray">
-						UP FOR
-					</div>
-					<ul id="agent_iw_upfor">
-						<li>&bull; Treasure hunts</li>
-					</ul>
-					<div class="smallgray">
-						THEIR FULL PROFILE
-					</div>
-					<ul id="agent_iw_upfor">
-						<li><a href="#" class="extlink">click here</a></li>
-					</ul>
-				</div>
-			</div>
 		</div>
 
 		<div class="report"></div>
 	  <div class="smallgray" style="text-align:right" class="last_heard"></div>
 	
-		<div>
-			<a class="medgray" href='#' id="agent_iw_nearby"><b id="agent_iw_nearby_count">x</b> other agents nearby</a>
+		<div class="nearby_agents_blurb">
+			<a class="medgray nearby_agents_tour" href='#'><b class="nearby_agents_ct">x</b> other agents nearby</a>
 		</div>
-		<div>
-			<a class="medgray popup_link" href='#' id="lmark_nearby"><b id="lmark_nearby_count">x</b> nearby landmarks</a>
+		<div class="nearby_lmarks_blurb">
+			<a class="medgray plink" popper='#lmark_popup/bc'><b class="nearby_lmarks_ct">x</b> nearby landmarks</a>
 		</div>
-	  <div class="popup">
-	    <div style="left: 30px; display:none">
-	      <img src="i/nose.png" class="nose"/>
-	      <div class="title"> Nearby landmarks: </div>
-	      <ul id="lmark_choices" class="choices"></ul>
-	    </div>
-	  </div>
 	
 		<div id="activate_stanza" style="margin-top:5px">
 			<a href="#" id="agent_iw_activate" class="button">
@@ -81,12 +41,47 @@
 	  <form id="assignment_submit_form">
 	    <input type="text" size="48"/>
 	    <input type="image" src="i/sendbutton.png" style="position: relative; top: 3px">
-			<div style="text-align:right; font-size: 10px; padding-right: 30px;">
-				<a id="what_like" href="#" style="color: #666">what are they into?</a>
-			</div>
 	  </form>
 		<div id="agent_iw_free_stanza">
 			or <a href="#" id="agent_iw_free">free this agent</a>
 		</div>
 	</div>	
+	
+	<div class="right">
+		<a class="plink smallgray" popper="#full_bio_popper/bc" href="#">what are they into?</a>
+	</div>
+	<div class="insert_popper_here"></div>
+</div>
+
+
+<div id="full_bio_popper" blitter="AgentIW.blit_bio" class="sub menu" style="display:none; width: 300px">
+	<img src="i/nose.png" class="nose"/>
+	<div class="title"> Their history </div>
+	<div class="content">
+		<div class="smallgray">
+			RECENTLY LIKED
+		</div>
+		<ul id="agent_iw_liked">
+			<li>&bull; Baboons</li>
+		</ul>
+		<div class="smallgray">
+			DIDN'T LIKE
+		</div>
+		<ul id="agent_iw_noliked">
+			<li>&bull; try to hurt baboons</li>
+			<li>&bull; get on your bicycle and chase a pidgeon</li>
+		</ul>
+		<div class="smallgray">
+			UP FOR
+		</div>
+		<ul id="agent_iw_upfor">
+			<li>&bull; Treasure hunts</li>
+		</ul>
+		<div class="smallgray">
+			THEIR FULL PROFILE
+		</div>
+		<ul>
+			<li><a href="#" class="extlink">click here</a></li>
+		</ul>
+	</div>
 </div>

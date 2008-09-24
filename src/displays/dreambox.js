@@ -120,7 +120,7 @@ Dreambox = {
     var other_recent = Initiatives.other_recent();
     if (mine.length > 0) {
       $('#dreambox_your_initiatives_content').html(Dreambox.render_mine(mine));
-      $('#dreambox_your_initiatives').show().find('a').click(Dreambox.mine_clicked);
+      $('#dreambox_your_initiatives').show().find('a').click(Clicker.click);
       
       var x = $('#dreambox_other_hide');
       if (x.is(':visible')) {
@@ -144,8 +144,8 @@ Dreambox = {
       var i = this;
       var title = i.you_title();
       var report = i.report();
-      html += "<div class='initiative' initiative='"+ i.tag() +"'>";
-      html += '<a href="#" class="title">' + title + "</div>";
+      html += "<div class='initiative'>";
+      html += '<a href="#" item="'+i.tag()+'" class="title">' + title + "</div>";
       if (report) html += "<div class='report'>" + report + "</div>";
       html += "</div>";
     });
