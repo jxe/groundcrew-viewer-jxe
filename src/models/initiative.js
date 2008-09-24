@@ -30,6 +30,7 @@ Initiative.prototype = {
   tag:       function() { return 'Annc__' + this.id; },  
   
   init: function() {
+    if (!this.msg) return;  // backend bug
     Initiatives.all[this.tag()] = this;
     this.events = [];
     this.agent_tags = [this.actor_tag];
@@ -48,6 +49,10 @@ Initiative.prototype = {
       if (this.kudos.match(/awesome/)) this.flags.push('awesome');
     }
     if (!Initiative.org_atypes[this.atype]) this.needs_plan = true;
+    if (this.atype == 'invite') {
+      this.invited = true;
+      this._report = "invitations have been sent out via SMS";
+    }
     this.atag = this.atag || this.atags || (this.msg[0] == '#' && this.msg.slice(1));
     NQueue.fire('did_change_initiatives');
     return this;
@@ -67,6 +72,10 @@ Initiative.prototype = {
       }
     } else if (ev.actor_tag == agent_tag) {
       this.mine = true;
+    }
+    if (ev.atype == 'invite') {
+      this.invited = true;
+      this._report = "invitations have been sent out via SMS";
     }
   },
   
@@ -99,13 +108,17 @@ Initiative.prototype = {
   
   you_title: function() {
     if (this.atype == 'suggestion') return "You suggested: <b>" + this.msg + "</b>";
+    if (this.atype == 'invite') {
+      var lm = LandmarkDb.find_by_tag(this.landmark_tag).title;
+      return "You invited: <b>" + this.msg + "</b> at " + lm;
+    }
     if (this.atype == 'assignment') return "You assigned someone to: <b>" + this.msg + "</b>";
     if (this.atype == 'requested') return "You activated agent <b>" + this.item.title + "</b>";
     return "you" + this.atype + ": <b>" + this.msg + "</b>";
   },
   
   report: function() {
-    return null;
+    return this._report;
   }
   
 };

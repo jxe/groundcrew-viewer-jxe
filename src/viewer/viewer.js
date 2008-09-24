@@ -75,6 +75,7 @@ Viewer = {
     }
     if (item[0] == 'P') return [ItemDb.items[item], 'agent'];
     if (item[0] == 'L') return [LandmarkDb.find_by_tag(item), 'lmark'];
+    if (item[0] == 'A') return [Initiatives.all[item], 'suggestion'];
     return [item, 'city'];
   }
   
