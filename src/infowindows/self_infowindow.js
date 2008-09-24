@@ -44,7 +44,6 @@ SelfIW = {
   
   asDOMObj: function() {
     Item.calculate_fields(person_item);
-    //console.log(person_item);
     
     var landmarks = LandmarkDb.landmarks_by_city[Viewer.selected_city];
     landmarks = landmarks && landmarks.length > 0 && landmarks.length;

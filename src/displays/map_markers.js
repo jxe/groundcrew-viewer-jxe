@@ -10,8 +10,6 @@ MapMarkers = {
     this.iw_item_type = type;
     var content = this.content_for(item, type);
     var marker = this.marker_for(item, type);
-    console.log('about to open marker');
-    console.log(item, content, marker);
     if (this.iw_marker == marker) {
       Map.Gmap.updateCurrentTab(function(tab){ tab.contentElem = content; });
     } else {
@@ -24,12 +22,6 @@ MapMarkers = {
     var x = item.marker || MapMarkers.cache[item] || MapMarkers.cache[item.item_tag] || MapMarkers.cache[item.landmark_tag] || MapMarkers.cache[Number(item)];
     if (x) return x;
     alert('no marker found for ' + item);
-    // window.booger = item;
-    // debugger;
-    console.log(item);
-    console.log(item.item_tag);
-    console.log(MapMarkers.cache);
-    console.log(MapMarkers.cache[item.item_tag]);
   },
   
   content_for: function(item, type) {
@@ -84,6 +76,10 @@ MapMarkers = {
       $('body').addClass('zoomed_out');
     }
   },
+  
+  new_landmark: function(lm) {
+    Map.add(MapMarkers.for_landmark(lm));
+  },  
   
   re_highlight: function() {
     if (!Map.available()) return;

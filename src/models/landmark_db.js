@@ -2,17 +2,11 @@ LandmarkDb = {
   
   landmarks_by_city: {},
   
-  for_city: function(city_id, f) {
-    var x = LandmarkDb.landmarks_by_city[city_id];
-    if (x && f) return f(x);
-    if (x) return x;
-    Ajax.fetch('/gc/landmarks', {city: city_id}, function(obj){
-      LandmarkDb.landmarks_by_city[city_id] = obj;
-      if (f) f(obj);
-    });
-    return null;
+  add: function(lm) {
+    LandmarkDb.landmarks_by_city[lm.city_id].push(lm);
+    MapMarkers.new_landmark(lm);
   },
-  
+    
   ensure_landmarks: function(city_id) {
     if (LandmarkDb.landmarks_by_city[city_id]) return;
     $.ajax({
