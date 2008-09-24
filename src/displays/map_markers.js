@@ -78,7 +78,7 @@ MapMarkers = {
   },
   
   new_landmark: function(lm) {
-    Map.add(MapMarkers.for_landmark(lm));
+    Map.add([MapMarkers.for_landmark(lm)]);
   },  
   
   re_highlight: function() {
