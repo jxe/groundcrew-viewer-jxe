@@ -48,7 +48,7 @@ Chat = {
     var html = '';
     $.each(events, function(){
       Event.improve(this);
-      html += $T(Chat.chat_t, this);
+      html += Chat.chat_t.t(this);
     });
     return html;
   },

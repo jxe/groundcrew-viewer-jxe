@@ -25,7 +25,6 @@ SuggestionIW = {
   
   suggestion_DOMObj: function(item) {
     SuggestionIW.latest = item;
-    console.log(item.landmark_tag);
     return $.template('#lmark_sugg_template').attr('atag', item.atag).showhide({
       '#lmark_nearby'       : ItemDb.agents_by_city[Viewer.selected_city].length > 1
     }).fillout({

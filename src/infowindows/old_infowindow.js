@@ -1,3 +1,7 @@
+function $L(obj, str) {
+  return obj[obj[str]] || obj[str];
+}
+
 MessageIW = {
   
   asDOMObj: function(x) {
@@ -6,8 +10,8 @@ MessageIW = {
     if (x.locked)   tag = tag + "_locked";
     var msg = $L(this.msgs, tag);
     if (!msg) return null;
-    x.contents = $T(msg, x);
-    return $($T(this.t, x))[0];
+    x.contents = msg.t(x);
+    return $(this.t.t(x))[0];
   },
   
   t: '<div><img class="thumb" src="#{thumb_url}"/>agent <b>#{title}</b><div>#{contents}</div></div>',

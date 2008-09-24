@@ -9,7 +9,7 @@ Item = {
     }
     if (!item.for_atag && item.status != 'busy') {
       Item.atag_links(item);
-      item.up_for = $T('<b class="tinysmall">up for:</b> #{atag_links_top5}...', item);
+      item.up_for = '<b class="tinysmall">up for:</b> #{x}...'.t(item.atag_links_top5);
     } else {
       item.up_for = '';
     }
@@ -31,9 +31,9 @@ Item = {
     var tags = a.atags.split(' ');
     var html = '';
     $.each(tags.index_by(/^(.*)\//), function(k, v){
-      html += $T("<optgroup label='#{desc}'>", {desc: atag_desc(k.slice(0, -1))});
+      html += "<optgroup label='#{x}'>".t(atag_desc(k.slice(0, -1)));
       $.each(v, function(){
-        html += $T("<option value='#{atag}'>#{desc}</option>", {atag: this, desc: atag_desc(this)});
+        html += "<option value='#{atag}'>#{desc}</option>".t({atag: this, desc: atag_desc(this)});
       });
       html += "</optgroup>";
     });

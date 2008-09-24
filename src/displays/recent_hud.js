@@ -49,16 +49,13 @@ RecentHUD = {
     var html = '';
     $.each(events, function(){
       Event.improve(this);
-      html += $T(RecentHUD.event_t, this);
+      html += RecentHUD.event_t.t(this);
     });
     return html;
   },
   
   
   did_add_new_event: function(event){
-    // Event.improve(event);
-    // var html = $T(RecentHUD.event_t, event);
-    // $('#recent').append(html).viewer_links().scrollDown();
   },
   
   event_t:

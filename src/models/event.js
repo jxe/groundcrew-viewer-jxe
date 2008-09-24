@@ -3,7 +3,7 @@ Event = {
   improve: function(a) {
     a.when = $time(a.created_at);
     a.color = Event.color(a);
-    a.what = $T(Event.whats[a.atype] || "did something weird (#{atype})", a);
+    a.what = (Event.whats[a.atype] || "did something weird (#{atype})").t(a);
     return a;
   },
   

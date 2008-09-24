@@ -52,7 +52,7 @@ Facebar = {
   redraw: function() {
     var html = '';
     $.each(Facebar.contents, function(){
-      html += $T(Facebar.agent_thumb_t, this);
+      html += Facebar.agent_thumb_t.t(this);
     });
     $('#agents').html(html).viewer_links();
     ViewerUI.adjust_frame();
