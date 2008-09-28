@@ -30,6 +30,7 @@ ItemDb = {
     if (!(item.lat && item.lng))
       return;
     if (item.item_tag[0] == 'L') return LandmarkDb.add(item);
+    if (item.item_tag[0] != 'P') return;
     Item.calculate_fields(item);
     var how = ItemDb.items[item.item_tag] ? 'updated' : 'added';
     ItemDb.items[item.item_tag] = item;

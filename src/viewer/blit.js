@@ -9,6 +9,8 @@ $.fn.blit = function(){
   }).clicks({
     '.nearby_agents_tour': Tour.local,
     '.city_name':          Viewer.city_summary,
+    '.go_summary':          Viewer.city_summary,
+    '.go_wishlets':          Viewer.wishlets_summary,
     '.zoom_out':          Viewer.zoom_out,
     '.go_to_self':         Viewer.go_to_self
   }).showhide({

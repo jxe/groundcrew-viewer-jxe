@@ -37,6 +37,11 @@ Viewer = {
     Viewer.open(Viewer.selected_city);
     return false;
   },
+
+  wishlets_summary: function() {
+    Viewer.open("W" + Viewer.selected_city);
+    return false;
+  },
   
   zoom_out: function(){ 
     Viewer.select_city(null); 
@@ -76,6 +81,7 @@ Viewer = {
     if (item[0] == 'P') return [ItemDb.items[item], 'agent'];
     if (item[0] == 'L') return [LandmarkDb.find_by_tag(item), 'lmark'];
     if (item[0] == 'A') return [Initiatives.all[item], 'suggestion'];
+    if (item[0] == 'W') return [item.slice(1), 'wishlets'];
     return [item, 'city'];
   }
   

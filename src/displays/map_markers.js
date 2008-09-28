@@ -30,6 +30,7 @@ MapMarkers = {
     if (type == 'suggestion') return SuggestionIW.suggestion_DOMObj(item);
     if (type == 'lmark') return LandmarkIW.asDOMObj(item);
     if (type == 'city') return CityIW.asDOMObj();
+    if (type == 'wishlets') return WishletsIW.domObj();
     return $('<div>we do not recognize this item</div>')[0];
   },
   
