@@ -10,12 +10,13 @@ LandmarkDb = {
   ensure_landmarks: function(city_id) {
     if (LandmarkDb.landmarks_by_city[city_id]) return;
     $.ajax({
-      url: '/gc/landmarks',
-      data: {city: city_id},
+      url: '/gc/viewer_city.js',
+      data: {city_id: city_id},
       async: false,
-      dataType: 'json',
+      // dataType: 'json',
       success: function(obj){ 
-        LandmarkDb.landmarks_by_city[city_id] = obj;
+        eval(obj);
+        // LandmarkDb.landmarks_by_city[city_id] = obj;
       }
     });
   },
