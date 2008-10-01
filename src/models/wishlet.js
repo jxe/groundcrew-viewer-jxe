@@ -1,0 +1,5 @@
+Wishlets = {
+  
+  by_city: {}
+  
+};
