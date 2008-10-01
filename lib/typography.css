@@ -38,6 +38,10 @@ a:hover{
   margin-bottom: 10px;
 }
 
+.morespacebelow {
+  margin-bottom: 20px;
+}
+
 body a.subtle {
   color: #ddd;
   text-decoration: none;
