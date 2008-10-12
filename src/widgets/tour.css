@@ -12,7 +12,7 @@
 
 #tourbox_larr, #tourbox_rarr {
   position: absolute; 
-  top: -2px; 
+  top: 10px; 
   display: block;
   opacity: 0.6;
 }

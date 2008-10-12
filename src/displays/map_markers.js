@@ -4,6 +4,11 @@ MapMarkers = {
   iw_item: null,
   iw_item_type: null,
   
+  cur_lmark_title: function() {
+    var lmtag = MapMarkers.iw_item && MapMarkers.iw_item.landmark_tag;
+    return (lmtag && LandmarkDb.find_by_tag(lmtag).title);
+  },
+    
   open: function(item, type) {
     if (!Map.available()) return;
     this.iw_item = item;
@@ -25,12 +30,11 @@ MapMarkers = {
   },
   
   content_for: function(item, type) {
-    if (type == 'agent') return item.map_icon == 'sman' ? SelfIW.asDOMObj() : AgentIW.asDOMObj(item);
+    if (type == 'agent') return item.map_icon == 'sman' ? SelfIW.asDOMObj() : $.template('#agent_iw_template').blit()[0];
     if (type == 'pano') return item.html;
-    if (type == 'suggestion') return SuggestionIW.suggestion_DOMObj(item);
-    if (type == 'lmark') return LandmarkIW.asDOMObj(item);
-    if (type == 'city') return CityIW.asDOMObj();
-    if (type == 'wishlets') return WishletsIW.domObj();
+    if (type == 'gathering') return $.template('#gathering_iw_t').blit()[0];
+    if (type == 'lmark')     return $.template('#lmark_template').blit()[0];
+    if (type == 'city')      return $.template('#ready_iw_t').blit()[0];
     return $('<div>we do not recognize this item</div>')[0];
   },
   
@@ -49,11 +53,32 @@ MapMarkers = {
   //
   
   did_change_item: function(changed_item, how) {
-    if (Viewer.selected_city != changed_item.city_id) return;
-    if (MapMarkers.iw_item && MapMarkers.iw_item.item_tag == changed_item.item_tag) {
-      MapMarkers.open(changed_item, MapMarkers.iw_item_type);
+    if (changed_item.item_tag == agent_tag) {
+      person_item = changed_item;
+      if (MapMarkers.iw_item && MapMarkers.iw_item.item_tag == agent_tag) {
+        var type = MapMarkers.iw_item_type;
+        if (MapMarkers.iw_item.city_id != person_item.city_id) {
+          MapMarkers.close();
+          delete MapMarkers.cache[changed_item.item_tag];
+          // MapMarkers.update_agent_marker(changed_item);
+          Viewer.select_city(person_item.city_id);
+          MapMarkers.open(changed_item, type);
+        } else if (MapMarkers.iw_item.lat != person_item.lat) {
+          MapMarkers.close();
+          // delete MapMarkers.cache[changed_item.item_tag];
+          MapMarkers.update_agent_marker(changed_item);
+          MapMarkers.open(changed_item, type);
+        } else {
+          MapMarkers.open(changed_item, type);
+        }
+      }
     } else {
-      MapMarkers.update_agent_marker(agent);
+      if (Viewer.selected_city != changed_item.city_id) return;
+      if (MapMarkers.iw_item && MapMarkers.iw_item.item_tag == changed_item.item_tag) {
+        MapMarkers.open(changed_item, MapMarkers.iw_item_type);
+      } else {
+        MapMarkers.update_agent_marker(changed_item);
+      }
     }
   },
   
@@ -87,7 +112,7 @@ MapMarkers = {
     var crew = Tour.highlighted_crew || [];
     var old_crew = Tour.prev_highlighted_crew || [];
     $.each(old_crew.concat(crew), function(){ MapMarkers.update_agent_marker(this); });
-    if (crew.length > 0) Map.set_bounds_from_lat_lngs(crew);
+    // if (crew.length > 0) Map.set_bounds_from_lat_lngs(crew);
   },
   
   
@@ -133,6 +158,7 @@ MapMarkers = {
   for_city: function(city_id) {
     if (city_id == "undefined") return null;
     if (MapMarkers.cache[city_id]) return MapMarkers.cache[city_id];
+    if (!city_locs[city_id]) return null;
     var lat = city_locs[city_id][0];
     var lng = city_locs[city_id][1];
     var marker = MapMarkers.marker(lat, lng, 'ninjaguy', cities[city_id]);

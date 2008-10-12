@@ -4,7 +4,7 @@ Ajax = {
   timer: null,
 
   uuid: function() {
-    return agent_id + '_' + new Date().getTime();
+    return agent_tag + '_' + new Date().getTime();
   },
   
   init: function() {

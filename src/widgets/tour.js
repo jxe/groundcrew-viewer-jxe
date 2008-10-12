@@ -1,3 +1,11 @@
+function button(cls, name, attrs){
+  if (!attrs) return tag('a.q.'+cls, name);
+  attrs.content = name;
+  return tag('a.q.'+cls, attrs);
+  // return "<big>&lt;</big>" + tag('a.'+cls, name) + "<big>&gt;</big>";
+}
+
+
 Tour = {
 
   highlighted_crew: null,
@@ -13,15 +21,8 @@ Tour = {
     });
     NQueue.receivers.push(Tour);
   },
-
-  topic: function() {
-    if (Tour.current.topic) return Tour.current.topic;
-    if (Tour.current.atag) return "for <b>" + atag_desc(Tour.current.atag).toLowerCase() + "</b>";
-    return "for that";
-  },
   
   stop: function(omit_redraws) {
-    $.popups2.close();
     var old_crew = Tour.prev_highlighted_crew = Tour.highlighted_crew;
     Tour.highlighted_crew = null;
     Tour.current = null;
@@ -37,13 +38,22 @@ Tour = {
   },
   
   start: function(crew, options) {
+    var what = options.topic;
+    var msg = "<b>" + pluralize(crew.length, 'agent') + "</b> " + what;
+    Tour.init(crew, msg, options);
+  },
+  
+  init: function(crew, msg, options) {
+
     crew = crew.compact();
+
+    if (crew.length > 1) crew = ItemDb.eliminate_self(crew);
+
     if (crew.length == 0) { alert('Tour.start called with zero crew!'); return; }
-    if (crew.length == 1) return Viewer.open(crew[0]);
-    if (Tour.current) Tour.stop(true);
-    $.popups2.close();
-    Tour.highlighted_crew = crew;
+    if (Tour.current) Tour.stop(true); // crew.length > 1
+    // if (crew.length == 1) return Viewer.open(crew[0]);
     Tour.current = options;
+    Tour.highlighted_crew = crew;
     Tour.index = 0;
     // recalculate items
     $.each(crew, function(){ this.highlighted = true; Item.calculate_fields(this); });
@@ -51,16 +61,31 @@ Tour = {
     // adjust UI
     Facebar.resort();
     MapMarkers.re_highlight();
-    Viewer.open(crew[0]);
+    Viewer.open(options.openthis || crew[0]);
     
     $('body').addClass('has_tour');
-    
-    $('#tourbox_hud').fillout({
-      '#tourbox_count': number_plural(Tour.highlighted_crew.length, 'agent', 'agents'),
-      '#tourbox_what' : Tour.topic(),
-      '#tourbox_where': cities[Viewer.selected_city]
-    }).show();    
+    $('#tour_msg').html(msg).blit();
+    $('#tourbox_hud').show();
   },
+
+  with_goal: function(crew, goal, openthis) {
+    Tour.init(
+      crew,
+      tag('div.small', "RIGHT NOW, <b>"+pluralize(crew.length, 'agent')+"</b> are standing by") + 
+      tag('div.b.center', 'to ' + goal) + 
+      tag('div.small.center',
+        button('plink', 'join them', {popper:'#lmark_popup/bc'}) + ' &nbsp; ' + 
+        button('plink', 'gather them', {popper:'#lmark_popup/bc'})
+      ), 
+      { original_crew: crew, goal:goal, openthis:openthis }
+    );
+  },
+  
+  cur_readyto: function() {
+    return (Tour.current && Tour.current.goal);
+  },
+  
+  
   
   // unfortunately, the javascript modulus operator is fucked up, so we don't use it
   next: function(step) {

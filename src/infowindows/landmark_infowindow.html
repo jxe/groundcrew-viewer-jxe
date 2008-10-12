@@ -1,33 +1,14 @@
-<div class="troot" id="lmark_template" style="display:none; max-width: 460px">
+<div class="troot widget" id="lmark_template" style="display:none; max-width: 460px">
 
-  <b id="lmark_title">barry</b>
+	<b class="cur_lmark_title mhead"></b>
 
-	<div>
-		<a class="medgray" href='#' id="lmark_nearby"><b id="lmark_nearby_count">0</b>  agents nearby</a>
+	<div class="spacebelow">
+		<a class="medgray nearby_agents_tour" href='#'><b class="nearby_agents_ct">x</b> agents nearby</a>
 	</div>
-	<div style="clear:both; height: 10px"></div>  
 	
-	<a href='#' id="lmark_build" class="newbutton" style="text-align:center">
+	<a href='#' class="newbutton plink" style="text-align:center" popper="#wishes_popup/bc">
 		Build a positive experience<br/>
 		 at this location
 	</a>
-	<div class="popup">
-    <div style="left: 90px; width: 350px; display:none">
-      <img src="i/nose.png" class="nose"/>
-      <div class="title"> Design your experience: </div>
-			<form>
-				<div>
-					What do you want to get people doing?
-				</div>
-				<div>
-					<input type="text" name="what" size="40"/>
-				</div>
-				<div>
-					<select name="atag"></select>
-				</div>
-				<input type="submit" value="go"/>
-			</form>
-    </div>
-  </div>
-  	
+	<div class="insert_popper_here"></div>
 </div>

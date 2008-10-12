@@ -49,25 +49,3 @@
   color: #ca3;
   text-decoration: none;
 }
-
-#msgbar .insert_popper_here {
-  text-align: left;
-}
-
-
-
-.nearagents .menu {
-	top: 20px;
-	left: 40px;
-	position: absolute;
-	z-index: 200;
-}
-.nearagents .menu img {
-	position:absolute; 
-	left: 40px; top: -14px;
-}
-
-.nearagents .menu a {
-  padding-left: 15px;
-}
-

@@ -172,6 +172,10 @@ body.logged_in .m_item.lio {
   display: inline;
 }
 
+body.logged_in .lio {
+  display: block;
+}
+
 .loo {
   display: none;
 }
@@ -180,15 +184,13 @@ body.logged_out .m_item.loo {
   display: inline;
 }
 
+body.zoomed_out .city_level, body.loading .city_level {
+  display: none;
+}
 
 /*
 ** HUDs
 */ 
-
-a[atag], a.popup_link {
-  font-weight: bold;
-  color: #226;
-}
 
 .hud {
   position:absolute; 
@@ -201,7 +203,14 @@ a[atag], a.popup_link {
   border-left: solid 1px white;
   border-right: solid 1px #222;
   border-bottom: solid 1px #222;
-  text-shadow: #fff 0px 1px 1px;
+/*  text-shadow: #fff 0px 1px 1px;*/
+}
+
+.hud.bgwhite {
+  border-top:    solid 2px white;
+  border-left:   solid 2px white;
+  border-right:  solid 2px #222;
+  border-bottom: solid 2px #222;
 }
 
 .hud .menu, .hud table {

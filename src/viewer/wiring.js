@@ -1,22 +1,13 @@
-$.fn.viewer_links = function(){
-  this.find('a[item]').click(function(){
-    $.popups.close();
-    $.popups2.close();
-    var x = $(this).attr('item');
-    if (x) Viewer.open(x);
-    return false;
-  });
-  return this;
-};
-
-
+var agent_tag;
 
 ViewerUI = {
   
   init: function() {
     this.adjust_frame();
+    agent_tag = person_item.item_tag;
     Reactor.handle_json_obj(initial_data);
     this.activateUI();
+    $('body').removeClass('loading');
     if (logged_in) {
       if (!ItemDb.items[agent_tag]) ItemDb.add_or_update(person_item);
       $('body').addClass('logged_in');
@@ -26,18 +17,17 @@ ViewerUI = {
       Viewer.select_city(null);
     }
     Ajax.init();
-    Youbox.init();
+    $('#you_img').attr('src', person_item.thumb_url);
+    $('#agent_name').html(person_item.title);
   },
   
   activateUI: function() {    
     $('a[rel*=facebox]').facebox();
-    $(document).popups().popups2();
+    $(document).popups();
     
     Tour.wire();
     Dreambox.wire();
-    Msgbar.wire();
     Chat.wire();
-    CityJumper.wire();
     CityChooser.wire();
     Facebar.wire();
     NQueue.receivers.push(MapMarkers);

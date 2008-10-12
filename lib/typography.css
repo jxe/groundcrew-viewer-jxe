@@ -13,12 +13,50 @@ big {
   font-weight: bold;
 }
 
+.small big {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.gray {
+  color: #888;
+}
+
+.in {
+	padding-left: 15px;
+}
+
+.box {
+  border: solid thin black;
+  margin: 10px;
+  padding: 5px;
+}
+
+.testbox {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.hud.bgwhite {
+  background: white;
+}
+
+
 /*
 ** many kinds of links
 */
 
 a {
   text-decoration: none;
+}
+
+a.q {
+  color: #007;
+  font-weight: bold;
+}
+
+.tiny {
+  font-size: 10px;
 }
 
 a:hover{
@@ -111,7 +149,7 @@ div.head {
     padding-bottom: 0px;
 }
 
-div.mhead {
+.mhead {
   font-size: 18px;
 }
 
@@ -122,6 +160,10 @@ div.mhead {
 }
 .secintro {
   font-size: 13px; padding: 10px; padding-top: 3px; padding-bottom: 5px; color: #555;
+}
+
+.msecintro {
+  font-size: 13px; padding-top: 3px; padding-bottom: 5px; color: #555;
 }
 
 span.tip {
@@ -193,6 +235,12 @@ fieldset {
   color: #777;
   font-weight: normal;
 }
+
+.small {
+  font-size: 11px;
+  font-weight: normal;
+}
+
 
 body#body .medgray {
   font-size: 13px;
@@ -314,13 +362,20 @@ div:hover > .hideinside {
 
 
 
+.large {
+  font-size: 18px;
+}
 
+.g3 {
+  color: #333;
+}
 
 
 a.newbutton {
 	border:1px solid #555; background: #ddd; padding: 5px; width: 240px; display:block;
 	font-size: 16px; font-weight:bold;
 	color: black;
+	text-align:center; margin:auto;
 }
 a.newbutton .subtext {
   font-size: 12px; color: #555; font-weight:normal
@@ -355,6 +410,7 @@ div.menu {
 	border: solid thin #999;
 	background: white;
 	z-index: 300;
+	font-size: 12px;
 }
 div.menu p {
   margin: 0;
@@ -382,6 +438,12 @@ div.menu a:hover, div.menu a.pick {
 	color: white;
 	text-decoration: none;
 }
+
+div.menu.weird a:hover, div.menu.weird a.pick {
+	color: gold;
+	text-decoration: underline;
+}
+
 div.menu a.trigger {
 	background: #eee;
 	color: black;

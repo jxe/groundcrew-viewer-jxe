@@ -11,3 +11,6 @@ html_and_css:
 
 deploy: compressed
 	rsync -av dist/ groundcrew.us:apps/groundcrew/current/public/
+
+deploy_uncompressed: uncompressed
+	rsync -av dist/ groundcrew.us:apps/groundcrew/current/public/

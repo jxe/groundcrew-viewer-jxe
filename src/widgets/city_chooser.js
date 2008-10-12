@@ -15,8 +15,9 @@ CityChooser = {
     
     var agents_by_city = ItemDb.agents_by_city;
     var cities_by_num_agents = $keys(agents_by_city).sort_by(function(x){ 
+      return -agents_by_city[x].length;
       // sort by number of agents first, then the city name
-      return [0-agents_by_city[x].length, cities[x]]; 
+      // return [0-agents_by_city[x].length, cities[x]]; 
     });
     var more_cities;
     if (cities_by_num_agents.length > 10) {

@@ -17,7 +17,7 @@ EventDb = {
   
   install: function(events) {
     EventDb.events = events;
-    $.each(events, function(){ Initiatives.did_add_new_event(this); });
+    $.each(events, function(){ Gatherings.did_add_new_event(this); });
   },
 
   new_event: function(event) {
@@ -30,9 +30,8 @@ EventDb = {
   //
   
   annc: function(event) {
-    RecentHUD.did_add_new_event(event);
+    Gatherings.did_add_new_event(event);
     Notifier.did_add_new_event(event);
-    Initiatives.did_add_new_event(event);
     Chat.did_add_new_event(event);
   }
   

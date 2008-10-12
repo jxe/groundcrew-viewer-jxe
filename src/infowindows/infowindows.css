@@ -1,3 +1,17 @@
+.wishburger {}
+
+.wishburger a {
+  font-size: 10px;
+}
+
+.agent_iw {
+  max-width: 460px
+}
+
+img.headshot {
+  float:left; margin-right: 10px; margin-bottom: 10px; height: 50px;
+}
+
 ul li a.b {
   color: blue;
 }
@@ -10,41 +24,31 @@ ul li a.b {
   font-weight: bold;
 }
 
-.bigbox a {
-  color: black;
-}
-
-.bigbox a:hover {
-  text-decoration: none;
-}
-
-.bigbox {
-  
-  margin-left: 10px; 
-  	margin-right: 10px; margin-top: 10px; 
-  	border: solid thin #bbb; background: #e4e4e4; padding: 4px 10px;
-  	color: #222; position:relative; font-size: 14px;
-  
-}
-
-.you_are {
-	font-size: 14px;
-	position: relative;
-}
-.you_are b {
-	font-size: 18px;
-}
-.you_are.gray b {
-  font-size: 14px;
-}
 .you_are a {
 	color: black;
-}
-.you_are a:hover {
-	text-decoration: none;
 }
 
 div.report {
   font-size: 11px;
   color: #a40;
+}
+
+.self_iw .ready_to_what {
+  text-align: center;
+}
+
+
+div.dots a[newstatus] {
+  background-image: url(i/greendot.png);
+  background-position: left center; 
+  background-repeat: no-repeat;
+}
+
+
+.gathering_iw[state=invited] .gathering_invite {
+  display: none;
+}
+
+.gathering_iw[state=potential] .gathering_report {
+  display: none;
 }

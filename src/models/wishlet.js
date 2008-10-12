@@ -1,5 +1,0 @@
-Wishlets = {
-  
-  by_city: {}
-  
-};

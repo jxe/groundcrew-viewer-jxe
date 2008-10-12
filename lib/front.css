@@ -3,7 +3,7 @@
 */
 
 img { border:0; }
-textarea { display:block; }
+/*textarea { display:block; }*/
 body { padding:0; margin:0; }
 h1, body { margin:0; padding:0; }
 p { text-align: justify; }
@@ -18,7 +18,7 @@ p { text-align: justify; }
 }
 
 body {
-    background: #fff url('/i/grgrad.png') repeat-x scroll;
+    background: #fff url('i/grgrad.png') repeat-x scroll;
 }
 
 #page {

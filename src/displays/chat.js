@@ -5,6 +5,7 @@ Chat = {
   chats: [],
   
   wire: function() {
+    $('#chatbutton').dblclick(function(){ RecentHUD.toggle_open_closed(); return false; });
     $('#chatbutton').click(function(){
       $('#chatter, #talker').toggle();
       $('#talker input').val("type here to chat with others");

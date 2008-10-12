@@ -1,5 +1,3 @@
-function atag_desc(atag) { return atag_descs[atag] || atag; }
-
 Item = {
   
   calculate_fields: function(item) {
@@ -7,51 +5,25 @@ Item = {
     for (var i in Item.calculated_fields){
       item[i] = Item.calculated_fields[i](item);
     }
-    if (!item.for_atag && item.status != 'busy') {
-      Item.atag_links(item);
-      item.up_for = '<b class="tinysmall">up for:</b> #{x}...'.t(item.atag_links_top5);
-    } else {
-      item.up_for = '';
-    }
-  },
-
-  atag_links: function(a) {
-    var atags = a.atags.split(' ');
-    var atag_links = [];
-    for (var i=0; i < atags.length; i++) {
-      if (atags[i].indexOf('/') >= 0)
-        atag_links.push(atag_desc(atags[i]));
-    };
     
-    a.atag_links_top5 = atag_links.slice(0, 5).join(', ');      
-    return atag_links;
-  },
-  
-  summon_options: function(a) {
-    var tags = a.atags.split(' ');
-    var html = '';
-    $.each(tags.index_by(/^(.*)\//), function(k, v){
-      html += "<optgroup label='#{x}'>".t(atag_desc(k.slice(0, -1)));
-      $.each(v, function(){
-        html += "<option value='#{atag}'>#{desc}</option>".t({atag: this, desc: atag_desc(this)});
-      });
-      html += "</optgroup>";
-    });
-    return html;
+    if (!item || !item.readyto || !item.readyto[0]) return;
+    if ((Date.unix() - item.readyto[0][1]) > 10 * 24 * 60 * 60) return;
+    item.topready = item.readyto[0][0];
   },
   
   calculated_fields: {
     
-    upfor: function(a) {
-      if (!a.atags) return 'nothing';
-      var atags = a.atags.split(' ').sort(function(a, b){ return Math.random() > 0.5 ? 1 : -1; }).slice(0, 5);
-      var html = '';
-      for (var i=0; i < atags.length; i++) {
-        html += "<li>&bull; " + atag_desc(atags[i]) + "</li>";
-      };
-      return html;
+    readyto_arr: function(a) {
+      if (a.readyto.replace) a.readyto = json_eval(a.readyto);
+      if (a.readyto.map) return a.readyto.map(function(x){ return x[0]; });
+      else return [];
     },
-        
+    
+    qualities_arr: function(a) {
+      if (a.qualities) return a.qualities.split(' ');
+      else return [];
+    },
+            
     locked: function(a) {
       if (!a.latched_by) return false;
       if (a.latched_by.split(' ').indexOf(agent_tag) >= 0) return false;
@@ -96,25 +68,6 @@ Item = {
     thumb_url: function(a) {
       if (a.thumb_url) return a.thumb_url;
       return 'i/agent-smith.jpg';
-    },
-    
-    atag_h: function(a) {
-      var h = {};
-      $.each(a.atags.split(' '), function(){ h[this] = true; });
-      return h;
-    },
-          
-    byline2: function(a){
-      if (a.byline) return a.byline;
-      if (a.pgoal) return "wish: " + a.pgoal;
-      return 'last active 2 days ago';
-    },
-
-    looking_for: function(a) {
-      var x = a.pgoal;
-      if (!x) return atag_desc(a.atags.split(' ')[0]).toLowerCase();
-      if (x[0] == '#') return atag_desc(x.slice(1)).toLowerCase();
-      return x;
     },
     
     byline3: function(a){

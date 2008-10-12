@@ -45,3 +45,19 @@ test("map", function(){
   ok( x.length == 1 );
   ok( x[0] == 2 );
 });
+
+
+test("sort_by", function(){
+  
+  var x = [1, 2, 3, 4, 5];
+  var y = x.sort_by(function(z){ return -z; });
+  
+  ok( y[0] == 5, y[0] );
+  ok( y[4] == 1 );
+  
+});
+
+test('max and sum', function(){
+  ok( [1, 2, 3].max() == 3 );
+  ok( [1, 2, 3].sum() == 6 );
+});

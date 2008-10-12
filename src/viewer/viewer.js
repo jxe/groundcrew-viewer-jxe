@@ -11,8 +11,10 @@ Viewer = {
     var item_and_type = Viewer.resolve(thing);
     var item = item_and_type[0];
     var type = item_and_type[1];
+    if (!type) return;
     var city_id = item.city_id || (type == 'city' && item);
-    if (city_id && city_id != Viewer.selected_city) Viewer.select_city(city_id);
+    if (city_id && Number(city_id) != Number(Viewer.selected_city)) Viewer.select_city(city_id);
+    if (type == 'city' && Tour.current) Tour.stop();
     MapMarkers.open(item, type);
     if (type == 'agent') Facebar.selected_agent(item);
   },
@@ -23,11 +25,12 @@ Viewer = {
   },
   
   select_city: function(city_id) {
-    if (Viewer.selected_city == city_id) return;
+    if (Number(Viewer.selected_city) == Number(city_id)) return;
     ItemDb.agents_by_city = ItemDb.index_all_items_by(['city_id']);
     Viewer.selected_city = city_id;
     Tour.stop();
     if (city_id) LandmarkDb.ensure_landmarks(city_id);
+    City.recalc_city();
     MapMarkers.select_city(city_id);
     NQueue.fire('did_change_selected_city');
     NQueue.fire('did_change_viewer_state');
@@ -35,11 +38,6 @@ Viewer = {
   
   city_summary: function() {
     Viewer.open(Viewer.selected_city);
-    return false;
-  },
-
-  wishlets_summary: function() {
-    Viewer.open("W" + Viewer.selected_city);
     return false;
   },
   
@@ -52,15 +50,7 @@ Viewer = {
     Viewer.open(person_item);
     return false;
   },
-  
-
-  // stuff to start
-  
-  start_suggestion: function(lm, msg, atags) {
-    var i = Initiative.createLocal('suggestion', msg, {atags: atags, landmark_tag:lm});
-    Viewer.open(i);
-  },
-  
+    
 
   // messages
   
@@ -73,16 +63,23 @@ Viewer = {
   
   resolve: function(item) {
     if (item.html) return [item, 'pano'];
-    if (item.landmark_tag) return [item, 'suggestion'];
-    if (item.item_tag) {
-      if (item.item_tag[0] == 'P') return [item, 'agent'];
-      if (item.item_tag[0] == 'L') return [item, 'lmark'];
-    }
+    if (item.landmark_tag) item = item.landmark_tag;
+    if (item.item_tag) item = item.item_tag;
     if (item[0] == 'P') return [ItemDb.items[item], 'agent'];
-    if (item[0] == 'L') return [LandmarkDb.find_by_tag(item), 'lmark'];
-    if (item[0] == 'A') return [Initiatives.all[item], 'suggestion'];
-    if (item[0] == 'W') return [item.slice(1), 'wishlets'];
-    return [item, 'city'];
+    if (item[0] == 'L') {
+      var readyto = Tour.cur_readyto();
+      if (readyto) {
+        var i = Initiative.createLocal('gathering', readyto, {landmark_tag:item});
+        return [i, 'gathering'];
+      } else {
+        return [LandmarkDb.find_by_tag(item), 'lmark'];
+      }
+    }
+    if (item[0] == 'A') return [Initiatives.all[item], 'gathering'];
+    if (Number(item)) return [item, 'city'];
+    alert('unrecognized viewer object:  ' + item);
+    console.log(item);
+    return [false, false];
   }
   
 };

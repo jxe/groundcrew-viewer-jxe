@@ -43,7 +43,6 @@ Reactor = {
 // this is the new notification mechanism.
 NQueue = {
  
-  //RecentHUD, 
   notifications: [
     'did_change_initiatives',
     'did_change_selected_city',

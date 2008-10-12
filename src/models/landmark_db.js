@@ -1,8 +1,10 @@
+Landmark = {};
 LandmarkDb = {
   
   landmarks_by_city: {},
   
   add: function(lm) {
+    lm.landmark_tag = lm.item_tag;
     LandmarkDb.landmarks_by_city[lm.city_id].push(lm);
     MapMarkers.new_landmark(lm);
   },
@@ -23,8 +25,10 @@ LandmarkDb = {
   
   find_by_tag: function(tag) {
     var lms = LandmarkDb.landmarks_by_city[Viewer.selected_city];
+    if (!lms) return;
     var idx = {};
     $.each(lms, function(){
+      this.landmark_tag = this.item_tag;
       idx[this.item_tag] = this;
     });
     return idx[tag];

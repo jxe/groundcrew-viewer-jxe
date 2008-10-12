@@ -54,7 +54,7 @@ Facebar = {
     $.each(Facebar.contents, function(){
       html += Facebar.agent_thumb_t.t(this);
     });
-    $('#agents').html(html).viewer_links();
+    $('#agents').html(html).blit();
     ViewerUI.adjust_frame();
   }
     

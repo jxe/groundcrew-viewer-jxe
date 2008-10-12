@@ -4,6 +4,9 @@ Event = {
     a.when = $time(a.created_at);
     a.color = Event.color(a);
     a.what = (Event.whats[a.atype] || "did something weird (#{atype})").t(a);
+    a.item_title = a.item && a.item.title;
+    a.landmark = a.landmark_tag && LandmarkDb.find_by_tag(a.landmark_tag);
+    a.landmark_title = a.landmark && a.landmark.title;
     return a;
   },
   
@@ -15,7 +18,7 @@ Event = {
     if ($w('assignment msg').indexOf(a.atype) >= 0) return "purple";
     return "green";
   },
-    
+  
   whats: {
 
     // chat
@@ -26,12 +29,17 @@ Event = {
       "where <span class='wish'>#{msg}</span>",
     assignment: 
       "gave an assignment to <a href='#' item='#{item_tag}'>#{item_name}</a>: <span class='assignment'>#{msg}</span>",
+    invite:
+      "invited #{reach} people to <a href='#' item='#{landmark_tag}'>#{landmark_title}</a> for #{msg}",
     requested:  
       "activated agent <a href='#' item='#{item_tag}'>#{item_name}</a>",
     wish:
-      "wished for:  <span class='wish'>#{msg}</span>",
+      "wished <span class='wish'>to #{msg}</span>",
+    new_landmark: 
+      "created a <a href='#' item='#{landmark_tag}'>new landmark</a>: #{item_title}",
 
     // initiative reports
+    dead:       "is no longer available",
     accepted:   "accepted the assignment",
     report:     "reported: <span class='report'>#{msg}</span>",
     declined:   "declined the assignment",
