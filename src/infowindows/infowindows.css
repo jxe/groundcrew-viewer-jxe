@@ -63,7 +63,7 @@ div.report {
 
 
 div.dots a[newstatus] {
-  background-image: url(i/greendot.png);
+  background-image: url(i/dots/greendot.png);
   background-position: left center; 
   background-repeat: no-repeat;
 }

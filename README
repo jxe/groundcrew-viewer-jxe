@@ -2,22 +2,53 @@
 ***         and released under the Affero GPL v3             ***
 
 
-== SUBDIRECTORIES ==
 
-src/{dialogs,displays,infowindows,menus,widgets}
-- this is all code for various "views" that the viewer can pop up
+==============================================
+== Running the viewer on your local machine ==
+==============================================
 
-src/models
-- the underlying objects -- agents, landmarks, etc
+Run the following in a shell, to build the javascipt and html up
+for constituent files, and then to grab real live data to test
+with from the real groundcrew.us server and cache it locally.
 
-src/viewer
-- glue code
+% make
+% make grab GCUN='<your groundcrew.us email>' GCPW='<your password>'
 
-lib
-- library code, including the gclib library of js utility functions
+At this point you should be able to run the viewer locally in
+firefox or safari or whatever:
 
-vendor
-- javascript from outside sources
+% open dist/viewer.html     # or...
+% firefox dist/viewer.html
 
-test
-- qunit javascript tests
+If you change javascript, html or css files, you have to run
+'make' to rebuild.
+
+The only thing that doesn't work quite right in local mode are
+the user images.  Sorry about that.
+
+
+
+
+===========================
+== Navigating the source ==
+===========================
+
+Here are the directories we use:
+
+	src/{dialogs,displays,infowindows,menus,widgets}
+	- this is all code for various "views" that the viewer can pop up
+
+	src/models
+	- the underlying objects -- agents, landmarks, etc
+
+	src/viewer
+	- glue code
+
+	lib
+	- library code, including the gclib library of js utility functions
+
+	vendor
+	- javascript from outside sources
+
+	test
+	- qunit javascript tests

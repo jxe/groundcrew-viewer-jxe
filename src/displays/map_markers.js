@@ -136,7 +136,7 @@ MapMarkers = {
       console.log([lat, lng, type, title]);
       throw "serios problem";
     }
-    var icon = new GIcon(G_DEFAULT_ICON, 'i/' + type + '.png');
+    var icon = new GIcon(G_DEFAULT_ICON, 'i/map/' + type + '.png');
     if (type.indexOf('man') >= 0) {
       icon.shadow = "i/man.shadow.png";
       icon.iconSize = new GSize(32, 32);
@@ -146,7 +146,7 @@ MapMarkers = {
     }
     if (type.indexOf('bump') >= 0) {
       // add shadow and adjust size
-      icon.shadow = "i/lilhouse_shadow.png";
+      icon.shadow = "i/bump_shadow.png";
       icon.iconSize = new GSize(20, 20);
       icon.shadowSize = new GSize(59, 32);
       icon.iconAnchor = new GPoint(10, 10);

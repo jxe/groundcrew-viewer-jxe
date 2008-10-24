@@ -126,7 +126,7 @@ a.m_item:hover {
 #header {
   position: relative; 
   height: 59px;
-  background: black /* #eee url(/i/tgrad.png) center bottom */;
+  background: black;
   border-bottom: #777 1px solid;  /* #d06f25 #25226A */
   margin: auto;
   width: 800px;

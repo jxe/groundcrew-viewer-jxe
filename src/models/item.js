@@ -54,7 +54,7 @@ Item = {
       if (a.status == 'dead')      dot = 'red';
       if (a.status == 'off')       dot = 'yellow';
       if (a.status == 'busy')      dot = 'green';
-      return "i/" + dot  + "dot.png";
+      return "i/dots/" + dot  + "dot.png";
     },
     
     map_icon: function(a) {
