@@ -38,6 +38,15 @@ Item = {
       if (a.status == 'dead') return " <b>will not receive assignments</b>";
       return a.status;
     },
+
+    status_word: function(a) {
+      // You...
+      if (a.status == 'off') return "summonable";
+      if (a.status == 'available') return "available";
+      if (a.status == 'busy') return "assigned";
+      if (a.status == 'dead') return "not available";
+      return a.status;
+    },
     
     dotimg: function(a) {
       var dot;

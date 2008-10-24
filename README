@@ -1,16 +1,23 @@
-/model
+*** Everything here is Copyright 2008 Citizen Logistics, LLC ***
+***         and released under the Affero GPL v3             ***
 
- - These files are used to dress up incoming json with additional calculated
-   fields so it's ready to render.  Client-side databases are also here.
 
-/view
+== SUBDIRECTORIES ==
 
-  - These files contain templates used for rendering, well organized, plus any
-    additional rendering code. Also contains "widgets" that are client side
-    only, and that don't correspond to json objects received from the server.
+src/{dialogs,displays,infowindows,menus,widgets}
+- this is all code for various "views" that the viewer can pop up
 
-/controller 
+src/models
+- the underlying objects -- agents, landmarks, etc
 
-  - These files contain jquery plugins for each kind of object that we need to
-    render. These are called on the rendered templates before they are
-    inserted in the DOM.
+src/viewer
+- glue code
+
+lib
+- library code, including the gclib library of js utility functions
+
+vendor
+- javascript from outside sources
+
+test
+- qunit javascript tests

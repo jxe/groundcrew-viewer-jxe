@@ -16,7 +16,7 @@ Gatherings = {
   report: function() {
     var x = Gatherings.current();
     if (!x) return "No one has been summoned yet.";
-    return x.reach + " agents have been invited." + (g.responses || '');
+    return x.reach + " agents have been invited." + (x.responses || '');
   },
   
   invite: function() {

@@ -4,6 +4,7 @@ $.fn.blit = function(){
   landmarks = landmarks && landmarks.length > 0 && landmarks.length;
 
   if (this.is('.agent_iw')) this.agent_blit();
+  if (this.is('.self_iw')) this.self_blit();
 
   return this.fillout({
     '.nearby_agents_ct':     Viewer.selected_city && (ItemDb.agents_by_city[Viewer.selected_city].length - 1),
@@ -12,10 +13,11 @@ $.fn.blit = function(){
     '.cur_readyto':          Tour.cur_readyto(),
     '.cur_lmark_title':      MapMarkers.cur_lmark_title(),
     '.gathering_report':     Gatherings.report(),
-    '.wishburger': Agent.wishburger(),
+    '.wishburger':           Agent.wishburger(),
     '.citywishct':           City.readinesses_ct,
     '.readinesses':          City.readinesses,
-    '.gathering_iw //state': Gatherings.state()
+    '.gathering_iw //state': Gatherings.state(),
+    '.self_status': person_item.status_word
 
   }).clicks({
     '.nearby_agents_tour': Tour.local,
@@ -57,5 +59,15 @@ $.fn.agent_blit = function(){
     '.assigner':  Agent.assignable()
   }).clicks({
     '.free_agent': Agent.free
+  });
+};
+
+
+$.fn.self_blit = function(){
+  return this.fillout({
+    '.topready': person_item.topready,
+    '.topready_options': SelfAgent.topready_options(),
+    // '.other_readytos': SelfAgent.other_readytos(),
+    '.all_readytos': SelfAgent.all_readytos()
   });
 };

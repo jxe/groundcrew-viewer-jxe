@@ -1,3 +1,12 @@
+#recent_content {
+  left: 0px; bottom: 139px;
+	width: 300px;
+	font-size: 11px;
+  max-height: 350px;
+  overflow: auto;
+}
+
+
 #chatbox {
   position: relative;
   height: 170px;
@@ -20,15 +29,20 @@
   position: absolute;
   left: 0px;
 }
+
+
+
 #chatbox #chatbar {
   position: absolute;
   bottom: 0px;
   left: 0px;
+  min-width: 65px;
 }
 #chatbox #chatbar img {
   border-top: white 1px solid;
   border-left: white 1px solid;
   border-right: black 1px solid;
+  float:left;
 }
 #chatbox #talker {
   position: absolute;

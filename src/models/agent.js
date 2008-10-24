@@ -2,8 +2,11 @@ Agent = {
 
   wishburger: function() {
     var x = MapMarkers.iw_item;
-    if (!x || !x.topready) return '';
-    return Agent.make_wishburger(x.topready, x.item_tag == agent_tag);
+    if (!x || !x.readyto_arr) return '';
+    var topready = x.topready;
+    if (!topready) topready = Tour.current && x.readyto_arr.contains(Tour.current.goal) && Tour.current.goal;
+    if (!topready) return '';
+    return Agent.make_wishburger(topready, x.item_tag == agent_tag);
   },
   
   make_wishburger: function(topready, show_clear) {
@@ -56,6 +59,7 @@ Agent = {
   },
   
   free: function() {
+    if (!logged_in) return Viewer.join_please();
     Ajax.fetch('/agent/contact', { new_state: 'free', item: MapMarkers.iw_item.item_tag}, EventDb.add);
   }
   

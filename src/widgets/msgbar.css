@@ -4,15 +4,16 @@
 	height: 12px;
   position:absolute; 
   z-index: 120;
-  background: #1d1212;
-  border-top: 1px solid #604940;
-  border-left: 1px solid #503930;
   width: 380px;
   padding-top: 5px;
   padding-bottom: 5px;
   
+/*  border-top: 1px solid #604940;
+  border-left: 1px solid #503930;
+  background: #1d1212;
   background: #fdf2f2;
   background: #c2c2ff;  
+*/
 }
 
 #msgbar_msg {
@@ -22,7 +23,9 @@
   position: relative;
   top: -6px;
 
-  color: #421;
+/*  color: #421;*/
+
+  color: #a72;
 }
 
 #msgbar_msg a {
@@ -47,5 +50,6 @@
 
 #msgbar_msg a:hover {
   color: #ca3;
+  color: #ccc;
   text-decoration: none;
 }

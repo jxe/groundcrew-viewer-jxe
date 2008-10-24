@@ -4,7 +4,7 @@ EventDb = {
 
   add_all: function(new_events) {
     Ajax.since = new_events[new_events.length - 1].created_at;
-    $.each(new_events, EventDb.add);
+    $.each(new_events, function(){ EventDb.add(this); });
   },
   
   add: function(e) {

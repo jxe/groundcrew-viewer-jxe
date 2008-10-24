@@ -5,7 +5,7 @@ Chat = {
   chats: [],
   
   wire: function() {
-    $('#chatbutton').dblclick(function(){ RecentHUD.toggle_open_closed(); return false; });
+    $('#eventsbutton').click(function(){ RecentHUD.toggle_open_closed(); return false; });
     $('#chatbutton').click(function(){
       $('#chatter, #talker').toggle();
       $('#talker input').val("type here to chat with others");
@@ -33,6 +33,7 @@ Chat = {
   },
   
   did_add_new_event: function(event) {
+    console.log(event);
     if (event.atype == 'said') {
       Chat.chats.push(event);
       Chat.update();

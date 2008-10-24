@@ -43,7 +43,7 @@ form.ready_to_what.prompting input[type=text] {
 }
 
 form.ready_to_what input[type=text] {
-  width: 150px;
+  width: 250px;
 }
 
 .prompting .nonprompt {

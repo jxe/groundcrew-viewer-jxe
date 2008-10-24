@@ -29,13 +29,16 @@ Clicker = {
       }
     } else if (goal) {
       if (a.hasClass('clear_readyness')) {
-        return SelfAgent.clear_ready(goal);
+        SelfAgent.clear_ready(goal);
+        City.recalc_city();
+        return;
       }
       if (a.hasClass('join_readyness')) {
         Ajax.fetch('/agent/update', {readyto: goal}, function(x){
           ItemDb.add_or_update(x);
           City.recalc_city();
         });
+        return;
       }
     }
     alert('no clicker defined!');

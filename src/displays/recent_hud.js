@@ -30,7 +30,9 @@ RecentHUD = {
     } else {
       RecentHUD.state = 'open';
       var html = RecentHUD.html_for(EventDb.events);
-      $('#recent_content').html(html).blit().slideDown(100);
+      $('#recent_content').html(html).blit().slideDown(100, function(){
+        $('#recent_content').scrollDown();
+      });
     }
   },
   

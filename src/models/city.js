@@ -26,13 +26,15 @@ City = {
     City.readinesses_ct = ready_arr.length;
     City.readinesses = ready_arr.map(function(x){
       var my_team = x.map('.item_tag').contains(agent_tag);
-      return tag('span.readiness',        
+      var me_too = '';
+      if (!my_team) me_too = tag('a.me_too.join_readyness', {goal: x.bin, content: "me too!"});
+      return tag('span.readiness',
         tag('a.title', {
           goal: x.bin,
           content: "to " + x.bin,
           agent_tags: x.map('.item_tag').join(' ')
           // popper: '#readiness_popper/bc'
-        }) + ' <span class="act">' + pluralize( x.length, 'agent' ) + "</span>"
+        }) + me_too + ' <span class="act">' + pluralize( x.length, 'agent' ) + "</span>"
       );
     }).join(' ');
     

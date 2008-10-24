@@ -1,12 +1,3 @@
-#recent_content {
-	right: 0px; top: 59px; width: 300px;
-	font-size: 11px;
-  max-height: 350px;
-  overflow: auto;
-}
-
-
-
 #recent_content .event span.assignment, #recent_content .event span.wish, #recent_content .event span.report, #recent_content .event span.shout {
   margin-left: 10px;
   display: block;
