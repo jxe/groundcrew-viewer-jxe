@@ -21,12 +21,15 @@
 		<a class="m_item lio" href="/settings" id="settings">settings</a>
 		<a class="m_item lio" href="/logout">sign out</a>
 	</div>
-
-	<a id="logo" href="."><img src="i/gclogo_dd.png"/></a>
+	<span class="std_click">
+		<a id="logo" href="#/"><img src="i/gclogo_dd.png"/></a>
+	</span>
 </div>
-<div id="breadcrumbs">
-	<a href='#' class="zoom_out">World</a>
-	<span class="city_level"> &gt; <a href="#" class="city_name go_summary"></a></span>
+<div id="breadcrumbs" class="std_click">
+	&raquo;
+	<a href='#/'>World</a>
+	<span class="city_level"> &raquo; <a href="#/CITY" class="city_name"></a></span>
+	<span id="more_breadcrumbs"></span>
 </div>
 <div id="map_div"></div>
 <div id="agents_scroll_window"><div id="inner_scroll_window"><div class="std_click" id="agents"></div></div></div>

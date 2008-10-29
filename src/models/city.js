@@ -37,8 +37,6 @@ City = {
         }) + me_too + ' <span class="act">' + pluralize( x.length, 'agent' ) + "</span>"
       );
     }).join(' ');
-    
-    $(document).blit();
   },
       
   landmarks_list2: function() {

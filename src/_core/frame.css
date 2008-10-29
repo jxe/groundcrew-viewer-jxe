@@ -3,14 +3,18 @@
 /* ========== */
 
 #breadcrumbs {
-  background: #fff;
+  background: #000;
   color: #777;
   padding: 3px 10px;
   border-bottom: solid 1px #999;
+/*  position: absolute;
+  top: 10px;
+  left: 240px;
+*/  z-index: 400;
 }
 
 #breadcrumbs a {
-  
+  color: #ddd;
 }
 
 #header {

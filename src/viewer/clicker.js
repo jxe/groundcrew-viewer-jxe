@@ -19,7 +19,7 @@ Clicker = {
       } else {
         return Viewer[action]();
       }
-    } else if (goal) {
+    } else if (false) {
       if (a.hasClass('clear_readyness')) {
         SelfAgent.clear_ready(goal);
         City.recalc_city();

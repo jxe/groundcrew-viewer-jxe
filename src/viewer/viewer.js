@@ -24,12 +24,23 @@ Viewer = {
         $('body').addClass('no_' + o).removeClass('has_' + o);
       }
     });
+    $('#more_breadcrumbs').html(Viewer.more_breadcrumbs());
     if (Viewer.changed.city || Viewer.changed.atag) {
       Facebar.regen();
       $('.divcenter').center();
+      $(document).blit();
     }
   },
   
+  more_breadcrumbs: function() {
+    var html = '';
+    if (Viewer.state.atag) html += "&raquo; " + tag('a', {
+      content: Category[Viewer.state.atag] || Viewer.state.atag,
+      href: '/' + Viewer.state.city + '/' + Viewer.state.atag
+    });
+    return html;
+  },
+    
   open: function(thing) {
     var item_and_type = Viewer.resolve(thing);
     var item = item_and_type[0];
@@ -82,6 +93,7 @@ Viewer = {
   // url util
 
   go_url: function(url) {
+    url = url.replace('CITY', Viewer.state.city);
     if (url.startsWith('/')) return Viewer.loc = url;
     if (url.startsWith('../')) {
       url = url.slice(3);

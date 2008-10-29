@@ -23,7 +23,6 @@ ViewerUI = {
   
   activateUI: function() {    
     $('a[rel*=facebox]').facebox();
-    $(document).popups();
     Chat.wire();
     Facebar.wire();
     NQueue.receivers.push(MapMarkers);

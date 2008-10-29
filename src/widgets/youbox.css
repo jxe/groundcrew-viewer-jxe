@@ -6,7 +6,7 @@
 }
 
 #youbox {
-	left: 345px; top: 3px; width: 300px; height: 55px; overflow: hidden;
+	left: 545px; top: 3px; width: 300px; height: 55px; overflow: hidden;
 	font-size: 11px;
   position:absolute; 
   z-index: 100;

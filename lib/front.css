@@ -34,62 +34,6 @@ body #load_spinner {
 }
 
 
-/*
-** popups
-*/
-
-div.popup {
-  position:relative;
-}
-div.popup > div {
-  position: absolute; border: solid thin black; 
-  background: white; z-index: 300; top: 10px; width: 300px;
-}
-div.popup img.nose {
-  position: absolute; top: -14px; left: 47px;
-}
-div.popup img.rnose {
-  position: absolute; top: -14px; right: 47px;
-}
-div.popup div.title {
-  background: #cca; margin-bottom: 5px; padding: 2px 5px; font-weight: bold; font-size: 14px;
-}
-
-
-div.popup form {
-  padding: 5px;
-}
-
-/* ================ */
-/* = fuck. popup2 = */
-/* ================ */
-
-div.popup2 {
-  position: absolute; 
-  border: solid thin black; 
-  background: white; 
-  z-index: 300;
-  font-size: 14px;
-}
-div.popup2 img.nose {
-  position: absolute; 
-  top: -14px;
-}
-div.popup2 div.title {
-  background: #cca; margin-bottom: 5px; font-weight: bold; 
-}
-
-a.mchoice {
-  padding: 10px;
-  color: black;
-  display: block;
-}
-a.mchoice:hover {
-  padding: 10px;
-  color: black;
-  text-decoration:none;
-  background: #dd8;
-}
 
 
 /*

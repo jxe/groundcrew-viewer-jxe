@@ -1,11 +1,18 @@
-.categories > a {
-  font-size: 14px;
-  font-weight: bold;
-  color: #009;
-  position: relative;
-  left: -20px;
+ul.categories {
+  margin-left: 10px;
+  padding-left: 0px;
 }
 
+.categories > a {
+  font-size: 16px;
+  font-weight: bold;
+  color: #009;
+}
+
+.categories > span {
+  color: #777;
+  font-size: 12px;
+}
 .categories div a {
   font-size: 11px;
   color: #27a;
@@ -13,6 +20,7 @@
 
 .categories div {
   margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 body.no_city #category_dialog, body.has_atag #category_dialog {
