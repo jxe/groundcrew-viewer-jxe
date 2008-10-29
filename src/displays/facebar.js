@@ -7,8 +7,6 @@ Facebar = {
     NQueue.receivers.push(Facebar);
   },
     
-  did_change_selected_city     : function() { this.regen();  },
-  
   did_change_item: function(agent, how) {
     if (Viewer.selected_city && Viewer.selected_city != agent.city_id) return;
     if (how == 'added' || how == 'removed') this.regen();

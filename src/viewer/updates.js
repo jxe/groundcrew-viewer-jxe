@@ -45,8 +45,6 @@ NQueue = {
  
   notifications: [
     'did_change_initiatives',
-    'did_change_selected_city',
-    'did_change_viewer_state'
   ],
   receivers: [],
   needed: false,

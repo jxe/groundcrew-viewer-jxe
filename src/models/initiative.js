@@ -94,15 +94,6 @@ Initiatives = {
 
   // event handling
 
-  // did_change_selected_city: function() {
-    // make sure all city items that have wishes are loaded as initiatives
-    // if (!Viewer.selected_city) return;
-    // var agents = ItemDb.agents_by_city[Viewer.selected_city];
-    // $.each(agents, function(){ 
-    //   if (this.pgoal) html += '<a href="#" item="'+this.item_tag+'" class="mchoice">'+this.pgoal+'</a>';
-    // });
-  // },
-
   did_add_new_event: function(ev) {
     var i;
     if (i = Initiatives.all[ev.suggestion_tag]) i.absorb(ev);

@@ -1,22 +1,14 @@
 Clicker = {
   click: function(a, parent) {
-    if (a.stopPropagation) a = $(this);
+    if (a.stopPropagation) a = this;
     a = $(a);
-    var item = a.attr('item');
-    var agent_tags = a.attr('agent_tags') || (parent && parent.attr('agent_tags'));
-    var goal = a.attr('goal') || (parent && parent.attr('goal'));
     
-    if (item || agent_tags) {
-      if (!goal && !agent_tags) return Viewer.open(item);
-      var crew;
-      if (goal && !agent_tags) {
-        crew = City.agents_by_readiness[goal];
-      } else {
-        crew = agent_tags.split(' ').map(function(x){ return ItemDb.items[x]; });
-      }
-      Tour.with_goal(crew, goal, item);
-      return;
-    }
+    var href = a.attr('href');
+    if (href.length > 1) return Viewer.go(href.slice(1));
+
+    var item = a.attr('item');
+    
+    if (item) return Viewer.open(item);
 
     var action, newstatus;
     if (newstatus = a.attr('newstatus')) {
@@ -63,12 +55,12 @@ Clicker = {
         new_state: 'assigned',
         msg: data.assign,
         item: MapMarkers.iw_item.item_tag,
-        topic: Tour.current && Tour.current.goal
+        topic: Viewer.state.atag
       }, EventDb.add);
     }
     if (data.instr) {
       Ajax.fetch('/gc/invite', {
-        topic: Tour.cur_readyto(),
+        topic: Viewer.state.atag,
         landmark: MapMarkers.iw_item && MapMarkers.iw_item.landmark_tag,
         what: data.action,
         payload: data.instr

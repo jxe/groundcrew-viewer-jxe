@@ -1,24 +1,34 @@
 <div class="widget troot" id="ready_iw_t" style="display: none; font-size: 13px">
 	<div class="ready_iw mini">
-		<div class="head">
-			Right now: <span class="nearby_agents_ct"></span> agents standing by.
+
+		<div class="center large">
+			Right now,
+			<a class="q go_summary" href='#'><span class="nearby_agents_ct">x</span> agents</a> are standing by.
 		</div>
-		<div class="secintro">
-			<a href='#' class="go_to_self">You</a> 
-			can make beautiful things happen, and wishes come true.
-			Here are real wishes made in <b class="city_name"></b>.
-			Click one to help it come true; scroll down to add your own wish.
-			<b></b>
+
+		<div class="large">
+			Devise your plan...
+		</div>
+
+		<form class="stdf ready_to_what prompting center">
+			<span class="nonprompt">I'd like to </span>
+			<input name="readyto" type="text" value="What would you like to do with them?"/>
+			<input type="submit" value="do it!" class="nonprompt"/>
+		</form>
+
+		<div class="center">
+			They have 
+				<a class="q go_summary" href='#'><span class="citywishct">x</span> wishes</a>.
+			You have
+			<a class="q plink" popper='#lmark_popup/bc' id="lmark_nearby">
+				<span class="nearby_lmarks_ct">x</span> 
+			places of possibility</a>.
 		</div>
 		
-		<ul class="std_click readinesses"></ul>
-
-		<form class="spacebelow stdf ready_to_what center prompting">
-			<span class="nonprompt">I'm ready to</span>
-			<input name="readyto" type="text" size="30" value="What are you ready to start?"/>
-			<input type="submit" value="ok!" class="nonprompt"/>
-			<div class="wishburger center"></div>
-		</form>
+		<div class="space large">
+			or... make a wish come true
+		</div>
+		<ul class="space std_click readinesses"></ul>
 
 	</div>
 	<div class="insert_popper_here"></div>

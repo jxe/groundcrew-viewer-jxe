@@ -1,15 +1,15 @@
 City = {
 
   recalc_city: function() {
-    var city = Viewer.selected_city;
-    if (!city || city == 'nothing') {
+    if (!Viewer.state.city) {
       City.agents_by_readiness = {};
       City.readinesses = [];
       City.readinesses_ct = 0;
       return;
     }
 
-	  var local_agents = ItemDb.agents_by_city[Viewer.selected_city];
+    var city = Viewer.state.city.split('__')[1];
+	  var local_agents = ItemDb.agents_by_city[city];
 	  var now = Date.unix();
 	  
     var ready_arr = rebuzz(local_agents, '.readyto_arr', function(x){

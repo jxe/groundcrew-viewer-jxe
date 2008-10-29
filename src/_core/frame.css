@@ -2,6 +2,21 @@
 /* = Header = */
 /* ========== */
 
+#breadcrumbs {
+  background: #fff;
+  color: #777;
+  padding: 3px 10px;
+  border-bottom: solid 1px #999;
+}
+
+#breadcrumbs a {
+  
+}
+
+#header {
+  border-bottom: 0px;
+}
+
 #topbar {
   position: relative;
   height: 10px;
@@ -184,7 +199,7 @@ body.logged_out .m_item.loo {
   display: inline;
 }
 
-body.zoomed_out .city_level, body.loading .city_level {
+body.no_city .city_level, body.loading .city_level {
   display: none;
 }
 

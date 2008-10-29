@@ -10,7 +10,6 @@ $.fn.blit = function(){
     '.nearby_agents_ct':     Viewer.selected_city && (ItemDb.agents_by_city[Viewer.selected_city].length - 1),
     '.nearby_lmarks_ct':     landmarks,
     '.city_name':            cities[Viewer.selected_city],
-    '.cur_readyto':          Tour.cur_readyto(),
     '.cur_lmark_title':      MapMarkers.cur_lmark_title(),
     '.gathering_report':     Gatherings.report(),
     '.wishburger':           Agent.wishburger(),
@@ -20,7 +19,6 @@ $.fn.blit = function(){
     '.self_status': person_item.status_word
 
   }).clicks({
-    '.nearby_agents_tour': Tour.local,
     '.city_name':          Viewer.city_summary,
     '.go_summary':         Viewer.city_summary,
     '.zoom_out':           Viewer.zoom_out,

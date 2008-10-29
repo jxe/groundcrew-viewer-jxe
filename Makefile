@@ -10,7 +10,8 @@ html_and_css:
 	cat lib/*.css vendor/*.css src/*/*.css > dist/viewer.css
 
 deploy: compressed
-	rsync -av dist/ groundcrew.us:apps/groundcrew/current/public/
+	rsync -av dist/viewer.* groundcrew.us:apps/groundcrew/current/public/
+	rsync -av i/ groundcrew.us:apps/groundcrew/current/public/i/
 
 deploy_uncompressed: uncompressed
 	rsync -av dist/ groundcrew.us:apps/groundcrew/current/public/

@@ -11,10 +11,10 @@ ViewerUI = {
     if (logged_in) {
       if (!ItemDb.items[agent_tag]) ItemDb.add_or_update(person_item);
       $('body').addClass('logged_in');
-      Viewer.open(agent_tag);
+      Viewer.go('/City__' + person_item.city_id);
     } else {
       $('body').addClass('logged_out');
-      Viewer.select_city(null);
+      Viewer.go('/');
     }
     Ajax.init();
     $('#you_img').attr('src', person_item.thumb_url);
@@ -24,11 +24,7 @@ ViewerUI = {
   activateUI: function() {    
     $('a[rel*=facebox]').facebox();
     $(document).popups();
-    
-    Tour.wire();
-    Dreambox.wire();
     Chat.wire();
-    CityChooser.wire();
     Facebar.wire();
     NQueue.receivers.push(MapMarkers);
     NQueue.receivers.push(Initiatives);
@@ -39,7 +35,7 @@ ViewerUI = {
 
   adjust_frame: function(){
     // heights: google map; events
-    var junkh = 172;
+    var junkh = 192;
     var ih = window.innerHeight || window.document.body.clientHeight;
     $('#map_div').height(ih - junkh);
     $('.rtab').height(ih - junkh + 12 - 25);

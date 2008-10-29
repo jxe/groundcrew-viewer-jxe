@@ -3,7 +3,7 @@ Gatherings = {
   
   current: function() {
     var lmtag = MapMarkers.iw_item && MapMarkers.iw_item.landmark_tag;
-    var rt = Tour.current && Tour.current.goal;
+    var rt = false; //current.goal;
     return Gatherings.registered[lmtag + '/' + rt];
   },
   

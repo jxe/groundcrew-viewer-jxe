@@ -1,0 +1,28 @@
+.categories > a {
+  font-size: 14px;
+  font-weight: bold;
+  color: #009;
+  position: relative;
+  left: -20px;
+}
+
+.categories div a {
+  font-size: 11px;
+  color: #27a;
+}
+
+.categories div {
+  margin-bottom: 10px;
+}
+
+body.no_city #category_dialog, body.has_atag #category_dialog {
+  display: none;
+}
+
+body.has_city #city_chooser {
+  display: none;
+}
+
+body.no_city #idea_dialog, body.has_atag #idea_dialog {
+  display: none;
+}

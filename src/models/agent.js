@@ -4,7 +4,6 @@ Agent = {
     var x = MapMarkers.iw_item;
     if (!x || !x.readyto_arr) return '';
     var topready = x.topready;
-    if (!topready) topready = Tour.current && x.readyto_arr.contains(Tour.current.goal) && Tour.current.goal;
     if (!topready) return '';
     return Agent.make_wishburger(topready, x.item_tag == agent_tag);
   },
@@ -26,7 +25,6 @@ Agent = {
   
   status: function() {
     var x = MapMarkers.iw_item;
-    var goal = Tour.current && Tour.current.goal;
     var lines = [];
     // if (x.topready) lines.push(tag('div.wishburger', Agent.make_wishburger(x.topready)));
     if (x.current_assignment) {

@@ -61,8 +61,7 @@ MapMarkers = {
           MapMarkers.close();
           delete MapMarkers.cache[changed_item.item_tag];
           // MapMarkers.update_agent_marker(changed_item);
-          Viewer.select_city(person_item.city_id);
-          MapMarkers.open(changed_item, type);
+          Viewer.go_to_self();
         } else if (MapMarkers.iw_item.lat != person_item.lat) {
           MapMarkers.close();
           // delete MapMarkers.cache[changed_item.item_tag];
@@ -90,7 +89,6 @@ MapMarkers = {
   select_city: function() {
     if (!Map.available()) return;
     if (Viewer.selected_city) {
-      $('body').removeClass('zoomed_out');
       var agents = ItemDb.agents_by_city[Viewer.selected_city];
       Map.load_and_refocus(agents.map(MapMarkers.for_agent));
       var lms = LandmarkDb.landmarks_by_city[Viewer.selected_city];
@@ -99,22 +97,12 @@ MapMarkers = {
     } else {
       var cities = $keys(ItemDb.agents_by_city);
       Map.load_and_refocus(cities.map(MapMarkers.for_city));
-      $('body').addClass('zoomed_out');
     }
   },
   
   new_landmark: function(lm) {
     Map.add([MapMarkers.for_landmark(lm)]);
   },  
-  
-  re_highlight: function() {
-    if (!Map.available()) return;
-    var crew = Tour.highlighted_crew || [];
-    var old_crew = Tour.prev_highlighted_crew || [];
-    $.each(old_crew.concat(crew), function(){ MapMarkers.update_agent_marker(this); });
-    // if (crew.length > 0) Map.set_bounds_from_lat_lngs(crew);
-  },
-  
   
   
   //
