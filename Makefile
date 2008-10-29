@@ -4,10 +4,13 @@ uncompressed: html_and_css
 compressed: html_and_css
 	cat {vendor,lib}/*.js src/*/*.js | jsmin > dist/viewer.js
 
-html_and_css:
-	mkdir -p dist
+html_and_css: dist
 	cat src/*/*.html > dist/viewer.html
 	cat lib/*.css vendor/*.css src/*/*.css > dist/viewer.css
+
+dist:
+	mkdir -p dist
+	(cd dist && ln -s ../i)
 
 deploy: compressed
 	rsync -av dist/viewer.* groundcrew.us:apps/groundcrew/current/public/

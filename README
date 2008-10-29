@@ -27,6 +27,14 @@ The only thing that doesn't work quite right in local mode are
 the user images.  Sorry about that.
 
 
+=====================
+== Troubleshooting ==
+=====================
+
+GOOGLE MAPS:  In order for google maps to work, you need to access 
+the viewer from either a *.groundcrew.us domain, or a localhost url, 
+or a file:/// url.  If you refer to your local machine in some other 
+way it will not work.
 
 
 ===========================

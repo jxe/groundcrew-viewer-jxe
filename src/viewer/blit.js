@@ -20,7 +20,6 @@ $.fn.blit = function(){
 
   }).clicks({
     '.city_name':          Viewer.city_summary,
-    '.choose_category':    Viewer.choose_category,
     '.go_summary':         Viewer.city_summary,
     '.zoom_out':           Viewer.zoom_out,
     '.go_to_self':         Viewer.go_to_self,

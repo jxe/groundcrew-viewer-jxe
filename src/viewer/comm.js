@@ -18,6 +18,7 @@ Ajax = {
 
     $.ajaxSetup({
       error: function(req, textStatus, errorThrown){
+        if (req.status == 404) return;
         if (errorThrown){ throw errorThrown;  }
         if (req.responseText) $.facebox(req.responseText);
       }
