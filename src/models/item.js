@@ -12,6 +12,11 @@ Item = {
   },
   
   calculated_fields: {
+
+    atag_arr: function(a) {
+      if (a.atags) return a.atags.split(' ');
+      else return [];
+    },
     
     readyto_arr: function(a) {
       if (a.readyto.replace) a.readyto = json_eval(a.readyto);

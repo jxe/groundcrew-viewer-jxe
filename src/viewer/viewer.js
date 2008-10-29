@@ -4,7 +4,7 @@
 Viewer = {
   loc: '',
   state: {},
-  selected_city: 'nothing',
+  done_before: false,
 
   go: function(url) {
     console.log('go called w/ ' + url);
@@ -14,7 +14,7 @@ Viewer = {
     // /city/atag/idea/item
     Viewer.changed = {};
     $.each(['city', 'atag', 'idea', 'item'], function(i, o){
-      if (Viewer.state[o] == x[i+1]) return;
+      if (Viewer.done_before && Viewer.state[o] == x[i+1]) return;
       Viewer.state[o] = x[i+1];
       Viewer.changed[o] = true;
       if (Viewer[o + '_changed']) Viewer[o + '_changed']();
@@ -24,12 +24,14 @@ Viewer = {
         $('body').addClass('no_' + o).removeClass('has_' + o);
       }
     });
+    Viewer.done_before = true;
     $('#more_breadcrumbs').html(Viewer.more_breadcrumbs());
     if (Viewer.changed.city || Viewer.changed.atag) {
       Facebar.regen();
       $('.divcenter').center();
       $(document).blit();
     }
+    if (Viewer.state.city && !Viewer.state.atag) Categories.update_chooser();
   },
   
   more_breadcrumbs: function() {

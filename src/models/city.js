@@ -12,31 +12,33 @@ City = {
 	  var local_agents = ItemDb.agents_by_city[city];
 	  var now = Date.unix();
 	  
-    var ready_arr = rebuzz(local_agents, '.readyto_arr', function(x){
-      var bumped = x.map(function(a){ return a.readyto[x.bin]; }).max();
-      var days_old = (now - bumped) / (60*60*24);
-      var multiplier = (2.0 - days_old) / 2.0;
-      if (multiplier < 0.2) multiplier = 0.2;
-      var posx = x.map('.posx').sum() || 1;
-      return -(posx * multiplier);
-    });
-    
-    City.ready_arr = ready_arr;
-    City.agents_by_readiness = ready_arr.bins;
-    City.readinesses_ct = ready_arr.length;
-    City.readinesses = ready_arr.map(function(x){
-      var my_team = x.map('.item_tag').contains(agent_tag);
-      var me_too = '';
-      if (!my_team) me_too = tag('a.me_too.join_readyness', {goal: x.bin, content: "me too!"});
-      return tag('span.readiness',
-        tag('a.title', {
-          goal: x.bin,
-          content: "to " + x.bin,
-          agent_tags: x.map('.item_tag').join(' ')
-          // popper: '#readiness_popper/bc'
-        }) + me_too + ' <span class="act">' + pluralize( x.length, 'agent' ) + "</span>"
-      );
-    }).join(' ');
+	  
+	  
+    // var ready_arr = rebuzz(local_agents, '.readyto_arr', function(x){
+    //   var bumped = x.map(function(a){ return a.readyto[x.bin]; }).max();
+    //   var days_old = (now - bumped) / (60*60*24);
+    //   var multiplier = (2.0 - days_old) / 2.0;
+    //   if (multiplier < 0.2) multiplier = 0.2;
+    //   var posx = x.map('.posx').sum() || 1;
+    //   return -(posx * multiplier);
+    // });
+    // 
+    // City.ready_arr = ready_arr;
+    // City.agents_by_readiness = ready_arr.bins;
+    // City.readinesses_ct = ready_arr.length;
+    // City.readinesses = ready_arr.map(function(x){
+    //   var my_team = x.map('.item_tag').contains(agent_tag);
+    //   var me_too = '';
+    //   if (!my_team) me_too = tag('a.me_too.join_readyness', {goal: x.bin, content: "me too!"});
+    //   return tag('span.readiness',
+    //     tag('a.title', {
+    //       goal: x.bin,
+    //       content: "to " + x.bin,
+    //       agent_tags: x.map('.item_tag').join(' ')
+    //       // popper: '#readiness_popper/bc'
+    //     }) + me_too + ' <span class="act">' + pluralize( x.length, 'agent' ) + "</span>"
+    //   );
+    // }).join(' ');
   },
       
   landmarks_list2: function() {

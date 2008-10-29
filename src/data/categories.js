@@ -1,3 +1,0 @@
-Category = {
-  bene: 'Good deeds'
-}
