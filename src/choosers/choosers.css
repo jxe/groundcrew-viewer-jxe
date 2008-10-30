@@ -8,7 +8,7 @@
   color: #009;
 }
 
-.categories div span {
+.categories div span, #city_chooser li span {
   color: #555;
   font-size: 12px;
   position: absolute;
@@ -29,6 +29,17 @@
   -webkit-border-radius: 5px;
   position: relative;
 /*  margin-left: 10px;*/
+}
+
+/* FIXME would be cool if it could rollover like this and be clickable
+.categories div:hover {
+	background: #ccc;
+	cursor: pointer;
+}
+*/
+
+#city_chooser li {
+	position: relative;
 }
 
 body.no_city #category_dialog, body.has_atag #category_dialog {

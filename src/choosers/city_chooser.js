@@ -24,7 +24,7 @@ CityChooser = {
       var num_agents = agents_by_city[city_id].length;
       
       html += "<li><a href='#/City__"+city_id+"'>"+city_name+"</a> "
-            + "has "+num_agents+" agents ready.</li>";
+            + "<span>"+num_agents+" agents available</span></li>";
     });
     
     if (more_cities) {
