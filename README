@@ -43,20 +43,39 @@ way it will not work.
 
 Here are the directories we use:
 
-	src/{dialogs,displays,infowindows,menus,widgets}
-	- this is all code for various "views" that the viewer can pop up
+/src_apps/        - the real functionality, broken down by application
 
-	src/models
-	- the underlying objects -- agents, landmarks, etc
+/src/
+	foundation/     - javascript and css utilities and conventions
+	gc_api/         - javascript utilities for groundcrew domain objects (agents, landmarks, etc)
+	viewer_core/    - javascript infrastructure for displaying the viewer
+	viewer_widgets/ - html and css for the viewer
 
-	src/viewer
-	- glue code
+/vendor/          - javascript from outside sources
+/test/            - qunit javascript tests
 
-	lib
-	- library code, including the gclib library of js utility functions
 
-	vendor
-	- javascript from outside sources
+RECENT NOTES:
 
-	test
-	- qunit javascript tests
+* The viewer is now organized into multiple apps, and apps provide their
+  services and link to each other using an internal URL structure which 
+  is implemented in 'src/viewer_core/viewer.js'.  For example, a command
+  like Viewer.go('/mobilize/noho/good_deeds/Idea__12/Agent__405') will 
+  run some code in src_apps/mobilize_app/mobilize.js which will provide
+  breadcrumbs and open an agent window relative to a specific good deed
+  idea.
+
+* 'domain' functionality is implemented in src_apps/, and only general
+  functionality useful across all apps in in src/.
+
+* The src/ stuff is now organized into architectural levels.  We have 
+  some foundational javascript utilities and css conventions, then we 
+  have an API for dealing with groundcrew objects like agents and ideas,
+  built on top of that.  Then we have the viewer code built on those 
+  two, with widgets separated from javascript.
+
+* src/gc_api/ is going to be overhauled next.  I'm going to implement a
+  generic javascript "database" layer for searching and grouping 
+  groundcrew resources, and put the gc_api stuff on top of that, instead
+  of directly on top of javascript dictionaries and jquery ajax 
+  commands.
