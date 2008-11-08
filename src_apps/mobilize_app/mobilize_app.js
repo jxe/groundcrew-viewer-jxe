@@ -26,9 +26,24 @@ Viewer.apps.mobilize = {
   },
   
   new_idea_submit: function(data) {
-    var idea = Ideas.local({ title: data.idea_title });
+    var idea = Ideas.local({ title: data.idea_title, atags: this.state.atag });
     Viewer.go(idea.item_tag);
   },
+  
+  set_idea: function(idea, state) {
+    if (!idea) return;
+    idea = idea.resource();
+    state.idea_label = idea.title;
+    var cat_label_singular = state.category_label.toLowerCase().singularize();
+    var ag_ct = pluralize(state.agents.length, 'agent');
+    $('#invite_dialog').fillout({
+      '.cat_label_singular': cat_label_singular,
+      '.ag_ct': ag_ct,
+      '.idea_title': idea.title,
+      'input[name=action] //value': idea.title
+    });
+  },
+  
   
   agent_infowindow: function(agent) {
     return "wahooty!";

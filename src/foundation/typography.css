@@ -33,6 +33,7 @@ big {
 .box {
   border: solid thin black;
   margin: 10px;
+  margin-top: 0px;
   padding: 5px;
 }
 
@@ -468,4 +469,8 @@ div.menu hr {
 
 .space {
   margin-top: 10px;
+}
+
+.xspace {
+  margin-top: 16px;
 }

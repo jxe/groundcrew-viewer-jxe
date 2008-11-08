@@ -1,30 +1,53 @@
 <div class="mini hud divcenter" id="invite_dialog" style="width: 370px; top: 107px; left: 372px">
-	<div class="mhead">Send a text message invitation.</div>
+	<div class="mhead b u center">
+		Create an invitation to &ldquo;<b class="idea_title"></b>&rdquo;
+	</div>
 	
-	<form class="stdf prompting">
+	<form class="stdf">
+		<div class="right">
+			This is a 
+			<select>
+				<option>
+					group activity
+				</option>
+				<option>
+					pubic rendezvous
+				</option>
+			</select>
+		</div>
+
+		<div class="b u space">
+			Invitation
+		</div>
 		<div class="msecintro">
-			Agents will be sent an initial invite like this:
+			<span class="ag_ct">11 agents</span> will be sent a <b class="cat_label_singular"></b> invite like this:
+		</div>
+		<div class="box in">
+			Groundcrew agents will soon gather at [PLACENAME] <!-- at <span class="cur_lmark_title"></span>.<br> -->
+			to <input name="action" type="text"/>.
+			Interested?
 		</div>
 		
-		<div class="box in space spacebelow">
-			Groundcrew agents will soon gather at <span class="cur_lmark_title"></span>.<br>
-			We will be
-			<input name="action" type="text" value="..doing something specific.."/><br>
-			Interested?<br>
-			[<span class="cur_readyto"></span>]
+		<div class="b u xspace">
+			Instructions
 		</div>
-		
 		<div class="msecintro">
 			Those who respond 'yes' will get the following instructions:
 		</div>
-		
-		<div class="box in space spacebelow">
-			<textarea name="instr" style="width: 100%; height: 40px"
-			>Please type the instructions for your gathering here.</textarea>
+		<div class="box in spacebelow">
+			<textarea class="prompting" name="instr" style="width: 100%; height: 40px"
+			>Type the instructions for your gathering here.</textarea>
+		</div>
+
+		<div class="b u xspace">
+			Location:
+			<select><option>outside the haymarket</option></select>
 		</div>
 		
-		<div class="right">
-			<input type="submit" value="send the invitation!"/>
+		<div class="space right">
+			<a href="#..">cancel</a>
+			<input type="submit" value="submit this idea"/>
+			<input type="submit" value="invite people now!"/>
 		</div>
 	</form>
 </div>
