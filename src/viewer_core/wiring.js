@@ -7,14 +7,16 @@ ViewerUI = {
     agent_tag = person_item.item_tag;
     Reactor.handle_json_obj(initial_data);
     this.activateUI();
+    var starter_url = "/";
     if (logged_in) {
       Agents.add_or_update(person_item);
       $('body').addClass('logged_in');
-      Viewer.go('/mobilize/City__' + person_item.city_id);
+      starter_url = '/mobilize/City__' + person_item.city_id;
     } else {
       $('body').addClass('logged_out');
-      Viewer.go('/');
     }
+    if (window.location.hash) starter_url = window.location.hash.slice(1);
+    Viewer.go(starter_url);
     $('body').removeClass('loading');
     Ajax.init();
     $('#you_img').attr('src', person_item.thumb_url);

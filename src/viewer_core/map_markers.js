@@ -93,7 +93,7 @@ MapMarkers = {
       Map.load_and_refocus(agents.map(MapMarkers.for_agent));
       
       // landmarks
-      var lms = Landmarks.find("=city_id " + city.resource_id());
+      var lms = Landmarks.in_city(city);
       if (lms) Map.add(lms.map(MapMarkers.for_landmark));
       
       // the city itself

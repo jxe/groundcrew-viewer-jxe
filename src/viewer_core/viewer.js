@@ -9,7 +9,8 @@ Viewer = {
 
   go: function(url) {
     // adjust url
-    url = url.replace('CITY', Viewer.current_app && Viewer.current_app.state.city);
+    url = url.replace(/:(\w+)/, function(x, attr){ return Viewer.current_app.state[attr]; });
+    if (url == '..') return Viewer.go(Viewer.loc.slice(0, Viewer.loc.lastIndexOf('/')));
     if (!url.startsWith('/')) url = Viewer.loc + '/' + url;
     if (url == '/') url = "/mobilize";
     Viewer.loc = url;
@@ -62,7 +63,7 @@ Viewer = {
     Viewer.selected_city = state.city && state.city.resource_id();
     if (Viewer.prev_agents != state.agents || !Viewer.prev_agents) {
       if (!state.agents)
-        state.agents = state.city ? Agents.find('=city_id ' + state.city.resource_id()) : Agents.all;
+        state.agents = state.city ? Agents.in_city(state.city) : Agents.all;
       MapMarkers.display(state.city, state.agents);
       Facebar.populate(state.agents);
       Viewer.prev_agents = state.agents;

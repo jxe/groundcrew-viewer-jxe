@@ -18,18 +18,24 @@ Viewer.apps.mobilize = {
     var ag_ct = pluralize(state.agents.length, 'agent');
     $('#idea_index').fillout({
       '.cat_label_singular': cat_label_singular,
-      '.ag_ct': ag_ct
-    }).forms({
-      'form': $method(Viewer.apps.mobilize, 'new_idea_submit')
-      // 'form': this.new_idea_submit
+      '.ag_ct': ag_ct,
+      '.idea_select': Ideas.with_atag(state.category)
+          .map(function(x){ return "<option>" + x.title + "</option>"; }).join(),
+      '.lm_select': Landmarks.in_city(state.city)
+          .map(function(x){ return "<option>" + x.title + "</option>"; }).join()
+    }).clicks({
+      '.add_idea': function(){
+        var title = prompt("What do you want to gather people to do?");
+        var idea = Ideas.local({ title: title, atags: state.category });
+        console.log(idea);
+        $('#idea_index .idea_select').html(
+          Ideas.with_atag(state.category)
+              .map(function(x){ return "<option>" + x.title + "</option>"; }).join()
+        );
+      }
     });
   },
-  
-  new_idea_submit: function(data) {
-    var idea = Ideas.local({ title: data.idea_title, atags: this.state.atag });
-    Viewer.go(idea.item_tag);
-  },
-  
+      
   set_idea: function(idea, state) {
     if (!idea) return;
     idea = idea.resource();

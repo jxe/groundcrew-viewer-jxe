@@ -2,7 +2,7 @@ Clicker = {
   click: function(a, parent) {
     if (a.stopPropagation) a = this;
     a = $(a);
-    
+  
     var href = a.attr('href');
     if (href.length > 1) return Viewer.go(href.slice(1));
 
