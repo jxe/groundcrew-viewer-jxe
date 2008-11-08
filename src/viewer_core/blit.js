@@ -1,36 +1,28 @@
 $.fn.blit = function(){
-  $('#lmark_menu').html(City.landmarks_list2());    
-  var landmarks = LandmarkDb.landmarks_by_city[Viewer.selected_city];
-  landmarks = landmarks && landmarks.length > 0 && landmarks.length;
+  $('#lmark_menu').html(City.landmarks_list2());
+  var landmarks = 0;
+  if (Viewer.selected_city) {
+    landmarks = Landmarks.find("=city_id " + Viewer.selected_city);
+    landmarks = landmarks && landmarks.length > 0 && landmarks.length;
+  }
 
   if (this.is('.agent_iw')) this.agent_blit();
   if (this.is('.self_iw')) this.self_blit();
 
   return this.fillout({
-    '.nearby_agents_ct':     Viewer.selected_city && (ItemDb.agents_by_city[Viewer.selected_city].length - 1),
+    '.nearby_agents_ct':     Viewer.selected_city && (Agents.find('=city_id ' + Viewer.selected_city).length - 1),
     '.nearby_lmarks_ct':     landmarks,
     '.city_name':            cities[Viewer.selected_city],
     '.cur_lmark_title':      MapMarkers.cur_lmark_title(),
-    '.gathering_report':     Gatherings.report(),
-    '.wishburger':           Agent.wishburger(),
-    '.citywishct':           City.readinesses_ct,
-    '.readinesses':          City.readinesses,
-    '.gathering_iw //state': Gatherings.state(),
-    '.self_status': person_item.status_word
+    '.self_status':          person_item.status_word
 
   }).clicks({
     '.city_name':          Viewer.city_summary,
-    '.go_summary':         Viewer.city_summary,
     '.zoom_out':           Viewer.zoom_out,
     '.go_to_self':         Viewer.go_to_self,
     '.std_click a, a.agent':  Clicker.click,
-    '.gathering_invite':   Gatherings.invite,
-    '.clear_topready':     SelfAgent.clear_topready
+    '.gathering_invite':   Gatherings.invite
     
-  }).showhide({
-    '.nearby_agents_blurb': Viewer.selected_city && ItemDb.agents_by_city[Viewer.selected_city].length > 1,
-    '.nearby_lmarks_blurb': landmarks
-
   }).forms({
     '.stdf':    Clicker.submit
   })

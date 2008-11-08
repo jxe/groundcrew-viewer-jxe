@@ -5,7 +5,7 @@ Event = {
     a.color = Event.color(a);
     a.what = (Event.whats[a.atype] || "did something weird (#{atype})").t(a);
     a.item_title = a.item && a.item.title;
-    a.landmark = a.landmark_tag && LandmarkDb.find_by_tag(a.landmark_tag);
+    a.landmark = a.landmark_tag && a.landmark_tag.resource();
     a.landmark_title = a.landmark && a.landmark.title;
     return a;
   },

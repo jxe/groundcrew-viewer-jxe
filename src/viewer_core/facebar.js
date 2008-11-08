@@ -2,17 +2,7 @@ Facebar = {
   
   contents: [],
   prev_selected_agent: null,
-  
-  wire: function() {
-    NQueue.receivers.push(Facebar);
-  },
-    
-  did_change_item: function(agent, how) {
-    if (Viewer.selected_city && Viewer.selected_city != agent.city_id) return;
-    if (how == 'added' || how == 'removed') this.regen();
-    else                                    this.redraw();
-  },
-  
+      
   selected_agent: function(agent) {
     var old_agent = Facebar.prev_selected_agent;
     if (old_agent) $("#agents .agent[item=" + this.old_agent + "]").css('background', null);
@@ -29,13 +19,7 @@ Facebar = {
         <img class="thumb" src="#{thumb_url}" title="#{title}"/>\
         #{byline3}\
       </a>',
-  
-  regen: function() {
-    var city = Viewer.selected_city;
-    this.contents = city ? ItemDb.agents_by_city[city] : ItemDb.all_items();
-    this.resort();
-  },
-  
+    
   populate: function(agents) {
     this.contents = agents;
     this.resort();

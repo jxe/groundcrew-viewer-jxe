@@ -1,3 +1,7 @@
+Math.rand = function(n){
+  return Math.floor(n * Math.random());
+};
+
 function $method(obj, method){
   return function(x){ obj[method](x); };
 }

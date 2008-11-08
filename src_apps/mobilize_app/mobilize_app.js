@@ -4,12 +4,12 @@ Viewer.apps.mobilize = {
 
   set_category: function(category, state, changed) {
     if (!category) { delete state.agents; return; }
-    state.agents         = City.agents_with_atag_in_city(state.city, category);
+    state.agents         = Agents.find("=city_id " + state.city.resource_id() + " :atags " + category);
     state.category_label = Category[category]; 
   },
   
   category_index: function(state) {
-    var atag_counts = City.atags_in_city(state.city).bins;
+    var atag_counts = Agents.find('=city_id ' + state.city.resource_id() + " :atags");
     $('.categories div').decorate_categories(atag_counts);
   },
   
@@ -20,17 +20,14 @@ Viewer.apps.mobilize = {
       '.cat_label_singular': cat_label_singular,
       '.ag_ct': ag_ct
     }).forms({
-      'form': $method(Viewer.apps.mobilize, 'new_idea')
+      'form': $method(Viewer.apps.mobilize, 'new_idea_submit')
+      // 'form': this.new_idea_submit
     });
   },
   
   new_idea_submit: function(data) {
-    var idea_title = data.idea_title;
-    alert('received ' + idea_title);
-    return;
-    // generate a local, new idea
-    // added it to the ideas database
-    Viewer.go(idea_tag);
+    var idea = Ideas.local({ title: data.idea_title });
+    Viewer.go(idea.item_tag);
   },
   
   agent_infowindow: function(agent) {

@@ -4,7 +4,7 @@
 CityChooser = {
     
   update: function() {  
-    var agents_by_city = ItemDb.agents_by_city;
+    var agents_by_city = Agents.find('=city_id');
     var cities_by_num_agents = $keys(agents_by_city).sort_by(function(x){ 
       return -agents_by_city[x].length;
       // sort by number of agents first, then the city name

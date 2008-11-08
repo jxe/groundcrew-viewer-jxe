@@ -1,7 +1,9 @@
-#category_index {display:none}
-body.category_index #category_index {display:block}
-#idea_index {display: none}
-body.idea_index #idea_index {display: block}
+#category_index {display:none;}
+body.category_index #category_index {display:block;}
+#idea_index {display: none;}
+body.idea_index #idea_index {display: block;}
+#invite_dialog {display:none;}
+body.item_index #invite_dialog {display:block;}
 
 .categories {
   margin-top: 15px;

@@ -8,7 +8,7 @@ ViewerUI = {
     Reactor.handle_json_obj(initial_data);
     this.activateUI();
     if (logged_in) {
-      if (!ItemDb.items[agent_tag]) ItemDb.add_or_update(person_item);
+      Agents.add_or_update(person_item);
       $('body').addClass('logged_in');
       Viewer.go('/mobilize/City__' + person_item.city_id);
     } else {
@@ -24,10 +24,6 @@ ViewerUI = {
   activateUI: function() {    
     $('a[rel*=facebox]').facebox();
     Chat.wire();
-    Facebar.wire();
-    NQueue.receivers.push(MapMarkers);
-    NQueue.receivers.push(Initiatives);
-    
     setInterval(function(){ $('.from_now').update_times(); }, 20000);
     $(window).resize(this.adjust_frame);
   },

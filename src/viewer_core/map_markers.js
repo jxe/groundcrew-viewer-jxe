@@ -6,7 +6,7 @@ MapMarkers = {
   
   cur_lmark_title: function() {
     var lmtag = MapMarkers.iw_item && MapMarkers.iw_item.landmark_tag;
-    return (lmtag && LandmarkDb.find_by_tag(lmtag).title);
+    return (lmtag && lmtag.resource().title);
   },
     
   open: function(item, type) {
@@ -93,13 +93,13 @@ MapMarkers = {
       Map.load_and_refocus(agents.map(MapMarkers.for_agent));
       
       // landmarks
-      var lms = LandmarkDb.ensure_landmarks(city);
+      var lms = Landmarks.find("=city_id " + city.resource_id());
       if (lms) Map.add(lms.map(MapMarkers.for_landmark));
       
       // the city itself
       // Map.add([MapMarkers.for_city(Viewer.selected_city, true)]);
     } else {
-      var cities = $keys(ItemDb.agents_by_city);
+      var cities = $keys(Agents.find("=city_id"));
       Map.load_and_refocus(cities.map(MapMarkers.for_city));
     }
   },
@@ -127,7 +127,7 @@ MapMarkers = {
     if (!lat || !lng || !type || !title){
       console.log("Programmer error.  Bad marker.");
       console.log([lat, lng, type, title]);
-      throw "serios problem";
+      window.dammit();
     }
     var icon = new GIcon(G_DEFAULT_ICON, 'i/map/' + type + '.png');
     if (type.indexOf('man') >= 0) {
@@ -192,3 +192,6 @@ MapMarkers = {
   }
   
 };
+
+Landmarks.changed = function(item, how) { if (how == 'added') MapMarkers.new_landmark(item); };
+Agents.changed = MapMarkers.did_change_item;

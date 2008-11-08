@@ -12,7 +12,7 @@ Clicker = {
 
     var action, newstatus;
     if (newstatus = a.attr('newstatus')) {
-      Ajax.fetch('/agent/update', { availability: newstatus }, ItemDb.add_or_update);    
+      Ajax.fetch('/agent/update', { availability: newstatus }, Agents.add_or_update);    
     } else if (action = a.attr('action')) {
       if (action.indexOf('.') >= 0) {
         return eval(action)();
@@ -27,7 +27,7 @@ Clicker = {
       }
       if (a.hasClass('join_readyness')) {
         Ajax.fetch('/agent/update', {readyto: goal}, function(x){
-          ItemDb.add_or_update(x);
+          Agents.add_or_update(x);
           City.recalc_city();
         });
         return;
@@ -41,12 +41,12 @@ Clicker = {
   submit: function(data) {
     if (data.readyto) {
       Ajax.fetch('/agent/update', {readyto: data.readyto}, function(x){
-        ItemDb.add_or_update(x);
+        Agents.add_or_update(x);
         City.recalc_city();
       });
     }
     if (data.newloc) {
-      Ajax.fetch('/agent/update', {location: data.newloc}, ItemDb.add_or_update);    
+      Ajax.fetch('/agent/update', {location: data.newloc}, Agents.add_or_update);    
     }
     if (data.assign) {
       if (!logged_in) return Viewer.join_please();

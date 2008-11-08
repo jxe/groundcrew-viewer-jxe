@@ -77,23 +77,6 @@ Array.prototype.compact = function(fn){
   return ms;
 };
 
-Array.prototype.index_by = function(fn){
-  if (fn instanceof RegExp) {
-    return this.index_by(function(x){ 
-      res = x.match(fn); return res && res[0]; 
-    });
-  }
-
-  var result = {};
-  $.each(this, function(){
-    if (res = fn(this)) {
-      if (!result[res]) result[res] = [];
-      result[res].push(this);
-    }
-  });
-  return result;
-};
-
 if(!Array.indexOf){
   Array.prototype.indexOf = function(obj){
     for(var i=0; i<this.length; i++){

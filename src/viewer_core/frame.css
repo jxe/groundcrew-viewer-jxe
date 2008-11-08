@@ -9,7 +9,7 @@
 #app_list {
   font-weight: bold;
   font-size: 14px;
-  color: #ccc;
+  color: #555;
   position: absolute;
   right: 20px;
   bottom: 3px;
@@ -18,20 +18,24 @@
 }
 
 #app_list a {
-  color: #777;
+  color: #888;
   padding-left: 3px;
   padding-right: 3px;
   font-size: 14px;
   font-variant: small-caps;
   font-weight: normal;
+/*  text-shadow: white 1px 1px 5px*/
+  text-shadow: #DDD 1px 1px 3px;
 }
 
 #app_list a:hover {
   color: white;
+  text-decoration: none;
 }
 
 body.mobilize_app #app_list a.mobilize_app_link {
   color: white;
+/*  background: #222;*/
 }
 
 #breadcrumbs {

@@ -56,7 +56,10 @@ $.fn.forms = function(obj){
   var self = this;
   $.each(obj, function(k, v){
     var form = self.find(k);
-    form.submit(function(){
+    // if (form.length == 1) alert(k + ' found one form');
+    // if (form.length > 1) alert(k + ' found many forms');
+    // if (form.length < 1) alert(k + ' found no forms');
+    form.unbind('submit').submit(function(){
       v($(this).form_values());
       return false;
     });

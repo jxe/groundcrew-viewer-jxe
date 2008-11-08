@@ -59,12 +59,10 @@ Viewer = {
     $('#more_breadcrumbs').html(breadcrumbs.join(' '));
     
     // update agents, facebar, and map city
+    Viewer.selected_city = state.city && state.city.resource_id();
     if (Viewer.prev_agents != state.agents || !Viewer.prev_agents) {
-      ItemDb.agents_by_city = ItemDb.index_all_items_by(['city_id']);
-      if (!state.agents) {
-        if (state.city) state.agents = City.agents_in_city(state.city);
-        else            state.agents = ItemDb.all_items();
-      }
+      if (!state.agents)
+        state.agents = state.city ? Agents.find('=city_id ' + state.city.resource_id()) : Agents.all;
       MapMarkers.display(state.city, state.agents);
       Facebar.populate(state.agents);
       Viewer.prev_agents = state.agents;
@@ -88,36 +86,10 @@ Viewer = {
   },
 
 
-
-
-
-  
-  open: function(thing) {
-    var item_and_type = Viewer.resolve(thing);
-    var item = item_and_type[0];
-    var type = item_and_type[1];
-    if (!type) return;
-    var city_id = item.city_id || (type == 'city' && item);
-    if (city_id && Number(city_id) != Number(Viewer.selected_city)) Viewer.select_city(city_id);
-    MapMarkers.open(item, type);
-    if (type == 'agent') Facebar.selected_agent(item);
-  },
-  
-
   // functions
-
-  city_summary: function() {
-    Viewer.open(Viewer.selected_city);
-    return false;
-  },
 
   zoom_out: function(){ 
     Viewer.go('/');
-    return false;
-  },
-
-  go_to_self: function() {
-    Viewer.open(person_item);
     return false;
   },
 
@@ -132,22 +104,6 @@ Viewer = {
   close: function(thing) {
     if (this.iw_item_type == 'agent') Facebar.selected_agent(null);
     MapMarkers.close(thing);
-  },
-
-  resolve: function(item) {
-    if (item[0] == 'P') return [ItemDb.items[item], 'agent'];
-    if (item[0] == 'L') {
-      return [LandmarkDb.find_by_tag(item), 'lmark'];
-      // if (readyto) {
-      //   var i = Initiative.createLocal('gathering', readyto, {landmark_tag:item});
-      //   return [i, 'gathering'];
-      // }
-    }
-    if (item[0] == 'A') return [Initiatives.all[item], 'gathering'];
-    if (Number(item)) return [item, 'city'];
-    alert('unrecognized viewer object:  ' + item);
-    console.log(item);
-    return [false, false];
   }
 
 };
