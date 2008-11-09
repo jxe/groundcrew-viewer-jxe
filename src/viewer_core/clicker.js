@@ -53,7 +53,7 @@ Clicker = {
       Ajax.fetch('/agent/contact', {
         new_state: 'assigned',
         msg: data.assign,
-        item: MapMarkers.iw_item.item_tag,
+        item: Viewer.item,
         topic: Viewer.apps.mobilize.state.atag
       }, EventDb.add);
     }

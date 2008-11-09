@@ -61,6 +61,7 @@ Viewer = {
     
     // update agents, facebar, and map city
     Viewer.selected_city = state.city && state.city.resource_id();
+    Viewer.item = state.item;
     if (Viewer.prev_agents != state.agents || !Viewer.prev_agents) {
       if (!state.agents)
         state.agents = state.city ? Agents.in_city(state.city) : Agents.all;
@@ -89,22 +90,10 @@ Viewer = {
 
   // functions
 
-  zoom_out: function(){ 
-    Viewer.go('/');
-    return false;
-  },
+  zoom_out: function(){ Viewer.go('/'); return false; },
 
   join_please: function() {
     $.facebox($('#join_fbox').html());
-  },
-
-
-
-  // old!!
-  
-  close: function(thing) {
-    if (this.iw_item_type == 'agent') Facebar.selected_agent(null);
-    MapMarkers.close(thing);
   }
 
 };

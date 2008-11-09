@@ -1,7 +1,7 @@
 AgentIW = {
 
   blit_bio: function(bio) {
-    var x = MapMarkers.iw_item;
+    var x = Viewer.item.resource();
     bio.fillout({
       "#agent_iw_liked"          : x.liked_list || "<li><i>loading</i></li>",
       "#agent_iw_noliked"        : x.noliked_list || "<li><i>loading</i></li>",

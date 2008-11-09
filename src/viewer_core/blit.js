@@ -13,7 +13,7 @@ $.fn.blit = function(){
     '.nearby_agents_ct':     Viewer.selected_city && (Agents.find('=city_id ' + Viewer.selected_city).length - 1),
     '.nearby_lmarks_ct':     landmarks,
     '.city_name':            cities[Viewer.selected_city],
-    '.cur_lmark_title':      MapMarkers.cur_lmark_title(),
+    '.cur_title':            Viewer.item && Viewer.item.resource().title,
     '.self_status':          person_item.status_word
 
   }).clicks({
@@ -37,13 +37,12 @@ $.fn.blit = function(){
 
 
 $.fn.agent_blit = function(){
-  var x = MapMarkers.iw_item;
+  var x = Viewer.item.resource();
   Item.calculate_fields(x);
   return this.fillout({
     '.agent_name': x.title,
     'img.headshot //src': x.thumb_url,
-    '.status': Agent.status(),
-    '.options': Agent.options()
+    '.status': Agent.status()
   }).showhide({
     '.assigner':  Agent.assignable()
   }).clicks({

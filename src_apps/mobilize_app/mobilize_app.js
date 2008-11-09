@@ -20,22 +20,29 @@ Viewer.apps.mobilize = {
       '.cat_label_singular': cat_label_singular,
       '.ag_ct': ag_ct,
       '.idea_select': Ideas.with_atag(state.category)
-          .map(function(x){ return "<option>" + x.title + "</option>"; }).join(),
+          .map(function(x){ return "<option value='"+x.item_tag+"'>" + x.title + "</option>"; }).join(),
       '.lm_select': Landmarks.in_city(state.city)
-          .map(function(x){ return "<option>" + x.title + "</option>"; }).join()
+          .map(function(x){ return "<option value='"+x.item_tag+"'>" + x.title + "</option>"; }).join()
     }).clicks({
       '.add_idea': function(){
         var title = prompt("What do you want to gather people to do?");
+        if (!title) return;
         var idea = Ideas.local({ title: title, atags: state.category });
         console.log(idea);
         $('#idea_index .idea_select').html(
           Ideas.with_atag(state.category)
-              .map(function(x){ return "<option>" + x.title + "</option>"; }).join()
+            .map(function(x){ return "<option value='"+x.item_tag+"'>" + x.title + "</option>"; }).join()
         );
       }
-    });
+    }).forms({ 'form': function(data){ Viewer.go(data.idea + "/" + data.lm); } });
   },
-      
+  
+  show_item: function(state) {
+    if (state.item.startsWith('Landmark')) {
+      MapMarkers.open(state.item, 'why hello there!');
+    }
+  },
+  
   set_idea: function(idea, state) {
     if (!idea) return;
     idea = idea.resource();

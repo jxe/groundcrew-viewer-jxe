@@ -9,12 +9,10 @@ City = {
 	},
 	
 	wishmenu: function(menu) {
-    var lmtag = MapMarkers.iw_item && MapMarkers.iw_item.landmark_tag;
 	  var html = City.ready_arr.slice(0, 15).map(function(x){
 	    return tag('a', {
 	      content: x.bin,
-	      goal: x.bin,
-	      item: lmtag
+	      goal: x.bin
 	    });
 	  }).join('');
 	  menu.find('.inner_menu').html(html).end().blit();

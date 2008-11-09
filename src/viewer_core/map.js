@@ -45,7 +45,7 @@ Map = {
     var bounds = new GLatLngBounds(latlngs[0], latlngs[0]);
     for (var i=1; i < latlngs.length; i++) bounds.extend(latlngs[i]);
     var zoom = Map.Gmap.getBoundsZoomLevel(bounds);
-    if (MapMarkers.iw_item && MapMarkers.iw_item.item_tag == agent_tag) {
+    if (Viewer.item == agent_tag) {
       // center just above "me"
       if (zoom < 16) zoom = 16;
       var map_height = Map.Gmap.getSize().height;
