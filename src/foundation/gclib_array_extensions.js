@@ -87,3 +87,9 @@ if(!Array.indexOf){
     return -1;
   };
 }
+
+Array.prototype.as_option_list = function(selected){
+  return this.map(function(x){ 
+    return "<option "+ (selected == x.item_tag ? " selected " : "") +"value='"+x.item_tag+"'>" + x.title + "</option>"; 
+  }).join();
+};

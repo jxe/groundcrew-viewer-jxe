@@ -31,7 +31,8 @@ big {
 }
 
 .box {
-  border: solid thin black;
+  border: solid thin #999;
+  background: #ddd;
   margin: 10px;
   margin-top: 0px;
   padding: 5px;

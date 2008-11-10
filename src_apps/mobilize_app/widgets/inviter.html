@@ -1,6 +1,6 @@
-<div class="mini hud divcenter" id="invite_dialog" style="width: 370px; top: 107px; left: 372px">
-	<div class="mhead b u center">
-		Create an invitation to &ldquo;<b class="idea_title"></b>&rdquo;
+<div id="invite_iw" style="display:none; max-width: 400px">
+	<div class="mhead b center">
+		Create an invitation to &ldquo;<b fill="idea_title"></b>&rdquo;
 	</div>
 	
 	<form class="stdf">
@@ -20,11 +20,11 @@
 			Invitation
 		</div>
 		<div class="msecintro">
-			<span class="ag_ct">11 agents</span> will be sent a <b class="cat_label_singular"></b> invite like this:
+			<span fill="ag_ct">11 agents</span> will be sent a <b fill="cat_label_singular"></b> invite like this:
 		</div>
 		<div class="box in">
-			Groundcrew agents will soon gather at [PLACENAME] <!-- at <span class="cur_title"></span>.<br> -->
-			to <input name="action" type="text"/>.
+			Groundcrew agents are preparing to gather at <span fill="item_title">Xanadu</span>
+			to <input fill="idea_action value" name="action" type="text"/>.
 			Interested?
 		</div>
 		
@@ -35,13 +35,13 @@
 			Those who respond 'yes' will get the following instructions:
 		</div>
 		<div class="box in spacebelow">
-			<textarea class="prompting" name="instr" style="width: 100%; height: 40px"
+			<textarea class="prompting" name="instr" style="width: 100%; height: 40px; background: #ddd"
 			>Type the instructions for your gathering here.</textarea>
 		</div>
 		
 		<div class="space right">
 			<a href="#..">cancel</a>
-			<input type="submit" value="submit this idea"/>
+			<input type="submit" value="submit as idea for later"/>
 			<input type="submit" value="invite people now!"/>
 		</div>
 	</form>

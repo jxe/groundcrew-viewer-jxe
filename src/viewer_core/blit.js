@@ -1,3 +1,11 @@
+$.fn.feature_paint = function(){
+  return this.clicks({
+    '.std_click a':  Clicker.click
+  }).find('.prompting').promptify().end();
+};
+
+
+
 $.fn.blit = function(){
   $('#lmark_menu').html(City.landmarks_list2());
   var landmarks = 0;
@@ -26,12 +34,8 @@ $.fn.blit = function(){
   }).forms({
     '.stdf':    Clicker.submit
   })
-  .find('.plink')
-    .wire_popper_links()
-  .end()
-  .find('.prompting input[type=text], .prompting textarea')
-    .promptify()
-  .end();
+  .find('.plink').wire_popper_links().end()
+  .find('.prompting').promptify().end();
 };
 
 

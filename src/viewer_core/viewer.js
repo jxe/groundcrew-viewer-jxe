@@ -11,6 +11,7 @@ Viewer = {
     // adjust url
     url = url.replace(/:(\w+)/, function(x, attr){ return Viewer.current_app.state[attr]; });
     if (url == '..') return Viewer.go(Viewer.loc.slice(0, Viewer.loc.lastIndexOf('/')));
+    if (url[0] == '#') return Viewer.current_app[url.slice(1)](Viewer.current_app.state);
     if (!url.startsWith('/')) url = Viewer.loc + '/' + url;
     if (url == '/') url = "/mobilize";
     Viewer.loc = url;
@@ -73,11 +74,7 @@ Viewer = {
     // run renderer
     app[renderer] && app[renderer](state);
     $('body').addClass(renderer);
-    
-    // update body classes and blit
-    $(document).blit();
-    $('.divcenter').center();
-    
+        
     // clean up
     delete state.first;
   },
@@ -96,4 +93,29 @@ Viewer = {
     $.facebox($('#join_fbox').html());
   }
 
+};
+
+
+
+
+$.fn.app_paint = function(){
+  var data = {};
+  this.find('[fill]').each(function(){
+    var obj = $(this);
+    var method = obj.attr('fill');
+    var attr = false;
+    if (method.contains(" ")) {
+      var parts = method.split(' ');
+      method = parts[0];
+      attr = parts[1];
+    }
+    if (!data[method]) data[method] = Viewer.current_app[method](Viewer.current_app.state);
+    if (attr) obj.attr(attr, data[method]);
+    else obj.html(data[method]);
+  });
+  this.find('form').submit(function(){
+    Viewer.current_app.form_submit($(this).form_values(), Viewer.current_app.state);
+    return false;
+  });
+  return this.feature_paint();
 };
