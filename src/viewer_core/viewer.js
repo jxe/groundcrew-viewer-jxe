@@ -9,12 +9,13 @@ Viewer = {
 
   go: function(url) {
     // adjust url
-    url = url.replace(/:(\w+)/, function(x, attr){ return Viewer.current_app.state[attr]; });
+    url = url.replace(/:(\w+)/g, function(x, attr){ return Viewer.current_app.state[attr]; });
     if (url == '..') return Viewer.go(Viewer.loc.slice(0, Viewer.loc.lastIndexOf('/')));
     if (url[0] == '#') return Viewer.current_app[url.slice(1)](Viewer.current_app.state);
     if (!url.startsWith('/')) url = Viewer.loc + '/' + url;
     if (url == '/') url = "/mobilize";
     Viewer.loc = url;
+    Map.Gmap && Map.Gmap.closeInfoWindow();
     
     // check some components
     var part = url.slice(1).split('/');
@@ -58,7 +59,7 @@ Viewer = {
 
     // fill in breadcrumbs
     // breadcrumbs.pop().pop();
-    $('#more_breadcrumbs').html(breadcrumbs.join(' '));
+    $('#more_breadcrumbs').html(breadcrumbs.join(' ')).feature_paint();
     
     // update agents, facebar, and map city
     Viewer.selected_city = state.city && state.city.resource_id();
@@ -84,9 +85,13 @@ Viewer = {
     if (!state.city) CityChooser.update();
   },
 
-
+  open: function(tag) {
+    Viewer.current_app.marker_clicked(tag, Viewer.current_app.state);
+  },
+  
+  
   // functions
-
+  
   zoom_out: function(){ Viewer.go('/'); return false; },
 
   join_please: function() {
@@ -113,7 +118,7 @@ $.fn.app_paint = function(){
     if (attr) obj.attr(attr, data[method]);
     else obj.html(data[method]);
   });
-  this.find('form').submit(function(){
+  this.find('form').unbind('submit').submit(function(){
     Viewer.current_app.form_submit($(this).form_values(), Viewer.current_app.state);
     return false;
   });

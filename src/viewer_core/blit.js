@@ -1,6 +1,6 @@
 $.fn.feature_paint = function(){
   return this.clicks({
-    '.std_click a':  Clicker.click
+    'a':  Clicker.click
   }).find('.prompting').promptify().end();
 };
 

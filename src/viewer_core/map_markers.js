@@ -20,7 +20,6 @@ MapMarkers = {
   },
   
   close: function(item) {
-    this.iw_marker = null;
     if (!Map.available()) return;
     Map.Gmap.closeInfoWindow();
   },
@@ -142,9 +141,7 @@ MapMarkers = {
     var lng = city_locs[city_id][1];
     var marker = MapMarkers.marker(lat, lng, 'ninjaguy', cities[city_id]);
 
-    GEvent.addListener( marker, "click", function() {
-      Viewer.open(city_id);
-    });
+    GEvent.addListener( marker, "click", function() { Viewer.go("/mobilize/:city"); });
     
     MapMarkers.cache[city_id] = marker;
     return marker;
@@ -155,8 +152,8 @@ MapMarkers = {
     var marker = MapMarkers.marker(lm.lat, lm.lng, 'sbump', lm.title);
     marker.info_data = lm;
 
-    GEvent.addListener( marker, "click",           function() { Viewer.open(lm); });
-    GEvent.addListener( marker, "infowindowclose", function() { Viewer.close(lm); });
+    GEvent.addListener( marker, "click",           function() { Viewer.open(lm.item_tag); });
+    // GEvent.addListener( marker, "infowindowclose", function() { Viewer.close(lm); });
 
     MapMarkers.cache[lm.item_tag] = marker;
     return marker;
@@ -167,8 +164,8 @@ MapMarkers = {
     var marker = MapMarkers.marker(agent.lat, agent.lng, agent.map_icon, agent.title);
     marker.info_data = agent;
 
-    GEvent.addListener( marker, "click", function() { Viewer.open(agent); });
-    GEvent.addListener( marker, "infowindowclose", function() { Viewer.close(agent); });
+    GEvent.addListener( marker, "click", function() { Viewer.open(agent.item_tag); });
+    // GEvent.addListener( marker, "infowindowclose", function() { Viewer.close(agent); });
     GEvent.addListener( marker, "dblclick", function() {
       Map.Gmap.setCenter( marker.getPoint(), 15 ); 
     });

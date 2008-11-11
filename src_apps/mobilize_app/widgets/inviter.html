@@ -1,21 +1,9 @@
 <div id="invite_iw" style="display:none; max-width: 400px">
-	<div class="mhead b center">
-		Create an invitation to &ldquo;<b fill="idea_title"></b>&rdquo;
-	</div>
-	
 	<form class="stdf">
-		<div class="right">
-			This is a 
-			<select>
-				<option>
-					group activity
-				</option>
-				<option>
-					pubic rendezvous
-				</option>
-			</select>
+		<div class="mhead b center">
+			Preparing for &ldquo;<b fill="idea_title"></b>&rdquo;
 		</div>
-
+	
 		<div class="b u space">
 			Invitation
 		</div>
@@ -23,7 +11,7 @@
 			<span fill="ag_ct">11 agents</span> will be sent a <b fill="cat_label_singular"></b> invite like this:
 		</div>
 		<div class="box in">
-			Groundcrew agents are preparing to gather at <span fill="item_title">Xanadu</span>
+			Groundcrew alert:  gathering at <span fill="item_title">Xanadu</span>
 			to <input fill="idea_action value" name="action" type="text"/>.
 			Interested?
 		</div>
@@ -40,9 +28,46 @@
 		</div>
 		
 		<div class="space right">
-			<a href="#..">cancel</a>
-			<input type="submit" value="submit as idea for later"/>
+			<a href="#/mobilize/:city/:category">cancel</a>
+			<input type="submit" value="submit idea for later"/>
 			<input type="submit" value="invite people now!"/>
 		</div>
 	</form>
 </div>
+
+
+<div id="choose_idea_iw" style="display:none; max-width: 400px">
+	<div class="large center">
+		<span fill="ag_ct">11 agents</span> are standing by.<br>
+		Please choose a <b fill="cat_label_singular">good deed</b>.
+	</div>
+
+	<form>
+		<div class="center">
+			<select size="4" name="idea" style="width: 100%; font-size: 14px" fill="idea_select">
+				<option>Medidate in a circle on city hall steps</option>
+				<option>Worship a parking meter</option>
+				<option>Exchange "knock-knock" jokes</option>
+				<option>Throw pebbles in the water</option>
+			</select>
+		</div>
+		<div class="right" style="margin-right: 15px">
+			<a class="b" href="##add_idea_button">+ add a <span fill="cat_label_singular">good deed</span></a>
+		</div>
+
+		<div class="xspace right">
+			<a href="#..">cancel</a> &nbsp;
+			<input type="submit" value="review invitation"/>
+		</div>
+	</form>
+</div>
+
+
+<!-- <select>
+	<option>
+		group activity
+	</option>
+	<option>
+		pubic rendezvous
+	</option>
+</select> -->
