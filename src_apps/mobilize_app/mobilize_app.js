@@ -12,16 +12,27 @@ Viewer.apps.mobilize = {
     else Viewer.go('/mobilize/:city/:category/' + tag);
   },
 
-  form_submit: function(data, state) {
-    if (data.idea && data.lm) Viewer.go('/mobilize/:city/:category/' + data.lm + "/" + data.idea);
+  form_submit: function(data, state, form) {
+    var self = this;
+    if (data.idea && (data.lm || state.item && state.item.startsWith('Landmark'))) {
+      return Viewer.go('/mobilize/:city/:category/' + (data.lm || state.item) + '/' + data.idea);
+    } 
+    if (data.action && data.instr) {
+      // var idea = Ideas.local({ title: data.action, action: data.action, atags: state.category,  });
+      Ajax.fetch('/gc/idea', {atags: state.category, act: data.action, instructions: data.instr}, function(idea){
+        Ideas.add_or_update(idea);
+        state.selected_idea = idea.item_tag;
+        $.facebox.close();
+        $('select[fill=idea_select]').html(self.idea_select(state));
+      });
+      form.find('input[type=submit]').val('loading').attr('disabled', true);
+      return;
+    }
+    alert('unusual form submit.');
   },
   
   add_idea_button: function(state) {
-    var title = prompt("What do you want to gather people to do?");
-    if (!title) return;
-    var idea = Ideas.local({ title: title, action: title, atags: state.category });
-    state.selected_idea = idea.item_tag;
-    $('form').app_paint();
+    $.facebox($.template('#new_idea_dialog').app_paint()[0]);
   },
   
   // item and idea level stuff
@@ -80,8 +91,10 @@ Viewer.apps.mobilize = {
   ag_ct:       function(state) { return pluralize(state.agents.length, 'agent'); },
   idea_title:  function(state) { return state.idea_r.title; },
   idea_action: function(state) { return state.idea_r.action; },
+  idea_instructions: function(state) { return state.idea_r.instructions; },
   item_thumb_url: function(state) { return state.item_r.thumb_url; },
-  item_title:  function(state) { return state.item_r.title; }
+  item_title:  function(state) { return state.item_r.title; },
+  blank:       function(){ return ''; }
     
 };
 
