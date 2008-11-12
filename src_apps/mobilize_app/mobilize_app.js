@@ -49,7 +49,7 @@ Viewer.apps.mobilize = {
   
   idea_index: function(state) {
     if (state.item.startsWith('Landmark')) {
-      return MapMarkers.open(state.item, $.template('#choose_idea_iw').app_paint()[0]);
+      return MapMarkers.open(state.item, $.template('#choose_idea_iw').app_paint()[0], 17);
     } else {
       // it's an agent!
       
@@ -58,7 +58,7 @@ Viewer.apps.mobilize = {
   
   show_idea: function(state) {
     if (state.item.startsWith('Landmark')) {
-      return MapMarkers.open(state.item, $.template('#invite_iw').app_paint()[0]);
+      return MapMarkers.open(state.item, $.template('#invite_iw').app_paint()[0], 17);
     }
   },
   

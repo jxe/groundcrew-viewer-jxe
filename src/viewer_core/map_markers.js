@@ -2,13 +2,17 @@ MapMarkers = {
 
   iw_marker: null,
       
-  open: function(item, content) {
+  open: function(item, content, min_zoom) {
     if (!Map.available()) return;
     var marker = this.marker_for(item);
     if (this.iw_marker == marker) {
       Map.Gmap.updateCurrentTab(function(tab){ tab.contentElem = content; });
     } else {
       this.iw_marker = marker;
+      if (Map.Gmap.getZoom() < min_zoom) {
+        // Map.Gmap.setZoom(min_zoom);
+        Map.Gmap.setCenter(marker.getLatLng(), min_zoom);
+      }
       this.iw_marker.openInfoWindow(content, {noCloseOnClick: true});
     }
   },
