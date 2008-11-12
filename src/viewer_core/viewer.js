@@ -119,7 +119,14 @@ $.fn.app_paint = function(){
     else obj.html(data[method]);
   });
   this.find('form').unbind('submit').submit(function(){
-    Viewer.current_app.form_submit($(this).form_values(), Viewer.current_app.state);
+    try {
+      var form = $(this);
+      Viewer.current_app.form_submit(form.form_values(), Viewer.current_app.state, form);
+    } catch (err) {
+      alert('form error!');
+      console.log(err);
+      return false;
+    }
     return false;
   });
   return this.feature_paint();
