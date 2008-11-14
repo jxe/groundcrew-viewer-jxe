@@ -9,7 +9,7 @@ Viewer.apps.allies = {
   
   wishes: function(state) {
     var wishes = Agents.find('=city_id ' + state.city.resource_id() + " ;helpwith");
-    return $keys(wishes).join(', ');
+    return $keys(wishes).map(function(x){ return x.replace(/\bmy\b/g, 'their'); }).join(', ');
   },
   
   form_submit: function(data, state, form) {
