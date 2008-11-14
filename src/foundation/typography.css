@@ -13,6 +13,27 @@ big {
   font-weight: bold;
 }
 
+.rel {
+  position: relative;
+}
+
+.abs_right {
+  position: absolute;
+  right: 0px;
+}
+
+a.gay_button {
+  display: block;
+  padding: 4px 2px;
+  background: #ccc;
+  color: #888;
+  text-decoration: none;
+}
+
+a.gay_button:hover {
+  color: #555;
+}
+
 .small big {
   font-weight: normal;
   font-size: 16px;
@@ -292,14 +313,14 @@ table.mcol ul {
 /* = others = */
 /* ========== */
 
-.hideinside {
-  visibility: hidden;
+img.hover_opacity {
+  opacity: 50%;
 }
-div:hover > .hideinside {
-  visibility: visible;
-  font-style: italic;
-  color: #555;
+
+a:hover img.hover_opacity {
+  opacity: 100%;
 }
+
 .editable:hover {
   background: #eea;
   text-decoration: none;
