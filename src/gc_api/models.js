@@ -1,10 +1,11 @@
-Resource.prototype.in_city = function(city){
-  return this.find("=city_id " + city.resource_id());
-}
+Resource.prototype.in_city = function(city, more){
+  if (!more) return this.find("=city_id " + city.resource_id());
+  return this.find("=city_id " + city.resource_id() + " " + more);
+};
 
 Resource.prototype.with_atag = function(atag){
   return this.find(":atags " + atag) || [];
-}
+};
 
 Agents = new Resource('Agent', {
   enhancer: function(item) { Item.calculate_fields(item); }

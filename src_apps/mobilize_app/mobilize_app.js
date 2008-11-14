@@ -111,7 +111,6 @@ Viewer.apps.mobilize = {
   // dyn fills
   
   idea_select: function(state) { return Ideas.with_atag(state.category).as_option_list(state.selected_idea); },
-  lm_select:   function(state) { return Landmarks.in_city(state.city).as_option_list(); },
   cat_label_singular: function(state) { return state.category_label.toLowerCase().singularize(); },
   ag_ct:       function(state) { return pluralize(state.agents.length, 'agent'); },
   idea_title:  function(state) { return state.idea_r.title; },
@@ -120,8 +119,28 @@ Viewer.apps.mobilize = {
   idea_comments: function(state) { return ''; },
   item_thumb_url: function(state) { return state.item_r.thumb_url; },
   item_title:  function(state) { return state.item_r.title; },
-  blank:       function(){ return ''; }
-    
+  blank:       function(){ return ''; },
+  
+  // limits
+  
+  limit_ltype: function(how) {
+    var state = this.state;
+    if (state.ltype == how) how = null;
+    state.ltype = how;
+    $('#lm_limits').attr('limit', how || 'all');
+    $('select[fill=lm_select]').html(this.lm_select(state));
+  },
+  
+  lm_select: function(state) { 
+    if (!state.ltype) return Landmarks.in_city(state.city).as_option_list();
+    return Landmarks.in_city(state.city, ":ltypes " + state.ltype).as_option_list()
+  },
+  
+  limit_park: function()   { this.limit_ltype('park'); },
+  limit_cafe: function()   { this.limit_ltype('cafe'); },
+  limit_street: function() { this.limit_ltype('street'); },
+  limit_room: function()   { this.limit_ltype('room'); }
+  
 };
 
 

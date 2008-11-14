@@ -9,6 +9,11 @@ body.mobilize_app #app_list a.mobilize_app_link {
   color: white;
 }
 
+#lm_limits[limit="park"]   a[href="##limit_park"]   { font-weight: bold; }
+#lm_limits[limit="room"]   a[href="##limit_room"]   { font-weight: bold; }
+#lm_limits[limit="cafe"]   a[href="##limit_cafe"]   { font-weight: bold; }
+#lm_limits[limit="street"] a[href="##limit_street"] { font-weight: bold; }
+
 .categories {
   margin-top: 15px;
 }
