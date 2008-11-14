@@ -8,7 +8,19 @@ Viewer.apps.testify = {
   },
   
   beliefs: function(state) {
-    return "nothing";
+    var beliefs = Agents.find('=city_id ' + state.city.resource_id() + " ;believesin");
+    return $keys(beliefs).join(', ');
+  },
+  
+  form_submit: function(data, state, form) {
+    if (data.belief) {
+      form.find('button,input').attr('disabled', true);
+      Ajax.fetch('/agent/push', {key:'believesin', val:data.belief}, function(me){
+        Agents.add_or_update(me);
+        $('#belief_index').app_paint();
+        form.find('button,input').attr('disabled', false);
+      });
+    }
   }
   
 };

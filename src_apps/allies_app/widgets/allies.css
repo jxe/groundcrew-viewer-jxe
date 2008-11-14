@@ -1,0 +1,6 @@
+#wish_index {display:none;}
+body.wish_index #wish_index {display:block;}
+
+body.allies_app #app_list a.allies_app_link {
+  color: white;
+}

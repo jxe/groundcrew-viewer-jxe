@@ -41,6 +41,8 @@ $.extend(Resource.prototype, {
       return this.db[spec] = start_db.index_by(action.slice(1));
     else if (action[0] == ':')
       return this.db[spec] = start_db.repackage(action.slice(1));
+    else if (action[0] == ';')
+      return this.db[spec] = start_db.semi_repackage(action.slice(1));
 
     if (!start_db[action] && spec_words.length == 1 && spec_words[0][0] == '=') {
       var f = "load_by_" + spec_words[0].slice(1);
@@ -123,6 +125,20 @@ Array.prototype.repackage = function(field){
   var obj = {};
   for (var i=0; i < this.length; i++) {
     var values = this[i][field].split(' ');
+    for (var j=0; j < values.length; j++) {
+      var value = values[j];
+      if (obj[value]) obj[value].push(this[i]);
+      else obj[value] = [this[i]];
+    };
+  };
+  return obj;
+};
+
+
+Array.prototype.semi_repackage = function(field){
+  var obj = {};
+  for (var i=0; i < this.length; i++) {
+    var values = (this[i][field] || "").split(/\s+\[\d+\];\s+/);
     for (var j=0; j < values.length; j++) {
       var value = values[j];
       if (obj[value]) obj[value].push(this[i]);
