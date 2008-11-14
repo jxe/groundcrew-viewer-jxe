@@ -19,7 +19,7 @@ Viewer.apps.mobilize = {
     } 
     if (data.action && data.instr) {
       // var idea = Ideas.local({ title: data.action, action: data.action, atags: state.category,  });
-      Ajax.fetch('/gc/idea', {atags: state.category, act: data.action, instructions: data.instr}, function(idea){
+      Ajax.fetch('/gc/idea', {atags: state.category, act: data.action, instructions: data.instr, ltypes:data.ltypes}, function(idea){
         Ideas.add_or_update(idea);
         state.selected_idea = idea.item_tag;
         $.facebox.close();
@@ -36,7 +36,23 @@ Viewer.apps.mobilize = {
   },
   
   // item and idea level stuff
-    
+  
+  idea_select_changed: function(new_idea, state) {
+    if (!new_idea) return;
+    var idea = new_idea.resource();
+    state.idea_r = idea;
+    var html = idea.title + ' by ' + idea.author_tag + '  <a href="##idea_edit" class="abs_right gay_button">?</a>';
+    $('#idea_current_text').html(html).app_paint();
+    if (idea.ltypes) {
+      alert('should set landmark filter here.');
+      // set landmark filter
+    }
+  },
+  
+  idea_edit: function(state) {
+    $.facebox($.template('#edit_idea_dialog').app_paint()[0]);
+  },
+  
   set_idea: function(idea, state, changed) {
     state.idea_r = idea && idea.resource();
     state.idea_label = idea && state.idea_r.title;
@@ -101,6 +117,7 @@ Viewer.apps.mobilize = {
   idea_title:  function(state) { return state.idea_r.title; },
   idea_action: function(state) { return state.idea_r.action; },
   idea_instructions: function(state) { return state.idea_r.instructions; },
+  idea_comments: function(state) { return ''; },
   item_thumb_url: function(state) { return state.item_r.thumb_url; },
   item_title:  function(state) { return state.item_r.title; },
   blank:       function(){ return ''; }

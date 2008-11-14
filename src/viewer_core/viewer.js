@@ -121,6 +121,14 @@ $.fn.app_paint = function(){
     if (attr) obj.attr(attr, data[method]);
     else obj.html(data[method]);
   });
+  this.find('[observe]').each(function(){
+    var obj = $(this);
+    var method = obj.attr('observe');
+    obj.change(function(){
+      Viewer.current_app[method](obj.val(), Viewer.current_app.state);
+      return true;
+    });
+  });
   this.find('form').unbind('submit').submit(function(){
     try {
       var form = $(this);

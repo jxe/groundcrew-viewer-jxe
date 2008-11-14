@@ -20,6 +20,7 @@ big {
 .abs_right {
   position: absolute;
   right: 0px;
+  top: 0px;
 }
 
 a.gay_button {
