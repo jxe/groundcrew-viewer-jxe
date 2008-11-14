@@ -24,7 +24,8 @@ If you change javascript, html or css files, you have to run
 'make' to rebuild.
 
 The only thing that doesn't work quite right in local mode are
-the user images.  Sorry about that.
+the user images.  Sorry about that.  Also, only your home city
+will have data loaded from the server.
 
 
 =====================
