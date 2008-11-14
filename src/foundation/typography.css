@@ -43,6 +43,10 @@ a.gay_button:hover {
   color: #888;
 }
 
+span.dgray a {
+  color: #555;
+}
+
 .dgray {
   color: #555;
 }
