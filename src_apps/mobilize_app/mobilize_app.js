@@ -43,10 +43,9 @@ Viewer.apps.mobilize = {
     state.idea_r = idea;
     var html = idea.title + ' by ' + idea.author_tag + '  <a href="##idea_edit" class="abs_right gay_button">?</a>';
     $('#idea_current_text').html(html).app_paint();
-    if (idea.ltypes) {
-      alert('should set landmark filter here.');
-      // set landmark filter
-    }
+    if (!idea.ltypes) idea.ltypes = null;
+    if (state.ltype != idea.ltypes)
+      Viewer.apps.mobilize.limit_ltype(state.ltype);
   },
   
   idea_edit: function(state) {
@@ -77,6 +76,11 @@ Viewer.apps.mobilize = {
       return MapMarkers.open(state.item, $.template('#invite_iw').app_paint()[0], 17);
     }
   },
+  
+  trash_idea: function(state) {
+    alert('This needs to be implemented!');
+  },
+  
   
   new_landmark: function(state) {
     if (!logged_in) return Viewer.join_please();
@@ -133,7 +137,7 @@ Viewer.apps.mobilize = {
   
   lm_select: function(state) { 
     if (!state.ltype) return Landmarks.in_city(state.city).as_option_list();
-    return Landmarks.in_city(state.city, ":ltypes " + state.ltype).as_option_list()
+    return Landmarks.in_city(state.city, ":ltypes " + state.ltype).as_option_list();
   },
   
   limit_park: function()   { this.limit_ltype('park'); },
