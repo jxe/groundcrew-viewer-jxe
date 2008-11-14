@@ -17,13 +17,7 @@ Item = {
       if (a.atags) return a.atags.split(' ');
       else return [];
     },
-    
-    readyto_arr: function(a) {
-      if (a.readyto.replace) a.readyto = json_eval(a.readyto);
-      if (a.readyto.map) return a.readyto.map(function(x){ return x[0]; });
-      else return [];
-    },
-    
+        
     qualities_arr: function(a) {
       if (a.qualities) return a.qualities.split(' ');
       else return [];

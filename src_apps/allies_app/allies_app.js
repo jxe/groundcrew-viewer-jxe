@@ -19,9 +19,9 @@ Viewer.apps.allies = {
         Agents.add_or_update(me);
         $('#wish_index').app_paint();
         form.find('button,input').attr('disabled', false);
+        form.find('input').val('').focus();
       });
     }
-  },
-  
+  }
   
 };

@@ -19,6 +19,7 @@ Viewer.apps.testify = {
         Agents.add_or_update(me);
         $('#belief_index').app_paint();
         form.find('button,input').attr('disabled', false);
+        form.find('input').val('').focus();
       });
     }
   }

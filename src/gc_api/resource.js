@@ -138,12 +138,14 @@ Array.prototype.repackage = function(field){
 Array.prototype.semi_repackage = function(field){
   var obj = {};
   for (var i=0; i < this.length; i++) {
-    var values = (this[i][field] || "").split(/\s+\[\d+\];\s+/);
-    for (var j=0; j < values.length; j++) {
-      var value = values[j];
-      if (obj[value]) obj[value].push(this[i]);
-      else obj[value] = [this[i]];
-    };
+    if (this[i][field]) {
+      var values = this[i][field].replace(/\s+\[\d+\]/g, '').split(/;\s+/);
+      for (var j=0; j < values.length; j++) {
+        var value = values[j];
+        if (obj[value]) obj[value].push(this[i]);
+        else obj[value] = [this[i]];
+      };
+    }
   };
   return obj;
 };
@@ -151,11 +153,14 @@ Array.prototype.semi_repackage = function(field){
 
 String.prototype.resource = function(){
   var parts = this.split('__');
+  if (parts[0] == 'Person') parts[0] = 'Agent';
   return eval(parts[0] + "s").id(parts[1]);
 };
 
 String.prototype.resource_class = function(){
-  return eval(this.split('__')[0] + "s");
+  var parts = this.split('__');
+  if (parts[0] == 'Person') parts[0] = 'Agent';
+  return eval(part[0] + "s");
 };
 
 String.prototype.resource_id = function(){
