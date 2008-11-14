@@ -5,6 +5,10 @@ body.item_index #item_index {display: block;}
 #invite_dialog {display:none;}
 body.show_idea #invite_dialog {display:block;}
 
+body.mobilize_app #app_list a.mobilize_app_link {
+  color: white;
+}
+
 .categories {
   margin-top: 15px;
 }

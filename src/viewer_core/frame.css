@@ -33,11 +33,6 @@
   text-decoration: none;
 }
 
-body.mobilize_app #app_list a.mobilize_app_link {
-  color: white;
-/*  background: #222;*/
-}
-
 #breadcrumbs {
   background: #000;
   color: #777;

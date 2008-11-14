@@ -4,12 +4,15 @@
 Viewer = {
   loc: '',
   apps: {},
-  current_app: null,
+  current_app: { state: { app: 'mobilize' }},
   prev_agents: null,
 
   go: function(url) {
     // adjust url
-    url = url.replace(/:(\w+)/g, function(x, attr){ return Viewer.current_app.state[attr]; });
+    url = url.replace(/\/:(\w+)/g, function(x, attr){ 
+      if (Viewer.current_app.state[attr]) return '/' + Viewer.current_app.state[attr];
+      return '';
+    });
     if (url == '..') return Viewer.go(Viewer.loc.slice(0, Viewer.loc.lastIndexOf('/')));
     if (url[0] == '#') return Viewer.current_app[url.slice(1)](Viewer.current_app.state);
     if (!url.startsWith('/')) url = Viewer.loc + '/' + url;
@@ -25,7 +28,7 @@ Viewer = {
     
     // configure application with url data, choose renderer, build breadcrumbs
     if (Viewer.current_app != app) {
-      app.state = { first: true };
+      app.state = { first: true, app: app_name };
       $('body').removeClass(Viewer.current_app_name + "_app").addClass(app_name + "_app");
     }
     Viewer.current_app_name = app_name;
