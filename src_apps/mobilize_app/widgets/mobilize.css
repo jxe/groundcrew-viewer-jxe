@@ -1,5 +1,5 @@
 #mobilize_category_index {display:none;}
-body.mobilize_app.body.category_index #mobilize_category_index {display:block;}
+body.mobilize_app.category_index #mobilize_category_index {display:block;}
 #mobilize_item_index {display: none;}
 body.mobilize_app.item_index #mobilize_item_index {display: block;}
 #invite_dialog {display:none;}
