@@ -78,7 +78,8 @@ Viewer = {
     // run renderer
     app[renderer] && app[renderer](state);
     $('body').addClass(renderer);
-        
+    $('#' + app_name + "_" + renderer).app_paint();
+    
     // clean up
     delete state.first;
   },
@@ -86,6 +87,11 @@ Viewer = {
   set_city: function(city, state, changed) {
     delete state.agents;
     if (!state.city) CityChooser.update();
+  },
+
+  set_item: function(item, state, changed) {
+    state.item_r = item && item.resource();
+    state.item_label = item && state.item_r.title;
   },
 
   open: function(tag) {
@@ -99,7 +105,14 @@ Viewer = {
 
   join_please: function() {
     $.facebox($('#join_fbox').html());
-  }
+  },
+  
+  
+  // dyn fills
+  ag_ct:          function(state) { return pluralize(state.agents.length, 'agent'); },
+  item_thumb_url: function(state) { return state.item_r.thumb_url; },
+  item_title:     function(state) { return state.item_r.title; },
+  blank:       function(){ return ''; }
 
 };
 
@@ -117,7 +130,11 @@ $.fn.app_paint = function(){
       method = parts[0];
       attr = parts[1];
     }
-    if (!data[method]) data[method] = Viewer.current_app[method](Viewer.current_app.state);
+    if (!data[method] && Viewer.current_app[method]) 
+      data[method] = Viewer.current_app[method](Viewer.current_app.state);
+    if (!data[method] && Viewer[method]) 
+      data[method] = Viewer[method](Viewer.current_app.state);
+    if (!data[method]) alert('missing fill method: ' + method);
     if (attr) obj.attr(attr, data[method]);
     else obj.html(data[method]);
   });
@@ -140,5 +157,6 @@ $.fn.app_paint = function(){
     }
     return false;
   });
+  if (this.is('.divcenter')) this.center();
   return this.feature_paint();
 };

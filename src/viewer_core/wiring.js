@@ -11,7 +11,7 @@ ViewerUI = {
     if (logged_in) {
       Agents.add_or_update(person_item);
       $('body').addClass('logged_in');
-      starter_url = '/mobilize/City__' + person_item.city_id;
+      starter_url = '/stand/City__' + person_item.city_id;
     } else {
       $('body').addClass('logged_out');
     }

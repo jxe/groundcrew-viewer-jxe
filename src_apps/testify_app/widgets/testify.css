@@ -1,6 +1,0 @@
-#belief_index {display:none;}
-body.belief_index #belief_index {display:block;}
-
-body.testify_app #app_list a.testify_app_link {
-  color: white;
-}

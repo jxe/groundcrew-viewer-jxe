@@ -56,12 +56,7 @@ Viewer.apps.mobilize = {
     state.idea_r = idea && idea.resource();
     state.idea_label = idea && state.idea_r.title;
   },
-  
-  set_item: function(item, state, changed) {
-    state.item_r = item && item.resource();
-    state.item_label = item && state.item_r.title;
-  },
-  
+    
   idea_index: function(state) {
     if (state.item.startsWith('Landmark')) {
       return MapMarkers.open(state.item, $.template('#choose_idea_iw').app_paint()[0], 17);
@@ -87,7 +82,7 @@ Viewer.apps.mobilize = {
     $.template('#new_landmark_dialog').show_dialog(function(form){
       Ajax.fetch('/gc/create_landmark', form, function(ev){
         EventDb.add(ev);
-        Viewer.open(ev.landmark_tag || ev.item_tag);
+        Viewer.go('');
       });
     });
   },
@@ -97,7 +92,6 @@ Viewer.apps.mobilize = {
   category_index: function(state) {
     var atag_counts = Agents.find('=city_id ' + state.city.resource_id() + " :atags");
     $('.categories div').decorate_categories(atag_counts);
-    $('#category_index').center();
   },
 
   set_category: function(category, state, changed) {
@@ -105,25 +99,18 @@ Viewer.apps.mobilize = {
     state.agents = Agents.find("=city_id " + state.city.resource_id() + " :atags " + category);
     state.category_label = Category[category]; 
   },
-  
-  item_index: function(state) {
-    $('#item_index').app_paint().center();
-  },
-  
+    
 
   
   // dyn fills
   
   idea_select: function(state) { return Ideas.with_atag(state.category).as_option_list(state.selected_idea); },
   cat_label_singular: function(state) { return state.category_label.toLowerCase().singularize(); },
-  ag_ct:       function(state) { return pluralize(state.agents.length, 'agent'); },
   idea_title:  function(state) { return state.idea_r.title; },
   idea_action: function(state) { return state.idea_r.action; },
   idea_instructions: function(state) { return state.idea_r.instructions; },
   idea_comments: function(state) { return ''; },
-  item_thumb_url: function(state) { return state.item_r.thumb_url; },
-  item_title:  function(state) { return state.item_r.title; },
-  blank:       function(){ return ''; },
+
   
   // limits
   

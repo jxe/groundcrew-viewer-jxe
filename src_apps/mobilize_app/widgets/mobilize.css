@@ -1,9 +1,9 @@
-#category_index {display:none;}
-body.category_index #category_index {display:block;}
-#item_index {display: none;}
-body.item_index #item_index {display: block;}
+#mobilize_category_index {display:none;}
+body.mobilize_app.body.category_index #mobilize_category_index {display:block;}
+#mobilize_item_index {display: none;}
+body.mobilize_app.item_index #mobilize_item_index {display: block;}
 #invite_dialog {display:none;}
-body.show_idea #invite_dialog {display:block;}
+body.mobilize_app.show_idea #invite_dialog {display:block;}
 
 body.mobilize_app #app_list a.mobilize_app_link {
   color: white;
