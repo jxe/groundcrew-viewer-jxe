@@ -12,7 +12,7 @@ Viewer.apps.stand = {
       var clss = (agents.length == 1 ? 's1' : agents.length < 4 ? 's2' : 's3');
       if (agents.contains(person_item)) clss += ".mine";
       return tag('a.' + clss, {content:x, href:"#"+x});
-    }).join(', ');
+    }).join(', ') || ' ';
   },
   
   form_submit: function(data, state, form) {
