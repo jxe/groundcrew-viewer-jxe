@@ -56,6 +56,8 @@ ViewerUI = {
       $('#inner_scroll_window').css('padding-top', '2px');
       $('#inner_scroll_window').css('padding-left', '5px');
     }
+    
+    $('.divcenter').center();
   }
 
 };

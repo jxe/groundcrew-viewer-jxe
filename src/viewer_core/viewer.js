@@ -130,13 +130,15 @@ $.fn.app_paint = function(){
       method = parts[0];
       attr = parts[1];
     }
-    if (!data[method] && Viewer.current_app[method]) 
-      data[method] = Viewer.current_app[method](Viewer.current_app.state);
-    if (!data[method] && Viewer[method]) 
-      data[method] = Viewer[method](Viewer.current_app.state);
-    if (!data[method]) alert('missing fill method: ' + method);
-    if (attr) obj.attr(attr, data[method]);
-    else obj.html(data[method]);
+    if (!data[method]) {
+      var f = Viewer.current_app[method] || Viewer[method];
+      if (f) data[method] = f(Viewer.current_app.state)
+      else   alert('missing fill method: ' + method);
+    }
+    if (data[method]) {
+      if (attr) obj.attr(attr, data[method]);
+      else      obj.html(data[method]);
+    }
   });
   this.find('[observe]').each(function(){
     var obj = $(this);
