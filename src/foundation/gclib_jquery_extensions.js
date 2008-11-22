@@ -92,10 +92,15 @@ $.fn.clicks = function(obj){
   return self;
 };
 
+$.fn.reset_prompts = function(){
+  return this.find('input[prompt]').each(function(){
+    $(this).val($(this).attr('prompt')).addClass('prompting');
+  });
+};
+
 $.fn.promptify = function(){
   return this.each(function(){
     var obj = $(this);
-    // var form = obj.parents('form:first');
     obj.attr('prompt', obj.val());
     obj.addClass('prompting');
     obj.click(function(){
@@ -105,7 +110,6 @@ $.fn.promptify = function(){
     obj.focus(function(){
       if (obj.hasClass('prompting')) {
         obj.val('');
-        // form.removeClass('prompting');
         obj.removeClass('prompting');
       }
       return true;
@@ -115,7 +119,6 @@ $.fn.promptify = function(){
       var val = obj.val();
       if (!val || val.length == 0) {
         obj.addClass('prompting');
-        // form.addClass('prompting');
         obj.val(obj.attr('prompt'));
       }
     });
