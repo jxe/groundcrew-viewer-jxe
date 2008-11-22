@@ -14,7 +14,11 @@ Viewer = {
       return '';
     });
     if (url == '..') return Viewer.go(Viewer.loc.slice(0, Viewer.loc.lastIndexOf('/')));
-    if (url[0] == '#') return Viewer.current_app[url.slice(1)](Viewer.current_app.state);
+    if (url[0] == '#') {
+      var method = url.slice(1);
+      var f = Viewer.current_app[method] || Viewer[method];
+      return f(Viewer.current_app.state);
+    }
     if (!url.startsWith('/')) url = Viewer.loc + '/' + url;
     if (url == '/') url = "/mobilize";
     Viewer.loc = url;
@@ -93,6 +97,34 @@ Viewer = {
     state.item_r = item && item.resource();
     state.item_label = item && state.item_r.title;
   },
+
+  new_landmark: function(state) {
+    if (!logged_in) return Viewer.join_please();
+    $.template('#new_landmark_dialog').show_dialog(function(form){
+      Ajax.fetch('/gc/create_landmark', form, function(ev){
+        EventDb.add(ev);
+        Viewer.go('');
+      });
+    });
+  },
+  
+  limit_ltype: function(state, how) {
+    if (state.ltype == how) how = null;
+    state.ltype = how;
+    $('#lm_limits').attr('limit', how || 'all');
+    $('select[fill=lm_select]').html(this.lm_select(state));
+  },
+  
+  lm_select: function(state) { 
+    if (!state.ltype) return Landmarks.in_city(state.city).as_option_list();
+    return Landmarks.in_city(state.city, ":ltypes " + state.ltype).as_option_list();
+  },
+  
+  limit_park: function(state)   { this.limit_ltype(state, 'park'); },
+  limit_cafe: function(state)   { this.limit_ltype(state, 'cafe'); },
+  limit_street: function(state) { this.limit_ltype(state, 'street'); },
+  limit_room: function(state)   { this.limit_ltype(state, 'room'); },
+  
 
   open: function(tag) {
     Viewer.current_app.marker_clicked(tag, Viewer.current_app.state);

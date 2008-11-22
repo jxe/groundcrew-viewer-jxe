@@ -77,16 +77,6 @@ Viewer.apps.mobilize = {
   },
   
   
-  new_landmark: function(state) {
-    if (!logged_in) return Viewer.join_please();
-    $.template('#new_landmark_dialog').show_dialog(function(form){
-      Ajax.fetch('/gc/create_landmark', form, function(ev){
-        EventDb.add(ev);
-        Viewer.go('');
-      });
-    });
-  },
-  
   // category level stuff
   
   category_index: function(state) {
@@ -104,33 +94,31 @@ Viewer.apps.mobilize = {
   
   // dyn fills
   
-  idea_select: function(state) { return Ideas.with_atag(state.category).as_option_list(state.selected_idea); },
+  idea_select: function(state) { 
+    return Ideas.with_atag(state.category).as_option_list(state.selected_idea); 
+  },
+  
+  idea_tag_cloud: function(state) {
+    var tags = {};
+    
+    $.each(Ideas.all, function(){
+      var idea = this;
+      var idea_tags = this.atags.split(' ').concat(this.action.split(' '));
+      $.each(idea_tags, function(){
+        if (!tags[this]) tags[this] = [ idea ];
+        else tags[this].push(idea);
+      });
+    });
+    
+    return $keys(tags).sort().join(', ');
+  },
+  
+  
   cat_label_singular: function(state) { return state.category_label.toLowerCase().singularize(); },
   idea_title:  function(state) { return state.idea_r.title; },
   idea_action: function(state) { return state.idea_r.action; },
   idea_instructions: function(state) { return state.idea_r.instructions; },
-  idea_comments: function(state) { return ''; },
-
-  
-  // limits
-  
-  limit_ltype: function(how) {
-    var state = this.state;
-    if (state.ltype == how) how = null;
-    state.ltype = how;
-    $('#lm_limits').attr('limit', how || 'all');
-    $('select[fill=lm_select]').html(this.lm_select(state));
-  },
-  
-  lm_select: function(state) { 
-    if (!state.ltype) return Landmarks.in_city(state.city).as_option_list();
-    return Landmarks.in_city(state.city, ":ltypes " + state.ltype).as_option_list();
-  },
-  
-  limit_park: function()   { this.limit_ltype('park'); },
-  limit_cafe: function()   { this.limit_ltype('cafe'); },
-  limit_street: function() { this.limit_ltype('street'); },
-  limit_room: function()   { this.limit_ltype('room'); }
+  idea_comments: function(state) { return ''; }
   
 };
 
