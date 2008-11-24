@@ -79,42 +79,46 @@ Viewer.apps.mobilize = {
   
   // category level stuff
   
-  category_index: function(state) {
-    var atag_counts = Agents.find('=city_id ' + state.city.resource_id() + " :atags");
-    $('.categories div').decorate_categories(atag_counts);
-  },
 
   set_category: function(category, state, changed) {
     if (!category) { delete state.agents; return; }
-    state.agents = Agents.find("=city_id " + state.city.resource_id() + " :atags " + category);
-    state.category_label = Category[category]; 
+    var ideas = Ideas.find('::words ' + category);
+    var atag = ideas[0].atags.split(' ')[0];
+    state.agents = Agents.find("=city_id " + state.city.resource_id() + " :atags " + atag);
+    state.category_label = Category[category] || category; 
   },
-    
-
   
   // dyn fills
   
   idea_select: function(state) { 
-    return Ideas.with_atag(state.category).as_option_list(state.selected_idea); 
+    return Ideas.find("::words " + state.category).as_option_list(state.selected_idea); 
   },
   
   idea_tag_cloud: function(state) {
-    var tags = {};
+    var tags = Ideas.find('::words');
+    tags.celebration = '/celebrate/:city';
+    tags.idealism = '/stand/:city';
+    tags.caring = '/allies/:city';
     
-    $.each(Ideas.all, function(){
-      var idea = this;
-      var idea_tags = this.atags.split(' ').concat(this.action.split(' '));
-      $.each(idea_tags, function(){
-        if (!tags[this]) tags[this] = [ idea ];
-        else tags[this].push(idea);
-      });
-    });
-    
-    return $keys(tags).sort().join(', ');
+    var atag_counts = Agents.find('=city_id ' + state.city.resource_id() + " :atags");
+    var mine = person_item.atags.split(' ');
+
+    return $keys(tags).sort().map(function(x){
+      var ideas = tags[x];
+      if (ideas[0] == '/') {
+        return tag('a.mine.s4', {content: x, href:"#" + ideas});
+      } else {
+        var agents_count = atag_counts[ideas[0].atags.split(' ')[0]].length;
+        var clss = (agents_count < 14 ? 's1' : agents_count < 16 ? 's2' : 's3');
+        if (mine.contains(x)) clss += ".mine";
+        var label = Category[x] ? Category[x].toLowerCase() : x;
+        return tag('a.' + clss, {content: label, href:"#"+x});
+      }
+    }).join(' ');
   },
   
   
-  cat_label_singular: function(state) { return state.category_label.toLowerCase().singularize(); },
+  cat_label_singular: function(state) { return state.category.singularize(); },
   idea_title:  function(state) { return state.idea_r.title; },
   idea_action: function(state) { return state.idea_r.action; },
   idea_instructions: function(state) { return state.idea_r.instructions; },

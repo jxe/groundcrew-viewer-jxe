@@ -124,13 +124,21 @@ Array.prototype.index_by = function(field){
 Array.prototype.repackage = function(field){
   var obj = {};
   for (var i=0; i < this.length; i++) {
-    var values = (this[i][field] || "").split(' ');
+    var values;
+    if (field == ':words') {
+      values = this[i].atags.split(' ').concat(this[i].action.split(' '));
+    } else {
+      values = (this[i][field] || "").split(' ');
+    }
     for (var j=0; j < values.length; j++) {
       var value = values[j];
       if (obj[value]) obj[value].push(this[i]);
       else obj[value] = [this[i]];
     };
   };
+  if (field == ":words") {
+    $.each($w('a and up out to of'), function(){ delete obj[this]; });
+  }
   return obj;
 };
 

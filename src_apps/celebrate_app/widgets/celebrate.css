@@ -24,6 +24,10 @@ body.celebrate_app #app_list a.celebrate_app_link {
   font-size: 15px;
 }
 
-.csl a.s2 {
-  font-size: 16px;
+.csl a.s3 {
+  font-size: 17px;
+}
+
+.csl a.s4 {
+  font-size: 19px;
 }

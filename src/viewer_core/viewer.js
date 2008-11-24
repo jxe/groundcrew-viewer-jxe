@@ -164,7 +164,7 @@ $.fn.app_paint = function(){
     }
     if (!data[method]) {
       var f = Viewer.current_app[method] || Viewer[method];
-      if (f) data[method] = f(Viewer.current_app.state)
+      if (f) data[method] = f(Viewer.current_app.state);
       else   alert('missing fill method: ' + method);
     }
     if (data[method]) {
