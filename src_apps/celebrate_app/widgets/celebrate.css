@@ -5,6 +5,9 @@ body.celebrate_app #app_list a.celebrate_app_link {
   color: white;
 }
 
+#celebrate_recipe_index {display:none;}
+body.celebrate_app.recipe_index #celebrate_recipe_index {display:block;}
+
 .hud2 {
   background: white;
 }

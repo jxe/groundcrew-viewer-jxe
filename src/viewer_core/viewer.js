@@ -112,7 +112,7 @@ Viewer = {
     if (state.ltype == how) how = null;
     state.ltype = how;
     $('#lm_limits').attr('limit', how || 'all');
-    $('select[fill=lm_select]').html(this.lm_select(state));
+    $('select[fill=lm_select]').html(Viewer.lm_select(state));
   },
   
   lm_select: function(state) { 
@@ -120,10 +120,10 @@ Viewer = {
     return Landmarks.in_city(state.city, ":ltypes " + state.ltype).as_option_list();
   },
   
-  limit_park: function(state)   { this.limit_ltype(state, 'park'); },
-  limit_cafe: function(state)   { this.limit_ltype(state, 'cafe'); },
-  limit_street: function(state) { this.limit_ltype(state, 'street'); },
-  limit_room: function(state)   { this.limit_ltype(state, 'room'); },
+  limit_park: function(state)   { Viewer.limit_ltype(state, 'park'); },
+  limit_cafe: function(state)   { Viewer.limit_ltype(state, 'cafe'); },
+  limit_street: function(state) { Viewer.limit_ltype(state, 'street'); },
+  limit_room: function(state)   { Viewer.limit_ltype(state, 'room'); },
   
 
   open: function(tag) {
