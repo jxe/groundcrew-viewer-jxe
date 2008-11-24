@@ -1,8 +1,8 @@
 uncompressed: html_and_css
-	cat vendor/*.js {src,src_apps}/*/*.js > BUILD/viewer.js
+	cat {vendor,data}/*.js {src,src_apps}/*/*.js > BUILD/viewer.js
 
 compressed: html_and_css
-	cat vendor/*.js {src,src_apps}/*/*.js | jsmin > BUILD/viewer.js
+	cat {vendor,data}/*.js {src,src_apps}/*/*.js | jsmin > BUILD/viewer.js
 
 html_and_css: BUILD
 	cat src/*/*.html src_apps/*/widgets/*.html > BUILD/viewer.html
