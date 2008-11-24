@@ -7,7 +7,8 @@ Viewer.apps.mobilize = {
   url_part_labels: $w('city category item idea'),
   
   marker_clicked: function(tag, state) {
-    if (!state.category) return alert('please select a category first.');
+    if (!state.category) return false;
+    if (tag[0] != "L") return false;
     if (state.idea) return Viewer.go('/mobilize/:city/:category/' + tag + '/:idea');
     else Viewer.go('/mobilize/:city/:category/' + tag);
   },

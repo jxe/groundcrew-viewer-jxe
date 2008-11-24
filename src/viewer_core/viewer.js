@@ -127,9 +127,11 @@ Viewer = {
   
 
   open: function(tag) {
-    Viewer.current_app.marker_clicked(tag, Viewer.current_app.state);
+    if (Viewer.current_app.marker_clicked)
+      if (Viewer.current_app.marker_clicked(tag, Viewer.current_app.state))
+        return;
+    Viewer.go('/organize/your_personal_squad/:city/' + tag);
   },
-  
   
   // functions
   
