@@ -1,14 +1,16 @@
-<div class="mini hud divcenter std_click" id="mobilize_item_index" style="width: 370px; top: 107px; left: 372px">
-	<div class="large center">
-		<span fill="ag_ct">11 agents</span> are standing by.<br>
-		Please choose a <b fill="cat_label_singular">good deed</b> and a <b>location</b>.
+<div class="mini hud divcenter std_click" id="mobilize_idea_index" style="width: 370px; top: 107px; left: 372px">
+	<div class="msecintro b center">
+		<span fill="ag_ct">11 agents</span> are standing by.
+	</div>
+	<div class="b large center">
+		Let's get you some &ldquo;<span fill="category_label"></span>&rdquo;!
+	</div>
+	<div class="center msecintro">
+		<a href="##add_idea_button">Create a new organizational idea</a>
+		or reuse one below.
 	</div>
 
-	<form>
-		<div class="xspace rel">
-			<i class="mhead dgray">What?</i>
-			<span class="gray" id="idea_current_text"></span>
-		</div>
+	<form class="space">
 		<div class="center">
 			<select size="4" name="idea" style="width: 100%; font-size: 14px" fill="idea_select" observe="idea_select_changed">
 				<option>Medidate in a circle on city hall steps</option>
@@ -16,34 +18,15 @@
 				<option>Exchange "knock-knock" jokes</option>
 				<option>Throw pebbles in the water</option>
 			</select>
+			<div class="rel">
+				<span class="gray" id="idea_current_text"></span>
+			</div>
 		</div>
-		<div class="right" style="margin-right: 15px">
-			<a class="b" href="##add_idea_button">+ add a <span fill="cat_label_singular">good deed</span></a>
-		</div>
-		<!-- <div class="space small dgray right" style="margin-right:40px">
-			need more ideas?  try {<a href="#/testify">testify</a>}
-		</div> -->
 		
-		<div class="xspace">
-			<i class="mhead dgray">Where?</i> &nbsp;
-			<span class="dgray" id="lm_limits">
-				(limit to: 
-				<a href="##limit_park">parks</a>,
-				<a href="##limit_cafe">cafes</a>,
-				<a href="##limit_street">streets</a>,
-				<a href="##limit_room">buildings</a>
-				)
-			</span>
-		</div>
-		<div class="center">
-			<select name="lm" size="4" style="width: 100%; font-size: 14px" fill="lm_select">
-				<option>outside the haymarket</option>
-			</select>
-		</div>
 		<div class="right" style="margin-right: 15px">
-			<a class="b" href="##new_landmark">+ add a landmark</a>
+			<a class="b" href="##add_idea_button">+ add <span fill="cat_label_singular">good deed</span></a>
 		</div>
-
+		
 		<div class="xspace right">
 			<a href="#..">cancel</a> &nbsp;
 			<input type="submit" value="review invitation"/>

@@ -4,19 +4,19 @@
 
 
 Viewer.apps.mobilize = {
-  url_part_labels: $w('city category item idea'),
+  url_part_labels: $w('city category idea item'),
   
   marker_clicked: function(tag, state) {
     if (!state.category) return false;
     if (tag[0] != "L") return false;
-    if (state.idea) return Viewer.go('/mobilize/:city/:category/' + tag + '/:idea');
-    else Viewer.go('/mobilize/:city/:category/' + tag);
+    if (state.idea) return Viewer.go('/mobilize/:city/:category/:idea/' + tag);
+    else Viewer.go('/organize/:city/' + tag);
   },
 
   form_submit: function(data, state, form) {
     var self = this;
     if (data.idea && (data.lm || state.item && state.item.startsWith('Landmark'))) {
-      return Viewer.go('/mobilize/:city/:category/' + (data.lm || state.item) + '/' + data.idea);
+      return Viewer.go('/mobilize/:city/:category/' + data.idea + '/' + (data.lm || state.item));
     } 
     if (data.action && data.instr) {
       // var idea = Ideas.local({ title: data.action, action: data.action, atags: state.category,  });
@@ -58,16 +58,16 @@ Viewer.apps.mobilize = {
     state.idea_label = idea && state.idea_r.title;
   },
     
-  idea_index: function(state) {
-    if (state.item.startsWith('Landmark')) {
-      return MapMarkers.open(state.item, $.template('#choose_idea_iw').app_paint()[0], 17);
-    } else {
-      // it's an agent!
-      
-    }
-  },
+  // item_index: function(state) {
+  //   if (state.item.startsWith('Landmark')) {
+  //     return MapMarkers.open(state.item, $.template('#choose_idea_iw').app_paint()[0], 17);
+  //   } else {
+  //     // it's an agent!
+  //     
+  //   }
+  // },
   
-  show_idea: function(state) {
+  show_item: function(state) {
     if (state.item.startsWith('Landmark')) {
       return MapMarkers.open(state.item, $.template('#invite_iw').app_paint()[0], 17);
     }
@@ -98,8 +98,8 @@ Viewer.apps.mobilize = {
   idea_tag_cloud: function(state) {
     var tags = Ideas.find('::words');
     tags.celebration = '/celebrate/:city';
-    tags.idealism = '/stand/:city';
-    tags.caring = '/allies/:city';
+    tags.allies = '/stand/:city';
+    tags.helpers = '/allies/:city';
     
     var atag_counts = Agents.find('=city_id ' + state.city.resource_id() + " :atags");
     var mine = person_item.atags.split(' ');
@@ -119,25 +119,15 @@ Viewer.apps.mobilize = {
   },
   
   
-  cat_label_singular: function(state) { return state.category.singularize(); },
+  cat_label_singular: function(state) { 
+    var x = Category[state.category];
+    if (x) return x.singularize().toLowerCase().indef_article();
+    else return (state.category + " idea").indef_article();
+  },
+  
   idea_title:  function(state) { return state.idea_r.title; },
   idea_action: function(state) { return state.idea_r.action; },
   idea_instructions: function(state) { return state.idea_r.instructions; },
   idea_comments: function(state) { return ''; }
   
 };
-
-
-
-
-$.fn.decorate_categories = function(counts){
-  return this.each(function(){
-    var div = $(this);
-    var href = div.find('a.cat').attr('href');
-    if (!href) return;
-    var count = counts[href.slice(1)].length;
-    var text = pluralize(count, 'agent') + " available";
-    if (href) div.find('span').html(text);
-  });
-};
-

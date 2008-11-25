@@ -164,6 +164,8 @@ $.fn.app_paint = function(){
       method = parts[0];
       attr = parts[1];
     }
+    if (!data[method] && Viewer.current_app.state[method]) 
+      data[method] = Viewer.current_app.state[method];
     if (!data[method]) {
       var f = Viewer.current_app[method] || Viewer[method];
       if (f) data[method] = f(Viewer.current_app.state);

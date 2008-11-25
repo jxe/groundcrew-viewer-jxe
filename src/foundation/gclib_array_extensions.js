@@ -10,6 +10,10 @@ Array.prototype.max = function(){
   return max;
 };
 
+Array.prototype.uniq = function(){
+  return $keys(this.to_h());
+};
+
 Array.prototype.sum = function(){
   var sum = 0;
   $.each(this, function(){

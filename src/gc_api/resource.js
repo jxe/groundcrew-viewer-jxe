@@ -126,7 +126,7 @@ Array.prototype.repackage = function(field){
   for (var i=0; i < this.length; i++) {
     var values;
     if (field == ':words') {
-      values = this[i].atags.split(' ').concat(this[i].action.split(' '));
+      values = [this[i].atags, this[i].action, this[i].instructions].join(' ').to_words();
     } else {
       values = (this[i][field] || "").split(' ');
     }
@@ -136,12 +136,14 @@ Array.prototype.repackage = function(field){
       else obj[value] = [this[i]];
     };
   };
-  if (field == ":words") {
-    $.each($w('a and up out to of'), function(){ delete obj[this]; });
-  }
   return obj;
 };
 
+
+String.prototype.to_words = function(){
+  var regex = /\b(after|another|brief|by|mostly|partner|recognize|speak|something|prop|shop|first|go|minutes|meeting|next|one|only|pick|place|things|try|with|ways|a|and|up|out|to|of|are|as|at|be|do|else|buy|for|get|if|in|is|it|let|location|on|or|other|others|put|s|say|short|someone|task|that|the|their|them|then|there|too|when|whichever|will|you|your|yours|\d\w+)\b/g;
+  return this.toLowerCase().replace(/\W+/g, ' ').replace(regex, ' ').split(' ').uniq();
+};
 
 Array.prototype.semi_repackage = function(field){
   var obj = {};
