@@ -255,7 +255,13 @@ body.no_city .city_level, body.loading .city_level {
   border-left: solid 1px white;
   border-right: solid 1px #222;
   border-bottom: solid 1px #222;
-/*  text-shadow: #fff 0px 1px 1px;*/
+}
+
+.hud hr {
+  border: 0;
+  height: 1px;
+  color: #777;
+  background-color: #777;
 }
 
 .hud.bgwhite {

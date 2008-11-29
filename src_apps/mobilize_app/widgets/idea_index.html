@@ -2,15 +2,10 @@
 	<div class="msecintro b center">
 		<span fill="ag_ct">11 agents</span> are standing by.
 	</div>
-	<div class="b large center">
-		Let's get you some &ldquo;<span fill="category_label"></span>&rdquo;!
-	</div>
-	<div class="center msecintro">
-		<a href="##add_idea_button">Create a new organizational idea</a>
-		or reuse one below.
-	</div>
-
-	<form class="space">
+	<form id="ideas_form">
+		<div class="b mhead">
+			Here are <u fill="category_label"></u>-related things you can be part of:
+		</div>
 		<div class="center">
 			<select size="4" name="idea" style="width: 100%; font-size: 14px" fill="idea_select" observe="idea_select_changed">
 				<option>Medidate in a circle on city hall steps</option>
@@ -23,13 +18,15 @@
 			</div>
 		</div>
 		
-		<div class="right" style="margin-right: 15px">
-			<a class="b" href="##add_idea_button">+ add <span fill="cat_label_singular">good deed</span></a>
+		<div class="mhead b xspace">
+			or, you can <i>create your own adventure</i>
 		</div>
+		Gather people to
+		<input type="text" name="what" style="font-size: 15px"/>
 		
 		<div class="xspace right">
 			<a href="#..">cancel</a> &nbsp;
-			<input type="submit" value="review invitation"/>
+			<input type="submit" value="build invitation"/>
 		</div>
 	</form>
 

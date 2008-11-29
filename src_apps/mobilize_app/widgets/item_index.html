@@ -1,0 +1,61 @@
+<div class="mini hud divcenter std_click" id="mobilize_item_index" style="width: 370px; top: 87px; left: 372px">
+	<form id="ideas_form">
+		<div class="b mhead">
+			We'll send an invitation
+		</div>
+		<div class="box in">
+			Groundcrew alert:  gathering at &lt;LOCATION&gt;
+			to <span fill="idea_action"></span>.
+			Are you in?
+		</div>
+
+		<div class="mhead xspace b">
+			You choose the location
+		</div>
+		<select name="lm" size="4" style="width: 100%; font-size: 12px" fill="lm_select">
+			<option>outside the haymarket</option>
+		</select>
+		<div class="right" style="margin-right: 15px">
+			<a class="gray" href="##new_landmark">+ add a landmark</a>
+		</div>
+		
+		<div class="b mhead space">
+			and the instructions
+		</div>
+		<div class="box in">
+			<div class="b">
+				How will the agents find each other?
+			</div>
+			<select>
+				<option>Look shady and make weird hand signals</option>
+				<option>Smile uncontrollably</option>
+				<option>Just start doing the task</option>
+				<option><hr/></option>
+				<option>other...</option>
+			</select>
+			<div class="b space">
+				How will the assignment get done?
+			</div>
+			<input type="text" style="width:95%" prompt="start by doing X, then do Y"/>
+			
+			<div class="b space">
+				How will the agents know when to stop?
+			</div>
+			<select>
+				<option>After 20 minutes, hold hands, then disperse</option>
+				<option><hr/></option>
+				<option>other...</option>
+			</select>
+		</div>
+		
+		<div class="space right">
+			<a href="#/mobilize/:city/:category">cancel</a>
+			<input type="submit" value="invite people now!"/>
+		</div>
+	</form>
+</div>
+
+
+<!--><div class="center msecintro">
+	Just choose from these options.  We'll notify agents via text message.
+</div> -->

@@ -1,8 +1,3 @@
-// mobilize gcv app
-// urls look like: 
-//   http://groundcrew.us/viewer/#/mobilize/noho/good_deeds/Idea__12/Agent__405
-
-
 Viewer.apps.mobilize = {
   url_part_labels: $w('city category idea item'),
   
@@ -12,42 +7,28 @@ Viewer.apps.mobilize = {
     if (state.idea) return Viewer.go('/mobilize/:city/:category/:idea/' + tag);
     else Viewer.go('/organize/:city/' + tag);
   },
-
-  form_submit: function(data, state, form) {
-    var self = this;
-    if (data.idea && (data.lm || state.item && state.item.startsWith('Landmark'))) {
-      return Viewer.go('/mobilize/:city/:category/' + data.idea + '/' + (data.lm || state.item));
-    } 
-    if (data.action && data.instr) {
-      // var idea = Ideas.local({ title: data.action, action: data.action, atags: state.category,  });
-      Ajax.fetch('/gc/idea', {atags: state.category, act: data.action, instructions: data.instr, ltypes:data.ltypes}, function(idea){
-        Ideas.add_or_update(idea);
-        state.selected_idea = idea.item_tag;
-        $.facebox.close();
-        $('select[fill=idea_select]').html(self.idea_select(state));
-      });
-      form.find('input[type=submit]').val('loading').attr('disabled', true);
-      return;
+  
+  ideas_form_submitted: function(data, state, form) {
+    var idea = data.idea;
+    if (data.what && !$(form.what).hasClass('prompting')) {
+      idea = Ideas.local({ atags: state.category, title: data.what, action: data.what });
     }
-    alert('unusual form submit.');
+    var text = state.agents.length + " agents are standing by.  Would you like to organize them to '"+ data.what +"'?";
+    if (confirm(text)) Viewer.go(idea.item_tag);
   },
   
-  add_idea_button: function(state) {
-    $.facebox($.template('#new_idea_dialog').app_paint()[0]);
+  instructions_form_submitted: function(data, state, form) {
+    Ajax.fetch('/gc/idea', {atags: state.category, act: data.action, instructions: data.instr, ltypes:data.ltypes}, function(idea){
+      Ideas.add_or_update(idea);
+      state.selected_idea = idea.item_tag;
+      // $('select[fill=idea_select]').html(self.idea_select(state));
+    });
   },
+  
   
   // item and idea level stuff
   
-  idea_select_changed: function(new_idea, state) {
-    if (!new_idea) return;
-    var idea = new_idea.resource();
-    state.idea_r = idea;
-    var html = idea.title + ' by ' + idea.author_tag + '  <a href="##idea_edit" class="abs_right gay_button">?</a>';
-    $('#idea_current_text').html(html).app_paint();
-    if (!idea.ltypes) idea.ltypes = null;
-    if (state.ltype != idea.ltypes)
-      Viewer.apps.mobilize.limit_ltype(state.ltype);
-  },
+  idea_select_changed: function(new_idea, state) { },
   
   idea_edit: function(state) {
     $.facebox($.template('#edit_idea_dialog').app_paint()[0]);
@@ -55,18 +36,12 @@ Viewer.apps.mobilize = {
   
   set_idea: function(idea, state, changed) {
     state.idea_r = idea && idea.resource();
-    state.idea_label = idea && state.idea_r.title;
+    state.idea_title = state.idea_label = idea && state.idea_r.title;
+    state.idea_action = idea && state.idea_r.action;
+    state.idea_instructions = idea && state.idea_r.instructions;
+    state.idea_comments = '';
   },
     
-  // item_index: function(state) {
-  //   if (state.item.startsWith('Landmark')) {
-  //     return MapMarkers.open(state.item, $.template('#choose_idea_iw').app_paint()[0], 17);
-  //   } else {
-  //     // it's an agent!
-  //     
-  //   }
-  // },
-  
   show_item: function(state) {
     if (state.item.startsWith('Landmark')) {
       return MapMarkers.open(state.item, $.template('#invite_iw').app_paint()[0], 17);
@@ -80,19 +55,26 @@ Viewer.apps.mobilize = {
   
   // category level stuff
   
-
   set_category: function(category, state, changed) {
     if (!category) { delete state.agents; return; }
     var ideas = Ideas.find('::words ' + category);
     var atag = ideas[0].atags.split(' ')[0];
     state.agents = Agents.find("=city_id " + state.city.resource_id() + " :atags " + atag);
-    state.category_label = Category[category] || category; 
+    state.category_label = (Category[category] || category).toLowerCase(); 
+    if (Category[category]) state.cat_label_singular = state.category_label.singularize().indef_article();
+    else                    state.cat_label_singular = (state.category + " idea").indef_article();
   },
+  
   
   // dyn fills
   
   idea_select: function(state) { 
-    return Ideas.find("::words " + state.category).as_option_list(state.selected_idea); 
+    // return Ideas.find("::words " + state.category).as_option_list(state.selected_idea); 
+    var selected = state.selected_idea;
+    return Ideas.find("::words")[state.category].map(function(x){ 
+      // var title = x.title + "&nbsp; <i>test of snippet</i>";
+      return "<option "+ (selected == x.item_tag ? " selected " : "") +"value='"+x.item_tag+"'>" + x.title + "</option>"; 
+    }).join();
   },
   
   idea_tag_cloud: function(state) {
@@ -116,18 +98,6 @@ Viewer.apps.mobilize = {
         return tag('a.' + clss, {content: label, href:"#"+x});
       }
     }).join(' ');
-  },
-  
-  
-  cat_label_singular: function(state) { 
-    var x = Category[state.category];
-    if (x) return x.singularize().toLowerCase().indef_article();
-    else return (state.category + " idea").indef_article();
-  },
-  
-  idea_title:  function(state) { return state.idea_r.title; },
-  idea_action: function(state) { return state.idea_r.action; },
-  idea_instructions: function(state) { return state.idea_r.instructions; },
-  idea_comments: function(state) { return ''; }
+  }
   
 };
