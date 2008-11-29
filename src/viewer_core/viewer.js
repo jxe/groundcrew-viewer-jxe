@@ -184,10 +184,12 @@ $.fn.app_paint = function(){
       return true;
     });
   });
-  this.find('form').unbind('submit').submit(function(){
+  this.find('form').enable().unbind('submit').submit(function(){
     try {
-      var form = $(this);
-      Viewer.current_app.form_submit(form.form_values(), Viewer.current_app.state, form);
+      $(this).disable();
+      var method = this.id + "_submitted";
+      if (!Viewer.current_app[method]) alert('unusual form submit!');
+      Viewer.current_app[method]($(this).form_values(), Viewer.current_app.state, this);
     } catch (err) {
       alert('form error!');
       console.log(err);

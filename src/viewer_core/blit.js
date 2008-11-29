@@ -1,7 +1,7 @@
 $.fn.feature_paint = function(){
   return this.clicks({
     'a':  Clicker.click
-  }).find('.prompting').promptify().end();
+  });
 };
 
 
@@ -34,8 +34,7 @@ $.fn.blit = function(){
   }).forms({
     '.stdf':    Clicker.submit
   })
-  .find('.plink').wire_popper_links().end()
-  .find('.prompting').promptify().end();
+  .find('.plink').wire_popper_links().end();
 };
 
 

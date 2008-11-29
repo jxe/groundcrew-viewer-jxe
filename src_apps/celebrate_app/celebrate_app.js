@@ -1,17 +1,15 @@
 Viewer.apps.celebrate = {
   url_part_labels: $w('city exalt recipe item'),
-
-  form_submit: function(data, state, form) {
-    if(data.what) {
-      var clean = data.what.replace(/[^a-zA-Z0-9-_ ]/, '_');
-      form.reset_prompts();
-      Viewer.go(clean);
-    }
-    if(data.celebrate_by) {
-      Viewer.go(data.lm);
-    }
+  
+  celebrate_what_form_submitted: function(data, state, form) {
+    var clean = data.what.replace(/[^a-zA-Z0-9-_ ]/, '_');
+    Viewer.go(clean);
   },
   
+  celebrate_by_form_submitted: function(data, state, form) {
+    Viewer.go(data.lm);
+  },
+    
   recently_exalted: function(state) {
     return 'unimplemented.';
   },

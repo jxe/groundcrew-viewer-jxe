@@ -6,16 +6,11 @@ Viewer.apps.allies = {
     return $keys(wishes).map(function(x){ return x.replace(/\bmy\b/g, 'our'); }).join(', ');
   },
   
-  form_submit: function(data, state, form) {
-    if (data.helpwith) {
-      form.find('button,input').attr('disabled', true);
-      Ajax.fetch('/agent/push', {key:'helpwith', val:data.helpwith}, function(me){
-        Agents.add_or_update(me);
-        $('#allies_wish_index').app_paint();
-        form.find('button,input').attr('disabled', false);
-        form.find('input').val('').focus();
-      });
-    }
+  helpwith_form_submitted: function(data, state, form) {
+    Ajax.fetch('/agent/push', {key:'helpwith', val:data.helpwith}, function(me){
+      Agents.add_or_update(me);
+      $('#allies_wish_index').app_paint();
+    });
   }
   
 };

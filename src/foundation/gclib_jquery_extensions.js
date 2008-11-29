@@ -8,7 +8,7 @@ $.template = function(sel){
 $.fn.form_values = function() {
   var obj = {};
   $(this[0].elements).each(function(){
-    if (this.name && !this.disabled) obj[this.name] = $(this).val();
+    if (this.name) obj[this.name] = $(this).val();
   });
   return obj;
 };
@@ -92,35 +92,46 @@ $.fn.clicks = function(obj){
   return self;
 };
 
-$.fn.reset_prompts = function(){
-  return this.find('input[prompt]').each(function(){
-    $(this).val($(this).attr('prompt')).addClass('prompting');
-  });
+
+$.fn.disable = function(){
+  this.find('button,input,select').attr('disabled', true);
+  var subm = this.find('input[type=submit]:first')[0];
+  if (!subm.disabled) {
+    $(subm).attr('blank', subm.value);
+    subm.disabled = true;
+    subm.value = "loading...";
+  }
+  return this;
 };
 
-$.fn.promptify = function(){
-  return this.each(function(){
-    var obj = $(this);
-    obj.attr('prompt', obj.val());
-    obj.addClass('prompting');
-    obj.click(function(){
-      if (obj.hasClass('prompting')) obj.focus();
-      return true;
-    });
-    obj.focus(function(){
-      if (obj.hasClass('prompting')) {
-        obj.val('');
-        obj.removeClass('prompting');
+$.fn.enable = function(){
+  this.find(':disabled').attr('disabled', false);
+  this.find('input[blank],input[prompt]').each(function(){
+    var input = $(this);
+    var prompt = input.attr('prompt');
+    if (prompt) {
+      if (!input.hasClass('prompted')) {
+        var blank = input.attr('blank');
+        if (!blank) {
+          blank = input.val();
+          input.attr('blank', blank);
+        }
+        input.click(function(){ input.focus(); return true; });
+        input.focus(function(){
+          input.is('.prompting') && input.val(blank).removeClass('prompting');
+          return true;
+        });
+        input.blur(function(){
+          (input.val() == blank) && input.addClass('prompting').val(prompt);
+          return true;
+        });
       }
-      return true;
-    });
-
-    obj.blur(function(){
-      var val = obj.val();
-      if (!val || val.length == 0) {
-        obj.addClass('prompting');
-        obj.val(obj.attr('prompt'));
-      }
-    });
+      input.addClass('prompting prompted').val(prompt);
+    } else {
+      var blank = input.attr('blank');
+      if (blank) input.val(blank);
+    }
   });
+  // this.find('input[type=text]:first').focus();
+  return this;
 };

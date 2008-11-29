@@ -15,16 +15,12 @@ Viewer.apps.stand = {
     }).join(', ') || ' ';
   },
   
-  form_submit: function(data, state, form) {
-    if (data.belief) {
-      form.find('button,input').attr('disabled', true);
-      Ajax.fetch('/agent/push', {key:'believesin', val:data.belief}, function(me){
-        Agents.add_or_update(me);
-        $('#stand_belief_index').app_paint();
-        form.find('button,input').attr('disabled', false);
-        form.find('input').val('').focus();
-      });
-    }
+  belief_form_submitted: function(data, state, form) {
+    Ajax.fetch('/agent/push', {key:'believesin', val:data.belief}, function(me){
+      Agents.add_or_update(me);
+      $('#stand_belief_index').app_paint();
+      $(form).enable();
+    });
   }
   
 };
