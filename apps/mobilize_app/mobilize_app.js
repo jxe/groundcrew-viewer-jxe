@@ -58,11 +58,31 @@ Viewer.apps.mobilize = {
   set_category: function(category, state, changed) {
     if (!category) { delete state.agents; return; }
     var ideas = Ideas.find('::words ' + category);
-    var atag = ideas[0].atags.split(' ')[0];
-    state.agents = Agents.find("=city_id " + state.city.resource_id() + " :atags " + atag);
-    state.category_label = (Category[category] || category).toLowerCase(); 
-    if (Category[category]) state.cat_label_singular = state.category_label.singularize().indef_article();
-    else                    state.cat_label_singular = (state.category + " idea").indef_article();
+    if (ideas[0].atags) {
+      var atag = ideas[0].atags.split(' ')[0];
+      state.agents = Agents.find("=city_id " + state.city.resource_id() + " :atags " + atag);
+      state.category_label = (Category[category] || category).toLowerCase(); 
+      if (Category[category]) state.cat_label_singular = state.category_label.singularize().indef_article();
+      else                    state.cat_label_singular = (state.category + " idea").indef_article();
+    }
+  },
+  
+  
+  // alt renderings
+  
+  show_category: function(state) {
+    if (state.category == 'celebrations') Viewer.render('show_celebrations');
+  },
+  
+  celebrate_form_submitted: function(data, state, form) {
+    var clean = data.celebration.replace(/[^a-zA-Z0-9-_ ]/, '_');
+    var title = "celebrate " + clean;
+    var idea = Ideas.local({ atags: 'parties', title: title, action: title });
+    Viewer.go(idea.item_tag);
+  },
+      
+  recent_celebrations: function(state) {
+    return 'various things';
   },
   
   
@@ -79,17 +99,17 @@ Viewer.apps.mobilize = {
   
   idea_tag_cloud: function(state) {
     var tags = Ideas.find('::words');
-    tags.celebration = '/celebrate/:city';
-    tags.allies = '/stand/:city';
-    tags.helpers = '/allies/:city';
+    tags.celebrations = '#/mobilize/:city/celebrations';
+    tags.allies = '#/stand/:city';
+    tags.helpers = '#/allies/:city';
     
     var atag_counts = Agents.find('=city_id ' + state.city.resource_id() + " :atags");
     var mine = person_item.atags.split(' ');
 
     return $keys(tags).sort().map(function(x){
       var ideas = tags[x];
-      if (ideas[0] == '/') {
-        return tag('a.mine.s4', {content: x, href:"#" + ideas});
+      if (ideas[0] == '#') {
+        return tag('a.mine.s4', {content: x, href:ideas});
       } else {
         var agents_count = atag_counts[ideas[0].atags.split(' ')[0]].length;
         var clss = (agents_count < 14 ? 's1' : agents_count < 16 ? 's2' : 's3');

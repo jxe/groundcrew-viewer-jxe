@@ -7,7 +7,7 @@ ViewerUI = {
     agent_tag = person_item.item_tag;
     Reactor.handle_json_obj(initial_data);
     this.activateUI();
-    var starter_url = "/";
+    var starter_url = "/mobilize";
     if (logged_in) {
       Agents.add_or_update(person_item);
       $('body').addClass('logged_in');

@@ -274,3 +274,7 @@ body.no_city .city_level, body.loading .city_level {
 .hud .menu, .hud table {
   text-shadow: none;
 }
+
+.hud2 {
+  background: white;
+}

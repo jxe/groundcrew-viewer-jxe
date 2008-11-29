@@ -9,7 +9,7 @@ Viewer.apps.allies = {
   helpwith_form_submitted: function(data, state, form) {
     Ajax.fetch('/agent/push', {key:'helpwith', val:data.helpwith}, function(me){
       Agents.add_or_update(me);
-      $('#allies_wish_index').app_paint();
+      $('#allies_show_city').app_paint();
     });
   }
   

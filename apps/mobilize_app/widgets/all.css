@@ -1,11 +1,13 @@
-#mobilize_category_index {display:none;}
-body.mobilize_app.category_index #mobilize_category_index {display:block;}
-#mobilize_idea_index {display: none;}
-body.mobilize_app.idea_index #mobilize_idea_index {display: block;}
-#mobilize_item_index {display:none;}
-body.mobilize_app.item_index #mobilize_item_index {display:block;}
+#mobilize_show_city {display:none;}
+body.mobilize_app.show_city #mobilize_show_city {display:block;}
+#mobilize_show_category {display: none;}
+body.mobilize_app.show_category #mobilize_show_category {display: block;}
+#mobilize_show_idea {display:none;}
+body.mobilize_app.show_idea #mobilize_show_idea {display:block;}
 #invite_dialog {display:none;}
 body.mobilize_app.show_idea #invite_dialog {display:block;}
+#mobilize_show_celebrations {display:none;}
+body.mobilize_app.show_celebrations #mobilize_show_celebrations {display:block;}
 
 body.mobilize_app #app_list a.mobilize_app_link {
   color: white;

@@ -44,7 +44,7 @@ way it will not work.
 
 Here are the directories we use:
 
-/src_apps/        - the real functionality, broken down by application
+/apps/        - the real functionality, broken down by application
 
 /src/
 	foundation/     - javascript and css utilities and conventions
@@ -62,11 +62,11 @@ RECENT NOTES:
   services and link to each other using an internal URL structure which 
   is implemented in 'src/viewer_core/viewer.js'.  For example, a command
   like Viewer.go('/mobilize/noho/good_deeds/Idea__12/Agent__405') will 
-  run some code in src_apps/mobilize_app/mobilize.js which will provide
+  run some code in apps/mobilize_app/mobilize.js which will provide
   breadcrumbs and open an agent window relative to a specific good deed
   idea.
 
-* 'domain' functionality is implemented in src_apps/, and only general
+* 'domain' functionality is implemented in apps/, and only general
   functionality useful across all apps in in src/.
 
 * The src/ stuff is now organized into architectural levels.  We have 

@@ -1,2 +1,2 @@
 #city_chooser { display:none; }
-body.city_index #city_chooser { display: block; }
+body.show_root #city_chooser { display: block; }

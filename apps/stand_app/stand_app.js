@@ -18,7 +18,7 @@ Viewer.apps.stand = {
   belief_form_submitted: function(data, state, form) {
     Ajax.fetch('/agent/push', {key:'believesin', val:data.belief}, function(me){
       Agents.add_or_update(me);
-      $('#stand_belief_index').app_paint();
+      $('#stand_show_city').app_paint();
       $(form).enable();
     });
   }

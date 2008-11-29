@@ -1,5 +1,5 @@
-#stand_belief_index {display:none;}
-body.belief_index #stand_belief_index {display:block;}
+#stand_show_city {display:none;}
+body.stand_app.show_city #stand_show_city {display:block;}
 
 body.stand_app #app_list a.stand_app_link {
   color: white;
