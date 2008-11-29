@@ -95,12 +95,7 @@ $.fn.clicks = function(obj){
 
 $.fn.disable = function(){
   this.find('button,input,select').attr('disabled', true);
-  var subm = this.find('input[type=submit]:first')[0];
-  if (!subm.disabled) {
-    $(subm).attr('blank', subm.value);
-    subm.disabled = true;
-    subm.value = "loading...";
-  }
+  var subm = this.find('[type=submit]:first')[0];
   return this;
 };
 
