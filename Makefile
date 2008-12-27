@@ -18,6 +18,6 @@ deploy: compressed
 deploy_uncompressed: uncompressed
 	rsync -avL BUILD/{i,viewer.*} groundcrew.us:apps/groundcrew/current/public/
 
-grab:
-	mkdir -p BUILD/gc
-	wget "http://groundcrew.us/gc/viewer_start.js?codename=$(GCUN)&password=$(GCPW)" -O BUILD/gc/viewer_start.js
+grab: BUILD
+	mkdir -p BUILD/data
+	wget "http://groundcrew.us/data/vstart.js" -O BUILD/data/vstart.js

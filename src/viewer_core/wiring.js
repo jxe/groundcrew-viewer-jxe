@@ -4,8 +4,12 @@ ViewerUI = {
   
   init: function() {
     this.adjust_frame();
+    person_item = {
+      item_tag: 'random dude',
+      atags: ''
+    };
+    logged_in = false;
     agent_tag = person_item.item_tag;
-    Reactor.handle_json_obj(initial_data);
     this.activateUI();
     var starter_url = "/mobilize";
     if (logged_in) {

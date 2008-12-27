@@ -21,8 +21,7 @@ $.fn.blit = function(){
     '.nearby_agents_ct':     Viewer.selected_city && (Agents.find('=city_id ' + Viewer.selected_city).length - 1),
     '.nearby_lmarks_ct':     landmarks,
     '.city_name':            cities[Viewer.selected_city],
-    '.cur_title':            Viewer.item && Viewer.item.resource().title,
-    '.self_status':          person_item.status_word
+    '.cur_title':            Viewer.item && Viewer.item.resource().title
 
   }).clicks({
     '.city_name':          Viewer.city_summary,
@@ -56,7 +55,6 @@ $.fn.agent_blit = function(){
 
 $.fn.self_blit = function(){
   return this.fillout({
-    '.topready': person_item.topready,
     '.topready_options': SelfAgent.topready_options(),
     // '.other_readytos': SelfAgent.other_readytos(),
     '.all_readytos': SelfAgent.all_readytos()

@@ -180,4 +180,4 @@ MapMarkers = {
   
 };
 
-Landmarks.changed = function(item, how) { if (how == 'added') MapMarkers.new_landmark(item); };
+// Landmarks.changed = function(item, how) { if (how == 'added') MapMarkers.new_landmark(item); };

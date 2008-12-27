@@ -61,7 +61,7 @@ $.extend(Resource.prototype, {
     this.db['#id'][item.id] = item;
     this.db = { "#id": this.db['#id'] };
     if (this.enhancer) this.enhancer(item);
-    if (this.changed) this.changed(item, exists ? 'updated' : added);
+    if (this.changed) this.changed(item, exists ? 'updated' : 'added');
   },
 
   remove: function(item) {
@@ -170,7 +170,7 @@ String.prototype.resource = function(){
 String.prototype.resource_class = function(){
   var parts = this.split('__');
   if (parts[0] == 'Person') parts[0] = 'Agent';
-  return eval(part[0] + "s");
+  return eval(parts[0] + "s");
 };
 
 String.prototype.resource_id = function(){

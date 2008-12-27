@@ -54,21 +54,3 @@ Ajax = {
   }
 
 };
-
-
-Reactor = {
-
-  handle_json_obj: function(obj) {
-    
-    // handle scores
-    var scores = obj[0];
-    $('#cheer_ct').html("" + scores[3]);
-    $('#team_ct').html("" + scores[1]);
-    
-    // handle new events
-    var new_events = obj[3];
-    if (new_events.length > 0)
-      EventDb.add_all(new_events);
-  }
-    
-};
