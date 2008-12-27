@@ -25,7 +25,10 @@ Landmarks = new Resource('Landmark', {
 Ideas = new Resource('Idea');
 
 
-// [item_tag, title, thumb_url, city_id, lat, lng, atags, latch, comm, req, json_etc]
+// =====================================================
+// = there has been no attempt to optimize any of this =
+// =====================================================
+
 function item(city_id, tag, title, thumb_url, lat, lng, atags, latch, comm, req, json_etc){
   var parts = tag.split('__');
   Resource.add_or_update($.extend({
@@ -49,4 +52,14 @@ function city(id, title, lat, lng, agent_count){
   var parts = title.split(', ');
   cities[id] = parts[0];
   city_locs[id] = [lat, lng];
+}
+
+function idea(tag, title, atags, ltypes, json_etc){
+  var parts = tag.split('__');
+  Resource.add_or_update($.extend({
+    id: Number(parts[1]),
+    item_tag: tag,
+    title: title,
+    atags: atags
+  }, json_etc));
 }
