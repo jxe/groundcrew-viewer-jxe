@@ -404,7 +404,7 @@ a:hover img.hover_opacity {
 
 
 a.newbutton {
-	border:1px solid #555; background: #ddd; padding: 5px; width: 240px; display:block;
+	border:1px solid #555; background: #ddd; padding: 5px; width: 240px;
 	font-size: 16px; font-weight:bold;
 	color: black;
 	text-align:center; margin:auto;

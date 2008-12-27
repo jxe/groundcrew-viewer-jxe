@@ -108,8 +108,8 @@ Viewer = {
     
   set_city: function(city, state) {
     delete state.agents;
-    if (!state.city) CityChooser.update();
-    state.city_label = cities[city.split('__')[1]];
+    if (!city) CityChooser.update();
+    if (city) state.city_label = cities[city.split('__')[1]];
     Viewer.selected_city = city && city.resource_id();
   },
 

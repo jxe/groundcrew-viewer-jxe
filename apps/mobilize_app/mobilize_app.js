@@ -9,12 +9,15 @@ Viewer.apps.mobilize = {
   },
   
   ideas_form_submitted: function(data, state, form) {
-    var idea = data.idea;
+    var idea_tag = data.idea;
+    var idea;
     if (data.what && !$(form.what).hasClass('prompting')) {
       idea = Ideas.local({ atags: state.category, title: data.what, action: data.what });
+      idea_tag = idea.item_tag;
     }
-    var text = state.agents.length + " agents are standing by.  Would you like to organize them to '"+ data.what +"'?";
-    if (confirm(text)) Viewer.go(idea.item_tag);
+    if (!idea) idea = idea_tag.resource();
+    var text = state.agents.length + " agents are standing by.  Would you like to organize them to '"+ idea.title +"'?";
+    if (confirm(text)) Viewer.go(idea_tag);
   },
   
   instructions_form_submitted: function(data, state, form) {
