@@ -63,3 +63,7 @@ function idea(tag, title, atags, ltypes, json_etc){
     atags: atags
   }, json_etc));
 }
+
+function event(foo){
+  // implement!
+}

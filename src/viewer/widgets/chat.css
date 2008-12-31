@@ -1,12 +1,22 @@
 #recent_content {
-  left: 0px; bottom: 139px;
+  left: 0px; bottom: 124px;
 	width: 300px;
 	font-size: 11px;
   max-height: 350px;
   overflow: auto;
 }
 
+#chatbar img {
+  opacity: 0.2;
+  -moz-opacity: 0.2;
+  filter:alpha(opacity=20);
+}
 
+#chatbar:hover img {
+  opacity: 1;
+  -moz-opacity: 1;
+  filter:alpha(opacity=1);
+}
 #chatbox {
   position: relative;
   height: 170px;

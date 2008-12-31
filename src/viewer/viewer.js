@@ -84,7 +84,7 @@ Viewer = {
       if (x) {
         breadcrumb_url += "/" + x;
         var breadcrumb_label = state[label + "_label"] || x;
-        breadcrumbs.push(" &raquo;");
+        breadcrumbs.push(" &rsaquo;");
         breadcrumbs.push(tag('a', {href:breadcrumb_url, content:breadcrumb_label}));
       }
     });

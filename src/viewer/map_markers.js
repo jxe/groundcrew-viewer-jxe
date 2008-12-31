@@ -120,7 +120,7 @@ MapMarkers = {
     }
     var icon = new GIcon(G_DEFAULT_ICON, 'i/map/' + type + '.png');
     if (type.indexOf('man') >= 0) {
-      icon.shadow = "i/man.shadow.png";
+      icon.shadow = "i/map/man.shadow.png";
       icon.iconSize = new GSize(32, 32);
       icon.shadowSize = new GSize(59, 32);
       icon.iconAnchor = new GPoint(10, 30);
@@ -128,7 +128,7 @@ MapMarkers = {
     }
     if (type.indexOf('bump') >= 0) {
       // add shadow and adjust size
-      icon.shadow = "i/bump_shadow.png";
+      icon.shadow = "i/map/bump_shadow.png";
       icon.iconSize = new GSize(20, 20);
       icon.shadowSize = new GSize(59, 32);
       icon.iconAnchor = new GPoint(10, 10);

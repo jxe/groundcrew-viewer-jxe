@@ -1,0 +1,149 @@
+#hero_show_city {display:none;}
+body.hero_app.show_city #hero_show_city {display:block;}
+
+body.hero_app #app_list a.hero_app_link {
+  color: white;
+}
+
+#hero_show_city {
+  background: #88d;
+  background: url(i/ppgrad.png);
+  padding: 0;
+}
+
+.col {
+  float:left; width:320px; margin-right: 10px; margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ggrad {
+  padding: 5px;
+  background: url(i/qggrad.png);
+  text-align: center;
+  color: #449;
+}
+
+.ggrad.top {
+  border-bottom: solid thin #666; font-size: 18px;
+  color: white; text-shadow: black 0px 0px 3px;
+  font-weight: bold;
+}
+
+.ggrad.top .city {
+  position: absolute; right: 8px; top: 3px; 
+  text-shadow: #eee 0px 1px 1px; 
+  font-size: 11px;
+  font-weight: normal;
+  color: #007;
+  opacity: 0.5;
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter:alpha(opacity=50);
+/*  background: white;
+  padding: 1px 3px;
+  border-top: solid thin gray;
+  border-left: solid thin gray;
+*/
+}
+
+.ggrad a {
+  color: #830;
+  text-decoration: underline;
+}
+
+.ggrad b {
+  color: #007;
+}
+
+
+#hero_show_city .mhead {
+  font-size: 14px;
+  background: #999;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  background: url(i/qggrad.png);
+  border-bottom: solid thin #666;
+  text-shadow: #ddd 0px 1px 1px;
+  color: #449;
+}
+
+#hero_show_city .mhead b {
+  color: #007;
+}
+
+#hero_show_city .mhead span {
+  color: #555;
+}
+
+
+
+.adventure, .resources, .aagent {
+  padding: 5px; background: #d6d6d6; color: #555; 
+  background: url(i/bgrad.png);
+  border: solid thin #bbb;
+  border-top-color: #eee;
+  border-left-color: #eee;
+  border-right-color: #ccc;
+  border-collapse: collapse;
+  cursor: pointer;
+}
+
+
+
+.aagent b {
+  font-size: 12px;
+  padding-right: 10px;
+  color: black;
+}
+
+.aagent span, .omini {
+  font-size: 9px;
+  text-shadow: #fff 0px 1px 1px;
+  font-weight: bold;
+  color: #b60;
+}
+
+.aagent i {
+  font-style: normal;
+  font-size: 9px;
+  background-color: #a66;
+  color: white;
+  padding: 1px 3px;
+  margin-right: 5px;
+}
+
+
+
+
+.resources {
+  padding-left: 10px;
+}
+
+
+.adventure {
+  position: relative;  padding-left: 40px;  font-size: 11px; 
+}
+
+.adventure u {
+  font-size: 11px; color: #830;
+  text-decoration: none;
+}
+
+.adventure u:hover {
+  text-decoration: underline;
+}
+
+.adventure img {
+  position: absolute;
+  top: 6px; left: 5px;
+  font-size: 11px;
+}
+
+.adventure .title {
+  color: black; 
+  display:block;
+  font-size: 12px;
+}
+

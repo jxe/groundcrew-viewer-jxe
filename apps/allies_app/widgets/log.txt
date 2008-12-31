@@ -1,1 +1,0 @@
-completed allies.css 20081114 00:11 -- body.assist_app #app_list a.assist_app_link {

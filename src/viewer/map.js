@@ -31,8 +31,7 @@ Map = {
     var bRightSnug = new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(5,5));
     var bLeftFurther = new GControlPosition(G_ANCHOR_BOTTOM_LEFT, new GSize(160,5));
     Map.Gmap.addControl(new GSmallZoomControl(), bRightSnug);
-    Map.Gmap.addControl(new GMapTypeControl(), bRight);
-    Map.Gmap.addControl(new GScaleControl(), bLeftFurther);
+    // Map.Gmap.addControl(new GMapTypeControl(), bRight);
   },
   
   set_bounds_from_lat_lngs: function(items) {

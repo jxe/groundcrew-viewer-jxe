@@ -130,3 +130,23 @@ $.fn.enable = function(){
   // this.find('input[type=text]:first').focus();
   return this;
 };
+
+
+// descends from Klaus Hartl's "cookie plugin"
+$.cookie = function(name, value) {
+  if (typeof value != 'undefined') { 
+    // name and value given, set cookie
+    document.cookie = [name, '=', encodeURIComponent(value)].join('');
+  } else { 
+    // only name given, get cookie
+    if (!document.cookie || document.cookie == '') return null;
+    var cookies = document.cookie.split('; ');
+    for (var i in cookies) {
+      if (cookies[i].split) {
+        var part = cookies[i].split('=');
+        if (part[0] == name) return decodeURIComponent(part[1]);
+      }
+    }
+    return null;
+  }
+};

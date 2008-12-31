@@ -1,0 +1,38 @@
+#you_img {
+  height: 50px;
+  border: solid thin #530;
+}
+
+#youbox {
+  position:absolute; 
+	left: 295px; top: 2px; height: 55px; overflow: hidden;
+	font-size: 11px;
+  z-index: 100;
+  color: #a72;
+  font-family: gill sans;
+  width: 350px;
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter:alpha(opacity=50);
+}
+
+#youbox:hover {
+  opacity: 1;
+  -moz-opacity: 1;
+  filter:alpha(opacity=1);
+}
+
+#youbox a {
+  color: #a72;
+}
+
+a#youbox_agent {
+  font-size: 12px;
+  margin-top: 6px;
+  font-family: helvetica, arial;
+  color: #ddd;  
+}
+
+#youbox td.x {
+  padding-bottom: 5px;
+}

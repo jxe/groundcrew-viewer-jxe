@@ -4,18 +4,30 @@ ViewerUI = {
   
   init: function() {
     this.adjust_frame();
-    person_item = {
-      item_tag: 'random dude',
-      atags: ''
-    };
-    logged_in = false;
-    agent_tag = person_item.item_tag;
+    
+    // load the user data
+    var user_item_json  = $.cookie('user_item');
+    if (!user_item_json) window.location.replace('/auth');
+    eval(user_item_json);
+    var user_info = eval('('+$.cookie('user_info')+')');
+    agent_tag = user_info.tag;
+    person_item = agent_tag.resource();
+    $.extend(person_item, user_info);
+    logged_in = true;
+    
+    // agent_tag = "Person__1";
+    // person_item = {
+    //   item_tag: 'random dude',
+    //   atags: ''
+    // };
+    // logged_in = false;
+
     this.activateUI();
-    var starter_url = "/mobilize";
+    var starter_url = "/hero/City__220";
     if (logged_in) {
       Agents.add_or_update(person_item);
       $('body').addClass('logged_in');
-      starter_url = '/mobilize/City__' + person_item.city_id;
+      starter_url = '/hero/City__' + person_item.city_id;
     } else {
       $('body').addClass('logged_out');
     }
@@ -37,7 +49,7 @@ ViewerUI = {
 
   adjust_frame: function(){
     // heights: google map; events
-    var junkh = 192;
+    var junkh = 148;
     var ih = window.innerHeight || window.document.body.clientHeight;
     $('#map_div').height(ih - junkh);
     $('.rtab').height(ih - junkh + 12 - 25);
@@ -46,11 +58,11 @@ ViewerUI = {
     if (Map.Gmap) Map.Gmap.checkResize();
 
     $('#inner_scroll_window').width(10000);
-    var agents_width = $('#agents').width() + 30;
+    var agents_width = $('#agents').width() + 10;
     var window_width = window.innerWidth || window.document.body.clientWidth;
     if (agents_width + 70 < window_width) {
       var padding = window_width - agents_width;
-      $('#inner_scroll_window').width(agents_width + 150);
+      $('#inner_scroll_window').width(agents_width + 70);
       $('#inner_scroll_window').css('padding-top', '10px');
       $('#inner_scroll_window').css('padding-left', padding/2 - 20);
     }
