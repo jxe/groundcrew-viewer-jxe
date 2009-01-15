@@ -16,7 +16,7 @@ Facebar = {
     
    agent_thumb_t:
      '<a item="#{item_tag}" class="agent #{status} #{color}" href="#">\
-        <img class="thumb" src="#{thumb_url}" title="#{title}"/>\
+        <img class="thumb" src="http://groundcrew.us/#{thumb_url}" title="#{title}"/>\
         #{byline3}\
       </a>',
     

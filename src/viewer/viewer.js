@@ -165,7 +165,7 @@ Viewer = {
   
   // dyn fills
   ag_ct:          function(state) { return pluralize(state.agents.length, 'agent'); },
-  item_thumb_url: function(state) { return state.item_r.thumb_url; },
+  item_thumb_url: function(state) { return "http://groundcrew.us/"+state.item_r.thumb_url; },
   item_title:     function(state) { return state.item_r.title; },
   blank:       function(){ return ''; }
 

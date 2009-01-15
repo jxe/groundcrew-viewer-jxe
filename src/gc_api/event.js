@@ -7,6 +7,7 @@ Event = {
     a.item_title = a.item && a.item.title;
     a.landmark = a.landmark_tag && a.landmark_tag.resource();
     a.landmark_title = a.landmark && a.landmark.title;
+    a.actor_name = a.actor_tag.resource().title;
     return a;
   },
   

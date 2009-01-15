@@ -9,7 +9,7 @@ Chat = {
     $('#chatbutton').click(function(){
       $('#chatter, #talker').toggle();
       $('#talker input').val("type here to chat with others");
-      if (Chat.chats.length == 0) Chat.init();
+      Chat.update();
       return false;
     });
     $('#talker input').focus(function(){
@@ -18,28 +18,17 @@ Chat = {
     $('#talker input').keypress(function(e){
       if (e.which == 13) {
         var msg = $(this).val();
-        Ajax.load('/gc/said', {msg: msg});
-        $('#talker input').val('');
+        $.post("/gc/said", {msg:msg}, function(x){ 
+          $('#talker input').val('');
+          eval(x); 
+        });
         return false;
       }
       return true;
     });
     
   },
-  
-  init: function() {
-    $.each(EventDb.events, function(){ if (this.atype == 'said') Chat.chats.push(this); });
-    Chat.update();
-  },
-  
-  did_add_new_event: function(event) {
-    console.log(event);
-    if (event.atype == 'said') {
-      Chat.chats.push(event);
-      Chat.update();
-    }
-  },
-  
+    
   update: function() {
     var chats = Chat.chats;
     if (chats.length > 9) chats = chats.slice(chats.length - 9);

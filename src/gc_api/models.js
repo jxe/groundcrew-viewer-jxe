@@ -11,59 +11,20 @@ Agents = new Resource('Agent', {
   enhancer: function(item) { Item.calculate_fields(item); }
 });
 
-Landmarks = new Resource('Landmark', {
-  load_by_city_id: function(city_id) {
-    // $.ajax({
-    //   url: '/gc/viewer_city.js',
-    //   data: {city_id: city_id},
-    //   async: false,
-    //   success: function(obj){ eval(obj); }
-    // });
-  }
-});
-
+Landmarks = new Resource('Landmark');
 Ideas = new Resource('Idea');
 
 
-// =====================================================
-// = there has been no attempt to optimize any of this =
-// =====================================================
 
-function item(city_id, tag, title, thumb_url, lat, lng, atags, latch, comm, req, json_etc){
-  var parts = tag.split('__');
-  Resource.add_or_update($.extend({
-    id: Number(parts[1]),
-    item_tag: tag,
-    title: title,
-    thumb_url: thumb_url,
-    city_id: city_id,
-    lat: lat,
-    lng: lng,
-    atags: atags,
-    latch: latch,
-    comm: comm,
-    req: req
-  }, json_etc));
-}
-
-var cities = {};
-var city_locs = {};
-function city(id, title, lat, lng, agent_count){
-  var parts = title.split(', ');
-  cities[id] = parts[0];
-  city_locs[id] = [lat, lng];
-}
-
-function idea(tag, title, atags, ltypes, json_etc){
-  var parts = tag.split('__');
-  Resource.add_or_update($.extend({
-    id: Number(parts[1]),
-    item_tag: tag,
-    title: title,
-    atags: atags
-  }, json_etc));
-}
-
-function event(foo){
-  // implement!
-}
+// this kind of thing let's us shard data and load it by city
+//
+// Landmarks = new Resource('Landmark', {
+//   load_by_city_id: function(city_id) {
+//     $.ajax({
+//       url: '/gc/viewer_city.js',
+//       data: {city_id: city_id},
+//       async: false,
+//       success: function(obj){ eval(obj); }
+//     });
+//   }
+// });

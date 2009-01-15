@@ -4,24 +4,16 @@ ViewerUI = {
   
   init: function() {
     this.adjust_frame();
-    
-    // load the user data
-    var user_item_json  = $.cookie('user_item');
-    if (!user_item_json) window.location.replace('/auth');
-    eval(user_item_json);
-    var user_info = eval('('+$.cookie('user_info')+')');
-    agent_tag = user_info.tag;
-    person_item = agent_tag.resource();
-    $.extend(person_item, user_info);
-    logged_in = true;
-    
-    // agent_tag = "Person__1";
-    // person_item = {
-    //   item_tag: 'random dude',
-    //   atags: ''
-    // };
-    // logged_in = false;
 
+    // load the user data
+    if (!person_item) {
+      var user_item_json  = $.cookie('user_item');
+      if (!user_item_json) window.location.replace('/auth');
+      eval(user_item_json);
+      var user_info = eval('('+$.cookie('user_info')+')');
+      login(user_info);
+    }
+    
     this.activateUI();
     var starter_url = "/hero/City__220";
     if (logged_in) {
@@ -35,7 +27,7 @@ ViewerUI = {
     Viewer.go(starter_url);
     $('body').removeClass('loading');
     Ajax.init();
-    $('#you_img').attr('src', person_item.thumb_url);
+    $('#you_img').attr('src', "http://groundcrew.us"+person_item.thumb_url);
     $('#agent_name').html(person_item.title);
     $(document).blit();
   },
