@@ -5,16 +5,192 @@ body.hero_app #app_list a.hero_app_link {
   color: white;
 }
 
-#hero_show_city {
-  background: #88d;
-  background: url(i/ppgrad.png);
-  padding: 0;
+.ggrad.top {
+  border-bottom: solid thin #666; font-size: 18px;
+  color: white; text-shadow: black 0px 0px 3px;
+  font-weight: bold;
+  color: black; text-shadow: #66f 0px 0px 5px;
+  text-align: left;
+  padding-left: 15px;
+  color: black; text-shadow: #ccc 0px 1px 2px;
+  border-bottom: solid thin #444;
+  color: #009;
+  text-shadow: #66f 0px 0px 5px;
+  color: #024242;
+  text-shadow: #fff 0px 0px 5px;
 }
 
-.col {
-  float:left; width:320px; margin-right: 10px; margin-left: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+.nh h2 {
+  font-weight: bold;
+  font-size: 16px;
+  color: #222;
+  color: black;
+  margin:0; padding:0;
+  text-shadow: #aaa 0px -1px 1px;
+  text-shadow: #fff 0px 0px 5px;
+  text-shadow: #aaa 0px 0px 3px;
+  color: #ccc;
+  text-shadow: #000 1px 1px 2px;
+  position: relative;
+  margin-bottom: 1px;
+  color: #aaa;
+  color: #eeb;
+/*  color: white;*/
+color: #ddc;
+/*color: #aaf;*/
+}
+
+.nh h2 i {
+  font-style: normal;
+  text-decoration: none;
+  font-size: 11px;
+  color: #444;
+  color: #ccc;
+  margin: 0; padding: 0;
+  text-shadow: #000 0px 0px 2px;
+  padding-left: 20px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  color: #f2f2ee;
+/*    color: #ffd;*/
+}
+
+.nh small {
+  font-size: 12px;
+  text-align: right;
+  display: block;
+}
+
+.nh small a {
+/*  color: #777;*/
+text-decoration: none;
+color: #aaa;
+text-shadow: #000 0px 0px 2px;
+font-weight: bold;
+color: #f2f2ee;
+font-size: 11px;
+}
+
+.nh small a:hover {
+  color:white;
+}
+
+.nh .inside {
+  padding: 10px 15px;
+  background-color: transparent;
+/*  background: url(i/40.png);*/
+/*  background: url(i/ppgrad.png);*/
+/*  background: url(i/grads/grid.png);*/
+/*  background: url(i/grads/ggrid.png);*/
+  background: url(i/grads/tray.png);
+}
+
+
+.nh .tb {
+  height: 79px;
+  overflow: hidden;
+  float: left;
+  clear: both;
+  background: #fff;
+  border-bottom: solid 1px #eee;
+  border-right: solid 1px #eee;
+  border-left: solid 1px #333;
+  width: 100%;
+  background: #555;
+  background: url(i/grads/spat.png);
+}
+
+.nh .tbs {
+  height: 50px;
+  overflow: hidden;
+  float: left;
+  clear: both;
+  border-bottom: solid 1px #eee;
+  border-right: solid 1px #eee;
+  border-left: solid 1px #333;
+  width: 100%;
+  background: #555;
+  background: url(i/grads/spat.png);
+}
+
+.nh small {
+  clear:both;
+}
+
+.nh .tbs div b{
+  width: 20px;
+  padding: 2px;
+  font-size: 12px;
+  color: black;
+}
+.nh .tbs div {
+  padding: 6px 2px;
+  height: 11px;
+  width: 130px;
+  float: left;
+  font-size: 11px;
+  font-weight: bold;
+  background: #ddb;
+  border-right: solid thin #222;
+  border-bottom: solid thin #222;  
+  color: #222;
+  cursor: pointer;
+}
+
+.nh .tb div {
+  float: left;
+  height: 65px;
+  width: 75px;
+  text-align: center;
+  font-size: 9px;
+/*  text-shadow: #fff 0px 1px 1px;*/
+  font-weight: bold;
+  color: #b72;
+  color: #f90;
+/*  background: url(i/grads/tb.png);*/
+  padding: 7px 3px;
+  padding-top: 5px;
+  padding-bottom: 9px;
+  border-right: solid thin #aaa;
+/*  text-shadow: #444 0px 1px 1px;*/
+  color: #444;
+  background: black;
+  background: url(i/grads/b2grad.png);
+  background: url(i/grads/obut.png);
+  color: #b72;
+  border-right: solid thin #222;
+  color: #d90;
+  color: #444;
+  cursor: pointer;
+  
+}
+
+.nh .tb div b {
+  color: #b60;
+  color: #d95;
+  color: #b72;
+  color: #f90;
+  color: black;
+  color: #444;
+/*  text-decoration: underline;*/
+  color: black;
+  font-weight: bold;
+}
+
+.nh .tb div img {
+  display: block;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  margin-bottom: 2px;
+}
+
+#hero_show_city {
+  padding: 0;
+  top: 100px;  
+  background-color: transparent;
 }
 
 .ggrad {
@@ -24,13 +200,8 @@ body.hero_app #app_list a.hero_app_link {
   color: #449;
 }
 
-.ggrad.top {
-  border-bottom: solid thin #666; font-size: 18px;
-  color: white; text-shadow: black 0px 0px 3px;
-  font-weight: bold;
-}
 
-.ggrad.top .city {
+/*.ggrad.top .city {
   position: absolute; right: 8px; top: 3px; 
   text-shadow: #eee 0px 1px 1px; 
   font-size: 11px;
@@ -40,13 +211,8 @@ body.hero_app #app_list a.hero_app_link {
   opacity: 0.5;
   -moz-opacity: 0.5;
   filter:alpha(opacity=50);
-/*  background: white;
-  padding: 1px 3px;
-  border-top: solid thin gray;
-  border-left: solid thin gray;
-*/
 }
-
+*/
 .ggrad a {
   color: #830;
   text-decoration: underline;
@@ -54,27 +220,6 @@ body.hero_app #app_list a.hero_app_link {
 
 .ggrad b {
   color: #007;
-}
-
-
-#hero_show_city .mhead {
-  font-size: 14px;
-  background: #999;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 10px;
-  background: url(i/qggrad.png);
-  border-bottom: solid thin #666;
-  text-shadow: #ddd 0px 1px 1px;
-  color: #449;
-}
-
-#hero_show_city .mhead b {
-  color: #007;
-}
-
-#hero_show_city .mhead span {
-  color: #555;
 }
 
 
@@ -89,61 +234,3 @@ body.hero_app #app_list a.hero_app_link {
   border-collapse: collapse;
   cursor: pointer;
 }
-
-
-
-.aagent b {
-  font-size: 12px;
-  padding-right: 10px;
-  color: black;
-}
-
-.aagent span, .omini {
-  font-size: 9px;
-  text-shadow: #fff 0px 1px 1px;
-  font-weight: bold;
-  color: #b60;
-}
-
-.aagent i {
-  font-style: normal;
-  font-size: 9px;
-  background-color: #a66;
-  color: white;
-  padding: 1px 3px;
-  margin-right: 5px;
-}
-
-
-
-
-.resources {
-  padding-left: 10px;
-}
-
-
-.adventure {
-  position: relative;  padding-left: 40px;  font-size: 11px; 
-}
-
-.adventure u {
-  font-size: 11px; color: #830;
-  text-decoration: none;
-}
-
-.adventure u:hover {
-  text-decoration: underline;
-}
-
-.adventure img {
-  position: absolute;
-  top: 6px; left: 5px;
-  font-size: 11px;
-}
-
-.adventure .title {
-  color: black; 
-  display:block;
-  font-size: 12px;
-}
-

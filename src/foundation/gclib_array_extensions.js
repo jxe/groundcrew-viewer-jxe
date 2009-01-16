@@ -10,6 +10,11 @@ Array.prototype.max = function(){
   return max;
 };
 
+Array.prototype.choose_random = function(){
+  return this[Math.rand(this.length)];
+}
+
+
 Array.prototype.uniq = function(){
   return $keys(this.to_h());
 };

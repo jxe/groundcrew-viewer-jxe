@@ -8,6 +8,13 @@ Viewer = {
   prev_agents: null,
   rendered: false,
 
+  open: function(tag) {
+    if (Viewer.current_app.marker_clicked)
+      if (Viewer.current_app.marker_clicked(tag, Viewer.current_app.state))
+        return;
+    Viewer.go('/organize/your_personal_squad/:city/' + tag);
+  },
+
   dispatch: function(method, args) {
     var args = $.makeArray(arguments);
     var method = args.shift();
@@ -96,7 +103,7 @@ Viewer = {
     var app = Viewer.current_app;
     var state = app.state;
     
-    Map.Gmap && Map.Gmap.closeInfoWindow();
+    // Map.Gmap && Map.Gmap.closeInfoWindow();
     if (Viewer.prev_renderer) $('body').removeClass(Viewer.prev_renderer);
     
     Viewer.prev_renderer = renderer;
@@ -145,15 +152,7 @@ Viewer = {
   limit_cafe: function(state)   { Viewer.limit_ltype(state, 'cafe'); },
   limit_street: function(state) { Viewer.limit_ltype(state, 'street'); },
   limit_room: function(state)   { Viewer.limit_ltype(state, 'room'); },
-  
-
-  open: function(tag) {
-    if (Viewer.current_app.marker_clicked)
-      if (Viewer.current_app.marker_clicked(tag, Viewer.current_app.state))
-        return;
-    Viewer.go('/organize/your_personal_squad/:city/' + tag);
-  },
-  
+    
   // functions
   
   zoom_out: function(){ Viewer.go('/'); return false; },

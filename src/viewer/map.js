@@ -22,7 +22,7 @@ Map = {
   
   establish: function(){
     map = Map.Gmap = new GMap2(document.getElementById("map_div"), {
-      mapTypes: [G_SATELLITE_MAP, G_HYBRID_MAP, G_PHYSICAL_MAP]  //G_NORMAL_MAP
+      mapTypes: [G_SATELLITE_MAP, G_HYBRID_MAP, G_PHYSICAL_MAP, G_NORMAL_MAP]  //G_NORMAL_MAP
     });
     // Map.Gmap.enableContinuousZoom();
     Map.Gmap.enableScrollWheelZoom();
@@ -31,7 +31,7 @@ Map = {
     var bRightSnug = new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(5,5));
     var bLeftFurther = new GControlPosition(G_ANCHOR_BOTTOM_LEFT, new GSize(160,5));
     Map.Gmap.addControl(new GSmallZoomControl(), bRightSnug);
-    // Map.Gmap.addControl(new GMapTypeControl(), bRight);
+    Map.Gmap.addControl(new GMapTypeControl(), bRight);
   },
   
   set_bounds_from_lat_lngs: function(items) {

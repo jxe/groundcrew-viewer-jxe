@@ -1,31 +1,56 @@
-var agents = [
-{
-  name: 'Joe',
-  time: '20 MIN',
-  wants: 'ADVENTURE',
-  gifts: 'running, climbing, gourmet food, puzzles'
-},
-{
-  name: 'Sally',
-  time: '1 HR',
-  wants: 'PEACEFUL MOMENTS',
-  gifts: 'knitting, hostage negotiation'
-}]
+var atag_trans = {
+  conn: 'connection',
+  bene: 'kindness',
+  food: 'food',
+  adv: 'adventures',
+  mgames: 'puzzles',
+  vol: 'volunteering',
+  stretchme: 'challenge',
+  stealth: 'stealth',
+  pchal: 'challenge',
+  pgrowth: 'challenge',
+  convo: 'conversation',
+  beauty: 'beauty',
+  raok: 'kindness'
+};
+
+function agent_wants(agent){
+  return agent.atags.split(' ').map(function(x){ return atag_trans[x]; }).compact().choose_random().toUpperCase();
+}
+
+
+var resources = [
+  { what: 'three cars' },
+  { what: 'a filing cabinet' },
+  { what: 'a telephone' },
+  { what: 'a lawnmower' },
+  { what: 'some furniture' }
+];
+
+var wishes = [
+  { what: 'bike path renovation' },
+  { what: 'groundcrew publicity' },
+  { what: 'main st decorations' },
+  { what: 'downtown dance party prep' }
+];
 
 var adventures = [
 {
-  where: 'Pulaski Park',
-  what: 'Good Deeds',
+  where: 'Student Center',
+  thumb: 'http://mw2.google.com/mw-panoramio/photos/square/6411087.jpg',
+  what: 'GOOD DEEDS',
   when: '10 minutes'
 },
 {
-  where: 'Haymarket Cafe',
-  what: 'Briefcase Exchanges',
+  where: 'Waterfall',
+  thumb: 'http://mw2.google.com/mw-panoramio/photos/square/5460471.jpg',
+  what: 'RENDEZVOUS',
   when: '15 minutes'
 },
 {
-  where: 'Smith Athletic Fields',
-  what: 'Wargames',
+  where: 'Athletic Fields',
+  thumb: 'http://farm3.static.flickr.com/2369/1706799173_cc121546e1_s.jpg',
+  what: 'WARGAMES',
   when: '25 minutes'
 }
 
@@ -39,21 +64,26 @@ Viewer.apps.hero = {
   },
   
   resources: function(state) {
-    return "cars, filing cabinets, public phones, furniture, lawnmowers, people";
+    return resources.map(function(a){ return Viewer.apps.hero.resource_t.t(a); }).join('');
   },
 
   projects: function(state) {
-    return "bike path renovation, groundcrew publicity, main st decorations, downtown dance party prep";
+    return wishes.map(function(a){ return Viewer.apps.hero.resource_t.t(a); }).join('');
   },
-  
+
   agents_to_guide: function(state) {
-    return agents.map(function(a){ return Viewer.apps.hero.agent_t.t(a); }).join('');
+    var agents = Agents.find("=city_id " + Viewer.selected_city);
+    return agents.map(function(a){ 
+      a.wants = agent_wants(a);
+      a.time = ['20 MIN', '1 HR', '5 MIN'].choose_random();
+      return Viewer.apps.hero.agent_t.t(a);
+    }).join('');
   },
+      
+  agent_t: '<div onclick="Viewer.open(\'#{item_tag}\');"><img src="http://groundcrew.us#{thumb_url}"/>HAS #{time} FOR<br/><b>#{wants}</b></div>',
+
+  adventure_t: '<div>#{where}<img src="#{thumb}"/><b>#{what}&#9660;</b></div>',
   
-  adventure_t: '<div class="adventure"><img src="i/idea.png"/><div class="title"><b>#{where}</b>. &nbsp; #{what}?</div>\
-    Could start in <u>#{when}</u>.</div>',
-    
-  agent_t: '<div class="aagent"><b>Agent #{name}</b><span>HAS #{time} FOR #{wants}</span><br>\
-    <i>LIKES</i> #{gifts}</div>'
+  resource_t: '<div>#{what}</div>'  
     
 };
