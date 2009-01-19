@@ -1,4 +1,5 @@
 var agent_tag;
+var person_item;
 
 ViewerUI = {
   

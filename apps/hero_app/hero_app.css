@@ -18,6 +18,7 @@ body.hero_app #app_list a.hero_app_link {
   text-shadow: #66f 0px 0px 5px;
   color: #024242;
   text-shadow: #fff 0px 0px 5px;
+  position: relative;
 }
 
 .nh h2 {
@@ -38,6 +39,8 @@ body.hero_app #app_list a.hero_app_link {
 /*  color: white;*/
 color: #ddc;
 /*color: #aaf;*/
+  background: #666;
+  padding: 1px 5px;
 }
 
 .nh h2 i {
@@ -56,10 +59,37 @@ color: #ddc;
 /*    color: #ffd;*/
 }
 
+.nh h2 b {
+  font-size: 11px;
+  text-shadow: #000 0px 0px 2px;
+  padding-left: 20px;
+  color: #f2f2ee;
+}
+
+.nh h2 u {
+  text-decoration: none;
+  text-shadow: #900 0px 0px 9px;
+}
+
+.nh h2 i a {
+  color: #f2f2ee;
+  text-decoration: underline;
+}
+
+.ggrad.top small {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 10px;
+  color: white;
+}
+
 .nh small {
   font-size: 12px;
   text-align: right;
   display: block;
+  position: relative;
+  top: -15px;
 }
 
 .nh small a {
@@ -99,6 +129,10 @@ font-size: 11px;
   width: 100%;
   background: #555;
   background: url(i/grads/spat.png);
+}
+
+.nh .tb.double {
+  height: 159px;
 }
 
 .nh .tbs {
