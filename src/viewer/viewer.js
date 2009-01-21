@@ -75,7 +75,7 @@ Viewer = {
     if (!Viewer.rendered) Viewer.render(renderer);
     
     // clean up
-    $('#more_breadcrumbs').html(Viewer.breadcrumbs()).feature_paint();
+    $('#breadcrumbs').html(Viewer.breadcrumbs()).feature_paint();
     delete state.first;
   },
   
@@ -91,8 +91,7 @@ Viewer = {
       if (x) {
         breadcrumb_url += "/" + x;
         var breadcrumb_label = state[label + "_label"] || x;
-        breadcrumbs.push(" &rsaquo;");
-        breadcrumbs.push(tag('a', {href:breadcrumb_url, content:breadcrumb_label}));
+        breadcrumbs.push(tag('option', {value:breadcrumb_url, content:breadcrumb_label}));
       }
     });
     return breadcrumbs.join(' ');

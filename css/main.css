@@ -113,26 +113,9 @@ a.m_item:hover {
 
 #breadcrumbs {
   position: absolute;
-  left: 55px;
-  top: 43px;
-  color: #fff;
+  left: 236px;
+  top: 3px;
   z-index: 400;
-  font-size: 12px;
-/*  font-variant: small-caps;
-*/  font-weight: bold;
-  text-shadow: #000 0px 0px 4px;
-  opacity: 0.5;
-  -moz-opacity: 0.5;
-  filter:alpha(opacity=50);
-}
-
-#breadcrumbs:hover {
-  opacity: 1;
-  -moz-opacity: 1;
-  filter:alpha(opacity=1);
-}
-#breadcrumbs a {
-  color: #d82;
 }
 
 #topbar {
