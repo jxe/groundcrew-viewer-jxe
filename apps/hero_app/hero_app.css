@@ -30,12 +30,18 @@ body.hero_app #app_list a.hero_app_link {
   background: url(i/trans/b80.png);
   padding-left: 30px;
   -webkit-transition: right 0.1s ease;
+  
+  -moz-border-radius-topleft: 10px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  
 }
 
 .nh .rim {
   position: absolute;
   left: 6px;
-  top: 30px;
+  top: 40px;
 }
 
 .nh.extended {
@@ -49,54 +55,17 @@ body.hero_app #app_list a.hero_app_link {
   margin:0;
   text-shadow: #000 1px 1px 2px;
   position: relative;
-  padding: 1px 5px;
-  margin-top: 10px;
 }
 
-.nh h2 i {
-  font-style: normal;
-  text-decoration: none;
-  font-size: 11px;
-  color: #444;
-  color: #ccc;
-  margin: 0; padding: 0;
-  text-shadow: #000 0px 0px 2px;
-  padding-left: 20px;
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
-  color: #f2f2ee;
-/*    color: #ffd;*/
-}
-
-.nh h2 b {
-  font-size: 11px;
-  text-shadow: #000 0px 0px 2px;
-  padding-left: 20px;
-  color: #f2f2ee;
-}
-
-.nh h1 {
-  margin:0;
-  color: white;
-  font-size: 20px;
-  text-shadow: #000 0px 0px 2px;
-  padding: 10px;
-}
-
-.nh h2 u {
-  text-decoration: none;
-  text-shadow: #900 0px 0px 9px;
-}
-
-.nh h2 i a {
-  color: #f2f2ee;
-  text-decoration: underline;
+.nh small + h2 {
+  margin-top: 20px;
 }
 
 .nh small {
   font-size: 12px;
   display: block;
+  margin-left: 15px;
+  
 }
 
 .nh small a {
@@ -124,6 +93,9 @@ font-size: 11px;
   float: left;
   clear: both;
   width: 100%;
+  margin-left: 15px;
+  margin-top: 5px;
+  margin-bottom: 4px;
 }
 
 .nh .tbs {
