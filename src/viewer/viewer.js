@@ -108,6 +108,7 @@ Viewer = {
     
     Viewer.prev_renderer = renderer;
     $('body').addClass(renderer);
+    $('.nh').app_paint();
     $('#' + app_name + "_" + renderer).app_paint();
     Viewer.rendered = true;
   },
@@ -135,6 +136,29 @@ Viewer = {
       });
     });
   },
+  
+  toggle_paddle: function(state) {
+    $('.nh').toggleClass('extended');
+  },
+  
+  
+  adventures: function(state) {
+    var projects = wishes.map(function(a){ return Viewer.apps.hero.proj_t.t(a); }).join('');
+    
+    return adventures.map(function(a){ return Viewer.apps.hero.adventure_t.t(a); }).join('') + projects;
+  },
+  
+
+  agents_to_guide: function(state) {
+    var agents = Agents.find("=city_id " + Viewer.selected_city);
+      
+    return agents.map(function(a){ 
+      a.wants = agent_wants(a);
+      a.time = ['20 MIN', '1 HR', '5 MIN'].choose_random();
+      return Viewer.apps.hero.agent_t.t(a);
+    }).join('');
+  },
+  
   
   limit_ltype: function(state, how) {
     if (state.ltype == how) how = null;

@@ -61,26 +61,14 @@ var adventures = [
 Viewer.apps.hero = {
   url_part_labels: $w('city adventure'),
   
-  adventures: function(state) {
-    var projects = wishes.map(function(a){ return Viewer.apps.hero.proj_t.t(a); }).join('');
-    
-    return adventures.map(function(a){ return Viewer.apps.hero.adventure_t.t(a); }).join('') + projects;
-  },
-  
   resources: function(state) {
     return resources.map(function(a){ return Viewer.apps.hero.resource_t.t(a); }).join('');
   },
-
-  agents_to_guide: function(state) {
-    var agents = Agents.find("=city_id " + Viewer.selected_city);
-      
-    return agents.map(function(a){ 
-      a.wants = agent_wants(a);
-      a.time = ['20 MIN', '1 HR', '5 MIN'].choose_random();
-      return Viewer.apps.hero.agent_t.t(a);
-    }).join('');
+  
+  expando: function(state) {
+    $('.nh').toggleClass('extended');
   },
-      
+        
   agent_t: '<div onclick="Viewer.open(\'#{item_tag}\');"><img src="http://groundcrew.us#{thumb_url}"/>HAS #{time} FOR<br/><b>#{wants}</b></div>',
 
   adventure_t: '<div>#{where}<img src="#{thumb}"/><b>#{what}&#9660;</b></div>',

@@ -38,8 +38,26 @@
 	<span id="more_breadcrumbs"></span>
 </div>
 </div>
-<div id="map_div"></div>
-<div id="agents_scroll_window"><div id="inner_scroll_window"><div class="std_click" id="agents"></div></div></div>
+<table id="youbox" class="lio">
+  <tr>
+    <td class="x" valign="bottom">
+  	  <a class="go_to_self" id="youbox_agent" href="#">agent <b id="agent_name"></b></a>
+	  </td>
+	  <td>
+    	<img class="go_to_self" id="you_img"/>
+  	</td>
+	  <td class="x" valign="bottom">
+	    <b id="cheer_ct">0</b>
+      <a href="#about_posx" rel="facebox">positive experiences caused</a><br>
+      <b id="team_ct">0</b>
+      <a href="#about_squadm" rel="facebox">squad members</a>
+    </td>
+  </tr>
+</table>
+
+<div id="screen">
+  <div id="map_div"></div>
+  <div id="agents_scroll_window"><div id="inner_scroll_window"><div class="std_click" id="agents"></div></div></div>
 <script>
 $(function(){ViewerUI.init()});
 </script>
