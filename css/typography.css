@@ -4,6 +4,31 @@ body {
   font-size: 12px;  
 }
 
+
+/*
+** Header stuff
+*/
+
+.m_item {
+  padding: 1px 5px;
+  padding-top: 0px;
+  text-decoration: none;
+  font-size: 11px;
+  margin-left:  3px;
+  margin-right: 3px;
+  color: #aaa;
+}
+
+a.m_item:hover {
+  text-decoration: underline;
+  color: #eee;
+}
+
+.clear {
+  clear:both;
+}
+
+
 em {
   color: #644;
   font-style: normal;
@@ -23,17 +48,6 @@ big {
   top: 0px;
 }
 
-a.gay_button {
-  display: block;
-  padding: 4px 2px;
-  background: #ccc;
-  color: #888;
-  text-decoration: none;
-}
-
-a.gay_button:hover {
-  color: #555;
-}
 
 .small big {
   font-weight: normal;
@@ -67,10 +81,6 @@ span.dgray a {
 .testbox {
   margin-left: 20px;
   margin-top: 20px;
-}
-
-.hud.bgwhite {
-  background: white;
 }
 
 
@@ -210,38 +220,6 @@ span.tip {
 }
 
 
-/* ==================== */
-/* = paragraph styles = */
-/* ==================== */
-
-#steps a {
-  font-weight: bold;
-  font-size: 16px;
-  color: blue;
-  padding-bottom: 5px;
-  display: block;
-}
-#steps p {
-  background:#ff9;
-  background:#cfcfff;
-  margin-left: 20px;
-  margin-right: 20px;
-  font-size: 12px;
-  padding: 10px;
-  color: #444;
-}
-
-
-
-/* ============ */
-/* = headings = */
-/* ============ */
-
-h2.fancy {
-  color: #000; font-size: 18px; font-weight: normal; font-variant: small-caps; background: #ffe0c0; padding: 5px 5px 2px 5px
-}
-
-
 /* =========== */
 /* = spacing = */
 /* =========== */
@@ -280,23 +258,6 @@ body#viewer .medgray {
   font-weight: normal;
 }
 
-table.mcol {
-  width: 100%;
-}
-table.mcol td {
-  vertical-align: top;
-  width: 33%;
-}
-table.mcol td.b {
-  padding-left: 15px;
-  border-left: 1px solid #ddd;
-}
-table.mcol ul {
-  margin:0; padding:0; list-style: none;
-  font-size: 11px;
-  text-indent: -5px;
-  margin-left: 5px;
-}
 .down {
   margin-top: 10px;
 }
@@ -330,67 +291,6 @@ a:hover img.hover_opacity {
   background: #eea;
   text-decoration: none;
 }
-.choices {
-  list-style:none;
-  padding: 0;
-  margin: 0;
-}
-.choices li {
-  padding: 5px;
-  padding-left: 10px;
-}
-.choices li a {
-  padding-left: 20px;
-  font-size: 14px; 
-  font-weight: bold;
-  display: block;
-  color: black;
-}
-.choices i {
-  font-size: 11px;
-  color: #777;
-  display: block;
-  font-style: normal;
-  font-weight: normal;
-}
-.choices li a:hover {
-  background: #ccc;
-  text-decoration: none;
-}
-
-
-
-
-
-
-
-
-
-/* ======================= */
-/* = assignment statuses = */
-/* ======================= */
-
-.assignment_status {
-  text-transform: uppercase;
-  font-size: small;
-  color: gray;
-}
-
-.astat_blocked {
-  color: red;
-}
-
-.astat_ignored, .astat_declined {
-  color: yellow;
-  font-weight: bold;
-  background: gray;
-  padding: 2px 5px;
-}
-
-.astat_accepted, .astat_completed {
-  color: green;
-  font-weight: bold;
-}
 
 
 
@@ -400,93 +300,6 @@ a:hover img.hover_opacity {
 
 .g3 {
   color: #333;
-}
-
-
-a.newbutton {
-	border:1px solid #555; background: #ddd; padding: 5px; width: 240px;
-	font-size: 16px; font-weight:bold;
-	color: black;
-	text-align:center; margin:auto;
-}
-a.newbutton .subtext {
-  font-size: 12px; color: #555; font-weight:normal
-}
-a.newbutton:hover {
-	background: #ffd;
-	text-decoration:none;
-}
-
-
-
-/* ================= */
-/* = little header = */
-/* ================= */
-
-.lilheader {
-  margin: 0;
-	padding: 5px;
-	padding-top: 8px;
-	padding-bottom: 2px;
-	color: #777;
-	font-variant: small-caps;
-}
-
-/* =============== */
-/* = popup menus = */
-/* =============== */
-
-
-div.menu {
-	position: absolute;
-	border: solid thin #999;
-	background: white;
-	z-index: 300;
-	font-size: 12px;
-}
-div.menu p {
-  margin: 0;
-	padding: 5px;
-	padding-top: 8px;
-	padding-bottom: 2px;
-	background: #dadeb3;
-	color: #777;
-	font-variant: small-caps;
-}
-div.menu a {
-	display: block;
-	color: black;
-	padding: 5px;
-	background: #eee;
-	background: #dadeb3;
-/*			border-bottom: 1px solid #ccc;*/
-}
-
-div.menu a:first {
-	border-bottom: 0px;
-}
-div.menu a:hover, div.menu a.pick {
-	background: #555;
-	color: white;
-	text-decoration: none;
-}
-
-div.menu.weird a:hover, div.menu.weird a.pick {
-	color: gold;
-	text-decoration: underline;
-}
-
-div.menu a.trigger {
-	background: #eee;
-	color: black;
-	text-decoration: none;
-}
-div.menu hr {
-	height: 0px;
-	padding:0;
-	margin:0;
-	border-bottom: #999 dashed 1px;
-	border-top: none;
 }
 
 
@@ -506,30 +319,3 @@ div.menu hr {
   padding-top: 16px;
 }
 
-
-/* ============== */
-/* = tag clouds = */
-/* ============== */
-
-
-.csl a {
-  padding-left: 3px;
-  color: #444;
-  font-size: 14px;
-}
-
-.csl a.mine {
-  color: #850;
-}
-
-.csl a.s2 {
-  font-size: 15px;
-}
-
-.csl a.s3 {
-  font-size: 17px;
-}
-
-.csl a.s4 {
-  font-size: 19px;
-}

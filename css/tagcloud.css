@@ -1,0 +1,26 @@
+/* ============== */
+/* = tag clouds = */
+/* ============== */
+
+
+.csl a {
+  padding-left: 3px;
+  color: #444;
+  font-size: 14px;
+}
+
+.csl a.mine {
+  color: #850;
+}
+
+.csl a.s2 {
+  font-size: 15px;
+}
+
+.csl a.s3 {
+  font-size: 17px;
+}
+
+.csl a.s4 {
+  font-size: 19px;
+}

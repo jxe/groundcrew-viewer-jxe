@@ -1,0 +1,36 @@
+.hud {
+  position:absolute; 
+  width: 200px;
+  background: url(i/w60.png); 
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  z-index: 100;
+  color: black;
+  padding: 10px;
+  border-top: solid 1px white;
+  border-left: solid 1px white;
+  border-right: solid 1px #222;
+  border-bottom: solid 1px #222;
+}
+
+.hud hr {
+  border: 0;
+  height: 1px;
+  color: #777;
+  background-color: #777;
+}
+
+.hud.bgwhite {
+  border-top:    solid 2px white;
+  border-left:   solid 2px white;
+  border-right:  solid 2px #222;
+  border-bottom: solid 2px #222;
+}
+
+.hud .menu, .hud table {
+  text-shadow: none;
+}
+
+.hud2 {
+  background: white;
+}

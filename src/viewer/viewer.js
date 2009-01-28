@@ -15,6 +15,11 @@ Viewer = {
     Viewer.go('/organize/your_personal_squad/:city/' + tag);
   },
 
+  breadcrumb_change: function(new_url, state) {
+    alert('breadcrumb change! ' + new_url);
+    Viewer.go(new_url);
+  },
+
   dispatch: function(method, args) {
     var args = $.makeArray(arguments);
     var method = args.shift();
@@ -75,7 +80,7 @@ Viewer = {
     if (!Viewer.rendered) Viewer.render(renderer);
     
     // clean up
-    $('#breadcrumbs').html(Viewer.breadcrumbs()).feature_paint();
+    $('#breadcrumbs').html(Viewer.breadcrumbs()).val(url);
     delete state.first;
   },
   
@@ -84,7 +89,7 @@ Viewer = {
     var app = Viewer.current_app;
     var state = app.state;
     var breadcrumbs = [];
-    var breadcrumb_url = '#/' + app_name;
+    var breadcrumb_url = '/' + app_name;
     
     $.each(app.url_part_labels, function(i, label){
       var x = state[label];
@@ -218,14 +223,6 @@ $.fn.app_paint = function(){
       if (attr) obj.attr(attr, data[method]);
       else      obj.html(data[method]);
     }
-  });
-  this.find('[observe]').each(function(){
-    var obj = $(this);
-    var method = obj.attr('observe');
-    obj.change(function(){
-      Viewer.current_app[method](obj.val(), Viewer.current_app.state);
-      return true;
-    });
   });
   this.find('form').enable().unbind('submit').submit(function(){
     try {

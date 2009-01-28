@@ -4,11 +4,11 @@ SHELL=/bin/bash
 # main tasks
 
 uncompressed: html_and_css
-	cat {vendor,data}/*.js {src,apps}/*/*.js > BUILD/viewer.js
+	cat {vendor,data}/*.js {src,components}/*/*.js > BUILD/viewer.js
 	cp pages/localauth.html BUILD/
 
 compressed: html_and_css
-	cat {vendor,data}/*.js {src,apps}/*/*.js | jsmin > BUILD/viewer.js
+	cat {vendor,data}/*.js {src,components}/*/*.js | jsmin > BUILD/viewer.js
 
 deploy: compressed
 	rsync -avL BUILD/{i,viewer.*} groundcrew.us:apps/groundcrew/current/public/
@@ -29,5 +29,5 @@ BUILD:
 	(cd BUILD && ln -s ../i)
 
 html_and_css: BUILD
-	cat pages/viewer.html {src/viewer,apps}/**/*.html pages/viewer_end.html > BUILD/viewer.html
-	cat {vendor,css}/*.css src/viewer/widgets/*.css apps/*/*.css > BUILD/viewer.css
+	cat pages/viewer.html components/**/*.html pages/viewer_end.html > BUILD/viewer.html
+	cat {vendor,css}/*.css components/*/*.css > BUILD/viewer.css

@@ -1,0 +1,38 @@
+.tile {
+  height: 50px;
+  width: 62px;
+  padding-left: 53px;
+  background-image: url(i/buttons/tile3.png);
+  overflow: hidden;
+  float: left;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  position: relative;
+  font-family: trebuchet;
+  font-size: 9px;
+  color: black;
+  text-shadow: #fff 0px 1px 1px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tile img {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 45px;
+}
+
+.tile b {
+  font-family: andale mono, courier;
+  font-size: 8px;
+  font-weight: normal;
+  text-shadow: none;
+  color: #444;
+  display: block;
+  margin-top: 5px;
+}
+
+.tile b:first-of-type {
+  margin-top: 2px;
+}

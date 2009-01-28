@@ -1,4 +1,12 @@
 $.fn.feature_paint = function(){
+  this.find('[observe]').each(function(){
+    var obj = $(this);
+    var method = obj.attr('observe');
+    obj.change(function(){
+      Viewer.dispatch(method, obj.val(), Viewer.current_app.state);
+      return true;
+    });
+  });
   return this.clicks({
     'a':  Clicker.click
   });

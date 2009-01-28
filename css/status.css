@@ -1,0 +1,27 @@
+
+/* ======================= */
+/* = assignment statuses = */
+/* ======================= */
+
+.assignment_status {
+  text-transform: uppercase;
+  font-size: small;
+  color: gray;
+}
+
+.astat_blocked {
+  color: red;
+}
+
+.astat_ignored, .astat_declined {
+  color: yellow;
+  font-weight: bold;
+  background: gray;
+  padding: 2px 5px;
+}
+
+.astat_accepted, .astat_completed {
+  color: green;
+  font-weight: bold;
+}
+

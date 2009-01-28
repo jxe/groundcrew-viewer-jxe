@@ -69,7 +69,7 @@ Viewer.apps.hero = {
     $('.nh').toggleClass('extended');
   },
         
-  agent_t: '<div onclick="Viewer.open(\'#{item_tag}\');"><img src="http://groundcrew.us#{thumb_url}"/>HAS #{time} FOR<br/><b>#{wants}</b></div>',
+  agent_t: '<div onclick="Viewer.open(\'#{item_tag}\');"><img src="http://groundcrew.us#{thumb_url}"/>UP4 <b>#{wants}</b><br/>HAS #{time}</div>',
 
   adventure_t: '<div>#{where}<img src="#{thumb}"/><b>#{what}&#9660;</b></div>',
 

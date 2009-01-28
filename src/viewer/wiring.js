@@ -38,6 +38,7 @@ ViewerUI = {
     Chat.wire();
     setInterval(function(){ $('.from_now').update_times(); }, 20000);
     $(window).resize(this.adjust_frame);
+    $('#magic').feature_paint();
   },
 
   adjust_frame: function(){
