@@ -5,12 +5,6 @@ body.hero_app #app_list a.hero_app_link {
   color: white;
 }
 
-#screen {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
 .ggrad.top {
   color: white; text-shadow: black 0px 0px 3px;
   font-weight: bold;

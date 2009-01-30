@@ -1,60 +1,34 @@
 #recent_content {
-  left: 0px; bottom: 124px;
 	width: 300px;
 	font-size: 11px;
   max-height: 350px;
   overflow: auto;
 }
 
-#chatbar img {
-  opacity: 0.2;
-  -moz-opacity: 0.2;
-  filter:alpha(opacity=20);
-}
-
-#chatbar:hover img {
-  opacity: 1;
-  -moz-opacity: 1;
-  filter:alpha(opacity=1);
-}
 #chatbox {
   position: relative;
   height: 170px;
   z-index: 100;
 }
-#chatbox #chatter {
+#chatter {
   position: relative;
   height: 136px;
   width: 400px;
   color: white;
 }
-#chatbox #chatter ul {
+#chatter ul {
   position: absolute;
   left: 40px;
   top: 0px;
   margin: 0;
   padding: 0;
 }
-#chatbox #chatter img {
+#chatter img {
   position: absolute;
   left: 0px;
 }
 
-
-
-#chatbox #chatbar {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  min-width: 65px;
-}
-#chatbox #chatbar img {
-  border-top: white 1px solid;
-  border-left: white 1px solid;
-  border-right: black 1px solid;
-  float:left;
-}
-#chatbox #talker {
+#talker {
   position: absolute;
   left: 32px;
 

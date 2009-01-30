@@ -1,3 +1,12 @@
+Palettes = {}
+Palettes.recent_content = function(thing){
+  var events = EventDb.events;
+  var html = "nothing yet.";
+  // if (events) html = RecentHUD.html_for(events);
+  // else html = "nothing yet.";
+  thing.html(html); //.blit().scrollDown();
+}
+
 RecentHUD = {
   
   state: 'closed',
@@ -22,19 +31,6 @@ RecentHUD = {
   //   }
   //   alert("impossible to get here.");
   // },  
-  
-  toggle_open_closed: function() {
-    if (RecentHUD.state == 'open') {
-      RecentHUD.state = 'closed';
-      $('#recent_content').slideUp(100);
-    } else {
-      RecentHUD.state = 'open';
-      var html = RecentHUD.html_for(EventDb.events);
-      $('#recent_content').html(html).blit().slideDown(100, function(){
-        $('#recent_content').scrollDown();
-      });
-    }
-  },
   
   html_for: function(events) {
     var html = '';

@@ -1,18 +1,20 @@
+body.has_reveal #welcome {
+  display: none;
+  opacity: 0;
+  -moz-opacity: 0;
+  filter:alpha(opacity=0);
+}
+
 #welcome {
   width: 650px;
-  position: absolute;
-  z-index: 100;
-  color: white;
   top: 30px; 
   right: auto;
   left: auto;
+  -webkit-transition: opacity 1s ease;
 }
 
-/* backgrounds */
-#welcome #section1 { background: url(i/trans/g90.png); padding: 10px 20px; padding-bottom: 20px; }
-#welcome #section2 { background: url(i/trans/b80.png); padding: 20px; }
-  
 /* positioning */
+#welcome .tgray { padding-top: 10px; }
 #welcome #section2 { position: relative; height: 230px; }
 #welcome #section2 #col1 { position: absolute; width: 237px; left: 60px; }
 #welcome #section2 #col2 { position: absolute; width: 237px; left: 360px; }

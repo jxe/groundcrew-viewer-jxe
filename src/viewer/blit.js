@@ -1,3 +1,12 @@
+var revealed = null;
+
+function unreveal(){
+  if (!revealed) return;
+  revealed.removeClass('revealed');
+  $('body').removeClass('has_reveal');
+  revealed = null;
+}
+
 $.fn.feature_paint = function(){
   this.find('[observe]').each(function(){
     var obj = $(this);
@@ -5,6 +14,24 @@ $.fn.feature_paint = function(){
     obj.change(function(){
       Viewer.dispatch(method, obj.val(), Viewer.current_app.state);
       return true;
+    });
+  });
+  this.find('[reveal]').each(function(){
+    var obj = $(this);
+    var name = obj.attr('reveal');
+    var thing = $('#' + name);
+    obj.unbind('click').click(function(){
+      if (revealed) revealed.removeClass('revealed');
+      if (revealed == thing) {
+        $('body').removeClass('has_reveal');
+        revealed = null;
+      }
+      else {
+        if (Palettes[name]) Palettes[name](thing);
+        $('body').addClass('has_reveal');
+        revealed = thing.addClass('revealed');
+      }
+      return false;
     });
   });
   return this.clicks({

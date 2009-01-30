@@ -12,6 +12,8 @@ Viewer = {
     if (Viewer.current_app.marker_clicked)
       if (Viewer.current_app.marker_clicked(tag, Viewer.current_app.state))
         return;
+    $('#welcome').hide();
+    unreveal();
     Viewer.go('/organize/your_personal_squad/:city/' + tag);
   },
 
@@ -112,7 +114,7 @@ Viewer = {
     
     Viewer.prev_renderer = renderer;
     $('body').addClass(renderer);
-    $('.nh').app_paint();
+    $('.palette').app_paint();
     $('#' + app_name + "_" + renderer).app_paint();
     Viewer.rendered = true;
   },
@@ -237,6 +239,5 @@ $.fn.app_paint = function(){
     }
     return false;
   });
-  if (this.is('.divcenter')) this.center();
   return this.feature_paint();
 };

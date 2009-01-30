@@ -1,3 +1,13 @@
+.palette {
+  position: absolute;
+  z-index: 100;
+  color: white;
+}
+
+/* coloring */
+.tgray { background: url(i/trans/g90.png); padding: 20px;  }
+.tblack { background: url(i/trans/b80.png); padding: 20px; }
+
 /* fonts */
 .palette h1, .palette h2 { font-family: gill sans, verdana; font-weight: normal; text-shadow: #000 1px 1px 1px; }
 .palette h4, .palette p  { font-family: helvetica; font-weight: normal; text-shadow: #339 0px 0px 4px; color: #a090ff; }
