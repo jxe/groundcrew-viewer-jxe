@@ -50,7 +50,26 @@
 </div>
 <div id="screen">
   <div id="map_div"></div>
-  <div id="agents_scroll_window"><div id="inner_scroll_window"><div class="std_click" id="agents"></div></div></div>
+  <div id="flexbar">
+    <div id="agents">
+      <div id="neglected_agents">
+        <h2>neglected</h2>
+        <div id="neglected_agent_thumbs"></div>
+      </div>
+      <div id="ready_agents">
+        <h2>ready</h2>
+        <div id="ready_agent_thumbs"></div>
+      </div>
+      <div id="assigned_agents">
+        <h2>assigned</h2>
+        <div id="assigned_agent_thumbs"></div>
+      </div>
+      <div id="summonable_agents">
+        <h2>available</h2>
+        <div id="summonable_agent_thumbs"></div>
+      </div>
+    </div>
+  </div>
 <script>
 $(function(){ViewerUI.init()});
 </script>

@@ -12,13 +12,12 @@ Viewer = {
     if (Viewer.current_app.marker_clicked)
       if (Viewer.current_app.marker_clicked(tag, Viewer.current_app.state))
         return;
-    $('#welcome').hide();
+    $('#welcome').remove();
     unreveal();
     Viewer.go('/organize/your_personal_squad/:city/' + tag);
   },
 
   breadcrumb_change: function(new_url, state) {
-    alert('breadcrumb change! ' + new_url);
     Viewer.go(new_url);
   },
 
@@ -72,7 +71,7 @@ Viewer = {
       if (!state.agents)
         state.agents = state.city ? Agents.in_city(state.city) : Agents.all;
       MapMarkers.display(state.city, state.agents);
-      Facebar.populate(state.agents);
+      Frame.populate_flexbar_agents(state.agents);
       Viewer.prev_agents = state.agents;
     }
     

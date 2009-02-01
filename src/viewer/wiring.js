@@ -4,7 +4,8 @@ var person_item;
 ViewerUI = {
   
   init: function() {
-    this.adjust_frame();
+    Frame.set_flexbar_size(1);
+    $('.divcenter').center();
 
     // load the user data
     if (!person_item) {
@@ -35,39 +36,12 @@ ViewerUI = {
   
   activateUI: function() {    
     $('a[rel*=facebox]').facebox();
-    Chat.wire();
     setInterval(function(){ $('.from_now').update_times(); }, 20000);
-    $(window).resize(this.adjust_frame);
+    $(window).resize(function(){
+      $('.divcenter').center();
+      Frame.set_flexbar_size();
+    });
     $('.magic').feature_paint();
-  },
-
-  adjust_frame: function(){
-    // heights: google map; events
-    var junkh = 148;
-    var ih = window.innerHeight || window.document.body.clientHeight;
-    $('#map_div').height(ih - junkh);
-    $('.rtab').height(ih - junkh + 12 - 25);
-
-    // notify map of changes
-    if (Map.Gmap) Map.Gmap.checkResize();
-
-    $('#inner_scroll_window').width(10000);
-    var agents_width = $('#agents').width() + 10;
-    var window_width = window.innerWidth || window.document.body.clientWidth;
-    if (agents_width + 70 < window_width) {
-      var padding = window_width - agents_width;
-      $('#inner_scroll_window').width(agents_width + 70);
-      $('#inner_scroll_window').css('padding-top', '10px');
-      $('#inner_scroll_window').css('padding-left', padding/2 - 20);
-    }
-    else {
-      // var pixels = $('#agents .agent').length * 80 + 200;
-      $('#inner_scroll_window').width(agents_width + 40);
-      $('#inner_scroll_window').css('padding-top', '2px');
-      $('#inner_scroll_window').css('padding-left', '5px');
-    }
-    
-    $('.divcenter').center();
   }
 
 };

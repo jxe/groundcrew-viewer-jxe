@@ -3,6 +3,7 @@
   height: 392px;
   margin-left: 30px;
   margin-right: 30px;
+  -webkit-transition: height 1s ease;
 }
 
 #header {
@@ -27,7 +28,7 @@
   z-index: 400;
 }
 
-.rside, .lside { position: absolute; }
+.rside, .lside { position: absolute; cursor: pointer;}
 .rside { right:0; }
 .lside { left:0; }
 .rsidep, .lsidep { 
