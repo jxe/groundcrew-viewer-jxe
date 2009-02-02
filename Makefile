@@ -1,5 +1,7 @@
 SHELL=/bin/bash
 
+# bash doesn't know **/*, so we need find
+COMPS = $(shell find components -name "*.html")
 
 # main tasks
 
@@ -29,5 +31,5 @@ BUILD:
 	(cd BUILD && ln -s ../i)
 
 html_and_css: BUILD
-	cat pages/viewer.html components/**/*.html pages/viewer_end.html > BUILD/viewer.html
+	cat pages/viewer.html $(COMPS) pages/viewer_end.html > BUILD/viewer.html
 	cat {vendor,css}/*.css components/*/*.css > BUILD/viewer.css
