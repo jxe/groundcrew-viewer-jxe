@@ -1,20 +1,32 @@
-.tile {
+.tile, .tile2 {
   height: 50px;
-  width: 64px;
-  padding-left: 51px;
   background-image: url(i/buttons/tile3.png);
   overflow: hidden;
   float: left;
   margin-right: 2px;
   margin-bottom: 2px;
   position: relative;
-  font-family: trebuchet;
+  font-family:'trebuchet ms',helvetica,sans-serif;
+/*  font-family: trebuchet;*/
+  text-transform: uppercase;
   font-size: 9px;
   color: black;
   text-shadow: #fff 0px 1px 1px;
   font-weight: bold;
   cursor: pointer;
 }
+
+.tile {
+  width: 64px;
+  padding-left: 51px;
+}
+
+.tile2 {
+  padding: 5px;
+  width: 105px;
+  height: 40px;
+}
+
 
 .tile img {
   position: absolute;
@@ -24,16 +36,22 @@
   height: 45px;
 }
 
-.tile b {
+.tile2 p {
+  text-align: right;
+  padding: 0; margin: 0;
+}
+
+.tile2 b, .tile b {
   font-family: andale mono, courier;
   font-size: 8px;
   font-weight: normal;
   text-shadow: none;
   color: #444;
   display: block;
-  margin-top: 5px;
+  margin-top: 3px;
+  text-transform: none;
 }
 
-.tile b:first-of-type {
+.tile2 b:first-of-type, .tile b:first-of-type {
   margin-top: 2px;
 }

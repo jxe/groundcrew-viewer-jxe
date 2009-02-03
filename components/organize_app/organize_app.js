@@ -5,13 +5,12 @@ Viewer.apps.organize = {
     squad = state.squad || 'your_personal_squad';
     Viewer.go('/organize/'+ squad +'/:city/' + tag);
   },
-  
-  set_item: function(item, state) {
-    if (!item) state.agents = null;
-  },
-  
+    
   show_item: function(state) {
-    MapMarkers.open(state.item, $.template('#organize_agent_iw').app_paint()[0], 17);
+    if (state.item.startsWith('Person'))
+      MapMarkers.open(state.item, $.template('#organize_agent_iw').app_paint()[0], 16);
+    if (state.item.startsWith('Landmark'))
+      MapMarkers.open(state.item, $.template('#organize_landmark_iw').app_paint()[0], 16);
   },
   
   item_status: function(state)     { return "This agent is available."; },

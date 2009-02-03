@@ -1,3 +1,5 @@
+var components = [];
+
 ////
 // This is the "Application" controller and selection model
 //
@@ -9,11 +11,12 @@ Viewer = {
   rendered: false,
 
   open: function(tag) {
-    if (Viewer.current_app.marker_clicked)
-      if (Viewer.current_app.marker_clicked(tag, Viewer.current_app.state))
-        return;
     $('#welcome').remove();
     unreveal();
+    [Viewer.current_app, Viewer].dispatch('marker_clicked', tag, Viewer.current_app.state);
+  },
+  
+  marker_clicked: function(tag) {
     Viewer.go('/organize/your_personal_squad/:city/' + tag);
   },
 
@@ -24,9 +27,7 @@ Viewer = {
   dispatch: function(method, args) {
     var args = $.makeArray(arguments);
     var method = args.shift();
-    var f = Viewer.current_app[method];
-    if (f) f.apply(Viewer.current_app, args);
-    if (Viewer[method]) Viewer[method].apply(Viewer, args);
+    return [Viewer.current_app, Viewer].dispatch(method, args[0], args[1], args[2], args[3]);
   },
   
   parse_url: function(url) {
@@ -118,83 +119,30 @@ Viewer = {
     Viewer.rendered = true;
   },
   
-    
   set_city: function(city, state) {
     delete state.agents;
     if (!city) CityChooser.update();
     if (city) state.city_label = cities[city.split('__')[1]];
     Viewer.selected_city = city && city.resource_id();
+    components.trigger('city_changed', city);
   },
 
   set_item: function(item, state) {
-    state.item_r = item && item.resource();
-    state.item_label = item && state.item_r.title;
     Viewer.item = item;
+    if (!item) return state.agents = null;
+    state.item_r = item && item.resource();
+    if (!state.item_r) alert("no item lookup for: " + item);
+    state.item_label = state.item_r.title;
   },
 
-  new_landmark: function(state) {
-    if (!logged_in) return Viewer.join_please();
-    $.template('#new_landmark_dialog').show_dialog(function(form){
-      Ajax.fetch('/gc/create_landmark', form, function(ev){
-        EventDb.add(ev);
-        Viewer.go('');
-      });
-    });
-  },
-  
-  toggle_paddle: function(state) {
-    $('.nh').toggleClass('extended');
-  },
-  
-  
-  adventures: function(state) {
-    var projects = wishes.map(function(a){ return Viewer.apps.hero.proj_t.t(a); }).join('');
-    
-    return adventures.map(function(a){ return Viewer.apps.hero.adventure_t.t(a); }).join('') + projects;
-  },
-  
-
-  agents_to_guide: function(state) {
-    var agents = Agents.find("=city_id " + Viewer.selected_city);
       
-    return agents.map(function(a){ 
-      a.wants = agent_wants(a);
-      a.time = ['20 MIN', '1 HR', '5 MIN'].choose_random();
-      return Viewer.apps.hero.agent_t.t(a);
-    }).join('');
-  },
-  
-  
-  limit_ltype: function(state, how) {
-    if (state.ltype == how) how = null;
-    state.ltype = how;
-    $('#lm_limits').attr('limit', how || 'all');
-    $('select[fill=lm_select]').html(Viewer.lm_select(state));
-  },
-  
-  lm_select: function(state) { 
-    if (!state.ltype) return Landmarks.in_city(state.city).as_option_list();
-    return Landmarks.in_city(state.city, ":ltypes " + state.ltype).as_option_list();
-  },
-  
-  limit_park: function(state)   { Viewer.limit_ltype(state, 'park'); },
-  limit_cafe: function(state)   { Viewer.limit_ltype(state, 'cafe'); },
-  limit_street: function(state) { Viewer.limit_ltype(state, 'street'); },
-  limit_room: function(state)   { Viewer.limit_ltype(state, 'room'); },
-    
   // functions
   
   zoom_out: function(){ Viewer.go('/'); return false; },
-
-  join_please: function() {
-    $.facebox($('#join_fbox').html());
-  },
   
   
   // dyn fills
-  ag_ct:          function(state) { return pluralize(state.agents.length, 'agent'); },
-  item_thumb_url: function(state) { return "http://groundcrew.us/"+state.item_r.thumb_url; },
-  item_title:     function(state) { return state.item_r.title; },
+  
   blank:       function(){ return ''; }
 
 };

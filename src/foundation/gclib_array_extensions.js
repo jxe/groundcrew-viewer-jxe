@@ -46,23 +46,6 @@ Array.prototype.to_h = function(){
   return h;
 };
 
-Array.prototype.each_call = function(msg){
-  $.each(this, function(k, listener){
-    if (!listener[msg]){
-      // console.log("skipping msg " + msg + " on::"+ listener);
-    } else {
-      var f = listener[msg];
-      if (listener[f]) {
-        // console.log('redirecting ' + msg + " on " + listener);
-        listener[f].apply(listener);
-      } else {
-        // console.log('calling ' + msg + " on " + listener);
-        listener[msg].apply(listener);
-      }
-    }
-  });
-};
-
 function __compare__(a, b) {
   if (a > b) return 1;
   if (b > a) return -1;
@@ -101,4 +84,27 @@ Array.prototype.as_option_list = function(selected){
   return this.map(function(x){ 
     return "<option "+ (selected == x.item_tag ? " selected " : "") +"value='"+x.item_tag+"'>" + x.title + "</option>"; 
   }).join();
+};
+
+Array.prototype.dispatch = function(method, args){
+  var args = $.makeArray(arguments);
+  var method = args.shift();
+  var result = null;
+
+  for(var i=0; i<this.length; i++){
+    if(this[i][method]){
+      result = this[i][method].apply(this[i], args);
+      break;
+    }
+  }
+
+  return result;
+};
+
+Array.prototype.trigger = function(method, args){
+  var args = $.makeArray(arguments);
+  var method = args.shift();
+  $.each(this, function(){
+    if (this[method]) this[method].apply(this, args);
+  });
 };

@@ -15,12 +15,19 @@ body.flexbar1 #flexbar { height: 84px; }
 }
 
 #flexbar #agents h2 {
-  padding: 2px 0px 0px 7px;
-  margin: 4px 3px 0px 0px;
-  font-weight: normal;
-  font-style: italic;
+  padding: 0px 0px 0px 12px;
+  margin: 3px 3px 0px 0px;
   font-family: helvetica, arial;
   font-size: 12px;
+}
+
+#flexbar #agents h2 em {
+  padding: 1px 4px 0px 4px;
+  font-weight: normal;
+  font-style: italic;
+  color: black;
+  position: relative;
+  top: 2px;
 }
 
 #flexbar #agents img { max-height: 50px; margin-right: 3px; }
@@ -28,10 +35,14 @@ body.flexbar1 #flexbar { height: 84px; }
 /*#flexbar #agents > div > div { height: 50px; }*/
 /*#flexbar #agents > div > div > img { float: left; }*/
 
-#flexbar #neglected_agents  h2 { border-bottom: solid 3px red;    color: red;    }
-#flexbar #ready_agents      h2 { border-bottom: solid 3px green;  color: green;  }
-#flexbar #assigned_agents   h2 { border-bottom: solid 3px yellow; color: yellow; }
-#flexbar #summonable_agents h2 { border-bottom: solid 3px blue;   color: blue;   }
+#flexbar #neglected_agents  h2 { border-bottom: solid 3px red;    }
+#flexbar #neglected_agents  h2 em { background: red;    }
+#flexbar #ready_agents      h2 { border-bottom: solid 3px green;  }
+#flexbar #ready_agents  h2 em { background: green;    }
+#flexbar #assigned_agents   h2 { border-bottom: solid 3px yellow; }
+#flexbar #assigned_agents  h2 em { background: yellow;    }
+#flexbar #summonable_agents h2 { border-bottom: solid 3px blue;   }
+#flexbar #summonable_agents  h2 em { background: blue;    }
 
 .agent.busy { color: #82c; }
 .agent.yellow { 

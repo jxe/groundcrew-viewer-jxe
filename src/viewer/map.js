@@ -1,12 +1,4 @@
-var map;
-
-function GSmallMapTypeControl() { 
-  GMapTypeControl.call( this, true ); 
-} 
-GSmallMapTypeControl.prototype = new GMapTypeControl(); 
-GSmallMapTypeControl.prototype.constructor = GSmallMapTypeControl; 
-window.GSmallMapTypeControl = GSmallMapTypeControl;
-   
+var map;   
    
 Map = {  
 
@@ -39,7 +31,6 @@ Map = {
     var bRightSnug = new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(5,5));
     var bLeftFurther = new GControlPosition(G_ANCHOR_BOTTOM_LEFT, new GSize(160,5));
     Map.Gmap.addControl(new GSmallZoomControl(), bRightSnug);
-    // Map.Gmap.addControl(new GSmallMapTypeControl(), bRight);
     Map.Gmap.addControl(new GMenuMapTypeControl(), bRight);
   },
   
@@ -66,13 +57,9 @@ Map = {
     } else {
       Map.Gmap.setCenter(bounds.getCenter(), zoom);
     }
-    if (zoom > 9) {
-      // activate panoramio
-      if (!Map.panoLayer) Map.panoLayer = new PanoramioLayer(Map.Gmap);
-      if (!Map.panoLayer.getEnabled()) Map.panoLayer.enable();
-    } else if (Map.panoLayer && Map.panoLayer.getEnabled()) {
-      Map.panoLayer.disable();
-      if (Map.panoLayer.getEnabled()) alert('deactivation failed!');
+    if (!Map.initted) {
+      components.trigger('map_init', Map.Gmap);
+      Map.initted = true;
     }
   },
     

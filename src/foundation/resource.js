@@ -7,7 +7,7 @@ function Resource(tname, options){
 
 Resource.add_or_update = function(item){
   if (item.status == 'dead' && item.item_tag != agent_tag) return Agents.remove(item);
-  item.item_tag.resource_class().add_or_update(item);
+  return item.item_tag.resource_class().add_or_update(item);
 };
 
 $.extend(Resource.prototype, {
@@ -62,6 +62,7 @@ $.extend(Resource.prototype, {
     this.db = { "#id": this.db['#id'] };
     if (this.enhancer) this.enhancer(item);
     if (this.changed) this.changed(item, exists ? 'updated' : 'added');
+    return item;
   },
 
   remove: function(item) {

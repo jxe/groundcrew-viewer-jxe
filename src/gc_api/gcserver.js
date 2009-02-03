@@ -61,7 +61,7 @@ Ajax = {
 // item - an item on the map
 function item(city_id, tag, title, thumb_url, lat, lng, atags, latch, comm, req, json_etc){
   var parts = tag.split('__');
-  Resource.add_or_update($.extend({
+  return Resource.add_or_update($.extend({
     id: Number(parts[1]),
     item_tag: tag,
     title: title,
