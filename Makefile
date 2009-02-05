@@ -1,4 +1,5 @@
 SHELL=/bin/bash
+LANG=C
 
 # bash doesn't know **/*, so we need find
 COMPS = $(shell find components -name "*.html")
