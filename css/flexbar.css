@@ -1,12 +1,13 @@
 #flexbar {
   overflow: hidden;
   -webkit-transition: height 1s ease;
-  height: 24px;
+  height: 21px;
   padding: 0px 30px;
+  margin-top: 3px;
 }
 
 body.flexbar0 #flexbar { height: 24px; }
-body.flexbar1 #flexbar { height: 84px; }
+body.flexbar1 #flexbar { height: 74px; }
 
 #flexbar #agents { width: 10000px; }
 
@@ -14,20 +15,24 @@ body.flexbar1 #flexbar { height: 84px; }
   float: left; display: none;
 }
 
+#flexbar #agents > div > div {
+  height: 50px;
+}
+
 #flexbar #agents h2 {
   padding: 0px 0px 0px 12px;
-  margin: 3px 3px 0px 0px;
+  margin: 0px 3px 0px 0px;
   font-family: helvetica, arial;
   font-size: 12px;
 }
 
 #flexbar #agents h2 em {
-  padding: 1px 4px 0px 4px;
+  padding: 0px 4px 1px 4px;
   font-weight: normal;
   font-style: italic;
   color: black;
-  position: relative;
-  top: 2px;
+/*  position: relative;*/
+/*  bottom: 2px;*/
 }
 
 #flexbar #agents img { max-height: 50px; margin-right: 3px; }
@@ -35,13 +40,13 @@ body.flexbar1 #flexbar { height: 84px; }
 /*#flexbar #agents > div > div { height: 50px; }*/
 /*#flexbar #agents > div > div > img { float: left; }*/
 
-#flexbar #neglected_agents  h2 { border-bottom: solid 3px red;    }
+#flexbar #neglected_agents  h2 { border-top: solid 3px red;    }
 #flexbar #neglected_agents  h2 em { background: red;    }
-#flexbar #ready_agents      h2 { border-bottom: solid 3px green;  }
+#flexbar #ready_agents      h2 { border-top: solid 3px green;  }
 #flexbar #ready_agents  h2 em { background: green;    }
-#flexbar #assigned_agents   h2 { border-bottom: solid 3px yellow; }
+#flexbar #assigned_agents   h2 { border-top: solid 3px yellow; }
 #flexbar #assigned_agents  h2 em { background: yellow;    }
-#flexbar #summonable_agents h2 { border-bottom: solid 3px blue;   }
+#flexbar #summonable_agents h2 { border-top: solid 3px blue;   }
 #flexbar #summonable_agents  h2 em { background: blue;    }
 
 .agent.busy { color: #82c; }

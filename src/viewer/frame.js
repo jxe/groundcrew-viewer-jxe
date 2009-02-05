@@ -14,7 +14,7 @@ Frame = {
     }
     var topbar_height = 62;
     var page_height = window.innerHeight || window.document.body.clientHeight;
-    var flexbar_height = (size == 0) ? 24 : 84;
+    var flexbar_height = (size == 0) ? 24 : 77;
     // var flexbar_height = $('#flexbar').height();
     var map_height = page_height - (topbar_height + flexbar_height);
     $('#map_div').height(map_height);

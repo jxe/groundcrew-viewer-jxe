@@ -91,7 +91,7 @@ $.extend(Viewer, {
   
   
   ag_ct:          function(state) { return pluralize(state.agents.length, 'agent'); },
-  item_thumb_url: function(state) { if (state.item_r) return state.item_r.thumb_url; },
+  item_thumb_url: function(state) { if (state.item_r) return state.item_r.thumb_url.gcify_url(); },
   item_title:     function(state) { return state.item_r.title; }
 
 });
