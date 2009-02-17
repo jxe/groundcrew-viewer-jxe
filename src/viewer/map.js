@@ -47,6 +47,7 @@ Map = {
     if (Viewer.item == agent_tag) {
       // center just above "me"
       if (zoom < 16) zoom = 16;
+      if (zoom > 18) zoom = 18; // marmorkuchen-only: have useable sat imagery
       var map_height = Map.Gmap.getSize().height;
       var mp = new GMercatorProjection(23);
       var me_marker_lat_lng = MapMarkers.cache[agent_tag].getLatLng();
