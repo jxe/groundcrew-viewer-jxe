@@ -34,3 +34,11 @@ BUILD:
 html_and_css: BUILD
 	cat pages/viewer.html $(COMPS) pages/viewer_end.html > BUILD/viewer.html
 	cat {vendor,css}/*.css components/*/*.css > BUILD/viewer.css
+
+DEBUG:
+	cat {vendor,data}/*.js {src,components}/*/*.js > BUILD/viewer.js
+	cp pages/localauth.html BUILD/
+	cat debug/debug.html $(COMPS) pages/viewer_end.html > BUILD/debug.html
+	cat {vendor,css}/*.css components/*/*.css > BUILD/viewer.css
+	cp debug/debug.css BUILD/
+

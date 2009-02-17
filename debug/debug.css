@@ -1,0 +1,13 @@
+#welcome {
+  display: none;
+}
+
+#idea_catalogue_iw {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display:block;
+  z-index: 9;
+  background: white;
+  border: solid thin green;
+}
