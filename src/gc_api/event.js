@@ -3,11 +3,12 @@ Event = {
   improve: function(a) {
     a.when = $time(a.created_at);
     a.color = Event.color(a);
-    a.what = (Event.whats[a.atype] || "did something weird (#{atype})").t(a);
+    a.item = a.item || (a.item_tag && a.item_tag.resource());
     a.item_title = a.item && a.item.title;
     a.landmark = a.landmark_tag && a.landmark_tag.resource();
     a.landmark_title = a.landmark && a.landmark.title;
-    if (a.actor_tag) a.actor_name = a.actor_tag.resource().title;
+    if (a.actor_tag) a.actor_title = a.actor_tag.resource().title;
+    a.what = (Event.whats[a.atype] || "did something weird (#{atype})").t(a);
     return a;
   },
   
@@ -29,11 +30,11 @@ Event = {
     citywish: 
       "where <span class='wish'>#{msg}</span>",
     assignment: 
-      "gave an assignment to <a href='#' item='#{item_tag}'>#{item_name}</a>: <span class='assignment'>#{msg}</span>",
+      "gave an assignment to <a href='#' item='#{item_tag}'>#{item_title}</a>: <span class='assignment'>#{msg}</span>",
     invite:
       "invited #{reach} people to <a href='#' item='#{landmark_tag}'>#{landmark_title}</a> for #{msg}",
     requested:  
-      "activated agent <a href='#' item='#{item_tag}'>#{item_name}</a>",
+      "activated agent <a href='#' item='#{item_tag}'>#{item_title}</a>",
     wish:
       "wished <span class='wish'>to #{msg}</span>",
     new_landmark: 
@@ -51,13 +52,13 @@ Event = {
 
     // others
     msg:
-      "sent a message to <a href='#' item='#{item_tag}'>#{item_name}</a>: <span class='assignment'>#{msg}</span>",
+      "sent a message to <a href='#' item='#{item_tag}'>#{item_title}</a>: <span class='assignment'>#{msg}</span>",
     freed: 
-      "freed <a href='#' item='#{item_tag}'>#{item_name}</a> to do other things",
+      "freed <a href='#' item='#{item_tag}'>#{item_tag}</a> to do other things",
     enlist:
-      "enlisted as part of agent <a href='#' item='#{item_tag}'>#{item_name}</a>'s crew",
+      "enlisted as part of agent <a href='#' item='#{item_tag}'>#{item_tag}</a>'s crew",
     unenlist:
-      "removed themselves from agent <a href='#' item='#{item_tag}'>#{item_name}</a>'s crew",
+      "removed themselves from agent <a href='#' item='#{item_tag}'>#{item_tag}</a>'s crew",
     login:      "logged in",
     unlatched:  "is now free to be organized",
     off:        "is gone",
