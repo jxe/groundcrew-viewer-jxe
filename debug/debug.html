@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+	<title>Groundcrew Viewer - Tell us what to do</title>
+	<link href="viewer.css" media="screen" rel="stylesheet" type="text/css"/>
+	<link href="debug.css" media="screen" rel="stylesheet" type="text/css"/>
+  
+<!--  <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAGqp2ukVwjWFfmC-XmCCZFRRGsPIMf82DrFSwJZKzmHDVn9CoiRSfPwbMs9LeX9Qw4ba2CuYyrEQBZw&amp;hl=" type="text/javascript"></script> 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js" type="text/javascript"></script>
+-->
+  <script src="file:///home/gc/groundcrew/groundcrew-viewer/debug/jquery.min.js" type="text/javascript"></script>
+  <script src="viewer.js" type="text/javascript"></script>
+	<!--[if lte IE 6]>
+	<script type="text/javascript" src="/javascripts/supersleight-min.js"></script>
+	<![endif]-->
+	<script src="data/vstart.js" type="text/javascript"></script>
+</head>
+<body id="viewer" class="loading">
+
+<div id="header">
+  <div id="header_menubar">
+		<img id="load_spinner" src="i/spinner.gif"/>
+		<a class="m_item" target="_" href="http://groundcrew.us/help">help</a>
+		<a class="m_item" target="_" href="http://groups.google.com/group/groundcrew-users">discuss</a>
+		<a class="m_item loo" href="/login">log in</a>
+		<a class="m_item lio" href="/settings" id="settings">settings</a>
+		<a class="m_item lio" href="/logout">sign out</a>
+	</div>
+	<span class="std_click">
+		<a id="logo" href="#/"><img src="i/gclogo_dd.png"/></a>
+	</span>
+</div>
+<div class="magic">
+  <select id="breadcrumbs" observe="breadcrumb_change">
+    <option value="/hero">World</option>
+  </select>  
+  <table id="youbox" class="lio">
+    <tr>
+      <td class="x" valign="bottom">
+    	  <a class="go_to_self" id="youbox_agent" href="#">agent <b id="agent_name"></b></a>
+  	  </td>
+  	  <td>
+      	<img class="go_to_self" id="you_img"/>
+    	</td>
+  	  <td class="x" valign="bottom">
+  	    <b id="cheer_ct">0</b>
+        <a href="#about_posx" rel="facebox">positive experiences caused</a><br>
+        <b id="team_ct">0</b>
+        <a href="#about_squadm" rel="facebox">squad members</a>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="screen">
+  <div id="map_div"></div>
+  <div id="flexbar">
+    <div id="agents">
+      <div id="neglected_agents">
+        <div id="neglected_agent_thumbs"></div>
+        <h2><em>neglected</em></h2>
+      </div>
+      <div id="ready_agents">
+        <div id="ready_agent_thumbs"></div>
+        <h2><em>ready</em></h2>
+      </div>
+      <div id="assigned_agents">
+        <div id="assigned_agent_thumbs"></div>
+        <h2><em>assigned</em></h2>
+      </div>
+      <div id="summonable_agents">
+        <div id="summonable_agent_thumbs"></div>
+        <h2><em>available</em></h2>
+      </div>
+    </div>
+  </div>
+<script>
+$(function(){ViewerUI.init()});
+</script>
