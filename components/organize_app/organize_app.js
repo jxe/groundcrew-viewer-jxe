@@ -7,7 +7,6 @@ Viewer.apps.organize = {
   },
 
   show_item: function(state) {
-    //$('#idea_catalogue_iw').app_paint();
     if (state.item.startsWith('Person'))
       MapMarkers.open(state.item, $.template('#organize_agent_iw').app_paint()[0], 16);
     if (state.item.startsWith('Landmark'))

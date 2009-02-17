@@ -44,7 +44,6 @@ Map = {
     var bounds = new GLatLngBounds(latlngs[0], latlngs[0]);
     for (var i=1; i < latlngs.length; i++) bounds.extend(latlngs[i]);
     var zoom = Map.Gmap.getBoundsZoomLevel(bounds);
-    if (zoom > 18) zoom = 18; // prevent 'sorry' msg in satellite imagery
     if (Viewer.item == agent_tag) {
       // center just above "me"
       if (zoom < 16) zoom = 16;
