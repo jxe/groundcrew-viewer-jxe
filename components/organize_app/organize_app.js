@@ -32,7 +32,7 @@ Viewer.apps.organize = {
   item_didrecent: function(state)  { return " "; },
   
   everyone_will: function(state) {
-    return "Smile mischeviously/Make hand signals/Caress yourself/Hum quietly/Look mysterious".split('/').map(function(x){
+    return "Touch your nose/Smile mischeviously/Make hand signals/Caress yourself/Hum quietly/Look mysterious".split('/').map(function(x){
       return "<option>" + x + "</option>";
     }).join('');
   },
