@@ -1,3 +1,16 @@
-body.organize_app #app_list a.organize_app_link {
-  color: white;
+.stanza {
+  position: relative;
+  border: solid 1px #ccc;
+  padding: 5px 5px;
+  min-height: 20px;
+  padding-right: 25px;
+  margin: 12px 10px;
+  background: #eee;
+}
+
+.stanza img {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background-color: transparent;
 }
