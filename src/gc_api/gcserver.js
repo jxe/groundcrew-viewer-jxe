@@ -130,11 +130,12 @@ function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_
   EventDb.events.push(event);
   if (atype == 'said') Chat.chats.push(event);
   if (atype == 'off') Agents.remove(item_tag);
-  
   if (EventDb.new_events_are_new){
     if (atype == 'said') Chat.update();
     Notifier.did_add_new_event(event);
   }
+  
+  return event;
 }
 
 // login - called to specify the operator of the viewer
