@@ -41,7 +41,12 @@ Viewer = {
 
   go: function(url) {
     // adjust url
-    if (url[0] == '#') return Viewer.dispatch(url.slice(1), Viewer.current_app.state);
+    if (url[0] == '#') {
+      url = url.slice(1);
+      var parts = url.split('/');
+      return Viewer.dispatch(parts[0], Viewer.current_app.state, parts[1]);
+    }
+
     url = Viewer.loc = Viewer.parse_url(url);
     var parts = url.slice(1).split('/');
     var app_name = parts.shift();
