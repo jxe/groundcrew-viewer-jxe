@@ -14,3 +14,43 @@
   top: 0px;
   background-color: transparent;
 }
+
+#idea_catalogue_iw {
+  max-width: 400px;
+  margin-top: 20px;
+}
+
+#idea_catalogue_iw form {
+  position: relative;
+}
+
+#idea_catalogue_categories {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100px;
+}
+
+#idea_catalogue_categories .highlight {
+  font-weight: bold;
+  font-size: large;
+}
+
+#idea_catalogue_categories .non-highlight {
+  font-weight: normal;
+  font-size: normal;
+}
+
+
+#idea_catalogue_ideas {
+  padding-left: 110px;
+}
+
+#build_own {
+  font-size: normal;
+  font-family: Verdana;
+}
+
+#next {
+  font-size: x-large;
+}
