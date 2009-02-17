@@ -12,17 +12,17 @@ Viewer.apps.organize = {
     if (state.item.startsWith('Landmark'))
       MapMarkers.open(state.item, $.template('#organize_landmark_iw').app_paint()[0], 16);
   },
-  
+
   display_assignment_editor: function(state) {
-    return MapMarkers.open(state.item, $.template('#assignment_editor').app_paint()[0], 16);
+    return MapMarkers.open(state.item, $.template('#assignment_editor_iw').app_paint()[0], 16);
   },
-  
+
   build_pos_form_submitted: function(data, state) {
     return MapMarkers.open(state.item, $.template('#idea_catalog_iw').app_paint()[0], 16);
   },
 
   idea_catalog_form_submitted: function(data, state) {
-    return MapMarkers.open(state.item, $.template('#assignment_editor').app_paint()[0], 16);
+    return MapMarkers.open(state.item, $.template('#assignment_editor_iw').app_paint()[0], 16);
   },
 
   item_status: function(state)     { return "This agent is available."; },
@@ -30,23 +30,18 @@ Viewer.apps.organize = {
   item_celebrates: function(state) { return " "; },
   item_helpwith: function(state)   { return " "; },
   item_didrecent: function(state)  { return " "; },
-  
+
   everyone_will: function(state) {
     return "Smile mischeviously/Make hand signals/Caress yourself/Hum quietly/Look mysterious".split('/').map(function(x){
       return "<option>" + x + "</option>";
     }).join('');
-  },
-  
-
-  build_experience: function (state) {
-    MapMarkers.open(state.item, $.template('#idea_catalog_iw').app_paint()[0]);
   },
 
   sanitize_category: function (category) {
     return category.replace(' ', '_');
   },
 
-  idea_categories: function (state) {
+  get_idea_categories: function (state) {
     var data = '';
 
     $keys(IdeaCatalogue).map(function (cat) {
@@ -73,7 +68,7 @@ Viewer.apps.organize = {
     $('#idea_catalog_ideas').app_paint();
   },
 
-  idea_ideas: function (state) {
+  get_idea_ideas: function (state) {
     var data = '';
 
     state.category = state.category || 'all';
