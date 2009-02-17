@@ -25,7 +25,7 @@ Templates = {
   event:
     '<div class="event #{color}">\
      <span class="time">#{when}</span>\
-     <a href="#" item="#{actor_tag}">#{actor_name}</a>\
+     <a href="#" item="#{actor_tag}">#{actor_title}</a>\
      #{what}\
      </div>'
 

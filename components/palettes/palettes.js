@@ -53,7 +53,7 @@ Chat = {
   },
 
   chat_t:
-    '<li title="#{when}"><a href="#" item="#{actor_tag}">#{actor_name}</a>#{what}</li>'
+    '<li title="#{when}"><a href="#" item="#{actor_tag}">#{actor_title}</a>#{what}</li>'
   
 }
 
