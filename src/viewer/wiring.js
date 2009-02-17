@@ -42,6 +42,7 @@ ViewerUI = {
       Frame.set_flexbar_size();
     });
     $('.magic').feature_paint();
+    $('#welcome img.closer').click(function(){ $('#welcome').remove(); });
   }
 
 };
