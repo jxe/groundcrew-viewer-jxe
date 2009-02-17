@@ -31,12 +31,12 @@
   width: 100px;
 }
 
-#idea_catalogue_categories .highlight {
+#idea_catalogue_categories a.highlight {
   font-weight: bold;
   font-size: large;
 }
 
-#idea_catalogue_categories .non-highlight {
+#idea_catalogue_categories a {
   font-weight: normal;
   font-size: normal;
 }
@@ -49,8 +49,4 @@
 #build_own {
   font-size: normal;
   font-family: Verdana;
-}
-
-#next {
-  font-size: x-large;
 }

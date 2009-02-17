@@ -64,10 +64,10 @@ Viewer.apps.organize = {
     $keys(IdeaCatalogue).map(function (cat) {
       var cat = Viewer.apps.organize.sanitize_category(cat);
       if (state.category != cat) {
-        $('#idea_catalogue_categories_' + cat).attr('class', 'non-highlight');
+        $('#idea_catalogue_categories_' + cat).removeAttr('class');
       }
     });
-    $('#idea_catalogue_categories_all').attr('class', 'non-highlight');
+    $('#idea_catalogue_categories_all').removeAttr('class');
 
     $('#idea_catalogue_categories_' + category).attr('class', 'highlight');
     $('#idea_catalogue_ideas').app_paint();
