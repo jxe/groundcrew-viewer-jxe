@@ -37,6 +37,7 @@ Ajax = {
     });
 
     EventDb.new_events_are_new = true;
+    Ajax.schedule_autoload();
   },
   
   schedule_autoload: function(){
