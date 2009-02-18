@@ -112,6 +112,10 @@ Viewer = {
       if (x) {
         breadcrumb_url += "/" + x;
         var breadcrumb_label = state[label + "_label"] || x;
+        var label_max = 25;
+        if (breadcrumb_label.length > label_max) {
+          breadcrumb_label = breadcrumb_label.slice(0, label_max) + ' ...';
+        }
         breadcrumbs.push(tag('option', {value:breadcrumb_url, content:breadcrumb_label}));
       }
     });
