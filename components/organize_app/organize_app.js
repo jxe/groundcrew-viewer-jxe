@@ -7,6 +7,7 @@ Viewer.apps.organize = {
   },
 
   show_item: function(state) {
+    //$('#live_event_iw').app_paint(); // debug
     if (state.item.startsWith('Person'))
       MapMarkers.open(state.item, $.template('#organize_agent_iw').app_paint()[0], 16);
     if (state.item.startsWith('Landmark'))
@@ -23,6 +24,10 @@ Viewer.apps.organize = {
 
   idea_catalog_form_submitted: function(data, state) {
     return MapMarkers.open(state.item, $.template('#assignment_editor_iw').app_paint()[0], 16);
+  },
+
+  send_assignment_form_submitted: function(data, state) {
+    return MapMarkers.open(state.item, $.template('#live_event_iw').app_paint()[0], 16);
   },
 
   item_status: function(state)     { return "This agent is available."; },
@@ -83,7 +88,37 @@ Viewer.apps.organize = {
     });
 
     return data;
-  }
+  },
+
+  get_live_event_info: function (state) {
+    var data = '';
+    var landmark_tag = state.item.resource().item_tag;
+    EventDb.events.map(function (ev) {
+      var include = false;
+
+      if (EventDb.seen[ev.re]) {
+        var parent_landmark_tag = EventDb.seen[ev.re].landmark_tag;
+        if (parent_landmark_tag == landmark_tag &&
+            EventDb.watched[parent_landmark_tag]) {
+          include = true;
+        }
+      }
+      else if (landmark_tag == ev.landmark_tag &&
+               EventDb.watched[ev.landmark_tag]) {
+        include = true;
+      }
+
+      if (include) {
+        ev = Event.improve(ev);
+        data += Templates.event.t(ev);
+      }
+    });
+    return data;
+  },
+
+  get_live_event_landmark: function (state) {
+    return state.item.resource().title;
+  },
 };
 
 var IdeaCatalogue = { 'good deeds': [
