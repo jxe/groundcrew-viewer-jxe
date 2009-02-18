@@ -42,7 +42,8 @@ $.extend(Viewer, {
   },
 
   agents_to_guide: function(state) {
-    var agents = Agents.find("=city_id " + Viewer.selected_city);
+    var agents = Viewer.current_app.state.agents;
+    if (!agents) return [];
     return agents.map(function(a){ 
       a.wants = agent_wants(a);
       a.time = ['20 MIN', '1 HR', '5 MIN'].choose_random();

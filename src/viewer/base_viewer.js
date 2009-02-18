@@ -13,7 +13,13 @@ Viewer = {
   open: function(tag) {
     $('#welcome').remove();
     unreveal();
-    [Viewer.current_app, Viewer].dispatch('marker_clicked', tag, Viewer.current_app.state);
+    if (!Viewer.selected_city) {
+      var city_id = tag.resource().city_id;
+      Viewer.go('/organize/your_personal_squad/City__' + city_id + '/' + tag);
+    } else {
+      [Viewer.current_app, Viewer].dispatch(
+        'marker_clicked', tag, Viewer.current_app.state);
+    }
   },
   
   marker_clicked: function(tag) {
@@ -90,14 +96,17 @@ Viewer = {
     $('#breadcrumbs').html(Viewer.breadcrumbs()).val(url);
     delete state.first;
   },
-  
+
   breadcrumbs: function() {
     var app_name = Viewer.current_app_name;
     var app = Viewer.current_app;
     var state = app.state;
     var breadcrumbs = [];
     var breadcrumb_url = '/' + app_name;
-    
+
+    // push World
+    breadcrumbs.push(tag('option', {value:'/hero', content:'World'}));
+
     $.each(app.url_part_labels, function(i, label){
       var x = state[label];
       if (x) {
@@ -108,7 +117,7 @@ Viewer = {
     });
     return breadcrumbs.join(' ');
   },
-  
+
   render: function(renderer) {
     var app_name = Viewer.current_app_name;
     var app = Viewer.current_app;
