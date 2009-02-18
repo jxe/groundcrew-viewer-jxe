@@ -33,6 +33,7 @@ LandmarkLayer = {
   },
   
   city_changed: function(city) {
+    if (!city) return;
     if (!Map.Gmap) return;
     var lms = Landmarks.in_city(city);
     if (lms) Map.add(lms.map(LandmarkLayer.marker_for_lm));
