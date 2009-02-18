@@ -67,7 +67,7 @@ Viewer.apps.organize = {
     return category.replace(' ', '_');
   },
 
-  get_idea_categories: function (state) {
+  idea_categories: function (state) {
     var data = '';
 
     $keys(IdeaCatalogue).map(function (cat) {
@@ -94,7 +94,7 @@ Viewer.apps.organize = {
     $('#idea_catalog_ideas').app_paint();
   },
 
-  get_idea_ideas: function (state) {
+  idea_ideas: function (state) {
     var data = '';
 
     state.category = state.category || 'all';
@@ -125,7 +125,7 @@ Viewer.apps.organize = {
     return data;
   },
 
-  get_live_event_landmark: function (state) {
+  live_event_landmark: function (state) {
     return state.item.resource().title;
   },
 };
