@@ -48,17 +48,14 @@ Ajax = {
   autoload: function(){
     $.getScript('/data/this10.js');
     /*
-    // debug
-    event("Annc__2600",1234657935,"assignment","Person__51315",null,null,null,"Person__12",null,{"msg":"bounce!", 'landmark_tag':'Landmark__1'});
-    event("Annc__2601",1234658435,"said","Person__12",'Annc__2600',null,null,"Person__1",null,{"msg":"gonna make it so!"});
+    event("Annc__2401",1234657345,"report","Person__51315",'Annc__2400',null,null,null,null,{'msg':'nobody here'});
+    event("Annc__2402",1234657655,"accepted","Person__1",'Annc__2400',null,null,null,null,null);
     */
 
     if (EventDb.watch_needs_update) {
       EventDb.watch_needs_update = false;
-      //$('#live_event_iw').app_paint(); // debug
       MapMarkers.open(Viewer.current_app.state.item, $.template('#live_event_iw').app_paint()[0], 16);
     }
-    //Ajax.timer = setTimeout(Ajax.autoload, Ajax.interval); // debug
   },
 
   fetch: function(url, options, after){
@@ -151,11 +148,6 @@ function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_
     Notifier.did_add_new_event(event);
   }
 
-  // add landmark tag to the list watched by current agent + flag update
-  if (agent_tag == actor_tag && json_etc['landmark_tag']) {
-    EventDb.watched[json_etc['landmark_tag']] = annc_tag;
-    EventDb.watch_needs_update = true;
-  }
   // flag update if this event relates to a watched one
   if (EventDb.seen[re]) {
     var parent_landmark_tag = EventDb.seen[re].landmark_tag;

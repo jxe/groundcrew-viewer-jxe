@@ -1,13 +1,18 @@
 Viewer.apps.organize = {
-  url_part_labels: $w('squad city item'),
+  url_part_labels: $w('squad city item live_event'),
 
   marker_clicked: function(tag, state) {
     squad = state.squad || 'your_personal_squad';
     Viewer.go('/organize/'+ squad +'/:city/' + tag);
   },
 
+  // debug
+  show_live_event: function (state) {
+    $('#welcome').remove();
+    MapMarkers.open(state.item, $.template('#assignment_editor_iw').app_paint()[0], 16);
+  },
+
   show_item: function(state) {
-    //$('#live_event_iw').app_paint(); // debug
     if (state.item.startsWith('Person'))
       MapMarkers.open(state.item, $.template('#organize_agent_iw').app_paint()[0], 16);
     if (state.item.startsWith('Landmark'))
@@ -31,7 +36,19 @@ Viewer.apps.organize = {
   },
 
   send_assignment_form_submitted: function(data, state) {
+    // debug
+  /*
+    ev = event("Annc__2400",1234657235,"invite","Person__51315",null,null,null,null,null,{"landmark_tag":state.item, "reach": 23, 'msg':'random stuffz'});
+    EventDb.watched[ev.landmark_tag] = ev.annc_tag;
+
     return MapMarkers.open(state.item, $.template('#live_event_iw').app_paint()[0], 16);
+  */
+
+    Ajax.fetch('/gc/invite', {invitation:data}, function(ev){
+      EventDb.watch[ev.landmark_tag] = ev.annc_tag;
+      return MapMarkers.open(
+        state.item, $.template('#live_event_iw').app_paint()[0], 16);
+    });
   },
 
   item_status: function(state)     { return "This agent is available."; },
@@ -94,25 +111,13 @@ Viewer.apps.organize = {
     return data;
   },
 
-  get_live_event_info: function (state) {
+  live_event_info: function (state) {
+    var parent_annc_tag = EventDb.watched[state.item];
+    if (!parent_annc_tag) return 'No event!';
+
     var data = '';
-    var landmark_tag = state.item.resource().item_tag;
     EventDb.events.map(function (ev) {
-      var include = false;
-
-      if (EventDb.seen[ev.re]) {
-        var parent_landmark_tag = EventDb.seen[ev.re].landmark_tag;
-        if (parent_landmark_tag == landmark_tag &&
-            EventDb.watched[parent_landmark_tag]) {
-          include = true;
-        }
-      }
-      else if (landmark_tag == ev.landmark_tag &&
-               EventDb.watched[ev.landmark_tag]) {
-        include = true;
-      }
-
-      if (include) {
+      if (ev.re == parent_annc_tag || ev.annc_tag == parent_annc_tag) {
         ev = Event.improve(ev);
         data += Templates.event.t(ev);
       }
