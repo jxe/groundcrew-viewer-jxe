@@ -164,6 +164,8 @@ function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_
       EventDb.watch_needs_update = true;
     }
   }
+
+  return event;
 }
 
 // login - called to specify the operator of the viewer

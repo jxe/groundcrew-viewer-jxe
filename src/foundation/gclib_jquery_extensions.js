@@ -144,7 +144,7 @@ $.cookie = function(name, value) {
     for (var i in cookies) {
       if (cookies[i].split) {
         var part = cookies[i].split('=');
-        if (part[0] == name) return decodeURIComponent(part[1]);
+        if (part[0] == name) return decodeURIComponent(part[1].replace(/\+/g, ' '));
       }
     }
     return null;

@@ -18,6 +18,10 @@ Viewer.apps.organize = {
     return MapMarkers.open(state.item, $.template('#assignment_editor_iw').app_paint()[0], 16);
   },
 
+  display_build_experience: function(state) {
+    return MapMarkers.open(state.item, $.template('#idea_catalog_iw').app_paint()[0], 16);
+  },
+
   build_pos_form_submitted: function(data, state) {
     return MapMarkers.open(state.item, $.template('#idea_catalog_iw').app_paint()[0], 16);
   },
@@ -37,7 +41,7 @@ Viewer.apps.organize = {
   item_didrecent: function(state)  { return " "; },
 
   everyone_will: function(state) {
-    return "Smile mischeviously/Make hand signals/Caress yourself/Hum quietly/Look mysterious".split('/').map(function(x){
+    return "Touch your nose/Smile mischeviously/Make hand signals/Caress yourself/Hum quietly/Look mysterious".split('/').map(function(x){
       return "<option>" + x + "</option>";
     }).join('');
   },
