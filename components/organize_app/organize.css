@@ -9,7 +9,7 @@
   background: #eee;
 }
 
-.stanza img {
+.stanza .plus {
   position: absolute;
   right: 0px;
   top: 0px;
@@ -61,4 +61,36 @@
   display: none;
 }
 
+#organize_landmark_iw {
+  max-width: 400px;
+  display: none;
+}
 
+#organize_landmark_thumb {
+  height: 100px;
+  width: 100px;
+  float: left;
+  display: block;
+}
+
+#organize_landmark_iw form {
+  margin-top: 100px;
+}
+
+#landmark_editor_iw label {
+ vertical-align: top;
+ position: absolute;
+ top: 0px;
+ left: 0px;
+ width: 150px;
+ padding-top: 5px;
+ padding-left: 5px;
+}
+
+#landmark_editor_iw input {
+ margin-left: 160px;
+}
+
+#landmark_editor_iw textarea {
+ margin-left: 160px;
+}

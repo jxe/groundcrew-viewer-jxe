@@ -27,6 +27,11 @@ Viewer.apps.organize = {
     return MapMarkers.open(state.item, $.template('#idea_catalog_iw').app_paint()[0], 16);
   },
 
+  display_landmark_editor: function(state, ref_template) {
+    state.ref_template = ref_template
+    return MapMarkers.open(state.item, $.template('#landmark_editor_iw').app_paint()[0], 16);
+  },
+
   build_pos_form_submitted: function(data, state) {
     return MapMarkers.open(state.item, $.template('#idea_catalog_iw').app_paint()[0], 16);
   },
@@ -49,6 +54,18 @@ Viewer.apps.organize = {
       return MapMarkers.open(
         state.item, $.template('#live_event_iw').app_paint()[0], 16);
     });
+  },
+
+  send_landmark_form_submitted: function(data, state) {
+    // do server stuff
+
+    // return to referrer template
+    var ref_template = 'organize_landmark_iw';
+    if (state.ref_template) {
+      ref_template = state.ref_template;
+    }
+    return MapMarkers.open(
+      state.item, $.template('#' + ref_template).app_paint()[0], 16);
   },
 
   item_status: function(state)     { return "This agent is available."; },
