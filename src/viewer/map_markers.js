@@ -7,7 +7,13 @@ MapMarkers = {
     if (this.iw_marker == marker)
       return Map.Gmap.updateCurrentTab(function(tab){ tab.contentElem = content; });
     this.iw_marker = marker;
-    if (Map.Gmap.getZoom() < min_zoom) Map.Gmap.setCenter(marker.getLatLng(), min_zoom);
+    
+    // rezoom (unless the user has changed the zoom recently)
+    if (Map.Gmap.getZoom() < min_zoom && Map.Gmap.getZoom() == Map.last_zoom_auto_set) {
+      Map.last_zoom_auto_set = min_zoom;
+      Map.Gmap.setCenter(marker.getLatLng(), min_zoom);
+    }
+
     this.iw_marker.openInfoWindow(content, {noCloseOnClick: true});
   },
       
