@@ -1,18 +1,3 @@
-#mobilize_show_city {display:none;}
-body.mobilize_app.show_city #mobilize_show_city {display:block;}
-#mobilize_show_category {display: none;}
-body.mobilize_app.show_category #mobilize_show_category {display: block;}
-#mobilize_show_idea {display:none;}
-body.mobilize_app.show_idea #mobilize_show_idea {display:block;}
-#invite_dialog {display:none;}
-body.mobilize_app.show_idea #invite_dialog {display:block;}
-#mobilize_show_celebrations {display:none;}
-body.mobilize_app.show_celebrations #mobilize_show_celebrations {display:block;}
-
-body.mobilize_app #app_list a.mobilize_app_link {
-  color: white;
-}
-
 #lm_limits[limit="park"]   a[href="##limit_park"]   { font-weight: bold; }
 #lm_limits[limit="room"]   a[href="##limit_room"]   { font-weight: bold; }
 #lm_limits[limit="cafe"]   a[href="##limit_cafe"]   { font-weight: bold; }

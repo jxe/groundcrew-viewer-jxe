@@ -23,6 +23,16 @@ $.fn.show_dialog = function(f){
   this.find('input:first').focus();
 };
 
+$.fn.onscreen = function(){
+  var x = this.appendTo("#screen");
+  if (x.is('.divcenter')) x.center();
+  return x;
+};
+
+$.fn.offscreen = function(){
+  return this.appendTo("#offscreen");
+};
+
 $.fn.center = function(){
   var window_width = window.innerWidth || window.document.body.clientWidth;
   return this.each(function(){

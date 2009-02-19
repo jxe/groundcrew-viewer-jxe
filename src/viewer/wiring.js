@@ -5,8 +5,6 @@ ViewerUI = {
   
   init: function() {
     Frame.set_flexbar_size(1);
-    $('.divcenter').center();
-
     // load the user data
     if (!person_item) {
       var user_item_json  = $.cookie('user_item');
@@ -17,11 +15,11 @@ ViewerUI = {
     }
     
     this.activateUI();
-    var starter_url = "/hero/City__220";
+    var starter_url = "/welcome/beginner";
     if (logged_in) {
       Agents.add_or_update(person_item);
       $('body').addClass('logged_in');
-      starter_url = '/hero/City__' + person_item.city_id;
+      // starter_url = '/hero/City__' + person_item.city_id;
     } else {
       $('body').addClass('logged_out');
     }

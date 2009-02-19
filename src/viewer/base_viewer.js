@@ -11,14 +11,12 @@ Viewer = {
   rendered: false,
 
   open: function(tag) {
-    $('#welcome').remove();
     unreveal();
     if (!Viewer.selected_city) {
       var city_id = tag.resource().city_id;
       Viewer.go('/organize/your_personal_squad/City__' + city_id + '/' + tag);
     } else {
-      [Viewer.current_app, Viewer].dispatch(
-        'marker_clicked', tag, Viewer.current_app.state);
+      [Viewer.current_app, Viewer].dispatch('marker_clicked', tag, Viewer.current_app.state);
     }
   },
   
@@ -46,6 +44,7 @@ Viewer = {
   },
 
   go: function(url) {
+    console.log('Viewer.go('+url+')');
     // adjust url
     if (url[0] == '#') {
       url = url.slice(1);
@@ -84,6 +83,7 @@ Viewer = {
         state.agents = state.city ? Agents.in_city(state.city) : Agents.all;
       MapMarkers.display(state.city, state.agents);
       Frame.populate_flexbar_agents(state.agents);
+      $('.palette').app_paint();
       Viewer.prev_agents = state.agents;
     }
     
@@ -105,13 +105,17 @@ Viewer = {
     var breadcrumb_url = '/' + app_name;
 
     // push World
-    breadcrumbs.push(tag('option', {value:'/hero', content:'World'}));
+    breadcrumbs.push(tag('option', {value:'/welcome', content:'World'}));
 
     $.each(app.url_part_labels, function(i, label){
       var x = state[label];
       if (x) {
         breadcrumb_url += "/" + x;
         var breadcrumb_label = state[label + "_label"] || x;
+        var label_max = 25;
+        if (breadcrumb_label.length > label_max) {
+          breadcrumb_label = breadcrumb_label.slice(0, label_max) + ' ...';
+        }
         breadcrumbs.push(tag('option', {value:breadcrumb_url, content:breadcrumb_label}));
       }
     });
@@ -123,13 +127,15 @@ Viewer = {
     var app = Viewer.current_app;
     var state = app.state;
     
-    // Map.Gmap && Map.Gmap.closeInfoWindow();
-    if (Viewer.prev_renderer) $('body').removeClass(Viewer.prev_renderer);
+    if (Viewer.renderer) $('body').removeClass(Viewer.renderer);
+    if (Viewer.painted_elements) Viewer.painted_elements.offscreen();
     
-    Viewer.prev_renderer = renderer;
+    Viewer.renderer = renderer;
+    Viewer.painted_elements = $("." + app_name + "." + Viewer.renderer);
+    
+    Viewer.painted_elements.onscreen().app_paint();
     $('body').addClass(renderer);
-    $('.palette').app_paint();
-    $('#' + app_name + "_" + renderer).app_paint();
+
     Viewer.rendered = true;
   },
   

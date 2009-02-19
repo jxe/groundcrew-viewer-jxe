@@ -2,7 +2,7 @@ var revealed = null;
 
 function unreveal(){
   if (!revealed) return;
-  revealed.removeClass('revealed');
+  revealed.offscreen();
   $('body').removeClass('has_reveal');
   revealed = null;
 }
@@ -21,7 +21,7 @@ $.fn.feature_paint = function(){
     var name = obj.attr('reveal');
     var thing = $('#' + name);
     obj.unbind('click').click(function(){
-      if (revealed) revealed.removeClass('revealed');
+      if (revealed) revealed.offscreen();
       if (revealed == thing) {
         $('body').removeClass('has_reveal');
         revealed = null;
@@ -29,7 +29,7 @@ $.fn.feature_paint = function(){
       else {
         if (Palettes[name]) Palettes[name](thing);
         $('body').addClass('has_reveal');
-        revealed = thing.addClass('revealed');
+        revealed = thing.onscreen();
       }
       return false;
     });

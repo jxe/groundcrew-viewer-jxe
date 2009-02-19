@@ -46,7 +46,9 @@ MapMarkers = {
     var lng = city_locs[city_id][1];
     var marker = MapMarkers.marker(lat, lng, 'ninjaguy', cities[city_id]);
 
-    GEvent.addListener( marker, "click", function() { Viewer.go("/mobilize/:city"); });
+    GEvent.addListener( marker, "click", function() { 
+      Viewer.go("/organize/your_squad/City__" + city_id); 
+    });
     
     MapMarkers.cache[city_id] = marker;
     return marker;

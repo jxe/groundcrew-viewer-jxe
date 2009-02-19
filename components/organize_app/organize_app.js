@@ -1,9 +1,15 @@
 Viewer.apps.organize = {
-  url_part_labels: $w('squad city item'),
+  url_part_labels: $w('squad city item live_event'),
 
   marker_clicked: function(tag, state) {
     squad = state.squad || 'your_personal_squad';
     Viewer.go('/organize/'+ squad +'/:city/' + tag);
+  },
+
+  // debug
+  show_live_event: function (state) {
+    $('#welcome').remove();
+    MapMarkers.open(state.item, $.template('#assignment_editor_iw').app_paint()[0], 16);
   },
 
   show_item: function(state) {
@@ -12,7 +18,7 @@ Viewer.apps.organize = {
     if (state.item.startsWith('Landmark'))
       MapMarkers.open(state.item, $.template('#organize_landmark_iw').app_paint()[0], 16);
   },
-  
+
   display_assignment_editor: function(state) {
     return MapMarkers.open(state.item, $.template('#assignment_editor_iw').app_paint()[0], 16);
   },
@@ -67,13 +73,12 @@ Viewer.apps.organize = {
   item_celebrates: function(state) { return " "; },
   item_helpwith: function(state)   { return " "; },
   item_didrecent: function(state)  { return " "; },
-  
+
   everyone_will: function(state) {
     return "Touch your nose/Smile mischeviously/Make hand signals/Caress yourself/Hum quietly/Look mysterious".split('/').map(function(x){
       return "<option>" + x + "</option>";
     }).join('');
   },
-  
 
   sanitize_category: function (category) {
     return category.replace(' ', '_');
@@ -121,7 +126,25 @@ Viewer.apps.organize = {
     });
 
     return data;
-  }
+  },
+
+  live_event_info: function (state) {
+    var parent_annc_tag = EventDb.watched[state.item];
+    if (!parent_annc_tag) return 'No event!';
+
+    var data = '';
+    EventDb.events.map(function (ev) {
+      if (ev.re == parent_annc_tag || ev.annc_tag == parent_annc_tag) {
+        ev = Event.improve(ev);
+        data += Templates.event.t(ev);
+      }
+    });
+    return data;
+  },
+
+  live_event_landmark: function (state) {
+    return state.item.resource().title;
+  },
 };
 
 var IdeaCatalogue = { 'good deeds': [

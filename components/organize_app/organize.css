@@ -18,7 +18,6 @@
 
 #idea_catalog_iw {
   max-width: 400px;
-  display: none;
 }
 
 #idea_catalog_iw form {
@@ -53,17 +52,14 @@
 
 #live_event_iw {
   max-width: 400px;
-  display: none;
 }
 
 #assignment_editor_iw {
   max-width: 400px;
-  display: none;
 }
 
 #organize_landmark_iw {
   max-width: 400px;
-  display: none;
 }
 
 #organize_landmark_thumb {

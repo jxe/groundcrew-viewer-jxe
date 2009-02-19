@@ -14,6 +14,7 @@
 Ajax = {
   interval: 20 * 1000,
   timer: null,
+  post_process_new_events: {},
 
   uuid: function() {
     return agent_tag + '_' + new Date().getTime();
@@ -31,14 +32,15 @@ Ajax = {
     $.ajaxSetup({
       error: function(req, textStatus, errorThrown){
         if (req.status == 404) return;
-        if (errorThrown){ throw errorThrown;  }
+        if (errorThrown){ throw errorThrown; }
         if (req.responseText) $.facebox(req.responseText);
       }
     });
 
     EventDb.new_events_are_new = true;
+    Ajax.schedule_autoload();
   },
-  
+
   schedule_autoload: function(){
     if (Ajax.timer) clearTimeout(Ajax.timer);
     Ajax.timer = setTimeout(Ajax.autoload, Ajax.interval);
@@ -46,6 +48,8 @@ Ajax = {
 
   autoload: function(){
     $.getScript('/data/this10.js');
+    $.each(Ajax.post_process_new_events, function(i, obj){ obj(); });
+    Ajax.post_process_new_events = {};
   },
 
   fetch: function(url, options, after){
@@ -99,15 +103,15 @@ function idea(tag, title, atags, ltypes, json_etc){
 
 EventDb = {};
 EventDb.events = [];
-EventDb.seen = {};
+EventDb.by_tag = {};
+EventDb.watched = {};
 EventDb.new_events_are_new = false;
 
 // event - anything that happened
 function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_tag, item_changes, json_etc){
-  
-  if (EventDb.seen[annc_tag]) return;
-  EventDb.seen[annc_tag] = true;
-  
+
+  if (EventDb.by_tag[annc_tag]) return;
+
   var event = $.extend({
     annc_tag: annc_tag,
     item_tag: item_tag,
@@ -118,6 +122,8 @@ function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_
     atags: atags,
     city_id: city_id
   }, json_etc);
+  
+  EventDb.by_tag[annc_tag] = event;
 
   // handle any item changes packed in this event
   if (item_tag && item_changes) {
@@ -125,16 +131,27 @@ function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_
     $.extend(item, item_changes);
     Resource.add_or_update(item);
   };
-  
+
   // add it to the list of all events
   EventDb.events.push(event);
   if (atype == 'said') Chat.chats.push(event);
   if (atype == 'off') Agents.remove(item_tag);
-  if (EventDb.new_events_are_new){
-    if (atype == 'said') Chat.update();
-    Notifier.did_add_new_event(event);
-  }
+
+  if (!EventDb.new_events_are_new) return event;
+
+  Notifier.did_add_new_event(event);
+  if (atype == 'said') Chat.update();
   
+  // if it has a parent, we might be watching it
+  if (!re || !EventDb.by_tag[re]) return event;
+
+  // are we displaying it's parent right now?
+  if (EventDb.by_tag[re].landmark_tag == Viewer.current_app.state.item) {
+    Ajax.post_process_new_events['update_current_watched_event'] = function(){
+      MapMarkers.open(Viewer.current_app.state.item, $.template('#live_event_iw').app_paint()[0], 16);
+    };
+  }
+
   return event;
 }
 

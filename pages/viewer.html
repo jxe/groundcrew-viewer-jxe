@@ -29,7 +29,7 @@
 </div>
 <div class="magic">
   <select id="breadcrumbs" observe="breadcrumb_change">
-    <option value="/hero">World</option>
+    <option value="/welcome">World</option>
   </select>  
   <table id="youbox" class="lio">
     <tr>
@@ -49,6 +49,13 @@
   </table>
 </div>
 <div id="screen">
+  <div class="magic">
+    <img class="rside" style="top:40px; right:4px" reveal="people_palette" src="i/icons/people_icon35.png" title="see available agents"/>
+    <img class="rside" style="top:90px; right:2px" reveal="ideas_palette" src="i/icons/lightbulb_icon29.png" title="start something"/>
+    <img class="rside" style="top:140px; right:0px" reveal="resource_palette" src="i/icons/gift23.png" title="free stuff"/>
+    <img class="lside" style="top:50px" reveal="chat_palette" src="i/icons/chat_icon18.png" title="chat with other organizers"/>
+    <img class="lside" style="top:90px; left: 2px" reveal="recent_content" src="i/icons/scroll.png" title="view recent events"/>
+  </div>
   <div id="map_div"></div>
   <div id="flexbar">
     <div id="agents">
@@ -70,6 +77,8 @@
       </div>
     </div>
   </div>
+</div>
+<div id="offscreen" style="display:none">
 <script>
 $(function(){ViewerUI.init()});
 </script>

@@ -1,3 +1,26 @@
+var atag_trans = {
+  conn: 'connection',
+  bene: 'kindness',
+  food: 'food',
+  adv: 'adventures',
+  mgames: 'puzzles',
+  vol: 'volunteering',
+  stretchme: 'challenge',
+  stealth: 'stealth',
+  pchal: 'challenge',
+  pgrowth: 'challenge',
+  convo: 'conversation',
+  beauty: 'beauty',
+  raok: 'kindness'
+};
+
+function agent_wants(agent){
+  var translated = agent.atags.split(' ').map(function(x){ return atag_trans[x]; }).compact();
+  if (translated.length == 0) return null
+  return translated.choose_random().toUpperCase();
+}
+
+
 Palettes = {}
 Palettes.recent_content = function(thing){
   var events = EventDb.events;
