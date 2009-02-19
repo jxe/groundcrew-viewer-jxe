@@ -142,15 +142,8 @@ function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_
   Notifier.did_add_new_event(event);
   if (atype == 'said') Chat.update();
   
-  // if it has a parent, we might be watching it
-  if (!re || !EventDb.by_tag[re]) return event;
-
-  // are we displaying it's parent right now?
-  if (EventDb.by_tag[re].landmark_tag == Viewer.current_app.state.item) {
-    Ajax.post_process_new_events['update_current_watched_event'] = function(){
-      MapMarkers.open(Viewer.current_app.state.item, $.template('#live_event_iw').app_paint()[0], 16);
-    };
-  }
+  // do app specific stuff
+  if (Viewer.current_app.on_new_event) Viewer.current_app.on_new_event(event);
 
   return event;
 }

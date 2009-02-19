@@ -8,66 +8,60 @@ Viewer.apps.organize = {
 
   // debug
   show_live_event: function (state) {
-    $('#welcome').remove();
-    MapMarkers.open(state.item, $.template('#assignment_editor_iw').app_paint()[0], 16);
+    Viewer.render_item('assignment_editor');
   },
 
   show_item: function(state) {
-    if (state.item.startsWith('Person'))
-      MapMarkers.open(state.item, $.template('#organize_agent_iw').app_paint()[0], 16);
-    if (state.item.startsWith('Landmark'))
-      MapMarkers.open(state.item, $.template('#organize_landmark_iw').app_paint()[0], 16);
+    if (state.item.startsWith('Person'))   Viewer.render_item('organize_agent', 16);
+    if (state.item.startsWith('Landmark')) Viewer.render_item('organize_landmark');
   },
 
   display_assignment_editor: function(state) {
-    return MapMarkers.open(state.item, $.template('#assignment_editor_iw').app_paint()[0], 16);
+    Viewer.render_item('assignment_editor');
   },
 
   display_build_experience: function(state) {
-    return MapMarkers.open(state.item, $.template('#idea_catalog_iw').app_paint()[0], 16);
+    Viewer.render_item('idea_catalog');
   },
 
   display_landmark_editor: function(state, ref_template) {
     state.ref_template = ref_template
-    return MapMarkers.open(state.item, $.template('#landmark_editor_iw').app_paint()[0], 16);
+    Viewer.render_item('landmark_editor');
   },
 
   build_pos_form_submitted: function(data, state) {
-    return MapMarkers.open(state.item, $.template('#idea_catalog_iw').app_paint()[0], 16);
+    Viewer.render_item('idea_catalog');
   },
 
   idea_catalog_form_submitted: function(data, state) {
-    return MapMarkers.open(state.item, $.template('#assignment_editor_iw').app_paint()[0], 16);
+    Viewer.render_item('assignment_editor');
   },
 
   send_assignment_form_submitted: function(data, state) {
-    // debug
-  /*
-    ev = event("Annc__2400",1234657235,"invite","Person__51315",null,null,null,null,null,{"landmark_tag":state.item, "reach": 23, 'msg':'random stuffz'});
-    EventDb.watched[ev.landmark_tag] = ev.annc_tag;
-
-    return MapMarkers.open(state.item, $.template('#live_event_iw').app_paint()[0], 16);
-  */
-
-    Ajax.fetch('/gc/invite', {invitation:data}, function(ev){
-      EventDb.watch[ev.landmark_tag] = ev.annc_tag;
-      return MapMarkers.open(
-        state.item, $.template('#live_event_iw').app_paint()[0], 16);
-    });
+    // Ajax.fetch('/gc/invite', {invitation:data}, function(ev){
+    EventDb.watch[ev.landmark_tag] = ev.annc_tag;
+    Viewer.render_item('live_event');
   },
 
   send_landmark_form_submitted: function(data, state) {
-    // do server stuff
+    // Ajax.fetch('/gc/edit_landmark', {lm:data}, function(ev){
 
     // return to referrer template
-    var ref_template = 'organize_landmark_iw';
-    if (state.ref_template) {
-      ref_template = state.ref_template;
-    }
-    return MapMarkers.open(
-      state.item, $.template('#' + ref_template).app_paint()[0], 16);
+    var ref_template = 'organize_landmark';
+    if (state.ref_template) { ref_template = state.ref_template; }
+    Viewer.render_item('ref_template');
   },
+  
+  on_new_event: function(event) {
+    if (!this.state.item || !event.re || !EventDb.by_tag[re]) return;
 
+    // are we displaying it's parent right now?
+    if (this.state.item == EventDb.by_tag[event.re].landmark_tag) {
+      Ajax.post_process_new_events['update_current_watched_event'] = function(){ Viewer.render_item('live_event'); };
+    }
+  },
+  
+  
   item_status: function(state)     { return "This agent is available."; },
   item_believesin: function(state) { return " "; },
   item_celebrates: function(state) { return " "; },

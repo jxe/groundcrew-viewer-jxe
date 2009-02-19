@@ -139,6 +139,16 @@ Viewer = {
     Viewer.rendered = true;
   },
   
+  render_item: function(template_name) {
+    if (Viewer.renderer) $('body').removeClass(Viewer.renderer);
+    if (Viewer.painted_elements) Viewer.painted_elements.offscreen();
+    Viewer.renderer = null;
+    Viewer.painted_elements = null;    
+    MapMarkers.open(Viewer.current_app.state.item, $.template('#' + template_name + '_iw').app_paint()[0], 16);
+    Viewer.rendered = true;
+  },
+  
+  
   set_city: function(city, state) {
     delete state.agents;
     if (!city) CityChooser.update();
