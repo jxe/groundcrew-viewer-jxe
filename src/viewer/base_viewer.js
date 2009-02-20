@@ -44,7 +44,6 @@ Viewer = {
   },
 
   go: function(url) {
-    console.log('Viewer.go('+url+')');
     // adjust url
     if (url[0] == '#') {
       url = url.slice(1);
@@ -53,6 +52,7 @@ Viewer = {
     }
 
     url = Viewer.loc = Viewer.parse_url(url);
+    console.log('Viewer.go('+url+')');
     var parts = url.slice(1).split('/');
     var app_name = parts.shift();
     
