@@ -29,7 +29,6 @@ ViewerUI = {
     Ajax.init();
     $('#you_img').attr('src', "http://groundcrew.us"+person_item.thumb_url);
     $('#agent_name').html(person_item.title);
-    $(document).blit();
   },
   
   activateUI: function() {    
@@ -39,8 +38,9 @@ ViewerUI = {
       $('.divcenter').center();
       Frame.set_flexbar_size();
     });
-    $('.magic').feature_paint();
+    $('.magic').app_paint();
     $('#welcome img.closer').click(function(){ $('#welcome').remove(); });
+    LiveHTML.init();
   }
 
 };

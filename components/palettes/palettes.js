@@ -34,7 +34,7 @@ Palettes.recent_content = function(thing){
   } else {
     html = "nothing yet.";
   }
-  thing.html(html).blit().scrollDown();
+  thing.html(html).scrollDown();
 }
 
 Palettes.chat_palette = function(thing){

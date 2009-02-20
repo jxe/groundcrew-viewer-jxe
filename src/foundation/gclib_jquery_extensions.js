@@ -46,6 +46,32 @@ $.fn.scrollDown = function(){
   return this.each(function(){ this.scrollTop = this.scrollHeight; });
 };
 
+(function(){
+
+  var revealed_element = null;
+  
+  $.fn.reveal = function(){
+    revealed_element && $(revealed_element).offscreen();;
+    this.onscreen();
+    $('body').addClass('has_reveal');
+    if (Palettes[name]) Palettes[name](thing);
+    revealed_element = this[0];
+  };
+  
+  $.fn.toggle_reveal = function(){
+    if (this[0] == revealed_element) return $.unreveal();
+    this.reveal();
+  };
+
+  $.unreveal = function(){
+    if (!revealed_element) return;
+    $(revealed_element).offscreen();
+    $('body').removeClass('has_reveal');
+    revealed_element = null;
+  }
+  
+})();
+
 
 // ==========================
 // = pre-blit configurators =

@@ -11,7 +11,7 @@ Viewer = {
   rendered: false,
 
   open: function(tag) {
-    unreveal();
+    $.unreveal();
     if (!Viewer.selected_city) {
       var city_id = tag.resource().city_id;
       Viewer.go('/organize/your_personal_squad/City__' + city_id + '/' + tag);
@@ -175,46 +175,4 @@ Viewer = {
   
   blank:       function(){ return ''; }
 
-};
-
-
-
-
-$.fn.app_paint = function(){
-  var data = {};
-  this.find('[fill]').each(function(){
-    var obj = $(this);
-    var method = obj.attr('fill');
-    var attr = false;
-    if (method.contains(" ")) {
-      var parts = method.split(' ');
-      method = parts[0];
-      attr = parts[1];
-    }
-    if (!data[method] && Viewer.current_app.state[method]) 
-      data[method] = Viewer.current_app.state[method];
-    if (!data[method]) {
-      var f = Viewer.current_app[method] || Viewer[method];
-      if (f) data[method] = f(Viewer.current_app.state);
-      else   alert('missing fill method: ' + method);
-    }
-    if (data[method]) {
-      if (attr) obj.attr(attr, data[method]);
-      else      obj.html(data[method]);
-    }
-  });
-  this.find('form').enable().unbind('submit').submit(function(){
-    try {
-      $(this).disable();
-      var method = this.id + "_submitted";
-      if (!Viewer.current_app[method]) alert('unusual form submit!');
-      Viewer.current_app[method]($(this).form_values(), Viewer.current_app.state, this);
-    } catch (err) {
-      alert('form error!');
-      console.log(err);
-      return false;
-    }
-    return false;
-  });
-  return this.feature_paint();
 };
