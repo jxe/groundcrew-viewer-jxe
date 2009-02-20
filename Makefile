@@ -38,7 +38,7 @@ html_and_css: BUILD
 DEBUG:
 	cat {vendor,data}/*.js {src,components}/*/*.js > BUILD/viewer.js
 	cp pages/localauth.html BUILD/
-	cat debug/debug.html $(COMPS) pages/viewer_end.html > BUILD/debug.html
+	cat pages/viewer.html $(COMPS) pages/viewer_end.html > BUILD/viewer.html
 	cat {vendor,css}/*.css components/*/*.css > BUILD/viewer.css
-	cp debug/debug.css BUILD/
+	cat BUILD/viewer.html | sed 's/.*maps\.google\.com.*/\<link href=\"..\/debug\/debug.css\" media=\"screen\" rel=\"stylesheet\" type=\"text\/css\" \/>/' | sed 's/http:\/\/ajax\.googleapis\.com\/ajax\/libs\/jquery\/1\.3\.1\/jquery\.min\.js/..\/debug\/jquery\.min\.js/' > BUILD/debug.html
 
