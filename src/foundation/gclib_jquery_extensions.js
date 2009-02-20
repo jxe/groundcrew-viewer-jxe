@@ -1,7 +1,8 @@
 $.templates = {};
 $.template = function(sel){
   if ($.templates[sel]) return $.templates[sel].clone();
-  $.templates[sel] = $(sel).remove().show();
+  $.templates[sel] = $(sel).remove();
+  if (!$.templates[sel]) alert("No template for " + sel);
   return $.template(sel);
 };
 
