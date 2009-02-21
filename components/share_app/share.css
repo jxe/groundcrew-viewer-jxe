@@ -1,0 +1,75 @@
+body.has_reveal #share_add {
+  display: none;
+  opacity: 0;
+  -moz-opacity: 0;
+  filter:alpha(opacity=0);
+}
+
+body.has_reveal #share_resources {
+  display: none;
+  opacity: 0;
+  -moz-opacity: 0;
+  filter:alpha(opacity=0);
+}
+
+
+#share_add {
+  width: 650px;
+  top: 30px;
+  right: auto;
+  left: auto;
+  -webkit-transition: opacity 1s ease;
+}
+
+
+#share_resources {
+  width: 650px;
+  top: 30px;
+  right: auto;
+  left: auto;
+  -webkit-transition: opacity 1s ease;
+}
+
+
+img.closer {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  opacity: 0.7;
+  -moz-opacity: 0.7;
+  filter:alpha(opacity=70);
+}
+
+img.closer:hover {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  opacity: 1.0;
+  -moz-opacity: 1.0;
+  filter:alpha(opacity=100);
+}
+
+/* positioning */
+#share_add .tgray { padding-top: 10px; }
+#share_add #section2 { position: relative; height: 300px; line-height: 30px; }
+
+#share_add #section2 div {
+  position: relative;
+}
+
+
+#share_add #section2 label {
+ vertical-align: top;
+ position: absolute;
+ top: 0px;
+ left: 0px;
+ width: 150px;
+}
+
+#share_add #section2 input {
+ margin-left: 160px;
+}
+
+#share_add #section2 textarea {
+ margin-left: 160px;
+}
