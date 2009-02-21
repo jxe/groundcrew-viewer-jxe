@@ -28,12 +28,14 @@
 
 
 <div class="lsidep palette tblack" id="chat_palette" style="top:50px">
-  <input type="text" size="47" value="type here to chat with others"/>
-  <img src="i/arrows/up.png" style="top: 0px"/>
-  <img src="i/arrows/down.png" style="bottom:0px"/>
-  <ul id="chats">
-    <li>Chat isn't working yet.  This is a mockup</li>
-  </ul>
+  <form id="chat_form">
+    <input type="text" size="47" name="msg" hint="type here to chat with others"/>
+    <img src="i/arrows/up.png" style="top: 0px"/>
+    <img src="i/arrows/down.png" style="bottom:0px"/>
+  </form>
+  <ul fill="latest_chats"></ul>
 </div>
 
-<div id="recent_content" class="lsidep palette tblack" style="top:90px"></div>
+<div id="recent_content" class="lsidep palette tblack" style="top:90px">
+  <div fill="recent_events"></div>
+</div>

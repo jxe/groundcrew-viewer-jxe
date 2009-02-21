@@ -106,6 +106,7 @@ EventDb.events = [];
 EventDb.by_tag = {};
 EventDb.watched = {};
 EventDb.new_events_are_new = false;
+Chat = { chats: [] };
 
 // event - anything that happened
 function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_tag, item_changes, json_etc){
@@ -140,7 +141,7 @@ function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_
   if (!EventDb.new_events_are_new) return event;
 
   Notifier.did_add_new_event(event);
-  if (atype == 'said') Chat.update();
+  if (atype == 'said') $('#chat_palette').app_paint();
   
   // do app specific stuff
   if (Viewer.current_app.on_new_event) Viewer.current_app.on_new_event(event);

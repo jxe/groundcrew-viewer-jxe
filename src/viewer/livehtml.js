@@ -40,16 +40,8 @@ $.fn.app_paint = function(){
     }
   });
   this.find('form').enable().unbind('submit').submit(function(){
-    try {
-      $(this).disable();
-      var method = this.id + "_submitted";
-      if (!Viewer.current_app[method]) alert('unusual form submit!');
-      Viewer.current_app[method]($(this).form_values(), Viewer.current_app.state, this);
-    } catch (err) {
-      alert('form error!');
-      console.log(err);
-      return false;
-    }
+    $(this).disable();
+    Viewer.dispatch(this.id + "_submitted", $(this).form_values(), Viewer.current_app.state, this);
     return false;
   });
   this.find('[observe]').each(function(){
@@ -59,6 +51,11 @@ $.fn.app_paint = function(){
       Viewer.dispatch(method, obj.val(), Viewer.current_app.state);
       return true;
     });
+  });
+  this.find('input[hint]').each(function(){
+    var self = $(this);
+    if (!self.val()) self.val(self.attr('hint'));
+    self.focus(function(){ self.val(''); });
   });
   return this;
 };

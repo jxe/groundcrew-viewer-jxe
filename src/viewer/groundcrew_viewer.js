@@ -28,6 +28,28 @@ var adventures = [
 ];
 
 
+var atag_trans = {
+  conn: 'connection',
+  bene: 'kindness',
+  food: 'food',
+  adv: 'adventures',
+  mgames: 'puzzles',
+  vol: 'volunteering',
+  stretchme: 'challenge',
+  stealth: 'stealth',
+  pchal: 'challenge',
+  pgrowth: 'challenge',
+  convo: 'conversation',
+  beauty: 'beauty',
+  raok: 'kindness'
+};
+
+function agent_wants(agent){
+  var translated = agent.atags.split(' ').map(function(x){ return atag_trans[x]; }).compact();
+  if (translated.length == 0) return null
+  return translated.choose_random().toUpperCase();
+}
+
 
 $.extend(Viewer, {
 
@@ -112,4 +134,29 @@ $.extend(Viewer, {
       return description;
     }
   },
+  
+  latest_chats: function(state) {
+    if (Chat.chats.length > 9) Chat.chats = Chat.chats.slice(Chat.chats.length - 9);
+    return Chat.chats.map(function(x){
+      Event.improve(x);
+      return Templates.chat_t.t(x);
+    }).join('');
+  },
+  
+  recent_events: function(state) {
+    return EventDb.events.map(function(x){
+      Event.improve(x);
+      return Templates.event.t(x);
+    }).join('');
+  },
+  
+  chat_form_submitted: function(data, state, form) {
+    var input = $(form).find('input');
+    $.post("/gc/said", {msg: data.msg}, function(x){ 
+      input.val('');
+      $(form).enable();
+      eval(x);
+    });
+  }
+  
 });

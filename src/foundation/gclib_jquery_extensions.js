@@ -54,7 +54,6 @@ $.fn.scrollDown = function(){
     revealed_element && $(revealed_element).offscreen();;
     this.onscreen();
     $('body').addClass('has_reveal');
-    if (Palettes[name]) Palettes[name](thing);
     revealed_element = this[0];
   };
   
