@@ -26,6 +26,7 @@ Frame = {
   },
   
   populate_flexbar_agents: function(agents) {
+    if (!agents) return;
     var groups = agents.group_by('byline3');
     $('#agents > div').hide();
     $.each($keys(groups), function(){
