@@ -32,7 +32,7 @@ $.fn.app_paint = function(){
     if (!data[method]) {
       var f = Viewer.current_app[method] || Viewer[method];
       if (f) data[method] = f(Viewer.current_app.state);
-      else   alert('missing fill method: ' + method);
+      else   console.log('missing fill method: ' + method + ' (app: ' + Viewer.current_app_name + ')');
     }
     if (data[method]) {
       if (attr) obj.attr(attr, data[method]);
