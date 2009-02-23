@@ -1,5 +1,7 @@
 Date.unix = function(){
-  return Math.floor(new Date().getTime() / 1000);
+  var date = new Date();
+  var offset = getTimezoneOffset() * 60;
+  return Math.floor(date.getTime() / 1000) - offset;
 };
 
 function $time(t){

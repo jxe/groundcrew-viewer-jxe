@@ -26,9 +26,10 @@ Frame = {
   },
   
   populate_flexbar_agents: function(agents) {
-    var groups = agents.group_by('byline3');
+    var groups = agents.group_by('availability_status');
     $('#agents > div').hide();
     $.each($keys(groups), function(){
+      if (this == null || this == "null") return;
       $('#' + this + '_agents').show();
       var html = groups[this].map(function(x){ return Templates.agent_thumb.t(x); }).join('');
       $('#' + this + '_agent_thumbs').html(html);
