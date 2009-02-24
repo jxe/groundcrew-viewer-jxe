@@ -127,6 +127,7 @@ Viewer = {
     var app = Viewer.current_app;
     var state = app.state;
     
+    $.unreveal();
     if (Viewer.renderer) $('body').removeClass(Viewer.renderer);
     if (Viewer.painted_elements) Viewer.painted_elements.offscreen();
     
