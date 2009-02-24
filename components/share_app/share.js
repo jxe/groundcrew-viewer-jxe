@@ -1,28 +1,19 @@
 Viewer.apps.share = {
   url_part_labels: $w('mode'),
-
+  
+  set_mode: function(mode, state) {
+    if (mode == "add")       state.mode_label = "Add A Shared Resource";
+    if (mode == "resources") state.mode_label = "Your Shared Resources";
+  },
+  
   show_mode: function(state) {
-    $('#share_palette').unreveal();
-
-    if (state.mode == 'add') {
-      state.mode_label = "Add A Shared Resource";
-      Viewer.render('add');
-      $('img.closer').click(function(){ $('#share_add').reveal(); });
-    } else if (state.mode == 'resources') {
-      state.mode_label = "Your Shared Resources";
-      Viewer.render('resources');
-      $('img.closer').click(function(){ $('#share_resources').reveal(); });
-    }
-
+    Viewer.render(state.mode);
   },
 
   share_form_submitted: function(data, state) {
     // send stuff to server
-    Viewer.go('/share/resources');
-  },
-
-  share_secret_access: function (state) {
-    return '';
+    // then display the item submitted on the map
+    // w/ url like /share/edit/City__220/Resource__13
   },
 
   share_resources: function (state) {
