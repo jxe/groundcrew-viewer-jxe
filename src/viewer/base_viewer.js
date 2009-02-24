@@ -11,7 +11,7 @@ Viewer = {
   rendered: false,
 
   open: function(tag) {
-    $.fn.unreveal();
+    $.unreveal();
     if (!Viewer.selected_city) {
       var city_id = tag.resource().city_id;
       Viewer.go('/organize/your_personal_squad/City__' + city_id + '/' + tag);

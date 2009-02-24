@@ -58,11 +58,11 @@ $.fn.scrollDown = function(){
   };
   
   $.fn.toggle_reveal = function(){
-    if (this[0] == revealed_element) return $.fn.unreveal();
+    if (this[0] == revealed_element) return $.unreveal();
     this.reveal();
   };
 
-  $.fn.unreveal = function(){
+  $.unreveal = function(){
     if (!revealed_element) return;
     $(revealed_element).offscreen();
     $('body').removeClass('has_reveal');
