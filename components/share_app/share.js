@@ -1,11 +1,12 @@
 Viewer.apps.share = {
   url_part_labels: $w('mode'),
-  
+
   set_mode: function(mode, state) {
-    if (mode == "add")       state.mode_label = "Add A Shared Resource";
-    if (mode == "resources") state.mode_label = "Your Shared Resources";
+    if (mode == "add")            state.mode_label = "Add A Shared Resource";
+    else if (mode == "resources") state.mode_label = "Your Shared Resources";
+    else                          state.mode_label = "Unknown Mode";
   },
-  
+
   show_mode: function(state) {
     Viewer.render(state.mode);
   },
