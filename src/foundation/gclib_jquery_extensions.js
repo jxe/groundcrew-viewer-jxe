@@ -52,7 +52,7 @@ $.fn.scrollDown = function(){
   
   $.fn.reveal = function(){
     revealed_element && $(revealed_element).offscreen();;
-    this.onscreen();
+    this.onscreen().app_paint();
     $('body').addClass('has_reveal');
     revealed_element = this[0];
   };

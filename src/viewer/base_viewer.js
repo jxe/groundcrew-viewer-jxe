@@ -83,7 +83,6 @@ Viewer = {
         state.agents = state.city ? Agents.in_city(state.city) : Agents.all;
       MapMarkers.display(state.city, state.agents);
       Frame.populate_flexbar_agents(state.agents);
-      $('.palette').app_paint();
       Viewer.prev_agents = state.agents;
     }
     
