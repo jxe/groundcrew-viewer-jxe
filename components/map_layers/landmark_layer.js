@@ -26,7 +26,7 @@ LandmarkLayer = {
         var lm = LandmarkLayer.lm_from_pano(x);
         var marker = LandmarkLayer.marker_for_lm(lm);
         LandmarkLayer.mgr.addMarker(marker, 0);
-        LandmarkLayer.ids[x.photo_id] = "exists";
+        LandmarkLayer.ids[x.photo_id] = true;
         LandmarkLayer.mgr.addMarker(marker, Map.Gmap.getZoom());
       });
     });
