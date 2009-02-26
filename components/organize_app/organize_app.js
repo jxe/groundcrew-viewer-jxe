@@ -49,7 +49,7 @@ Viewer.apps.organize = {
     // return to referrer template
     var ref_template = 'organize_landmark';
     if (state.ref_template) { ref_template = state.ref_template; }
-    Viewer.render_item('ref_template');
+    Viewer.render_item(ref_template);
   },
   
   on_new_event: function(event) {
