@@ -89,6 +89,22 @@ Item = {
       return "summonable";
     },
     
+    availability_status: function(a){
+      if (!a.latch || !a.comm) return null;
+      var comm = a.comm.split(' ');
+      var latch = a.latch.split(' ');
+      if (comm.contains("unreachable")) return "available";
+      if (!latch.contains("unlatched")) return "busy";
+      if (comm.contains("engaged")) {
+        var current_time = Date.unix();
+        var comm_time = Number(comm.pop());
+        if (current_time - comm_time < 30 * 60) return "ready";
+        else return "available";
+      }
+      if (comm.contains("green")) return "ready";
+      return "available";
+    },
+    
     blurb: function(a) {
       if (a.status == 'available' && a.available_until) 
         return "+" + $from_now(a.available_until) + " &nbsp; ";

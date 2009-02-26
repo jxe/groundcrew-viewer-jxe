@@ -21,7 +21,7 @@ Gatherings = {
   
   invite: function() {
     if (!logged_in) return Viewer.join_please();
-    $.facebox($.template('#invite_dialog').blit());
+    $.facebox($.template('#invite_dialog'));
   },
   
   did_add_new_event: function(ev) {

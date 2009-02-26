@@ -5,8 +5,6 @@ ViewerUI = {
   
   init: function() {
     Frame.set_flexbar_size(1);
-    $('.divcenter').center();
-
     // load the user data
     if (!person_item) {
       var user_item_json  = $.cookie('user_item');
@@ -17,11 +15,11 @@ ViewerUI = {
     }
     
     this.activateUI();
-    var starter_url = "/hero/City__220";
+    var starter_url = "/welcome/beginner";
     if (logged_in) {
       Agents.add_or_update(person_item);
       $('body').addClass('logged_in');
-      starter_url = '/hero/City__' + person_item.city_id;
+      // starter_url = '/hero/City__' + person_item.city_id;
     } else {
       $('body').addClass('logged_out');
     }
@@ -31,7 +29,6 @@ ViewerUI = {
     Ajax.init();
     $('#you_img').attr('src', "http://groundcrew.us"+person_item.thumb_url);
     $('#agent_name').html(person_item.title);
-    $(document).blit();
   },
   
   activateUI: function() {    
@@ -41,8 +38,8 @@ ViewerUI = {
       $('.divcenter').center();
       Frame.set_flexbar_size();
     });
-    $('.magic').feature_paint();
-    $('#welcome img.closer').click(function(){ $('#welcome').remove(); });
+    $('.magic').app_paint();
+    LiveHTML.init();
   }
 
 };

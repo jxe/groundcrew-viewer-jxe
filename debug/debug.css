@@ -2,12 +2,12 @@
   display: none;
 }
 
-#live_event_iw {
+body#viewer .debug_this {
   position: absolute;
   top: 0px;
   left: 0px;
   display:block;
-  z-index: 9;
+  z-index: 900;
   background: white;
   border: solid thick green;
 }

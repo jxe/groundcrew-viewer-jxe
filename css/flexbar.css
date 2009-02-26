@@ -46,8 +46,8 @@ body.flexbar1 #flexbar { height: 74px; }
 #flexbar #ready_agents  h2 em { background: green;    }
 #flexbar #assigned_agents   h2 { border-top: solid 3px yellow; }
 #flexbar #assigned_agents  h2 em { background: yellow;    }
-#flexbar #summonable_agents h2 { border-top: solid 3px blue;   }
-#flexbar #summonable_agents  h2 em { background: blue;    }
+#flexbar #available_agents h2 { border-top: solid 3px blue;   }
+#flexbar #available_agents  h2 em { background: blue;    }
 
 .agent.busy { color: #82c; }
 .agent.yellow { 

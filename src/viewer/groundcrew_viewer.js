@@ -28,6 +28,28 @@ var adventures = [
 ];
 
 
+var atag_trans = {
+  conn: 'connection',
+  bene: 'kindness',
+  food: 'food',
+  adv: 'adventures',
+  mgames: 'puzzles',
+  vol: 'volunteering',
+  stretchme: 'challenge',
+  stealth: 'stealth',
+  pchal: 'challenge',
+  pgrowth: 'challenge',
+  convo: 'conversation',
+  beauty: 'beauty',
+  raok: 'kindness'
+};
+
+function agent_wants(agent){
+  var translated = agent.atags.split(' ').map(function(x){ return atag_trans[x]; }).compact();
+  if (translated.length == 0) return null
+  return translated.choose_random().toUpperCase();
+}
+
 
 $.extend(Viewer, {
 
@@ -42,7 +64,8 @@ $.extend(Viewer, {
   },
 
   agents_to_guide: function(state) {
-    var agents = Agents.find("=city_id " + Viewer.selected_city);
+    var agents = Viewer.current_app.state.agents;
+    if (!agents) return [];
     return agents.map(function(a){ 
       a.wants = agent_wants(a);
       a.time = ['20 MIN', '1 HR', '5 MIN'].choose_random();
@@ -92,6 +115,48 @@ $.extend(Viewer, {
   
   ag_ct:          function(state) { return pluralize(state.agents.length, 'agent'); },
   item_thumb_url: function(state) { if (state.item_r) return state.item_r.thumb_url.gcify_url(); },
-  item_title:     function(state) { return state.item_r.title; }
+  item_title:     function(state) { return state.item_r.title; },
 
+  item_ltypes:    function(state) {
+    ltypes = state.item_r.ltypes;
+    if (!ltypes) {
+      return 'unknown';
+    } else {
+      return ltypes.split(' ')[0];
+    }
+  },
+
+  item_description: function(state) {
+    description = state.item_r.description;
+    if (!description) {
+      return '';
+    } else {
+      return description;
+    }
+  },
+  
+  latest_chats: function(state) {
+    if (Chat.chats.length > 9) Chat.chats = Chat.chats.slice(Chat.chats.length - 9);
+    return Chat.chats.map(function(x){
+      Event.improve(x);
+      return Templates.chat_t.t(x);
+    }).join('');
+  },
+  
+  recent_events: function(state) {
+    return EventDb.events.map(function(x){
+      Event.improve(x);
+      return Templates.event.t(x);
+    }).join('');
+  },
+  
+  chat_form_submitted: function(data, state, form) {
+    var input = $(form).find('input');
+    $.post("/gc/said", {msg: data.msg}, function(x){ 
+      input.val('');
+      $(form).enable();
+      eval(x);
+    });
+  }
+  
 });

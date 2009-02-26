@@ -1,7 +1,8 @@
 $.templates = {};
 $.template = function(sel){
   if ($.templates[sel]) return $.templates[sel].clone();
-  $.templates[sel] = $(sel).remove().show();
+  $.templates[sel] = $(sel).remove();
+  if (!$.templates[sel]) alert("No template for " + sel);
   return $.template(sel);
 };
 
@@ -23,6 +24,16 @@ $.fn.show_dialog = function(f){
   this.find('input:first').focus();
 };
 
+$.fn.onscreen = function(){
+  var x = this.appendTo("#screen");
+  if (x.is('.divcenter')) x.center();
+  return x;
+};
+
+$.fn.offscreen = function(){
+  return this.appendTo("#offscreen");
+};
+
 $.fn.center = function(){
   var window_width = window.innerWidth || window.document.body.clientWidth;
   return this.each(function(){
@@ -34,6 +45,31 @@ $.fn.center = function(){
 $.fn.scrollDown = function(){
   return this.each(function(){ this.scrollTop = this.scrollHeight; });
 };
+
+(function(){
+
+  var revealed_element = null;
+  
+  $.fn.reveal = function(){
+    revealed_element && $(revealed_element).offscreen();;
+    this.onscreen().app_paint();
+    $('body').addClass('has_reveal');
+    revealed_element = this[0];
+  };
+  
+  $.fn.toggle_reveal = function(){
+    if (this[0] == revealed_element) return $.unreveal();
+    this.reveal();
+  };
+
+  $.unreveal = function(){
+    if (!revealed_element) return;
+    $(revealed_element).offscreen();
+    $('body').removeClass('has_reveal');
+    revealed_element = null;
+  }
+  
+})();
 
 
 // ==========================

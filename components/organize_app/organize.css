@@ -9,44 +9,84 @@
   background: #eee;
 }
 
-.stanza img {
+.stanza .plus {
   position: absolute;
   right: 0px;
   top: 0px;
   background-color: transparent;
 }
 
-#idea_catalogue_iw {
+#idea_catalog_iw {
   max-width: 400px;
 }
 
-#idea_catalogue_iw form {
+#idea_catalog_iw form {
   position: relative;
 }
 
-#idea_catalogue_categories {
+#idea_catalog_categories {
   position: absolute;
   top: 0px;
   left: 0px;
   width: 100px;
 }
 
-#idea_catalogue_categories a.highlight {
+#idea_catalog_categories a.highlight {
   font-weight: bold;
   font-size: large;
 }
 
-#idea_catalogue_categories a {
+#idea_catalog_categories a {
   font-weight: normal;
   font-size: normal;
 }
 
 
-#idea_catalogue_ideas {
+#idea_catalog_ideas {
   padding-left: 110px;
 }
 
-#build_own {
+#idea_build_own {
   font-size: normal;
-  font-family: Verdana;
+}
+
+#live_event_iw {
+  max-width: 400px;
+}
+
+#assignment_editor_iw {
+  max-width: 400px;
+}
+
+#organize_landmark_iw {
+  max-width: 400px;
+}
+
+#organize_landmark_thumb {
+  height: 100px;
+  width: 100px;
+  float: left;
+  display: block;
+}
+
+#organize_landmark_iw form {
+  margin-top: 100px;
+}
+
+#landmark_editor_iw label {
+ vertical-align: top;
+ position: absolute;
+ top: 0px;
+ left: 0px;
+ width: 150px;
+ padding-top: 5px;
+ padding-left: 5px;
+}
+
+#landmark_editor_iw input {
+ margin-left: 160px;
+}
+
+#landmark_editor_iw textarea {
+ margin-left: 160px;
 }

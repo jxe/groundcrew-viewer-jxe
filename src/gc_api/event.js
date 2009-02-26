@@ -7,7 +7,7 @@ Event = {
     a.item_title = a.item && a.item.title;
     a.landmark = a.landmark_tag && a.landmark_tag.resource();
     a.landmark_title = a.landmark && a.landmark.title;
-    if (a.actor_tag) a.actor_title = a.actor_tag.resource().title;
+    if (a.actor_tag) a.actor_title = a.actor_tag.resource() && a.actor_tag.resource().title;
     a.what = (Event.whats[a.atype] || "did something weird (#{atype})").t(a);
     return a;
   },

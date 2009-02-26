@@ -11,9 +11,13 @@ Viewer = {
   rendered: false,
 
   open: function(tag) {
-    $('#welcome').remove();
-    unreveal();
-    [Viewer.current_app, Viewer].dispatch('marker_clicked', tag, Viewer.current_app.state);
+    $.unreveal();
+    if (!Viewer.selected_city) {
+      var city_id = tag.resource().city_id;
+      Viewer.go('/organize/your_personal_squad/City__' + city_id + '/' + tag);
+    } else {
+      [Viewer.current_app, Viewer].dispatch('marker_clicked', tag, Viewer.current_app.state);
+    }
   },
   
   marker_clicked: function(tag) {
@@ -48,6 +52,7 @@ Viewer = {
     }
 
     url = Viewer.loc = Viewer.parse_url(url);
+    console.log('Viewer.go('+url+')');
     var parts = url.slice(1).split('/');
     var app_name = parts.shift();
     
@@ -90,39 +95,59 @@ Viewer = {
     $('#breadcrumbs').html(Viewer.breadcrumbs()).val(url);
     delete state.first;
   },
-  
+
   breadcrumbs: function() {
     var app_name = Viewer.current_app_name;
     var app = Viewer.current_app;
     var state = app.state;
     var breadcrumbs = [];
     var breadcrumb_url = '/' + app_name;
-    
+
+    // push World
+    breadcrumbs.push(tag('option', {value:'/welcome', content:'World'}));
+
     $.each(app.url_part_labels, function(i, label){
       var x = state[label];
       if (x) {
         breadcrumb_url += "/" + x;
         var breadcrumb_label = state[label + "_label"] || x;
+        var label_max = 25;
+        if (breadcrumb_label.length > label_max) {
+          breadcrumb_label = breadcrumb_label.slice(0, label_max) + ' ...';
+        }
         breadcrumbs.push(tag('option', {value:breadcrumb_url, content:breadcrumb_label}));
       }
     });
     return breadcrumbs.join(' ');
   },
-  
+
   render: function(renderer) {
     var app_name = Viewer.current_app_name;
     var app = Viewer.current_app;
     var state = app.state;
     
-    // Map.Gmap && Map.Gmap.closeInfoWindow();
-    if (Viewer.prev_renderer) $('body').removeClass(Viewer.prev_renderer);
+    $.unreveal();
+    if (Viewer.renderer) $('body').removeClass(Viewer.renderer);
+    if (Viewer.painted_elements) Viewer.painted_elements.offscreen();
     
-    Viewer.prev_renderer = renderer;
+    Viewer.renderer = renderer;
+    Viewer.painted_elements = $("." + app_name + "." + Viewer.renderer);
+    
+    Viewer.painted_elements.onscreen().app_paint();
     $('body').addClass(renderer);
-    $('.palette').app_paint();
-    $('#' + app_name + "_" + renderer).app_paint();
+
     Viewer.rendered = true;
   },
+  
+  render_item: function(template_name, min_zoom) {
+    if (Viewer.renderer) $('body').removeClass(Viewer.renderer);
+    if (Viewer.painted_elements) Viewer.painted_elements.offscreen();
+    Viewer.renderer = null;
+    Viewer.painted_elements = null;    
+    MapMarkers.open(Viewer.current_app.state.item, $.template('#' + template_name + '_iw').app_paint()[0], min_zoom);
+    Viewer.rendered = true;
+  },
+  
   
   set_city: function(city, state) {
     delete state.agents;
@@ -150,46 +175,4 @@ Viewer = {
   
   blank:       function(){ return ''; }
 
-};
-
-
-
-
-$.fn.app_paint = function(){
-  var data = {};
-  this.find('[fill]').each(function(){
-    var obj = $(this);
-    var method = obj.attr('fill');
-    var attr = false;
-    if (method.contains(" ")) {
-      var parts = method.split(' ');
-      method = parts[0];
-      attr = parts[1];
-    }
-    if (!data[method] && Viewer.current_app.state[method]) 
-      data[method] = Viewer.current_app.state[method];
-    if (!data[method]) {
-      var f = Viewer.current_app[method] || Viewer[method];
-      if (f) data[method] = f(Viewer.current_app.state);
-      else   alert('missing fill method: ' + method);
-    }
-    if (data[method]) {
-      if (attr) obj.attr(attr, data[method]);
-      else      obj.html(data[method]);
-    }
-  });
-  this.find('form').enable().unbind('submit').submit(function(){
-    try {
-      $(this).disable();
-      var method = this.id + "_submitted";
-      if (!Viewer.current_app[method]) alert('unusual form submit!');
-      Viewer.current_app[method]($(this).form_values(), Viewer.current_app.state, this);
-    } catch (err) {
-      alert('form error!');
-      console.log(err);
-      return false;
-    }
-    return false;
-  });
-  return this.feature_paint();
 };

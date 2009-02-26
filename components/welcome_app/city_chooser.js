@@ -38,7 +38,6 @@ CityChooser = {
       html += english_list(city_words) + "</li>";
     };
     $('#cities_available').html(html);
-    $('#city_chooser').blit();
   }
       
 };

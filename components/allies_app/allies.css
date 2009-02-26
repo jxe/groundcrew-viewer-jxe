@@ -1,6 +1,0 @@
-#allies_show_city {display:none;}
-body.allies_app.show_city #allies_show_city {display:block;}
-
-body.allies_app #app_list a.allies_app_link {
-  color: white;
-}

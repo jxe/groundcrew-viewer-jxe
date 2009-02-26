@@ -1,7 +1,8 @@
 var map;   
    
 Map = {  
-
+  last_zoom_auto_set: 0,
+  
   available: function() {
     if (!window.GBrowserIsCompatible || !GBrowserIsCompatible()) return false;
     if (!map) Map.establish();
@@ -61,6 +62,7 @@ Map = {
       components.trigger('map_init', Map.Gmap);
       Map.initted = true;
     }
+    Map.last_zoom_auto_set = zoom;
   },
     
   replace_marker: function(old_marker, new_marker) {

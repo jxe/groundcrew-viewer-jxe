@@ -1,15 +1,12 @@
-<div class="magic">
-  <img class="rside" style="top:40px; right:4px" reveal="people_palette" src="i/icons/people_icon35.png" title="see available agents"/>
-  <img class="rside" style="top:90px; right:2px" reveal="ideas_palette" src="i/icons/lightbulb_icon29.png" title="start something"/>
-  <img class="rside" style="top:140px; right:0px" reveal="resource_palette" src="i/icons/gift23.png" title="free stuff"/>
-  <img class="lside" style="top:50px" reveal="chat_palette" src="i/icons/chat_icon18.png" title="chat with other organizers"/>
-  <img class="lside" style="top:90px; left: 2px" reveal="recent_content" src="i/icons/scroll.png" title="view recent events"/>
-</div>
-
 <div class="rsidep palette tblack" id="people_palette" style="top: 40px; max-width: 600px">
   <h2> Engage people </h2>
   <div fill="agents_to_guide_all"></div>
   <a class="btn" href="##more">+ get guided</a> &nbsp;
+  <a class="btn" href="##more">see more...</a>
+</div>
+
+<div class="rsidep palette tblack" id="wish_palette" style="top: 180px; max-width: 400px">
+  <h2> Your Wishes </h2>
   <a class="btn" href="##more">see more...</a>
 </div>
 
@@ -19,24 +16,24 @@
   <a class="btn" href="##more">+ add your dreams</a>
 </div>
 
-<div class="rsidep palette tblack" id="resource_palette" style="top: 90px">
-  <h2>Use other people's stuff!
-    <i>
-      To access more, you need to <a href="#posx">gain reputation</a>.
-    </i>
-  </h2>
+<div class="rsidep palette tblack" id="share_palette" style="top: 90px">
+  <h2>Use other people's stuff!</h2>
+  <div>To access more, you need to <a rel="facebox" href="#about_posx">gain reputation</a>.</div><br />
   <!-- <div class="tb" fill="resources"></div> -->
-  <a class="btn" href="##more">+ share something</a>
+  <a class="btn" href="#/share/resources">see your shared resources</a><br />
+  <a class="btn" href="#/share/add">+ share something</a>
 </div>
 
 
 <div class="lsidep palette tblack" id="chat_palette" style="top:50px">
-  <input type="text" size="47" value="type here to chat with others"/>
-  <img src="i/arrows/up.png" style="top: 0px"/>
-  <img src="i/arrows/down.png" style="bottom:0px"/>
-  <ul id="chats">
-    <li>Chat isn't working yet.  This is a mockup</li>
-  </ul>
+  <form id="chat_form">
+    <input type="text" size="47" name="msg" hint="type here to chat with others"/>
+    <img src="i/arrows/up.png" style="top: 0px"/>
+    <img src="i/arrows/down.png" style="bottom:0px"/>
+  </form>
+  <ul fill="latest_chats"></ul>
 </div>
 
-<div id="recent_content" class="lsidep palette tblack" style="top:90px"></div>
+<div id="recent_content" class="lsidep palette tblack" style="top:90px">
+  <div fill="recent_events"></div>
+</div>

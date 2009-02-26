@@ -22,6 +22,9 @@ Templates = {
 
   // resource_t: '<div><img src=""/><b>#{what}</b></div>',
 
+  chat_t:
+    '<li title="#{when}"><a href="#" item="#{actor_tag}">#{actor_title}</a>#{what}</li>',
+
   event:
     '<div class="event #{color}">\
      <span class="time">#{when}</span>\

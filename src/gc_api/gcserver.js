@@ -14,6 +14,7 @@
 Ajax = {
   interval: 20 * 1000,
   timer: null,
+  post_process_new_events: {},
 
   uuid: function() {
     return agent_tag + '_' + new Date().getTime();
@@ -31,14 +32,15 @@ Ajax = {
     $.ajaxSetup({
       error: function(req, textStatus, errorThrown){
         if (req.status == 404) return;
-        if (errorThrown){ throw errorThrown;  }
+        if (errorThrown){ throw errorThrown; }
         if (req.responseText) $.facebox(req.responseText);
       }
     });
 
     EventDb.new_events_are_new = true;
+    Ajax.schedule_autoload();
   },
-  
+
   schedule_autoload: function(){
     if (Ajax.timer) clearTimeout(Ajax.timer);
     Ajax.timer = setTimeout(Ajax.autoload, Ajax.interval);
@@ -46,6 +48,8 @@ Ajax = {
 
   autoload: function(){
     $.getScript('/data/this10.js');
+    $.each(Ajax.post_process_new_events, function(i, obj){ obj(); });
+    Ajax.post_process_new_events = {};
   },
 
   fetch: function(url, options, after){
@@ -99,15 +103,16 @@ function idea(tag, title, atags, ltypes, json_etc){
 
 EventDb = {};
 EventDb.events = [];
-EventDb.seen = {};
+EventDb.by_tag = {};
+EventDb.watched = {};
 EventDb.new_events_are_new = false;
+Chat = { chats: [] };
 
 // event - anything that happened
 function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_tag, item_changes, json_etc){
-  
-  if (EventDb.seen[annc_tag]) return;
-  EventDb.seen[annc_tag] = true;
-  
+
+  if (EventDb.by_tag[annc_tag]) return;
+
   var event = $.extend({
     annc_tag: annc_tag,
     item_tag: item_tag,
@@ -118,6 +123,8 @@ function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_
     atags: atags,
     city_id: city_id
   }, json_etc);
+  
+  EventDb.by_tag[annc_tag] = event;
 
   // handle any item changes packed in this event
   if (item_tag && item_changes) {
@@ -125,16 +132,20 @@ function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_
     $.extend(item, item_changes);
     Resource.add_or_update(item);
   };
-  
+
   // add it to the list of all events
   EventDb.events.push(event);
   if (atype == 'said') Chat.chats.push(event);
   if (atype == 'off') Agents.remove(item_tag);
-  if (EventDb.new_events_are_new){
-    if (atype == 'said') Chat.update();
-    Notifier.did_add_new_event(event);
-  }
+
+  if (!EventDb.new_events_are_new) return event;
+
+  Notifier.did_add_new_event(event);
+  if (atype == 'said') $('#chat_palette').app_paint();
   
+  // do app specific stuff
+  if (Viewer.current_app.on_new_event) Viewer.current_app.on_new_event(event);
+
   return event;
 }
 
@@ -145,3 +156,33 @@ function login(user_info){
   $.extend(person_item, user_info);
   logged_in = true;
 }
+
+
+
+// Ajax.fetch('/agent/update', { availability: newstatus }, Agents.add_or_update);    
+
+// Ajax.fetch('/agent/update', {readyto: data.readyto}, function(x){
+//   Agents.add_or_update(x);
+//   City.recalc_city();
+// });
+
+// Ajax.fetch('/agent/update', {location: data.newloc}, Agents.add_or_update);    
+
+// Ajax.fetch('/agent/contact', {
+//   new_state: 'assigned',
+//   msg: data.assign,
+//   item: Viewer.item,
+//   topic: Viewer.apps.mobilize.state.atag
+// }, EventDb.add);
+
+// Ajax.fetch('/gc/invite', {
+//   topic: Viewer.apps.mobilize.state.atag,
+//   landmark: MapMarkers.iw_item && MapMarkers.iw_item.landmark_tag,
+//   what: data.action,
+//   payload: data.instr
+// }, function(result){
+//   $.facebox.close();
+//   EventDb.new_event(result);
+//   // Viewer.open(SuggestionIW.latest);
+//   alert('your invite has been sent!');
+// });

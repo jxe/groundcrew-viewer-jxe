@@ -26,13 +26,14 @@ LandmarkLayer = {
         var lm = LandmarkLayer.lm_from_pano(x);
         var marker = LandmarkLayer.marker_for_lm(lm);
         LandmarkLayer.mgr.addMarker(marker, 0);
-        LandmarkLayer.ids[x.photo_id] = "exists";
+        LandmarkLayer.ids[x.photo_id] = true;
         LandmarkLayer.mgr.addMarker(marker, Map.Gmap.getZoom());
       });
     });
   },
   
   city_changed: function(city) {
+    if (!city) return;
     if (!Map.Gmap) return;
     var lms = Landmarks.in_city(city);
     if (lms) Map.add(lms.map(LandmarkLayer.marker_for_lm));
