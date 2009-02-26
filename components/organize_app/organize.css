@@ -1,20 +1,27 @@
 .stanza {
   position: relative;
-  border: solid 1px #ccc;
-  padding: 5px 5px;
+  border-bottom: solid 1px #999999;
+  border-top: solid 1px white;
+  padding: 15px 45px 15px 15pxs;
   min-height: 20px;
-  padding-right: 25px;
-  margin: 12px 0px;
-  margin-left: 20px;
-  background: #eee;
+  line-height: 25px;
+  /*padding-right: 25px;
+  margin: 12px 0px;*/
+  /*margin-left: 20px;*/
+  background: #ccc;
 }
 
 .stanza .plus {
   position: absolute;
-  right: 0px;
-  top: 0px;
+  right: 10px;
+  top: 15px;
   background-color: transparent;
 }
+	.stanza .last {
+		border-bottom: none;
+		
+	}
+
 
 #idea_catalog_iw {
   max-width: 400px;
@@ -57,9 +64,15 @@
 #assignment_editor_iw {
   max-width: 400px;
 }
+	div#assignment_editor_iw div.intro {
+		margin-bottom: 10px;
+	  	border-bottom: 1px dotted #666;
+	  	padding-bottom: 10px;		
+	}
 
 #organize_landmark_iw {
   max-width: 400px;
+  padding: 15px 5px;
 }
 
 #organize_landmark_thumb {
@@ -90,3 +103,29 @@
 #landmark_editor_iw textarea {
  margin-left: 160px;
 }
+
+.niw h2 {
+  font: 17px "Helvetica", Verdana, sans-serif;
+  text-transform: upper;
+  color: #009999;
+  padding: 0;
+  margin: 0;
+}
+
+p.deemphasize {
+	margin: 0px;
+	font-size: 11px;
+}
+
+
+/* self-clear floats */
+
+.group:after {
+	content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+    }
+
+
