@@ -10,7 +10,7 @@ Viewer.apps.stand = {
     return $keys(beliefs).map(function(x){
       var agents = beliefs[x];
       var clss = (agents.length == 1 ? 's1' : agents.length < 4 ? 's2' : 's3');
-      if (agents.contains(person_item)) clss += ".mine";
+      if (agents.contains(CurrentUser)) clss += ".mine";
       return tag('a.' + clss, {content:x, href:"#"+x});
     }).join(', ') || ' ';
   },

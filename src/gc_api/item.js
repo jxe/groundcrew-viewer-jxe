@@ -25,7 +25,7 @@ Item = {
             
     locked: function(a) {
       if (!a.latched_by) return false;
-      if (a.latched_by.split(' ').indexOf(agent_tag) >= 0) return false;
+      if (a.latched_by.split(' ').indexOf(CurrentUser.tag) >= 0) return false;
       return true;
     },
     
@@ -57,14 +57,14 @@ Item = {
     },
     
     map_icon: function(a) {
-      if (a.item_tag == agent_tag) return 'sman';
+      if (a.item_tag == CurrentUser.tag) return 'sman';
       if (a.highlighted) return 'hman';
       if (a.pgoal) return 'rgman';
       return 'wman';
     },    
     
     color: function(a) {
-      if (a.item_tag == agent_tag) return 'me';
+      if (a.item_tag == CurrentUser.tag) return 'me';
       if (a.highlighted) return 'yellow';
       if (a.status == 'busy') return 'brown';
       if (a.status == 'unavailable') return 'gray';

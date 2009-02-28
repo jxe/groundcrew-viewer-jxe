@@ -6,7 +6,9 @@ function Resource(tname, options){
 }
 
 Resource.add_or_update = function(item){
-  if (item.status == 'dead' && item.item_tag != agent_tag) return Agents.remove(item);
+  if (item.status == 'dead' && item.item_tag != CurrentUser.tag) {
+    return Agents.remove(item);
+  }
   return item.item_tag.resource_class().add_or_update(item);
 };
 

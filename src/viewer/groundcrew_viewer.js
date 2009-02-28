@@ -99,7 +99,7 @@ $.extend(Viewer, {
   limit_room: function(state)   { Viewer.limit_ltype(state, 'room'); },
 
   new_landmark: function(state) {
-    if (!logged_in) return Viewer.join_please();
+    if (!CurrentUser.logged_in) return Viewer.join_please();
     $.template('#new_landmark_dialog').show_dialog(function(form){
       Ajax.fetch('/gc/create_landmark', form, function(ev){
         EventDb.add(ev);
