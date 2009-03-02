@@ -42,6 +42,8 @@ $.fn.app_paint = function(){
   this.find('form').enable().unbind('submit').submit(function(){
     $(this).disable();
     Viewer.dispatch(this.id + "_submitted", $(this).form_values(), Viewer.current_app.state, this);
+    var action = $(this).attr('action');
+    if (action) Viewer.go(action.slice(1), $(this).form_values());
     return false;
   });
   this.find('[observe]').each(function(){

@@ -4,10 +4,10 @@
     The following instructions will be sent to nearby agents.
   </div>
 
-  <form id="send_assignment_form">
+  <form id="send_assignment_form" action="#../live_event">
     <div class="stanza xspace">
       <img class="plus" src="i/buttons/glossy_rarr.gif"/>
-      Go to &ldquo;<span fill="item_title">THE LOCATION</span>&rdquo;<a href="##display_landmark_editor/assignment_editor" title="Edit Landmark"><img src="i/icons/edit.png" width="12" height="12" alt="Edit Landmark" /></a>.<br />
+      Go to &ldquo;<span fill="item_title">THE LOCATION</span>&rdquo;<a href="#/mapcare/:city/:item" title="Edit Landmark"><img src="i/icons/edit.png" width="12" height="12" alt="Edit Landmark" /></a>.<br />
       <select fill="everyone_will"></select> to signal the other <select>
         <option>2 or more</option><option>3</option><option>4</option><option>5</option><option>6</option>
       </select> agents.
@@ -25,7 +25,7 @@
 
     <div class="xspace right">
       <input style="float:right" type="submit" value="send assignments! &raquo;">
-      <a href="##display_build_experience" style="float:left">&laquo; go back</a>
+      <a href="##back" style="float:left">&laquo; go back</a>
     </div>
   </form>
 </div>

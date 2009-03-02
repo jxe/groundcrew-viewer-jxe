@@ -69,6 +69,12 @@ Array.prototype.compact = function(fn){
   return ms;
 };
 
+Array.prototype.flatten = function(fn){
+  var ms = [];
+  $.each(this, function(i, obj){ ms = ms.concat(obj); });
+  return ms;
+};
+
 if(!Array.indexOf){
   Array.prototype.indexOf = function(obj){
     for(var i=0; i<this.length; i++){
@@ -80,9 +86,13 @@ if(!Array.indexOf){
   };
 }
 
-Array.prototype.as_option_list = function(selected){
-  return this.map(function(x){ 
-    return "<option "+ (selected == x.item_tag ? " selected " : "") +"value='"+x.item_tag+"'>" + x.title + "</option>"; 
+Array.prototype.as_option_list = function(selected, title_attr, value_attr){
+  if (!title_attr) title_attr = 'title';
+  if (!value_attr) value_attr = 'item_tag';
+  return this.map(function(x){
+    var value = x[value_attr] || x;
+    var title = x[title_attr] || x;
+    return "<option "+ (selected == value ? " selected " : "") +"value='"+value+"'>" + title + "</option>"; 
   }).join();
 };
 

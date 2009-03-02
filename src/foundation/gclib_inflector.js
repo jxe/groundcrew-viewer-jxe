@@ -13,6 +13,10 @@ $.extend(String.prototype, {
   singularize: function(){
     return this.replace(/s$/, '');
   },
+  
+  sanetize: function() {
+    return this.replace(' ', '_');
+  },
 
   indef_article: function(){
     var vowels = 'aeiouAEIOU';

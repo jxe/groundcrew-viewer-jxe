@@ -5,6 +5,7 @@ var components = [];
 //
 Viewer = {
   loc: '',
+  prev_loc: null,
   apps: {},
   current_app: { state: { app: 'mobilize' }},
   prev_agents: null,
@@ -36,21 +37,23 @@ Viewer = {
   
   parse_url: function(url) {
     if (url == '..')   return Viewer.loc.slice(0, Viewer.loc.lastIndexOf('/'));
+    if (url.startsWith('../')) return Viewer.loc.slice(0, Viewer.loc.lastIndexOf('/')) + url.slice(2);
     if (url[0] != '/') return Viewer.loc + '/' + url;
+
     return url.replace(/\/:(\w+)/g, function(x, attr){ 
       if (Viewer.current_app.state[attr]) return '/' + Viewer.current_app.state[attr];
       return '';
     });
   },
 
-  go: function(url) {
-    // adjust url
-    if (url[0] == '#') {
-      url = url.slice(1);
-      var parts = url.split('/');
-      return Viewer.dispatch(parts[0], Viewer.current_app.state, parts[1]);
-    }
+  back: function() {
+    Viewer.go(Viewer.prev_loc);
+  },
 
+  go: function(url, form_data) {
+    // adjust url
+    if (url[0] == '#') return Viewer.dispatch(url.slice(1), Viewer.current_app.state);
+    Viewer.prev_loc = Viewer.loc;
     url = Viewer.loc = Viewer.parse_url(url);
     console.log('Viewer.go('+url+')');
     var parts = url.slice(1).split('/');
@@ -60,7 +63,7 @@ Viewer = {
     if (!Viewer.apps[app_name]) { alert('invalid url: ' + url); return; }
     if (app_name != Viewer.current_app_name) {
       $('body').removeClass(Viewer.current_app_name + "_app").addClass(app_name + "_app");
-      Viewer.apps[app_name].state = { first: true, app: app_name };
+      Viewer.apps[app_name].state = { first: true, app: app_name, agents: Viewer.current_app.state.agents };
       Viewer.current_app_name = app_name;
     }
     var app = Viewer.current_app = Viewer.apps[app_name];
@@ -76,11 +79,11 @@ Viewer = {
       }
       if (x) renderer = "show_" + label;
     });
+    state.form_data = form_data;
     
     // update agents, facebar, and map city
+    if (!state.agents) state.agents = state.city ? Agents.in_city(state.city) : Agents.all;
     if (Viewer.prev_agents != state.agents || !Viewer.prev_agents) {
-      if (!state.agents)
-        state.agents = state.city ? Agents.in_city(state.city) : Agents.all;
       MapMarkers.display(state.city, state.agents);
       Frame.populate_flexbar_agents(state.agents);
       Viewer.prev_agents = state.agents;

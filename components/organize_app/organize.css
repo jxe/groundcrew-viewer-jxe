@@ -16,40 +16,6 @@
   background-color: transparent;
 }
 
-#idea_catalog_iw {
-  max-width: 400px;
-}
-
-#idea_catalog_iw form {
-  position: relative;
-}
-
-#idea_catalog_categories {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100px;
-}
-
-#idea_catalog_categories a.highlight {
-  font-weight: bold;
-  font-size: large;
-}
-
-#idea_catalog_categories a {
-  font-weight: normal;
-  font-size: normal;
-}
-
-
-#idea_catalog_ideas {
-  padding-left: 110px;
-}
-
-#idea_build_own {
-  font-size: normal;
-}
-
 #live_event_iw {
   max-width: 400px;
 }
