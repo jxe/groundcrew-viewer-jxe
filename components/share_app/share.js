@@ -1,14 +1,20 @@
 Viewer.apps.share = {
-  url_part_labels: $w('mode'),
+  url_part_labels: $w('city mode item'),
 
   set_mode: function(mode, state) {
-    if (mode == "add")            state.mode_label = "Add A Shared Resource";
-    else if (mode == "resources") state.mode_label = "Your Shared Resources";
-    else                          state.mode_label = "Unknown Mode";
+    state.mode_label = {
+      "add": "Add A Shared Resource",
+      "resources": "Your Shared Resources",
+      "self": "You"
+    }[mode] || "Unknown Mode";
   },
 
   show_mode: function(state) {
     Viewer.render(state.mode);
+  },
+  
+  show_item: function(state) {
+    Viewer.render_item('self');
   },
 
   share_form_submitted: function(data, state) {
