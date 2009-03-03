@@ -66,7 +66,7 @@ Ajax = {
 function item(city_id, tag, title, thumb_url, lat, lng, atags, latch, comm, req, json_etc){
   var parts = tag.split('__');
   return Resource.add_or_update($.extend({
-    id: Number(parts[1]),
+    id: parts[1],
     item_tag: tag,
     title: title,
     thumb_url: thumb_url,
@@ -94,7 +94,7 @@ function city(id, title, lat, lng, agent_count){
 function idea(tag, title, atags, ltypes, json_etc){
   var parts = tag.split('__');
   Resource.add_or_update($.extend({
-    id: Number(parts[1]),
+    id: parts[1],
     item_tag: tag,
     title: title,
     atags: atags
