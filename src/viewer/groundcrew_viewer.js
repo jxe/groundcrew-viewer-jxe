@@ -53,6 +53,18 @@ function agent_wants(agent){
 
 $.extend(Viewer, {
 
+  self_posx_pts: function(state) {
+    return CurrentUser.posx_pts;
+  },
+  
+  self_posx: function(state) {
+    return CurrentUser.posx;
+  },
+
+  self_squadm: function(state) {
+    return CurrentUser.squadm;
+  },
+
   adventures: function(state) {
     var projects = wishes.map(function(a){ return Templates.proj_tile.t(a); }).join('');
     return adventures.map(function(a){ return Templates.adventure_tile.t(a); }).join('') + projects;

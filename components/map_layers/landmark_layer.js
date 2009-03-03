@@ -1,6 +1,4 @@
 LandmarkLayer = {
-
-  ids: {},
   
   map_init: function(map) {
     var mgr = LandmarkLayer.mgr = new MarkerManager(map, {maxZoom: 19});
@@ -12,7 +10,7 @@ LandmarkLayer = {
     });
     GEvent.trigger(map, "moveend");
   },
-  
+    
   fetch_landmarks_in_bounds: function(bounds) {
     var southWest = bounds.getSouthWest();
     var northEast = bounds.getNorthEast();
@@ -21,38 +19,38 @@ LandmarkLayer = {
       maxy: northEast.lat(),  miny: southWest.lat(),  maxx: northEast.lng(),  minx: southWest.lng()
     }, function(data){
       $.each(data.photos, function(){
+        if (Landmarks.id("p" + this.photo_id)) return;
         var x = this;
-        if (LandmarkLayer.ids[x.photo_id]) return;
         var lm = LandmarkLayer.lm_from_pano(x);
         var marker = LandmarkLayer.marker_for_lm(lm);
         LandmarkLayer.mgr.addMarker(marker, 0);
-        LandmarkLayer.ids[x.photo_id] = true;
         LandmarkLayer.mgr.addMarker(marker, Map.Gmap.getZoom());
       });
     });
   },
   
-  city_changed: function(city) {
-    if (!city) return;
-    if (!Map.Gmap) return;
-    var lms = Landmarks.in_city(city);
-    if (lms) Map.add(lms.map(LandmarkLayer.marker_for_lm));
+  city_changed: function(city_id) {
+    if (!city_id || !Map.Gmap) return;
+    var lms = Landmarks.in_city(city_id);
+    $.each(lms, function(){
+      var marker = LandmarkLayer.marker_for_lm(this);
+      LandmarkLayer.mgr.addMarker(marker, 0);
+      LandmarkLayer.mgr.addMarker(marker, Map.Gmap.getZoom());
+    });
   },
   
   off: function() {
     LandmarkLayer.mgr.clearMarkers();
-    LandmarkLayer.ids = {};
   },
   
   lm_from_pano: function(x) {
-    var city = Viewer.current_app.state.city;
-    var id = Math.rand(10000);
-    var tag = "Landmark__" + id;
-    return item(city, tag, x.photo_title, x.photo_file_url, x.latitude, x.longitude, null, null, null, null, {
+    var tag = "Landmark__p" + x.photo_id;
+    return item(Viewer.selected_city, tag, x.photo_title, x.photo_file_url, x.latitude, x.longitude, null, null, null, null, {
         map_thumb_url: 'http://www.panoramio.com/photos/mini_square/' + x.photo_id + '.jpg',
         thumb_height: x.height,
         thumb_width: x.width,
-        more_url: x.photo_url
+        more_url: x.photo_url,
+        pano_id: x.photo_id
     });
   },
   

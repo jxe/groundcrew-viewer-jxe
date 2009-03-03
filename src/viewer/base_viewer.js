@@ -13,12 +13,15 @@ Viewer = {
 
   open: function(tag) {
     $.unreveal();
+    if (tag == CurrentUser.tag) {
+      var city_id = tag.resource().city_id;
+      return Viewer.go("/share/City__" + city_id + "/self/" + tag);
+    }
     if (!Viewer.selected_city) {
       var city_id = tag.resource().city_id;
-      Viewer.go('/organize/your_personal_squad/City__' + city_id + '/' + tag);
-    } else {
-      [Viewer.current_app, Viewer].dispatch('marker_clicked', tag, Viewer.current_app.state);
+      return Viewer.go('/organize/your_personal_squad/City__' + city_id + '/' + tag);
     }
+    [Viewer.current_app, Viewer].dispatch('marker_clicked', tag, Viewer.current_app.state);
   },
   
   marker_clicked: function(tag) {
