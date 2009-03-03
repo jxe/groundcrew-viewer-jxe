@@ -1,4 +1,4 @@
-IconFactory = {
+MapIcons = {
   
   for_landmark: function(lm) {
     return $.extend(new GIcon(), {

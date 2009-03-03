@@ -51,7 +51,7 @@ Viewer.apps.organize = {
     return EventDb.events.map(function (ev) {
       if (ev.re != parent_annc_tag && ev.annc_tag != parent_annc_tag) return;
       Event.improve(ev);
-      return Templates.event.t(ev);
+      return EventsPalette.event_t.t(ev);
     }).compact().join('');
   }
 };

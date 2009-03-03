@@ -1,12 +1,12 @@
-LandmarkLayer = {
+MapLandmarks = {
   
   map_init: function(map) {
-    var mgr = LandmarkLayer.mgr = new MarkerManager(map, {maxZoom: 19});
+    var mgr = MapLandmarks.mgr = new MarkerManager(map, {maxZoom: 19});
     GEvent.addListener(map, "moveend", function() {
       var bounds = map.getBounds();
       var zoom = map.getBoundsZoomLevel(bounds);
-      if (zoom <= 9) return LandmarkLayer.off();
-      else LandmarkLayer.fetch_landmarks_in_bounds(bounds);
+      if (zoom <= 9) return MapLandmarks.off();
+      else MapLandmarks.fetch_landmarks_in_bounds(bounds);
     });
     GEvent.trigger(map, "moveend");
   },
@@ -21,10 +21,10 @@ LandmarkLayer = {
       $.each(data.photos, function(){
         if (Landmarks.id("p" + this.photo_id)) return;
         var x = this;
-        var lm = LandmarkLayer.lm_from_pano(x);
-        var marker = LandmarkLayer.marker_for_lm(lm);
-        LandmarkLayer.mgr.addMarker(marker, 0);
-        LandmarkLayer.mgr.addMarker(marker, Map.Gmap.getZoom());
+        var lm = MapLandmarks.lm_from_pano(x);
+        var marker = MapLandmarks.marker_for_lm(lm);
+        MapLandmarks.mgr.addMarker(marker, 0);
+        MapLandmarks.mgr.addMarker(marker, Map.Gmap.getZoom());
       });
     });
   },
@@ -33,14 +33,14 @@ LandmarkLayer = {
     if (!city_id || !Map.Gmap) return;
     var lms = Landmarks.in_city(city_id);
     $.each(lms, function(){
-      var marker = LandmarkLayer.marker_for_lm(this);
-      LandmarkLayer.mgr.addMarker(marker, 0);
-      LandmarkLayer.mgr.addMarker(marker, Map.Gmap.getZoom());
+      var marker = MapLandmarks.marker_for_lm(this);
+      MapLandmarks.mgr.addMarker(marker, 0);
+      MapLandmarks.mgr.addMarker(marker, Map.Gmap.getZoom());
     });
   },
   
   off: function() {
-    LandmarkLayer.mgr.clearMarkers();
+    MapLandmarks.mgr.clearMarkers();
   },
   
   lm_from_pano: function(x) {
@@ -55,7 +55,7 @@ LandmarkLayer = {
   },
   
   marker_for_lm: function(lm) {
-    var marker = new GMarker(new GLatLng(lm.lat, lm.lng), {icon: IconFactory.for_landmark(lm), title: lm.title});
+    var marker = new GMarker(new GLatLng(lm.lat, lm.lng), {icon: MapIcons.for_landmark(lm), title: lm.title});
     GEvent.addListener(marker, "click", function(){ Viewer.open(lm.item_tag); });
     lm.map_marker = marker;
     return marker;
@@ -63,4 +63,4 @@ LandmarkLayer = {
   
 }
 
-components.push(LandmarkLayer);
+components.push(MapLandmarks);

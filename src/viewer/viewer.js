@@ -21,7 +21,7 @@ Viewer = {
       var city_id = tag.resource().city_id;
       return Viewer.go('/organize/your_personal_squad/City__' + city_id + '/' + tag);
     }
-    [Viewer.current_app, Viewer].dispatch('marker_clicked', tag, Viewer.current_app.state);
+    LiveHTML.dispatch('marker_clicked', tag, Viewer.current_app.state);
   },
   
   marker_clicked: function(tag) {
@@ -30,12 +30,6 @@ Viewer = {
 
   breadcrumb_change: function(new_url, state) {
     Viewer.go(new_url);
-  },
-
-  dispatch: function(method, args) {
-    var args = $.makeArray(arguments);
-    var method = args.shift();
-    return [Viewer.current_app, Viewer].dispatch(method, args[0], args[1], args[2], args[3]);
   },
   
   parse_url: function(url) {
@@ -55,7 +49,7 @@ Viewer = {
 
   go: function(url, form_data) {
     // adjust url
-    if (url[0] == '#') return Viewer.dispatch(url.slice(1), Viewer.current_app.state);
+    if (url[0] == '#') return LiveHTML.dispatch(url.slice(1), Viewer.current_app.state);
     Viewer.prev_loc = Viewer.loc;
     url = Viewer.loc = Viewer.parse_url(url);
     console.log('Viewer.go('+url+')');
@@ -78,7 +72,7 @@ Viewer = {
       var x = parts[i];
       if (state[label] != x || state.first) {
         state[label] = x;
-        Viewer.dispatch("set_" + label, x, state);
+        LiveHTML.trigger("set_" + label, x, state);
       }
       if (x) renderer = "show_" + label;
     });
@@ -94,7 +88,7 @@ Viewer = {
     
     // run renderer
     Viewer.rendered = false;
-    app[renderer] && app[renderer](state);
+    LiveHTML.dispatch(renderer, state);
     if (!Viewer.rendered) Viewer.render(renderer);
     
     // clean up
@@ -103,28 +97,14 @@ Viewer = {
   },
 
   breadcrumbs: function() {
-    var app_name = Viewer.current_app_name;
-    var app = Viewer.current_app;
-    var state = app.state;
-    var breadcrumbs = [];
-    var breadcrumb_url = '/' + app_name;
-
-    // push World
-    breadcrumbs.push(tag('option', {value:'/welcome', content:'World'}));
-
-    $.each(app.url_part_labels, function(i, label){
-      var x = state[label];
-      if (x) {
-        breadcrumb_url += "/" + x;
-        var breadcrumb_label = state[label + "_label"] || x;
-        var label_max = 25;
-        if (breadcrumb_label.length > label_max) {
-          breadcrumb_label = breadcrumb_label.slice(0, label_max) + ' ...';
-        }
-        breadcrumbs.push(tag('option', {value:breadcrumb_url, content:breadcrumb_label}));
-      }
-    });
-    return breadcrumbs.join(' ');
+    var state = Viewer.current_app.state;
+    var breadcrumb_url = '/' + Viewer.current_app_name;
+    return tag('option', {value:'/welcome', content:'World'}) + 
+      Viewer.current_app.url_part_labels.map(function(key){
+        if (!state[key]) return null;
+        breadcrumb_url += "/" + state[key];
+        return tag('option', {value:breadcrumb_url, content:state[key + "_label"] || state[key]});
+      }).compact().join('');
   },
 
   render: function(renderer) {
@@ -171,14 +151,10 @@ Viewer = {
     state.item_label = state.item_r.title;
   },
 
-      
-  // functions
-  
-  zoom_out: function(){ Viewer.go('/'); return false; },
-  
-  
-  // dyn fills
-  
+  join_please: function() {
+    $.facebox($('#join_fbox').html());
+  }, 
+    
   blank:       function(){ return ''; }
 
 };

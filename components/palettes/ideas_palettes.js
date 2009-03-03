@@ -1,0 +1,40 @@
+var wishes = [
+  { what: 'bike path renovation', who: 'JimBob' },
+  { what: 'groundcrew publicity', who: '3oe' },
+  { what: 'main st decorations', who: 'Alex' },
+  { what: 'downtown dance party prep', who: 'Marianne' }
+];
+
+var adventures = [
+  {
+    where: 'Student Center',
+    thumb: 'http://mw2.google.com/mw-panoramio/photos/square/6411087.jpg',
+    what: 'GOOD DEEDS',
+    when: '10 minutes'
+  },
+  {
+    where: 'Waterfall',
+    thumb: 'http://mw2.google.com/mw-panoramio/photos/square/5460471.jpg',
+    what: 'RENDEZVOUS',
+    when: '15 minutes'
+  },
+  {
+    where: 'Athletic Fields',
+    thumb: 'http://farm3.static.flickr.com/2369/1706799173_cc121546e1_s.jpg',
+    what: 'WARGAMES',
+    when: '25 minutes'
+  }
+];
+
+
+LiveHTML.widgets.push({
+  
+  adventures: function(state) {
+    return Tiles.adventure_tile.tt(adventures) + Tiles.proj_tile.tt(wishes);
+  },
+
+  adventures6: function(state) {
+    return Tiles.adventure_tile.tt(adventures.slice(0,3)) + Tiles.proj_tile.tt(wishes.slice(0,3));
+  }
+  
+});
