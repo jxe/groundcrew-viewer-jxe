@@ -103,7 +103,12 @@ Array.prototype.dispatch = function(method, args){
 
   for(var i=0; i<this.length; i++){
     if(this[i][method]){
-      result = this[i][method].apply(this[i], args);
+      try {
+        result = this[i][method].apply(this[i], args);
+      } catch(e) {
+        alert('error during dispatch');
+        console.log(e);
+      }
       break;
     }
   }
