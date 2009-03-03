@@ -11,9 +11,9 @@ Array.prototype.max = function(){
 };
 
 Array.prototype.choose_random = function(){
+  if (this.length == 0) return null;
   return this[Math.rand(this.length)];
 }
-
 
 Array.prototype.uniq = function(){
   return $keys(this.to_h());
@@ -100,19 +100,22 @@ Array.prototype.dispatch = function(method, args){
   var args = $.makeArray(arguments);
   var method = args.shift();
   var result = null;
+  var found = false;
 
   for(var i=0; i<this.length; i++){
     if(this[i][method]){
       try {
         result = this[i][method].apply(this[i], args);
+        found = true;
       } catch(e) {
-        alert('error during dispatch');
+        alert('error during dispatch: ' + method);
         console.log(e);
       }
       break;
     }
   }
-
+  
+  if (!found) alert('unable to dispatch: ' + method);
   return result;
 };
 

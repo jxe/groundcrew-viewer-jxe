@@ -40,7 +40,7 @@ MapMarkers = {
   cache: {},
   
   marker: function(lat, lng, type, title) {
-    var icon = IconFactory.for_type(type);
+    var icon = MapIcons.for_type(type);
     return new GMarker( new GLatLng(lat, lng), { 'title': title, 'icon': icon } );
   },
   

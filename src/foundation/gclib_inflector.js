@@ -4,7 +4,18 @@ $.extend(String.prototype, {
     if (data.indexOf) return this.t({x:data});
     return this.replace(/#\{(.*?)\}/g, function(_, p1){ return data[p1]; });
   },
-
+  
+  tt: function(arr) {
+    if (!arr) return '';
+    var self = this;
+    return arr.map(function(x){ return self.t(x); }).join('');
+  },
+  
+  trim: function(max_length) {
+    if (this.length < max_length || 25) return this;
+    else return this.slice(0, max_length || 25) + "...";
+  },
+  
   gcify_url: function(){
     if (this[0] == '/') return "http://groundcrew.us" + this;
     else return this;

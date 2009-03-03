@@ -1,8 +1,11 @@
-#recent_content {
-	width: 300px;
-	font-size: 11px;
-  max-height: 350px;
-  overflow: auto;
+#talker {
+  position: absolute;
+  left: 32px;
+  border-top: white 1px solid;
+  height: 24px; 
+  top: 0px;
+  background: url(i/w60.png);
+  padding: 3px 15px;
 }
 
 #chatbox {
@@ -26,17 +29,6 @@
 #chatter img {
   position: absolute;
   left: 0px;
-}
-
-#talker {
-  position: absolute;
-  left: 32px;
-
-  border-top: white 1px solid;
-  height: 24px; 
-  top: 0px;
-  background: url(i/w60.png);
-  padding: 3px 15px;
 }
 
 #chats li a {

@@ -106,7 +106,6 @@ EventDb.events = [];
 EventDb.by_tag = {};
 EventDb.watched = {};
 EventDb.new_events_are_new = false;
-Chat = { chats: [] };
 
 // event - anything that happened
 function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_tag, item_changes, json_etc){
