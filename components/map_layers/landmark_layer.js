@@ -30,7 +30,7 @@ LandmarkLayer = {
   },
   
   city_changed: function(city_id) {
-    if (!city || !Map.Gmap) return;
+    if (!city_id || !Map.Gmap) return;
     var lms = Landmarks.in_city(city_id);
     $.each(lms, function(){
       var marker = LandmarkLayer.marker_for_lm(this);
