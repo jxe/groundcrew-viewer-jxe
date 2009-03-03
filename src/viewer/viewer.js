@@ -84,6 +84,7 @@ Viewer = {
       MapMarkers.display(state.city, state.agents);
       Frame.populate_flexbar_agents(state.agents);
       Viewer.prev_agents = state.agents;
+      components.trigger('city_changed', state.city);
     }
     
     // run renderer
@@ -140,7 +141,6 @@ Viewer = {
     if (!city) CityChooser.update();
     if (city) state.city_label = cities[city.split('__')[1]];
     Viewer.selected_city = city && city.resource_id();
-    components.trigger('city_changed', city);
   },
 
   set_item: function(item, state) {

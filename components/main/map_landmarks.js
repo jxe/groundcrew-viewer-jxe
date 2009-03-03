@@ -29,9 +29,9 @@ MapLandmarks = {
     });
   },
   
-  city_changed: function(city_id) {
-    if (!city_id || !Map.Gmap) return;
-    var lms = Landmarks.in_city(city_id);
+  city_changed: function(city) {
+    if (!city || !Map.Gmap) return;
+    var lms = Landmarks.in_city(city);
     $.each(lms, function(){
       var marker = MapLandmarks.marker_for_lm(this);
       MapLandmarks.mgr.addMarker(marker, 0);
