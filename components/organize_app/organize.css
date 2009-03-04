@@ -2,7 +2,7 @@
   position: relative;
   border-bottom: solid 1px #999999;
   border-top: solid 1px white;
-  padding: 15px 45px 15px 15pxs;
+  padding: 15px 15px 15px 15px;
   min-height: 20px;
   line-height: 25px;
   /*padding-right: 25px;
@@ -10,12 +10,16 @@
   /*margin-left: 20px;*/
   background: #ccc;
 }
-
-.stanza .plus {
-  position: absolute;
-  right: 10px;
-  top: 15px;
-  background-color: transparent;
+.stanza .current {
+	width: 95%;
+	}
+.stanza .more_options {
+	height: 10px;
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	margin-top: -5px;
+    background-color: transparent;
 }
 	.stanza .last {
 		border-bottom: none;
@@ -64,7 +68,7 @@
 #assignment_editor_iw {
   max-width: 400px;
 }
-	div#assignment_editor_iw div.intro {
+	div.intro {
 		margin-bottom: 10px;
 	  	border-bottom: 1px dotted #666;
 	  	padding-bottom: 10px;		
