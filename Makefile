@@ -1,9 +1,6 @@
 SHELL=/bin/bash
 LANG=C
 
-# bash doesn't know **/*, so we need find
-COMPS = $(shell find components -name "*.html")
-
 # main tasks
 
 uncompressed: html_and_css
@@ -32,13 +29,13 @@ BUILD:
 	(cd BUILD && ln -s ../i)
 
 html_and_css: BUILD
-	cat pages/viewer.html $(COMPS) pages/viewer_end.html > BUILD/viewer.html
+	cat pages/viewer.html components/*/*.html pages/viewer_end.html > BUILD/viewer.html
 	cat {vendor,css}/*.css components/*/*.css > BUILD/viewer.css
 
 DEBUG:
 	cat {vendor,data}/*.js {src,components}/*/*.js > BUILD/viewer.js
 	cp pages/localauth.html BUILD/
-	cat pages/viewer.html $(COMPS) pages/viewer_end.html > BUILD/viewer.html
+	cat pages/viewer.html components/*/*.html pages/viewer_end.html > BUILD/viewer.html
 	cat {vendor,css}/*.css components/*/*.css > BUILD/viewer.css
 	cat BUILD/viewer.html | sed 's/.*maps\.google\.com.*/\<link href=\"..\/debug\/debug.css\" media=\"screen\" rel=\"stylesheet\" type=\"text\/css\" \/>/' | sed 's/http:\/\/ajax\.googleapis\.com\/ajax\/libs\/jquery\/1\.3\.1\/jquery\.min\.js/..\/debug\/jquery\.min\.js/' > BUILD/debug.html
 

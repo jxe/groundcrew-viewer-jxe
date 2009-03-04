@@ -5,6 +5,7 @@ var components = [];
 //
 Viewer = {
   loc: '',
+  prev_loc: null,
   apps: {},
   current_app: { state: { app: 'mobilize' }},
   prev_agents: null,
@@ -12,12 +13,15 @@ Viewer = {
 
   open: function(tag) {
     $.unreveal();
+    if (tag == CurrentUser.tag) {
+      var city_id = tag.resource().city_id;
+      return Viewer.go("/share/City__" + city_id + "/self/" + tag);
+    }
     if (!Viewer.selected_city) {
       var city_id = tag.resource().city_id;
-      Viewer.go('/organize/your_personal_squad/City__' + city_id + '/' + tag);
-    } else {
-      [Viewer.current_app, Viewer].dispatch('marker_clicked', tag, Viewer.current_app.state);
+      return Viewer.go('/organize/your_personal_squad/City__' + city_id + '/' + tag);
     }
+    LiveHTML.dispatch('marker_clicked', tag, Viewer.current_app.state);
   },
   
   marker_clicked: function(tag) {
@@ -27,30 +31,26 @@ Viewer = {
   breadcrumb_change: function(new_url, state) {
     Viewer.go(new_url);
   },
-
-  dispatch: function(method, args) {
-    var args = $.makeArray(arguments);
-    var method = args.shift();
-    return [Viewer.current_app, Viewer].dispatch(method, args[0], args[1], args[2], args[3]);
-  },
   
   parse_url: function(url) {
     if (url == '..')   return Viewer.loc.slice(0, Viewer.loc.lastIndexOf('/'));
+    if (url.startsWith('../')) return Viewer.loc.slice(0, Viewer.loc.lastIndexOf('/')) + url.slice(2);
     if (url[0] != '/') return Viewer.loc + '/' + url;
+
     return url.replace(/\/:(\w+)/g, function(x, attr){ 
       if (Viewer.current_app.state[attr]) return '/' + Viewer.current_app.state[attr];
       return '';
     });
   },
 
-  go: function(url) {
-    // adjust url
-    if (url[0] == '#') {
-      url = url.slice(1);
-      var parts = url.split('/');
-      return Viewer.dispatch(parts[0], Viewer.current_app.state, parts[1]);
-    }
+  back: function() {
+    Viewer.go(Viewer.prev_loc);
+  },
 
+  go: function(url, form_data) {
+    // adjust url
+    if (url[0] == '#') return LiveHTML.dispatch(url.slice(1), Viewer.current_app.state);
+    Viewer.prev_loc = Viewer.loc;
     url = Viewer.loc = Viewer.parse_url(url);
     console.log('Viewer.go('+url+')');
     var parts = url.slice(1).split('/');
@@ -60,7 +60,7 @@ Viewer = {
     if (!Viewer.apps[app_name]) { alert('invalid url: ' + url); return; }
     if (app_name != Viewer.current_app_name) {
       $('body').removeClass(Viewer.current_app_name + "_app").addClass(app_name + "_app");
-      Viewer.apps[app_name].state = { first: true, app: app_name };
+      Viewer.apps[app_name].state = { first: true, app: app_name, agents: Viewer.current_app.state.agents };
       Viewer.current_app_name = app_name;
     }
     var app = Viewer.current_app = Viewer.apps[app_name];
@@ -72,23 +72,24 @@ Viewer = {
       var x = parts[i];
       if (state[label] != x || state.first) {
         state[label] = x;
-        Viewer.dispatch("set_" + label, x, state);
+        LiveHTML.trigger("set_" + label, x, state);
       }
       if (x) renderer = "show_" + label;
     });
+    state.form_data = form_data;
     
     // update agents, facebar, and map city
+    if (!state.agents) state.agents = state.city ? Agents.in_city(state.city) : Agents.all;
     if (Viewer.prev_agents != state.agents || !Viewer.prev_agents) {
-      if (!state.agents)
-        state.agents = state.city ? Agents.in_city(state.city) : Agents.all;
       MapMarkers.display(state.city, state.agents);
       Frame.populate_flexbar_agents(state.agents);
       Viewer.prev_agents = state.agents;
+      components.trigger('city_changed', state.city);
     }
     
     // run renderer
     Viewer.rendered = false;
-    app[renderer] && app[renderer](state);
+    if (app[renderer]) app[renderer](state);
     if (!Viewer.rendered) Viewer.render(renderer);
     
     // clean up
@@ -97,28 +98,14 @@ Viewer = {
   },
 
   breadcrumbs: function() {
-    var app_name = Viewer.current_app_name;
-    var app = Viewer.current_app;
-    var state = app.state;
-    var breadcrumbs = [];
-    var breadcrumb_url = '/' + app_name;
-
-    // push World
-    breadcrumbs.push(tag('option', {value:'/welcome', content:'World'}));
-
-    $.each(app.url_part_labels, function(i, label){
-      var x = state[label];
-      if (x) {
-        breadcrumb_url += "/" + x;
-        var breadcrumb_label = state[label + "_label"] || x;
-        var label_max = 25;
-        if (breadcrumb_label.length > label_max) {
-          breadcrumb_label = breadcrumb_label.slice(0, label_max) + ' ...';
-        }
-        breadcrumbs.push(tag('option', {value:breadcrumb_url, content:breadcrumb_label}));
-      }
-    });
-    return breadcrumbs.join(' ');
+    var state = Viewer.current_app.state;
+    var breadcrumb_url = '/' + Viewer.current_app_name;
+    return tag('option', {value:'/welcome', content:'World'}) + 
+      Viewer.current_app.url_part_labels.map(function(key){
+        if (!state[key]) return null;
+        breadcrumb_url += "/" + state[key];
+        return tag('option', {value:breadcrumb_url, content:(state[key + "_label"] || state[key]).trim()});
+      }).compact().join('');
   },
 
   render: function(renderer) {
@@ -154,7 +141,6 @@ Viewer = {
     if (!city) CityChooser.update();
     if (city) state.city_label = cities[city.split('__')[1]];
     Viewer.selected_city = city && city.resource_id();
-    components.trigger('city_changed', city);
   },
 
   set_item: function(item, state) {
@@ -165,14 +151,10 @@ Viewer = {
     state.item_label = state.item_r.title;
   },
 
-      
-  // functions
-  
-  zoom_out: function(){ Viewer.go('/'); return false; },
-  
-  
-  // dyn fills
-  
+  join_please: function() {
+    $.facebox($('#join_fbox').html());
+  }, 
+    
   blank:       function(){ return ''; }
 
 };

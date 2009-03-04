@@ -107,7 +107,7 @@ Viewer.apps.mobilize = {
     tags.helpers = '#/allies/:city';
     
     var atag_counts = Agents.find('=city_id ' + state.city.resource_id() + " :atags");
-    var mine = person_item.atags.split(' ');
+    var mine = CurrentUser.atags.split(' ');
 
     return $keys(tags).sort().map(function(x){
       var ideas = tags[x];

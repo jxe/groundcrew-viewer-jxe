@@ -1,5 +1,7 @@
 LiveHTML = {
   
+  widgets: [],
+  
   init: function(args) {
     $('[reveal]').live('click', function(){
       $('#' + $(this).attr('reveal')).toggle_reveal();
@@ -11,6 +13,18 @@ LiveHTML = {
       Viewer.go(href.slice(1)); 
       return false;
     });
+  },
+  
+  dispatch: function(method, args) {
+    var args = $.makeArray(arguments);
+    var method = args.shift();
+    return [Viewer.current_app].concat(LiveHTML.widgets, [Viewer]).dispatch(method, args[0], args[1], args[2], args[3]);
+  },
+  
+  trigger: function(method, args) {
+    var args = $.makeArray(arguments);
+    var method = args.shift();
+    return [Viewer.current_app].concat(LiveHTML.widgets, [Viewer]).trigger(method, args[0], args[1], args[2], args[3]);
   }
   
 };
@@ -27,13 +41,9 @@ $.fn.app_paint = function(){
       method = parts[0];
       attr = parts[1];
     }
-    if (!data[method] && Viewer.current_app.state[method]) 
-      data[method] = Viewer.current_app.state[method];
-    if (!data[method]) {
-      var f = Viewer.current_app[method] || Viewer[method];
-      if (f) data[method] = f(Viewer.current_app.state);
-      else   alert('missing fill method: ' + method);
-    }
+    if (!data[method]) 
+      data[method] = Viewer.current_app.state[method] ||
+        LiveHTML.dispatch(method, Viewer.current_app.state);
     if (data[method]) {
       if (attr) obj.attr(attr, data[method]);
       else      obj.html(data[method]);
@@ -41,14 +51,16 @@ $.fn.app_paint = function(){
   });
   this.find('form').enable().unbind('submit').submit(function(){
     $(this).disable();
-    Viewer.dispatch(this.id + "_submitted", $(this).form_values(), Viewer.current_app.state, this);
+    LiveHTML.trigger(this.id + "_submitted", $(this).form_values(), Viewer.current_app.state, this);
+    var action = $(this).attr('action');
+    if (action) Viewer.go(action.slice(1), $(this).form_values());
     return false;
   });
   this.find('[observe]').each(function(){
     var obj = $(this);
     var method = obj.attr('observe');
     obj.change(function(){
-      Viewer.dispatch(method, obj.val(), Viewer.current_app.state);
+      LiveHTML.dispatch(method, obj.val(), Viewer.current_app.state);
       return true;
     });
   });

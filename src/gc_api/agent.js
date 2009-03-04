@@ -21,7 +21,7 @@ Agent = {
   },
   
   free: function() {
-    if (!logged_in) return Viewer.join_please();
+    if (!CurrentUser.logged_in) return Viewer.join_please();
     Ajax.fetch('/agent/contact', { new_state: 'free', item: Viewer.item}, EventDb.add);
   }
   

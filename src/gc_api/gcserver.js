@@ -17,7 +17,7 @@ Ajax = {
   post_process_new_events: {},
 
   uuid: function() {
-    return agent_tag + '_' + new Date().getTime();
+    return CurrentUser.tag + '_' + new Date().getTime();
   },
   
   init: function() {
@@ -66,7 +66,7 @@ Ajax = {
 function item(city_id, tag, title, thumb_url, lat, lng, atags, latch, comm, req, json_etc){
   var parts = tag.split('__');
   return Resource.add_or_update($.extend({
-    id: Number(parts[1]),
+    id: parts[1],
     item_tag: tag,
     title: title,
     thumb_url: thumb_url,
@@ -94,7 +94,7 @@ function city(id, title, lat, lng, agent_count){
 function idea(tag, title, atags, ltypes, json_etc){
   var parts = tag.split('__');
   Resource.add_or_update($.extend({
-    id: Number(parts[1]),
+    id: parts[1],
     item_tag: tag,
     title: title,
     atags: atags
@@ -106,7 +106,6 @@ EventDb.events = [];
 EventDb.by_tag = {};
 EventDb.watched = {};
 EventDb.new_events_are_new = false;
-Chat = { chats: [] };
 
 // event - anything that happened
 function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_tag, item_changes, json_etc){
@@ -151,10 +150,9 @@ function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_
 
 // login - called to specify the operator of the viewer
 function login(user_info){
-  agent_tag = user_info.tag;
-  person_item = agent_tag.resource();
-  $.extend(person_item, user_info);
-  logged_in = true;
+  CurrentUser = user_info.tag.resource();
+  $.extend(CurrentUser, user_info);
+  CurrentUser.logged_in = true;
 }
 
 

@@ -1,25 +1,24 @@
-var agent_tag;
-var person_item;
+var CurrentUser = false;
 
 ViewerUI = {
-  
+
   init: function() {
     Frame.set_flexbar_size(1);
     // load the user data
-    if (!person_item) {
+    if (!CurrentUser) {
       var user_item_json  = $.cookie('user_item');
       if (!user_item_json) window.location.replace('/auth');
       eval(user_item_json);
       var user_info = eval('('+$.cookie('user_info')+')');
       login(user_info);
     }
-    
+
     this.activateUI();
     var starter_url = "/welcome/beginner";
-    if (logged_in) {
-      Agents.add_or_update(person_item);
+    if (CurrentUser.logged_in) {
+      Agents.add_or_update(CurrentUser);
       $('body').addClass('logged_in');
-      // starter_url = '/hero/City__' + person_item.city_id;
+      // starter_url = '/hero/City__' + CurrentUser.city_id;
     } else {
       $('body').addClass('logged_out');
     }
@@ -27,10 +26,10 @@ ViewerUI = {
     Viewer.go(starter_url);
     $('body').removeClass('loading');
     Ajax.init();
-    $('#you_img').attr('src', "http://groundcrew.us"+person_item.thumb_url);
-    $('#agent_name').html(person_item.title);
+    $('#you_img').attr('src', "http://groundcrew.us"+CurrentUser.thumb_url);
+    $('#agent_name').html(CurrentUser.title);
   },
-  
+
   activateUI: function() {    
     $('a[rel*=facebox]').facebox();
     setInterval(function(){ $('.from_now').update_times(); }, 20000);

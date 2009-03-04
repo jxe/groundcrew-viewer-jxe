@@ -1,11 +1,9 @@
-Templates = {
-
-  agent_thumb: '<img src="http://groundcrew.us/#{thumb_url}" title="#{title}" onclick="Viewer.open(\'#{item_tag}\');"/>',
+Tiles = {
   
   agent_tile: '\
   <div class="tile" onclick="Viewer.open(\'#{item_tag}\');">\
     <img src="http://groundcrew.us#{thumb_url}"/>\
-    <b>up for</b>#{wants}<b>has</b>#{time}\
+    <b>up for</b>#{wants}<b>has</b>#{time_avail}\
   </div>',
 
   adventure_tile: '\
@@ -21,15 +19,5 @@ Templates = {
   </div>',
 
   // resource_t: '<div><img src=""/><b>#{what}</b></div>',
-
-  chat_t:
-    '<li title="#{when}"><a href="#" item="#{actor_tag}">#{actor_title}</a>#{what}</li>',
-
-  event:
-    '<div class="event #{color}">\
-     <span class="time">#{when}</span>\
-     <a href="#" item="#{actor_tag}">#{actor_title}</a>\
-     #{what}\
-     </div>'
-
+   
 }

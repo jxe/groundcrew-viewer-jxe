@@ -45,12 +45,12 @@ Map = {
     var bounds = new GLatLngBounds(latlngs[0], latlngs[0]);
     for (var i=1; i < latlngs.length; i++) bounds.extend(latlngs[i]);
     var zoom = Map.Gmap.getBoundsZoomLevel(bounds);
-    if (Viewer.item == agent_tag) {
+    if (Viewer.item == CurrentUser.tag) {
       // center just above "me"
       if (zoom < 16) zoom = 16;
       var map_height = Map.Gmap.getSize().height;
       var mp = new GMercatorProjection(23);
-      var me_marker_lat_lng = MapMarkers.cache[agent_tag].getLatLng();
+      var me_marker_lat_lng = MapMarkers.cache[CurrentUser.tag].getLatLng();
       var me_marker_pixel = mp.fromLatLngToPixel(me_marker_lat_lng, zoom);
       var new_center_pixel = new GPoint(me_marker_pixel.x, me_marker_pixel.y - Math.round(map_height / 4));
       var new_center_lat_lng = mp.fromPixelToLatLng(new_center_pixel, zoom);

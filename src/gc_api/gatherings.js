@@ -20,7 +20,7 @@ Gatherings = {
   },
   
   invite: function() {
-    if (!logged_in) return Viewer.join_please();
+    if (!CurrentUser.logged_in) return Viewer.join_please();
     $.facebox($.template('#invite_dialog'));
   },
   

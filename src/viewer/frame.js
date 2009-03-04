@@ -1,6 +1,8 @@
 Frame = {
   flexbar_size: 0,
   
+  agent_thumb: '<img src="http://groundcrew.us/#{thumb_url}" title="#{title}" onclick="Viewer.open(\'#{item_tag}\');"/>',
+  
   scroll_flexbar: function(pxs) {
     // unimplemented
   },
@@ -32,8 +34,7 @@ Frame = {
     $.each($keys(groups), function(){
       if (this == null || this == "null") return;
       $('#' + this + '_agents').show();
-      var html = groups[this].map(function(x){ return Templates.agent_thumb.t(x); }).join('');
-      $('#' + this + '_agent_thumbs').html(html);
+      $('#' + this + '_agent_thumbs').html(Frame.agent_thumb.tt(groups[this]));
     });
   }
   

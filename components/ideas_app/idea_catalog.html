@@ -1,0 +1,19 @@
+<div id="idea_catalog_iw" class="niw">
+  <div class="intro">
+    <h2>CREATE AN EVENT</h2>
+    Choose one of the categories to the left, then a specific
+    idea to the right.
+  </div>
+
+  <form action="#/organize/_/:city/:item/assignment_editor">
+    <select size="5" fill="idea_categories" observe="idea_category_changed"></select>
+    <select size="5" fill="idea_ideas"></select>
+    <div class="right">
+      or... <a href="#/organize/_/:city/:item/assignment_editor">build your own assignment</a>
+    </div>
+
+    <div class="xspace right">
+      <input type="submit" value="Next &raquo;" />
+    </div>
+  </form>
+</div>
