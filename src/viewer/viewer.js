@@ -89,7 +89,7 @@ Viewer = {
     
     // run renderer
     Viewer.rendered = false;
-    LiveHTML.dispatch(renderer, state);
+    if (app[renderer]) app[renderer](state);
     if (!Viewer.rendered) Viewer.render(renderer);
     
     // clean up
@@ -104,7 +104,7 @@ Viewer = {
       Viewer.current_app.url_part_labels.map(function(key){
         if (!state[key]) return null;
         breadcrumb_url += "/" + state[key];
-        return tag('option', {value:breadcrumb_url, content:state[key + "_label"] || state[key]});
+        return tag('option', {value:breadcrumb_url, content:(state[key + "_label"] || state[key]).trim()});
       }).compact().join('');
   },
 
