@@ -32,6 +32,7 @@ MapLandmarks = {
   city_changed: function(city) {
     if (!city || !Map.Gmap) return;
     var lms = Landmarks.in_city(city);
+    if (!lms) return;
     $.each(lms, function(){
       var marker = MapLandmarks.marker_for_lm(this);
       MapLandmarks.mgr.addMarker(marker, 0);
