@@ -104,7 +104,7 @@ Viewer = {
       Viewer.current_app.url_part_labels.map(function(key){
         if (!state[key]) return null;
         breadcrumb_url += "/" + state[key];
-        return tag('option', {value:breadcrumb_url, content:(state[key + "_label"] || state[key]).trim()});
+        return tag('option', {value:breadcrumb_url, content:(state[key + "_label"] || state[key]).ellipticise()});
       }).compact().join('');
   },
 
