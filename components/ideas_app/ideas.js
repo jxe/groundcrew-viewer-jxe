@@ -7,7 +7,7 @@ Viewer.apps.ideas = {
 
   idea_category_changed: function(new_category, state) {
     state.category = new_category;
-    $('#idea_catalog_form select[fill=idea_ideas]').html(Viewer.apps.ideas.idea_ideas(state));
+    $('select[fill=idea_ideas]').html(Viewer.apps.ideas.idea_ideas(state));
   },
   
   idea_categories: function (state) {
