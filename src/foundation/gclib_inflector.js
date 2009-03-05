@@ -11,7 +11,7 @@ $.extend(String.prototype, {
     return arr.map(function(x){ return self.t(x); }).join('');
   },
   
-  trim: function(max_length) {
+  ellipticise: function(max_length) {
     if (this.length < max_length || 25) return this;
     else return this.slice(0, max_length || 25) + "...";
   },
