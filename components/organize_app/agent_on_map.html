@@ -1,20 +1,26 @@
-<div id="organize_agent_iw" style="max-width: 400px">
-	<img style="height: 100px; float: left" fill="item_thumb_url src"/>
-	<div class="spacebelow">
-		<div class="large">Agent <span fill="item_title"></span></div>
-		<div class="status"   fill="item_status"></div>
-		<div class="believes" fill="item_believesin"></div>
-		<div class="believes" fill="item_celebrates"></div>
-		<div class="believes" fill="item_helpwith"></div>
+<div id="organize_agent_iw" class="niw" style="max-width: 400px">
+    <div class="intro">
+        <h2>AGENT</h2>
+      </div>
+	<div class="group">
+	    <img style="height: 100px; float: left" class="niw_thumb" fill="item_thumb_url src"/>
+    	<div class="spacebelow">
+    		<h1><span fill="item_title"></span></h1>
+    		<p class="status"   fill="item_status"></p>
+    		<p class="believes" fill="item_believesin"></p>
+    		<p class="believes" fill="item_celebrates"></p>
+    		<p class="believes" fill="item_helpwith"></p>
+    	</div>
 	</div>
-	
 	<form>
-    <input name="assign" type="text" size="48" prompt="What would you like this agent to do?"/>
+	    <div class="">
+	        <input name="assign" type="text" size="48" class="text" prompt="What would you like this agent to do?"/>
 
-		<div class="xspace right">
-			<a href="#..">cancel</a> &nbsp;
-			<input type="submit" value="send assignment"/>
-		</div>		
+       		<div class="xspace right">
+       			<input type="submit" value="send assignment"/>
+       		</div>
+	    </div>
+   	
 	</form>
 
 	<div class="didrecent" fill="item_didrecent"></div>
