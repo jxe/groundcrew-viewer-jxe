@@ -26,7 +26,7 @@ $.extend(String.prototype, {
     return this.replace(/s$/, '');
   },
   
-  sanetize: function() {
+  sanitize: function() {
     return this.replace(' ', '_');
   },
 
@@ -51,7 +51,8 @@ function number_word(n) {
   ][n];
 }
 
-function number_plural(n, singular, plural) {
+function pluralize_with_number_word(n, singular, plural) {
+  if (!plural) plural = singular + "s";
   if (n == 1) return "One " + singular;
   return number_word(n) + " " + plural;
 }
