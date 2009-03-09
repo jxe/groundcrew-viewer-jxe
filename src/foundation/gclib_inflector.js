@@ -12,8 +12,9 @@ $.extend(String.prototype, {
   },
   
   ellipticise: function(max_length) {
-    if (this.length < max_length || 25) return this;
-    else return this.slice(0, max_length || 25) + "...";
+    max_length = max_length || 25;
+    if (this.length < max_length) return this;
+    else return this.slice(0, max_length) + "...";
   },
   
   gcify_url: function(){

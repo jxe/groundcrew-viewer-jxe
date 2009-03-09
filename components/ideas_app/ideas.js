@@ -11,7 +11,8 @@ Viewer.apps.ideas = {
   },
   
   idea_categories: function (state) {
-    return $keys(IdeaCatalogue).as_option_list(state.category, '-', '-');
+    state.category = state.category || 'all';
+    return $keys(IdeaCatalogue).as_option_list(state.category, null, null);
   },
 
   idea_ideas: function (state) {
