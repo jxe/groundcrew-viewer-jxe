@@ -4,7 +4,8 @@ LiveHTML = {
   
   init: function(args) {
     $('[reveal]').live('click', function(){
-      $('#' + $(this).attr('reveal')).toggle_reveal();
+      var reveal = $(this).attr('reveal').split(' ');
+      $('#' + reveal[0]).toggle_reveal(reveal[1], reveal[2], $(this));
       return false;
     });
     $('a').live('click', function(){
