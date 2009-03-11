@@ -24,7 +24,8 @@ $.fn.show_dialog = function(f){
   this.find('input:first').focus();
 };
 
-$.fn.onscreen = function(){
+$.fn.onscreen = function(where){
+  if (where) return $(where).empty().append(this);
   var x = this.appendTo("#screen");
   if (x.is('.divcenter')) x.center();
   return x;
@@ -46,20 +47,28 @@ $.fn.scrollDown = function(){
   return this.each(function(){ this.scrollTop = this.scrollHeight; });
 };
 
+$.fn.position = function(position, where, anchor){
+  if (position = 'vtop'){
+    this.css('top', anchor.offset().top - $(where).offset().top)
+  }
+};
+
 (function(){
 
   var revealed_element = null;
   
-  $.fn.reveal = function(){
-    revealed_element && $(revealed_element).offscreen();;
-    this.onscreen().app_paint();
+  $.fn.reveal = function(where, position, anchor){
+    revealed_element && $(revealed_element).offscreen();
+    this.onscreen(where);
+    if (position) this.position(position, where, anchor);
+    this.app_paint();
     $('body').addClass('has_reveal');
     revealed_element = this[0];
   };
   
-  $.fn.toggle_reveal = function(){
+  $.fn.toggle_reveal = function(where, position, anchor){
     if (this[0] == revealed_element) return $.unreveal();
-    this.reveal();
+    this.reveal(where, position, anchor);
   };
 
   $.unreveal = function(){
