@@ -43,8 +43,6 @@ $.extend(Resource.prototype, {
       return this.db[spec] = start_db.index_by(action.slice(1));
     else if (action[0] == ':')
       return this.db[spec] = start_db.repackage(action.slice(1));
-    else if (action[0] == ';')
-      return this.db[spec] = start_db.semi_repackage(action.slice(1));
 
     if (!start_db[action] && spec_words.length == 1 && spec_words[0][0] == '=') {
       var f = "load_by_" + spec_words[0].slice(1);
@@ -102,80 +100,3 @@ $.extend(Resource.prototype, {
       this.db["#id"][all[i].id] = all[i];
   }
 });
-  
-
-
-
-Array.prototype.group_by = function(field){
-  var obj = {};
-  for (var i=0; i < this.length; i++) {
-    var value = this[i][field];
-    if (obj[value]) obj[value].push(this[i]);
-    else obj[value] = [this[i]];
-  };
-  return obj;
-};
-
-Array.prototype.index_by = function(field){
-  var obj = {};
-  for (var i=0; i < this.length; i++) {
-    obj[this[i][field]] = this[i];
-  };
-  return obj;
-};
-
-Array.prototype.repackage = function(field){
-  var obj = {};
-  for (var i=0; i < this.length; i++) {
-    var values;
-    if (field == ':words') {
-      values = [this[i].atags, this[i].action, this[i].instructions].join(' ').to_words();
-    } else {
-      values = (this[i][field] || "").split(' ');
-    }
-    for (var j=0; j < values.length; j++) {
-      var value = values[j];
-      if (obj[value]) obj[value].push(this[i]);
-      else obj[value] = [this[i]];
-    };
-  };
-  return obj;
-};
-
-
-String.prototype.to_words = function(){
-  var regex = /\b(after|another|brief|by|mostly|partner|recognize|speak|something|prop|shop|first|go|minutes|meeting|next|one|only|pick|place|things|try|with|ways|a|and|up|out|to|of|are|as|at|be|do|else|buy|for|get|if|in|is|it|let|location|on|or|other|others|put|s|say|short|someone|task|that|the|their|them|then|there|too|when|whichever|will|you|your|yours|\d\w+)\b/g;
-  return this.toLowerCase().replace(/\W+/g, ' ').replace(regex, ' ').split(' ').uniq();
-};
-
-Array.prototype.semi_repackage = function(field){
-  var obj = {};
-  for (var i=0; i < this.length; i++) {
-    if (this[i][field]) {
-      var values = this[i][field].replace(/\s+\[\d+\]/g, '').split(/;\s+/);
-      for (var j=0; j < values.length; j++) {
-        var value = values[j];
-        if (obj[value]) obj[value].push(this[i]);
-        else obj[value] = [this[i]];
-      };
-    }
-  };
-  return obj;
-};
-
-
-String.prototype.resource = function(){
-  var parts = this.split('__');
-  if (parts[0] == 'Person') parts[0] = 'Agent';
-  return eval(parts[0] + "s").id(parts[1]);
-};
-
-String.prototype.resource_class = function(){
-  var parts = this.split('__');
-  if (parts[0] == 'Person') parts[0] = 'Agent';
-  return eval(parts[0] + "s");
-};
-
-String.prototype.resource_id = function(){
-  return this.split('__')[1];
-};

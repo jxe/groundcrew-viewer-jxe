@@ -1,9 +1,3 @@
-Date.unix = function(){
-  var date = new Date();
-  var offset = date.getTimezoneOffset() * 60;
-  return Math.floor(date.getTime() / 1000) - offset;
-};
-
 function $time(t){
   var x = new Date(t  * 1000);
   var hour=x.getHours();

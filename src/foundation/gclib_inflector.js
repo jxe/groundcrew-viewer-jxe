@@ -38,8 +38,48 @@ $.extend(String.prototype, {
     } else {
       return "a " + this;
     }
-  }
+  },
+  
+  contains: function(x){
+    return (this.indexOf(x) >= 0);
+  },
 
+  startsWith: function(x){
+    return (this.indexOf(x) == 0);
+  },
+  
+  to_obj: function() {
+    return eval('(' + this + ')');
+  },
+  
+  to_func: function(){
+    if (this[0] == '.') {
+      var prop = this.slice(1);
+      return function(y){ return y[prop]; };
+    };
+  },
+  
+  to_words: function(){
+    var regex = /\b(after|another|brief|by|mostly|partner|recognize|speak|something|prop|shop|first|go|minutes|meeting|next|one|only|pick|place|things|try|with|ways|a|and|up|out|to|of|are|as|at|be|do|else|buy|for|get|if|in|is|it|let|location|on|or|other|others|put|s|say|short|someone|task|that|the|their|them|then|there|too|when|whichever|will|you|your|yours|\d\w+)\b/g;
+    return this.toLowerCase().replace(/\W+/g, ' ').replace(regex, ' ').split(' ').uniq();
+  },
+
+  resource: function(){
+    var parts = this.split('__');
+    if (parts[0] == 'Person') parts[0] = 'Agent';
+    return eval(parts[0] + "s").id(parts[1]);
+  },
+
+  resource_class: function(){
+    var parts = this.split('__');
+    if (parts[0] == 'Person') parts[0] = 'Agent';
+    return eval(parts[0] + "s");
+  },
+
+  resource_id: function(){
+    return this.split('__')[1];
+  }
+  
 });
 
 
