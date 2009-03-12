@@ -150,7 +150,7 @@ $.extend(Array.prototype, {
     return obj;
   }
 
-};
+});
 
 
 if(![].indexOf){
