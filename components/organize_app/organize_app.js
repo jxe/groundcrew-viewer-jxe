@@ -29,6 +29,15 @@ Viewer.apps.organize = {
     }
   },
   
+  landmarks: function(state) {
+    return Landmarks.in_city(state.city).as_option_list();
+  },
+  
+  other_agents: function(state) {
+    return $.grep(Agents.in_city(state.city), function(x){
+      return x.item_tag != state.item;
+    }).as_option_list();
+  },
   
   item_status: function(state)     { return "This agent is available."; },
   item_believesin: function(state) { return " "; },

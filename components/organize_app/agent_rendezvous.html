@@ -1,0 +1,42 @@
+<div id="agent_rendezvous_iw" class="mapwindow" style="max-width: 400px">
+  <div class="intro">
+    <h2>RENDEZVOUS FOR AGENT <span fill="item_title"></span></h2>
+  </div>
+  <form id="send_assignment_form" action="#../live_event">
+    Choose an agent to rendezvous with:  <select name="buddy" fill="other_agents"></select>
+    
+    <div class="stanza">
+
+      <div class="current group">
+        Go to &ldquo;<select name="landmark" fill="landmarks"></select>&rdquo;.<br />
+        <select fill="everyone_will"></select> to signal the other agent.
+      </div>
+      <div class="more_options">
+        <img src="i/buttons/glossy_rarr.gif"/>
+      </div>
+    </div>
+
+    <div class="stanza">
+      <div class="current">
+        For <select><option>20 minutes</option></select>, <input type="text" value="type the main action here..."/>
+      </div>
+      <div class="more_options">
+        <img src="i/buttons/glossy_rarr.gif"/>
+      </div>
+    </div>
+
+    <div class="stanza last">
+      <div class="current">
+        <select><option>Shake hands</option></select>, then <select><option>leave in different directions</option></select>.
+      </div>
+      <div class="more_options">
+        <img src="i/buttons/glossy_rarr.gif"/>
+      </div>
+    </div>
+
+    <div class="xspace right group">
+      <input style="float:right" type="submit" value="send assignments! &raquo;">
+      <a href="##back" style="float:left">&laquo; go back</a>
+    </div>
+  </form>
+</div>

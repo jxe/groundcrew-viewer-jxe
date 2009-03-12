@@ -61,14 +61,16 @@ $.extend(Array.prototype, {
     return ms;
   },
 
-  as_option_list: function(selected, title_attr, value_attr){
+  as_option_list: function(selected, title_attr, value_attr, max_length){
     if (!title_attr) title_attr = 'title';
     if (!value_attr) value_attr = 'item_tag';
+    if (!max_length) max_length = 25;
     return this.map(function(x){
       var value = x[value_attr] || x;
       var title = x[title_attr] || x;
-      return "<option "+ (selected == value ? " selected " : "") +"value='"+value+"'>" + title + "</option>"; 
-    }).join();
+      if (!title) return;
+      return "<option "+ (selected == value ? " selected " : "") +"value='"+value+"'>" + String(title).ellipticise(max_length) + "</option>"; 
+    }).compact().join();
   },
 
   dispatch: function(method, args){
