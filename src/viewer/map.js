@@ -33,6 +33,9 @@ Map = {
     var bLeftFurther = new GControlPosition(G_ANCHOR_BOTTOM_LEFT, new GSize(160,5));
     Map.Gmap.addControl(new GSmallZoomControl(), bRightSnug);
     Map.Gmap.addControl(new GMenuMapTypeControl(), bRight);
+    $(document).keypress(function(e){
+      if (e.which == 27) Map.Gmap.closeInfoWindow();
+    });
   },
   
   set_bounds_from_lat_lngs: function(items) {
