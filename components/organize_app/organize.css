@@ -1,51 +1,3 @@
-/* Global */ 
-
-.niw h1 {
-	color: #333;
-	display: inline;
-	padding-bottom: 3px;
-	}
-
-.niw h2 {
-  font: 17px "Helvetica", Verdana, sans-serif;
-  text-transform: uppercase;
-  color: #009999;
-  padding: 0;
-  margin: 0;
-}
-
-p.deemphasize {
-	margin: 0px;
-	font-size: 11px;
-}
-
-.cancel {
-	color: red;
-	font-size: 10px;
-}
-
-.niw_thumb {
-  height: 100px;
-  float: left;
-  margin-right: 20px;
-  border: 3px solid #ccc;
-}
-
-div.intro {
-	margin-bottom: 10px;
-  	border-bottom: 1px dotted #666;
-  	padding-bottom: 5px;		
-}
-
-.niw a {
-	color:#333;
-	}
-	.niw a:hover {
-		color:black;
-		background: #ccc;
-		text-decoration: none ;
-		}
-
 /* agent_on_map */
 
 #organize_agent_iw form {
@@ -72,7 +24,7 @@ div.intro {
 
 /* mapcare_app/landmark_editor */
 
-#landmark_editor_iw input.text, #organize_agent_iw input.text {
+#landmark_editor_iw input.assign, #organize_agent_iw input.assign {
  margin-top: 10px;
  display: block;
  font-size: 18px;
