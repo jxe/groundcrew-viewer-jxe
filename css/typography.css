@@ -118,6 +118,10 @@ a:hover{
   margin-bottom: 15px;
 }
 
+input.prompting, textarea.prompting {
+  color: gray;
+}
+
 .spacebelow {
   margin-bottom: 10px;
 }
