@@ -65,10 +65,11 @@ $.fn.app_paint = function(){
       return true;
     });
   });
-  this.find('input[hint]').each(function(){
+  this.find('input[hint],textarea[hint]').each(function(){
     var self = $(this);
-    if (!self.val()) self.val(self.attr('hint'));
-    self.focus(function(){ self.val(''); });
+    if (!self.val()) self.val(self.attr('hint')).addClass('prompting');
+    self.focus(function(){ self.val('').removeClass('prompting'); });
+    self.blur(function(){ if (!self.val()) self.val(self.attr('hint')).addClass('prompting'); });
   });
   return this;
 };
