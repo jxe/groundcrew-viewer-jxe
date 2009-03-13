@@ -1,17 +1,26 @@
 <div class="mapwindow" id="add_wish_iw" style="max-width: 430px;">
   <div class="intro">
-    <h2>ADD A WISH</h2>
+    <h2>ADD AN ACTION IDEA</h2>
   </div>
   <form id="add_wish_form">
-    <div class="stanza last big">
-      I wish for a<br>
-      <input name="wish" type="text" size="48" hint="..."/>
+    <div class="stanza last big center">
+      <input name="wish" type="text" size="48" hint="What's your action idea?"/><br>
+      Where will it happen?<br>
+      <select name="where" fill="wish_locations"></select>
     </div>
-    <br>
-    Location where wish will happen
-    <select name="where" fill="wish_locations"></select>
-
-    <div class="xspace right">
+    <div style="float: right;">
+      This idea...<br>
+      <label>
+        <input type="checkbox" value="reqplan">requires planning.<br>
+      </label>
+      <label>
+        <input type="checkbox" value="big">requires a large crowd.<br>
+      </label>
+      <label>
+        <input type="checkbox" value="forme">is a personal favor for me.<br>
+      </label>
+    </div>
+    <div class="xspace right" style="clear:both">
       <input type="submit" value="declare wish"/>
     </div>
   </form>

@@ -39,7 +39,7 @@ LiveHTML.widgets.push({
   
   my_wishes: function(state) {
     if (!CurrentUser.wishes || CurrentUser.wishes == '') 
-      return "<div class='redbox'>You don't have any wishes yet!</div>";
+      return "<div class='redbox'>You don't have any action ideas yet!</div>";
     return CurrentUser.wishes.split('; ').map(function(x){
       if (x == '') return;
       var wishwords = x.split(' ');

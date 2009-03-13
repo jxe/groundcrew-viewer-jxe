@@ -23,7 +23,11 @@ Viewer.apps.share = {
   },
   
   add_wish_form_submitted: function(data, state) {
-    $.post('/agent/new_wish', {wish:data.where + " " + data.wish}, function(data){
+    var wish = data.where + " " + data.wish;
+    if (data.reqplan) wish += " #reqplan";
+    if (data.big)     wish += " #big";
+    if (data.forme)   wish += " #forme";
+    $.post('/agent/new_wish', {wish:wish}, function(data){
       eval(data);
       Viewer.back();
     });
