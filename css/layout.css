@@ -70,6 +70,10 @@ img[reveal]:hover {
   text-shadow: #000 1px 1px 1px;
 }
 
+a#logo:hover {
+  text-decoration: none;
+}
+
 #logo img {
   position: absolute; bottom: -3px; z-index: 50;
 }
