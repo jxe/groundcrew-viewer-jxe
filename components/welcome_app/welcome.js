@@ -5,7 +5,7 @@ Viewer.apps.welcome = {
     if (state.mode == 'beginner') {
       state.mode_label = "Welcome screen";
       Viewer.render('beginner_mode');
-    }
+    } else Viewer.render(state.mode);
   }
 
 };
