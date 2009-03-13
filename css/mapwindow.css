@@ -28,6 +28,18 @@
   margin: 0;
 }
 
+.big input, input.big {
+  margin-top: 10px;
+  display: block;
+  font-size: 18px;
+  padding: 5px;
+  font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  max-width: 94%;
+}
+
+.big {
+  font-size: 14px;
+}
 
 p.deemphasize {
 	margin: 0px;

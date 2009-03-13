@@ -24,10 +24,12 @@
 .palette h2 { position: relative; top: -10px; text-align: center; }
 
 .btn { 
+  display: block;
   margin-top: 6px;
   color: #FF7D09;
   text-shadow: #FF4a00 0px 0px 4px;
-  text-align: center;
+  text-align: right;
+  clear: both;
 }
 
 .btn:hover {

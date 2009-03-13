@@ -22,17 +22,6 @@
   clear: both;
 }
 
-/* mapcare_app/landmark_editor */
-
-#landmark_editor_iw input.assign, #organize_agent_iw input.assign {
- margin-top: 10px;
- display: block;
- font-size: 18px;
- padding: 5px;
- font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
- max-width: 94%;
-}
-
 /* idea_catalogue */
 
 #idea_catalog_iw select {
