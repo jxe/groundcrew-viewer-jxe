@@ -24,29 +24,23 @@
 		<a class="m_item lio" href="/logout">sign out</a>
 	</div>
 	<span class="std_click">
-		<a id="logo" href="#/"><img src="i/gclogo_dd.png"/></a>
+		<a id="logo" href="#/"><b>Ground</b>crew</a>
 	</span>
 </div>
 <div class="magic">
   <select id="breadcrumbs" observe="breadcrumb_change">
     <option value="/welcome">World</option>
   </select>  
-  <table id="youbox" class="lio">
-    <tr>
-      <td class="x" valign="bottom">
-    	  <a id="youbox_agent" href="#">agent <b id="agent_name"></b></a>
-  	  </td>
-  	  <td>
-      	<img id="you_img" onclick="Viewer.open(CurrentUser.tag);"/>
-    	</td>
-  	  <td class="x" valign="bottom">
-  	    <b fill="self_posx_pts">0</b>
-        <a href="#about_posx" rel="facebox">positive experiences caused</a><br>
-        <b fill="self_squadm">0</b>
-        <a href="#about_squadm" rel="facebox">squad members</a>
-      </td>
-    </tr>
-  </table>
+  <div id="youbox" class="lio">
+  	<img id="you_img" onclick="Viewer.open(CurrentUser.tag);"/>
+	  <a id="youbox_agent" href="#">you are agent <b id="agent_name"></b></a>
+	  <div>
+	    <b fill="self_posx_pts">0</b>
+      <a href="#about_posx" rel="facebox">positive experiences caused</a><br>
+      <b fill="self_squadm">0</b>
+      <a href="#about_squadm" rel="facebox">squad members</a>
+    </div>
+  </div>
 </div>
 <div id="screen">
   <div class="magic">

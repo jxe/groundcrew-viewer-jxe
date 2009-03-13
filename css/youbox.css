@@ -1,6 +1,9 @@
 #you_img {
   height: 50px;
   border: solid thin #530;
+  position: absolute;
+  left: 0px;
+  top: 5px;
 }
 
 #youbox {
@@ -27,12 +30,17 @@
 }
 
 a#youbox_agent {
+  position: absolute; 
+  top: 5px;
+  left:60px; display:block;
   font-size: 12px;
-  margin-top: 6px;
   font-family: helvetica, arial;
   color: #ddd;  
 }
 
-#youbox td.x {
-  padding-bottom: 5px;
+#youbox div {
+  position: absolute; 
+  bottom: 0px;
+  left:60px; 
+  display:block;
 }

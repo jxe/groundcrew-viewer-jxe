@@ -1,5 +1,5 @@
 img { border:0; }
 /*textarea { display:block; }*/
-body { padding:0; margin:0; background: black; }
+body { padding:0; margin:0; background: #000 url(i/gccorner.png) no-repeat fixed top left; }
 h1, body { margin:0; padding:0; }
 p { text-align: justify; }
