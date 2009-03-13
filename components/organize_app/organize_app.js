@@ -35,7 +35,7 @@ Viewer.apps.organize = {
   
   other_agents: function(state) {
     return $.grep(Agents.in_city(state.city), function(x){
-      return x.item_tag != state.item;
+      return x.item_tag != state.item && x.item_tag != CurrentUser.tag;
     }).as_option_list();
   },
   
