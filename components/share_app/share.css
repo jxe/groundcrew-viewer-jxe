@@ -18,25 +18,6 @@
 
 /* positioning */
 #share_add .tgray { padding-top: 10px; }
-#share_add #section2 { position: relative; height: 300px; line-height: 30px; }
+#share_add #section2 { position: relative; height: 300px; }
 
-#share_add #section2 div {
-  position: relative;
-}
-
-
-#share_add #section2 label {
- vertical-align: top;
- position: absolute;
- top: 0px;
- left: 0px;
- width: 150px;
-}
-
-#share_add #section2 input {
- margin-left: 160px;
-}
-
-#share_add #section2 textarea {
- margin-left: 160px;
-}
+#share_add .options input { margin: 0; margin-right: 5px; }

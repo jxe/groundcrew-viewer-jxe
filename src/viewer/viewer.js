@@ -41,6 +41,7 @@ Viewer = {
       if (Viewer.current_app.state[attr]) return '/' + Viewer.current_app.state[attr];
       if (attr == 'me') return '/' + CurrentUser.tag;
       if (attr == 'my_city') return '/City__' + CurrentUser.tag.resource().city_id;
+      if (attr == 'city') return '/City__' + CurrentUser.tag.resource().city_id;
       return '';
     });
   },

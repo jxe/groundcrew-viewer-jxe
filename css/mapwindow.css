@@ -30,7 +30,7 @@
 
 .big input, input.big {
   margin-top: 10px;
-  display: block;
+/*  display: block;*/
   font-size: 18px;
   padding: 5px;
   font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
@@ -38,7 +38,9 @@
 }
 
 .big {
-  font-size: 14px;
+  font-size: 15px;
+  font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  max-width: 94%;
 }
 
 p.deemphasize {

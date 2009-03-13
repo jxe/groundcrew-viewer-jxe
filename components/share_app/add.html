@@ -3,55 +3,63 @@
 
   <div class="tgray" id="section1">
 
-    <h1>&mdash; Share Your Resources &mdash;</h1>
+    <h1>&mdash; Share with Others &mdash;</h1>
     <div id="text">
       <h4>
-        You have something you want to share with others? This is the right
-        place to do so!
+        Groundcrew lets you share things like cars, tools, secret hiding spots, etc, with <i>just
+          the people you choose</i>.  Fill out the form below to share something you own or care for.
       </h4>
-
-      <p>Define what you want to share, where and how people can
-      access your resource in the form below.</p>
     </div>
   </div>
 
   <div class="tblack" id="section2">
     <form id="share_form">
-      <div>
-        <label for="title">Title or Type</label>
-        <input name="title" size="26" value="" /> (e.g. car, tool, housing)
-      </div>
-
-      <div>
-        <label for="location">Location</label>
-        <input name="location" size="26" value="" /> (e.g. street address)
-      </div>
-
-      <div>
-        <label for="description">Description</label>
-        <textarea name="description" rows="5" cols="30"></textarea>
-      </div>
-
-      <div>
-        <label for="posx_amount">POSX required</label>
-        <input name="posx_amount" size="5" /> per <select name="posx_period">
-          <option value="w">week</option>
-          <option value="m" />month</option>
-          <option value="y" />year</option>
+      <div class="big">
+        I have
+        <select name="type">
+          <option>a tool</option>
+          <option>a snack</option>
+          <option>a car</option>
+          <option>a disguise</option>
+          <option>a sleepspace</option>
+          <option>other...</option>
         </select>
+        to share
+      </div>
+      <div style="margin-left: 20px" class="options">
+        <div>
+          <input type="checkbox">with anyone who's caused
+          <select name="posx_amount">
+            <option>5</option>
+            <option>10</option>
+            <option>50</option>
+            <option>100</option>
+            <option>200</option>
+            <option>500</option>
+          </select>
+          positive experiences in the last
+          <select name="posx_period">
+            <option value="w">week</option>
+            <option value="m" />month</option>
+            <option value="y" />year</option>
+          </select>
+        </div>
+        <div>
+          <input type="checkbox"/> with my facebook friends
+        </div>
+      </div>
+      <div class="big center xspace">
+        <input name="description" type="text" hint="Describe your tool..."/><br>
+        @ <input name="location" size="26" hint="type a street address here" />
+      </div>
+            
+      <div class="center xspace">
+        <textarea style="width: 94%" name="secret" rows="3" 
+          hint="Secret access instructions to show to those who earn/request access..."
+        ></textarea>
       </div>
 
-      <div>
-        <label for="secret">Secret access instructions</label>
-        <input name="secret" size="26" value="" /> (only shown to legit agents)
-      </div>
-
-      <div>
-        <label for="tags">Other tags</label>
-        <input name="tags" size="26" value="" />
-      </div>
-
-      <div class="xspace left">
+      <div class="xspace right">
         <input type="submit" value="Share This!" />
       </div>
     </form>
