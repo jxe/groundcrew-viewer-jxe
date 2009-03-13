@@ -50,6 +50,15 @@ $.fn.app_paint = function(){
       else      obj.html(data[method]);
     }
   });
+  this.find('[if]').each(function(){
+    var obj = $(this);
+    var method = obj.attr('if');
+    if (!data[method]) 
+      data[method] = Viewer.current_app.state[method] ||
+        LiveHTML.dispatch(method, Viewer.current_app.state);
+    if (data[method]) obj.show();
+    else obj.hide();
+  });
   this.find('form').enable().unbind('submit').submit(function(){
     $(this).disable();
     LiveHTML.trigger(this.id + "_submitted", $(this).form_values(), Viewer.current_app.state, this);

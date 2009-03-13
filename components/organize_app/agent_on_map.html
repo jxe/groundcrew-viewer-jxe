@@ -7,9 +7,15 @@
     <p class="status" fill="item_status"></p>
     
     <h3>OPTIONS</h3>
-    &raquo; <a href="#agent_rendezvous">plan rendezvous with another agent</a>
-    <br>&raquo; plan meeting with several nearby agents
-    <br>&raquo; arrange a solitary adventure
+    <div if="other_agents">
+      &raquo; <a href="#agent_rendezvous">arrange a rendezvous with a nearby agent</a>
+    </div>
+    <div if="other_agents">
+      &raquo; arrange a meeting with several nearby agents
+    </div>
+    <div>
+      &raquo; arrange a solitary adventure
+    </div>
   </div>
   <form>
     <input name="assign" type="text" size="48" class="big" hint="What would you like this agent to do?"/>
