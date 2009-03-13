@@ -8,7 +8,8 @@ Resource.prototype.with_atag = function(atag){
 };
 
 Agents = new Resource('Agent', {
-  enhancer: function(item) { Item.calculate_fields(item); }
+  enhancer: function(item) { Item.calculate_fields(item); },
+  changed: function(item) { if (item.item_tag == CurrentUser.tag) $.extend(CurrentUser, item); }
 });
 
 Landmarks = new Resource('Landmark');

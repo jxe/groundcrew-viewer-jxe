@@ -6,10 +6,8 @@ ViewerUI = {
     Frame.set_flexbar_size(1);
     // load the user data
     if (!CurrentUser) {
-      var user_item_json  = $.cookie('user_item');
-      if (!user_item_json) window.location.replace('/auth');
-      eval(user_item_json);
       var user_info = eval('('+$.cookie('user_info')+')');
+      if (!user_info) window.location.replace('/auth');
       login(user_info);
     }
 

@@ -151,6 +151,11 @@ function event(annc_tag, created_at, atype, actor_tag, re, atags, city_id, item_
 // login - called to specify the operator of the viewer
 function login(user_info){
   CurrentUser = user_info.tag.resource();
+  if (!CurrentUser) {
+    var user_item_json  = $.cookie('user_item');
+    eval(user_item_json);
+    CurrentUser = user_info.tag.resource();
+  }
   $.extend(CurrentUser, user_info);
   CurrentUser.logged_in = true;
 }
