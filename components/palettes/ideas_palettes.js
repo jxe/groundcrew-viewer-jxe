@@ -35,6 +35,24 @@ LiveHTML.widgets.push({
 
   adventures6: function(state) {
     return Tiles.adventure_tile.tt(adventures.slice(0,3)) + Tiles.proj_tile.tt(wishes.slice(0,3));
-  }
+  },
+  
+  my_wishes: function(state) {
+    if (!CurrentUser.wishes || CurrentUser.wishes == '') 
+      return "<div class='redbox'>You don't have any wishes yet!</div>";
+    return CurrentUser.wishes.split('; ').map(function(x){
+      if (x == '') return;
+      var wishwords = x.split(' ');
+      var time = wishwords.shift();
+      var where = wishwords.shift();
+      var text = wishwords.join(' ');
+      if (where == 'agent') return Tiles.proj_tile.t({what:text, who:CurrentUser.title});
+      else {
+        var place = where.resource();
+        return Tiles.adventure_tile.t({item_tag:where, thumb:place.thumb_url, what:text, where:place.title});
+      }
+    }).compact().join('');
+  },
+  
   
 });

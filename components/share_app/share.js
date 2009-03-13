@@ -14,9 +14,21 @@ Viewer.apps.share = {
   },
   
   show_item: function(state) {
-    Viewer.render_item('self');
+    $.unreveal();  // this should not be necessary
+    Viewer.render_item(state.mode);
   },
-
+  
+  wish_locations: function(state) {
+    return "<option value='agent'>Wherever I am</option>" + Landmarks.in_city(state.city).as_option_list();
+  },
+  
+  add_wish_form_submitted: function(data, state) {
+    $.post('/agent/new_wish', {wish:data.where + " " + data.wish}, function(data){
+      eval(data);
+      Viewer.back();
+    });
+  },
+  
   share_form_submitted: function(data, state) {
     // send stuff to server
     // then display the item submitted on the map

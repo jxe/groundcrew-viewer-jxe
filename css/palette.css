@@ -61,6 +61,14 @@ a.closebox img:hover {
   filter:alpha(opacity=100);
 }
 
+div.redbox {
+  border: solid thin gray;
+  background: #911;
+  text-align: center;
+  font-size: 13px;
+  padding: 10px;
+  margin: 10px;
+}
 
 body.has_reveal .divcenter {
   display: none;
