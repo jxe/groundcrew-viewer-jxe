@@ -10,7 +10,12 @@ $.extend(Array.prototype, {
   last: function(){
     return this[this.length - 1];
   },
-
+  
+  grep: function(grepper) {
+    if (grepper.to_func) return $.grep(this, grepper.to_func());
+    return $.grep(this, function(x){ return grepper[x]; });
+  },
+  
   max: function(){
     var max = this[0];
     $.each(this, function(){
@@ -113,7 +118,7 @@ $.extend(Array.prototype, {
   },
   
   sort_by: function(fn){
-    return this.sort(function(a, b){ return __compare__(fn(a), fn(b)); });
+    return this.grep(fn).sort(function(a, b){ return __compare__(fn(a), fn(b)); });
   },
   
   group_by: function(field){

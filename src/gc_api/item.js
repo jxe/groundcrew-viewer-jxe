@@ -1,19 +1,49 @@
+// adventure
+// art
+// beauty
+// celebrating
+// challenge
+// connection
+// crafting
+// creation
+// debate
+// discussion
+// fun
+// investigating
+// kindness??
+// knitting
+// learning
+// meeting
+// music
+// nature
+// peace
+// performance
+// rendezvous
+// restoration
+// stealth
+// teamwork
+// visions
+// volunteering
+
+
+
 Item = {
 
   atag_trans: {
-    conn: 'connection',
-    bene: 'kindness',
-    food: 'food',
-    adv: 'adventures',
-    mgames: 'puzzles',
+    // conn: 'connection',
+    // bene: 'kindness',
+    // food: 'food',
+    art: 'art',
+    adv: 'adventure',
+    // mgames: 'puzzles',
     vol: 'volunteering',
     stretchme: 'challenge',
     stealth: 'stealth',
     pchal: 'challenge',
     pgrowth: 'challenge',
-    convo: 'conversation',
-    beauty: 'beauty',
-    raok: 'kindness'
+    convo: 'discussion debate',
+    beauty: 'nature',
+    // raok: 'kindness'
   },
   
   calculate_fields: function(item) {
@@ -22,9 +52,13 @@ Item = {
   },
   
   calculated_fields: {
-        
+    
+    upfor: function(a) {
+      return a.atags.split(' ').map(function(x){ return Item.atag_trans[x]; }).compact().uniq().join(' ');
+    },
+    
     wants: function(a) {
-      var readywords = a.atags.split(' ').map(function(x){ return Item.atag_trans[x]; }).compact();
+      var readywords = a.atags.split(' ').map(function(x){ return Item.atag_trans[x]; }).compact().join(' ').split(' ').uniq();
       if (readywords.length == 0) return "???";
       return readywords.choose_random().toUpperCase();
     },

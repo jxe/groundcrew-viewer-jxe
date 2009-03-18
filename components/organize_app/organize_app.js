@@ -39,6 +39,14 @@ Viewer.apps.organize = {
     }).as_option_list();
   },
   
+  agent_latched: function(state) {
+    return false;
+  },
+  
+  agent_unlatched: function(state) {
+    return true;
+  },
+  
   item_status: function(state)     { return "This agent is available."; },
   item_believesin: function(state) { return " "; },
   item_celebrates: function(state) { return " "; },

@@ -69,7 +69,7 @@ $.fn.position = function(position, where, anchor){
   }
   if (position == 'subm'){
     this.css('top', anchor.offset().top - $(where).offset().top);
-    this.css('left', anchor.offset().left - $(where).offset().left + anchor.width() + 20);
+    this.css('left', anchor.offset().left - $(where).offset().left + anchor.width() + 10);
   }
 };
 

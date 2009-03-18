@@ -1,23 +1,20 @@
-<div id="organize_agent_iw" class="mapwindow" style="max-width: 400px">
+<div id="organize_agent_iw" class="mapwindow" style="width: 400px">
   <div class="intro">
     <h2>AGENT <span fill="item_title"></span></h2>
   </div>
   <div class="group">
     <img style="height: 100px; float: left" class="niw_thumb" fill="item_thumb_url src"/>
-    <p class="status" fill="item_status"></p>
-    
-    <h3>OPTIONS</h3>
-    <div if="other_agents">
-      &raquo; <a href="#agent_rendezvous">arrange a rendezvous with a nearby agent</a>
+      <div style="float:left">
+      <p class="status" fill="item_status"></p>
+      
+      <div if="agent_unlatched">
+        <h3>You can guide this agent to...</h3>
+        <div fill="ideas_for_agent"></div>
+      </div>
     </div>
-    <div if="other_agents">
-      &raquo; arrange a meeting with several nearby agents
-    </div>
-    <div>
-      &raquo; arrange a solitary adventure
-    </div>
+    <div id="iw_menu_place" style="position:relative; clear:both"></div>
   </div>
-  <form>
+  <form if="agent_latched">
     <input name="assign" type="text" size="48" class="big" hint="What would you like this agent to do?"/>
 
     <div class="xspace right">

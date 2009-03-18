@@ -1,3 +1,7 @@
+function link(text, url){
+  return tag('a', {content: text, href:url});
+}
+
 function tag(name, attrs) {
   var content = '';
   if (attrs.length) attrs = {content: attrs};

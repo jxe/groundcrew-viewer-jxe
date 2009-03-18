@@ -26,6 +26,11 @@ $.extend(String.prototype, {
     return this.replace(/s$/, '');
   },
   
+  pluralize: function() {
+    if (this == 'creation') return 'creative projects'
+    return this + 's';
+  },
+  
   sanitize: function() {
     return this.replace(' ', '_');
   },
