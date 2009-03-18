@@ -28,7 +28,23 @@ $.fn.onscreen = function(where){
   if (where) return $(where).empty().append(this);
   var x = this.appendTo("#screen");
   if (x.is('.divcenter')) x.center();
+  // if (x.is('.menu')) x.menuify();
   return x;
+};
+
+$.fn.blink = function(after){
+  var self = this;
+	var i = 0;
+	var iid;
+  self.toggleClass('trigger');
+	iid = setInterval(function(){
+		self.toggleClass('trigger');
+		if (i++ < 3) return;
+		clearInterval(iid);
+		self.removeClass('trigger');
+		if (after) after();
+	}, 75);
+	return self;
 };
 
 $.fn.offscreen = function(){
@@ -48,8 +64,12 @@ $.fn.scrollDown = function(){
 };
 
 $.fn.position = function(position, where, anchor){
-  if (position = 'vtop'){
+  if (position == 'vtop'){
     this.css('top', anchor.offset().top - $(where).offset().top)
+  }
+  if (position == 'subm'){
+    this.css('top', anchor.offset().top - $(where).offset().top);
+    this.css('left', anchor.offset().left - $(where).offset().left + anchor.width() + 20);
   }
 };
 

@@ -8,6 +8,9 @@ LiveHTML = {
       $('#' + reveal[0]).toggle_reveal(reveal[1], reveal[2], $(this));
       return false;
     });
+    $('.menu a').live('click', function(){
+      $(this).blink();
+    });
     $('a').live('click', function(){
       var href = $(this).attr('href');
       if (href[0] != "#") return true;

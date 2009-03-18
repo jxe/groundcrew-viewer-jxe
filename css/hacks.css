@@ -8,7 +8,7 @@ span.gmnoprint a img {
   filter:alpha(opacity=20);
 }
 
-.lio {
+.hidden, .lio {
   display: none;
 }
 

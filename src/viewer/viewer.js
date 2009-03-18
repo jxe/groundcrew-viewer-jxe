@@ -52,6 +52,7 @@ Viewer = {
 
   go: function(url, form_data) {
     // adjust url
+    if (url == '#' || url == '') return;
     if (url[0] == '#') return LiveHTML.dispatch(url.slice(1), Viewer.current_app.state);
     Viewer.prev_loc = Viewer.loc;
     url = Viewer.loc = Viewer.parse_url(url);
