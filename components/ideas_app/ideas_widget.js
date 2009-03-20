@@ -1,10 +1,10 @@
 // ltypes???
-function _idea(tag, label, type, title, atags, json_etc){
+function _idea(tag, rank, type, title, atags, json_etc){
   var parts = tag.split('__');
   Resource.add_or_update($.extend({
     id: parts[1],
     item_tag: tag,
-    label: label,
+    rank: rank,
     type: type,
     title: title,
     atags: atags
@@ -12,28 +12,37 @@ function _idea(tag, label, type, title, atags, json_etc){
 }
 
 
-_idea('Idea__101', 'restoration',    'meeting',    'cleaning a city park',          'volunteering teamwork', {});
-_idea('Idea__102', 'connection',     'meeting',    'hand out flowers to strangers', 'kindness teamwork', {});
-_idea('Idea__103', 'connection',     'meeting',    'compliment strangers',          'kindness', {});
-_idea('Idea__104', 'creation',       'meeting',    'make peaceful area by planting and gardening', 'volunteering peace nature', {});
-
-_idea('Idea__105', 'challenge',      'solo',       'travel without being seen', 'adventure stealth', {});
-_idea('Idea__106', 'discussion',     'meeting',    'big dreams',                'connection visions adventure', {});
-_idea('Idea__107', 'challenge',      'solo',       'infiltrate a social scene', 'adventure stealth', {});
-
-_idea('Idea__108',  'challenge',     'rendezvous', 'learn a song',             'adventure performance art music connection beauty', {});
-_idea('Idea__109',  'creation',      'meeting',    'group sculpture',          'connection art', {});
-_idea('Idea__110',  'creation',      'meeting',    'knitting circle',          'connection crafting knitting', {});
+_idea('Idea__111', 10, 'meeting',    'some quiet time',          'quiet observation connection peace', {});
+_idea('Idea__112', 10, 'rendezvous', 'a high five',              'connection quick inclusion', {});
+_idea('Idea__wiz2', 15, 'wizard',     'a group discussion',       'discussion connection debate learning', {});
 
 
-_idea('Idea__wiz1', 'celebration',   'wizard',     'a celebration',            'celebrating fun adventure connection', {});
-_idea('Idea__wiz2', 'discussion',    'wizard',     'a group discussion',       'connection debate learning', {});
-_idea('Idea__wiz3', 'investigation', 'wizard',     'an on-site investigation', 'investigating adventure learning', {});
-_idea('Idea__wiz4', 'rendezvous',    'wizard',     'a new kind of rendezvous', 'connection adventure', {});
-_idea('Idea__wiz5', 'meeting',       'wizard',     'a new kind of meeting',    'connection adventure teamwork', {});
+_idea('Idea__101', 20, 'meeting',    'cleaning a city park',          'volunteering teamwork', {});
+_idea('Idea__102', 20, 'meeting',    'hand out flowers to strangers', 'connection kindness teamwork', {});
+_idea('Idea__103', 20, 'meeting',    'compliment strangers',          'connection kindness', {});
+_idea('Idea__104', 20, 'meeting',    'planting and gardening',        'art volunteering creation dirt peace nature', {});
+
+_idea('Idea__105', 20, 'solo',       'travel without being seen', 'challenge adventure stealth', {});
+_idea('Idea__106', 20, 'meeting',    'big dreams',                'discussion connection visions adventure', {});
+_idea('Idea__107', 20, 'solo',       'infiltrate a social scene', 'challenge adventure stealth', {});
+
+_idea('Idea__108', 20, 'rendezvous', 'learn a song',             'challenge adventure performance art music connection beauty', {});
+_idea('Idea__109', 20, 'meeting',    'group sculpture',          'art connection', {});
+_idea('Idea__110', 20, 'meeting',    'knitting circle',          'crafting connection knitting', {});
+
+_idea('Idea__wiz1', 30, 'wizard',     'celebrate ANYTHING',        'celebration fun adventure connection', {});
+_idea('Idea__wiz3', 30, 'wizard',     'investigation ANYTHING',    'investigation adventure learning', {});
+_idea('Idea__wiz4', 40, 'wizard',     'rendezvous about ANYTHING', 'connection adventure', {});
+_idea('Idea__wiz5', 40, 'wizard',     'meet about ANYTHING',       'connection adventure teamwork', {});
 
 function menu(label, reveal_id){
-  return tag('a', { reveal: reveal_id + " #iw_menu_place subm", content: label, href: "#" });
+  var color = label.to_color();
+  return tag('span.minimenu', { 
+    reveal: reveal_id + " #iw_menu_place subm", 
+    content: label, 
+    href: "#", 
+    style: "color:" + color + "; border-color:" + color 
+  });
 }
 
 LiveHTML.widgets.push({
@@ -41,39 +50,37 @@ LiveHTML.widgets.push({
   ideas_for_agent: function(state) {
     var agent = state.item.resource();
     var agent_atags = agent.upfor.split(' ').to_h();
-    var winners = Ideas.all.sort_by(function(idea){
-      var score = 0;
-      if (agent_atags[idea.label]) score -= 10;
-      // alert('agent_atags: ' + agent.upfor);
-      // alert('idea_atags: ' + idea.atags);
-      // alert('overlap: ' + idea.atags.split(' ').grep(agent_atags).join(' '));
-      score -= idea.atags.split(' ').grep(agent_atags).length;
+    var menus = {};
+    var top_choices = Ideas.all.sort_by(function(idea){
+      idea.atag_arr = idea.atags.split(' ');
+      idea.atag_arr_this_guy = idea.atag_arr.grep(agent_atags);
+      var score = 0 - idea.atag_arr_this_guy.length;
       if (score == 0) return null;
-      if (idea.type == 'wizard') score += 5;
-      return score;
-    });
-    console.log(winners);
-    var by_category = winners.group_by('label');
-    var menus = '';
-    var entries = winners.map(function(idea){
-      var group = by_category[idea.label];
-      if (!group) return null;
-      if (group.length == 1) {
-        if (idea.type == 'wizard') return link("a " + idea.label + "...", "#");
-        return link(idea.label + ": " + idea.title, '#');
+      return score + idea.rank;
+    }).map(function(idea){
+      if (menus[idea.atag_arr_this_guy[0]]) {
+        menus[idea.atag_arr_this_guy[0]].push(idea);
+        return;
       }
-      menus += tag('div.menu', {
-        id: idea.label+"_menu", 
-        content: group.map(function(x){ return link(x.title, '#'); }).join('')
-      });
-      delete by_category[idea.label];
-      return menu(idea.label.pluralize() + " &#x25B6;", idea.label + "_menu");
-    }).compact();
-    var top5 = entries.splice(0, 4).concat([menu("more &#x25B6;", "more_menu")]).map(function(x){
-      return "&raquo; " + x + "<br>";
+      var mtag = idea.atag_arr_this_guy.reject(menus)[0];
+      menus[mtag] = [];
+      return [idea, mtag];
+    }).compact().map(function(pair){
+      var idea = pair[0];
+      var mtag = pair[1];
+      var link = tag('a', {href:"#", content:idea.title});
+      if (menus[mtag].length > 0) link += menu(mtag, mtag + '_menu');
+      return tag('li', link);
     }).join('');
-    menus += tag('div.menu', {id:'more_menu', content:entries.join('')});
-    return top5 + tag('div.hidden', menus);
+    var div_hidden = '';
+    $.each(menus, function(k, v){
+      if (v.length == 0) return;
+      div_hidden += tag('div.menu', {
+        id: k+"_menu", 
+        content: v.map(function(x){ return link(x.title, '#'); }).join('')
+      });
+    });
+    return tag('ul.choices', top_choices) + tag('div.hidden', div_hidden);
   }
-    
+
 });

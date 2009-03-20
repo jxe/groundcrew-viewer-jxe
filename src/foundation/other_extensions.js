@@ -16,3 +16,20 @@ Date.unix = function(){
   var offset = date.getTimezoneOffset() * 60;
   return Math.floor(date.getTime() / 1000) - offset;
 };
+
+$.extend(Number.prototype, {
+  pan: function(a, b){
+    return (this * b) + ((1-this) * a);
+  },
+
+  to_hex_byte: function(){
+    var x = Math.floor(this);
+    if (x > 15) return x.toString(16);
+    else return '0' + x.toString(16);
+  },
+
+  reverse_nibbles: function(){
+    var nibbles = this.to_hex_byte();
+    return eval("(0x"+nibbles[1]+nibbles[0]+")");
+  }
+});

@@ -23,6 +23,33 @@ function tag(name, attrs) {
   return "<" + name + " " + attr + ">" + content + "</" + name + ">";
 }
 
+//calculate rgb component
+function hToC(x, y, h) {
+  var c;
+  if (h < 0) h += 1;
+  if (h > 1) h -= 1;
+  if (h < 1/6) c = x +(y - x) * h * 6;
+  else {
+    if (h < 1/2) c = y;
+    else {
+      if (h < 2/3) c = x + (y - x) * (2 / 3 - h) * 6;
+      else c=x;
+    }
+  }
+  return c;
+}
+
+//convert hsl to rgb (all values 0..1)
+function hsl(h, s, l){
+  var y = (l > .5) ? l + s - l * s : l * (s + 1);
+  var x = l * 2 - y;
+  var r = hToC(x, y, h + 1 / 3);
+  var g = hToC(x, y, h);
+  var b = hToC(x, y, h - 1 / 3);
+  return "#" + (r * 255).to_hex_byte() +
+    (g * 255).to_hex_byte() + (b * 255).to_hex_byte();
+}
+
 function number_word(n) {
   if (n > 15) return n;
   return [

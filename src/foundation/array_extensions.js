@@ -16,6 +16,14 @@ $.extend(Array.prototype, {
     return $.grep(this, function(x){ return grepper[x]; });
   },
   
+  reject: function(selector) {
+    if (selector.to_func) {
+      var fn = selector.to_func();
+      return $.grep(this, function(x){ return !fn(x); });
+    }
+    return $.grep(this, function(x){ return !selector[x]; });
+  },
+  
   max: function(){
     var max = this[0];
     $.each(this, function(){

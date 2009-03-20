@@ -30,7 +30,7 @@
 Item = {
 
   atag_trans: {
-    // conn: 'connection',
+    conn: 'connection',
     // bene: 'kindness',
     // food: 'food',
     art: 'art',
@@ -42,7 +42,7 @@ Item = {
     pchal: 'challenge',
     pgrowth: 'challenge',
     convo: 'discussion debate',
-    beauty: 'nature',
+    beauty: 'nature quiet',
     // raok: 'kindness'
   },
   
