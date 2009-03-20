@@ -43,7 +43,8 @@ Item = {
     pgrowth: 'challenge',
     convo: 'discussion debate',
     beauty: 'nature quiet',
-    // raok: 'kindness'
+    // raok: 'kindness',
+    cornerfun: 'strangeness'
   },
   
   calculate_fields: function(item) {

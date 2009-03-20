@@ -16,6 +16,8 @@ span.minimenu {
   font: 9px Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   color: #999;
+  position: absolute;
+  top:0; right:-40px;
 }
 
 ul.choices {
@@ -24,5 +26,9 @@ ul.choices {
   margin-left: 0px;
   padding-left: 15px;
   font-size: 11px;
+  padding-right: 40px;
 }
 
+ul.choices li {
+  position: relative;
+}

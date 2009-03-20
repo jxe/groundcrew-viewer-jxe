@@ -14,26 +14,31 @@ function _idea(tag, rank, type, title, atags, json_etc){
 
 _idea('Idea__111', 10, 'meeting',    'some quiet time',          'quiet observation connection peace', {});
 _idea('Idea__112', 10, 'rendezvous', 'a high five',              'connection quick inclusion', {});
-_idea('Idea__wiz2', 15, 'wizard',     'a group discussion',       'discussion connection debate learning', {});
+_idea('Idea__113', 10, 'meeting',    'a local reporting assignment', 'engagement adventure learning', {});
+_idea('Idea__114', 10, 'meeting',    'rolling down a hill',          'fun connection', {});
+_idea('Idea__115', 10, 'meeting',    'humcircle #1',                 'strangeness connection', {});
+_idea('Idea__116', 10, 'rendezvous', 'skipping with a stranger',     'strangeness connection', {});
 
 
-_idea('Idea__101', 20, 'meeting',    'cleaning a city park',          'volunteering teamwork', {});
-_idea('Idea__102', 20, 'meeting',    'hand out flowers to strangers', 'connection kindness teamwork', {});
+_idea('Idea__wiz1', 30, 'wizard',    'a public celebration',         'fun celebration adventure connection', {});
+_idea('Idea__wiz2', 30, 'wizard',    'a public discussion',          'engagement connection debate learning', {});
+
+_idea('Idea__108', 20, 'rendezvous', 'learning a song',              'challenge adventure performance art music connection beauty', {});
+_idea('Idea__109', 20, 'meeting',    'building a public sculpture',  'art strangeness connection', {});
+_idea('Idea__105', 25, 'solo',       'travel without being seen',    'challenge adventure stealth', {});
 _idea('Idea__103', 20, 'meeting',    'compliment strangers',          'connection kindness', {});
-_idea('Idea__104', 20, 'meeting',    'planting and gardening',        'art volunteering creation dirt peace nature', {});
 
-_idea('Idea__105', 20, 'solo',       'travel without being seen', 'challenge adventure stealth', {});
-_idea('Idea__106', 20, 'meeting',    'big dreams',                'discussion connection visions adventure', {});
-_idea('Idea__107', 20, 'solo',       'infiltrate a social scene', 'challenge adventure stealth', {});
+_idea('Idea__wiz4', 40, 'wizard',    'rendezvous with another agent', 'connection adventure', {});
+_idea('Idea__wiz5', 40, 'wizard',    'meeting with other agents',     'connection adventure teamwork', {});
 
-_idea('Idea__108', 20, 'rendezvous', 'learn a song',             'challenge adventure performance art music connection beauty', {});
-_idea('Idea__109', 20, 'meeting',    'group sculpture',          'art connection', {});
-_idea('Idea__110', 20, 'meeting',    'knitting circle',          'crafting connection knitting', {});
+// don't know how these will work
+// _idea('Idea__101', 20, 'meeting',    'cleaning a city park',          'volunteering teamwork', {});
+// _idea('Idea__102', 20, 'meeting',    'hand out flowers to strangers', 'connection kindness teamwork', {});
+// _idea('Idea__104', 20, 'meeting',    'planting and gardening',        'art volunteering creation dirt peace nature', {});
+// _idea('Idea__106', 20, 'meeting',    'big dreams',                'discussion connection visions adventure', {});
+// _idea('Idea__107', 20, 'solo',       'infiltrate a social scene', 'challenge adventure stealth', {});
+// _idea('Idea__110', 20, 'meeting',    'a knitting circle',          'crafting connection knitting', {});
 
-_idea('Idea__wiz1', 30, 'wizard',     'celebrate ANYTHING',        'celebration fun adventure connection', {});
-_idea('Idea__wiz3', 30, 'wizard',     'investigation ANYTHING',    'investigation adventure learning', {});
-_idea('Idea__wiz4', 40, 'wizard',     'rendezvous about ANYTHING', 'connection adventure', {});
-_idea('Idea__wiz5', 40, 'wizard',     'meet about ANYTHING',       'connection adventure teamwork', {});
 
 function menu(label, reveal_id){
   var color = label.to_color();
