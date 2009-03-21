@@ -29,7 +29,7 @@
 
 Item = {
 
-  atag_trans: {
+  atags_to_upfors: {
     conn: 'connection',
     // bene: 'kindness',
     // food: 'food',
@@ -54,45 +54,45 @@ Item = {
   
   calculated_fields: {
     
-    upfor: function(a) {
-      return a.atags.split(' ').map(function(x){ return Item.atag_trans[x]; }).compact().uniq().join(' ');
+    upfor: function(item) {
+      return item.atags.split(' ').map(function(x){ return Item.atags_to_upfors[x]; }).compact().uniq().join(' ');
     },
     
-    wants: function(a) {
-      var readywords = a.atags.split(' ').map(function(x){ return Item.atag_trans[x]; }).compact().join(' ').split(' ').uniq();
+    wants: function(item) {
+      var readywords = item.atags.split(' ').map(function(x){ return Item.atags_to_upfors[x]; }).compact().join(' ').split(' ').uniq();
       if (readywords.length == 0) return "???";
       return readywords.choose_random().toUpperCase();
     },
     
-    time_avail: function(a) {
+    time_avail: function(item) {
       return ['20 MIN', '1 HR', '5 MIN'].choose_random();
     },
     
-    readywords: function(a) {
-      return a.atags.split(' ').map(function(x){ return Item.atag_trans[x]; }).compact();
+    readywords: function(item) {
+      return item.atags.split(' ').map(function(x){ return Item.atags_to_upfors[x]; }).compact();
     },
             
-    locked: function(a) {
-      if (!a.latched_by) return false;
-      if (a.latched_by.split(' ').indexOf(CurrentUser.tag) >= 0) return false;
+    locked: function(item) {
+      if (!item.latched_by) return false;
+      if (item.latched_by.split(' ').indexOf(CurrentUser.tag) >= 0) return false;
       return true;
     },
     
-    map_icon: function(a) {
-      if (a.item_tag == CurrentUser.tag) return 'sman';
-      if (a.pgoal) return 'rgman';
+    map_icon: function(item) {
+      if (item.item_tag == CurrentUser.tag) return 'sman';
+      if (item.pgoal) return 'rgman';
       return 'wman';
     },    
     
-    thumb_url: function(a) {
-      if (a.thumb_url) return a.thumb_url;
+    thumb_url: function(item) {
+      if (item.thumb_url) return item.thumb_url;
       return 'i/agent-smith.jpg';
     },
         
-    availability_status: function(a){
-      if (!a.latch || !a.comm) return null;
-      var comm = a.comm.split(' ');
-      var latch = a.latch.split(' ');
+    availability_status: function(item){
+      if (!item.latch || !item.comm) return null;
+      var comm = item.comm.split(' ');
+      var latch = item.latch.split(' ');
       if (comm.contains("unreachable")) return "available";
       if (!latch.contains("unlatched")) return "busy";
       if (comm.contains("engaged")) {

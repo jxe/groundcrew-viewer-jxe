@@ -1,23 +1,24 @@
 Event = {
 
-  improve: function(a) {
-    a.when = $time(a.created_at);
-    a.color = Event.color(a);
-    a.item = a.item || (a.item_tag && a.item_tag.resource());
-    a.item_title = a.item && a.item.title;
-    a.landmark = a.landmark_tag && a.landmark_tag.resource();
-    a.landmark_title = a.landmark && a.landmark.title;
-    if (a.actor_tag) a.actor_title = a.actor_tag.resource() && a.actor_tag.resource().title;
-    a.what = (Event.whats[a.atype] || "did something weird (#{atype})").t(a);
-    return a;
+  improve: function(ev) {
+    ev.when = $time(ev.created_at);
+    ev.color = Event.color(ev);
+    ev.item = ev.item || (ev.item_tag && ev.item_tag.resource());
+    ev.item_title = ev.item && ev.item.title;
+    ev.landmark = ev.landmark_tag && ev.landmark_tag.resource();
+    ev.landmark_title = ev.landmark && ev.landmark.title;
+    if (ev.actor_tag)
+      ev.actor_title = ev.actor_tag.resource() && ev.actor_tag.resource().title;
+    ev.what = (Event.whats[ev.atype] || "did something weird (#{atype})").t(ev);
+    return ev;
   },
   
-  color: function(a){
-    if (a.atype == 'wish') return "blue";
-    if ($w('viewer').indexOf(a.atype) >= 0) return "invisible";
-    if ($w('available enlist unenlist off signup').indexOf(a.atype) >= 0) return "grey";
-    if ($w('said').indexOf(a.atype) >= 0) return "black";
-    if ($w('assignment msg').indexOf(a.atype) >= 0) return "purple";
+  color: function(ev){
+    if (ev.atype == 'wish') return "blue";
+    if ($w('viewer').indexOf(ev.atype) >= 0) return "invisible";
+    if ($w('available enlist unenlist off signup').indexOf(ev.atype) >= 0) return "grey";
+    if ($w('said').indexOf(ev.atype) >= 0) return "black";
+    if ($w('assignment msg').indexOf(ev.atype) >= 0) return "purple";
     return "green";
   },
   
