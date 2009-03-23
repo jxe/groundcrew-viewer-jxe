@@ -2,6 +2,7 @@ var map;
    
 Map = {  
   last_zoom_auto_set: 0,
+  initialized: false,
   
   available: function() {
     if (!window.GBrowserIsCompatible || !GBrowserIsCompatible()) return false;
@@ -61,9 +62,9 @@ Map = {
     } else {
       Map.Gmap.setCenter(bounds.getCenter(), zoom);
     }
-    if (!Map.initted) {
+    if (!Map.initialized) {
       components.trigger('map_init', Map.Gmap);
-      Map.initted = true;
+      Map.initialized = true;
     }
     Map.last_zoom_auto_set = zoom;
   },
