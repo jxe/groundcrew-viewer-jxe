@@ -1,0 +1,35 @@
+*** Everything here is Copyright 2008 Citizen Logistics, LLC ***
+***         and released under the Affero GPL v3             ***
+
+
+===========================
+== HOWTO create new apps ==
+===========================
+
+When you have coded some functionality within your app, you might want to test
+it a bit. It might be quite tedious to click through all sorts of dialogs,
+hence there is this nifty feature that allows you to go to an app directly.
+Point your browser to:
+
+  viewer.html#/<app>/<argument>{/<arguments>}
+
+the arguments depend on the url_part_labels defined for the app. for example,
+
+  viewer.html#/ideas/City__277/Landmark__p1435522
+
+will take you directly to the dialog to choose an idea to be used for an
+event in Montréal at the landmark 'Le Plateau'.
+
+Note that depending on your app, supplying url_part_labels might not be enough
+to have a sufficient state configured in the viewer.
+
+However, the tags for landmarks (via Panoramio) are a wee bit volatile. So the
+way to get a persistent landmark on your local machine is the following:
+
+- on the live site, go edit the name of a landmark somewhere using the
+  landmark editor
+- note the landmark's tag / url in the console
+- do a make grab locally to get the new updated landmark in your vstart.js
+- refer to it at will in urls.
+
+

@@ -28,6 +28,7 @@ the user images.  Sorry about that.  Also, only your home city
 will have data loaded from the server.
 
 
+
 =====================
 == Troubleshooting ==
 =====================
@@ -38,48 +39,20 @@ or a file:/// url.  If you refer to your local machine in some other
 way it will not work.
 
 
-===========================
-== Navigating the source ==
-===========================
 
-Here are the directories we use:
+============================
+== In-depth documentation ==
+============================
 
-/components/      - the real functionality, broken down by UI component
-   map_layers/    - draw the different kinds of markers on the map
-   palettes/      - these are the pop-ups from clicking border icons
-   welcome/       - the welcome and help text
-   *_app/         - plugins that handle certain tasks, like organizing or recruiting
-   
-/src/
-	foundation/     - javascript and css utilities and conventions
-	gc_api/         - javascript utilities for groundcrew domain objects (agents, landmarks, etc)
-	viewer/         - javascript infrastructure for displaying the viewer
-
-/vendor/          - javascript from outside sources
-/test/            - qunit javascript tests
+More in-depth documentation can be found in the directory docs/.
 
 
-RECENT NOTES:
 
-* The viewer is now organized into multiple apps, and apps provide their
-  services and link to each other using an internal URL structure which 
-  is implemented in 'src/viewer/viewer.js'.  For example, a command
-  like Viewer.go('/mobilize/noho/good_deeds/Idea__12/Agent__405') will 
-  run some code in apps/mobilize_app/mobilize.js which will provide
-  breadcrumbs and open an agent window relative to a specific good deed
-  idea.
+=============
+== Contact ==
+=============
 
-* The src/ stuff is now organized into architectural levels.  We have 
-  some foundational javascript utilities and css conventions, then we 
-  have an API for dealing with groundcrew objects like agents and ideas,
-  built on top of that.  Then we have the viewer code built on those 
-  two.
+Contact us via the viewer's developer mailing list:
 
-* src/foundation/resource.js and src/gc_api/models.js implement a
-  generic javascript "database" layer for searching and grouping 
-  groundcrew resources.  This means we can say things like
-  Agents.by_city(220) for a list of agents in Northampton, and the
-  same works for Landmarks and other basic groundcrew objects.
+http://groups.google.com/group/groundcrew-viewer-developers
 
-* src/gc_api/gcserver.js implements the server to viewer communication
-  stream.

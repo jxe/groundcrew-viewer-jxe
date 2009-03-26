@@ -1,0 +1,818 @@
+*** Everything here is Copyright 2008 Citizen Logistics, LLC ***
+***         and released under the Affero GPL v3             ***
+
+
+===========================
+== Navigating the source ==
+===========================
+
+Here are the directories we use:
+
+/src/
+  foundation/     - javascript and css utilities and conventions
+  gc_api/         - javascript utilities for groundcrew domain objects (agents, landmarks, etc)
+  viewer/         - javascript infrastructure for displaying the viewer
+
+/components/      - the real functionality, broken down by UI component
+   main/          - the main components of the Groundcrew UI
+   palettes/      - these are the pop-ups from clicking border icons
+   *_app/         - plugins that handle certain tasks, like welcoming, organizing or ideasing
+
+/BUILD/           - target directory of the make process
+/css/             - cascading style sheets for non-apps
+/data/            - data files? debugging replacements for server data?
+/debug/           - files to help in debugging (work in progress)
+/i/               - images
+/pages/           - 'pages' / snippets ?
+/vendor/          - javascript from outside sources
+/tests/           - qunit javascript tests
+
+
+
+More in-depth descriptions:
+
+/src/
+  This part is organized into architectural levels. We have some foundational
+  javascript utilities and css conventions in foundation/, then we have an
+  API for dealing with groundcrew objects like agents and ideas in gcapi/
+  built on top of that. Then we have the viewer code built on those two in
+  viewer/.
+
+  * foundation/
+    + array_extensions - extend Javascript arrays
+      # __compare__:
+        internal function to compare two arguments.  returns 1, 0, -1 if the
+        first argument is larger, equal, smaller than the second.
+      # last: returns the last array element.
+      # grep:
+        takes a grepper as argument.
+        returns the results of jQuery's grep function using grepper to
+        determine a successful result. grepper can be a function or a
+        hash/array.
+      # reject:
+        takes a selector as argument.
+        the inverse to grep.
+      # max: returns the largest array element (in terms of operator '>').
+      # choose_random: returns a random array element.
+      # uniq:
+        returns the array with duplicate elements removed; note that all
+        elements are returned as strings, i.e. functions are expanded and
+        their source code is returned!
+      # sum: returns the sum of all array elements (in terms of operator '+=')
+      # to_h:
+        returns a hash which has the array's values as keys and true as
+        values. has the side effect of having duplicate entries in the
+        array removed in the resulting hash.
+      # map:
+        returns an array where all elements of this array have gone
+        through a transformation by the given function.
+      # compact:
+        returns an array where elements from this array which do not
+        evaluate to true (e.g. undefined or false) are removed.
+      # flatten:
+        returns a string which contains the concatenation of all
+        string representations of this array.
+      # as_option_list:
+        returns an array of HTML option list. the given arguments signify the
+        preselected option and the keys to be used for the option's value and
+        title attributes in case this is an array of hashes. see
+        /components/ideas_app/ideas.js for example usage.
+      # dispatch:
+        calls the given method with the given args on the first element found
+        matching that method. it shows an alert and logs to the console if a
+        dispatch error occurs or shows an alert when method was not found.
+      # trigger:
+        calls the given method with the given args on each element foundo
+        matching that method.
+      # contains: answers if the array (or string) contains the given value.
+      # startsWith:
+        answers if the array (or string) starts with the given value.
+      # sort_by:
+        returns the array sorted by the given function. the given function
+        must take one argument that yields a value that can be used with the
+        operators '>' and '<'.
+      # group_by:
+        takes the field name to group by as argument.
+        returns a hash of this array grouped by the given field
+      # index_by:
+        takes the field name to index by as argument
+        returns a hash of this array indexed by the given field
+      # repackage:
+        takes the field name to repackage.
+        returns a hash of this array repackaged.
+      # indexOf:
+        returns the index of the given object in this array or -1 if the
+        object is not contained. (function only defined if non-existent)
+
+    + convenience: convenience functions
+      # $w:
+        returns an array with the given string split into words; word
+        boundary is defined by the string ' '.
+      # $pairs:
+        takes a hash as argument.
+        expands the hash to an array whose elements contain a two-element hash
+        with keys 'key' and 'val' with the original hash element's key/value as
+        values.
+      # $values:
+        takes a hash as arguemnt.
+        returns an array with the hash's values.
+      # $keys:
+        takes a hash as argument.
+        returns an array with the hash's keys.
+
+    + jquery_plus - groundcrew extensions to jQuery
+      # $.templates is initialized to an empty hash.
+      # $.template:
+        takes a template name as argument.
+        returns the appropriate (cached) template.
+      # $.fn.form_values:
+        returns a hash with name/value pairs of this if this is a form.
+      # $.fn_show_dialog: (unused)
+        takes a function name as argument.
+        opens a dialog box and calls the given function when the form in the
+        dialog is submitted.
+      # $.fn.onscreen:
+        puts this element logically on the screen (possibly centered).
+        returns the onscreened element.
+      # $.fn.offscreen:
+        put this element logically off the screen.
+        returns the offscreened element.
+      # $.fn.center:
+        centers this element.
+        returns the centered element.
+      # $.fn.scrollDown: (unused)
+        scrolls down each element in this.
+        returns the scrolled down element.
+      # $.fn.position:
+        takes a position orientation, a where element and an anchor element as
+        arguments.
+        sets this' position via css. it uses the given orientation and the
+        actual value is derived from the difference of the given anchor's and
+        where's position. only orientation 'vtop' is supported at the moment.
+      # $.fn.reveal:
+        reveals (puts it onscreen and paints) this element. only one element
+        at the time can be revealed.
+      # $.fn.toggle_reveal:
+        depending on this element's current state, it reveals or unreveals it.
+      # $.unreveal:
+        unreveal this revealed element.
+      # $.fn.disable
+        disables button, input and select elements in this element.
+        returns this element.
+      # $.fn.enable
+        reenables disabled elements in this element.
+        returns this element.
+      # $.cookie
+        takes a name and value as argument.
+        if a value is given, it sets a cookie by given name and value.
+        if no value is given, it returns a cookie by the given name (or null).
+
+    + other_extensions: miscellaneous extensions
+      # Math.rand:
+        takes an upper bound number as argument.
+        returns an random integer between 0 and the specified upper bound.
+      # Function.prototype.to_func:
+        make this function to a function.
+      # window.console and console.log are defined empty here in case they
+        don't already exist.
+      # Date.unix: return a unix timestamp of the current time
+      # pan:
+        takes a value a and b as arguments.
+        returns this number panned by the given values.
+      # to_hex_byte:
+        returns this number as a hex string.
+      # reverse_nibbles:
+        returns this number with half-bytes reversed.
+
+
+    + rendering: functions to help with rendering texts
+      # link:
+        takes a text and a url as arguments.
+        returns an HTML anchor tag with given text and hypertext reference.
+      # tag:
+        takes a name and attributes as arguments.
+        returns an HTML tag which has the given name and attributes properly
+        expanded.
+      # hToC:
+        takes an x, a y and a hue value as arguments.
+        returns an RGB component c.
+      # hsl:
+        takes a hue, a saturation and a luminosity value as arguments.
+        returns the corresponding RGB values as HTML string.
+      # number_word:
+        takes a number as argument.
+        returns the number as a string if it is <= 16.
+      # pluralize_with_number_word:
+        takes a number, the singular and optionally the plural version of a
+        word as argument.
+        returns a string with the item in question in singular/plural
+        with the correct number word prepended.
+      # pluralize:
+        takes a number, the singular and the plural version of a word as
+        argument.
+        returns a string with the item in question with the number prepended.
+      # english_list:
+        takes an array of items as argument.
+        returns a string with items seperated by ',' and 'and' according to
+        english language.
+
+    + resource - a database item for groundcrew or other projects
+      # a Resource object is made up of something with a tname, a database of
+        items and 'all'. it is also extended dynamically at instantiation if
+        there are options specified.
+      # Resource.add_or_update:
+        takes an item as argument.
+        returns the result of item's removal if the item is 'dead' and not the
+        current users or returns  the result of the items add_or_update in the
+        item's resource class.
+      # id:
+        takes an index number as argument.
+        returns the index number's id from the resource's database.
+      # local:
+        takes options as argument.
+        returns the options extended by a local tag.
+      # find:
+        takes a specification as argument
+        returns the element found as specified (and caches the results).
+      # add_or_update:
+        takes an item as argument.
+        adds (or updates) the item to the resource's database.
+        returns the item.
+      # remove:
+        takes an item as argument.
+        removes an item from the resource's database.
+      # register_all:
+        takes all as argument.
+        does stuff.
+      # register_indexed:
+        takes indexes as argument.
+        does stuff.
+      # enhance_all:
+        takes all as argument.
+        enhances all.
+      # add_partition: (unused)
+        takes an attribute, a value and all as arguments.
+        does stuff.
+
+    + string_extensions - extend Javascript strings
+      # PEARSON_HASHING_TABLE: hash table used to color strings
+      # t:
+        takes data (string or hash) as argument.
+        returns this string with template placeholders replaced by given data.
+      # tt:
+        takes an array of data as argument.
+        returns this string with template placeholders replaced by given data.
+      # pearson_hash:
+        returns a Pearson hash value of this string.
+      # to_color:
+        returns a color representation of this string.
+      # ellipticise:
+        takes an integer describing the desired string length.
+        returns this string cut off at the desired length and extended by an
+        ellipse.
+      # gcify_url:
+        return this string prepended by 'http://groundcrew.us' if it starts
+        with '/'. otherwise return this string.
+      # singularize:
+        returns this string with the last 's' trimmed.
+      # sanitize:
+        returns this string with blanks replaced by underscores.
+      # indef_article:
+        returns this string prepended by the (mostly) correct indefinite
+        article.
+      # contains:
+        takes a string as argument.
+        returns true if this string contains the given substring, false
+        otherwise.
+      # startsWith:
+        takes a string as argument.
+        returns true if this string starts with the given substring, false
+        otherwise.
+      # to_obj:
+        evaluates this string.
+        returns the evaluation's result.
+      # to_func:
+        returns a function with a hash as parameter that returns the value in
+        the given hash by the key which is specified by this string without
+        the leading character. but only if this string starts with a '.'.
+      # to_words:
+        returns the string split into words but removes some words from the string?
+      # resource:
+        returns the resource of this string (item).
+      # resource_class:
+        returns the resource class of this string (item).
+      # resource_id:
+        returns the id of this string (item).
+
+
+  * gc_api/
+    + event - defines an event.
+      # improve:
+        takes an event as argument.
+        visually improves an event by running it through various functions to
+        apply templates, prettify dates and so on.
+        returns the improved event.
+      # color:
+        takes an event as argument.
+        returns the event's color, depending on the event's type.
+      # whats:
+        a hash of HTML templates for use in various events.
+
+    + gcserver - implements the server to viewer communication stream.
+      # Ajax: defines an Ajax object with interval, timer and
+        post_process_new_events.
+          uuid: returns a unique user ID
+          init: initialize the object
+          schedule_autoload: set a timer to reschedule the call to autoload
+          autoload: load data from server and and post process new events.
+          fetch:
+            takes a url, options and an after function as arguments.
+            calls the server at given url with given options. the after
+            function is executed with the Ajax result object as argument.
+      # item:
+        takes a city_id, tag, title, thumb_url, latitude, longitude, atags,
+        latch, comm, req and additional data as arguments.
+        defines a map item like landmark or agent with the help of the given
+        arguments.
+      # cities and city_locs global hashes of cities and city_locations.
+      # city:
+        takes an id, title, latitude, longitude and an agent count as
+        arguments.
+        defines a city in which there is a a groundcrew activity.
+      # idea:
+        takes an item tag, title, atags, landmark types and additional data as
+        arguments.
+        defines a template for a gathering
+      # EventDB:
+        a hash to represent the event database, consisting of the array
+        events, the hash by_tag, the hash watched and the boolean
+        new_events_are_new.
+      # event:
+        takes an annc_tag, created_at, atype, actor_tag, re, atags, city_id,
+        item_tag, item_changes and additional data as arguments.
+        defines an event and adds it to the event database.
+        returns the event
+      # login:
+        takes user info as argument.
+        performs a user login.
+
+    + item - defines yet another item
+      A word about action tags and upfors:
+
+      So when a user signs up, they indicate some very specific kinds of
+      things they are into.  As specific as "knitting" or "streetcorner
+      oddities and fun" and "pick-up soccer games".  These become atags (for
+      "action tags").  They are abbreviated, for example to "knitting",
+      "cornerfun", and "soccer".
+
+      But when a user gets in touch from their phone, they say something more
+      vague.  Something like "i want adventure" or "connection" or
+      "volunteering".  These more vague words are called "upfor" tags.  These
+      are the things that appear on the badges.  There is no hierarchical
+      relationship between atags and upfors.  It is many to many.  A bipartite
+      graph.  And the current upfors of an agent select a subset of their
+      atags which are currently in effect.
+
+      # atag_to_upfors: translates action tags to upfors.
+      # calculate_fields:
+        takes an item as argument
+        calculates the given item's fields.
+      # calculated_fields:
+        defines what fields to calculate, available field names/functions are:
+        upfor, wants, time_avail, readywords, locked, map_icon, thumb_url,
+        availability_status.
+
+    + models - defines model objects
+      The Resource class is extended by groundcrew-specific functionality.
+      # Resource.prototype.in_city:
+        takes a city and additional options to the resource's find function
+        as arguments.
+        returns all resources in the given city.
+      # Resource.prototype.with_atag:
+        takes an action tag as argument.
+        returns all resources with given action tag.
+      # Agent:
+        defines a new resource of agents and also enhancer and changed
+        functions.
+      # Landmarks and Ideas:
+        define new resources of landmarks/ideas.
+
+
+  * viewer/
+    The viewer is organized into multiple apps to be found in /components.
+    apps provide their services and link to each other using an internal URL
+    structure. For example, a command like Viewer.go('/share/add') will run
+    some code in /components/share_app/share.js which will open a window to
+    specify a resource you want to share.
+    You can also call functionality directly in the browser by using
+    /viewer.html#/<app>/<argument>{/<arguments>}.
+
+    + viewer - this is the application controller and selection model
+      # loc: current agent's location
+      # prev_loc: previous agent's location
+      # apps: applications registered in the viewer
+      # current_app: currently active application
+      # prev_agents: previous agents
+      # rendered: if the viewer is rendered
+      # open:
+        takes a tag as argument.
+        opens the viewer at the given tag.
+        returns nothing or something that is derived from several possible
+        different states within Viewer.go and LiveHTML.dispatch.
+      # back:
+        makes the viewer go back to the previous location.
+      # go:
+        takes an URL and optional form data as arguments.
+        returns the value of a dispatched function in LiveHTML or nothing.
+      # breadcrumbs:
+        returns an HTML option list of breadcrumbs to be used for navigation.
+      # render:
+        takes a renderer as argument.
+        renders the current application.
+      # render_item:
+        takes a template name and a minimal zoom value as arguments.
+        renders one item (template)
+      # set_city:
+        takes a city and the viewer's state as arguments.
+        sets the given city as the selected one.
+      # set_item:
+        takes an item and the viewer's state as arguments.
+        sets the given item as the current in the viewer's state.
+      # join_please:
+        shows a facebox to join groundcrew.
+      # blank:
+        fill function to clear form fields when the form is re-revealed.
+
+    + frame - handle the frame around the map
+      # flexbar_size: size of the flexbar at the bottom.
+      # agent_thumb: template for agent thumbnail.
+      # scroll_flexbar: (not implemented)
+        takes the number of pixels to scroll the flexbar.
+      # set_flexbar_size:
+        takes the new size as argument.
+        sets the flexbar size to the given size.
+      # set_flexbar_content: (not implemented)
+        takes the new content as argument.
+      # populate_flexbar_agents:
+        takes agents as argument.
+        populates the flexbar with the given agents.
+
+    + map - handle the map
+      # last_zoom_auto_set: last zoom set without user interaction.
+      # initialized: if the map is already initialized.
+      # available:
+        returns if the map is useable.
+      # load_and_refocus:
+        takes markers as argument.
+        loads the map and (re)focuses on the given markers.
+      # add:
+        takes markers as argument.
+        adds the given markers to the map's overlay.
+      # establish:
+        creates a new GoogleMap object.
+      # set_bounds_from_lat_lngs:
+        takes items as arguments.
+        sets the map boundaries from the latitudes/longitudes given by items.
+      # replace_marker:
+        takes an old and a new marker as arguments.
+        replaces the given old marker by the given new marker on the map.
+
+    + map_markers - handle markers on the map
+      # iw_marker: currently open map window marker
+      # open:
+        takes an item, content and min_zoom as arguments.
+        shows the marker for the given marker with the given HTML content at
+        given zoom level.
+      # display:
+        takes a city and agents as arguments.
+        displays the map with all agent markers in the given city or all
+        city markers where agents are currently located.
+
+      # cache: hash with a cache of map markers
+      # marker:
+        takes latitude, longitude, type and title as arguments.
+        returns a new GoogleMaps marker at given latitude and longitude with
+        given title and icon as specified by the given type.
+      # for_city:
+        takes a city_id as argument.
+        returns a map marker for the given city.
+      # for_agent:
+        takes an agent as argument.
+        returns a map marker for the given agent.
+
+    + markermanager - an interface between the map and the user, designed to
+    manage adding and removing many points when the viewport changes. see it's
+    inline documentation for more details.
+
+    + notifier -  implements a mechanism to notify the user of events.
+      # did_add_new_event:
+        takes an event as argument.
+        alerts the user of an event if it was latched to her.
+
+    + relative_time - helper functions dealing with relative time
+      # $time:
+        takes a date string in the format
+          month day, year hours:minutes:seconds
+        and converts it into a time string in the format
+          hour:minutes [am|pm]
+      # $from_now:
+        takes a unix timestamp as argument.
+        returns HTML to show how many minutes/hours the given time is from now.
+      # $from_now_:
+        takes a unix timestamp as argument.
+        returns a string how many minutes/hours the given time is from now.
+      # $long_ago:
+        takes a unix timestamp as argument.
+        returns a string how long ago in days/hours/minutes the given time
+        was from now.
+      # update_times:
+        extends all jQuery objects to look through all HTML elements with
+        attribute 't' (as defined in $from_now) to set a current time from now.
+
+    + wiring - glueing the viewer's components into one piece
+      # CurrentUser - global user object
+      # init:
+        initialize the viewer
+      # activateUI:
+        initialize the user interface components of the viewer.
+
+    + livehtml - do all sorts of magic stuff to the DOM in the HTML document.
+      # widgets: LiveHTML widgets - never populated
+      # init:
+        takes args as argument, which is never used.
+        initialize LiveHTML
+      # dispatch/trigger: extensions to the respective array functions to
+        include the widgets.
+      # $.fn.app_paint
+        extends each DOM element by a few attributes to modify the viewer's
+        behaviour/looks. the available attributes at the moment are:
+        fill - fill this element with the output of the specified function
+        if - show this element if the specified function exists
+        observe - call the specified function if this element changes
+        hint - input fields and textareas in forms receive a 'hinting'
+               behaviour (empty the text on focus, fill with a pre-defined
+               value on blur).
+        also forms receive the behaviour that they become disabled and a
+        specified function is called in the current app before it's action
+        results in the viewer going to that location.
+
+:
+
+
+/components/
+  * main/
+    + current_item - add item data to LiveHTML widgets
+      # item_thumb_url
+        takes the viewer's state as argument.
+        returns the current item's groundcrewified thumb URL.
+      # item_title
+        takes the viewer's state as argument.
+        returns the current item's title.
+      # item_ltypes
+        takes the viewer's state as argument.
+        returns the current item's landmark types (which means that item should
+        be a landmark here).
+      # item_description
+        takes the viewer's state as argument.
+        returns the current item's description.
+
+    + header - add user data to LiveHTML widgets
+      # self_posx_pts
+        takes the viewer's state as argument.
+        returns the current user's POSX points.
+      # self_posx
+        takes the viewer's state as argument.
+        returns the current user's POSX.
+      # self_squadm
+        takes the viewer's state as argument.
+        returns the current user's squad members.
+
+    + map_icons - create GoogleMaps icons via MapIcons
+      # for_landmark
+        takes a landmark as argument and returns an icon object.
+        uses the landmark's map_thumb_url (from Panoramio) or a default
+        Panoramio marker image.
+      # for_type
+        takes a type as argument and returns an icon object.
+        the valid types can be seen in the directory /i/map/ and types 'man'
+        and 'bump' have a shadow attached to them.
+
+    + map_landmarks - create landmarks via MapLandmarks
+      # map_init
+        takes a map as argument.
+        uses the map to create a MarkerManager in LandmarkLayer.mgr and
+        installs an event listener on the map to fetch landmarks on 'moveend'
+      # fetch_landmarks_in_bounds
+        takes bounds as argument.
+        add markers (with images from Panoramio) to LandmarkLayer.mgr if they
+        are within the specified map boundaries.
+      # city_changed
+        takes a city as argument.
+        adds a LandmarkLayer specific to the current city to the map
+      # off
+        clears all markers in the manager and ids in the layer
+      # lm_from_pano
+        takes a Panoramio photo object as argument and returns a landmark.
+      # marker_for_lm
+        takes a landmark as argument and returns a GoogleMaps marker.
+        that marker is also assigned to the landmark's map_marker.
+        it also attaches an event listener on the marker to make
+        the viewer go to the landmark's item_tag on 'click'.
+
+  * palettes/
+    + agents_palette - agents to guide
+      # agents_to_guide6
+        takes the viewer's state as argument.
+        returns a Tile holding the first 6 agents, used by the welcome window.
+      # agents_to_guide_all
+        takes the viewer's state as argument.
+        returns a Tile holding all agents, used by the palette's template.
+
+    + chat_palette - chat window
+      # Chat class with one-line message template.
+      # add a few widgets to LiveHTML:
+        | latest_chats
+          takes the viewer's state as argument.
+          returns the last 9 chat messages, formatted according to template.
+        | chat_form_submitted
+          takes form data, the viewer's state and the form id as argument.
+          submits the chat data to the server, resets the input field and
+          evaluates what is returned from the server.
+
+    + events_palette - recent events
+      # EventsPalette class with one event template.
+      # add a few widgets to LiveHTML:
+        | recent_events
+          takes the viewer's state as argument.
+          returns recent events, formatted according to template.
+
+    + ideas_palettes - start an adventure or form a wish
+      # wishes + adventures are supposed to be retrieved from the server later
+        on.
+      # add a few widgets to LiveHTML:
+        | adventures
+          takes the viewer's state as argument.
+          returns a collection of adventures and wishes.
+        | adventures6
+          takes the viewer's state as argument.
+          returns a collection of the first 3 adventures and first 3 wishes.
+
+    + resource_palette - share your resources
+      # only the template that links to online documentation and to the share
+        app.
+
+    + tiles - tile templates for the palettes:
+      agent_tile, adventure_tile and proj_tile (wishes).
+
+
+  * *_app/ currently contains the following applications:
+    + allies - find allies in your city with the same wishes
+      # url_part_labels
+        city wish
+      # wishes
+        takes the viewer's state as argument.
+        returns a list of you and your allies' wishes.
+      # helpwith_form_submitted
+        form callback
+      # templates
+        wish_index.html - unused?
+
+    + ideas - choose an idea (incomplete)
+      # url_part_labels
+        city item (agent/landmark)
+      # show_item
+        takes the viewer's state as argument.
+        renders the template 'idea_catalog'.
+      # idea_category_changed
+        takes the newly selected category and the viewer's state as argument.
+        observe function in the template 'idea_catalog' to update the contents
+        of a select form field with the given category's ideas.
+      # idea_categories
+        takes the viewer's state as argument.
+        fill function in the template 'idea_catalog' to fill in available idea
+        categories.
+      # idea_ideas:
+        takes the viewer's state as argument.
+        fill function in the template 'idea_catalog' to fill in available
+        ideas in a specific category (or all).
+      # ignore IdeaCatalogue as it will supplied by the server soon.
+
+    + mapcare - improve the map's quality
+      # url_part_labels
+        city item (agent/landmark)
+      # show_item
+        takes the viewer's state as argument.
+        renders the template 'landmark_editor' if item is a landmark.
+      # send_landmark_form_submitted
+        takes form data and the viewer's state as argument.
+        form callback from template 'landmark_editor' to send the modified
+        landmark to the server and then make the viewer go to the referring
+        template.
+
+    + organize - organize positive experiences
+      # url_part_labels
+        squad city item (agent/landmark) live_event
+      # marker_clicked
+        takes a tag and the viewer's state as argument.
+        makes the viewer go to the specificed tag
+      # show_live_event
+        used for debugging (FIXME: handle differently in the future). this is
+        called when the URL parts contain a 'live_event' will render the
+        template 'assignment_editor'.
+      # show_item
+        takes the viewer's state as argument.
+        makes a dispatch between URL part 'item' starting with 'Person' or
+        'Landmark' and renders the appropriate template 'organize_agent',
+        'organize_landmark'.
+      # send_assignment_form_submitted
+        takes form data and the viewer's state as argument.
+        form callback from template 'assignment_editor' to send the
+        completed assignment to the server, add it (the new event) to the
+        watch list, followed by rendering the template 'live_event'.
+      # on_new_event
+        takes an event as argument
+        called from gcserver when 'anything has happened' and renders the
+        template 'live_event' after new events are processed on the server if
+        the event correlates with the viewer's current state.
+      # item_status, itembelievesin, item_celebrates, item_helpwith,
+        item_didrecent
+        takes the viewer's state as argument.
+        fill function in the template 'organize_agent'/'agent_on_map'.
+      # everyone_will
+        takes the viewer's state as argument.
+        fill function in the template 'assignment_editor'.
+      # live_event_info:
+        takes the viewer's state as argument.
+        fill function in the template 'live_event' to fill in information
+        about live events.
+
+    + share - share your resources
+      # url_part_labels
+        mode
+      # set_mode
+        takes the mode and the viewer's state as argument.
+        set mode_label used for breadcrumbs depending on mode: 'add' or
+        'resources'.
+      # show_mode
+        takes the viewer's state as argument.
+        render the template with id share_<mode>.
+      # share_form_submitted
+        takes the form data and the viewer's state as argument.
+        sends data about a new shared resource to the server (some day in
+        the future).
+      # share_resources
+        takes the viewer's state as argument
+        fill function in the template 'share_resources' to fill in the
+        resources you want to share.
+      # template 'self' in self_on_map.html
+        the thought is that you share yourself. the template is shown in a map
+        window when your marker is clicked on the map. currently, there are
+        some more hidden, but unused, map window templates in that file.
+
+    + stand - what do you believe in doing
+      # url_part_labels
+        city belief
+      # show belief
+        takes the viewer's state as argument.
+        shows an alert -> defunct?
+      # beliefs
+        takes the viewer's state as argument.
+        fill function in the template 'stand_show_city' to fill in the beliefs
+        of all agents in the current city
+      # belief_form_submitted
+        takes the form data, the viewer's state and the form id as argument.
+        sends data about a new belief to the server and then updates the
+        map/reenables the form.
+
+    + welcome - welcome to groundcrew
+      # url_part_labels
+        mode city
+      # show_mode
+        takes the viewer's state as argument.
+        sets the label for the breadcrumb and renders the template
+        'beginner_mode'
+      ... other parts to be evaluated later when welcome has become more of an
+      app and is not as tightly integrated into src/base
+k
+
+
+---------------
+
+    + display_callout - does something with popups
+      display_callout is currently unused, but is about to be folded into
+      livehtml [reveal] and changed around a bit.  What it does is manage
+      "callouts/poppers" which are popover windows that have a "nose", which
+      is a little triangle which points to the original content.  There is one
+      of these in Matthew's assignment editor mockup.  When you click on the
+      shiny buttons on the right side of the assignment editor stanzas, a
+      popover window appears with a big black "nose" that points to the stanza
+      in question and offers you more options with regard to that stanza.
+      These noses are used in several places in the old UI and will be in the
+      new UI too.  A "pmenu" is a callout with a nose that is also a menu with
+      several possibly hierarchical menus.  There are upnoses and downnoses,
+      leftnoses and rightnoses, and a lot of dynamic display logic that makes
+      the popover window appear on the correct side of the thing and probably
+      fit on the screen and scroll with the map if it's attach to a mapwindow
+      and so on.
+
+
