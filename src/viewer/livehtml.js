@@ -18,19 +18,17 @@ LiveHTML = {
       return false;
     });
   },
-  
+
   dispatch: function(method, args) {
-    var args = $.makeArray(arguments);
-    var method = args.shift();
-    return [Viewer.current_app].concat(LiveHTML.widgets, [Viewer]).dispatch(method, args[0], args[1], args[2], args[3]);
+    things = [Viewer.current_app].concat(LiveHTML.widgets, [Viewer]);
+    return things.dispatch.apply(things, arguments);
   },
-  
+
   trigger: function(method, args) {
-    var args = $.makeArray(arguments);
-    var method = args.shift();
-    return [Viewer.current_app].concat(LiveHTML.widgets, [Viewer]).trigger(method, args[0], args[1], args[2], args[3]);
-  }
-  
+    things = [Viewer.current_app].concat(LiveHTML.widgets, [Viewer]);
+    return things.trigger.apply(things, arguments);
+  },
+
 };
 
 
