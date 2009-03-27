@@ -19,6 +19,8 @@ String.PEARSON_HASHING_TABLE = [
   162, 131, 99, 51, 185, 39, 171, 195, 52, 29, 200, 3, 85
 ];
 
+String.elisions = { n: 1 };
+
 
 $.extend(String.prototype, {
 
@@ -60,6 +62,17 @@ $.extend(String.prototype, {
     else return this;
   },
 
+  elide: function(){
+    var e = '*' + String.elisions.n;
+    String.elisions[e] = this;
+    String.elisions.n += 1;
+    return e;
+  },
+  
+  unelide: function() {
+    return String.elisions[this] || this;
+  },
+  
   singularize: function(){
     return this.replace(/s$/, '');
   },
