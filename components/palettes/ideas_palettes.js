@@ -49,7 +49,9 @@ LiveHTML.widgets.push({
       if (where == 'agent') return Tiles.proj_tile.t({what:text, who:CurrentUser.title});
       else {
         var place = where.resource();
-        return Tiles.adventure_tile.t({item_tag:where, thumb:place.thumb_url, what:text, where:place.title});
+        var thumb = place && place.thumb_url;
+        var place_title = place && place.title;
+        return Tiles.adventure_tile.t({item_tag:where, thumb:thumb, what:text, where:place_title});
       }
     }).compact().join('');
   },
