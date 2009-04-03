@@ -77,3 +77,9 @@
 <script>
 $(function(){ViewerUI.init()});
 </script>
+
+m4_syscmd(`cat app/chrome/*.html app/modes/*/*.html')
+
+</div>
+</body>
+</html>

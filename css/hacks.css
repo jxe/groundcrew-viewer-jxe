@@ -40,3 +40,12 @@ body.refresh #load_spinner {
   visibility: visible;
 }
 
+.debug_this {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display:block;
+  z-index: 900;
+  background: white;
+  border: solid thick green;
+}
