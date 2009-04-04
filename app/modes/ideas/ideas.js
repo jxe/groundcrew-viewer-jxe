@@ -1,5 +1,5 @@
 Viewer.apps.ideas = {
-  url_part_labels: $w('city item'),
+  url_part_labels: $w('city item idea'),
 
   show_item: function(state) {
     Viewer.render_item('idea_catalog');
@@ -20,26 +20,3 @@ Viewer.apps.ideas = {
   }
 
 };
-
-var IdeaCatalogue = { 'good deeds': [
-
-{ 'name': 'clean up litter' },
-{ 'name': 'hand out flowers to strangers' },
-{ 'name': 'compliment strangers' },
-{ 'name': 'guerilla gardening' }
-
-], 'adventures': [
-
-{ 'name': 'stealthy travel' },
-{ 'name': '15 minute dreams' },
-{ 'name': 'infiltrate a social scene' }
-
-], 'art projects': [
-
-{ 'name': 'learn a song' },
-{ 'name': 'group sculpture' },
-{ 'name': 'knitting circle' }
-
-] };
-
-IdeaCatalogue['all'] = $values(IdeaCatalogue).flatten();

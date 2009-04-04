@@ -1,45 +1,3 @@
-// ltypes???
-function _idea(tag, rank, type, title, atags, json_etc){
-  var parts = tag.split('__');
-  Resource.add_or_update($.extend({
-    id: parts[1],
-    item_tag: tag,
-    rank: rank,
-    type: type,
-    title: title,
-    atags: atags
-  }, json_etc));
-}
-
-
-_idea('Idea__111', 10, 'meeting',    'some quiet time',          'quiet observation connection peace', {});
-_idea('Idea__112', 10, 'rendezvous', 'a high five',              'connection quick inclusion', {});
-_idea('Idea__113', 10, 'meeting',    'a local reporting assignment', 'engagement adventure learning', {});
-_idea('Idea__114', 10, 'meeting',    'rolling down a hill',          'fun connection', {});
-_idea('Idea__115', 10, 'meeting',    'humcircle #1',                 'strangeness connection', {});
-_idea('Idea__116', 10, 'rendezvous', 'skipping with a stranger',     'strangeness connection', {});
-
-
-_idea('Idea__wiz1', 30, 'wizard',    'a public celebration',         'fun celebration adventure connection', {});
-_idea('Idea__wiz2', 30, 'wizard',    'a public discussion',          'engagement connection debate learning', {});
-
-_idea('Idea__108', 20, 'rendezvous', 'learning a song',              'challenge adventure performance art music connection beauty', {});
-_idea('Idea__109', 20, 'meeting',    'building a public sculpture',  'art strangeness connection', {});
-_idea('Idea__105', 25, 'solo',       'travel without being seen',    'challenge adventure stealth', {});
-_idea('Idea__103', 20, 'meeting',    'compliment strangers',          'connection kindness', {});
-
-_idea('Idea__wiz4', 40, 'wizard',    'rendezvous with another agent', 'connection adventure', {});
-_idea('Idea__wiz5', 40, 'wizard',    'meeting with other agents',     'connection adventure teamwork', {});
-
-// don't know how these will work
-// _idea('Idea__101', 20, 'meeting',    'cleaning a city park',          'volunteering teamwork', {});
-// _idea('Idea__102', 20, 'meeting',    'hand out flowers to strangers', 'connection kindness teamwork', {});
-// _idea('Idea__104', 20, 'meeting',    'planting and gardening',        'art volunteering creation dirt peace nature', {});
-// _idea('Idea__106', 20, 'meeting',    'big dreams',                'discussion connection visions adventure', {});
-// _idea('Idea__107', 20, 'solo',       'infiltrate a social scene', 'challenge adventure stealth', {});
-// _idea('Idea__110', 20, 'meeting',    'a knitting circle',          'crafting connection knitting', {});
-
-
 function menu(label, reveal_id){
   var color = label.to_color();
   return tag('span.minimenu', { 
@@ -73,7 +31,7 @@ LiveHTML.widgets.push({
     }).compact().map(function(pair){
       var idea = pair[0];
       var mtag = pair[1];
-      var link = tag('a', {href:"#", content:idea.title});
+      var link = link(idea.title, "/ideas/:city/:item/" + idea.item_tag);
       if (menus[mtag].length > 0) link += menu(mtag, mtag + '_menu');
       return tag('li', link);
     }).join('');
@@ -82,7 +40,7 @@ LiveHTML.widgets.push({
       if (v.length == 0) return;
       div_hidden += tag('div.menu', {
         id: k+"_menu", 
-        content: v.map(function(x){ return link(x.title, '#'); }).join('')
+        content: v.map(function(x){ return link(x.title, "/ideas/:city/:item/" + x.item_tag); }).join('')
       });
     });
     return tag('ul.choices', top_choices) + tag('div.hidden', div_hidden);
