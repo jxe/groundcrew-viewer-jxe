@@ -15,8 +15,9 @@ debug: uncompressed
 
 raw: BUILD
 	m4 -P app/app.html.m4 > BUILD/viewer.html
-	cat {css,vendor}/*.css app/{chrome,modes/*}/*.css > BUILD/viewer.css
+	cat {css,vendor}/*.css app/{chrome,helpers,modes/*}/*.css > BUILD/viewer.css
 	cat vendor/*.js lib/*/*.js app/*.js app/*/*.js app/*/*/*.js > BUILD/raw_viewer.js
+	cp tests/test.html BUILD
 
 
 # deploy
