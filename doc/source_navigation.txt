@@ -2,43 +2,16 @@
 ***         and released under the Affero GPL v3             ***
 
 
-===========================
-== Navigating the source ==
-===========================
-
-Here are the directories we use:
-
-/src/
-  foundation/     - javascript and css utilities and conventions
-  gc_api/         - javascript utilities for groundcrew domain objects (agents, landmarks, etc)
-  viewer/         - javascript infrastructure for displaying the viewer
-
-/components/      - the real functionality, broken down by UI component
-   main/          - the main components of the Groundcrew UI
-   palettes/      - these are the pop-ups from clicking border icons
-   *_app/         - plugins that handle certain tasks, like welcoming, organizing or ideasing
-
-/BUILD/           - target directory of the make process
-/css/             - cascading style sheets for non-apps
-/data/            - data files? debugging replacements for server data?
-/debug/           - files to help in debugging (work in progress)
-/i/               - images
-/pages/           - 'pages' / snippets ?
-/vendor/          - javascript from outside sources
-/tests/           - qunit javascript tests
+THE FOLLOWING WILL BECOME API DOCS AND BE MERGED INTO THE SOURCE AS JSDOC.
 
 
-
-More in-depth descriptions:
-
-/src/
+/lib/
   This part is organized into architectural levels. We have some foundational
-  javascript utilities and css conventions in foundation/, then we have an
+  javascript utilities and css conventions in jswebkit/, then we have an
   API for dealing with groundcrew objects like agents and ideas in gcapi/
-  built on top of that. Then we have the viewer code built on those two in
-  viewer/.
+  built on top of that.
 
-  * foundation/
+  * jswebkit/
     + array_extensions - extend Javascript arrays
       # __compare__:
         internal function to compare two arguments.  returns 1, 0, -1 if the
@@ -76,7 +49,7 @@ More in-depth descriptions:
         returns an array of HTML option list. the given arguments signify the
         preselected option and the keys to be used for the option's value and
         title attributes in case this is an array of hashes. see
-        /components/ideas_app/ideas.js for example usage.
+        /app/modes/ideas/ideas.js for example usage.
       # dispatch:
         calls the given method with the given args on the first element found
         matching that method. it shows an alert and logs to the console if a
@@ -304,6 +277,90 @@ More in-depth descriptions:
       # resource_id:
         returns the id of this string (item).
 
+    + viewer - this is the application controller and selection model
+      # loc: current agent's location
+      # prev_loc: previous agent's location
+      # apps: applications registered in the viewer
+      # current_app: currently active application
+      # prev_agents: previous agents
+      # rendered: if the viewer is rendered
+      # open:
+        takes a tag as argument.
+        opens the viewer at the given tag.
+        returns nothing or something that is derived from several possible
+        different states within Viewer.go and LiveHTML.dispatch.
+      # back:
+        makes the viewer go back to the previous location.
+      # go:
+        takes an URL and optional form data as arguments.
+        returns the value of a dispatched function in LiveHTML or nothing.
+      # breadcrumbs:
+        returns an HTML option list of breadcrumbs to be used for navigation.
+      # render:
+        takes a renderer as argument.
+        renders the current application.
+      # render_item:
+        takes a template name and a minimal zoom value as arguments.
+        renders one item (template)
+      # set_city:
+        takes a city and the viewer's state as arguments.
+        sets the given city as the selected one.
+      # set_item:
+        takes an item and the viewer's state as arguments.
+        sets the given item as the current in the viewer's state.
+      # join_please:
+        shows a facebox to join groundcrew.
+      # blank:
+        fill function to clear form fields when the form is re-revealed.
+
+    + livehtml - do all sorts of magic stuff to the DOM in the HTML document.
+      # widgets: LiveHTML widgets - never populated
+      # init:
+        takes args as argument, which is never used.
+        initialize LiveHTML
+      # dispatch/trigger: extensions to the respective array functions to
+        include the widgets.
+      # $.fn.app_paint
+        extends each DOM element by a few attributes to modify the viewer's
+        behaviour/looks. the available attributes at the moment are:
+        fill - fill this element with the output of the specified function
+        if - show this element if the specified function exists
+        observe - call the specified function if this element changes
+        hint - input fields and textareas in forms receive a 'hinting'
+               behaviour (empty the text on focus, fill with a pre-defined
+               value on blur).
+        also forms receive the behaviour that they become disabled and a
+        specified function is called in the current app before it's action
+        results in the viewer going to that location.
+
+
+  * jsmapkit/
+    + map - handle the map
+      # last_zoom_auto_set: last zoom set without user interaction.
+      # initialized: if the map is already initialized.
+      # available:
+        returns if the map is useable.
+      # load_and_refocus:
+        takes markers as argument.
+        loads the map and (re)focuses on the given markers.
+      # add:
+        takes markers as argument.
+        adds the given markers to the map's overlay.
+      # establish:
+        creates a new GoogleMap object.
+      # set_bounds_from_lat_lngs:
+        takes items as arguments.
+        sets the map boundaries from the latitudes/longitudes given by items.
+      # replace_marker:
+        takes an old and a new marker as arguments.
+        replaces the given old marker by the given new marker on the map.
+
+    + markermanager - an interface between the map and the user, designed to
+    manage adding and removing many points when the viewport changes. see it's
+    inline documentation for more details.
+
+
+
 
   * gc_api/
     + event - defines an event.
@@ -398,116 +455,64 @@ More in-depth descriptions:
         define new resources of landmarks/ideas.
 
 
-  * viewer/
-    The viewer is organized into multiple apps to be found in /components.
+
+
+/app/
+
+    The viewer is organized into multiple modes to be found in /app/modes.
     apps provide their services and link to each other using an internal URL
     structure. For example, a command like Viewer.go('/share/add') will run
-    some code in /components/share_app/share.js which will open a window to
+    some code in /app/modes/share/share.js which will open a window to
     specify a resource you want to share.
     You can also call functionality directly in the browser by using
     /viewer.html#/<app>/<argument>{/<arguments>}.
 
-    + viewer - this is the application controller and selection model
-      # loc: current agent's location
-      # prev_loc: previous agent's location
-      # apps: applications registered in the viewer
-      # current_app: currently active application
-      # prev_agents: previous agents
-      # rendered: if the viewer is rendered
-      # open:
-        takes a tag as argument.
-        opens the viewer at the given tag.
-        returns nothing or something that is derived from several possible
-        different states within Viewer.go and LiveHTML.dispatch.
-      # back:
-        makes the viewer go back to the previous location.
-      # go:
-        takes an URL and optional form data as arguments.
-        returns the value of a dispatched function in LiveHTML or nothing.
-      # breadcrumbs:
-        returns an HTML option list of breadcrumbs to be used for navigation.
-      # render:
-        takes a renderer as argument.
-        renders the current application.
-      # render_item:
-        takes a template name and a minimal zoom value as arguments.
-        renders one item (template)
-      # set_city:
-        takes a city and the viewer's state as arguments.
-        sets the given city as the selected one.
-      # set_item:
-        takes an item and the viewer's state as arguments.
-        sets the given item as the current in the viewer's state.
-      # join_please:
-        shows a facebox to join groundcrew.
-      # blank:
-        fill function to clear form fields when the form is re-revealed.
+  + app.js - app-wide initialization code
+    # CurrentUser - global user object
+    # init:
+      initialize the viewer
+    # activateUI:
+      initialize the user interface components of the viewer.
 
-    + frame - handle the frame around the map
-      # flexbar_size: size of the flexbar at the bottom.
-      # agent_thumb: template for agent thumbnail.
-      # scroll_flexbar: (not implemented)
-        takes the number of pixels to scroll the flexbar.
-      # set_flexbar_size:
-        takes the new size as argument.
-        sets the flexbar size to the given size.
-      # set_flexbar_content: (not implemented)
-        takes the new content as argument.
-      # populate_flexbar_agents:
-        takes agents as argument.
-        populates the flexbar with the given agents.
+  * helpers/
+    + current_item - add item data to LiveHTML widgets
+      # item_thumb_url
+        takes the viewer's state as argument.
+        returns the current item's groundcrewified thumb URL.
+      # item_title
+        takes the viewer's state as argument.
+        returns the current item's title.
+      # item_ltypes
+        takes the viewer's state as argument.
+        returns the current item's landmark types (which means that item should
+        be a landmark here).
+      # item_description
+        takes the viewer's state as argument.
+        returns the current item's description.
 
-    + map - handle the map
-      # last_zoom_auto_set: last zoom set without user interaction.
-      # initialized: if the map is already initialized.
-      # available:
-        returns if the map is useable.
-      # load_and_refocus:
-        takes markers as argument.
-        loads the map and (re)focuses on the given markers.
-      # add:
-        takes markers as argument.
-        adds the given markers to the map's overlay.
-      # establish:
-        creates a new GoogleMap object.
-      # set_bounds_from_lat_lngs:
-        takes items as arguments.
-        sets the map boundaries from the latitudes/longitudes given by items.
-      # replace_marker:
-        takes an old and a new marker as arguments.
-        replaces the given old marker by the given new marker on the map.
+    + self - add user data to LiveHTML widgets
+      # self_posx_pts
+        takes the viewer's state as argument.
+        returns the current user's POSX points.
+      # self_posx
+        takes the viewer's state as argument.
+        returns the current user's POSX.
+      # self_squadm
+        takes the viewer's state as argument.
+        returns the current user's squad members.
 
-    + map_markers - handle markers on the map
-      # iw_marker: currently open map window marker
-      # open:
-        takes an item, content and min_zoom as arguments.
-        shows the marker for the given marker with the given HTML content at
-        given zoom level.
-      # display:
-        takes a city and agents as arguments.
-        displays the map with all agent markers in the given city or all
-        city markers where agents are currently located.
+    + map_icons - create GoogleMaps icons via MapIcons
+      # for_landmark
+        takes a landmark as argument and returns an icon object.
+        uses the landmark's map_thumb_url (from Panoramio) or a default
+        Panoramio marker image.
+      # for_type
+        takes a type as argument and returns an icon object.
+        the valid types can be seen in the directory /i/map/ and types 'man'
+        and 'bump' have a shadow attached to them.
 
-      # cache: hash with a cache of map markers
-      # marker:
-        takes latitude, longitude, type and title as arguments.
-        returns a new GoogleMaps marker at given latitude and longitude with
-        given title and icon as specified by the given type.
-      # for_city:
-        takes a city_id as argument.
-        returns a map marker for the given city.
-      # for_agent:
-        takes an agent as argument.
-        returns a map marker for the given agent.
-
-    + markermanager - an interface between the map and the user, designed to
-    manage adding and removing many points when the viewport changes. see it's
-    inline documentation for more details.
-
-    + notifier -  implements a mechanism to notify the user of events.
-      # did_add_new_event:
-        takes an event as argument.
-        alerts the user of an event if it was latched to her.
+    + tiles - tile templates for the palettes:
+      agent_tile, adventure_tile and proj_tile (wishes).
 
     + relative_time - helper functions dealing with relative time
       # $time:
@@ -529,97 +534,8 @@ More in-depth descriptions:
         extends all jQuery objects to look through all HTML elements with
         attribute 't' (as defined in $from_now) to set a current time from now.
 
-    + wiring - glueing the viewer's components into one piece
-      # CurrentUser - global user object
-      # init:
-        initialize the viewer
-      # activateUI:
-        initialize the user interface components of the viewer.
 
-    + livehtml - do all sorts of magic stuff to the DOM in the HTML document.
-      # widgets: LiveHTML widgets - never populated
-      # init:
-        takes args as argument, which is never used.
-        initialize LiveHTML
-      # dispatch/trigger: extensions to the respective array functions to
-        include the widgets.
-      # $.fn.app_paint
-        extends each DOM element by a few attributes to modify the viewer's
-        behaviour/looks. the available attributes at the moment are:
-        fill - fill this element with the output of the specified function
-        if - show this element if the specified function exists
-        observe - call the specified function if this element changes
-        hint - input fields and textareas in forms receive a 'hinting'
-               behaviour (empty the text on focus, fill with a pre-defined
-               value on blur).
-        also forms receive the behaviour that they become disabled and a
-        specified function is called in the current app before it's action
-        results in the viewer going to that location.
-
-:
-
-
-/components/
-  * main/
-    + current_item - add item data to LiveHTML widgets
-      # item_thumb_url
-        takes the viewer's state as argument.
-        returns the current item's groundcrewified thumb URL.
-      # item_title
-        takes the viewer's state as argument.
-        returns the current item's title.
-      # item_ltypes
-        takes the viewer's state as argument.
-        returns the current item's landmark types (which means that item should
-        be a landmark here).
-      # item_description
-        takes the viewer's state as argument.
-        returns the current item's description.
-
-    + header - add user data to LiveHTML widgets
-      # self_posx_pts
-        takes the viewer's state as argument.
-        returns the current user's POSX points.
-      # self_posx
-        takes the viewer's state as argument.
-        returns the current user's POSX.
-      # self_squadm
-        takes the viewer's state as argument.
-        returns the current user's squad members.
-
-    + map_icons - create GoogleMaps icons via MapIcons
-      # for_landmark
-        takes a landmark as argument and returns an icon object.
-        uses the landmark's map_thumb_url (from Panoramio) or a default
-        Panoramio marker image.
-      # for_type
-        takes a type as argument and returns an icon object.
-        the valid types can be seen in the directory /i/map/ and types 'man'
-        and 'bump' have a shadow attached to them.
-
-    + map_landmarks - create landmarks via MapLandmarks
-      # map_init
-        takes a map as argument.
-        uses the map to create a MarkerManager in LandmarkLayer.mgr and
-        installs an event listener on the map to fetch landmarks on 'moveend'
-      # fetch_landmarks_in_bounds
-        takes bounds as argument.
-        add markers (with images from Panoramio) to LandmarkLayer.mgr if they
-        are within the specified map boundaries.
-      # city_changed
-        takes a city as argument.
-        adds a LandmarkLayer specific to the current city to the map
-      # off
-        clears all markers in the manager and ids in the layer
-      # lm_from_pano
-        takes a Panoramio photo object as argument and returns a landmark.
-      # marker_for_lm
-        takes a landmark as argument and returns a GoogleMaps marker.
-        that marker is also assigned to the landmark's map_marker.
-        it also attaches an event listener on the marker to make
-        the viewer go to the landmark's item_tag on 'click'.
-
-  * palettes/
+  * chrome/
     + agents_palette - agents to guide
       # agents_to_guide6
         takes the viewer's state as argument.
@@ -661,11 +577,50 @@ More in-depth descriptions:
       # only the template that links to online documentation and to the share
         app.
 
-    + tiles - tile templates for the palettes:
-      agent_tile, adventure_tile and proj_tile (wishes).
+    + frame - handle the frame around the map
+      # flexbar_size: size of the flexbar at the bottom.
+      # agent_thumb: template for agent thumbnail.
+      # scroll_flexbar: (not implemented)
+        takes the number of pixels to scroll the flexbar.
+      # set_flexbar_size:
+        takes the new size as argument.
+        sets the flexbar size to the given size.
+      # set_flexbar_content: (not implemented)
+        takes the new content as argument.
+      # populate_flexbar_agents:
+        takes agents as argument.
+        populates the flexbar with the given agents.
+
+    + map_markers - handle markers on the map
+      # iw_marker: currently open map window marker
+      # open:
+        takes an item, content and min_zoom as arguments.
+        shows the marker for the given marker with the given HTML content at
+        given zoom level.
+      # display:
+        takes a city and agents as arguments.
+        displays the map with all agent markers in the given city or all
+        city markers where agents are currently located.
+
+      # cache: hash with a cache of map markers
+      # marker:
+        takes latitude, longitude, type and title as arguments.
+        returns a new GoogleMaps marker at given latitude and longitude with
+        given title and icon as specified by the given type.
+      # for_city:
+        takes a city_id as argument.
+        returns a map marker for the given city.
+      # for_agent:
+        takes an agent as argument.
+        returns a map marker for the given agent.
+
+    + notifier -  implements a mechanism to notify the user of events.
+      # did_add_new_event:
+        takes an event as argument.
+        alerts the user of an event if it was latched to her.
 
 
-  * *_app/ currently contains the following applications:
+  * modes/
     + allies - find allies in your city with the same wishes
       # url_part_labels
         city wish
@@ -793,26 +748,3 @@ More in-depth descriptions:
         'beginner_mode'
       ... other parts to be evaluated later when welcome has become more of an
       app and is not as tightly integrated into src/base
-k
-
-
----------------
-
-    + display_callout - does something with popups
-      display_callout is currently unused, but is about to be folded into
-      livehtml [reveal] and changed around a bit.  What it does is manage
-      "callouts/poppers" which are popover windows that have a "nose", which
-      is a little triangle which points to the original content.  There is one
-      of these in Matthew's assignment editor mockup.  When you click on the
-      shiny buttons on the right side of the assignment editor stanzas, a
-      popover window appears with a big black "nose" that points to the stanza
-      in question and offers you more options with regard to that stanza.
-      These noses are used in several places in the old UI and will be in the
-      new UI too.  A "pmenu" is a callout with a nose that is also a menu with
-      several possibly hierarchical menus.  There are upnoses and downnoses,
-      leftnoses and rightnoses, and a lot of dynamic display logic that makes
-      the popover window appear on the correct side of the thing and probably
-      fit on the screen and scroll with the map if it's attach to a mapwindow
-      and so on.
-
-

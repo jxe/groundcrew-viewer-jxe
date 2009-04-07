@@ -40,6 +40,34 @@ way it will not work.
 
 
 
+===========================
+== Navigating the source ==
+===========================
+
+Here are the directories we use:
+
+/app/
+   app.html.m4    - the basic HTML layout for the app
+   app.js         - general UI initialization for the app
+   chrome/        - html/css/js for the viewer's basic UI
+   helpers/       - js/css for reusable widgets used across modes
+   maplayers/     - js for generating markers for agents, landmarks, etc
+   modes/         - plugins that handle certain tasks, like welcoming, organizing, etc
+
+/lib/
+  jsappkit/       - underlying app framework
+  jsmapkit/       - extensions to jsappkit for handling the map and markers
+  gc_api/         - javascript utilities for groundcrew domain objects (agents, landmarks, etc)
+
+/BUILD/           - target directory of the make process
+/css/             - cascading style sheets for non-apps
+/i/               - images
+/vendor/          - javascript from outside sources
+/tests/           - qunit javascript tests
+
+
+
+
 ============================
 == In-depth documentation ==
 ============================
