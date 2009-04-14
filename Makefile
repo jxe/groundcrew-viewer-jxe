@@ -4,21 +4,29 @@ LANG=C
 
 # basic builds
 
-uncompressed: raw
-	cp BUILD/raw_viewer.js BUILD/viewer.js
+uncompressed: html raw_js css
 
-compressed: raw
-	jsmin BUILD/raw_viewer.js > viewer.js
+compressed: html min_js css
+
+test: BUILD css raw_js
+	m4 -P tests/test.html.m4 > BUILD/test.html
+
+html: BUILD
+	m4 -P app/app.html.m4 > BUILD/viewer.html
+
+raw_js: BUILD
+	cat vendor/*.js lib/*/*.js app/*.js app/*/*.js app/*/*/*.js > BUILD/viewer.js
+
+min_js: BUILD
+	jsmin vendor/*.js lib/*/*.js app/*.js app/*/*.js app/*/*/*.js > BUILD/viewer.js
+
+css: BUILD
+	cat {css,vendor}/*.css app/{chrome,helpers,modes/*}/*.css > BUILD/viewer.css
+
+
 
 debug: uncompressed
 	cat BUILD/viewer.html | sed 's/.*maps\.google\.com.*/\<link href=\"..\/debug\/debug.css\" media=\"screen\" rel=\"stylesheet\" type=\"text\/css\" \/>/' | sed 's/http:\/\/ajax\.googleapis\.com\/ajax\/libs\/jquery\/1\.3\.1\/jquery\.min\.js/..\/vendor/jquery\/jquery\.min\.js/' > BUILD/debug.html
-
-raw: BUILD
-	m4 -P app/app.html.m4 > BUILD/viewer.html
-	cat {css,vendor}/*.css app/{chrome,helpers,modes/*}/*.css > BUILD/viewer.css
-	cat vendor/*.js lib/*/*.js app/*.js app/*/*.js app/*/*/*.js > BUILD/raw_viewer.js
-	cp tests/test.html BUILD
-
 
 # deploy
 
