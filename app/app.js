@@ -14,7 +14,7 @@ ViewerUI = {
     this.activateUI();
     var starter_url = "/welcome/beginner";
     if (CurrentUser.logged_in) {
-      Agents.add_or_update(CurrentUser);
+      Agents.add_or_update(CurrentUser.tag, CurrentUser);
       $('body').addClass('logged_in');
       // starter_url = '/hero/City__' + CurrentUser.city_id;
     } else {
