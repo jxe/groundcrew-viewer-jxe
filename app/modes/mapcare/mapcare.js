@@ -1,4 +1,4 @@
-Viewer.apps.mapcare = {
+App.modes.mapcare = {
   url_part_labels: $w('city item'),
 
   show_item: function(state) {

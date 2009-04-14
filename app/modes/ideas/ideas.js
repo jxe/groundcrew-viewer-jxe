@@ -1,4 +1,4 @@
-Viewer.apps.ideas = {
+App.modes.ideas = {
   url_part_labels: $w('city item idea'),
 
   show_item: function(state) {
@@ -7,7 +7,7 @@ Viewer.apps.ideas = {
 
   idea_category_changed: function(new_category, state) {
     state.category = new_category;
-    $('select[fill=idea_ideas]').html(Viewer.apps.ideas.idea_ideas(state));
+    $('select[fill=idea_ideas]').html(App.modes.ideas.idea_ideas(state));
   },
   
   idea_categories: function (state) {

@@ -1,4 +1,4 @@
-Viewer.apps.organize = {
+App.modes.organize = {
   url_part_labels: $w('squad city item mode'),
 
   marker_clicked: function(tag, state) {

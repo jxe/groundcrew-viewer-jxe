@@ -1,4 +1,4 @@
-Viewer.apps.welcome = {
+App.modes.welcome = {
   url_part_labels: $w('mode city'),
   
   show_mode: function(state) {

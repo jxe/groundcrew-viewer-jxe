@@ -1,4 +1,4 @@
-Viewer.apps.share = {
+App.modes.share = {
   url_part_labels: $w('city mode item'),
 
   set_mode: function(mode, state) {
