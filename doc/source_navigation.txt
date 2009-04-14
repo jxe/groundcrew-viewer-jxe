@@ -614,6 +614,28 @@ THE FOLLOWING WILL BECOME API DOCS AND BE MERGED INTO THE SOURCE AS JSDOC.
         takes an agent as argument.
         returns a map marker for the given agent.
 
+    + map_landmarks - create landmarks via MapLandmarks
+      # map_init
+        takes a map as argument.
+        uses the map to create a MarkerManager in LandmarkLayer.mgr and
+        installs an event listener on the map to fetch landmarks on 'moveend'
+      # fetch_landmarks_in_bounds
+        takes bounds as argument.
+        add markers (with images from Panoramio) to LandmarkLayer.mgr if they
+        are within the specified map boundaries.
+      # city_changed
+        takes a city as argument.
+        adds a LandmarkLayer specific to the current city to the map
+      # off
+        clears all markers in the manager and ids in the layer
+      # lm_from_pano
+        takes a Panoramio photo object as argument and returns a landmark.
+      # marker_for_lm
+        takes a landmark as argument and returns a GoogleMaps marker.
+        that marker is also assigned to the landmark's map_marker.
+        it also attaches an event listener on the marker to make
+        the viewer go to the landmark's item_tag on 'click'.
+
     + notifier -  implements a mechanism to notify the user of events.
       # did_add_new_event:
         takes an event as argument.
