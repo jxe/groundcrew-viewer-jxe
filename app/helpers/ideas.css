@@ -1,0 +1,36 @@
+/*#idea_catalog_iw {
+  width: 403px;
+}
+
+#idea_catalog_iw select {
+  width: 200px;
+}
+*/
+
+
+div.agent_ideas div {
+  line-height: 1.7em;
+  padding-left: 5px;
+  color: #444;
+}
+
+div.agent_ideas div.selected {
+  background-color: #aaf;
+  color: black;
+}
+
+div.agent_ideas div span.dog {
+  color: white;
+  padding: 1px 3px;
+  padding-top: 0px;
+  font: 12px Courier, monospace;
+  margin-right: 8px;
+}
+
+div.agent_ideas div a:hover {
+  background: none;
+}
+
+img.spin {
+  margin-left: 8px;
+}
