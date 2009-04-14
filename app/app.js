@@ -26,6 +26,7 @@ ViewerUI = {
     Ajax.init();
     $('#you_img').attr('src', "http://groundcrew.us"+CurrentUser.thumb_url);
     $('#agent_name').html(CurrentUser.title);
+    CEML.parse($('#idea_bank').html());
   },
 
   activateUI: function() {    

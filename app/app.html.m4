@@ -80,6 +80,10 @@ $(function(){ViewerUI.init()});
 
 m4_syscmd(`cat app/chrome/*.html app/modes/*/*.html')
 
+<div id="idea_bank" class="hidden">
+m4_syscmd(`cat app/ideas.ceml')
+</div>
+
 </div>
 </body>
 </html>

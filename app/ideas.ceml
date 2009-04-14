@@ -1,0 +1,279 @@
+// Stages of assignments:  goto, bring?, meet, cue, act, end, exit
+
+snippet meet/cue: find someone wearing X
+snippet meet/cue: wait for someone to find you
+snippet meet: X to signal others
+snippet goto: Go to X
+snippet end:  afterwards, X
+snippet end:  after DUR, X
+snippet exit: leave X
+snippet exit: go your separate ways
+snippet cue:  when someone X
+snippet cue:  once recognized,
+snippet cue:  gather X
+
+
+// GAMETYPES
+
+discern common_location {
+  type nearby_landmark
+  ask dispatcher: Where will they meet?
+}
+
+assignment { Go to |common_location| }
+
+
+// MEETINGS
+
+offering "some quiet time" (many agents; 10m) {
+  provides: quiet observation connection peace
+  assignment {
+    [sit w hands on left leg] to signal others
+    once recognized,
+    all agents will [be silent, hearing what's around] for DUR
+    afterwards, [scowl or frown]
+    leave [one at a time]
+  }
+}
+
+
+offering "a chance to roll down a hill" (many agents; 10m) {
+  provides:  fun connection
+  assignment {
+    [lie on the hillside humming or singing] to signal others
+    when someone [shouts]
+    all agents will [roll down several times and shout] for DUR
+    afterwards, [group hug]
+    leave [all at once]
+  }
+}
+
+
+offering "a strange event involving humming" (many agents; 2m) {
+  provides: strangeness connection
+  assignment {
+    [stand in an obvious place] to signal others
+    gather [in a circle]
+    [hum together] for DUR
+    afterwards, [back away]
+    leave [all at once]
+  }
+}
+
+offering "some collaborative sculpture making" (many agents; 15m) {
+  provides:  art strangeness connection
+  assignment {
+    find [some sticks and other materials lying around]   (:meet/cue:)
+    all agents will [build one central sculpture out of what they find] for DUR
+    afterwards, [applaud for everyone]
+    leave [all at once]
+  }
+}
+
+
+
+// SYMMETRIC RENDEZVOUS
+context {
+
+  discern other_guys_clothing {
+    ask other: What are you wearing (so the other person can recognize you)?
+  }
+
+
+  //
+  offering "a high five" (2 agents; 2m) {
+    provides: connection inclusion
+    assignment {
+      find someone wearing |other_guys_clothing|
+      give them a high five
+      then keep walking around the corner          (:end/exit:)
+    }
+  }
+  
+}
+
+
+
+
+// ASYMMETRIC RENDEZVOUS
+context {
+
+  discern stationary_agent_clothing {
+    ask stationary_agent: What are you wearing (so the other person can recognize you)?
+  }
+  
+  assign mobile_agent     { find someone wearing |stationary_agent_clothing| }
+  assign stationary_agent { wait for someone to find you                     }
+
+
+  //
+  offering "an adventure involving skipping" (1 mobile_agent, 1 stationary_agent; 3m) {
+    provides "strangeness connection"
+
+    assignment {
+      Without speaking, skip with them down the street. Communicate how you're feeling by skipping. Feel the rhythm.
+      after DUR, [bow to your partner]
+      go your separate ways
+    }
+  }
+
+
+  //
+  offering "a song exchange"  (1 mobile_agent, 1 stationary_agent; 5m) {
+    provides "challenge adventure performance art music connection beauty"
+
+    assign mobile_agent { 
+      think of a short song you know and teach it to them 
+      afterwards, [sing it together on the street]
+      leave [in different directions]
+    }
+    assign stationary_agent { 
+      they will teach you a song
+      afterwards, [sing it together on the street]
+      leave [in different directions]
+    }
+  }
+  
+}
+
+
+
+
+
+// idea("hand out flowers to strangers"
+//   "Buy the flowers, cheaply, as you approach.  
+//   You will recognize the others.  When you hand them out, 
+//   do it timidly."
+//   
+// idea("clean up a park","Look on the ground for litter and things to pick up and put in the trash.  When the park is clean or 20min are up (whichever first) shout \"IT'S CLEAN!\".  The others will shout too.");
+// idea("quiet meeting of love and hate","Sit in a circle.  Let there be mostly silence.  If you speak, be brief and say something that you love or hate.");
+// idea("briefcase exchange","instructions":"Get a briefcase or other bag, and sunglasses.  Write a short assignment and a prop and place it in the briefcase.  Shop up at the location, deposit your briefcase, and get someone else's.  Perform the task.  Then return their briefcase and wait for yours."});
+
+
+
+// _idea('Idea__103', 20, 'meeting',    'compliment strangers',          'connection kindness', {});
+
+// go to park and sit w hands on left leg to signal others.  
+// all agents will be silent, hearing what's around, for 10m.  afterwards, scowl or frown
+// and leave one person at a time
+
+// _idea('Idea__113', 10, 'wizard',    'a local reporting assignment', 'engagement adventure learning', {});
+// _idea('Idea__wiz1', 30, 'wizard',    'a public celebration',         'fun celebration adventure connection', {});
+// _idea('Idea__wiz2', 30, 'wizard',    'a public discussion',          'engagement connection debate learning', {});
+// _idea('Idea__wiz4', 40, 'wizard',    'rendezvous with another agent', 'connection adventure', {});
+// _idea('Idea__wiz5', 40, 'wizard',    'meeting with other agents',     'connection adventure teamwork', {});
+// 
+// _idea('Idea__105', 25, 'solo',       'travel without being seen',    'challenge adventure stealth', {});
+
+
+
+
+
+// ltypes???
+
+// _idea('Idea__111', 10, 'meeting',    'some quiet time',          'quiet observation connection peace', {});
+// _idea('Idea__112', 10, 'rendezvous', 'a high five',              'connection quick inclusion', {});
+// 
+// _idea('Idea__113', 10, 'meeting',    'a local reporting assignment', 'engagement adventure learning', {});
+// 
+// _idea('Idea__114', 10, 'meeting',    'rolling down a hill',          'fun connection', {});
+// _idea('Idea__115', 10, 'meeting',    'humcircle #1',                 'strangeness connection', {});
+// _idea('Idea__116', 10, 'rendezvous', 'skipping with a stranger',     'strangeness connection', {});
+// 
+// 
+// _idea('Idea__wiz1', 30, 'wizard',    'a public celebration',         'fun celebration adventure connection', {});
+// _idea('Idea__wiz2', 30, 'wizard',    'a public discussion',          'engagement connection debate learning', {});
+// 
+// _idea('Idea__108', 20, 'rendezvous', 'learning a song',              'challenge adventure performance art music connection beauty', {});
+// _idea('Idea__109', 20, 'meeting',    'building a public sculpture',  'art strangeness connection', {});
+// _idea('Idea__105', 25, 'solo',       'travel without being seen',    'challenge adventure stealth', {});
+// _idea('Idea__103', 20, 'meeting',    'compliment strangers',          'connection kindness', {});
+// 
+// _idea('Idea__wiz4', 40, 'wizard',    'rendezvous with another agent', 'connection adventure', {});
+// _idea('Idea__wiz5', 40, 'wizard',    'meeting with other agents',     'connection adventure teamwork', {});
+
+
+
+// don't know how these will work
+// _idea('Idea__101', 20, 'meeting',    'cleaning a city park',          'volunteering teamwork', {});
+// _idea('Idea__102', 20, 'meeting',    'hand out flowers to strangers', 'connection kindness teamwork', {});
+// _idea('Idea__104', 20, 'meeting',    'planting and gardening',        'art volunteering creation dirt peace nature', {});
+// _idea('Idea__106', 20, 'meeting',    'big dreams',                'discussion connection visions adventure', {});
+// _idea('Idea__107', 20, 'solo',       'infiltrate a social scene', 'challenge adventure stealth', {});
+// _idea('Idea__110', 20, 'meeting',    'a knitting circle',          'crafting connection knitting', {});
+
+
+
+
+
+
+// var IdeaCatalogue = { 'good deeds': [
+// 
+// { 'name': 'clean up litter' },
+// { 'name': 'hand out flowers to strangers' },
+// { 'name': 'compliment strangers' },
+// { 'name': 'guerilla gardening' }
+// 
+// ], 'adventures': [
+// 
+// { 'name': 'stealthy travel' },
+// { 'name': '15 minute dreams' },
+// { 'name': 'infiltrate a social scene' }
+// 
+// ], 'art projects': [
+// 
+// { 'name': 'learn a song' },
+// { 'name': 'group sculpture' },
+// { 'name': 'knitting circle' }
+// 
+// ] };
+// 
+// IdeaCatalogue['all'] = $values(IdeaCatalogue).flatten();
+
+
+
+
+
+
+// _idea(
+//   'Idea__111', 10, 'meeting', 
+//   'some quiet time',
+//   'quiet observation connection peace', 
+//   "\
+//   title 
+//   connect_by Look for someone sitting with their hands crossed over their left leg.  Or sit that way yourself.;;
+//   action Sit in silence, hearing what's around you.;;
+//   for 10 minutes;;
+//   conclude_by Scowl or frown and get up.;;
+//   disperse_by One person will leave at a time.
+//   ",
+//   {}
+// );
+// _idea('Idea__113', 10, 'meeting',    'a local reporting assignment', 'engagement adventure learning', {});
+// _idea('Idea__114', 10, 'meeting',    'rolling down a hill',          'fun connection', {});
+// _idea('Idea__115', 10, 'meeting',    'humcircle #1',                 'strangeness connection', {});
+// _idea('Idea__109', 20, 'meeting',    'building a public sculpture',  'art strangeness connection', {});
+// _idea('Idea__103', 20, 'meeting',    'compliment strangers',          'connection kindness', {});
+// 
+// 
+// _idea('Idea__112', 10, 'rendezvous', 'a high five',              'connection quick inclusion', {});
+// _idea('Idea__116', 10, 'rendezvous', 'skipping with a stranger',     'strangeness connection', {});
+// _idea('Idea__108', 20, 'rendezvous', 'learning a song',              'challenge adventure performance art music connection beauty', {});
+// 
+// 
+// _idea('Idea__wiz1', 30, 'wizard',    'a public celebration',         'fun celebration adventure connection', {});
+// _idea('Idea__wiz2', 30, 'wizard',    'a public discussion',          'engagement connection debate learning', {});
+// _idea('Idea__wiz4', 40, 'wizard',    'rendezvous with another agent', 'connection adventure', {});
+// _idea('Idea__wiz5', 40, 'wizard',    'meeting with other agents',     'connection adventure teamwork', {});
+// 
+// 
+// _idea('Idea__105', 25, 'solo',       'travel without being seen',    'challenge adventure stealth', {});
+
+
+// don't know how these will work
+// _idea('Idea__101', 20, 'meeting',    'cleaning a city park',          'volunteering teamwork', {});
+// _idea('Idea__102', 20, 'meeting',    'hand out flowers to strangers', 'connection kindness teamwork', {});
+// _idea('Idea__104', 20, 'meeting',    'planting and gardening',        'art volunteering creation dirt peace nature', {});
+// _idea('Idea__106', 20, 'meeting',    'big dreams',                'discussion connection visions adventure', {});
+// _idea('Idea__107', 20, 'solo',       'infiltrate a social scene', 'challenge adventure stealth', {});
+// _idea('Idea__110', 20, 'meeting',    'a knitting circle',          'crafting connection knitting', {});

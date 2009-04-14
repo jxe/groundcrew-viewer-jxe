@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>game ${1:name}, popularity ${2:20}, features "$3", takes ${4:10}m${5:, players ${6:2}} {
+  invite to ${7:#location}, for "${8:a something or other}"
+  $9
+}
+</string>
+	<key>name</key>
+	<string>game</string>
+	<key>scope</key>
+	<string>source.ceml</string>
+	<key>tabTrigger</key>
+	<string>game</string>
+	<key>uuid</key>
+	<string>81308D28-59AA-49FB-AB70-28BBC14E830A</string>
+</dict>
+</plist>
