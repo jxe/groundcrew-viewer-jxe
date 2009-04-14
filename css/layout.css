@@ -63,11 +63,16 @@ img[reveal]:hover {
   padding:0;margin:0; 
   display: block;
   color: white;
-  font-size: 36px;
+  font-size: 39px;
   font-variant: small-caps;
   font-family: gill sans, verdana;
-  letter-spacing: .1em;
   text-shadow: #000 1px 1px 1px;
+  letter-spacing: .07em;
+}
+
+#logo b {
+  font-size: 36px;
+  letter-spacing: .1em;
 }
 
 a#logo:hover {
