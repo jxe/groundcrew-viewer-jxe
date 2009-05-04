@@ -23,8 +23,11 @@
 		<a class="m_item lio" href="/settings" id="settings">settings</a>
 		<a class="m_item lio" href="/logout">sign out</a>
 	</div>
-	<span class="std_click">
-		<a id="logo" href="#/"><b>Ground</b>crew</a>
+	<span id="logo" class="std_click">
+	  <img id="logo_gc" src="i/gc.png"/>
+	  <div style="font-size: 28px">
+	    Demo Squad <img src="i/white_toggler.png"/> 
+    </div>
 	</span>
 </div>
 <div class="magic">
