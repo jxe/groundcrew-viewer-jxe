@@ -38,15 +38,13 @@
   <a href="#about_posx" rel="facebox">positive experiences</a> so far
 </div>
 <div id="screen">
-  <div class="magic">
-    <img class="rside" style="top:40px; right:4px" reveal="people_palette" src="i/icons/people_icon35.png" title="see available agents"/>
-    <img class="rside" style="top:90px; right:2px" reveal="ideas_palette" src="i/icons/lightbulb_icon29.png" title="start something"/>
-    <img class="rside" style="top:140px; right:0px" reveal="share_palette" src="i/icons/gift23.png" title="free stuff"/>
-    <img class="rside" style="top:180px; right: -5px" reveal="wish_palette" src="i/icons/wand30.png" title="make or view wishes"/>
-    <img class="lside" style="top:50px" reveal="chat_palette" src="i/icons/chat_icon18.png" title="chat with other organizers"/>
-    <img class="lside" style="top:90px; left: 2px" reveal="recent_content" src="i/icons/scroll.png" title="view recent events"/>
-  </div>
   <div id="map_div"></div>
+  <div id="group_actions" class="divcenter" style="display:none">
+    &uarr; 
+    <span reveal="people_palette">DEPLOY SELECTED AGENTS</span>
+    (<a href="##clear_selection">x</a>) 
+    &uarr;
+  </div>
   <div id="flexbar">
     <div id="agents">
       <div id="neglected_agents">

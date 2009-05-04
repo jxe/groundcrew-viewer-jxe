@@ -9,6 +9,16 @@
 body.flexbar0 #flexbar { height: 24px; }
 body.flexbar1 #flexbar { height: 74px; }
 
+#group_actions {
+  background: yellow;
+  color: black;
+  position: absolute;
+  bottom: 76px;
+  padding: 2px 10px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
 #flexbar #agents { width: 10000px; }
 
 #flexbar #agents > div {
@@ -36,6 +46,14 @@ body.flexbar1 #flexbar { height: 74px; }
 }
 
 #flexbar #agents img { max-height: 50px; margin-right: 3px; }
+
+#flexbar #agents img.selected { 
+  border: solid 1px yellow; 
+/*  background-color: yellow;
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter:alpha(opacity=50);*/
+}
 
 /*#flexbar #agents > div > div { height: 50px; }*/
 /*#flexbar #agents > div > div > img { float: left; }*/
