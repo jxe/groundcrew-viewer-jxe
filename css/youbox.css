@@ -1,46 +1,23 @@
-#you_img {
-  height: 50px;
-  border: solid thin #530;
-  position: absolute;
-  left: 0px;
-  top: 5px;
-}
-
 #youbox {
   position:absolute; 
-	left: 495px; top: 0px; height: 55px; overflow: hidden;
-	font-size: 11px;
-  z-index: 100;
-  color: #a72;
+	left: 565px; top: 41px;
+	font-size: 15px;
+  z-index: -4;
+  color: #000;
   font-family: gill sans;
-  width: 350px;
-  opacity: 0.5;
-  -moz-opacity: 0.5;
-  filter:alpha(opacity=50);
-}
-
-#youbox:hover {
-  opacity: 1;
-  -moz-opacity: 1;
-  filter:alpha(opacity=1);
+  background: #777;
+  padding: 1px 10px;
+  padding-bottom: 1px;
+  border: 1px solid #666;
+  border-bottom: 1px solid #ddd;
+  font-variant: small-caps;
+  text-shadow: #999 0px 1px 1px;
 }
 
 #youbox a {
-  color: #a72;
+  color: #000;
 }
 
-a#youbox_agent {
-  position: absolute; 
-  top: 5px;
-  left:60px; display:block;
-  font-size: 12px;
-  font-family: helvetica, arial;
-  color: #ddd;  
-}
-
-#youbox div {
-  position: absolute; 
-  bottom: 0px;
-  left:60px; 
-  display:block;
+#youbox b {
+  color: #000;
 }

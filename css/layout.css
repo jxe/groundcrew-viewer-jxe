@@ -20,13 +20,6 @@
   position: relative;
 }
 
-#breadcrumbs {
-  position: absolute;
-  left: 236px;
-  top: 3px;
-  z-index: 400;
-}
-
 .rside, .lside { position: absolute; cursor: pointer;}
 .rside { right:0; }
 .lside { left:0; }
@@ -59,15 +52,16 @@ img[reveal]:hover {
 }
 #logo {
   position: absolute; 
-  bottom: 4px; left: 30px;
+  bottom: 0px; left: 50px;
   padding:0;margin:0; 
   display: block;
   color: white;
-  font-size: 39px;
+/*  font-size: 39px;*/
   font-variant: small-caps;
   font-family: gill sans, verdana;
   text-shadow: #000 1px 1px 1px;
-  letter-spacing: .07em;
+/*  font-style: italic;*/
+/*  letter-spacing: .07em;*/
 }
 
 #logo b {
@@ -79,15 +73,19 @@ a#logo:hover {
   text-decoration: none;
 }
 
-#logo img {
-  position: absolute; bottom: -3px; z-index: 50;
-}
-
 #header_menubar {
   position:absolute; top:0px; right: 10px; color: #999; font-size: 11px;
 }
 
 
+#logo_gc {
+  position: relative;
+  top: 10px;
+  left: -15px;
+/*  opacity: 0.3;
+  -moz-opacity: 0.3;
+  filter:alpha(opacity=30);
+*/}
 
 #app_list {
   font-weight: bold;

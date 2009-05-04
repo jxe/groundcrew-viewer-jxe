@@ -30,20 +30,12 @@
     </div>
 	</span>
 </div>
-<div class="magic">
-  <select id="breadcrumbs" observe="breadcrumb_change">
-    <option value="/welcome">World</option>
-  </select>  
-  <div id="youbox" class="lio">
-  	<img id="you_img" onclick="Viewer.open(CurrentUser.tag);"/>
-	  <a id="youbox_agent" href="#">you are agent <b id="agent_name"></b></a>
-	  <div>
-	    <b fill="self_posx_pts">0</b>
-      <a href="#about_posx" rel="facebox">positive experiences caused</a><br>
-      <b fill="self_squadm">0</b>
-      <a href="#about_squadm" rel="facebox">squad members</a>
-    </div>
-  </div>
+<div id="youbox" class="lio magic divcenter">
+  dispatcher
+  <b fill="self_name" onclick="Viewer.open(CurrentUser.tag);"></b>
+  has caused
+  <b fill="self_posx_pts">0</b>
+  <a href="#about_posx" rel="facebox">positive experiences</a> so far
 </div>
 <div id="screen">
   <div class="magic">

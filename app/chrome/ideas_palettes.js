@@ -54,7 +54,6 @@ LiveHTML.widgets.push({
         return Tiles.adventure_tile.t({item_tag:where, thumb:thumb, what:text, where:place_title});
       }
     }).compact().join('');
-  },
-  
+  }
   
 });

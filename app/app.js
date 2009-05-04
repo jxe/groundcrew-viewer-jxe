@@ -25,7 +25,6 @@ ViewerUI = {
     $('body').removeClass('loading');
     Ajax.init();
     $('#you_img').attr('src', "http://groundcrew.us"+CurrentUser.thumb_url);
-    $('#agent_name').html(CurrentUser.title);
     CEML.parse($('#idea_bank').html());
   },
 
@@ -36,7 +35,7 @@ ViewerUI = {
       $('.divcenter').center();
       Frame.set_flexbar_size();
     });
-    $('.magic').app_paint();
+    $('.magic').app_paint().center();
     LiveHTML.init();
   }
 

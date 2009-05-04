@@ -1,5 +1,9 @@
 LiveHTML.widgets.push({
-
+  
+  self_name: function(state) {
+    return CurrentUser.title;
+  },
+  
   self_posx_pts: function(state) {
     return CurrentUser.posx_pts;
   },

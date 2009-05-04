@@ -16,8 +16,8 @@ Tiles = {
   <div class="tile2">\
     #{what}\
     <p><b>submitted by</b>#{who}</p>\
-  </div>',
+  </div>'
 
   // resource_t: '<div><img src=""/><b>#{what}</b></div>',
    
-}
+};

@@ -3,7 +3,8 @@ img { border:0; }
 body { padding:0; margin:0; background: #000 url(i/earth.png) no-repeat fixed top left; }
 
 body {
-  background: #000 url(i/earth.png) no-repeat fixed 0px -65px;
+/*  background: #000 url(i/earth.png) no-repeat fixed 0px -65px;*/
+  background: #000 url(i/stars.gif) no-repeat fixed;
 }
 
 #logo b {
