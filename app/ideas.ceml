@@ -15,19 +15,17 @@ snippet cue:  gather X
 
 // GAMETYPES
 
-discern common_location {
-  type nearby_landmark
+re common_location {
   ask dispatcher: Where will they meet?
+  get nearby_landmark
 }
 
-assignment { Go to |common_location| }
+all agents { Go to |common_location| }
 
-
-// MEETINGS
 
 offering "some quiet time" (many agents; 10m) {
   provides: quiet observation connection peace
-  assignment {
+  all agents {
     [sit w hands on left leg] to signal others
     once recognized,
     all agents will [be silent, hearing what's around] for DUR
@@ -39,7 +37,7 @@ offering "some quiet time" (many agents; 10m) {
 
 offering "a chance to roll down a hill" (many agents; 10m) {
   provides:  fun connection
-  assignment {
+  all agents {
     [lie on the hillside humming or singing] to signal others
     when someone [shouts]
     all agents will [roll down several times and shout] for DUR
@@ -51,7 +49,7 @@ offering "a chance to roll down a hill" (many agents; 10m) {
 
 offering "a strange event involving humming" (many agents; 2m) {
   provides: strangeness connection
-  assignment {
+  all agents {
     [stand in an obvious place] to signal others
     gather [in a circle]
     [hum together] for DUR
@@ -62,7 +60,7 @@ offering "a strange event involving humming" (many agents; 2m) {
 
 offering "some collaborative sculpture making" (many agents; 15m) {
   provides:  art strangeness connection
-  assignment {
+  all agents {
     find [some sticks and other materials lying around]   (:meet/cue:)
     all agents will [build one central sculpture out of what they find] for DUR
     afterwards, [applaud for everyone]
@@ -71,69 +69,58 @@ offering "some collaborative sculpture making" (many agents; 15m) {
 }
 
 
+re other_guys_clothing {
+  ask other: What are you wearing (so the other person can recognize you)?
+}
 
 // SYMMETRIC RENDEZVOUS
-context {
-
-  discern other_guys_clothing {
-    ask other: What are you wearing (so the other person can recognize you)?
+offering "a high five" (2 agents; 2m) {
+  provides: connection inclusion
+  all agents {
+    find someone wearing |other_guys_clothing|
+    give them a high five
+    then keep walking around the corner          (:end/exit:)
   }
-
-
-  //
-  offering "a high five" (2 agents; 2m) {
-    provides: connection inclusion
-    assignment {
-      find someone wearing |other_guys_clothing|
-      give them a high five
-      then keep walking around the corner          (:end/exit:)
-    }
-  }
-  
 }
 
 
 
 
+re stationary_agent_clothing {
+  ask stationary_agent: What are you wearing (so the other person can recognize you)?
+}
+
 // ASYMMETRIC RENDEZVOUS
-context {
+offering "an adventure involving skipping" (1 mobile_agent, 1 stationary_agent; 3m) {
+  provides "strangeness connection"
 
-  discern stationary_agent_clothing {
-    ask stationary_agent: What are you wearing (so the other person can recognize you)?
+  every mobile_agent     { find someone wearing |stationary_agent_clothing| }
+  every stationary_agent { wait for someone to find you                     }
+
+  everyone {
+    Without speaking, skip with them down the street. Communicate how you're feeling by skipping. Feel the rhythm.
+    after DUR, [bow to your partner]
+    go your separate ways
   }
-  
-  assign mobile_agent     { find someone wearing |stationary_agent_clothing| }
-  assign stationary_agent { wait for someone to find you                     }
+}
 
 
-  //
-  offering "an adventure involving skipping" (1 mobile_agent, 1 stationary_agent; 3m) {
-    provides "strangeness connection"
+//
+offering "a song exchange"  (1 mobile_agent, 1 stationary_agent; 5m) {
+  provides "challenge adventure performance art music connection beauty"
 
-    assignment {
-      Without speaking, skip with them down the street. Communicate how you're feeling by skipping. Feel the rhythm.
-      after DUR, [bow to your partner]
-      go your separate ways
-    }
+  every mobile_agent {
+    find someone wearing |stationary_agent_clothing|
+    think of a short song you know and teach it to them 
+    afterwards, [sing it together on the street]
+    leave [in different directions]
   }
-
-
-  //
-  offering "a song exchange"  (1 mobile_agent, 1 stationary_agent; 5m) {
-    provides "challenge adventure performance art music connection beauty"
-
-    assign mobile_agent { 
-      think of a short song you know and teach it to them 
-      afterwards, [sing it together on the street]
-      leave [in different directions]
-    }
-    assign stationary_agent { 
-      they will teach you a song
-      afterwards, [sing it together on the street]
-      leave [in different directions]
-    }
+  every stationary_agent {
+    wait for someone to find you
+    they will teach you a song
+    afterwards, [sing it together on the street]
+    leave [in different directions]
   }
-  
 }
 
 
