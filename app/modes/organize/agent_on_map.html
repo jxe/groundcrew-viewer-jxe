@@ -1,32 +1,31 @@
-<div id="organize_agent_iw" class="mapwindow" style="width: 400px">
+<div id="organize_agent_iw" class="mapwindow" style="max-width: 800px">
   <div class="intro">
     <h2>AGENT <span fill="item_title"></span></h2>
   </div>
   <div class="group">
-    <img style="height: 100px; max-width: 100px; float: left" class="niw_thumb" fill="item_thumb_url src"/>
-    <div style="float:left; max-width: 250px">
+    <img style="height: 100px; width: 100px; float: left" class="niw_thumb" fill="item_thumb_url src"/>
+    <div style="float:left; max-width: 450px">
       <p class="status" fill="item_status"></p>
-      
-      <div if="agent_unlatched">
-        <h3>What would please this agent?</h3>
-        <div fill="ideas_for_agent"></div>
-        <form id="make_it_happen_form" class="right">
+      <p class="believes" fill="item_believesin"></p>
+      <p class="state" fill="item_current_assignment"></p>
+      <form id="make_it_happen_form">
+        <input if="agent_assignable" name="assign" type="text" size="38" class="big" fill="agent_assign_prompt hint" hint="What would you like this agent to do?"/>
+        <!-- <input if="agent_latched_and_assigned" name="assign" type="text" size="38" class="big" hint="New instructions for this agent?"/> -->
+        <!-- <div class="xspace">
+          <h3>Or choose a prefab assignment:</h3>
+        </div>
+        <div fill="ideas_for_agent"></div> -->
+        <!-- <div class="right">
           <input type="submit" value="make it happen"/>
-        </form>
-      </div>
+        </div> -->
+      </form>
     </div>
   </div>
   <div id="iw_menu_place" style="position:relative; clear:both"></div>
-  <form if="agent_latched">
-    <input name="assign" type="text" size="48" class="big" hint="What would you like this agent to do?"/>
 
-    <div class="xspace right">
-      <input type="submit" value="send assignment"/>
-    </div>
-  </form>
-
-  <p class="believes" fill="item_believesin"></p>
   <p class="believes" fill="item_celebrates"></p>
   <p class="believes" fill="item_helpwith"></p>
   <div class="didrecent" fill="item_didrecent"></div>
 </div>
+
+

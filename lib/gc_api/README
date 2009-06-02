@@ -1,0 +1,11 @@
+//
+// GROUNDCREW VIEWER<->SERVER COMMUNICATIONS
+//
+// To communicate with the server, the viewer polls a file every 20s
+// at http://[SERVER]/data/this10.js, which contains all events from 
+// the last few minutes.  The server returns javascript which calls a 
+// limited set of four functions: {item,event,city,idea}, defined in 
+// models.js.  These functions, when called, add or update
+// entries in an in-browser, in-memory database which is used to draw
+// them map and fill out the UI.
+//

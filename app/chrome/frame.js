@@ -1,7 +1,7 @@
 Frame = {
   flexbar_size: 0,
   
-  agent_thumb: '<img src="http://groundcrew.us/#{thumb_url}" title="#{title}" onclick="Viewer.open(\'#{item_tag}\');"/>',
+  agent_thumb: '<div class="athumb agent_photo #{id}"><img class="th" src="http://groundcrew.us/#{thumb_url}" title="#{title}" onclick="Viewer.open(\'#{id}\');"/><img src="i/timebadges/5m.png" class="badge"/></div>',
   
   scroll_flexbar: function(pxs) {
     // unimplemented
@@ -36,6 +36,7 @@ Frame = {
       $('#' + this + '_agents').show();
       $('#' + this + '_agent_thumbs').html(Frame.agent_thumb.tt(groups[this]));
     });
+    $('#flexbar').scrollLeft(0);
   }
   
 };

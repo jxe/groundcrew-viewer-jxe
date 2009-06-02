@@ -31,7 +31,7 @@ MapLandmarks = {
   
   city_changed: function(city) {
     if (!city || !Map.Gmap) return;
-    var lms = Landmarks.in_city(city);
+    var lms = Landmarks.in_city(city.resource_id());
     if (!lms) return;
     $.each(lms, function(){
       var marker = MapLandmarks.marker_for_lm(this);
@@ -46,7 +46,7 @@ MapLandmarks = {
   
   lm_from_pano: function(x) {
     var tag = "Landmark__p" + x.photo_id;
-    return item(Viewer.selected_city, tag, x.photo_title, x.photo_file_url, x.latitude, x.longitude, null, null, null, null, {
+    return item(This.city_id, tag, x.photo_title, x.photo_file_url, x.latitude, x.longitude, null, null, null, null, {
         map_thumb_url: 'http://www.panoramio.com/photos/mini_square/' + x.photo_id + '.jpg',
         thumb_height: x.height,
         thumb_width: x.width,
@@ -57,7 +57,7 @@ MapLandmarks = {
   
   marker_for_lm: function(lm) {
     var marker = new GMarker(new GLatLng(lm.lat, lm.lng), {icon: MapIcons.for_landmark(lm), title: lm.title});
-    GEvent.addListener(marker, "click", function(){ Viewer.open(lm.item_tag); });
+    GEvent.addListener(marker, "click", function(){ Viewer.open(lm.id); });
     lm.map_marker = marker;
     return marker;
   }

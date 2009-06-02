@@ -1,0 +1,16 @@
+#dragpane {
+  moz-user-select: none;
+  background-color: white;
+  opacity: 0.0;
+  cursor: crosshair;
+  position: absolute;
+  overflow: hidden;
+  z-index: 101;
+  display: none;
+}
+
+#dragbox {
+  border: thin solid #FF0000;
+  position: absolute;
+  display: none;
+}

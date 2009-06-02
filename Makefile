@@ -4,24 +4,24 @@ LANG=C
 
 # basic builds
 
-uncompressed: html raw_js css
+uncompressed: html raw_js buildcss
 
-compressed: html min_js css
+compressed: html min_js buildcss
 
-test: BUILD css raw_js
+test: BUILD buildcss raw_js
 	m4 -P tests/test.html.m4 > BUILD/test.html
 
 html: BUILD
 	m4 -P app/app.html.m4 > BUILD/viewer.html
 
 raw_js: BUILD
-	cat vendor/*.js lib/*/*.js app/*.js app/*/*.js app/*/*/*.js > BUILD/viewer.js
+	cat lib/*/*.js app/*.js app/*/*.js app/*/*/*.js > BUILD/viewer.js
 
 min_js: BUILD
-	jsmin vendor/*.js lib/*/*.js app/*.js app/*/*.js app/*/*/*.js > BUILD/viewer.js
+	cat lib/*/*.js app/*.js app/*/*.js app/*/*/*.js | jsmin > BUILD/viewer.js
 
-css: BUILD
-	cat {css,vendor}/*.css app/{chrome,helpers,modes/*}/*.css > BUILD/viewer.css
+buildcss: BUILD
+	cat css/*.css app/{chrome,helpers,modes/*}/*.css > BUILD/viewer.css
 
 
 
@@ -31,10 +31,10 @@ debug: uncompressed
 # deploy
 
 deploy: compressed
-	rsync -avL BUILD/{i,viewer.*} groundcrew.us:apps/groundcrew/current/public/
+	rsync -avL BUILD/{i,viewer.*} joe@groundcrew.us:apps/groundcrew/current/public/
 
 deploy_uncompressed: uncompressed
-	rsync -avL BUILD/{i,viewer.*} groundcrew.us:apps/groundcrew/current/public/
+	rsync -avL BUILD/{i,viewer.*} joe@groundcrew.us:apps/groundcrew/current/public/
 
 
 # setup

@@ -1,8 +1,8 @@
 /* agent_on_map */
 
 #organize_agent_iw form {
-	clear: both;
-	margin-top: 10px;
+/*  clear: both;*/
+/*  margin-top: 10px;*/
 }
 
 /* landmark_on_map */
@@ -14,6 +14,7 @@
 
 
 #organize_landmark_thumb {
+  height: 100px;
  width: 100px;
 }
 
@@ -78,10 +79,6 @@ div#idea_catalog {
 		border-bottom: none;	
 	}
 
-
-#live_event_iw {
-  max-width: 400px;
-}
 
 #assignment_editor_iw {
   max-width: 400px;

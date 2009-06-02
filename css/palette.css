@@ -2,7 +2,7 @@
   position: absolute;
   z-index: 100;
   color: white;
-  width: 400px;
+  max-width: 400px;
 }
 
 /* coloring */
@@ -25,6 +25,11 @@
 .palette h2 img { position: relative; top: 10px; left: -10px; }
 .palette h2 { position: relative; top: -10px; text-align: center; }
 
+.palette a {
+  color: #FF7D09;
+  text-shadow: #FF4a00 0px 0px 4px;
+}
+
 .btn { 
   display: block;
   margin-top: 6px;
@@ -44,6 +49,12 @@
   text-shadow: #000 0px 0px 8px;
 }
 
+
+img.closebox {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+}
 
 a.closebox {
   position: absolute;
@@ -72,7 +83,7 @@ div.redbox {
   margin: 10px;
 }
 
-body.has_reveal .divcenter {
+body.has_reveal .welcome {
   display: none;
   opacity: 0;
   -moz-opacity: 0;

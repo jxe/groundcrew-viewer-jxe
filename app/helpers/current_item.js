@@ -1,10 +1,11 @@
 LiveHTML.widgets.push({
+  blank:       function(){ return ''; },
   
-  item_thumb_url: function(state) { if (state.item_r && state.item_r.thumb_url) return state.item_r.thumb_url.gcify_url(); },
-  item_title:     function(state) { return state.item_r.title; },
+  item_thumb_url: function(state) { if (This._item && This._item.thumb_url) return This._item.thumb_url.gcify_url(); },
+  item_title:     function(state) { return This._item.title; },
 
   item_ltypes:    function(state) {
-    ltypes = state.item_r.ltypes;
+    ltypes = This._item.ltypes;
     if (!ltypes) {
       return 'unknown';
     } else {
@@ -13,7 +14,7 @@ LiveHTML.widgets.push({
   },
 
   item_description: function(state) {
-    description = state.item_r.description;
+    description = This._item.description;
     if (!description) {
       return '';
     } else {

@@ -1,42 +1,35 @@
-var CurrentUser = false;
+This.user = false;
 
 ViewerUI = {
 
   init: function() {
-    Frame.set_flexbar_size(1);
     // load the user data
-    if (!CurrentUser) {
+    if (!This.user) {
       var user_info = eval('('+$.cookie('user_info')+')');
-      if (!user_info) window.location.replace('/auth');
-      login(user_info);
+      if (user_info) login(user_info);
+      else login_anonymous_demo();
     }
 
-    this.activateUI();
-    var starter_url = "/welcome/beginner";
-    if (CurrentUser.logged_in) {
-      Agents.add_or_update(CurrentUser.tag, CurrentUser);
-      $('body').addClass('logged_in');
-      // starter_url = '/hero/City__' + CurrentUser.city_id;
-    } else {
-      $('body').addClass('logged_out');
-    }
-    if (window.location.hash) starter_url = window.location.hash.slice(1);
-    Viewer.go(starter_url);
-    $('body').removeClass('loading');
-    Ajax.init();
-    $('#you_img').attr('src', "http://groundcrew.us"+CurrentUser.thumb_url);
-    CEML.parse($('#idea_bank').html());
-  },
-
-  activateUI: function() {    
-    $('a[rel*=facebox]').facebox();
-    setInterval(function(){ $('.from_now').update_times(); }, 20000);
+    // interface init
+    Frame.set_flexbar_size(1);
+    // setInterval(function(){ $('.from_now').update_times(); }, 20000);
     $(window).resize(function(){
       $('.divcenter').center();
       Frame.set_flexbar_size();
     });
     $('.magic').app_paint().center();
     LiveHTML.init();
+    $('body').addClass( This.user.logged_in ? 'logged_in' : 'logged_out' );
+    
+    // starter url
+    var starter_url = "/demo/welcome/leader";
+    if (window.location.hash) starter_url = window.location.hash.slice(1);
+    App.go(starter_url);
+
+    // fire it up
+    CEML.parse($('#idea_bank').html());
+    $('body').removeClass('loading');
+    Ajax.init();
   }
 
 };

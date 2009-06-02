@@ -8,6 +8,11 @@ span.gmnoprint a img {
   filter:alpha(opacity=20);
 }
 
+#fdbk_tab {
+  top: auto !important;
+  bottom: 25% !important;
+}
+            
 .hidden, .lio {
   display: none;
 }

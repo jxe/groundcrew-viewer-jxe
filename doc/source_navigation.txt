@@ -468,7 +468,7 @@ THE FOLLOWING WILL BECOME API DOCS AND BE MERGED INTO THE SOURCE AS JSDOC.
     /viewer.html#/<app>/<argument>{/<arguments>}.
 
   + app.js - app-wide initialization code
-    # CurrentUser - global user object
+    # This.user - global user object
     # init:
       initialize the viewer
     # activateUI:

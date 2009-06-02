@@ -18,6 +18,6 @@
 
 /* positioning */
 #share_add .tgray { padding-top: 10px; }
-#share_add #section2 { position: relative; height: 300px; }
+#share_add .section2 { position: relative; height: 300px; }
 
 #share_add .options input { margin: 0; margin-right: 5px; }

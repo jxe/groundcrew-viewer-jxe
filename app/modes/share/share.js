@@ -1,16 +1,8 @@
 App.modes.share = {
-  url_part_labels: $w('city mode item'),
+  url_parts: $w('city type item'),
 
-  set_mode: function(mode, state) {
-    state.mode_label = {
-      "add": "Add A Shared Resource",
-      "resources": "Your Shared Resources",
-      "self": "You"
-    }[mode] || "Unknown Mode";
-  },
-
-  show_mode: function(state) {
-    Viewer.render(state.mode);
+  show_type: function(state) {
+    Viewer.render(state.type);
   },
   
   show_item: function(state) {
@@ -19,7 +11,7 @@ App.modes.share = {
   },
   
   wish_locations: function(state) {
-    return "<option value='agent'>Wherever I am</option>" + Landmarks.in_city(state.city).as_option_list();
+    return "<option value='agent'>Wherever I am</option>" + Landmarks.here().as_option_list();
   },
   
   add_wish_form_submitted: function(data, state) {

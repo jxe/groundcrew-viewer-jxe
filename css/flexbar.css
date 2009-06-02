@@ -2,8 +2,15 @@
   overflow: hidden;
   -webkit-transition: height 1s ease;
   height: 21px;
-  padding: 0px 30px;
   margin-top: 3px;
+  position: relative;
+  width: 100%;
+}
+
+#flexbar > img {
+  position:absolute;
+  left: 5px;
+  bottom: 10px;
 }
 
 body.flexbar0 #flexbar { height: 24px; }
@@ -45,25 +52,45 @@ body.flexbar1 #flexbar { height: 74px; }
 /*  bottom: 2px;*/
 }
 
-#flexbar #agents img { max-height: 50px; margin-right: 3px; }
+#flexbar #agents .athumb img.th {
+  max-height: 50px; 
+}
 
-#flexbar #agents img.selected { 
-  border: solid 1px yellow; 
-/*  background-color: yellow;
-  opacity: 0.5;
-  -moz-opacity: 0.5;
-  filter:alpha(opacity=50);*/
+#flexbar #agents .athumb img.badge {
+  position: absolute;
+  bottom: 3px;
+  right: 2px;
+  z-index: 40;
+}
+#flexbar #agents .athumb { 
+  margin-right: 3px; 
+  overflow: hidden;
+  float: left;
+  position: relative;
+}
+
+#flexbar #agents .athumb.selected img.th {
+  opacity: 0.9;
+  -moz-opacity: 0.9;
+  filter:alpha(opacity=90);
+}
+
+#flexbar #agents .athumb.selected { 
+  background-color: yellow;
 }
 
 /*#flexbar #agents > div > div { height: 50px; }*/
 /*#flexbar #agents > div > div > img { float: left; }*/
 
+#flexbar #inaccessible_agents   h2 { border-top: solid 3px #888; }
+#flexbar #inaccessible_agents  h2 em { background: #888;    }
+
 #flexbar #neglected_agents  h2 { border-top: solid 3px red;    }
 #flexbar #neglected_agents  h2 em { background: red;    }
 #flexbar #ready_agents      h2 { border-top: solid 3px green;  }
 #flexbar #ready_agents  h2 em { background: green;    }
-#flexbar #assigned_agents   h2 { border-top: solid 3px yellow; }
-#flexbar #assigned_agents  h2 em { background: yellow;    }
+#flexbar #assigned_agents   h2 { border-top: solid 3px brown; }
+#flexbar #assigned_agents  h2 em { background: brown;    }
 #flexbar #available_agents h2 { border-top: solid 3px blue;   }
 #flexbar #available_agents  h2 em { background: blue;    }
 

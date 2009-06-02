@@ -12,7 +12,7 @@ Popularities = {
 IdeaUtils = {
   
   judge_ideas_for_item: function() {
-    var agent = Viewer.current_app.state.item.resource();
+    var agent = This.item.resource();
     var agent_atags = agent.upfor.split(' ').to_h();
     Gamebook = $values(Gamebook);
     $.each(Gamebook, function(){

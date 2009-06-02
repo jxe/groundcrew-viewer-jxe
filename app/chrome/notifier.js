@@ -2,7 +2,10 @@ Notifier = {
   
   did_add_new_event: function(ev) {
     // we only notify on items that are latched to us.
-    if (!ev.item || !ev.item.latched_by || $w(ev.item.latched_by).indexOf(CurrentUser.tag) < 0) return;
+    if (!ev.re || ev.re.resource().architect != This.user.tag) return;
+    
+    // don't report if we're watching the thing
+    if (ev.re == This.item) return;
 
     if (ev.atype == 'report')      alert( ev.actor_title + " reports: [["+ ev.msg +"]]" );
     if (ev.atype == 'accepted')    alert( ev.actor_title + " has accepted your assignment" );

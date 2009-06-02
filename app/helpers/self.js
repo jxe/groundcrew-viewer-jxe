@@ -1,19 +1,19 @@
 LiveHTML.widgets.push({
   
   self_name: function(state) {
-    return CurrentUser.title;
+    return This.user.title;
   },
   
   self_posx_pts: function(state) {
-    return CurrentUser.posx_pts;
+    return This.user.posx_pts;
   },
 
   self_posx: function(state) {
-    return CurrentUser.posx;
+    return This.user.posx;
   },
 
   self_squadm: function(state) {
-    return CurrentUser.squadm;
+    return This.user.squadm;
   }
 
 });

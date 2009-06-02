@@ -28,8 +28,15 @@
   margin: 0;
 }
 
+textarea.big {
+  font-size: 18px;
+  padding: 5px;
+  font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  width: 94%;
+}
+
 .big input, input.big {
-  margin-top: 10px;
+/*  margin-top: 10px;*/
 /*  display: block;*/
   font-size: 18px;
   padding: 5px;

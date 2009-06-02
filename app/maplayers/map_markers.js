@@ -1,9 +1,22 @@
 MapMarkers = {
 
   iw_marker: null,
-
+  
+  update_marker: function(tag) {
+    var marker = MapMarkers.cache[tag] || tag.resource().map_marker;
+    if (marker) MapMarkers.cache[tag].setImage('i/map/' + tag.resource().map_icon + '.png');
+  },
+  
   open: function(item, content, min_zoom) {
-    var marker = MapMarkers.cache[item] || item.resource().map_marker || alert('no marker found for ' + item);
+    var marker = MapMarkers.cache[item] || item.resource().map_marker;
+    
+    if (!marker) {
+      var focii = item.resource().focii;
+      if (focii) return MapMarkers.open(focii.split(' ')[0], content, min_zoom);
+    }
+    
+    if (!marker) return alert('no marker found for ' + item);
+    
     if (this.iw_marker == marker)
       return Map.Gmap.updateCurrentTab(function(tab){ tab.contentElem = content; });
     this.iw_marker = marker;
@@ -20,11 +33,7 @@ MapMarkers = {
   display: function(city, agents) {
     if (!Map.available()) return;
     if (city) {
-      // agents
       Map.load_and_refocus(agents.map(MapMarkers.for_agent));
-            
-      // the city itself
-      // Map.add([MapMarkers.for_city(Viewer.selected_city, true)]);
     } else {
       var cities = $keys(Agents.find("=city_id"));
       Map.load_and_refocus(cities.map(MapMarkers.for_city));
@@ -61,17 +70,19 @@ MapMarkers = {
   },
     
   for_agent: function(agent) {
-    if (MapMarkers.cache[agent.item_tag]) return MapMarkers.cache[agent.item_tag];
+    if (MapMarkers.cache[agent.id]) return MapMarkers.cache[agent.id];
     var marker = MapMarkers.marker(agent.lat, agent.lng, agent.map_icon, agent.title);
     marker.info_data = agent;
 
-    GEvent.addListener( marker, "click", function() { Viewer.open(agent.item_tag); });
+    GEvent.addListener( marker, "click", function() { 
+      Viewer.open(agent.id); 
+    });
     // GEvent.addListener( marker, "infowindowclose", function() { Viewer.close(agent); });
     GEvent.addListener( marker, "dblclick", function() {
       Map.Gmap.setCenter( marker.getPoint(), 15 ); 
     });
 
-    MapMarkers.cache[agent.item_tag] = marker;
+    MapMarkers.cache[agent.id] = marker;
     return marker;
   }
   
