@@ -7,6 +7,10 @@ MapMarkers = {
     if (marker) MapMarkers.cache[tag].setImage('i/map/' + tag.resource().map_icon + '.png');
   },
   
+  window: function(template_name, min_zoom) {
+    MapMarkers.open(This.item, $.template('#' + template_name + '_iw').app_paint()[0], min_zoom);
+  },
+  
   open: function(item, content, min_zoom) {
     var marker = MapMarkers.cache[item] || item.resource().map_marker;
     
@@ -61,9 +65,7 @@ MapMarkers = {
     var lng = city_locs[city_id][1];
     var marker = MapMarkers.marker(lat, lng, 'ninjaguy', cities[city_id]);
 
-    GEvent.addListener( marker, "click", function() { 
-      Viewer.go("/organize/your_squad/City__" + city_id); 
-    });
+    GEvent.addListener( marker, "click", function() { go("@City__" + city_id); });
     
     MapMarkers.cache[city_id] = marker;
     return marker;
@@ -74,9 +76,7 @@ MapMarkers = {
     var marker = MapMarkers.marker(agent.lat, agent.lng, agent.map_icon, agent.title);
     marker.info_data = agent;
 
-    GEvent.addListener( marker, "click", function() { 
-      Viewer.open(agent.id); 
-    });
+    GEvent.addListener( marker, "click", function() { go('@' + agent.id); });
     // GEvent.addListener( marker, "infowindowclose", function() { Viewer.close(agent); });
     GEvent.addListener( marker, "dblclick", function() {
       Map.Gmap.setCenter( marker.getPoint(), 15 ); 

@@ -57,7 +57,7 @@ MapLandmarks = {
   
   marker_for_lm: function(lm) {
     var marker = new GMarker(new GLatLng(lm.lat, lm.lng), {icon: MapIcons.for_landmark(lm), title: lm.title});
-    GEvent.addListener(marker, "click", function(){ Viewer.open(lm.id); });
+    GEvent.addListener(marker, "click", function(){ go("@" + lm.id); });
     lm.map_marker = marker;
     return marker;
   }

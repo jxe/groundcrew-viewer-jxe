@@ -1,6 +1,4 @@
-App.modes.ideas = {
-  url_parts: $w('city idea'),
-  
+App.modes.plan = {
   show_idea: function(state) {
     // la la la
   }

@@ -1,7 +1,17 @@
 Frame = {
   flexbar_size: 0,
   
-  agent_thumb: '<div class="athumb agent_photo #{id}"><img class="th" src="http://groundcrew.us/#{thumb_url}" title="#{title}" onclick="Viewer.open(\'#{id}\');"/><img src="i/timebadges/5m.png" class="badge"/></div>',
+  agent_thumb: '<div class="athumb agent_photo #{id}"><img class="th" src="http://groundcrew.us/#{thumb_url}" title="#{title}" href="#@#{id}"/><img src="i/timebadges/5m.png" class="badge"/></div>',
+  
+  init: function() {
+    Frame.set_flexbar_size(1);
+    // setInterval(function(){ $('.from_now').update_times(); }, 20000);
+    $(window).resize(function(){
+      $('.divcenter').center();
+      Frame.set_flexbar_size();
+    });
+    $('.magic').app_paint();
+  },
   
   scroll_flexbar: function(pxs) {
     // unimplemented
@@ -14,7 +24,7 @@ Frame = {
     } else {
       size = Frame.flexbar_size;
     }
-    var topbar_height = 63;
+    var topbar_height = 48;
     var page_height = window.innerHeight || window.document.body.clientHeight;
     var flexbar_height = (size == 0) ? 24 : 77;
     // var flexbar_height = $('#flexbar').height();
@@ -36,7 +46,7 @@ Frame = {
       $('#' + this + '_agents').show();
       $('#' + this + '_agent_thumbs').html(Frame.agent_thumb.tt(groups[this]));
     });
-    $('#flexbar').scrollLeft(0);
+    $('#flexbar').scrollLeft(0).app_paint();
   }
   
 };

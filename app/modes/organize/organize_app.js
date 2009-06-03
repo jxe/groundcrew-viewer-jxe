@@ -1,6 +1,4 @@
-App.modes.organize = {
-  url_parts: $w('city item type'),
-
+App.modes.mobilize = {
   show_type: function() {
     Viewer.render_item(This.type);
   },
@@ -12,14 +10,14 @@ App.modes.organize = {
   
   make_it_happen_form_submitted: function(data, state) {
     Operation.assign(This.item, data.assign, function(operation){
-      Viewer.go('//ops/:city/' + operation.id);
+      go('@' + operation.id);
     });
   },
   
   
   send_assignment_form_submitted: function(data, state) {
     Operation.invite(This.item, data.title, data.assignment, function(operation){
-      Viewer.go('//ops/:city/' + operation.id);
+      go('@' + operation.id);
     });
   },
   

@@ -1,6 +1,4 @@
-App.modes.share = {
-  url_parts: $w('city type item'),
-
+App.modes.connect = {
   show_type: function(state) {
     Viewer.render(state.type);
   },

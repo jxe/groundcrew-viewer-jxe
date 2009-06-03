@@ -19,7 +19,7 @@ App.modes.ops = {
   
   group_interact_form_submitted: function(data, state, form) {
     Operation.group_assign($keys(Selection.current), data.assign, function(operation){
-      Viewer.go('//ops/:city/' + operation.id);
+      go('@' + operation.id);
     });
   }
   

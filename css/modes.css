@@ -1,0 +1,25 @@
+#mode_tray {
+  position: absolute;
+  bottom: 16px;
+  background: black;
+  border: solid 2px gray;
+  border-bottom: none;
+  border-left: none;
+  z-index: 400;
+  width: 500px;
+  height: 40px;
+  left: 0px;
+  display: none;
+}
+
+#mode_tray[mode] {
+  display: block;
+}
+
+#plan_tray { display: none; }
+#connect_tray { display: none; }
+#mobilize_tray { display: none; }
+
+#mode_tray[mode=plan] #plan_tray { display: block; }
+#mode_tray[mode=connect] #connect_tray { display: block; }
+#mode_tray[mode=mobilize] #mobilize_tray { display: block; }

@@ -1,20 +1,29 @@
+/*body { background: #000 url(i/gccorner.png) no-repeat fixed top left; }*/
+body { background: #202940 }
 #map_div {
-  border-top: 1px solid #888;
+/*  border-top: 1px solid #888;*/
   background: gray;
   height: 392px;
   -webkit-transition: height 1s ease;
 }
 
-
-#demo_mode {
-  padding: 2px 10px;
-  background: #ff0;
-  color: black;
-  position: absolute;
-  right: 30px;
-  top: 45px;
-  z-index: 200;
+#console {
+  background: #202940;
 }
+
+#flexbar_banner {
+  position: relative;
+}
+
+#flexbar {
+  overflow: hidden;
+  height: 21px;
+  margin-top: 3px;
+  position: relative;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
 
 #unsupported {
   position: absolute;
@@ -33,22 +42,19 @@
 
 #header {
   position: relative; 
-  height: 62px;
-  margin: auto;
+  height: 22px;
   width: 100%;
-  overflow: hidden;
 }
 
 #screen {
-  margin-left: 30px;
-  margin-right: 30px;
-  overflow: hidden;
   position: relative;
+  width: 100%;
 }
 
 .rside, .lside { position: absolute; cursor: pointer;}
-.rside { right:0; }
-.lside { left:0; }
+/*.rside { right:0; }*/
+/*.lside { left:0; }*/
+
 .rsidep, .lsidep { 
   position: absolute; 
 /*  opacity: 0;
@@ -78,21 +84,17 @@ img[reveal]:hover {
 }
 #logo {
   position: absolute; 
-  bottom: 0px; left: 50px;
+  bottom: 0px; left: 30px;
   padding:0;margin:0; 
   display: block;
-  color: white;
-/*  font-size: 39px;*/
+  color: #aaa;
+  font-size: 18px;
   font-variant: small-caps;
   font-family: gill sans, verdana;
   text-shadow: #000 1px 1px 1px;
+  font-weight: bold;
 /*  font-style: italic;*/
-/*  letter-spacing: .07em;*/
-}
-
-#logo b {
-  font-size: 36px;
-  letter-spacing: .1em;
+  letter-spacing: .07em;
 }
 
 a#logo:hover {
@@ -102,16 +104,6 @@ a#logo:hover {
 #header_menubar {
   position:absolute; top:0px; right: 10px; color: #999; font-size: 11px;
 }
-
-
-#logo_gc {
-  position: relative;
-  top: 10px;
-  left: -15px;
-/*  opacity: 0.3;
-  -moz-opacity: 0.3;
-  filter:alpha(opacity=30);
-*/}
 
 #app_list {
   font-weight: bold;

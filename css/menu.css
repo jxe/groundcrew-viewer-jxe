@@ -6,24 +6,24 @@ div.menu {
 	position: absolute;
 	border: solid thin #999;
 	background: white;
-	z-index: 300;
+	z-index: 400;
 	font-size: 12px;
 	-moz-border-radius: 3px;
   -webkit-border-radius: 3px;
 }
 
-div.menu > div {
+div.menu div.mitem {
 	display: block;
 	color: black;
 	padding: 5px;
 }
 
-div.menu > div:hover, div.menu > div.pick {
-	background: #555;
+div.menu div.mitem:hover, div.menu div.mitem.pick {
+	background: #999;
 	color: white;
 }
 
-div.menu > div.trigger {
+div.menu div.mitem.trigger {
 	background: #eee;
 	color: black;
 }
@@ -38,7 +38,7 @@ div.menu > div.trigger {
 /* = little header = */
 /* ================= */
 
-.lilheader {
+div.menu h4 {
   margin: 0;
 	padding: 5px;
 	padding-top: 8px;
