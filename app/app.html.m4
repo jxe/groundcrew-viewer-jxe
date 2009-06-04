@@ -78,39 +78,36 @@
   </div>
   <div id="map_div"></div>
   <div id="youbox" class="lio magic" href="##go_to_self">
-    You've caused
+    you've caused
     <b fill="self_posx_pts">0</b>
-    <a reveal="about_posx">positive experiences</a> so far.
-  </div>
-  <div id="mode_tray">
-    <div id="plan_tray">
-      
-      <img reveal="ideas_palette" src="i/icons/lightbulb_icon29.png" title="start something"/>
-      <img reveal="wish_palette" src="i/icons/wand30.png" title="make or view wishes"/>
-      <img reveal="places_palette" src="i/icons/landmark21.png" title="see local places"/>
-      
-    </div>
-    
-    <div id="connect_tray">
-      
-      <img reveal="share_palette" src="i/icons/gift23.png" title="free stuff"/>
-      <img reveal="chat_palette" src="i/icons/chat_icon18.png" title="chat with other organizers"/>
-      <img reveal="wish_palette" src="i/icons/wand30.png" title="make or view wishes"/>
-
-    </div>
-    
-    <div id="mobilize_tray">
-      
-      <img reveal="places_palette" src="i/icons/landmark21.png" title="see local places"/>      
-      <img reveal="recent_content" src="i/icons/scroll.png" title="view recent events"/>
-      
-    </div>
+    <a reveal="about_posx">positive experiences</a>.
   </div>
   <div id="console">
+
+    <div id="modetray" class="tray">
+      <div id="dream_tray">
+        <img reveal="ideas_palette" src="i/icons/lightbulb_icon29.png" title="start something"/>
+        <img reveal="wish_palette" src="i/icons/wand30.png" title="make or view wishes"/>
+        <img reveal="places_palette" src="i/icons/landmark21.png" title="see local places"/>
+      </div>
+
+      <div id="connect_tray">
+        <img reveal="share_palette" src="i/icons/gift23.png" title="free stuff"/>
+        <img reveal="chat_palette" src="i/icons/chat_icon18.png" title="chat with other organizers"/>
+        <img reveal="wish_palette" src="i/icons/wand30.png" title="make or view wishes"/>
+      </div>
+
+      <div id="mobilize_tray">
+        <img reveal="places_palette" src="i/icons/landmark21.png" title="see local places"/>      
+        <img reveal="recent_content" src="i/icons/scroll.png" title="view recent events"/>
+      </div>
+    </div>
+
+
     <div id="mode_buttons" style="padding-left: 30px">
-      <a class="button" href="#mode=plan">Plan</a>
-      <a class="button" href="#mode=connect">Connect</a>
-      <a class="button" href="#mode=mobilize">Mobilize</a>
+      <a id="dream_mode_button" href="##dream_mode">Envision</a>
+      <a id="connect_mode_button" href="##connect_mode">Attend to your Squad</a>
+      <a id="mobilize_mode_button" href="##mobilize_mode">Mobilize</a>
     </div>
   </div>
 </div>

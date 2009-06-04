@@ -1,4 +1,12 @@
 App.modes.mobilize = {
+  
+  render: function(changed) {
+    if (changed.item) {
+      if (This.item.startsWith('Person')) MapMarkers.window('organize_agent', 16);
+    }
+  },
+  
+  
   show_type: function() {
     Viewer.render_item(This.type);
   },

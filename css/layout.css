@@ -4,7 +4,7 @@ body { background: #202940 }
 /*  border-top: 1px solid #888;*/
   background: gray;
   height: 392px;
-  -webkit-transition: height 1s ease;
+/*  -webkit-transition: height 1s ease;*/
 }
 
 #console {
@@ -16,8 +16,8 @@ body { background: #202940 }
 }
 
 #flexbar {
+  height: 74px;
   overflow: hidden;
-  height: 21px;
   margin-top: 3px;
   position: relative;
   margin-left: 30px;

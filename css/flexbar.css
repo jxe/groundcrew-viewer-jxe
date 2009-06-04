@@ -1,6 +1,3 @@
-body.flexbar0 #flexbar { height: 24px; }
-body.flexbar1 #flexbar { height: 74px; }
-
 #group_actions {
   background: yellow;
   color: black;
@@ -75,13 +72,16 @@ body.flexbar1 #flexbar { height: 74px; }
 
 #flexbar #inaccessible_agents   h2 { border-top: solid 3px #888; }
 #flexbar #inaccessible_agents  h2 em { background: #888;    }
+/*#flexbar #inaccessible_agents { border-left: solid 3px #888; }*/
 
 #flexbar #neglected_agents  h2 { border-top: solid 3px #f33;    }
 #flexbar #neglected_agents  h2 em { background: #f33;    }
+/*#flexbar #ready_agents { border-left: solid 3px #0b0; }*/
 #flexbar #ready_agents      h2 { border-top: solid 3px #0b0;  }
 #flexbar #ready_agents  h2 em { background: #0b0;    }
 #flexbar #assigned_agents   h2 { border-top: solid 3px brown; }
 #flexbar #assigned_agents  h2 em { background: brown;    }
+/*#flexbar #available_agents { border-left: solid 3px #33f; }*/
 #flexbar #available_agents h2 { border-top: solid 3px #33f;   }
 #flexbar #available_agents  h2 em { background: #33f;    }
 

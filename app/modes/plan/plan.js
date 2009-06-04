@@ -1,4 +1,4 @@
-App.modes.plan = {
+App.modes.dream = {
   show_idea: function(state) {
     // la la la
   }

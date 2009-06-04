@@ -14,6 +14,8 @@ Viewer = App = {
     }
     
     if (changed.item) {
+      if (!This.mode) set('mode', 'mobilize');
+      
       if (!This.item) set('city', null);
       else if (This.item.startsWith('City__')) set('city', This.item);
       else {
@@ -34,7 +36,12 @@ Viewer = App = {
     }
     
     if (changed.mode) {
-      $('#mode_tray').attr('mode', This.mode || '');
+      $('#console .selected').removeClass('selected');
+      $('#'+This.mode+'_tray').addClass('selected');
+      $('#'+This.mode+'_mode_button').addClass('selected');
+      $('#modetray').show();
+      Frame.resize();
+
       This.first_responders[0] = {};
       This.first_responders[1] = App.modes[This.mode];
     }
@@ -74,6 +81,17 @@ Viewer = App = {
   
   go_to_self: function() {
     go('@' + This.user.tag);
-  }
-    
+  },
+  
+  setmode: function(mode) {
+    if (This.mode != mode) return go('mode=' + mode);
+    else {
+      $('#modetray').toggle();
+      Frame.resize();
+    }
+  },  
+  
+  dream_mode: function() { App.setmode('dream'); },
+  connect_mode: function() { App.setmode('connect'); },
+  mobilize_mode: function() { App.setmode('mobilize'); }
 };

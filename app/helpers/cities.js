@@ -1,7 +1,7 @@
 LiveHTML.widgets.push({
   
   city_name: function() {
-    return cities[This.city_id] || 'Global view';
+    return cities[This.city_id] || 'Worldwide';
   },
   
   cities_menu: function() {

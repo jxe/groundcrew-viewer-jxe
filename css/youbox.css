@@ -1,23 +1,15 @@
 #youbox {
   position:absolute; 
 	right: 15px;
+	bottom: 0px;
 	font-size: 15px;
   z-index: 0;
-  color: #000;
+  color: #aaa;
   font-family: gill sans;
-  background: #777;
-  padding: 1px 10px;
-  padding-bottom: 1px;
-  border: 1px solid #666;
-  border-bottom: 1px solid #ddd;
-  font-variant: small-caps;
-  text-shadow: #999 0px 1px 1px;
+  padding: 0px 10px;
+  text-shadow: #000 0px 1px 1px;
 }
 
 #youbox a {
-  color: #000;
-}
-
-#youbox b {
-  color: #000;
+  color: #aaa;
 }
