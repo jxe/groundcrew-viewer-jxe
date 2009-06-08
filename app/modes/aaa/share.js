@@ -1,4 +1,4 @@
-App.modes.connect = {
+App.modes.listen = {
   show_type: function(state) {
     Viewer.render(state.type);
   },

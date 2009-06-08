@@ -36,10 +36,12 @@ Viewer = App = {
     }
     
     if (changed.mode) {
-      $('#console .selected').removeClass('selected');
-      $('#'+This.mode+'_tray').addClass('selected');
-      $('#'+This.mode+'_mode_button').addClass('selected');
+      $('#'+This.mode+'_mode_button').select();
+      $('#tray_buttons').empty();
+      $.template('#' + This.mode + '_mode_buttons').appendTo('#tray_buttons');
       $('#modetray').show();
+      if (This.mode == 'plan') $('#flexbar_banner').hide();
+      else $('#flexbar_banner').show();
       Frame.resize();
 
       This.first_responders[0] = {};
@@ -91,7 +93,7 @@ Viewer = App = {
     }
   },  
   
-  dream_mode: function() { App.setmode('dream'); },
-  connect_mode: function() { App.setmode('connect'); },
-  mobilize_mode: function() { App.setmode('mobilize'); }
+  plan_mode: function() { App.setmode('plan'); },
+  listen_mode: function() { App.setmode('listen'); },
+  coordinate_mode: function() { App.setmode('coordinate'); }
 };

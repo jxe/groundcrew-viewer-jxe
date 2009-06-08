@@ -9,13 +9,27 @@ Frame = {
       $('.divcenter').center();
     });
     $('.magic').app_paint();
+
+    $(document).keypress(function(e){
+      if (e.which == 27) Map.Gmap.closeInfoWindow();
+      var char = String.fromCharCode(e.which);
+      if (char == 's') return Map.Gmap.setMapType(G_SATELLITE_MAP);
+      if (char == 'm') return Map.Gmap.setMapType(G_NORMAL_MAP);
+      if (char == 'h') return Map.Gmap.setMapType(G_HYBRID_MAP);
+      if (char == 'p') return App.setmode('plan');
+      if (char == 'l') return App.setmode('listen');
+      if (char == 'c') return App.setmode('coordinate');
+      if (char == 'w') return go('city=');
+    });
+
   },
   
   // NOTE: this function doesn't use jquery cause we like our resize FAST
   resize: function() {
     var page_height = window.innerHeight || window.document.body.clientHeight;
-    var junk = 125;
+    var junk = 51;
     junk += document.getElementById('modetray').offsetHeight;
+    junk += document.getElementById('flexbar_banner').offsetHeight;
     
     // make the adjustment
     $('#map_div').height(page_height - junk);

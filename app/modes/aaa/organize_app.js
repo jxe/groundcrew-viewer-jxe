@@ -1,4 +1,4 @@
-App.modes.mobilize = {
+App.modes.coordinate = {
   
   render: function(changed) {
     if (changed.item) {

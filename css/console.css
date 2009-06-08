@@ -1,0 +1,60 @@
+#modetray {
+  background: #000930;
+  height: 80px;
+  border-top: 1px solid black;
+  display: none;
+  padding: 8px;
+  -webkit-transition: height 1s ease;
+}
+
+#mode_buttons {
+  border-top: 1px solid yellow;
+}
+
+#mode_buttons a {
+  font-family: gill sans, verdana;
+  margin: 0px 5px;
+  padding: 0px 7px;
+/*  border: 1px solid #666;*/
+/*  border-top: none;*/
+  color: #aaa;
+  font-size: 17px;
+  letter-spacing: 0.1em;
+  background: #101940;
+}
+
+#mode_buttons a.selected { 
+  background: #000930; 
+  color: white; 
+  border: solid 1px yellow;
+  border-top: none;
+  position: relative;
+  top: -1px;
+  padding-left: 6px;
+  padding-right: 6px;
+
+}
+
+#tray_buttons div a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  border: solid thin gold;
+  padding: 2px 5px;
+  font-size: 14px;
+  color:#CCC;
+  font-family:'trebuchet ms',helvetica,sans-serif;
+  font-weight:bold;
+  background-color:#333;
+  border:1px solid;
+  border-top-color:#696;
+  border-left-color:#696;
+  border-right-color:#363;
+  border-bottom-color:#363;
+  margin: 4px 4px;
+}
+
+#tray_buttons div a img {
+  height: 14px;
+  margin-right: 4px;
+}

@@ -1,5 +1,9 @@
 LiveHTML.widgets.push({
   
+  permission_reqd_for_squad: function() {
+    return false;
+  },
+  
   agents_to_guide6: function() {
     return Tiles.agent_tile.tt(This.agents.slice(0,6));
   },

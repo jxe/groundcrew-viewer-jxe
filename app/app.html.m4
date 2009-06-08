@@ -83,31 +83,16 @@
     <a reveal="about_posx">positive experiences</a>.
   </div>
   <div id="console">
-
     <div id="modetray" class="tray">
-      <div id="dream_tray">
-        <img reveal="ideas_palette" src="i/icons/lightbulb_icon29.png" title="start something"/>
-        <img reveal="wish_palette" src="i/icons/wand30.png" title="make or view wishes"/>
-        <img reveal="places_palette" src="i/icons/landmark21.png" title="see local places"/>
-      </div>
-
-      <div id="connect_tray">
-        <img reveal="share_palette" src="i/icons/gift23.png" title="free stuff"/>
-        <img reveal="chat_palette" src="i/icons/chat_icon18.png" title="chat with other organizers"/>
-        <img reveal="wish_palette" src="i/icons/wand30.png" title="make or view wishes"/>
-      </div>
-
-      <div id="mobilize_tray">
-        <img reveal="places_palette" src="i/icons/landmark21.png" title="see local places"/>      
-        <img reveal="recent_content" src="i/icons/scroll.png" title="view recent events"/>
-      </div>
+      <div id="tray_buttons"></div>
+      <div id="tool_desc"></div>
     </div>
 
-
     <div id="mode_buttons" style="padding-left: 30px">
-      <a id="dream_mode_button" href="##dream_mode">Envision</a>
-      <a id="connect_mode_button" href="##connect_mode">Attend to your Squad</a>
-      <a id="mobilize_mode_button" href="##mobilize_mode">Mobilize</a>
+      <a id="plan_mode_button"       href="##plan_mode">Plan</a>
+      <a id="listen_mode_button"     href="##listen_mode">Listen</a>
+      <a id="coordinate_mode_button" href="##coordinate_mode">Coordinate</a>
+      <a id="sally_mode_button"      href="##sally_mode">Sally forth</a>
     </div>
   </div>
 </div>
