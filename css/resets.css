@@ -5,6 +5,7 @@ body { padding:0; margin:0; background: #000 url(i/earth.png) no-repeat fixed to
 body {
 /*  background: #000 url(i/earth.png) no-repeat fixed 0px -65px;*/
   background: #000 url(i/stars.gif) no-repeat fixed;
+  overflow: hidden;
 }
 
 #logo b {

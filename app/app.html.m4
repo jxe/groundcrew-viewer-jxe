@@ -86,9 +86,9 @@
   <img class="rside" style="top:80px; right:0px" reveal="cities_palette" src="i/icons/city27.png" title="switch cities"/>
   <img class="rside" style="top:125px; right:6px" reveal="people_palette" src="i/icons/people_icon35.png" title="see available agents"/>
   <img class="rside" style="top:170px; right:4px" reveal="places_palette" src="i/icons/landmark21.png" title="see local places"/>
-  <img class="rside" style="top:210px; right:5px" reveal="ideas_palette" src="i/icons/lightbulb_icon29.png" title="start something"/>
-  <img class="rside" style="top:140px; right:0px" reveal="share_palette" src="i/icons/gift23.png" title="free stuff"/>
-  <img class="rside" style="top:180px; right: -5px" reveal="wish_palette" src="i/icons/wand30.png" title="make or view wishes"/>
+  <!-- <img class="rside" style="top:210px; right:5px" reveal="ideas_palette" src="i/icons/lightbulb_icon29.png" title="start something"/> -->
+  <!-- <img class="rside" style="top:140px; right:0px" reveal="share_palette" src="i/icons/gift23.png" title="free stuff"/> -->
+  <!-- <img class="rside" style="top:180px; right: -5px" reveal="wish_palette" src="i/icons/wand30.png" title="make or view wishes"/> -->
   <img class="rside" style="bottom:100px" reveal="chat_palette" src="i/icons/chat_icon18.png" title="chat with other organizers"/>
   <!-- <img class="lside" style="top:90px; left: 2px" reveal="recent_content" src="i/icons/scroll.png" title="view recent events"/> -->
 </div>

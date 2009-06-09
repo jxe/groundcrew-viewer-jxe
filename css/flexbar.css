@@ -61,7 +61,13 @@ body.flexbar1 #flexbar { height: 74px; }
   bottom: 3px;
   right: 2px;
   z-index: 40;
+  display: none;
 }
+
+#flexbar #agents .athumb:hover img.badge {
+  display:block;
+}
+
 #flexbar #agents .athumb { 
   margin-right: 3px; 
   overflow: hidden;
