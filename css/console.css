@@ -26,6 +26,7 @@
   letter-spacing: 0.1em;
   background: #101930;
   font-variant: small-caps;
+  text-shadow: #000 1px 1px 1px;
 }
 
 #mode_buttons a.active { 
@@ -37,10 +38,14 @@
   top: -1px;
   padding-left: 6px;
   padding-right: 6px;
-
+  text-shadow: #000 0px 0px 3px;
 }
 
-#tray_buttons a {
+.rbuttons {
+  float: right;
+}
+
+.rbuttons a, #tray_buttons a {
   text-decoration: none;
   font-variant: small-caps;
   
@@ -61,7 +66,7 @@
   margin: 4px 4px;
 }
 
-#tray_buttons a img {
+.rbuttons a img, #tray_buttons a img {
   height: 12px;
   position: relative;
   top: 1px;
