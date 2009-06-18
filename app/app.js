@@ -3,6 +3,7 @@
 //
 Viewer = App = {
   modes: {},
+  tools: {},
   
   update: function(changed) {
     if (changed.squad) {
@@ -36,24 +37,22 @@ Viewer = App = {
     }
     
     if (changed.mode) {
-      $('#'+This.mode+'_mode_button').select();
-      $('#tray_buttons').empty();
-      $.template('#' + This.mode + '_mode_buttons').appendTo('#tray_buttons');
-      $('#modetray').show();
-      if (This.mode == 'plan') $('#flexbar_banner').hide();
-      else $('#flexbar_banner').show();
+      $('#modetray').app_paint().show();
+      $('.' + This.mode + '_mode').activate('mode');
+      // if (This.mode == 'plan') $('#flexbar_banner').hide();
+      // else $('#flexbar_banner').show();
       Frame.resize();
 
       This.first_responders[0] = {};
-      This.first_responders[1] = App.modes[This.mode];
+      This.first_responders[1] = App.modes[This.mode] || {};
     }
     
     if (changed.tool) {
-      This.first_responders[0] = App.tools[This.tool];
+      $('.' + This.tool + '_tool').activate('tool');
+      This.first_responders[0] = App.tools[This.tool] || {};
     }
     
     dispatch('render', changed);
-    $('.magic').app_paint();
   },
     
   

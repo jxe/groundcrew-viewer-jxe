@@ -1,6 +1,9 @@
+.hidden_unless_active { display: none; }
+.hidden_unless_active.active { display: block; }
+
 #modetray {
   background: #000930;
-  height: 80px;
+  height: 23px;
   border-top: 1px solid black;
   display: none;
   padding: 8px;
@@ -15,15 +18,17 @@
   font-family: gill sans, verdana;
   margin: 0px 5px;
   padding: 0px 7px;
+  padding-bottom: 2px;
 /*  border: 1px solid #666;*/
 /*  border-top: none;*/
-  color: #aaa;
+  color: #888;
   font-size: 17px;
   letter-spacing: 0.1em;
-  background: #101940;
+  background: #101930;
+  font-variant: small-caps;
 }
 
-#mode_buttons a.selected { 
+#mode_buttons a.active { 
   background: #000930; 
   color: white; 
   border: solid 1px yellow;
@@ -35,8 +40,10 @@
 
 }
 
-#tray_buttons div a {
+#tray_buttons a {
   text-decoration: none;
+  font-variant: small-caps;
+  
   color: black;
   font-weight: bold;
   border: solid thin gold;
@@ -54,7 +61,21 @@
   margin: 4px 4px;
 }
 
-#tray_buttons div a img {
-  height: 14px;
+#tray_buttons a img {
+  height: 12px;
+  position: relative;
+  top: 1px;
   margin-right: 4px;
+}
+
+#tray_buttons a.active {
+  background-color:#000;
+  color: #fff;
+  border-top-color:#363;
+  border-left-color:#363;
+  border-right-color:#696;
+  border-bottom-color:#696;
+  position: relative;
+  top: 1px;
+  left: 1px;
 }

@@ -78,25 +78,21 @@
   </div>
   <div id="map_div"></div>
   <div id="youbox" class="lio magic" href="##go_to_self">
-    you've caused
+    <b fill="self_posx_pts">0</b> agents believe in you, because you've done 
     <b fill="self_posx_pts">0</b>
-    <a reveal="about_posx">positive experiences</a>.
+    <a reveal="about_posx">good things</a>.<img reveal="share_palette" src="i/icons/gift23.png" style="height: 18px; position: relative; top:5px; left: 5px" title="free stuff"/>
   </div>
-  <div id="console">
+  <div id="console" class="magic">
     <div id="modetray" class="tray">
-      <div id="tray_buttons"></div>
-      <div id="tool_desc"></div>
+      <div id="tray_buttons" fill="tool_buttons"></div>
+      <div id="help"></div>
     </div>
 
-    <div id="mode_buttons" style="padding-left: 30px">
-      <a id="plan_mode_button"       href="##plan_mode">Plan</a>
-      <a id="listen_mode_button"     href="##listen_mode">Listen</a>
-      <a id="coordinate_mode_button" href="##coordinate_mode">Coordinate</a>
-      <a id="sally_mode_button"      href="##sally_mode">Sally forth</a>
-    </div>
+    <div id="mode_buttons" style="padding-left: 30px" fill="mode_buttons"></div>
   </div>
 </div>
 
+m4_syscmd(`cat app/tools/*.html')
 
 <div id="offscreen" style="display:none">
 <script>

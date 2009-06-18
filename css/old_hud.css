@@ -1,11 +1,11 @@
 .hud {
   position:absolute; 
   width: 200px;
-  background: url(i/w60.png); 
+  background: #202940; 
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   z-index: 100;
-  color: black;
+  color: white;
   padding: 10px;
   border-top: solid 1px white;
   border-left: solid 1px white;
