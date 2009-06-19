@@ -53,7 +53,7 @@ body.zoomed_out .local_only {display:none;}
   top: -1px;*/
   -webkit-box-shadow: none;
   text-decoration:none;
-
+}
 
 .rbuttons {
   float: right;
