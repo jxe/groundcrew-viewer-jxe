@@ -8,18 +8,21 @@
   font-size: 12px;
 }
 
-#flexbar #agents { width: 10000px; }
+#flexbar #agents { 
+   width: 10000px; 
+   background-color:#7A9FBF;
+}
 
 #flexbar #agents > div {
   float: left; display: none;
 }
 
 #flexbar #agents > div > div {
-  height: 50px;
+  height: 85px;
 }
 
 #flexbar #agents h2 {
-  padding: 0px 0px 0px 12px;
+  padding: 0px 0px 0px 6px;
   margin: 0px 3px 0px 0px;
   font-family: helvetica, arial;
   font-size: 12px;
@@ -27,20 +30,29 @@
 
 #flexbar #agents h2 em {
   padding: 0px 4px 1px 4px;
-  font-weight: normal;
-  font-style: italic;
-  color: black;
+  font-weight: bold;
+  font-style: normal;
+  color: #222;
+/*  -webkit-border-bottom-left-radius: 3px;*/
+  -webkit-border-bottom-right-radius: 3px;
+/*  -webkit-border-radius:3px;*/
 /*  position: relative;*/
 /*  bottom: 2px;*/
 }
 
 #flexbar #agents .athumb img.th {
-  max-height: 50px; 
+   width:70px;
+   height:70px;
+   opacity:.8;
+  /*max-height: 50px; */
+}
+#flexbar #agents .athumb img.th:hover {
+   opacity:1;
 }
 
 #flexbar #agents .athumb img.badge {
   position: absolute;
-  bottom: 3px;
+  top: 3px;
   right: 2px;
   z-index: 40;
   display: none;
@@ -55,10 +67,17 @@
   overflow: hidden;
   float: left;
   position: relative;
+  width:75px;
+  height:75px;
+  padding:3px;
+  text-align:center;
+  vertical-align:center;
+  background:#222;
+  cursor:pointer;
 }
 
 #flexbar #agents .athumb.selected img.th {
-  opacity: 0.9;
+  opacity: 1;
   -moz-opacity: 0.9;
   filter:alpha(opacity=90);
 }
