@@ -28,7 +28,7 @@ Frame = {
   // NOTE: this function doesn't use jquery cause we like our resize FAST
   resize: function() {
     var page_height = window.innerHeight || window.document.body.clientHeight;
-    var junk = 51;
+    var junk = 62;
     junk += document.getElementById('modetray').offsetHeight;
     junk += document.getElementById('flexbar_banner').offsetHeight;
     

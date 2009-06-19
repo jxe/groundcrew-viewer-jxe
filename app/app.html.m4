@@ -27,23 +27,24 @@
 		<a class="m_item lio" href="/settings" id="settings">settings</a>
 		<a class="m_item lio" href="/logout">sign out</a>
 	</div>
-	<span id="logo" class="std_click magic">
-	  <a reveal="squads_menu #cities_menu_place subm" title="switch squads">
-      Groundcrew Demo Squad &#9662;
+	<span id="logo"><strong>Groundcrew</strong></span>
+	<span class="std_click magic" id="squad-location-nav">
+	  <a id="squad-nav" reveal="squads_menu #cities_menu_place subm" title="switch squads">
+       Demo Squad &#9662;
     </a>
-    &nbsp; &nbsp; &nbsp; &nbsp; 
-    <img href="#@" src="i/icons/globe.png" height="15" style="position:relative; top:2px"/>
-    <a reveal="cities_menu #cities_menu_place subm" title="switch cities">
+     &nbsp;
+    <!-- <img href="#@" src="i/icons/globe.png" height="15" style="position:relative; top:2px"/> -->
+    <!-- <a reveal="cities_menu #cities_menu_place subm" title="switch cities">
       <span fill="city_name"></span> &#9662;
-    </a>
+    </a> -->
 	</span>
 	<span id="cities_menu_place"></span>
 </div>
 <div id="screen">
   <div id="flexbar_banner">
-    <img style="position: absolute; top: 5px; left:  5px" src="i/arrows/lw.png"  scrolll="#flexbar"/>
-    <img style="position: absolute; top: 5px; right: 5px" src="i/arrows/rw.png" scrollr="#flexbar"/>
-  	<img reveal="people_palette" src="i/icons/people_icon35.png" title="see available agents" style="position: absolute; right: 5px; bottom: 1px"/>
+    <img class="flexbar-nav" style="position: absolute; top: 15px; left:  3px" src="i/arrows/lw.png"  scrolll="#flexbar"/>
+    <img class="flexbar-nav" style="position: absolute; top: 15px; right: 3px" src="i/arrows/rw.png" scrollr="#flexbar"/>
+  	<!-- <img reveal="people_palette" src="i/icons/people_icon35.png" title="see available agents" style="position: absolute; right: 5px; bottom: 1px"/> -->
     
     <div id="flexbar">
       <div id="agents">
