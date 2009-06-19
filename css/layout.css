@@ -8,7 +8,11 @@ body { background: #000 }
   border-bottom:solid 2px #062B3D;
 }
 #console {
-  background: #202940;
+  background: #023A57;
+    background-image: -webkit-gradient(
+     linear, 0% 0%, 0% 90%, 
+     from(transparent), 
+     to(rgba(12,12,12,.333)));
 }
 
 #flexbar_banner {
