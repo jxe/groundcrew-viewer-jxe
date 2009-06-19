@@ -1,11 +1,12 @@
 /*body { background: #000 url(i/gccorner.png) no-repeat fixed top left; }*/
-body { background: #202940 }
+body { background: #000 }
 #map_div {
-/*  border-top: 1px solid #888;*/
-  background: gray;
+  background:#222;
   height: 392px;
+  margin:2px 0px 0px 0px;
+  border-top:solid 1px #444;
+  border-bottom:solid 2px #062B3D;
 }
-
 #console {
   background: #202940;
 }
@@ -41,13 +42,24 @@ body { background: #202940 }
 
 #header {
   position: relative; 
-  height: 26px;
+  height: 35px;
   width: 100%;
+  -webkit-box-shadow: 0px 10px 50px rgba(13,13,13,1);
+  padding-bottom:3px;
+  z-index:9000;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  background:#05537A;
+  background-image: -webkit-gradient(
+     linear, 0% 0%, 0% 40%, 
+     from(rgba(242,242,242,.1)), 
+     to(rgba(12,12,12,.1)));
 }
 
 #screen {
   position: relative;
   width: 100%;
+  background:#222;
 }
 
 .rside, .lside { position: absolute; cursor: pointer;}
@@ -83,15 +95,14 @@ img[reveal]:hover {
 }
 #logo {
   position: absolute; 
-  top: 2px; left: 30px;
+  top: 4px; left: 30px;
   padding:0;margin:0; 
   display: block;
-  color: #aaa;
-  font-size: 18px;
-  font-variant: small-caps;
-  font-family: gill sans, verdana;
-  text-shadow: #000 1px 1px 1px;
-  font-weight: bold;
+  color: #FFFFCF;
+  font-size: 20px;
+  font-family: Verdana;
+/*  text-shadow: #000 1px 1px 1px;*/
+/*  font-weight: bold;*/
 /*  font-style: italic;*/
   letter-spacing: .07em;
 }
