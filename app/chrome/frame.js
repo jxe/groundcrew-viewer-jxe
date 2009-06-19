@@ -11,14 +11,15 @@ Frame = {
     $('.magic').app_paint();
 
     $(document).keypress(function(e){
+      if ($(e.target).is('input,textarea')) return;
       if (e.which == 27) Map.Gmap.closeInfoWindow();
       var char = String.fromCharCode(e.which);
-      if (char == 's') return Map.Gmap.setMapType(G_SATELLITE_MAP);
+      if (char == 'p') return Map.Gmap.setMapType(G_SATELLITE_MAP);
       if (char == 'm') return Map.Gmap.setMapType(G_NORMAL_MAP);
       if (char == 'h') return Map.Gmap.setMapType(G_HYBRID_MAP);
-      if (char == 'p') return App.setmode('plan');
-      if (char == 'l') return App.setmode('listen');
-      if (char == 'c') return App.setmode('coordinate');
+      if (char == 's') return go('mode=sketch');
+      if (char == 'c') return go('mode=connect');
+      if (char == 'd') return go('mode=dispatch');
       if (char == 'w') return go('city=');
     });
 

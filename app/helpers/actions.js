@@ -15,7 +15,7 @@ Actions = {
 LiveHTML.widgets.push({
   
   recent_events: function(state) {
-    return Actions.event_t.tt(Annc.all);
+    return Actions.event_t.tt(Anncs.all);
   },
   
   latest_chats: function(state) {

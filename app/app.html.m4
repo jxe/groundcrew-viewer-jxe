@@ -78,9 +78,8 @@
   </div>
   <div id="map_div"></div>
   <div id="youbox" class="lio magic" href="##go_to_self">
-    <b fill="self_posx_pts">0</b> agents believe in you, because you've done 
-    <b fill="self_posx_pts">0</b>
-    <a reveal="about_posx">good things</a>.<img reveal="share_palette" src="i/icons/gift23.png" style="height: 18px; position: relative; top:5px; left: 5px" title="free stuff"/>
+    <b fill="agents_count">0</b> agents are giving you their attention and readiness.
+    <img reveal="share_palette" src="i/icons/gift23.png" style="height: 18px; position: relative; top:5px; left: 5px" title="free stuff"/>
   </div>
   <div id="console" class="magic">
     <div id="modetray" class="tray">
@@ -100,7 +99,7 @@ if($.browser.msie) $('#unsupported').show();
 $(function(){App.init()});
 </script>
 
-m4_syscmd(`cat app/chrome/*.html app/modes/*/*.html')
+m4_syscmd(`cat app/{chrome,templates}/*.html app/modes/*/*.html')
 
 <div id="idea_bank" class="hidden">
 m4_syscmd(`cat app/ideas.ceml')

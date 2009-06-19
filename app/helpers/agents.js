@@ -4,6 +4,11 @@ LiveHTML.widgets.push({
     return false;
   },
   
+  agents_count: function() {
+    return Agents.all.length;
+  },
+  
+  
   agents_to_guide6: function() {
     return Tiles.agent_tile.tt(This.agents.slice(0,6));
   },

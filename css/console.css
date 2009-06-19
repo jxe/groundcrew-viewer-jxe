@@ -1,5 +1,6 @@
 .hidden_unless_active { display: none; }
 .hidden_unless_active.active { display: block; }
+body.zoomed_out .local_only {display:none;}
 
 #modetray {
   background: #000930;

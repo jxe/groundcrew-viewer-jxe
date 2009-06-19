@@ -4,6 +4,7 @@
 Viewer = App = {
   modes: {},
   tools: {},
+  most_recent_tool: {},
   
   update: function(changed) {
     if (changed.squad) {
@@ -28,6 +29,8 @@ Viewer = App = {
     if (changed.city) {
       This.city_id = This.city && This.city.resource_id();
       set('agents', Agents.here());
+      if (This.city) $('body').removeClass('zoomed_out');
+      else $('body').addClass('zoomed_out');
     }
     
     if (changed.agents) {
@@ -45,16 +48,24 @@ Viewer = App = {
 
       This.first_responders[0] = {};
       This.first_responders[1] = App.modes[This.mode] || {};
+
+      if (!changed.tool) set('tool', App.most_recent_tool[This.mode] || Console.tools[This.mode] && Console.tools[This.mode][0].split('//')[0]);
     }
     
     if (changed.tool) {
+      App.most_recent_tool[This.mode] = This.tool;
       $('.' + This.tool + '_tool').activate('tool');
       This.first_responders[0] = App.tools[This.tool] || {};
     }
     
     dispatch('render', changed);
   },
-    
+  
+  
+  map_clicked: function() {
+    return;
+  },
+  
   
   // ======================
   // = App initialization =
