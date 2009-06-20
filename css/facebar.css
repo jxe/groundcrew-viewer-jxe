@@ -18,33 +18,28 @@
 }
 
 #flexbar #agents > div > div {
-  height: 85px;
+  height: 73px;
 }
 
 #flexbar #agents h2 {
-  padding: 0px 0px 0px 6px;
   margin: 0px 3px 0px 0px;
   font-family: helvetica, arial;
   font-size: 12px;
-}
-
-#flexbar #agents h2 em {
-  padding: 0px 4px 1px 4px;
-  font-weight: bold;
-  font-style: normal;
-  color: #222;
-/*  -webkit-border-bottom-left-radius: 3px;*/
-  -webkit-border-bottom-right-radius: 3px;
-/*  -webkit-border-radius:3px;*/
-/*  position: relative;*/
-/*  bottom: 2px;*/
+  font-weight:normal;
+  -webkit-border-bottom-right-radius: 8px;
+  padding: 3px 4px 1px 4px;
+  color: #191919;
+  font-weight:bold;
+  
 }
 
 #flexbar #agents .athumb img.th {
-   width:70px;
-   height:70px;
-   opacity:.8;
-  /*max-height: 50px; */
+  width:58px;
+  height:58px;
+  opacity:.8;
+  border-left:solid 1px #212121;
+  border-bottom:solid 1px #2B2B2B;
+  border-right:solid 1px #2B2B2B;
 }
 #flexbar #agents .athumb img.th:hover {
    opacity:1;
@@ -67,12 +62,14 @@
   overflow: hidden;
   float: left;
   position: relative;
-  width:75px;
-  height:75px;
-  padding:3px;
+  padding:4px;
+  padding-top:6px;
   text-align:center;
-  vertical-align:center;
-  background:#222;
+  background:#262626;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%, 
+    from(transparent), 
+    to(#2D2D2D));
   cursor:pointer;
 }
 
@@ -82,27 +79,32 @@
   filter:alpha(opacity=90);
 }
 
+
+#flexbar #ready_agents h2 {
+  background: #E56B0B;
+}
+#flexbar #neglected_agents h2 {
+  background: #f33;
+}
+#flexbar #available_agents h2 { 
+  background: #CEA345;
+}
+#flexbar #assigned_agents   h2 {
+  background: #4F5950;
+}
+#flexbar #inaccessible_agents h2 { 
+  background: #222621;
+  color:#4C4C4C;
+}
+#flexbar #agents #inaccessible_agent_thumbs .athumb img.th {
+  opacity:.5;
+}
+
+
 #flexbar #agents .athumb.selected { 
   background-color: yellow;
 }
 
-/*#flexbar #agents > div > div { height: 50px; }*/
-/*#flexbar #agents > div > div > img { float: left; }*/
-
-#flexbar #inaccessible_agents   h2 { border-top: solid 3px #888; }
-#flexbar #inaccessible_agents  h2 em { background: #888;    }
-/*#flexbar #inaccessible_agents { border-left: solid 3px #888; }*/
-
-#flexbar #neglected_agents  h2 { border-top: solid 3px #f33;    }
-#flexbar #neglected_agents  h2 em { background: #f33;    }
-/*#flexbar #ready_agents { border-left: solid 3px #0b0; }*/
-#flexbar #ready_agents      h2 { border-top: solid 3px #0b0;  }
-#flexbar #ready_agents  h2 em { background: #0b0;    }
-#flexbar #assigned_agents   h2 { border-top: solid 3px brown; }
-#flexbar #assigned_agents  h2 em { background: brown;    }
-/*#flexbar #available_agents { border-left: solid 3px #33f; }*/
-#flexbar #available_agents h2 { border-top: solid 3px #33f;   }
-#flexbar #available_agents  h2 em { background: #33f;    }
 
 .agent.busy { color: #82c; }
 .agent.yellow { 

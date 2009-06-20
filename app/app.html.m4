@@ -50,23 +50,23 @@
       <div id="agents">
         <div id="neglected_agents">
           <div id="neglected_agent_thumbs"></div>
-          <h2><em>neglected</em></h2>
+          <h2>neglected</h2>
         </div>
         <div id="ready_agents">
           <div id="ready_agent_thumbs"></div>
-          <h2><em>ready</em></h2>
+          <h2>ready</h2>
         </div>
         <div id="assigned_agents">
           <div id="assigned_agent_thumbs"></div>
-          <h2><em>assigned</em></h2>
+          <h2>assigned</h2>
         </div>
         <div id="available_agents">
           <div id="available_agent_thumbs"></div>
-          <h2><em>available</em></h2>
+          <h2>available</h2>
         </div>
         <div id="inaccessible_agents">
           <div id="inaccessible_agent_thumbs"></div>
-          <h2><em>inaccessible</em></h2>
+          <h2>inaccessible</h2>
         </div>
       </div>
     </div>
@@ -80,7 +80,7 @@
   <div id="map_div"></div>
   <div id="youbox" class="lio magic" href="##go_to_self">
     <b fill="agents_count">0</b> agents are giving you their attention and readiness.
-    <img reveal="share_palette" src="i/icons/gift23.png" style="height: 18px; position: relative; top:5px; left: 5px" title="free stuff"/>
+    <!-- <img reveal="share_palette" src="i/icons/gift23.png" style="height: 18px; position: relative; top:5px; left: 5px" title="free stuff"/> -->
   </div>
   <div id="console" class="magic">
     <div id="modetray" class="tray">

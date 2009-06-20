@@ -4,9 +4,10 @@
 	bottom: 7px;
 	font-size: 11px;
   z-index: 0;
-  color: #999;
+  color: #191919;
   font-family: Verdana;
   padding: 0px 10px;
+  display:none;
 }
 
 #youbox a {

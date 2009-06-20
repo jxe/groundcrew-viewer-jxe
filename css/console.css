@@ -14,16 +14,16 @@ body.zoomed_out .local_only {display:none;}
 #mode_buttons {
   /*border-top: 1px solid yellow;*/
   position:relative;
-  top:-8px;
+  top:-7px;
 }
 
 #mode_buttons a {
   font-family: Verdana;
-  margin: 0px;
+  margin: 0px 1px 0px 0px;
   padding: 3px 20px 5px 20px;
   color: #fff;
   font-size: 18px;
-  background: #05537A;
+  background: #4B663C;
     background-image: -webkit-gradient(
      linear, 0% 0%, 0% 40%, 
      from(rgba(242,242,242,.1)), 
@@ -36,7 +36,7 @@ body.zoomed_out .local_only {display:none;}
   border-top:solid 1px rgba(12,12,12,.2);
   border-right:solid 1px rgba(12,12,12,.2);
   border-left:solid 1px rgba(12,12,12,.2);
-  border-bottom:solid 1px transparent;
+  border-bottom:none;
 }
 
 #mode_buttons a.active { 
