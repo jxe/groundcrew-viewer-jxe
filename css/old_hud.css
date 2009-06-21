@@ -1,16 +1,16 @@
 .hud {
   position:absolute; 
   width: 400px;
-  background: rgba(25,25,25,.5); 
+  background: rgba(25,25,25,.95); 
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   z-index: 100;
   color: white;
   padding: 10px;
-  border-top: solid 1px white;
-  border-left: solid 1px white;
-  border-right: solid 1px #222;
-  border-bottom: solid 1px #222;
+  border-top: solid 1px #191919;
+  border-left: solid 1px #191919;
+  border-right: solid 1px #191919;
+  border-bottom: solid 1px #191919;
 }
 
 .hud h1 {
