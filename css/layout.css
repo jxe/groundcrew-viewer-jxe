@@ -4,10 +4,10 @@ body { background: #000 }
   background:#222;
   height: 392px;
   margin:2px 0px 0px 0px;
-  border-bottom:solid 1px #2E1D16;
+  border-bottom:solid 1px #333333;
 }
 #console {
-  background: #422A20;
+  background: #4C4C4C;
     background-image: -webkit-gradient(
      linear, 0% 0%, 0% 90%, 
      from(transparent), 
@@ -22,7 +22,6 @@ body { background: #000 }
     from(transparent), 
     to(rgba(51,51,51,.9)));
 }
-
 #flexbar {
   height: 93px;
   overflow: hidden;
@@ -53,7 +52,6 @@ body { background: #000 }
   display: none;
   z-index: 5000;
 }
-
 #header {
   position: relative; 
   height: 35px;
@@ -63,7 +61,7 @@ body { background: #000 }
 /*  -webkit-border-bottom-left-radius: 5px;
   -webkit-border-bottom-right-radius: 5px;*/
   border-top:solid 1px rgba(12,12,12,.1);
-  background:#4B663C;
+  background:#1B224D;
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 40%, 
     from(rgba(242,242,242,.1)), 

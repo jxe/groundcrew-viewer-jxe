@@ -1,7 +1,7 @@
 .hud {
   position:absolute; 
   width: 400px;
-  background: #202940; 
+  background: rgba(25,25,25,.5); 
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   z-index: 100;

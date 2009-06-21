@@ -3,9 +3,9 @@ Console.modes = [];
 Console.tools = {};
 
 $.each([
-  'sketch       add_action_idea//wand30  add_landmark//landmark21  edit_activities//lightbulb_icon29  identify_resource//gift23  upload_landmarks//landmark21',
-  'connect     show_answers//scroll     ask_a_question            view_events//scroll                approve_deputies',
-  'dispatch     assign_agents            start_something           join_something                     chat//chat_icon18'
+  'Sketch       add_action_idea//wand30  add_landmark//landmark21  edit_activities//lightbulb_icon29  identify_resource//gift23  upload_landmarks//landmark21',
+  'Connect     show_answers//scroll     ask_a_question            view_events//scroll                approve_deputies',
+  'Dispatch     assign_agents            start_something           join_something                     chat//chat_icon18'
 ], function(){
   
   var words = this.split(/\s+/);

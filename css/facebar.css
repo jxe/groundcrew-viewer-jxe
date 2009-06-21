@@ -84,13 +84,13 @@
   background: #E56B0B;
 }
 #flexbar #neglected_agents h2 {
-  background: #f33;
+  background: #B20000;
 }
 #flexbar #available_agents h2 { 
-  background: #CEA345;
+  background: #A8BFBF;
 }
 #flexbar #assigned_agents   h2 {
-  background: #4F5950;
+  background: #00ACD4;
 }
 #flexbar #inaccessible_agents h2 { 
   background: #222621;
