@@ -3,36 +3,40 @@
 body.zoomed_out .local_only {display:none;}
 
 #modetray {
-  background: #3F3F3F;
+  background:#333;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 60%, 
+    from(transparent), 
+    to(rgba(51,51,51,.5)));
   height: 30px;
-  border-top:dotted 1px #333;
   display: none;
   padding: 8px;
+  border-bottom:solid 2px #383838;
   -webkit-transition: height 1s ease;
 }
 
 #mode_buttons {
   /*border-top: 1px solid yellow;*/
   position:relative;
-  top:-7px;
+  top:-8px;
 }
 
 #mode_buttons a {
   font-family: Verdana;
-  margin: 0px 1px 0px 0px;
-  padding: 3px 20px 5px 20px;
+  margin: 0px 2px 0px 0px;
+  padding: 5px 25px 7px 25px;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   background: #4B663C;
-    background-image: -webkit-gradient(
-     linear, 0% 0%, 0% 40%, 
-     from(rgba(242,242,242,.1)), 
-     to(rgba(12,12,12,.1)));
+/*    background-image: -webkit-gradient(
+     linear, 0% 0%, 0% 100%, 
+     from(#5C7F49), 
+     to(rgba(12,12,12,.1)));*/
   font-weight:normal;
   text-decoration:underline;
-  -webkit-border-top-left-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
-  -webkit-box-shadow: 0px -2px 3px rgba(14,14,14,.2);
+/*  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;*/
+  -webkit-box-shadow: 0px -2px 3px rgba(14,14,14,.1);
   border-top:solid 1px rgba(12,12,12,.2);
   border-right:solid 1px rgba(12,12,12,.2);
   border-left:solid 1px rgba(12,12,12,.2);
@@ -41,17 +45,17 @@ body.zoomed_out .local_only {display:none;}
 
 #mode_buttons a.active { 
   color: #fff; 
-  border-top: solid 1px #3f3f3f;
+  border-top: solid 1px #333;
   border-right:solid 1px #383838;
   border-left:solid 1px #383838;
-  background:#3F3F3F;
-  -webkit-border-bottom-left-radius: 5px;
-  -webkit-border-bottom-right-radius: 5px;
+  background:#333;
+/*  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;*/
   -webkit-border-top-left-radius: 0px;
   -webkit-border-top-right-radius: 0px;
 /*  position: relative;
   top: -1px;*/
-  -webkit-box-shadow: none;
+  -webkit-box-shadow: 0px 0px 0px transparent;
   text-decoration:none;
 }
 
