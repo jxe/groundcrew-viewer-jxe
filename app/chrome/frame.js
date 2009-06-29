@@ -21,6 +21,7 @@ Frame = {
       if (char == 'c') return go('mode=connect');
       if (char == 'd') return go('mode=dispatch');
       if (char == 'w') return go('city=');
+      if (char == 'g') return go('#go_where');
     });
 
   },

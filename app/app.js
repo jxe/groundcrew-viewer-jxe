@@ -103,6 +103,22 @@ Viewer = App = {
     }
   },  
   
+  go_where: function() {
+    var where = prompt("Find:");
+    if (!where) return;
+    var tabAccuracy = new Array(2,4,6,10,12,13,16,16,17);
+    var geocoder = new GClientGeocoder();
+    geocoder.getLocations(where, function(response) {
+      if(response.Status.code==200){
+        place = response.Placemark[0];
+        accuracy = place.AddressDetails.Accuracy;
+        map.setCenter(new GLatLng(place.Point.coordinates[1], place.Point.coordinates[0]), tabAccuracy[accuracy]); 
+        go('city=' + City.closest());
+      }
+    });
+  },
+  
+  
   plan_mode: function() { App.setmode('plan'); },
   listen_mode: function() { App.setmode('listen'); },
   coordinate_mode: function() { App.setmode('coordinate'); }
