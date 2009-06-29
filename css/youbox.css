@@ -4,10 +4,11 @@
 	bottom: 7px;
 	font-size: 11px;
   z-index: 0;
-  color: #191919;
+  color: #ffff99;
+  text-shadow: #fff 0px 0px 2px;
   font-family: Verdana;
   padding: 0px 10px;
-  display:none;
+/*  display:none;*/
 }
 
 #youbox a {

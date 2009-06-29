@@ -79,7 +79,8 @@
   </div>
   <div id="map_div"></div>
   <div id="youbox" class="lio magic" href="##go_to_self">
-    <b fill="agents_count">0</b> agents are giving you their attention and readiness.
+    you've been involved in <b fill="self_posx_pts">48</b> positive experiences
+    <!-- <b fill="agents_count">0</b> agents are giving you their attention and readiness. -->
     <!-- <img reveal="share_palette" src="i/icons/gift23.png" style="height: 18px; position: relative; top:5px; left: 5px" title="free stuff"/> -->
   </div>
   <div id="console" class="magic">
