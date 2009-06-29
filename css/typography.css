@@ -47,22 +47,8 @@ big {
   top: 0px;
 }
 
-
-.small big {
-  font-weight: normal;
-  font-size: 16px;
-}
-
 .gray {
   color: #888;
-}
-
-span.dgray a {
-  color: #555;
-}
-
-.dgray {
-  color: #555;
 }
 
 .in {
@@ -77,32 +63,9 @@ span.dgray a {
   padding: 5px;
 }
 
-.testbox {
-  margin-left: 20px;
-  margin-top: 20px;
-}
-
 
 /*
 ** many kinds of links
-*/
-
-a {
-  text-decoration: none;
-}
-
-a.q {
-  color: #007;
-  font-weight: bold;
-}
-
-.tiny {
-  font-size: 10px;
-}
-
-/*a:hover{
-  text-decoration: underline;
-}
 */
 
 .center {
@@ -129,16 +92,6 @@ input.prompting, textarea.prompting {
   margin-bottom: 20px;
 }
 
-body a.subtle {
-  color: #ddd;
-  text-decoration: none;
-}
-
-body a.subtle:hover {
-  text-decoration: underline;
-  color: white;
-}
-
 .button {
   text-decoration: none;
   background: green;
@@ -158,34 +111,10 @@ body a.subtle:hover {
   border-bottom-color:#363;
 }
 
-ul a.more { color: #555; }
-
-a.popup_link {
-  color: black;
-}
-a.popup_link:hover {
-  background: #ffc;
-  text-decoration: none;
-}
-
-a.nocolor {
-  color: #000;  
-}
-
-a.nocolor:hover {
-  color: #000;
-  text-decoration: underline;
-}
-
 
 /*
 ** Section headings, intros, and contentboxes
 */
-
-
-span.expl {
-  color: #555;
-}
 
 .head {
   font-size: 22px;
@@ -198,34 +127,6 @@ div.head {
     padding-bottom: 0px;
 }
 
-.mhead {
-  font-size: 18px;
-}
-
-.content {
-    padding: 2px 10px;
-    margin-bottom: 10px;
-    
-}
-.secintro {
-  font-size: 13px; padding: 10px; padding-top: 3px; padding-bottom: 5px; color: #555;
-}
-
-.msecintro {
-  font-size: 13px; padding-top: 3px; padding-bottom: 5px; color: #555;
-}
-
-span.tip {
-  color: gray;
-}
-
-.tinysmall {
-  font-size: 14px;
-  font-variant: small-caps;
-  margin:0;
-  margin-bottom: 5px;
-}
-
 
 /* =========== */
 /* = spacing = */
@@ -235,10 +136,6 @@ span.tip {
     padding: 20px;
     padding-top: 0px;
     padding-bottom: 15px;
-}
-
-fieldset {
-  padding-left: 20px;
 }
 
 
@@ -258,27 +155,8 @@ fieldset {
   font-weight: normal;
 }
 
-
-body#viewer .medgray {
-  font-size: 13px;
-  color: #666;
-  font-weight: normal;
-}
-
 .down {
   margin-top: 10px;
-}
-.quote {
-  font-weight: bold;
-  font-size: 14px;
-  color: #444;
-}
-
-
-
-[popper]:hover {
-  background: #eea;
-  text-decoration: none;
 }
 
 
@@ -294,21 +172,9 @@ a:hover img.hover_opacity {
   opacity: 100%;
 }
 
-.editable:hover {
-  background: #eea;
-  text-decoration: none;
-}
-
-
-
 .large {
   font-size: 18px;
 }
-
-.g3 {
-  color: #333;
-}
-
 
 .right {
   text-align: right;
@@ -325,4 +191,3 @@ a:hover img.hover_opacity {
 .xpad {
   padding-top: 16px;
 }
-
