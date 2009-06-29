@@ -65,6 +65,15 @@ body.zoomed_out .local_only {display:none;}
   border-bottom:dotted 1px;
 }
 
+.hud .rbuttons a {
+  color: #E5E5E5;
+}
+
+.hud a {
+  color: #9595df;
+  font-weight: bold;
+}
+
 .rbuttons a img, #tray_buttons a img {
   height: 12px;
   position: relative;
