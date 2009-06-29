@@ -1,0 +1,87 @@
+/* -- IS_SITE_WIDE -- dont remove this comment */
+
+/* some resets */
+img { border:0; }
+h1, body { margin:0; padding:0; }
+a { text-decoration: none; }
+
+body #load_spinner {
+  visibility: hidden;
+}
+
+body.refresh #load_spinner {
+  visibility: visible;
+}
+
+.hidden, .lio {
+  display: none;
+}
+
+body.logged_in .m_item.lio {
+  display: inline;
+}
+
+body.logged_in .lio {
+  display: block;
+}
+
+.loo {
+  display: none;
+}
+
+body.logged_out .m_item.loo {
+  display: inline;
+}
+
+#header_menubar {
+  position:absolute; top:0px; right: 10px; color: #999; font-size: 11px;
+}
+
+#unsupported {
+  position: absolute;
+  top: 10%;
+  left: auto;
+  right: auto;
+  width: 400px;
+  background: white;
+  border: solid thin red;
+  color: black;
+  font: 18px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+  text-align: center;
+  display: none;
+  z-index: 5000;
+}
+#header {
+  position: relative; 
+  height: 35px;
+  width: 100%;
+  -webkit-box-shadow: 0px 10px 33px rgba(13,13,13,1);
+  padding-bottom:3px;
+/*  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;*/
+  border-top:solid 1px rgba(12,12,12,.1);
+  background:#1B224D;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 40%, 
+    from(rgba(242,242,242,.1)), 
+    to(rgba(12,12,12,.1)));
+  z-index:9000;
+}
+
+#logo {
+  position: absolute; 
+  top: 4px; left: 30px;
+  padding:0;margin:0; 
+  display: block;
+  color: #fff;
+  font-size: 20px;
+  font-family: Verdana;
+/*  text-shadow: #000 1px 1px 1px;*/
+/*  font-weight: bold;*/
+/*  font-style: italic;*/
+  letter-spacing: .07em;
+}
+
+a#logo:hover {
+  text-decoration: none;
+}
