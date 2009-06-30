@@ -75,7 +75,6 @@ Viewer = App = {
     // init the UI
     Frame.init();
     LiveHTML.init();
-    $('body').addClass( This.user.logged_in ? 'logged_in' : 'logged_out' );
     $('body').removeClass('loading');
 
     // set up app state
