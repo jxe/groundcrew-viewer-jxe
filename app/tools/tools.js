@@ -49,7 +49,14 @@ App.tools.assign_agents = {
     }
   },
   
-  item_status: function(state)     { return "This agent is <b>"+This._item.availability_status+"</b> and <b>on your squad</b>."; },
+  make_it_happen_form_submitted: function(data, state) {
+    Operation.assign(This.item, data.assign, function(operation){
+      // go('@' + operation.id);
+      go("mode=Connect;tool=view_events");
+    });
+  },
+  
+  item_status: function(state)     { return "is <b>"+This._item.availability_status+"</b> and <b>on your squad</b>."; },
   item_believesin: function(state) { 
     if (!This._item.believesin) return " ";
     return "believes in: <b>" + This._item.believesin.semisplit().join(', ')  + "</b>";

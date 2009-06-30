@@ -16,13 +16,6 @@ App.modes.coordinate = {
     if (This.item.startsWith('Landmark')) Viewer.render_item('organize_landmark');
   },
   
-  make_it_happen_form_submitted: function(data, state) {
-    Operation.assign(This.item, data.assign, function(operation){
-      go('@' + operation.id);
-    });
-  },
-  
-  
   send_assignment_form_submitted: function(data, state) {
     Operation.invite(This.item, data.title, data.assignment, function(operation){
       go('@' + operation.id);
