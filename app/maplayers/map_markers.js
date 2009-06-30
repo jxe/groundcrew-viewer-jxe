@@ -77,7 +77,7 @@ MapMarkers = {
     marker.info_data = agent;
 
     GEvent.addListener( marker, "click", function() { go('@' + agent.id); });
-    // GEvent.addListener( marker, "infowindowclose", function() { Viewer.close(agent); });
+    GEvent.addListener( marker, "infowindowclose", function() { go('@' + This.city); });
     GEvent.addListener( marker, "dblclick", function() {
       Map.Gmap.setCenter( marker.getPoint(), 15 ); 
     });
