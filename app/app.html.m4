@@ -32,7 +32,7 @@
 	  <a id="squad-nav" reveal="squads_menu #cities_menu_place subm" title="switch squads">
        Demo Squad &#9662;
     </a>
-     &nbsp;
+    <input type="text" id="search" />
     <!-- <img href="#@" src="i/icons/globe.png" height="15" style="position:relative; top:2px"/> -->
     <!-- <a reveal="cities_menu #cities_menu_place subm" title="switch cities">
       <span fill="city_name"></span> &#9662;
