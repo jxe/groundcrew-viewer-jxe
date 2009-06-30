@@ -76,12 +76,9 @@ big {
   text-decoration: underline;
 }
 
-.intro {
-  margin-bottom: 15px;
-}
-
 input.prompting, textarea.prompting {
-  color: gray;
+  font-style:italic;
+  color: #D8D8D8;
 }
 
 .spacebelow {

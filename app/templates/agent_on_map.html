@@ -1,17 +1,28 @@
 <div id="organize_agent_iw" class="mapwindow" style="max-width: 800px">
-  <div class="intro">
-    <h2>BLUM, BLUM, and MYERS</h2>
-  </div>
   <div class="group">
-    <img style="height: 100px; width: 100px; float: left" class="niw_thumb" fill="item_thumb_url src"/>
-    <div style="float:left; max-width: 450px">
-      has been involved with <b>45</b> positive experiences
+    <img style="height: 100px; width: 100px; float: left" 
+      class="niw_thumb" 
+      fill="item_thumb_url src" />
       
-      <p class="status" fill="item_status"></p>
-      <p class="believes" fill="item_believesin"></p>
-      <p class="state" fill="item_current_assignment"></p>
+    
+    <div style="float:left; max-width: 450px">
+      <h2 fill="item_title"></h2>
+      <div class="status" fill="item_status"></div>
+      <!-- has been involved with <b>45</b> positive experiences -->
+      
+      <div class="state" fill="item_current_assignment"></div>
+ 
       <form id="make_it_happen_form">
-        <input if="agent_assignable" name="assign" type="text" size="38" class="big" fill="agent_assign_prompt hint" hint="What would you like this agent to do?"/>
+        <input if="agent_assignable" name="assign"
+          class="text"
+          type="text" size="38" 
+          fill="agent_assign_prompt hint" 
+          hint="What would you like this agent to do?" 
+        /><button type="submit" class="submit">
+            Send<strong>&rarr;</strong>
+          </button>
+        <!-- no white space between the above <input> and <button> -->
+        
         <!-- <input if="agent_latched_and_assigned" name="assign" type="text" size="38" class="big" hint="New instructions for this agent?"/> -->
         <!-- <div class="xspace">
           <h3>Or choose a prefab assignment:</h3>
@@ -23,11 +34,20 @@
       </form>
     </div>
   </div>
+
+<!-- empty div for popups -->  
   <div id="iw_menu_place" style="position:relative; clear:both"></div>
 
+<!-- Dynamic past questions & answers -->
+  <!-- <p class="believes" fill="item_believesin"></p>
   <p class="believes" fill="item_celebrates"></p>
-  <p class="believes" fill="item_helpwith"></p>
+  <p class="believes" fill="item_helpwith"></p> -->
+  
+<!--
+    1. Questions & answers you've asked this agent
+    2. Assignment like/not like *
+    3. What are they up for - tag list
+    5. Skills * - tag list
+-->
   <div class="didrecent" fill="item_didrecent"></div>
 </div>
-
-

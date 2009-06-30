@@ -13,11 +13,12 @@
 	}
 
 .mapwindow h2 {
-  font: 17px "Helvetica", Verdana, sans-serif;
-  text-transform: uppercase;
-  color: #009999;
-  padding: 0;
+  font-size: 17px;
+  color: #EA6900;
+  font-weight:bold;
+  padding:0;
   margin: 0;
+  border:none;
 }
 
 .mapwindow h3 {
@@ -61,16 +62,19 @@ p.deemphasize {
 }
 
 .niw_thumb {
-  height: 100px;
   float: left;
+  height: 100px;
+  width: 100px;
   margin-right: 20px;
-  border: 3px solid #ccc;
-}
-
-div.intro {
-	margin-bottom: 10px;
-  	border-bottom: 1px dotted #666;
-  	padding-bottom: 5px;		
+  overflow: hidden;
+  padding:6px;
+  text-align:center;
+  background:#BFBFBF;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 90%, 
+    from(transparent), 
+    to(#B2B2B2));
+  -webkit-border-radius: 3px;
 }
 
 .mapwindow a {
@@ -82,3 +86,34 @@ div.intro {
 		text-decoration: none ;
 		}
 
+.status {
+  background:#E5E5E5;
+  padding:0;
+}
+#make_it_happen {
+  white-space:nowrap;
+}
+#make_it_happen_form input.text {
+  padding:0;
+  margin:0;
+  border:solid 1px #000;
+  font-size:14px;
+  margin-top:.5em;
+  padding:3px 0px;
+  border-left:solid 1px #B2B2B2;
+  border-top:solid 1px #A5A5A5;
+  border-bottom:solid 1px #CCCCCC;
+  border-right:solid 1px #CCCCCC;
+}
+#make_it_happen_form button.submit {
+  font-size:14px;
+  padding:3px 5px;
+  margin:0 0 0 2px;
+  cursor:pointer;
+  color:white;
+  background:#1B224D;
+  font-weight:normal;
+  border:solid 1px #2D355D;
+  border-bottom:solid 1px #0F1633;
+  border-right:solid 2px #0F1633;
+}
