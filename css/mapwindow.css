@@ -6,10 +6,10 @@
 
 .mapwindow h2 {
   font-size: 17px;
-  color: #FF8526;
+  color: #000;
   font-weight:bold;
   padding:0;
-  margin: 0;
+  margin: 0 0 .25em 0;
   border:none;
 }
 
@@ -86,13 +86,11 @@ p.deemphasize {
 		background: #ccc;
 		text-decoration: none ;
 		}
-
-.status {
-  padding:0;
+.current-assignment {
+  font-weight:bold;
+  font-size:14px;
+  color:#7F7F7F;
 }
-/*.status b, .status strong {
-  background:#F2F2F2;
-}*/
 #make_it_happen_form {
   white-space:nowrap;
   margin-bottom:1em;
@@ -147,4 +145,22 @@ ul.tags li {
 #q-and-a .answer {
   color:#3F3F3F;
   font-size:10px;
+}
+#q-and-a .timestamp {
+  color:#BFBFBF;
+  font-size:9px;
+}
+.mapwindow .highlight {
+  background:#FFFEE4;
+  padding:0 2px;
+}
+.mapwindow #problem .heading {
+  background:#B20000;
+  color:#fff;
+}
+.mapwindow #problem .highlight {
+  padding:0 4px;
+  color:#B20000;
+  font-weight:bold;
+  background:#fff;
 }
