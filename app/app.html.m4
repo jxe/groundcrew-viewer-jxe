@@ -18,7 +18,7 @@
   Internet Explorer has not been tested.  Try <a href="http://getfirefox.com">Firefox</a>.
 </div>
 
-<div id="header">
+<div id="header" class="magic">
   <div id="header_menubar">
 		<img id="load_spinner" src="i/spinner.gif"/>
 		<a class="m_item" reveal="help">HELP</a>
@@ -28,16 +28,17 @@
 		<a class="m_item lio" href="/logout">sign out</a>
 	</div>
 	<span id="logo"><strong>Groundcrew</strong></span>
-	<span class="std_click magic" id="squad-location-nav">
+	<form id="squad_nav_form">
 	  <a id="squad-nav" reveal="squads_menu #cities_menu_place subm" title="switch squads">
        Demo Squad &#9662;
     </a>
-    <input type="text" id="search" />
+    <input type="text" name="q" id="search" />
+    <a if="has_query" href="##clear_query">(X)</a>
     <!-- <img href="#@" src="i/icons/globe.png" height="15" style="position:relative; top:2px"/> -->
     <!-- <a reveal="cities_menu #cities_menu_place subm" title="switch cities">
       <span fill="city_name"></span> &#9662;
     </a> -->
-	</span>
+	</form>
 	<span id="cities_menu_place"></span>
 </div>
 <div id="screen">

@@ -81,7 +81,6 @@ App.tools.assign_agents = {
   
   item_celebrates: function(state) { return " "; },
   item_helpwith: function(state)   { return " "; },
-  item_didrecent: function(state)  { return " "; },
-  
+  item_didrecent: function(state)  { return " "; }
   
 };
