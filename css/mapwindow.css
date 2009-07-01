@@ -1,11 +1,3 @@
-.mapwindow h2 {
-  font: 17px "Helvetica", Verdana, sans-serif;
-  text-transform: uppercase;
-  color: #026;
-  padding: 0;
-  margin: 0;
-}
-
 .mapwindow h1 {
 	color: #333;
 	display: inline;
@@ -14,7 +6,7 @@
 
 .mapwindow h2 {
   font-size: 17px;
-  color: #EA6900;
+  color: #FF8526;
   font-weight:bold;
   padding:0;
   margin: 0;
@@ -24,9 +16,18 @@
 .mapwindow h3 {
   font: 13px "Helvetica", Verdana, sans-serif;
   text-transform: uppercase;
-  color: #009999;
+  color: #333333;
   padding: 0;
   margin: 0;
+}
+
+.mapwindow h6 {
+  font-size:11px;
+  font-weight:bold;
+  padding:0;
+  margin-top:.75em;
+  margin-bottom:.25em;
+  color:#191919;
 }
 
 textarea.big {
@@ -87,11 +88,14 @@ p.deemphasize {
 		}
 
 .status {
-  background:#E5E5E5;
   padding:0;
 }
-#make_it_happen {
+/*.status b, .status strong {
+  background:#F2F2F2;
+}*/
+#make_it_happen_form {
   white-space:nowrap;
+  margin-bottom:1em;
 }
 #make_it_happen_form input.text {
   padding:0;
@@ -116,4 +120,31 @@ p.deemphasize {
   border:solid 1px #2D355D;
   border-bottom:solid 1px #0F1633;
   border-right:solid 2px #0F1633;
+}
+
+ul.tags {
+  font-weight:bold;
+  margin:0;
+  padding:0;
+}
+ul.tags li {
+  font-weight:normal;
+  display:inline;
+  list-style-type:none;
+  white-space:nowrap;
+  color:#3F3F3F;
+  background:#F2F2F2;
+}
+
+#q-and-a {
+  margin-top:1em;
+  overflow:auto;
+  height:8em;
+}
+#q-and-a .question {
+  margin-top:.5em;
+}
+#q-and-a .answer {
+  color:#3F3F3F;
+  font-size:10px;
 }
