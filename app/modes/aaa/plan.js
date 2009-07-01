@@ -1,11 +1,5 @@
 App.modes.dream = {
   
-  render: function(changed) {
-    if (changed.item && This.item.startsWith('Landmark')) {
-      MapMarkers.window('organize_landmark');
-    }
-  },
-  
   show_idea: function(state) {
     // la la la
   }

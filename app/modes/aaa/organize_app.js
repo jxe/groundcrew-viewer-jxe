@@ -1,11 +1,4 @@
-App.modes.coordinate = {
-  
-  render: function(changed) {
-    if (changed.item) {
-      if (This.item.startsWith('Person')) MapMarkers.window('organize_agent', 16);
-    }
-  },
-  
+App.modes.coordinate = {  
   
   show_type: function() {
     Viewer.render_item(This.type);
@@ -15,14 +8,7 @@ App.modes.coordinate = {
     if (This.item.startsWith('Person'))   Viewer.render_item('organize_agent', 16);
     if (This.item.startsWith('Landmark')) Viewer.render_item('organize_landmark');
   },
-  
-  make_it_happen_form_submitted: function(data, state) {
-    Operation.assign(This.item, data.assign, function(operation){
-      go('@' + operation.id);
-    });
-  },
-  
-  
+    
   send_assignment_form_submitted: function(data, state) {
     Operation.invite(This.item, data.title, data.assignment, function(operation){
       go('@' + operation.id);

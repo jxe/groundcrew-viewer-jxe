@@ -7,8 +7,8 @@ MapMarkers = {
     if (marker) MapMarkers.cache[tag].setImage('i/map/' + tag.resource().map_icon + '.png');
   },
   
-  window: function(template_name, min_zoom) {
-    MapMarkers.open(This.item, $.template('#' + template_name + '_iw').app_paint()[0], min_zoom);
+  window: function(tmpl, min_zoom) {
+    MapMarkers.open(This.item, tmpl.app_paint()[0], min_zoom);
   },
   
   open: function(item, content, min_zoom) {
