@@ -6,6 +6,20 @@ Viewer = App = {
   tools: {},
   most_recent_tool: {},
   
+  squad_nav_form_submitted: function(data, state, form) {
+    go('q=' + data.q);
+    $(form).enable();
+  },
+  
+  clear_query: function() {
+    $('#search').val('');
+    go('q=');
+  },
+  
+  has_query: function() {
+    return This.q;
+  },
+  
   update: function(changed) {
     if (changed.squad) {
       if (This.squad == 'demo') {
@@ -30,7 +44,7 @@ Viewer = App = {
       }
     }
     
-    if (changed.city) {
+    if (changed.city || changed.q) {
       This.city_id = This.city && This.city.resource_id();
       set('agents', Agents.here());
       if (This.city) $('body').removeClass('zoomed_out');
@@ -64,6 +78,7 @@ Viewer = App = {
     
     if (changed.item || changed.tool || changed.mode) App.refresh_mapwindow();
     
+    $('.magic').app_paint();
     dispatch('render', changed);
   },
   

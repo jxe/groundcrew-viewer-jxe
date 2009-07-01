@@ -79,7 +79,7 @@ img[reveal]:hover {
   filter:alpha(opacity=100);
 }
 
-#squad-location-nav {
+#squad_nav_form {
    position: absolute; 
    top: 9px;
    left: 16em;
