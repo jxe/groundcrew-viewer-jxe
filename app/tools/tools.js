@@ -67,10 +67,15 @@ App.tools.assign_agents = {
     if (!This._item.believesin) return " ";
     return "believes in: <b>" + This._item.believesin.semisplit().join(', ')  + "</b>";
   },
+
+  item_current_operation_title: function(state) {
+    if (This._item.latch.startsWith('unlatched')) return " ";
+    return This._item.latch.split(' ')[2].resource().title;
+  },
   
   item_current_assignment: function(state) {
     if (This._item.latch.startsWith('unlatched')) return " ";
-    return This._item.latch.split(' ')[2].resource().title;
+    return This._item.latch.split(' ')[2].resource().body;
   },
   
   
