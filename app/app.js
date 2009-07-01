@@ -16,11 +16,15 @@ Viewer = App = {
     }
     
     if (changed.item) {
-      if (!This.mode) set('mode', 'mobilize');
+      if (!This.mode) set('mode', 'Dispatch');
       
-      if (!This.item) set('city', null);
-      else if (This.item.startsWith('City__')) set('city', This.item);
-      else {
+      if (!This.item) {
+        This._item = null;
+        set('city', null);
+      } else if (This.item.startsWith('City__')) {
+        This._item = null;
+        set('city', This.item);
+      } else {
         This._item = This.item && This.item.resource();
         set('city', 'City__' + This._item.city_id);
       }
@@ -47,7 +51,7 @@ Viewer = App = {
       Frame.resize();
 
       This.first_responders[0] = {};
-      This.first_responders[1] = App.modes[This.mode] || {};
+      This.first_responders[1] = App.modes[This.mode.toLowerCase()] || {};
 
       if (!changed.tool) set('tool', App.most_recent_tool[This.mode] || Console.tools[This.mode] && Console.tools[This.mode][0].split('//')[0]);
     }
@@ -58,9 +62,20 @@ Viewer = App = {
       This.first_responders[0] = App.tools[This.tool] || {};
     }
     
+    if (changed.item || changed.tool || changed.mode) App.refresh_mapwindow();
+    
     dispatch('render', changed);
   },
   
+  refresh_mapwindow: function() {
+    if (!This._item) Map.Gmap.closeInfoWindow();
+    else {
+      var thing = This.item.split('__')[0].toLowerCase();
+      var best_mapwindow_template = $.template('#' + thing + '_for_' + This.tool + '_tool') || $.template('#' + thing + '_for_' + This.mode.toLowerCase() + '_mode') || $.template('#' + thing + '_for_any_mode');
+      if (best_mapwindow_template) MapMarkers.window(best_mapwindow_template);
+      else Map.Gmap.closeInfoWindow();
+    }
+  },
   
   map_clicked: function() {
     return;

@@ -20,13 +20,26 @@ App.tools.add_landmark = {
   
 };
 
-App.tools.assign_agents = {
+App.modes.dispatch = {
   
-  render: function(changed) {
-    if (changed.item) {
-      if (This.item.startsWith('Person')) MapMarkers.window('organize_agent', 16);
-    }
+  did_add_events: function(state) {
+    App.refresh_mapwindow();
   },
+
+  live_event_info: function (state) {
+    return Actions.event_t.tt(This._item.children);
+  }
+  
+};
+
+App.tools.assign_agents = {
+    
+  make_it_happen_form_submitted: function(data, state) {
+    Operation.assign(This.item, data.assign, function(operation){
+      go('@' + operation.id);
+    });
+  },
+  
   
   agent_assignable: function(state) {
     // return true;
