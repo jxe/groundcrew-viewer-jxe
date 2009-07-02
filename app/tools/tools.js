@@ -62,7 +62,22 @@ App.tools.assign_agents = {
     }
   },
   
-  item_status: function(state)     { return "This agent is <b>"+This._item.availability_status+"</b> and <b>on your squad</b>."; },
+  make_it_happen_form_submitted: function(data, state) {
+    Operation.assign(This.item, data.assign, function(operation){
+      // go('@' + operation.id);
+      go("mode=Connect;tool=view_events");
+    });
+  },
+  
+  // TODO: make dynamic
+  item_squad: function(state) {
+    return "Demo Squad";
+  },
+
+  item_status: function(state) {
+    return This._item.availability_status;
+  },
+
   item_believesin: function(state) { 
     if (!This._item.believesin) return " ";
     return "believes in: <b>" + This._item.believesin.semisplit().join(', ')  + "</b>";
@@ -78,6 +93,10 @@ App.tools.assign_agents = {
     return This._item.latch.split(' ')[2].resource().body;
   },
   
+  is_latched: function(state) {
+    return !This._item.latch.startsWith('unlatched');
+  },
+
   
   item_celebrates: function(state) { return " "; },
   item_helpwith: function(state)   { return " "; },

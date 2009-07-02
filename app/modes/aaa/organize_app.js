@@ -8,7 +8,7 @@ App.modes.coordinate = {
     if (This.item.startsWith('Person'))   Viewer.render_item('organize_agent', 16);
     if (This.item.startsWith('Landmark')) Viewer.render_item('organize_landmark');
   },
-    
+
   send_assignment_form_submitted: function(data, state) {
     Operation.invite(This.item, data.title, data.assignment, function(operation){
       go('@' + operation.id);

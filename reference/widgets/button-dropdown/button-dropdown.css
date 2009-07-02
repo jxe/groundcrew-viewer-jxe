@@ -1,0 +1,219 @@
+/* PAGE STYLES (ignore these) */
+body {font-family:Verdana;font-size:12px;margin:0px 0px 5em 5em;}
+h1 {color:#7F7F7F;margin-top:3em;font-size:18px;}
+p {width:350px;}
+a {color:#000080;}
+
+
+
+/* BUTTON DROPDOWN STYLES */
+
+/* The buttons */
+.button_dropdown button {
+  cursor:pointer;
+  padding:.5em 1em;
+  font-weight:bold;
+  margin:0;
+}
+.button_dropdown button.idle {
+  color:#3F3F3F;
+  background:#E5E5E5;
+  border:solid 1px #BFBFBF;
+  border-top:solid 1px #F2F2F2;
+  border-left:solid 1px #F2F2F2;     
+}
+.button_dropdown button.selected {
+  color:#000;
+  background:#BFBFBF;
+  border:solid 1px #CCCCCC;
+  border-top:solid 1px #A5A5A5;
+  border-left:solid 1px #A5A5A5;
+}
+
+/* The dropdowns */
+.button_dropdown .dropdown {
+  display:none;
+  position:absolute;
+  z-index:99999;
+  width:166px;
+  font-size:11px;
+  color:#000;
+  background:#F2F2F2;
+  -webkit-box-shadow: 3px 3px 7px #BFBFBF;
+}
+.button_dropdown .filter {
+  padding:6px 0px 0px 0px;
+  text-align:center;
+  height:25px;
+}
+.button_dropdown .filter input {
+  width:130px;
+  height:auto;
+  text-align:left;
+  padding:2px 8px 2px 8px;
+  margin:0;
+  background:#FCFCFC;
+    /* TODO: url(icon-search.gif) top 98% no-repeat; */
+  border-top:solid 1px #BFBFBF;
+  border-left:solid 1px #BFBFBF;
+  border-right:solid 1px #E5E5E5;
+  border-bottom:solid 1px #E5E5E5;
+  -webkit-border-radius: 8px;
+}
+.button_dropdown .more {
+  height:28px;
+  padding:8px 10px 0px 10px;
+}
+.button_dropdown .select {
+  height:150px;
+  background:#F7F7F7;
+  border-bottom:solid 1px #CCCCCC;
+  border-top:solid 1px #CCCCCC;
+  overflow:auto;
+}
+.button_dropdown .select ul {
+  margin:0;
+  padding:5px 0px;
+}
+.button_dropdown .select li {
+  list-style-type:none;
+  margin:0;
+  padding:2px 10px;
+  cursor:pointer;
+}
+.button_dropdown .select li:hover { /* Temporary */
+  background:#FFCC66;
+}
+.button_dropdown .select li.hover {
+  background:#FFCC66;
+}
+
+/* Rich Menus */
+.button_dropdown .select dl {
+  margin:0;
+  padding:4px 10px;
+  cursor:pointer;
+}
+.button_dropdown .select dd {
+  margin:0;
+  font-size:9px;
+  color:#3F3F3F;
+  padding-top:.25em;
+}
+.button_dropdown .select dd.img {
+  float:left;
+}
+.button_dropdown .select dd.img img {
+  width:34px;
+  height:34px;
+  padding:2px;
+  margin-right:5px;
+  background:#D8D8D8;
+}
+.button_dropdown .select dl hr {
+  clear:both;
+  margin:0;
+  padding:0;
+  color:transparent;
+  background-color:transparent;
+  height:2px;
+  border:none;
+  border-bottom:dotted 1px #CCCCCC;
+}
+
+.button_dropdown .select dl:hover { /* Temporary */
+  background:#FFCC66;
+}
+.button_dropdown .select dl:hover hr {
+  border-color:transparent;
+}
+.button_dropdown .select dl:hover dd.img img {
+  background-color:#E5E5E5;
+}
+.button_dropdown .select dl.hover {
+  background:#FFCC66;
+}
+.button_dropdown .select dl.hover hr {
+  border-color:transparent;
+}
+.button_dropdown .select dl.hover dd.img img {
+  background-color:#E5E5E5;
+}
+
+
+/* MENU OPTIONS*/
+
+/*
+  Required!
+  Set the vertical direction of the menu
+  with the class "north" or "south" in
+  <div class="dropdown">
+*/
+.button_dropdown .dropdown.south {
+  -webkit-border-bottom-right-radius:10px;
+  -webkit-border-bottom-left-radius:10px; 
+}
+.button_dropdown .dropdown.north {
+  -webkit-border-top-right-radius:10px;
+  -webkit-border-top-left-radius:10px;
+}
+
+/*
+  Optional.
+  To disable the filter and more sections add
+  the class 'no_filter' and/or 'no_more' to
+  <div class="dropdown">
+*/
+.button_dropdown .dropdown.no_filter .filter {
+  height:10px;
+}
+.button_dropdown .dropdown.no_filter .filter input {
+  display:none;
+}
+.button_dropdown .dropdown.no_more .more {
+  height:10px;
+}
+.button_dropdown .dropdown.no_more .more a {
+  display:none;
+}
+
+/*
+  Optional.
+  To expand the menu horizontaly, add the "columns_x"
+  class to <div class="dropdown">, where "x" is
+  the number of columns required
+*/
+
+/* 2 columns*/
+.button_dropdown .dropdown.columns_2 {
+  width:332px;
+}
+.button_dropdown .dropdown.columns_2 dl {
+  float:left;
+  width:43%;
+}
+.button_dropdown .dropdown.columns_2 .select {
+  height:198px;
+}
+/* 3 columns */
+.button_dropdown .dropdown.columns_3 {
+  width:498px;
+}
+.button_dropdown .dropdown.columns_3 dl {
+  float:left;
+  width:29%;
+}
+.button_dropdown .dropdown.columns_3 .select {
+  height:198px;
+}
+/* 4 columns */
+.button_dropdown .dropdown.columns_4 {
+  width:664px;
+}
+.button_dropdown .dropdown.columns_4 dl {
+  float:left;
+  width:22%;
+}
+.button_dropdown .dropdown.columns_4 .select {
+  height:198px;
+}

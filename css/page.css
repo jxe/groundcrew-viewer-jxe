@@ -2,6 +2,7 @@
 img { border:0; }
 h1, body { margin:0; padding:0; }
 a { text-decoration: none; }
+form {margin:0;padding:0;}
 
 body #load_spinner {
   visibility: hidden;
