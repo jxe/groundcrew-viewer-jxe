@@ -51,10 +51,12 @@ Viewer = App = {
       else $('body').addClass('zoomed_out');
     }
     
+    if (changed.city) Map.clear_layer('landmarks');
+
     if (changed.agents) {
-      MapMarkers.display(This.city, This.agents);
       Frame.populate_flexbar_agents(This.agents);
-      components.trigger('city_changed', This.city);
+      trigger('city_changed', This.city);
+      Map.clear_layer('agents');
     }
     
     if (changed.mode) {
@@ -126,6 +128,7 @@ Viewer = App = {
     Frame.init();
     LiveHTML.init();
     $('body').removeClass('loading');
+    Map.establish();
 
     // set up app state
     CEML.parse($('#idea_bank').html());

@@ -1,6 +1,16 @@
-Console = {};
-Console.modes = [];
-Console.tools = {};
+Console = {
+  modes: [],
+  tools: {},
+  
+  map_layers_for_current_settings: function() {
+    if (!This.item) return 'cities';
+    if (This.mode == 'Sketch') return 'wishes landmarks';
+    if (This.mode == 'Connect') return 'agents';
+    if (This.mode == 'Dispatch') return 'agents landmarks';
+    return 'agents landmarks';
+  }
+  
+};
 
 $.each([
   'Sketch       add_action_idea//wand30  add_landmark//landmark21  edit_activities//lightbulb_icon29  identify_resource//gift23  upload_landmarks//landmark21',
