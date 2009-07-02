@@ -13,6 +13,25 @@
   border:none;
 }
 
+#person_for_dispatch_mode h2 {
+  display: inline;
+  padding-right: 20px;
+}
+
+#person_for_dispatch_mode .skills.tags {
+  float: right;
+  padding-right: 20px;
+  color: #bfbfbf;
+}
+
+#person_for_dispatch_mode .upfor.tags {
+  display: inline;
+}
+
+#person_for_dispatch_mode .grayish {
+  color: #555;
+}
+
 .mapwindow h3 {
   font: 13px "Helvetica", Verdana, sans-serif;
   text-transform: uppercase;
@@ -121,7 +140,7 @@ p.deemphasize {
 }
 
 ul.tags {
-  font-weight:bold;
+/*  font-weight:bold;*/
   margin:0;
   padding:0;
 }
@@ -141,6 +160,7 @@ ul.tags li {
 }
 #q-and-a .question {
   margin-top:.5em;
+  font-weight: normal;
 }
 #q-and-a .answer {
   color:#3F3F3F;

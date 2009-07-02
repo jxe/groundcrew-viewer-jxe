@@ -6,20 +6,18 @@
       
     
     <div style="float:left; max-width: 450px">
-      <h2 fill="item_title"></h2>
+      <h2 fill="item_title"></h2>  <ul class="tags skills" fill="agent_skills_as_lis"></ul>
       
-      <div id="status">
-        is <b class="highlight"><span fill="item_status"></span></b>
-        <!-- Squad Info
-          and on <b><span fill="item_squad"></span></b>. -->
+      <div class="grayish">
+        This agent is <b class="highlight" fill="item_status"></b>
+        <!-- Squad Info: and on <b><span fill="item_squad"></span></b>. -->
       </div>
-      <div id="assignment" if="is_latched">
-        activity: <b class="highlight"><span fill="item_current_assignment"></span></b>
+      <div if="is_latched">
+        activity: <b class="highlight" fill="item_current_assignment"></b>
       </div>
-      <!-- TODO: Needs to be dynamic
-      <p id="problem">
-        <span class="heading">has a problem:</span> <b class="highlight">I can't feel my feet!</b>
-      </p> -->
+      <p id="problem" if="has_problem">
+        <span class="heading">has a problem:</span> <b fill="problem" class="highlight">I can't feel my feet!</b>
+      </p>
       
       <form id="make_it_happen_form">
         <input if="agent_assignable" name="assign"
@@ -31,81 +29,21 @@
             Send<strong>&rarr;</strong>
           </button>
         <!-- no white space between the above <input> and <button> -->
-        
-        <!-- <input if="agent_latched_and_assigned" name="assign" type="text" size="38" class="big" hint="New instructions for this agent?"/> -->
-        <!-- <div class="xspace">
-          <h3>Or choose a prefab assignment:</h3>
-        </div>
-        <div fill="ideas_for_agent"></div> -->
-        <!-- <div class="right">
-          <input type="submit" value="make it happen"/>
-        </div> -->
       </form>
       
-      <h6>Skills&hellip;</h6>    
-      <ul class="tags">
-        <li>driving trucks,</li>
-        <li>eating spicy food,</li>
-        <li>limbo,</li>
-        <li>javascript</li>
-      </ul>
-      
-      <h6>Up for&hellip;</h6>
-      <ul class="tags">
-        <li>adventure,</li>
-        <li>community service,</li>
-        <li>games</li>
-      </ul>
+      <div class="grayish right" style="padding-right:20px">
+        Give them:
+        <ul fill="upfors_as_lis" class="tags upfor">
+          <li>adventure,</li>
+          <li>community service,</li>
+          <li>games</li>
+        </ul>
+      </div>
       
       <div id="q-and-a">
-        <h6 class="question">What do you believe in?</h6>
-        <div class="answer">
-          skipping, high kicking, hugging each other, hitting the streets, 
-          taking deep breaths, and singing in the rain.
-          <br />
-          <span class="timestamp">1 hour ago</span>
-        </div>
-        
-        <h6 class="question">Laboris nisi ut aliquip ex ea commodo consequat?</h6>
-        <div class="answer">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse 
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-          cupidatat non proident, sunt in culpa qui officia deserunt mollit 
-          anim id est laborum.
-          <br />
-          <span class="timestamp">June 19th, 2009</span>
-        </div>
-        
-        <h6 class="question">Lorem ipsum dolor sit amet?</h6>
-        <div class="answer">
-          Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
-          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-           exercitation ullamco.
-          <br />
-          <span class="timestamp">June 16th, 2009</span>
-        </div>
-        
-        <h6 class="question">Commodo consequat?</h6>
-        <div class="answer">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse 
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-          cupidatat non proident, sunt in culpa qui officia deserunt mollit 
-          anim id est laborum. Consectetur adipisicing elit, sed do eiusmod 
-          tempor.
-          <br />
-          <span class="timestamp">June 15th, 2009</span>
-        </div>
-
+        <h6>What They've Said</h6>
+        <div fill="answers"></div>
       </div>
     </div>
   </div>
-
-  <!-- empty div for popups -->
-  <div id="iw_menu_place" style="position:relative; clear:both"></div>
-
-  <!-- <p class="believes" fill="item_believesin"></p>
-  <p class="believes" fill="item_celebrates"></p>
-  <p class="believes" fill="item_helpwith"></p> -->
-
-  <div class="didrecent" fill="item_didrecent"></div>
 </div>
