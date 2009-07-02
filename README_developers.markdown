@@ -1,3 +1,7 @@
+Title:  Groundcrew Viewer Developer's Guide
+Author: Joe Edelman; Citizen Logistics, Inc.
+
+
 Extending and Working with the Groundcrew Viewer
 ================================================
 

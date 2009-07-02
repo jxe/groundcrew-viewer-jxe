@@ -24,7 +24,7 @@ Viewer = App = {
     if (changed.squad) {
       if (This.squad == 'demo') {
         $.ajaxSetup({async: false});
-        $.getScript('/data/demo.js');
+        // $.getScript('data/demo.js');
         $.ajaxSetup({async: true});
       }
     }
@@ -68,27 +68,47 @@ Viewer = App = {
       This.first_responders[1] = App.modes[This.mode.toLowerCase()] || {};
 
       if (!changed.tool) set('tool', App.most_recent_tool[This.mode] || Console.tools[This.mode] && Console.tools[This.mode][0].split('//')[0]);
+      
+      // trigger(This.mode + "_mode_activated");
     }
     
     if (changed.tool) {
       App.most_recent_tool[This.mode] = This.tool;
       $('.' + This.tool + '_tool').activate('tool');
       This.first_responders[0] = App.tools[This.tool] || {};
+      // trigger(This.tool + "_tool_activated");
     }
+    
+    set('map_layers', Console.map_layers_for_current_settings());
+    
+    var map_unfocused = changed.city;
+    $.each($w('cities agents landmarks wishes'), function(){
+      if (This.map_layers.contains(this)) {
+        Map.show_layer(this, map_unfocused);
+        map_unfocused = false;
+      } else {
+        Map.hide_layer(this);
+      }
+    });
     
     if (changed.item || changed.tool || changed.mode) App.refresh_mapwindow();
     
     $('.magic').app_paint();
-    dispatch('render', changed);
+
   },
   
   refresh_mapwindow: function() {
-    if (!This._item) Map.Gmap.closeInfoWindow();
+    if (!This._item) {
+      Map.Gmap.closeInfoWindow();
+    }
     else {
       var thing = This.item.split('__')[0].toLowerCase();
       var best_mapwindow_template = $.template('#' + thing + '_for_' + This.tool + '_tool') || $.template('#' + thing + '_for_' + This.mode.toLowerCase() + '_mode') || $.template('#' + thing + '_for_any_mode');
       if (best_mapwindow_template) MapMarkers.window(best_mapwindow_template);
-      else Map.Gmap.closeInfoWindow();
+      else {
+        //TODO:  if there's no template, there should be no selection
+        Map.Gmap.closeInfoWindow();
+      }
     }
   },
   
@@ -115,11 +135,7 @@ Viewer = App = {
     // start communication with server
     Ajax.init();
   },
-  
-  render: function(changed) {
-    //...
-  },
-  
+    
   go_to_self: function() {
     go('@' + This.user.tag);
   },

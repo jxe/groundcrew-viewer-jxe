@@ -8,7 +8,7 @@ Frame = {
       Frame.resize();
       $('.divcenter').center();
     });
-    $('.magic').app_paint();
+    $('.startupmagic').app_paint();
 
     $(document).keypress(function(e){
       if ($(e.target).is('input,textarea')) return;
@@ -20,7 +20,7 @@ Frame = {
       if (char == 's') return go('mode=sketch');
       if (char == 'c') return go('mode=connect');
       if (char == 'd') return go('mode=dispatch');
-      if (char == 'w') return go('city=');
+      if (char == 'w') return go('item=');
       if (char == 'g') return go('#go_where');
       if (char == 'f') return $('#search').focus() && false;
     });

@@ -1,4 +1,5 @@
 MapMarkers = {
+  cache: {},
 
   iw_marker: null,
   

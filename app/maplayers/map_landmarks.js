@@ -62,6 +62,6 @@ MapLandmarks = {
     return marker;
   }
   
-}
+};
 
-components.push(MapLandmarks);
+LiveHTML.widgets.push(MapLandmarks);

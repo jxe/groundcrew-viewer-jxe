@@ -84,7 +84,7 @@
     <!-- <b fill="agents_count">0</b> agents are giving you their attention and readiness. -->
     <!-- <img reveal="share_palette" src="i/icons/gift23.png" style="height: 18px; position: relative; top:5px; left: 5px" title="free stuff"/> -->
   </div>
-  <div id="console" class="magic">
+  <div id="console" class="startupmagic">
     <div id="modetray" class="tray">
       <div id="tray_buttons" fill="tool_buttons"></div>
       <div id="help"></div>
