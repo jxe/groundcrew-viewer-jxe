@@ -27,7 +27,7 @@ $(document).ready(function() {
       
       // Switch the button, position the dropdown, then show it
       theButton.removeClass("idle").addClass("selected");
-      theDropdown.css({"left": posLeft, "top":posTop});
+      // theDropdown.css({"left": posLeft, "top":posTop});
       theDropdown.show();
 
     } else {
