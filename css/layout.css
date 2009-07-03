@@ -134,3 +134,11 @@ img[reveal]:hover {
   color: white;
   text-decoration: none;
 }
+
+#objects_nav {
+  position:absolute;
+  right:10px;
+  bottom:1px;
+  font-size:11px;
+  color:#3F3F3F;
+}

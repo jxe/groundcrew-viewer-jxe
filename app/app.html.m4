@@ -95,6 +95,75 @@
 
     <div id="mode_buttons" style="padding-left: 30px" fill="mode_buttons"></div>
   </div>
+  <div id="objects_nav">
+    <!-- start: cities button_dropdown -->
+    <div class="button_dropdown">
+      <button class="idle">Cities</button>
+      <div class="dropdown north no_filter no_more">
+        <div class="filter">
+          <input type="text" class="filter" />
+        </div>
+        <div class="select">
+          <!-- put ul or dl with selection options here -->
+        </div>
+        <div class="more">
+          <a href="">Edit items&hellip;</a>
+        </div>
+      </div>
+    </div>
+    <!-- end: cities button_dropdown -->
+    |
+    <!-- start: operations button_dropdown -->
+    <div class="button_dropdown">
+      <button class="idle">Operations</button>
+      <div class="dropdown north no_filter no_more">
+        <div class="filter">
+          <input type="text" class="filter" />
+        </div>
+        <div class="select">
+          <!-- put ul or dl with selection options here -->
+        </div>
+        <div class="more">
+          <a href="">Edit items&hellip;</a>
+        </div>
+      </div>
+    </div>
+    <!-- end: operations button_dropdown -->
+    |
+    <!-- start: landmarks button_dropdown -->
+    <div class="button_dropdown">
+      <button class="idle">Landmarks</button>
+      <div class="dropdown north no_filter no_more">
+        <div class="filter">
+          <input type="text" class="filter" />
+        </div>
+        <div class="select">
+          <!-- put ul or dl with selection options here -->
+        </div>
+        <div class="more">
+          <a href="">Edit items&hellip;</a>
+        </div>
+      </div>
+    </div>
+    <!-- end: landmarks button_dropdown -->
+    |
+    <!-- start: resources button_dropdown -->
+    <div class="button_dropdown">
+      <button id="btn-resources" class="idle">Resources</button>
+      <div class="dropdown north no_filter no_more">
+        <div class="filter">
+          <input type="text" class="filter" />
+        </div>
+        <div class="select">
+          <!-- put ul or dl with selection options here -->
+        </div>
+        <div class="more">
+          <a href="">Edit items&hellip;</a>
+        </div>
+      </div>
+    </div>
+    <!-- end: resources button_dropdown -->
+  </div>
 </div>
 
 m4_syscmd(`cat app/tools/*.html')
