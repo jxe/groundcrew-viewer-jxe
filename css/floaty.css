@@ -1,0 +1,36 @@
+#floaty {
+/*  font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  font-family: verdana;
+  font-weight: bold;
+  font-size: 12px;
+  position: absolute;
+  left:0;
+  top: 113px;
+
+  border: 2px solid #007300;
+  border-left: none;
+  padding: 8.5px 16px;
+  padding-left: 33px;
+  
+	-webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  
+
+  background-image: -webkit-gradient(
+   linear, 0% 0%, 100% 0%,
+   from(rgba(0,128,64,.95)),
+   to(rgba(0,128,64,.85))
+   );
+   
+  color: white;
+  z-index: 450;
+}
+
+#floaty #floaty_asterisk {
+  text-shadow: #004122 1px 1px 0px;
+  color:#FFFE04;
+  font-size: 28px;
+  position: absolute;
+  top: 1px;
+  left: 7px;
+}

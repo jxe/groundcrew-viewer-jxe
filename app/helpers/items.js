@@ -59,16 +59,12 @@ LiveHTML.widgets.push({
 
   agent_skills_as_lis: function() {
     var skills = This._item.has || ' ';
-    return $w(skills).map(function(x){
-      return "<li>" + x + "</li>";
-    }).join(', ');
+    return "<li>" + $w(skills).join(',</li> <li>') + "</li>";
   },
   
   upfors_as_lis: function() {
     var upfor = This._item.upfor || ' ';
-    return $w(upfor).map(function(x){
-      return "<li>" + x + "</li>";
-    }).join(', ');
+    return "<li>" + $w(upfor).join(',</li> <li>') + "</li>";
   },
   
   answers: function() {

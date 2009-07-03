@@ -21,7 +21,6 @@
 #person_for_dispatch_mode .skills.tags {
   float: right;
   padding-right: 20px;
-  color: #bfbfbf;
 }
 
 #person_for_dispatch_mode .upfor.tags {
@@ -121,6 +120,7 @@ p.deemphasize {
   font-size:14px;
   margin-top:.5em;
   padding:3px 0px;
+  width: 365px;
   border-left:solid 1px #B2B2B2;
   border-top:solid 1px #A5A5A5;
   border-bottom:solid 1px #CCCCCC;
@@ -143,13 +143,15 @@ ul.tags {
 /*  font-weight:bold;*/
   margin:0;
   padding:0;
+  color: #bbb;
 }
 ul.tags li {
   font-weight:normal;
   display:inline;
   list-style-type:none;
   white-space:nowrap;
-  color:#3F3F3F;
+/*  color:#3F3F3F;*/
+  color:#888;
   background:#F2F2F2;
 }
 
@@ -169,6 +171,7 @@ ul.tags li {
 #q-and-a .timestamp {
   color:#BFBFBF;
   font-size:9px;
+  margin-left: 5px;
 }
 .mapwindow .highlight {
   background:#FFFEE4;

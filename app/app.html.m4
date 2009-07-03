@@ -79,6 +79,10 @@
     &uarr;
   </div>
   <div id="map_div"></div>
+  <div id="floaty">
+    <span id="floaty_asterisk">*</span>
+    Click anywhere on the map to add a landmark.
+  </div>
   <div id="youbox" class="lio magic" href="##go_to_self">
     you've been involved in <b fill="self_posx_pts">48</b> positive experiences
     <!-- <b fill="agents_count">0</b> agents are giving you their attention and readiness. -->
@@ -87,7 +91,6 @@
   <div id="console" class="startupmagic">
     <div id="modetray" class="tray">
       <div id="tray_buttons" fill="tool_buttons"></div>
-      <div id="help"></div>
     </div>
 
     <div id="mode_buttons" style="padding-left: 30px" fill="mode_buttons"></div>
