@@ -3,11 +3,12 @@
   font-family: verdana;
   font-weight: bold;
   font-size: 12px;
+  text-shadow:1px 1px 1px #658C4A;
   position: absolute;
   left:0;
   top: 113px;
 
-  border: 2px solid #007300;
+  border: 2px solid #658C4A;
   border-left: none;
   padding: 8.5px 16px;
   padding-left: 33px;
@@ -18,8 +19,8 @@
 
   background-image: -webkit-gradient(
    linear, 0% 0%, 100% 0%,
-   from(rgba(0,128,64,.95)),
-   to(rgba(0,128,64,.85))
+   from(rgba(123,166,94,.95)),
+   to(rgba(123,166,94,.90))
    );
    
   color: white;
