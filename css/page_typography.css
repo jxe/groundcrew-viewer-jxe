@@ -189,3 +189,12 @@ a:hover img.hover_opacity {
 .xpad {
   padding-top: 16px;
 }
+
+.clear {
+  clear:both;
+}
+hr.spacer {
+  color:transparent;
+  background:transparent;
+  border:none;
+}

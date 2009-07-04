@@ -1,14 +1,14 @@
 #floaty {
   top: 0px;
   left: 0px;
-/*  left: -500px;*/
   /*  font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
     font-family: verdana;
     font-weight: bold;
     font-size: 12px;
+    text-shadow:1px 1px 1px #658C4A;
     position: absolute;
 
-    border: 2px solid #007300;
+    border: 2px solid #658C4A;
     border-left: none;
     padding: 8.5px 16px;
     padding-left: 33px;
@@ -18,11 +18,17 @@
 
     -webkit-transition: left 0.2s ease-in-out, opacity 0.2s ease-in-out, top 0.2s ease-in-out;  
 
-    background-image: -webkit-gradient(
+/*    background-image: -webkit-gradient(
      linear, 0% 0%, 100% 0%,
      from(rgba(0,128,64,.95)),
      to(rgba(0,128,64,.85))
      );
+*/
+     background-image: -webkit-gradient(
+      linear, 0% 0%, 100% 0%,
+      from(rgba(123,166,94,.95)),
+      to(rgba(123,166,94,.90))
+      );
 
     color: transparent;
     z-index: 450;
