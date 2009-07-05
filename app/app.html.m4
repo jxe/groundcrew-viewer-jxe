@@ -10,8 +10,8 @@
 	<!--[if lte IE 6]>
 	<script type="text/javascript" src="/javascripts/supersleight-min.js"></script>
 	<![endif]-->
-	<script> login_by_cookie(); </script>
   <script src="data/vstart.js" type="text/javascript"></script>
+  <script> login_by_cookie(); </script>
 </head>
 <body id="viewer" class="loading">
 <div id="unsupported">
@@ -34,8 +34,7 @@
       <div class="dropdown south no_filter no_more">
         <div class="select">
           <ul>
-            <li>Squad 1</li>
-            <li>Squad 2</li>
+            <li>You have no other squads available.</li>
            </ul>
         </div>
         <div class="more">
@@ -54,6 +53,11 @@
     </a> -->
 	</form>
 	<span id="cities_menu_place"></span>
+	<div id="youbox" class="lio magic" href="##go_to_self">
+    You've been involved in <b fill="self_posx_pts">48</b> positive experiences.
+    <!-- <b fill="agents_count">0</b> agents are giving you their attention and readiness. -->
+    <!-- <img reveal="share_palette" src="i/icons/gift23.png" style="height: 18px; position: relative; top:5px; left: 5px" title="free stuff"/> -->
+  </div>
 </div>
 <div id="screen">
   <div id="flexbar_banner">
@@ -96,11 +100,6 @@
   <div id="floaty">
     <span id="floaty_asterisk">*</span>
     Click anywhere on the map to add a landmark.
-  </div>
-  <div id="youbox" class="lio magic" href="##go_to_self">
-    you've been involved in <b fill="self_posx_pts">48</b> positive experiences
-    <!-- <b fill="agents_count">0</b> agents are giving you their attention and readiness. -->
-    <!-- <img reveal="share_palette" src="i/icons/gift23.png" style="height: 18px; position: relative; top:5px; left: 5px" title="free stuff"/> -->
   </div>
   <div id="console" class="startupmagic">
     <div id="modetray" class="tray">
