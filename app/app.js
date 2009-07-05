@@ -16,10 +16,10 @@ Viewer = App = {
     go('q=');
   },
   
-  has_query: function() {
+  query: function() {
     return This.q;
   },
-  
+    
   update: function(changed) {
     if (changed.squad) {
       if (This.squad == 'demo') {
@@ -131,7 +131,7 @@ Viewer = App = {
     Map.establish();
 
     // set up app state
-    CEML.parse($('#idea_bank').html());
+    // CEML.parse($('#idea_bank').html());
     if (window.location.hash) go(window.location.hash.slice(1));
     else go('squad=demo;city=');
     

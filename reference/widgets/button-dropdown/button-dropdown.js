@@ -5,33 +5,10 @@ $(document).ready(function() {
     var theDropdown = theButton.parent().children(".dropdown");
     
     if (theButton.hasClass("idle")) {
-      var pos = theButton.offset();  
-      var width = theButton.outerWidth();
-      var height = theButton.outerHeight();
-      var dropdownHeight = theDropdown.outerHeight();
-      // How far does the dropdown verticaly overlap the button
-      var dropdownVertOffset = 5;
-      // How far does the dropdown horizontaly overlap the button
-      var dropdownHorzOffset = 10;
-      
-      // Determine positioning for north or south dropdowns
-      if (theDropdown.hasClass("south")) {
-        var posTop = (pos.top+height-dropdownVertOffset)+"px";
-      } else if (theDropdown.hasClass("north")) {
-        var posTop = (pos.top-dropdownHeight+dropdownVertOffset)+"px";
-      }
-      var posLeft = (pos.left-dropdownHorzOffset)+"px";
-      
-      // Ensure all other dropdowns are closed
       closeOtherDropdowns(theDropdown);
-      
-      // Switch the button, position the dropdown, then show it
       theButton.removeClass("idle").addClass("selected");
-      // theDropdown.css({"left": posLeft, "top":posTop});
       theDropdown.show();
-
     } else {
-      // Switch the button, then hide the dropdown
       theButton.removeClass("selected").addClass("idle");
       theDropdown.fadeOut("fast");
     }
@@ -45,7 +22,7 @@ $(document).ready(function() {
         $(this).parent().children("button")
           .removeClass("selected")
           .addClass("idle");
-        $(this).fadeOut("fast")
+        $(this).fadeOut("fast");
       }
     });
   }

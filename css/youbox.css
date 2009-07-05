@@ -1,14 +1,20 @@
 #youbox {
   position:absolute; 
-	right: 15px;
-	bottom: 7px;
-	font-size: 11px;
-  z-index: 0;
-  color: #ffff99;
-  text-shadow: #fff 0px 0px 2px;
-  font-family: Verdana;
+	top: 19px;
+	right: 300px;
+  z-index: 400;
   padding: 0px 10px;
-/*  display:none;*/
+  
+  font-family: verdana;
+  font-weight: bold;
+  font-size: 11px;
+/*  text-shadow:1px 1px 1px #658C4A;*/
+  
+  background:#000;
+  color:#ccc;
+  padding:5px 14px 1px 14px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
 }
 
 #youbox a {

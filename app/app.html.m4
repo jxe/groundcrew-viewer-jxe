@@ -10,8 +10,8 @@
 	<!--[if lte IE 6]>
 	<script type="text/javascript" src="/javascripts/supersleight-min.js"></script>
 	<![endif]-->
-	<script> login_by_cookie(); </script>
   <script src="data/vstart.js" type="text/javascript"></script>
+  <script> login_by_cookie(); </script>
 </head>
 <body id="viewer" class="loading">
 <div id="unsupported">
@@ -32,13 +32,9 @@
 	  <div class="button_dropdown">
       <button class="idle">Demo Squad &#9662;</button>
       <div class="dropdown south no_filter no_more">
-        <div class="filter">
-          <input type="text" class="filter" />
-        </div>
         <div class="select">
           <ul>
-            <li>Squad 1</li>
-            <li>Squad 2</li>
+            <li>You have no other squads available.</li>
            </ul>
         </div>
         <div class="more">
@@ -49,14 +45,19 @@
 	  <!-- <a id="squad-nav" reveal="squads_menu #cities_menu_place subm" title="switch squads">
 	         Demo Squad &#9662;
 	      </a> -->
-    <input type="text" name="q" id="search" />
-    <a if="has_query" href="##clear_query">(X)</a>
+    <input type="text" name="q" fill="query value" id="search" />
+    <a if="query" href="##clear_query">(X)</a>
     <!-- <img href="#@" src="i/icons/globe.png" height="15" style="position:relative; top:2px"/> -->
     <!-- <a reveal="cities_menu #cities_menu_place subm" title="switch cities">
       <span fill="city_name"></span> &#9662;
     </a> -->
 	</form>
 	<span id="cities_menu_place"></span>
+	<div id="youbox" class="lio magic" href="##go_to_self">
+    You've been involved in <b fill="self_posx_pts">48</b> positive experiences.
+    <!-- <b fill="agents_count">0</b> agents are giving you their attention and readiness. -->
+    <!-- <img reveal="share_palette" src="i/icons/gift23.png" style="height: 18px; position: relative; top:5px; left: 5px" title="free stuff"/> -->
+  </div>
 </div>
 <div id="screen">
   <div id="flexbar_banner">
@@ -100,11 +101,6 @@
     <span id="floaty_asterisk">*</span>
     Click anywhere on the map to add a landmark.
   </div>
-  <div id="youbox" class="lio magic" href="##go_to_self">
-    you've been involved in <b fill="self_posx_pts">48</b> positive experiences
-    <!-- <b fill="agents_count">0</b> agents are giving you their attention and readiness. -->
-    <!-- <img reveal="share_palette" src="i/icons/gift23.png" style="height: 18px; position: relative; top:5px; left: 5px" title="free stuff"/> -->
-  </div>
   <div id="console" class="startupmagic">
     <div id="modetray" class="tray">
       <div id="tray_buttons" fill="tool_buttons"></div>
@@ -112,17 +108,15 @@
 
     <div id="mode_buttons" style="padding-left: 30px" fill="mode_buttons"></div>
   </div>
-  <div id="objects_nav">
+  <div id="objects_nav" class="magic">
     <!-- start: cities button_dropdown -->
     <div class="button_dropdown">
       <button class="idle">Cities</button>
-      <div class="dropdown north no_filter no_more">
+      <div class="dropdown north no_filter no_more columns_3">
         <div class="filter">
           <input type="text" class="filter" />
         </div>
-        <div class="select">
-          <!-- put ul or dl with selection options here -->
-        </div>
+        <div class="select" fill="cities_dropdown" style="height: 400px"></div>
         <div class="more">
           <a href="">Edit items&hellip;</a>
         </div>
@@ -137,7 +131,7 @@
         <div class="filter">
           <input type="text" class="filter" />
         </div>
-        <div class="select">
+        <div class="select" style="height: 400px">
           <!-- put ul or dl with selection options here -->
         </div>
         <div class="more">
@@ -150,13 +144,11 @@
     <!-- start: landmarks button_dropdown -->
     <div class="button_dropdown">
       <button class="idle">Landmarks</button>
-      <div class="dropdown north no_filter no_more">
+      <div class="dropdown north no_filter no_more columns_3">
         <div class="filter">
           <input type="text" class="filter" />
         </div>
-        <div class="select">
-          <!-- put ul or dl with selection options here -->
-        </div>
+        <div class="select" fill="landmark_dropdown" style="height: 400px"></div>
         <div class="more">
           <a href="">Edit items&hellip;</a>
         </div>
@@ -165,20 +157,19 @@
     <!-- end: landmarks button_dropdown -->
     |
     <!-- start: resources button_dropdown -->
-    <div class="button_dropdown">
+    <!-- <div class="button_dropdown">
       <button id="btn-resources" class="idle">Resources</button>
       <div class="dropdown north no_filter no_more">
         <div class="filter">
           <input type="text" class="filter" />
         </div>
         <div class="select">
-          <!-- put ul or dl with selection options here -->
         </div>
         <div class="more">
           <a href="">Edit items&hellip;</a>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- end: resources button_dropdown -->
   </div>
 </div>
