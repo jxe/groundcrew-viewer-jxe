@@ -100,14 +100,20 @@ a {color:#000080;}
   cursor:pointer;
 /*  clear: both;*/
 }
+.button_dropdown .select dt {
+  overflow:hidden;
+  max-height:40px;
+}
 .button_dropdown .select dd {
   margin:0;
   font-size:9px;
   color:#3F3F3F;
   padding-top:.25em;
+  overflow:hidden;
 }
 .button_dropdown .select dd.img {
   float:left;
+  height:40px;
 }
 .button_dropdown .select dd.img img {
   width:34px;
@@ -268,6 +274,14 @@ a {color:#000080;}
 #objects_nav .button_dropdown .dropdown .select {
   background:#CCCCCC;
 }
+#objects_nav .button_dropdown .dropdown .select a {
+  background:transparent;
+  color:#3F3F3F;
+}
+#objects_nav .button_dropdown .dropdown .select a:hover {
+  background:transparent;
+  color:#fff;
+}
 #objects_nav .button_dropdown .dropdown .select li:hover {
   background:#1B224D;
   color:#fff;
@@ -280,8 +294,17 @@ a {color:#000080;}
   background:#1B224D;
   color:#fff;
 }
+#objects_nav .button_dropdown .dropdown .select dl:hover a {
+  color:#fff;
+}
+#objects_nav .button_dropdown .dropdown .select dl:hover dd {
+  color:#D8D8D8;
+}
 #objects_nav .button_dropdown .dropdown .select dl.hover {
   background:#1B224D;
+  color:#E5E5E5;
+}
+#objects_nav .button_dropdown .dropdown .select dl.hover a {
   color:#fff;
 }
 
