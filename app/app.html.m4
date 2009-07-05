@@ -29,9 +29,26 @@
 	</div>
 	<span id="logo"><strong>Groundcrew</strong></span>
 	<form id="squad_nav_form">
-	  <a id="squad-nav" reveal="squads_menu #cities_menu_place subm" title="switch squads">
-       Demo Squad &#9662;
-    </a>
+	  <div class="button_dropdown">
+      <button class="idle">Demo Squad &#9662;</button>
+      <div class="dropdown south no_filter no_more">
+        <div class="filter">
+          <input type="text" class="filter" />
+        </div>
+        <div class="select">
+          <ul>
+            <li>Squad 1</li>
+            <li>Squad 2</li>
+           </ul>
+        </div>
+        <div class="more">
+          <a href="">Edit items&hellip;</a>
+        </div>
+      </div>
+    </div>
+	  <!-- <a id="squad-nav" reveal="squads_menu #cities_menu_place subm" title="switch squads">
+	         Demo Squad &#9662;
+	      </a> -->
     <input type="text" name="q" id="search" />
     <a if="has_query" href="##clear_query">(X)</a>
     <!-- <img href="#@" src="i/icons/globe.png" height="15" style="position:relative; top:2px"/> -->
