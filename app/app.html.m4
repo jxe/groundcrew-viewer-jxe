@@ -20,14 +20,19 @@
 
 <div id="header" class="magic">
   <div id="header_menubar">
-		<img id="load_spinner" src="i/spinner.gif"/>
+    <img id="load_spinner" src="i/spinner.gif"/>
+    <div id="youbox" class="lio magic" href="##go_to_self">
+      You've been involved in <b fill="self_posx_pts">48</b> positive experiences.
+      <!-- <b fill="agents_count">0</b> agents are giving you their attention and readiness. -->
+      <!-- <img reveal="share_palette" src="i/icons/gift23.png" style="height: 18px; position: relative; top:5px; left: 5px" title="free stuff"/> -->
+    </div>
 		<a class="m_item" reveal="help">HELP</a>
 		<a class="m_item" target="_" href="http://groups.google.com/group/groundcrew-users">discuss</a>
 		<a class="m_item loo" href="/login">log in</a>
 		<a class="m_item lio" href="/settings" id="settings">settings</a>
 		<a class="m_item lio" href="/logout">sign out</a>
 	</div>
-	<span id="logo"><strong>Groundcrew</strong></span>
+	<div id="logo"><img src="i/logo-24pt.gif" /></div>
 	<form id="squad_nav_form">
 	  <div class="button_dropdown">
       <button class="idle">Demo Squad &#9662;</button>
@@ -53,11 +58,6 @@
     </a> -->
 	</form>
 	<span id="cities_menu_place"></span>
-	<div id="youbox" class="lio magic" href="##go_to_self">
-    You've been involved in <b fill="self_posx_pts">48</b> positive experiences.
-    <!-- <b fill="agents_count">0</b> agents are giving you their attention and readiness. -->
-    <!-- <img reveal="share_palette" src="i/icons/gift23.png" style="height: 18px; position: relative; top:5px; left: 5px" title="free stuff"/> -->
-  </div>
 </div>
 <div id="screen">
   <div id="flexbar_banner">

@@ -9,13 +9,11 @@ body {
 */
 
 .m_item {
-  padding: 1px 5px;
-  padding-top: 0px;
+  margin:0;
   text-decoration: none;
   font-size: 11px;
-  margin-left:  3px;
-  margin-right: 3px;
-  color: #fff;
+  color: #aaa;
+  padding: 0px 4px;
 }
 
 a.m_item:hover {

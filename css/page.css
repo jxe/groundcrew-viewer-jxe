@@ -5,11 +5,13 @@ a { text-decoration: none; }
 form {margin:0;padding:0;}
 
 body #load_spinner {
-  visibility: hidden;
+  display:none;
+  padding:0px 3px;
 }
 
 body.refresh #load_spinner {
-  visibility: visible;
+  display:inline;
+  padding:0px 3px;
 }
 
 .hidden, .lio {
@@ -33,7 +35,20 @@ body.logged_out .m_item.loo {
 }
 
 #header_menubar {
-  position:absolute; top:0px; right: 10px; color: #999; font-size: 11px;
+  position:absolute; 
+  top:0px; 
+  right: 3px; 
+  color: #999; 
+  font-size: 11px;
+  background:#141A33;
+  border-bottom:solid 1px #1B224D;
+  border-right:solid 1px #1B224D;
+  color:#E5E5E5;
+  margin:0;
+  padding:5px 1em 8px 1em;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  text-align:center;
 }
 
 #unsupported {
@@ -69,16 +84,10 @@ body.logged_out .m_item.loo {
 
 #logo {
   position: absolute; 
-  top: 4px; left: 30px;
-  padding:0;margin:0; 
-  display: block;
-  color: #fff;
-  font-size: 20px;
-  font-family: Verdana;
-/*  text-shadow: #000 1px 1px 1px;*/
-/*  font-weight: bold;*/
-/*  font-style: italic;*/
-  letter-spacing: .07em;
+  top: 9px;
+  left: 10px;
+  padding:0;
+  margin:0; 
 }
 
 a#logo:hover {
