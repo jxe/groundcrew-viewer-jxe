@@ -143,6 +143,12 @@ Viewer = App = {
     go('@' + This.user.tag);
   },
   
+  radial_invite_form_submitted: function(data, state) {
+    Operation.invite(This.item, data.title, data.assignment, function(operation){
+      go('mode=Dispatch;item=' + operation.id);
+    });
+  },
+  
   setmode: function(mode) {
     if (This.mode != mode) return go('mode=' + mode);
     else {

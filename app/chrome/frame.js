@@ -12,17 +12,18 @@ Frame = {
 
     $(document).keypress(function(e){
       if ($(e.target).is('input,textarea')) return;
-      if (e.which == 27) Map.Gmap.closeInfoWindow();
       var char = String.fromCharCode(e.which);
+      if (char == 'x') go('@' + This.city); //Map.Gmap.closeInfoWindow();
       if (char == 'p') return Map.Gmap.setMapType(G_SATELLITE_MAP);
       if (char == 'm') return Map.Gmap.setMapType(G_NORMAL_MAP);
       if (char == 'h') return Map.Gmap.setMapType(G_HYBRID_MAP);
-      if (char == 's') return go('mode=sketch');
-      if (char == 'c') return go('mode=connect');
-      if (char == 'd') return go('mode=dispatch');
+      if (char == 's') return go('mode=Sketch');
+      if (char == 'c') return go('mode=Connect');
+      if (char == 'd') return go('mode=Dispatch');
       if (char == 'w') return go('item=');
       if (char == 'g') return go('#go_where');
       if (char == 'f') return $('#search').focus() && false;
+      if (char == 'y') return $('#floaty').toggleClass('appeared');
     });
 
   },

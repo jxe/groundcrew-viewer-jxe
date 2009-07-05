@@ -12,15 +12,15 @@
         This agent is <b class="highlight" fill="item_status"></b>
         <!-- Squad Info: and on <b><span fill="item_squad"></span></b>. -->
       </div>
-      <div if="is_latched">
-        activity: <b class="highlight" fill="item_current_assignment"></b>
+      <div class="xspace" if="is_latched">
+        Currently engaged with: <b class="highlight" fill="item_current_assignment"></b>
       </div>
       <p id="problem" if="has_problem">
         <span class="heading">has a problem:</span> <b fill="problem" class="highlight">I can't feel my feet!</b>
       </p>
       
-      <form id="make_it_happen_form">
-        <input if="agent_assignable" name="assign"
+      <form id="make_it_happen_form" if="agent_assignable">
+        <input name="assign"
           class="text"
           type="text"
           fill="agent_assign_prompt hint" 
@@ -29,14 +29,16 @@
             Send<strong>&rarr;</strong>
           </button>
         <!-- no white space between the above <input> and <button> -->
+
       </form>
-      
-      <div class="grayish right" style="padding-right:20px">
+
+      <div if="upfors_as_lis_and_agent_assignable" class="grayish right" style="padding-right:20px">
         Give them:
         <ul fill="upfors_as_lis" class="tags upfor"></ul>
       </div>
       
-      <div id="q-and-a">
+      
+      <div if="answers" id="q-and-a">
         <h6>What They've Said</h6>
         <div fill="answers"></div>
       </div>

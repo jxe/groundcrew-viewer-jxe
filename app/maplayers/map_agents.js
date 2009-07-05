@@ -11,8 +11,6 @@ Map.layers.agents_f = function(){
     GEvent.addListener( marker, "infowindowclose", function() { 
       if (Map.open_in_progress) return;
       if (This.item != agent.id) return;
-      return;
-      alert('closing it');
       go('@' + This.city);
     });
     GEvent.addListener( marker, "dblclick", function() {
