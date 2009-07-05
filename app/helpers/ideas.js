@@ -11,12 +11,7 @@ LiveHTML.widgets.push({
     var ops = Ops.here();
     return ops.length != 0;
   },
-  
-  live_ops: function(state) {
-    var ops = Ops.here();
-    return Tiles.op_tile.tt(ops);
-  },
-  
+    
   rssfeed: function(state) {
     alert('rss feeds do not work in demo mode.');
   },

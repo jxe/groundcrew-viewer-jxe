@@ -126,7 +126,7 @@ p.deemphasize {
   border-bottom:solid 1px #CCCCCC;
   border-right:solid 1px #CCCCCC;
 }
-#make_it_happen_form button.submit {
+.mapwindow button {
   font-size:14px;
   padding:3px 5px;
   margin:0 0 0 2px;

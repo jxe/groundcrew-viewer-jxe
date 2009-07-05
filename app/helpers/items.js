@@ -69,6 +69,10 @@ LiveHTML.widgets.push({
     return "<li>" + $w(upfor).join(',</li> <li>') + "</li>";
   },
   
+  upfors_as_lis_and_agent_assignable: function(){
+    return This._item.upfor && This._item.availability_status != 'inaccessible';
+  },
+  
   answers: function() {
     if (!This._item.answers) return '';
     var answers = This._item.answers.split(/;; ?/);

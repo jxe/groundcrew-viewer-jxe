@@ -91,10 +91,8 @@
     </div>
   </div>
   <div id="group_actions" class="divcenter" style="display:none">
-    &uarr; 
-    <a href="#//ops/:city">DEPLOY SELECTED AGENTS</a>
+    <a href="#mode=Dispatch;tool=interact_selected">DEPLOY SELECTED AGENTS</a>
     (<a href="##clear_selection">x</a>) 
-    &uarr;
   </div>
   <div id="map_div"></div>
   <div id="floaty">
@@ -131,9 +129,7 @@
         <div class="filter">
           <input type="text" class="filter" />
         </div>
-        <div class="select" style="height: 400px">
-          <!-- put ul or dl with selection options here -->
-        </div>
+        <div class="select" style="height: 400px" fill="live_ops"> </div>
         <div class="more">
           <a href="">Edit items&hellip;</a>
         </div>
