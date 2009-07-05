@@ -32,9 +32,6 @@
 	  <div class="button_dropdown">
       <button class="idle">Demo Squad &#9662;</button>
       <div class="dropdown south no_filter no_more">
-        <div class="filter">
-          <input type="text" class="filter" />
-        </div>
         <div class="select">
           <ul>
             <li>Squad 1</li>
@@ -112,7 +109,7 @@
 
     <div id="mode_buttons" style="padding-left: 30px" fill="mode_buttons"></div>
   </div>
-  <div id="objects_nav">
+  <div id="objects_nav" class="magic">
     <!-- start: cities button_dropdown -->
     <div class="button_dropdown">
       <button class="idle">Cities</button>
@@ -120,9 +117,7 @@
         <div class="filter">
           <input type="text" class="filter" />
         </div>
-        <div class="select">
-          <!-- put ul or dl with selection options here -->
-        </div>
+        <div class="select" fill="cities_dropdown"></div>
         <div class="more">
           <a href="">Edit items&hellip;</a>
         </div>
@@ -165,20 +160,19 @@
     <!-- end: landmarks button_dropdown -->
     |
     <!-- start: resources button_dropdown -->
-    <div class="button_dropdown">
+    <!-- <div class="button_dropdown">
       <button id="btn-resources" class="idle">Resources</button>
       <div class="dropdown north no_filter no_more">
         <div class="filter">
           <input type="text" class="filter" />
         </div>
         <div class="select">
-          <!-- put ul or dl with selection options here -->
         </div>
         <div class="more">
           <a href="">Edit items&hellip;</a>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- end: resources button_dropdown -->
   </div>
 </div>

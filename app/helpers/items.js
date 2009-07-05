@@ -59,7 +59,9 @@ LiveHTML.widgets.push({
 
   agent_skills_as_lis: function() {
     var skills = This._item.has || ' ';
-    return "<li>" + $w(skills).join(',</li> <li>') + "</li>";
+    return "<li>" + $w(skills).map(function(x){
+      return "<a href='#q="+x+"'>"+x+"</a>";
+    }).join(',</li> <li>') + "</li>";
   },
   
   upfors_as_lis: function() {
