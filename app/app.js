@@ -16,10 +16,10 @@ Viewer = App = {
     go('q=');
   },
   
-  has_query: function() {
+  query: function() {
     return This.q;
   },
-  
+    
   update: function(changed) {
     if (changed.squad) {
       if (This.squad == 'demo') {

@@ -46,8 +46,8 @@
 	  <!-- <a id="squad-nav" reveal="squads_menu #cities_menu_place subm" title="switch squads">
 	         Demo Squad &#9662;
 	      </a> -->
-    <input type="text" name="q" id="search" />
-    <a if="has_query" href="##clear_query">(X)</a>
+    <input type="text" name="q" fill="query value" id="search" />
+    <a if="query" href="##clear_query">(X)</a>
     <!-- <img href="#@" src="i/icons/globe.png" height="15" style="position:relative; top:2px"/> -->
     <!-- <a reveal="cities_menu #cities_menu_place subm" title="switch cities">
       <span fill="city_name"></span> &#9662;
@@ -113,11 +113,11 @@
     <!-- start: cities button_dropdown -->
     <div class="button_dropdown">
       <button class="idle">Cities</button>
-      <div class="dropdown north no_filter no_more">
+      <div class="dropdown north no_filter no_more columns_3">
         <div class="filter">
           <input type="text" class="filter" />
         </div>
-        <div class="select" fill="cities_dropdown"></div>
+        <div class="select" fill="cities_dropdown" style="height: 400px"></div>
         <div class="more">
           <a href="">Edit items&hellip;</a>
         </div>
@@ -132,7 +132,7 @@
         <div class="filter">
           <input type="text" class="filter" />
         </div>
-        <div class="select">
+        <div class="select" style="height: 400px">
           <!-- put ul or dl with selection options here -->
         </div>
         <div class="more">
@@ -145,13 +145,11 @@
     <!-- start: landmarks button_dropdown -->
     <div class="button_dropdown">
       <button class="idle">Landmarks</button>
-      <div class="dropdown north no_filter no_more">
+      <div class="dropdown north no_filter no_more columns_3">
         <div class="filter">
           <input type="text" class="filter" />
         </div>
-        <div class="select">
-          <!-- put ul or dl with selection options here -->
-        </div>
+        <div class="select" fill="landmark_dropdown" style="height: 400px"></div>
         <div class="more">
           <a href="">Edit items&hellip;</a>
         </div>
