@@ -1,9 +1,25 @@
-<div class="show_answers_tool hidden_unless_active hud" style="top: 170px; min-height: 300px">
+<div class="show_answers_tool hidden_unless_active hud" style="top: 170px; min-height: 300px; width: 600px">
   <h1>Recent Questions</h1>
-  <h2>&ldquo;What do you believe in?&rdquo; &#9662;</h2>
+  <h2>&ldquo;<span fill='current_question'></span>&rdquo; 
+  
+    <div class="button_dropdown">
+      <button class="idle">&#x2193;</button>
+      <div class="dropdown south">
+        <div class="select">
+          <ul fill="questions_as_lis"></ul>
+        </div>
+        <div class="more">
+          <a href="#tool=ask_a_question">Ask a new question&hellip;</a>
+        </div>
+      </div>
+    </div>
+  
+    
+  </h2>
+  <div class="spacebelow scrolling_section" fill="answers_for_question"></div>
   <div class="rbuttons">
-    <a href="##ask_again">ask again</a>
-    <a href="#tool=ask_a_question">ask a new question</a>
+    <a class="btn" href="##ask_again">ask again</a>
+    <a class="btn" href="#tool=ask_a_question">ask a new question</a>
   </div>
 </div>
 

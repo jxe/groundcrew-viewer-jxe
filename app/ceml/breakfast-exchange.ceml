@@ -1,0 +1,19 @@
+"a breakfast exchange"
+takes 45m +verified
+involves 2 agents
+
+tell agents {
+  Okay, you need to make breakfast for a stranger and hide it
+  somewhere public in town.  Do it fast, cause in 30m I will ask
+  you where you hid it and tell you where to find yours.
+}
+
+after 30m {
+  link agent ==> agent {
+    ask location: Where did you hide your breakfast?
+  }
+  
+  tell agents {
+    Go find your breakfast at |location|.  Eat it in peace.  Thanks for playing!
+  }
+}

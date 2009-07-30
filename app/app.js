@@ -96,6 +96,7 @@ Viewer = App = {
     if (changed.item || changed.tool || changed.mode) App.refresh_mapwindow();
     
     $('.magic').app_paint();
+    $('.hud:visible').app_paint();
 
   },
   

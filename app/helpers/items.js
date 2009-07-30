@@ -73,22 +73,48 @@ LiveHTML.widgets.push({
     return This._item.upfor && This._item.availability_status != 'inaccessible';
   },
   
+  // answers: function() {
+  //   if (!This._item.answers) return '';
+  //   var answers = This._item.answers.split(/;; ?/);
+  //   return answers.map(function(x){
+  //     var parts = x.split(' ');
+  //     if (!parts[1]) return '';
+  //     var data = parts.shift().split('-');
+  //     var q = Questions[data[0]];
+  //     var answer = parts.join(' ');
+  //     var tstamp = $time(data[1]);
+  //     return '<h6 class="question">Q. '+q+'</h6><div class="answer">A. &ldquo;'+answer+'&rdquo;<span class="timestamp">'+tstamp+'</span></div>';
+  //   }).join('');
+  // },
+  
   answers: function() {
-    if (!This._item.answers) return '';
-    var answers = This._item.answers.split(/;; ?/);
-    return answers.map(function(x){
-      var parts = x.split(' ');
-      if (!parts[1]) return '';
-      var data = parts.shift().split('-');
-      var q = Questions[data[0]];
-      var answer = parts.join(' ');
-      var tstamp = $time(data[1]);
-      return '<h6 class="question">Q. '+q+'</h6><div class="answer">A. &ldquo;'+answer+'&rdquo;<span class="timestamp">'+tstamp+'</span></div>';
+    var strings = [];
+    $.each(This._item.answers_h, function(k, v){
+      var q = Questions[k];
+      var answer = v[0];
+      var tstamp = $time(v[1]);
+      strings.push('<h6 class="question">Q. '+q+'</h6><div class="answer">A. &ldquo;'+answer+'&rdquo;<span class="timestamp">'+tstamp+'</span></div>');
+    });
+    return strings.join('');
+  },
+  
+  current_question: function() {
+    var q = Q.current();
+    if (q) return Questions[q];
+    else return "no current question";
+  },
+  
+  questions_as_lis: function() {
+    var qs = $keys(Answers.here());
+    return qs.map(function(x){
+      var q = Questions[x];
+      return "<li><a href='#tool=show_answers;question="+x+"'>" + q + "</a></li>";
     }).join('');
   },
   
-  
-  
+  answers_for_question: function() {
+    return QuestionAnswers.t.tt(Answers.for_q_here(Q.current()));
+  },
   
   // masses of agents
   

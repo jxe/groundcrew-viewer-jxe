@@ -50,9 +50,10 @@ body.zoomed_out .local_only {display:none;}
 
 .rbuttons {
   float: right;
+  margin-top: 1em;
 }
 
-.rbuttons a, #tray_buttons a {
+#tray_buttons a {
   text-decoration:underline;
   color: black;
   padding:3px 0px 0px 0px;
@@ -65,15 +66,16 @@ body.zoomed_out .local_only {display:none;}
   border-bottom:dotted 1px;
 }
 
-.hud .rbuttons a {
+
+/*.hud .rbuttons a {
   color: #E5E5E5;
 }
-
-.hud a {
+*/
+/*.hud a {
   color: #9595df;
   font-weight: bold;
 }
-
+*/
 .rbuttons a img, #tray_buttons a img {
   height: 12px;
   position: relative;

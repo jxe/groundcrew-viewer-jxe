@@ -2,13 +2,13 @@ Tiles = {
   
   agent_tile: '\
   <div class="tile" href="#@#{id}">\
-    <img src="http://groundcrew.us#{thumb_url}"/>\
+    <img src="#{thumb_url}"/>\
     #{title}<b>has</b>#{time_avail}\
   </div>',
 
   agent_upfor_tile: '\
   <div class="tile" href="#@#{id}">\
-    <img src="http://groundcrew.us#{thumb_url}"/>\
+    <img src="#{thumb_url}"/>\
     <b>up for</b>#{wants}<b>has</b>#{time_avail}\
   </div>',
 

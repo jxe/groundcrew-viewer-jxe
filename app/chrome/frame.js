@@ -1,5 +1,5 @@
 Frame = {
-  agent_thumb: '<div class="athumb agent_photo #{id}"><img class="th" src="http://groundcrew.us/#{thumb_url}" title="#{title}" href="#@#{id}"/><img src="i/timebadges/5m.png" class="badge"/></div>',
+  agent_thumb: '<div class="athumb agent_photo #{id}"><img class="th" src="#{thumb_url}" title="#{title}" href="#@#{id}"/><img src="i/timebadges/5m.png" class="badge"/></div>',
   
   init: function() {
     Frame.resize();
@@ -12,18 +12,19 @@ Frame = {
 
     $(document).keypress(function(e){
       if ($(e.target).is('input,textarea')) return;
-      var char = String.fromCharCode(e.which);
-      if (char == 'x') go('@' + This.city); //Map.Gmap.closeInfoWindow();
-      if (char == 'p') return Map.Gmap.setMapType(G_SATELLITE_MAP);
-      if (char == 'm') return Map.Gmap.setMapType(G_NORMAL_MAP);
-      if (char == 'h') return Map.Gmap.setMapType(G_HYBRID_MAP);
-      if (char == 's') return go('mode=Sketch');
-      if (char == 'c') return go('mode=Connect');
-      if (char == 'd') return go('mode=Dispatch');
-      if (char == 'w') return go('item=');
-      if (char == 'g') return go('#go_where');
-      if (char == 'f') return $('#search').focus() && false;
-      if (char == 'y') return $('#floaty').toggleClass('appeared');
+      var ch = String.fromCharCode(e.which);
+      if (ch == 'x') go('@' + This.city); //Map.Gmap.closeInfoWindow();
+      if (ch == 'p') return Map.Gmap.setMapType(G_SATELLITE_MAP);
+      if (ch == 'm') return Map.Gmap.setMapType(G_NORMAL_MAP);
+      if (ch == 'h') return Map.Gmap.setMapType(G_HYBRID_MAP);
+      if (ch == 't') return Map.Gmap.setMapType(G_PHYSICAL_MAP);
+      if (ch == 's') return go('mode=Sketch');
+      if (ch == 'c') return go('mode=Connect');
+      if (ch == 'd') return go('mode=Dispatch');
+      if (ch == 'w') return go('item=');
+      if (ch == 'g') return go('#go_where');
+      if (ch == 'f') return $('#search').focus() && false;
+      if (ch == 'y') return $('#floaty').toggleClass('appeared');
     });
 
   },
