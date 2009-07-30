@@ -30,7 +30,7 @@
   text-shadow: #FF4a00 0px 0px 4px;
 }
 
-.btn { 
+/*.btn { 
   display: block;
   margin-top: 6px;
   color: #FF7D09;
@@ -38,17 +38,17 @@
   text-align: right;
   clear: both;
 }
-
-.btn:hover {
+*/
+/*.btn:hover {
   color: #fff;
   text-shadow: #fff 0px 0px 8px;
 }
-
-#map_div .btn:hover {
+*/
+/*#map_div .btn:hover {
   color: #000;
   text-shadow: #000 0px 0px 8px;
 }
-
+*/
 
 img.closebox {
   position: absolute;

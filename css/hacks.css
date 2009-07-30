@@ -12,37 +12,9 @@ span.gmnoprint a img {
   top: auto !important;
   bottom: 25% !important;
 }
-            
-.hidden, .lio {
-  display: none;
-}
-
-body.logged_in .m_item.lio {
-  display: inline;
-}
-
-body.logged_in .lio {
-  display: block;
-}
-
-.loo {
-  display: none;
-}
-
-body.logged_out .m_item.loo {
-  display: inline;
-}
 
 body.no_city .city_level, body.loading .city_level {
   display: none;
-}
-
-body #load_spinner {
-  visibility: hidden;
-}
-
-body.refresh #load_spinner {
-  visibility: visible;
 }
 
 .debug_this {

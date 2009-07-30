@@ -1,47 +1,39 @@
+Map.layers.landmarks_f = function(){ 
+  var lms = Landmarks.in_city(This.city.resource_id());
+  if (!lms) return [];
+  return lms.map(function(){
+    return MapLandmarks.marker_for_lm(this);
+  });
+};
+
+Map.layers.wishes_f = function(){ return []; };
+
 MapLandmarks = {
   
   map_init: function(map) {
-    var mgr = MapLandmarks.mgr = new MarkerManager(map, {maxZoom: 19});
     GEvent.addListener(map, "moveend", function() {
+      if (!This.map_layers.contains('landmarks')) return;
       var bounds = map.getBounds();
-      var zoom = map.getBoundsZoomLevel(bounds);
-      if (zoom <= 9) return MapLandmarks.off();
-      else MapLandmarks.fetch_landmarks_in_bounds(bounds);
+      // var zoom = map.getBoundsZoomLevel(bounds);
+      // if (zoom <= 9) return MapLandmarks.off();
+      MapLandmarks.fetch_landmarks_in_bounds(bounds);
     });
     GEvent.trigger(map, "moveend");
   },
-    
+
   fetch_landmarks_in_bounds: function(bounds) {
+    // alert('fetchifying');
     var southWest = bounds.getSouthWest();
     var northEast = bounds.getNorthEast();
     $.getJSON("http://www.panoramio.com/map/get_panoramas.php?callback=?", {
       order: "popularity",  set: "public",  from: "0",  to: "20",  size: "small",
       maxy: northEast.lat(),  miny: southWest.lat(),  maxx: northEast.lng(),  minx: southWest.lng()
     }, function(data){
-      $.each(data.photos, function(){
-        if (Landmarks.id("p" + this.photo_id)) return;
-        var x = this;
-        var lm = MapLandmarks.lm_from_pano(x);
-        var marker = MapLandmarks.marker_for_lm(lm);
-        MapLandmarks.mgr.addMarker(marker, 0);
-        MapLandmarks.mgr.addMarker(marker, Map.Gmap.getZoom());
-      });
+      Map.add_to_layer('landmarks', data.photos.map(function(row){
+        if (Landmarks.id("p" + row.photo_id)) return;
+        return MapLandmarks.marker_for_lm(MapLandmarks.lm_from_pano(row));
+      }).compact());
     });
-  },
-  
-  city_changed: function(city) {
-    if (!city || !Map.Gmap) return;
-    var lms = Landmarks.in_city(city.resource_id());
-    if (!lms) return;
-    $.each(lms, function(){
-      var marker = MapLandmarks.marker_for_lm(this);
-      MapLandmarks.mgr.addMarker(marker, 0);
-      MapLandmarks.mgr.addMarker(marker, Map.Gmap.getZoom());
-    });
-  },
-  
-  off: function() {
-    MapLandmarks.mgr.clearMarkers();
   },
   
   lm_from_pano: function(x) {
@@ -57,11 +49,11 @@ MapLandmarks = {
   
   marker_for_lm: function(lm) {
     var marker = new GMarker(new GLatLng(lm.lat, lm.lng), {icon: MapIcons.for_landmark(lm), title: lm.title});
-    GEvent.addListener(marker, "click", function(){ Viewer.open(lm.id); });
+    GEvent.addListener(marker, "click", function(){ go("@" + lm.id); });
     lm.map_marker = marker;
     return marker;
   }
   
-}
+};
 
-components.push(MapLandmarks);
+LiveHTML.widgets.push(MapLandmarks);

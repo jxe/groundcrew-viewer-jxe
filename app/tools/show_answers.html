@@ -1,0 +1,56 @@
+<div class="show_answers_tool hidden_unless_active hud" style="top: 170px; min-height: 300px; width: 600px">
+  <h1>Recent Questions</h1>
+  <h2>&ldquo;<span fill='current_question'></span>&rdquo; 
+  
+    <div class="button_dropdown">
+      <button class="idle">&#x2193;</button>
+      <div class="dropdown south">
+        <div class="select">
+          <ul fill="questions_as_lis"></ul>
+        </div>
+        <div class="more">
+          <a href="#tool=ask_a_question">Ask a new question&hellip;</a>
+        </div>
+      </div>
+    </div>
+  
+    
+  </h2>
+  <div class="spacebelow scrolling_section" fill="answers_for_question"></div>
+  <div class="rbuttons">
+    <a class="btn" href="##ask_again">ask again</a>
+    <a class="btn" href="#tool=ask_a_question">ask a new question</a>
+  </div>
+</div>
+
+
+<div class="ask_a_question_tool hidden_unless_active hud" style="top: 170px; min-height: 300px">
+  <h1>Ask a Question</h1>
+  <h2>To: all available agents, <b fill="city_name"></b></h2>
+  <input type="text" class="big" style="width: 100%">
+  <div class="rbuttons clear">
+    <a href="##ask_it">ask</a>
+    <a href="##back">back</a>
+  </div>
+</div>
+
+
+<div class="view_events_tool hidden_unless_active hud" style="top: 170px; min-height: 300px">
+  <h2>Recent Events</h2>
+  <div fill="recent_events"></div>
+</div>
+
+
+<div class="chat_tool hidden_unless_active palette tblack" id="chat_palette" style="bottom:75px">
+  <form id="chat_form">
+    <input type="text" size="47" name="msg" hint="type here to chat with others"/>
+    <img src="i/arrows/up.png" style="top: 0px"/>
+    <img src="i/arrows/down.png" style="bottom:0px"/>
+  </form>
+  <ul fill="latest_chats"></ul>
+</div>
+
+<div class="add_action_idea_tool hidden_unless_active local_only hud">
+</div>
+
+

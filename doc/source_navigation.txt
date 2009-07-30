@@ -288,7 +288,7 @@ THE FOLLOWING WILL BECOME API DOCS AND BE MERGED INTO THE SOURCE AS JSDOC.
         takes a tag as argument.
         opens the viewer at the given tag.
         returns nothing or something that is derived from several possible
-        different states within Viewer.go and LiveHTML.dispatch.
+        different states within Viewer.go and dispatch().
       # back:
         makes the viewer go back to the previous location.
       # go:
@@ -461,7 +461,7 @@ THE FOLLOWING WILL BECOME API DOCS AND BE MERGED INTO THE SOURCE AS JSDOC.
 
     The viewer is organized into multiple modes to be found in /app/modes.
     apps provide their services and link to each other using an internal URL
-    structure. For example, a command like Viewer.go('/share/add') will run
+    structure. For example, a command like go('/share/add') will run
     some code in /app/modes/share/share.js which will open a window to
     specify a resource you want to share.
     You can also call functionality directly in the browser by using

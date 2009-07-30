@@ -1,32 +1,46 @@
 Frame = {
-  flexbar_size: 0,
+  agent_thumb: '<div class="athumb agent_photo #{id}"><img class="th" src="#{thumb_url}" title="#{title}" href="#@#{id}"/><img src="i/timebadges/5m.png" class="badge"/></div>',
   
-  agent_thumb: '<div class="athumb agent_photo #{id}"><img class="th" src="http://groundcrew.us/#{thumb_url}" title="#{title}" onclick="Viewer.open(\'#{id}\');"/><img src="i/timebadges/5m.png" class="badge"/></div>',
-  
-  scroll_flexbar: function(pxs) {
-    // unimplemented
+  init: function() {
+    Frame.resize();
+    // setInterval(function(){ $('.from_now').update_times(); }, 20000);
+    $(window).resize(function(){
+      Frame.resize();
+      $('.divcenter').center();
+    });
+    $('.startupmagic').app_paint();
+
+    $(document).keypress(function(e){
+      if ($(e.target).is('input,textarea')) return;
+      var ch = String.fromCharCode(e.which);
+      if (ch == 'x') go('@' + This.city); //Map.Gmap.closeInfoWindow();
+      if (ch == 'p') return Map.Gmap.setMapType(G_SATELLITE_MAP);
+      if (ch == 'm') return Map.Gmap.setMapType(G_NORMAL_MAP);
+      if (ch == 'h') return Map.Gmap.setMapType(G_HYBRID_MAP);
+      if (ch == 't') return Map.Gmap.setMapType(G_PHYSICAL_MAP);
+      if (ch == 's') return go('mode=Sketch');
+      if (ch == 'c') return go('mode=Connect');
+      if (ch == 'd') return go('mode=Dispatch');
+      if (ch == 'w') return go('item=');
+      if (ch == 'g') return go('#go_where');
+      if (ch == 'f') return $('#search').focus() && false;
+      if (ch == 'y') return $('#floaty').toggleClass('appeared');
+    });
+
   },
   
-  set_flexbar_size: function(size) {
-    if (size) {
-      $('body').removeClass('flexbar' + Frame.flexbar_size).addClass('flexbar' + size);
-      Frame.flexbar_size = size;
-    } else {
-      size = Frame.flexbar_size;
-    }
-    var topbar_height = 63;
+  // NOTE: this function doesn't use jquery cause we like our resize FAST
+  resize: function() {
     var page_height = window.innerHeight || window.document.body.clientHeight;
-    var flexbar_height = (size == 0) ? 24 : 77;
-    // var flexbar_height = $('#flexbar').height();
-    var map_height = page_height - (topbar_height + flexbar_height);
-    $('#map_div').height(map_height);
-    if (Map.Gmap) Map.Gmap.checkResize();
+    var junk = 59;
+    junk += document.getElementById('modetray').offsetHeight;
+    junk += document.getElementById('flexbar_banner').offsetHeight;
+    
+    // make the adjustment
+    $('#map_div').height(page_height - junk);
+    Map.Gmap && Map.Gmap.checkResize();
   },
-  
-  set_flexbar_content: function(content) {
-    // unimplemented
-  },
-  
+    
   populate_flexbar_agents: function(agents) {
     if (!agents) return;
     var groups = agents.group_by('availability_status');
@@ -36,7 +50,7 @@ Frame = {
       $('#' + this + '_agents').show();
       $('#' + this + '_agent_thumbs').html(Frame.agent_thumb.tt(groups[this]));
     });
-    $('#flexbar').scrollLeft(0);
+    $('#flexbar').scrollLeft(0).app_paint();
   }
   
 };

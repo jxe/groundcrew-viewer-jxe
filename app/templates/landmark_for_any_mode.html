@@ -1,0 +1,69 @@
+<div id="landmark_for_any_mode" class="mapwindow">
+  <div class="group">
+    <img style="height: 100px; width: 100px; float: left" 
+      class="niw_thumb" 
+      fill="item_thumb_url src" />
+    
+    <div style="float:left; max-width: 450px">
+      <h2 fill="item_title"></h2>
+      
+      <div class="grayish">
+        This is a landmark.  <img src="i/icons/edit.png" href="#tool=edit" width="12" height="12" alt="Edit this"/>
+      </div>
+
+      <form id="radial_invite_form">
+        <fieldset style="margin-top: 15px">
+          <legend><b>Start something here</b></legend>    
+          <!-- <p class="deemphasize">Agents will receive two text messages: first, an invitation, and then the instructions should they accept.</p> -->
+          
+          <p>
+            Invite agents within<br/>
+          <select>
+            <option>1 block &mdash; 3 agents</option>
+            <option>3 blocks &mdash; 7 agents</option>
+            <option>1/2 mile &mdash; 13 agents</option>
+            <option selected>1 mile &mdash; 26 agents</option>
+            <option>2 miles &mdash; 28 agents</option>
+          </select><br/>
+          <br/>
+          
+          <table><tr><td>
+          for <input type="text" name="title"/> 
+          </td><td>
+          <div class="button_dropdown">
+            <button type="button" class="idle">&#x2193;</button>
+            <div class="dropdown south">
+              <div class="select">
+                <dl>
+                  <dt>a citizen investigation in teams</dt>
+                </dl>
+                <dl>
+                  <dt>a street cleanup</dt>
+                </dl>
+                <dl>
+                  <dt>a potluck in the park</dt>
+                </dl>
+                <dl>
+                  <dt>a brainstorm about municipal issues</dt>
+                </dl>
+              </div>
+              <div class="more">
+                <a href="">Create a new activity template&hellip;</a>
+              </div>
+            </div>
+          </div>
+          </td></tr></table>
+          
+          <br/>
+          <br/>
+          instructions:<br/>
+          <textarea></textarea><br/>
+
+          <button type="submit" class="submit right"> Send<strong>&rarr;</strong> </button>          
+          </p>
+        </fieldset>
+      </form>
+
+    </div>
+  </div>
+</div>

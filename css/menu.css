@@ -4,26 +4,29 @@
 
 div.menu {
 	position: absolute;
-	border: solid thin #999;
-	background: white;
-	z-index: 300;
+	background: rgba(18,18,18,.99);
+	z-index: 400;
 	font-size: 12px;
-	-moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
+	-moz-border-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  padding:1em 1em 2em 1em;
+  border:solid 2px #0C0C0C;
+  border-top:none;
 }
 
-div.menu > div {
+div.menu div.mitem {
 	display: block;
 	color: black;
 	padding: 5px;
 }
 
-div.menu > div:hover, div.menu > div.pick {
-	background: #555;
+div.menu div.mitem:hover, div.menu div.mitem.pick {
+	background: #999;
 	color: white;
 }
 
-div.menu > div.trigger {
+div.menu div.mitem.trigger {
 	background: #eee;
 	color: black;
 }
@@ -38,13 +41,11 @@ div.menu > div.trigger {
 /* = little header = */
 /* ================= */
 
-.lilheader {
+div.menu h4 {
   margin: 0;
-	padding: 5px;
 	padding-top: 8px;
 	padding-bottom: 2px;
-	color: #777;
-	font-variant: small-caps;
+	color: #7F7F7F;
 }
 
 div.menu hr {
