@@ -1,0 +1,6 @@
+*~
+psd
+*.psd
+.DS_Store
+.git
+unused

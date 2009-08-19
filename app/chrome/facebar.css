@@ -1,0 +1,121 @@
+#group_actions {
+  background: yellow;
+  color: black;
+  position: absolute;
+  top: 95px;
+  padding: 4px 15px;
+  font-weight: bold;
+  font-size: 14px;
+  z-index: 450;
+  -webkit-border-bottom-right-radius: 10px;
+  -webkit-border-bottom-left-radius:  10px;
+  -webkit-box-shadow: 3px 3px 7px #0C0C0C;
+}
+
+#flexbar #agents { 
+   width: 40000px; 
+   background-color:#7A9FBF;
+}
+
+#flexbar #agents > div {
+  float: left; display: none;
+}
+
+#flexbar #agents > div > div {
+  height: 73px;
+}
+
+#flexbar #agents h2 {
+  margin: 0px 3px 0px 0px;
+  font-family: helvetica, arial;
+  font-size: 12px;
+  font-weight:normal;
+  -webkit-border-bottom-right-radius: 8px;
+  padding: 3px 4px 1px 4px;
+  color: #191919;
+  font-weight:bold;
+  
+}
+
+#flexbar #agents .athumb img.th {
+  width:58px;
+  height:58px;
+  opacity:.8;
+  border-left:solid 1px #212121;
+  border-bottom:solid 1px #2B2B2B;
+  border-right:solid 1px #2B2B2B;
+}
+#flexbar #agents .athumb img.th:hover {
+   opacity:1;
+}
+
+#flexbar #agents .athumb img.badge {
+  position: absolute;
+  top: 3px;
+  right: 2px;
+  z-index: 40;
+  display: none;
+}
+
+#flexbar #agents .athumb:hover img.badge {
+  display: block;
+}
+
+#flexbar #agents .athumb { 
+  margin-right: 3px; 
+  overflow: hidden;
+  float: left;
+  position: relative;
+  padding:4px;
+  padding-top:6px;
+  text-align:center;
+  background:#262626;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%, 
+    from(transparent), 
+    to(#2D2D2D));
+  cursor:pointer;
+}
+
+#flexbar #agents .athumb.selected img.th {
+  opacity: 1;
+  -moz-opacity: 0.9;
+  filter:alpha(opacity=90);
+}
+
+
+#flexbar #ready_agents h2 {
+  background: #E56B0B;
+}
+#flexbar #neglected_agents h2 {
+  background: #B20000;
+}
+#flexbar #available_agents h2 { 
+  background: #A8BFBF;
+}
+#flexbar #assigned_agents   h2 {
+  background: #00ACD4;
+}
+#flexbar #unknown_agents   h2 {
+  background: #A8BFBF;
+}
+#flexbar #inaccessible_agents h2 { 
+  background: #222621;
+  color:#4C4C4C;
+}
+#flexbar #agents #inaccessible_agent_thumbs .athumb img.th {
+  opacity:.5;
+}
+
+
+#flexbar #agents .athumb.selected { 
+  background-color: yellow;
+}
+
+
+.agent.busy { color: #82c; }
+.agent.yellow { 
+  background: #ff9; 
+  color: #440;
+  border: #ff0 solid thin;
+}

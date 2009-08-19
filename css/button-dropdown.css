@@ -308,48 +308,48 @@ a {color:#000080;}
   color:#fff;
 }
 
-/* squad_nav_form */
-#squad_nav_form .button_dropdown button {
+/* squad_and_search_navigation */
+#squad_and_search_navigation .button_dropdown button {
   padding:0;
   border:none;
   font-size:14px;
   color:#BFBFBF;
   background:transparent;
 }
-#squad_nav_form .button_dropdown button.idle {
+#squad_and_search_navigation .button_dropdown button.idle {
   text-decoration:underline;
   color:#BFBFBF;
 }
-#squad_nav_form .button_dropdown button.idle:hover {
+#squad_and_search_navigation .button_dropdown button.idle:hover {
   color:#FFF;
 }
-#squad_nav_form .button_dropdown button.selected {
+#squad_and_search_navigation .button_dropdown button.selected {
   text-decoration:none;
   color:#fff;
 }
-#squad_nav_form .button_dropdown .dropdown {
+#squad_and_search_navigation .button_dropdown .dropdown {
   background:#000;
   -webkit-box-shadow: 3px 3px 7px #0C0C0C;
 }
-#squad_nav_form .button_dropdown .dropdown .select {
+#squad_and_search_navigation .button_dropdown .dropdown .select {
   background:#191919;
   color:#E5E5E5;
   border-top-color:#262626;
   border-bottom-color:#262626;
 }
-#squad_nav_form .button_dropdown .dropdown .select li:hover {
+#squad_and_search_navigation .button_dropdown .dropdown .select li:hover {
   background:#262626;
   color:#fff;
 }
-#squad_nav_form .button_dropdown .dropdown .select li.hover {
+#squad_and_search_navigation .button_dropdown .dropdown .select li.hover {
   background:#262626;
   color:#fff;
 }
-#squad_nav_form .button_dropdown .dropdown .select dl:hover {
+#squad_and_search_navigation .button_dropdown .dropdown .select dl:hover {
   background:#262626;
   color:#fff;
 }
-#squad_nav_form .button_dropdown .dropdown .select dl.hover {
+#squad_and_search_navigation .button_dropdown .dropdown .select dl.hover {
   background:#262626;
   color:#fff;
 }

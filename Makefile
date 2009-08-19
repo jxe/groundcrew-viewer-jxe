@@ -1,7 +1,6 @@
 SHELL=/bin/bash
 LANG=C
 
-
 # basic builds
 
 uncompressed: html raw_js buildcss
@@ -15,13 +14,13 @@ html: BUILD
 	m4 -P app/app.html.m4 > BUILD/viewer.html
 
 raw_js: BUILD
-	cat lib/*/*.js app/*.js app/*/*.js app/*/*/*.js > BUILD/viewer.js
+	cat lib/*/*.js app/*.js app/*/*.js > BUILD/viewer.js
 
 min_js: BUILD
-	cat lib/*/*.js app/*.js app/*/*.js app/*/*/*.js | jsmin > BUILD/viewer.js
+	cat lib/*/*.js app/*.js app/*/*.js | jsmin > BUILD/viewer.js
 
 buildcss: BUILD
-	cat css/*.css app/{chrome,helpers,modes/*}/*.css > BUILD/viewer.css
+	cat css/*.css app/{chrome,helpers}/*.css > BUILD/viewer.css
 
 
 
@@ -30,12 +29,15 @@ debug: uncompressed
 
 # deploy
 
-deploy: compressed
-	rsync -avL BUILD/{i,viewer.*} joe@groundcrew.us:apps/groundcrew/current/public/
+deploy_twitter: compressed
+	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,viewer.*} joe@groundcrew.us:gc/gvs/twitter/
 
-deploy_uncompressed: uncompressed
-	rsync -avL BUILD/{i,viewer.*} joe@groundcrew.us:apps/groundcrew/current/public/
+deploy_demo: compressed
+	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,viewer.*,demostart.js} joe@groundcrew.us:gc/gv/
 
+# deploy_uncompressed: uncompressed
+#   rsync -avL BUILD/{i,viewer.*} joe@groundcrew.us:apps/groundcrew/current/public/
+# 
 
 # setup
 

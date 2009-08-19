@@ -6,7 +6,7 @@ Viewer = App = {
   tools: {},
   most_recent_tool: {},
   
-  squad_nav_form_submitted: function(data, state, form) {
+  search_form_submitted: function(data, state, form) {
     go('q=' + data.q);
     $(form).enable();
   },
@@ -131,13 +131,14 @@ Viewer = App = {
     $('body').removeClass('loading');
     Map.establish();
 
-    // set up app state
-    // CEML.parse($('#idea_bank').html());
-    if (window.location.hash) go(window.location.hash.slice(1));
-    else go('squad=demo;city=');
-    
     // start communication with server
     Ajax.init();
+    
+    if (window.location.hash) Ajax.go_on_load = window.location.hash.slice(1);
+    else Ajax.go_on_load = 'squad=demo;city=';
+
+    // set up app state
+    // CEML.parse($('#idea_bank').html());
   },
     
   go_to_self: function() {

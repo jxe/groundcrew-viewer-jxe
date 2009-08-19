@@ -7,7 +7,7 @@ LiveHTML.widgets.push({
   },
   
   is_latched: function() {
-    return !This._item.latch.startsWith('unlatched');
+    return This._item.latch.startsWith('Op__');
   },
   
   has_problem: function() {
@@ -31,17 +31,25 @@ LiveHTML.widgets.push({
     return true;
   },
   
+  twitter_status: function() {
+    return This._item.update;
+  },
+  
+  twitter_bio: function() {
+    return This._item.bio;
+  },
+  
   
   
   // operational involvements
 
   item_current_operation_title: function() {
-    if (This._item.latch.startsWith('unlatched')) return " ";
+    if (This._item.availability_status != 'assigned') return " ";
     return This._item.latch.split(' ')[2].resource().title;
   },
   
   item_current_assignment: function() {
-    if (This._item.latch.startsWith('unlatched')) return " ";
+    if (This._item.availability_status != 'assigned') return " ";
     return This._item.latch.split(' ')[2].resource().body;
   },
   
