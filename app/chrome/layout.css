@@ -28,17 +28,35 @@ body { overflow: hidden; }
   height: 93px;
   overflow: hidden;
   position: relative;
-  margin-left: 30px;
+  margin-left: 10px;
   margin-right: 30px;
   background:transparent;
-
 }
-.flexbar-nav {
-   height:49px;
-   width:27px;
+#flexbar_arrows {
+  position: absolute;
+  right:0;
+  top: 0;
+  width: 24px;
+  height: 63px;
+  padding: 15px 3px;
+  background: gray;
+  font-size: 24px;
+  text-shadow: #000 0px 5px 12px;
+  color: #999;
    z-index:9900;
-   cursor:pointer;
-   background:transparent;
+   background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 90%, 
+    from(transparent), 
+    to(rgba(12,12,12,.3)));
+   
+    background:#1B224D;
+    background-image: -webkit-gradient(
+      linear, 0% 0%, 0% 40%, 
+      from(rgba(12,12,12,.1)),
+      to(rgba(12,12,12,.3)));
+   
+   border-left: solid 1px #669;
+/*   background:transparent;*/
 }
 
 #screen {

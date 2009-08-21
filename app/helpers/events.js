@@ -3,7 +3,7 @@ Actions = {
   event_t:
     '<div class="event #{color}">\
      <span class="time">#{when}</span>\
-     <a href="#//organize/:city/#{actor_tag}">#{actor_title}</a>\
+     <a href="#item=#{actor_tag}">#{actor_title}</a>\
      #{what}\
      </div>',
      

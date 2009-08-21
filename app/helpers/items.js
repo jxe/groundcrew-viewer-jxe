@@ -7,7 +7,7 @@ LiveHTML.widgets.push({
   },
   
   is_latched: function() {
-    return This._item.latch.startsWith('Op__');
+    return This._item.latch.contains('Op__');
   },
   
   has_problem: function() {
@@ -46,6 +46,11 @@ LiveHTML.widgets.push({
   item_current_operation_title: function() {
     if (This._item.availability_status != 'assigned') return " ";
     return This._item.latch.split(' ')[2].resource().title;
+  },
+  
+  jump_to_op: function() {
+    var op = This._item.latch.split(' ')[2];
+    if (op) go('@' + op);
   },
   
   item_current_assignment: function() {
@@ -116,7 +121,7 @@ LiveHTML.widgets.push({
     var qs = $keys(Answers.here());
     return qs.map(function(x){
       var q = Questions[x];
-      return "<li><a href='#tool=show_answers;question="+x+"'>" + q + "</a></li>";
+      return "<li href='#tool=show_answers;question="+x+"'>" + q + "</li>";
     }).join('');
   },
   

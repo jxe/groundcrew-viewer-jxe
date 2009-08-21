@@ -51,7 +51,7 @@ body.logged_out .m_item.loo {
   text-align:center;
 }
 
-#unsupported, #loading_data {
+#unsupported {
   position: absolute;
   top: 10%;
   left: 300px;
@@ -63,6 +63,13 @@ body.logged_out .m_item.loo {
   font: 18px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
   text-align: center;
   z-index: 5000;
+}
+
+#loading_data {
+  text-align:center;
+  top: 40%;
+  left: 500px;
+  width: 300px;
 }
 
 #unsupported {
@@ -88,7 +95,7 @@ body.logged_out .m_item.loo {
 
 #logo {
   position: absolute; 
-  top: 2px;
+  top: 4px;
   left: 5px;
   padding:0;
   margin:0; 

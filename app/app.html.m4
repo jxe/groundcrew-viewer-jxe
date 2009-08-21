@@ -28,7 +28,7 @@
     m4_include(`app/chrome/navigation_menus.html')
   </div>
 
-  m4_syscmd(`cat app/toolbox/*.html')
+  m4_syscmd(`cat app/{toolbox,focii}/*.html')
 
   <div id="offscreen" style="display:none">
     m4_syscmd(`cat app/maplayers/*.html')
