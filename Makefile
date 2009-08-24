@@ -3,15 +3,10 @@ LANG=C
 
 # basic builds
 
-uncompressed: html raw_js buildcss
-
-compressed: html min_js buildcss
+uncompressed: html_demo raw_js buildcss
 
 test: BUILD buildcss raw_js
 	m4 -P tests/test.html.m4 > BUILD/test.html
-
-html: BUILD
-	m4 -P app/app.html.m4 > BUILD/viewer.html
 
 raw_js: BUILD
 	cat lib/*/*.js app/*.js app/*/*.js > BUILD/viewer.js
@@ -23,21 +18,25 @@ buildcss: BUILD
 	cat css/*.css app/{chrome,helpers}/*.css > BUILD/viewer.css
 
 
+# versions
 
-debug: uncompressed
-	cat BUILD/viewer.html | sed 's/.*maps\.google\.com.*/\<link href=\"..\/debug\/debug.css\" media=\"screen\" rel=\"stylesheet\" type=\"text\/css\" \/>/' | sed 's/http:\/\/ajax\.googleapis\.com\/ajax\/libs\/jquery\/1\.3\.1\/jquery\.min\.js/..\/vendor/jquery\/jquery\.min\.js/' > BUILD/debug.html
+html: BUILD
+	m4 -P -DVIEWER_INITIAL_JS='/api/stream.js' app/app.html.m4 > BUILD/viewer.html
 
-# deploy
+html_demo: BUILD
+	m4 -P -DVIEWER_INITIAL_JS='demostart.js' app/app.html.m4 > BUILD/viewer.html
 
-deploy_twitter: compressed
+deploy_twitter: html min_js buildcss
 	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,viewer.*} joe@groundcrew.us:gc/gvs/twitter/
 
-deploy_demo: compressed
+deploy_demo: html_demo min_js buildcss
 	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,viewer.*,demostart.js} joe@groundcrew.us:gc/gv/
 
-# deploy_uncompressed: uncompressed
-#   rsync -avL BUILD/{i,viewer.*} joe@groundcrew.us:apps/groundcrew/current/public/
-# 
+
+
+
+
+
 
 # setup
 
@@ -50,4 +49,19 @@ grab: BUILD
 BUILD:
 	mkdir -p BUILD
 	(cd BUILD && ln -s ../i)
+
+
+
+
+
+# old stuff
+
+# debug: uncompressed
+#   cat BUILD/viewer.html | sed 's/.*maps\.google\.com.*/\<link href=\"..\/debug\/debug.css\" media=\"screen\" rel=\"stylesheet\" type=\"text\/css\" \/>/' | sed 's/http:\/\/ajax\.googleapis\.com\/ajax\/libs\/jquery\/1\.3\.1\/jquery\.min\.js/..\/vendor/jquery\/jquery\.min\.js/' > BUILD/debug.html
+
+# deploy
+
+# deploy_uncompressed: uncompressed
+#   rsync -avL BUILD/{i,viewer.*} joe@groundcrew.us:apps/groundcrew/current/public/
+# 
 

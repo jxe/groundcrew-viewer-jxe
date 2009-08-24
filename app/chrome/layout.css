@@ -28,8 +28,8 @@ body { overflow: hidden; }
   height: 93px;
   overflow: hidden;
   position: relative;
-  margin-left: 10px;
-  margin-right: 30px;
+  margin-left: 5px;
+  margin-right: 32px;
   background:transparent;
 }
 #flexbar_arrows {

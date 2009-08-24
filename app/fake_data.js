@@ -59,7 +59,7 @@ Wishes = {
 
 QuestionAnswers = {
   t: '<div class="wish"><div class="thumb"><img src="#{thumb_url}" /></div>\
-      <div class="info"><strong><a href="#mode=Dispatch;item=#{guy}">#{answer}</a></strong><div class="xtra_info">from agent <b>#{agent}</b> at #{time}</div></div><hr class="clear spacer" />'
+      <div class="info"><strong><a href="#@#{guy}">#{answer}</a></strong><div class="xtra_info">from agent <b>#{agent}</b> at #{time}</div></div><hr class="clear spacer" />'
 };
 
 

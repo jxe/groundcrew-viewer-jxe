@@ -10,7 +10,9 @@ Map.layers.agents_f = function(){
     GEvent.addListener( marker, "click", function() { go('@' + agent.id); });
     GEvent.addListener( marker, "infowindowclose", function() { 
       if (Map.open_in_progress) return;
-      if (This.item != agent.id) return;
+      if (!This._item) return;
+      
+      // if (This.item != agent.id) { alert('not closing; agent is not item'); return; };
       go('@' + This.city);
     });
     GEvent.addListener( marker, "dblclick", function() {

@@ -4,9 +4,10 @@
 	<title>Groundcrew Viewer</title>
 	<link href="viewer.css" media="screen" rel="stylesheet" type="text/css"/>
   <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAGqp2ukVwjWFfmC-XmCCZFRRGsPIMf82DrFSwJZKzmHDVn9CoiRSfPwbMs9LeX9Qw4ba2CuYyrEQBZw&amp;hl="></script> 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <!-- // <script src="../vendor/jquery/jquery.min.js"></script> -->
   <script src="viewer.js"></script>
-  <script src="api/stream.js"></script>
+  <script src="VIEWER_INITIAL_JS"></script>
   <script> login_by_cookie(); </script>
 </head>
 <body id="viewer" class="loading">

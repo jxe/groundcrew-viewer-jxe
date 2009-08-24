@@ -21,17 +21,9 @@ Viewer = App = {
   },
     
   update: function(changed) {
-    if (changed.squad) {
-      if (This.squad == 'demo') {
-        $.ajaxSetup({async: false});
-        // $.getScript('data/demo.js');
-        $.ajaxSetup({async: true});
-      }
-    }
+    if (changed.tool && This.tool && This._item && !changed.item) set('item', This.city);
     
     if (changed.item) {
-      if (!This.mode) set('mode', 'Dispatch');
-      
       if (!This.item) {
         This._item = null;
         set('city', null);
@@ -60,16 +52,15 @@ Viewer = App = {
     }
     
     if (changed.mode) {
-      $('#modetray').app_paint().show();
+      if (This.mode != '') $('#modetray').app_paint().show();
+      else $('#modetray').hide();
       $('.' + This.mode + '_mode').activate('mode');
-      // if (This.mode == 'plan') $('#flexbar_banner').hide();
-      // else $('#flexbar_banner').show();
       Frame.resize();
 
       This.first_responders[0] = {};
       This.first_responders[1] = App.modes[This.mode.toLowerCase()] || {};
 
-      if (!changed.tool) set('tool', App.most_recent_tool[This.mode] || Console.tools[This.mode] && Console.tools[This.mode][0].split('//')[0]);
+      // if (!changed.tool) set('tool', App.most_recent_tool[This.mode] || Console.tools[This.mode] && Console.tools[This.mode][0].split('//')[0]);
       
       // trigger(This.mode + "_mode_activated");
     }
@@ -93,7 +84,7 @@ Viewer = App = {
       }
     });
     
-    if (changed.item || changed.tool || changed.mode) App.refresh_mapwindow();
+    if (changed.item || changed.tool) App.refresh_mapwindow();
     
     $('.magic').app_paint();
     $('.hud:visible').app_paint();
@@ -119,6 +110,14 @@ Viewer = App = {
     return;
   },
   
+  did_add_events: function(state) {
+    App.refresh_mapwindow();
+  },
+
+  live_event_info: function (state) {
+    return Actions.event_t.tt(This._item.children);
+  },
+  
   
   // ======================
   // = App initialization =
@@ -136,7 +135,9 @@ Viewer = App = {
     
     if (window.location.hash) Ajax.go_on_load = window.location.hash.slice(1);
     else Ajax.go_on_load = 'squad=demo;city=';
-
+    
+    Ajax.maybe_trigger_load();
+    
     // set up app state
     // CEML.parse($('#idea_bank').html());
   },
@@ -147,13 +148,14 @@ Viewer = App = {
   
   radial_invite_form_submitted: function(data, state) {
     Operation.invite(This.item, data.title, data.assignment, function(operation){
-      go('mode=Dispatch;item=' + operation.id);
+      go('@' + operation.id);
     });
   },
   
   setmode: function(mode) {
     if (This.mode != mode) return go('mode=' + mode);
     else {
+      if (mode == 'dispatch') return;
       $('#modetray').toggle();
       Frame.resize();
     }
@@ -175,7 +177,7 @@ Viewer = App = {
   },
   
   
-  plan_mode: function() { App.setmode('plan'); },
-  listen_mode: function() { App.setmode('listen'); },
-  coordinate_mode: function() { App.setmode('coordinate'); }
+  assess_mode: function() { App.setmode('assess'); },
+  manage_mode: function() { App.setmode('manage'); },
+  dispatch_mode: function() { App.setmode(''); },
 };

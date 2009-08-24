@@ -18,9 +18,9 @@ Frame = {
       if (ch == 'm') return Map.Gmap.setMapType(G_NORMAL_MAP);
       if (ch == 'h') return Map.Gmap.setMapType(G_HYBRID_MAP);
       if (ch == 't') return Map.Gmap.setMapType(G_PHYSICAL_MAP);
-      if (ch == 's') return go('mode=Sketch');
-      if (ch == 'c') return go('mode=Connect');
-      if (ch == 'd') return go('mode=Dispatch');
+      // if (ch == 's') return go('mode=sketch');
+      // if (ch == 'c') return go('mode=connect');
+      // if (ch == 'd') return go('mode=dispatch');
       if (ch == 'w') return go('item=');
       if (ch == 'g') return go('#go_where');
       if (ch == 'f') return $('#search').focus() && false;

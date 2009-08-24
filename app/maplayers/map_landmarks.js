@@ -50,6 +50,13 @@ MapLandmarks = {
   marker_for_lm: function(lm) {
     var marker = new GMarker(new GLatLng(lm.lat, lm.lng), {icon: MapIcons.for_landmark(lm), title: lm.title});
     GEvent.addListener(marker, "click", function(){ go("@" + lm.id); });
+    GEvent.addListener( marker, "infowindowclose", function() { 
+      if (Map.open_in_progress) return;
+      if (!This._item) return;
+      // if (This.item != lm.id) { alert('not closing; landmark is not item'); return; };
+      go('@' + This.city);
+    });
+    
     lm.map_marker = marker;
     return marker;
   }

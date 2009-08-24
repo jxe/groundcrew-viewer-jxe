@@ -4,10 +4,11 @@ body.zoomed_out .local_only {display:none;}
 
 #modetray {
   background:#BFBFBF;
+  background:#111;
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 80%, 
-    from(transparent), 
-    to(rgba(51,51,51,.5)));
+    from(rgba(51,51,51,.5)), 
+    to(transparent));
   height: 35px;
   display: none;
   padding: 8px 8px 0px 8px;
@@ -18,6 +19,13 @@ body.zoomed_out .local_only {display:none;}
 #mode_buttons {
   position:relative;
   top:-8px;
+}
+
+#mode_buttons a#coordinate_mode_button.active {
+  padding-bottom: 20px;
+  padding-top: 8px;
+  top: -5px;
+  position: relative;
 }
 
 #mode_buttons a {
@@ -38,13 +46,15 @@ body.zoomed_out .local_only {display:none;}
 
 #mode_buttons a.active { 
   color: #fff; 
-  border-top: solid 1px #7F7F7F;
+/*  border-top: solid 1px #7F7F7F;*/
   border-right:solid 1px #595959;
   border-left:solid 1px #595959;
   background:#7F7F7F;
+  background:#000;
   -webkit-border-top-left-radius: 0px;
   -webkit-border-top-right-radius: 0px;
-  -webkit-box-shadow: 0px 0px 0px transparent;
+/*  -webkit-box-shadow: 0px 0px 0px transparent;*/
+/*  -webkit-box-shadow: 0px 0px 13px #ffe;*/
   text-decoration:none;
 }
 
@@ -60,6 +70,7 @@ body.zoomed_out .local_only {display:none;}
   margin:0px 7px 0px 7px;
   font-size: 11px;
   color:#1B224D;
+  color:#5B729D;
   font-family:Verdana;
   font-weight:bold;
   text-decoration:none;

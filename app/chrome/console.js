@@ -4,18 +4,20 @@ Console = {
   
   map_layers_for_current_settings: function() {
     if (!This.item) return 'cities';
-    if (This.mode == 'Sketch') return 'wishes landmarks';
-    if (This.mode == 'Connect') return 'agents';
-    if (This.mode == 'Dispatch') return 'agents landmarks';
+    // if (This.mode == 'sketch') return 'wishes landmarks';
+    // if (This.mode == 'connect') return 'agents';
+    // if (This.mode == 'dispatch') return 'agents landmarks';
     return 'agents landmarks';
   }
   
 };
 
+// add_action_idea//wand30  edit_activities//lightbulb_icon29  identify_resource//gift23  upload_landmarks//landmark21
+
 $.each([
-  'Sketch       add_action_idea//wand30  add_landmark//landmark21  edit_activities//lightbulb_icon29  identify_resource//gift23  upload_landmarks//landmark21',
-  'Connect     show_answers//scroll     ask_a_question            view_events//scroll                approve_deputies',
-  'Dispatch     assign_agents            start_something           join_something                     chat//chat_icon18'
+  'assess     show_answers//scroll     ask_a_question            view_events//scroll',
+  'manage     add_landmark//landmark21  approve_deputies     chat//chat_icon18',
+  'dispatch     assign_agents            start_something           join_something'
 ], function(){
   
   var words = this.split(/\s+/);
@@ -27,12 +29,6 @@ $.each([
 
 
 LiveHTML.widgets.push({
-
-  mode_buttons: function() {
-    return Console.modes.map(function(x){
-      return '<a class="'+x+'_mode" href="#mode='+x+'">'+x+'</a>';
-    }).join('');
-  },
   
   tool_buttons: function() {
     if (!This.mode || !Console.tools[This.mode]) return '';

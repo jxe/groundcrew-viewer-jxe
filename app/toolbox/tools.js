@@ -20,18 +20,6 @@ App.tools.add_landmark = {
   
 };
 
-App.modes.dispatch = {
-  
-  did_add_events: function(state) {
-    App.refresh_mapwindow();
-  },
-
-  live_event_info: function (state) {
-    return Actions.event_t.tt(This._item.children);
-  }
-  
-};
-
 App.tools.assign_agents = {
     
   make_it_happen_form_submitted: function(data) {
