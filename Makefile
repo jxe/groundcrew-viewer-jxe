@@ -32,7 +32,11 @@ deploy_twitter: html min_js buildcss
 deploy_demo: html_demo min_js buildcss
 	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,viewer.*,demostart.js} joe@groundcrew.us:gc/gv/
 
+gcapi:
+	cat lib/{jsappkit,gc_api}/*.js  | jsmin > BUILD/gcapi.js
 
+gcapi_transplant: gcapi
+	cp BUILD/gcapi.js /g/static/site/js/gcapi.js
 
 
 
