@@ -33,6 +33,7 @@ MapLandmarks = {
         if (Landmarks.id("p" + row.photo_id)) return;
         return MapLandmarks.marker_for_lm(MapLandmarks.lm_from_pano(row));
       }).compact());
+      $('#landmarks_button_dropdown').app_paint();
     });
   },
   

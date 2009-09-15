@@ -129,6 +129,8 @@ Viewer = App = {
     LiveHTML.init();
     $('body').removeClass('loading');
     Map.establish();
+    $('._mode').activate('mode');
+
 
     // start communication with server
     Ajax.init();

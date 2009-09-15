@@ -42,6 +42,10 @@ body.zoomed_out .local_only {display:none;}
   border-right:solid 1px rgba(12,12,12,.2);
   border-left:solid 1px rgba(12,12,12,.2);
   border-bottom:none;
+  
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  
 }
 
 #mode_buttons a.active { 

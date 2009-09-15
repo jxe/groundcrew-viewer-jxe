@@ -317,7 +317,7 @@ a {color:#000080;}
   background:transparent;
 }
 #squad_and_search_navigation .button_dropdown button.idle {
-  text-decoration:underline;
+/*  text-decoration:underline;*/
   color:#BFBFBF;
 }
 #squad_and_search_navigation .button_dropdown button.idle:hover {
