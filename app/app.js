@@ -163,6 +163,22 @@ Viewer = App = {
     }
   },  
   
+  make_it_happen_form_submitted: function(data) {
+    Operation.assign(This.item, data.assign, function(operation){
+      go('@' + operation.id);
+    });
+  },
+  
+  group_interact_form_submitted: function(data, state, form) {
+    Operation.group_assign($keys(Selection.current), data.assign, function(operation){
+      $.each($keys(Selection.current), function(){
+        Selection.toggle(this);
+      });
+      
+      go('tool=assign_agents;item=' + operation.id);
+    });
+  },
+  
   go_where: function() {
     var where = prompt("Find:");
     if (!where) return;
