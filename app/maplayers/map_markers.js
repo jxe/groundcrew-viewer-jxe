@@ -5,7 +5,7 @@ MapMarkers = {
   
   update_marker: function(tag) {
     var marker = MapMarkers.cache[tag] || tag.resource().map_marker;
-    if (marker) MapMarkers.cache[tag].setImage('i/map/' + tag.resource().map_icon + '.png');
+    // if (marker) marker.setImage('i/map/' + tag.resource().map_icon + '.png');
   },
   
   window: function(tmpl, min_zoom) {
@@ -13,6 +13,11 @@ MapMarkers = {
   },
   
   open: function(item, content, min_zoom) {
+    if (!item.resource()) {
+      alert('cannot open.  missing data.');
+      return;
+    }
+    
     var marker = MapMarkers.cache[item] || item.resource().map_marker;
     
     if (!marker) {

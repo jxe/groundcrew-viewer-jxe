@@ -1,5 +1,5 @@
 Frame = {
-  agent_thumb: '<div class="athumb agent_photo #{id}"><img class="th" src="#{thumb_url}" title="#{title}" href="#@#{id}"/><img src="i/timebadges/5m.png" class="badge"/></div>',
+  agent_thumb: '<div href="#@#{id}" class="athumb agent_photo #{id}"><img class="th" src="#{thumb_url}" title="#{title}"/><b>#{title}</b></div>',
   
   init: function() {
     Frame.resize();
@@ -25,6 +25,7 @@ Frame = {
       if (ch == 'g') return go('#go_where');
       if (ch == 'f') return $('#search').focus() && false;
       if (ch == 'y') return $('#floaty').toggleClass('appeared');
+      if (ch == 'T') { test = !test; if (test) alert('test mode active'); }
     });
 
   },

@@ -23,11 +23,17 @@ buildcss: BUILD
 html: BUILD
 	m4 -P -DVIEWER_INITIAL_JS='/api/stream.js' app/app.html.m4 > BUILD/viewer.html
 
+html_noho: BUILD
+	m4 -P -DVIEWER_INITIAL_JS='/api/stream.js?stream=noho' app/app.html.m4 > BUILD/viewer.html
+
 html_demo: BUILD
 	m4 -P -DVIEWER_INITIAL_JS='demostart.js' app/app.html.m4 > BUILD/viewer.html
 
 deploy_twitter: html min_js buildcss
 	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,viewer.*} joe@groundcrew.us:gc/gvs/twitter/
+
+deploy_noho: html_noho raw_js buildcss
+	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,viewer.*} joe@groundcrew.us:gc/gvs/noho/
 
 deploy_demo: html_demo min_js buildcss
 	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,viewer.*,demostart.js} joe@groundcrew.us:gc/gv/

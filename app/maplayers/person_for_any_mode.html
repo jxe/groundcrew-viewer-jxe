@@ -6,10 +6,10 @@
       
     
     <div style="float:left; max-width: 450px">
-      <h2 fill="item_title"></h2>  <ul class="tags skills" fill="agent_skills_as_lis"></ul>
+      <h2 fill="item_title"></h2>  <ul class="tags skills" if="agent_skills_as_lis" fill="agent_skills_as_lis"></ul>
       
       <div class="grayish">
-        This agent is <b class="highlight" fill="item_status"></b>
+        This agent is <b class="highlight" fill="item_status"></b>.  Last heard from <b class="highlight" fill="item_comm_ts"></b>.
         <!-- Squad Info: and on <b><span fill="item_squad"></span></b>. -->
       </div>
       <div class="xspace" if="is_latched">
@@ -25,11 +25,14 @@
           type="text"
           fill="agent_assign_prompt hint" 
           hint="What would you like this agent to do?" 
+          observe="switch_to_question"
         /><button type="submit" class="submit">
             Send<strong>&rarr;</strong>
           </button>
         <!-- no white space between the above <input> and <button> -->
-
+        <br>Send as: <input type="radio" name="kind" value="msg" checked='checked'>msg
+        <input type="radio" name="kind" value="mission">mission
+        <input type="radio" name="kind" value="question">question
       </form>
 
       <div if="upfors_as_lis_and_agent_assignable" class="grayish right" style="padding-right:20px">

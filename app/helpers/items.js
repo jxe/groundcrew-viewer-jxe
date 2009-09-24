@@ -2,6 +2,12 @@ LiveHTML.widgets.push({
 
   // item state:  latch status, problems, etc
   
+  item_comm_ts: function() {
+    var comm_ts = This._item.comm.split(' ')[1];
+    return $long_ago(comm_ts) + " ago";
+  },
+  
+  
   item_status: function() {
     return This._item.availability_status;
   },
@@ -71,6 +77,7 @@ LiveHTML.widgets.push({
   // other data
 
   agent_skills_as_lis: function() {
+    if (!This._item.has) return null;
     var skills = This._item.has || ' ';
     return "<li>" + $w(skills).map(function(x){
       return "<a href='#q="+x+"'>"+x+"</a>";
@@ -132,7 +139,7 @@ LiveHTML.widgets.push({
   // masses of agents
   
   agents_count: function() {
-    return Agents.all.length;
+    return Agents.all && Agents.all.length;
   }
   
   

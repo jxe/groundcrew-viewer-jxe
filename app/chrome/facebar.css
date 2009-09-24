@@ -61,6 +61,15 @@
   display: block;
 }
 
+#flexbar #agents .athumb b {
+  position: absolute;
+  right: 2px; bottom: 2px;
+  font-size: 10px;
+  color: #ccc;
+  text-shadow: #000 0px 1px 2px;
+  z-index: 10;
+}
+
 #flexbar #agents .athumb { 
   margin-right: 3px; 
   overflow: hidden;
@@ -87,6 +96,9 @@
 #flexbar #ready_agents h2 {
   background: #E56B0B;
 }
+#flexbar #yes_agents h2 {
+  background: #E56B0B;
+}
 #flexbar #neglected_agents h2 {
   background: #B20000;
 }
@@ -95,6 +107,9 @@
 }
 #flexbar #assigned_agents   h2 {
   background: #00ACD4;
+}
+#flexbar #no_agents h2 {
+  background: #A8BFBF;
 }
 #flexbar #unknown_agents   h2 {
   background: #A8BFBF;

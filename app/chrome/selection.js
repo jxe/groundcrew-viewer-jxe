@@ -1,6 +1,13 @@
 Selection = {
   current: {},
   
+  clear: function() {
+    $.each($keys(Selection.current), function(){
+      Selection.toggle(this);
+    });
+  },
+  
+  
   toggle: function(tag) {
     $('.athumb.' + tag).toggleClass('selected');
     if (Selection.current[tag]) delete Selection.current[tag];
@@ -23,9 +30,7 @@ Selection = {
 LiveHTML.widgets.push({
   
   clear_selection: function(state) {
-    $.each($keys(Selection.current), function(){
-      Selection.toggle(this);
-    });
+    Selection.clear();
   },
   
   no_selection: function(state) {

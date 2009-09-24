@@ -32,7 +32,7 @@ Viewer = App = {
         set('city', This.item);
       } else {
         This._item = This.item && This.item.resource();
-        set('city', 'City__' + This._item.city_id);
+        if (This._item) set('city', 'City__' + This._item.city_id);
       }
     }
     
@@ -74,11 +74,9 @@ Viewer = App = {
     
     set('map_layers', Console.map_layers_for_current_settings());
     
-    var map_unfocused = changed.city;
     $.each($w('cities agents landmarks wishes'), function(){
       if (This.map_layers.contains(this)) {
-        Map.show_layer(this, map_unfocused);
-        map_unfocused = false;
+        Map.show_layer(this);
       } else {
         Map.hide_layer(this);
       }
@@ -91,8 +89,13 @@ Viewer = App = {
 
   },
   
+  demo_mode: function() {
+    return demo;
+  },
+  
   refresh_mapwindow: function() {
     if (!This._item) {
+      console.log('closing info window');
       Map.Gmap.closeInfoWindow();
     }
     else {
@@ -101,6 +104,7 @@ Viewer = App = {
       if (best_mapwindow_template) MapMarkers.window(best_mapwindow_template);
       else {
         //TODO:  if there's no template, there should be no selection
+        console.log('no template found.  closing map window.');
         Map.Gmap.closeInfoWindow();
       }
     }
@@ -136,7 +140,15 @@ Viewer = App = {
     Ajax.init();
     
     if (window.location.hash) Ajax.go_on_load = window.location.hash.slice(1);
-    else Ajax.go_on_load = 'squad=demo;city=';
+    else {
+      var start_city = '';
+      var agents_by_city = Agents.find('=city_id');
+      // console.log(agents_by_city);
+      delete agents_by_city[0];
+      var active_cities = $keys(agents_by_city);
+      if (active_cities.length == 1) start_city = "City__" + active_cities[0];
+      Ajax.go_on_load = 'squad=demo;item=' + start_city;
+    }
     
     Ajax.maybe_trigger_load();
     
@@ -144,14 +156,27 @@ Viewer = App = {
     // CEML.parse($('#idea_bank').html());
   },
     
+  switch_to_question: function(value, ch) {
+    if (ch == '?') {
+      $('form input[value=question]').attr('checked', 'checked');
+      $('form input[name=kind]').val('question');
+    }
+  },
+  
   go_to_self: function() {
     go('@' + This.user.tag);
   },
   
+  help_form_submitted: function(data) {
+    alert(data.issue);
+    alert('Thanks!');
+    go('tool=')
+  },
+  
   radial_invite_form_submitted: function(data, state) {
-    Operation.invite(This.item, data.title, data.assignment, function(operation){
-      go('@' + operation.id);
-    });
+    var agents = data.agents;
+    if (demo) return Operation.invite_demo(This.item, data.title, data.assignment);
+    Operation.exec(CEML.script_for_invite(data.title, data.assignment), agents, This.item);
   },
   
   setmode: function(mode) {
@@ -161,22 +186,19 @@ Viewer = App = {
       $('#modetray').toggle();
       Frame.resize();
     }
-  },  
+  },
   
   make_it_happen_form_submitted: function(data) {
-    Operation.assign(This.item, data.assign, function(operation){
-      go('@' + operation.id);
-    });
+    if (demo && data.kind == "question") return alert("asking a question");
+    if (demo && data.kind == "msg")      return alert("sending a msg");
+    if (demo && data.kind == "mission")  return Operation.assign_demo(This.item, data.assign);
+    Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item);
   },
   
   group_interact_form_submitted: function(data, state, form) {
-    Operation.group_assign($keys(Selection.current), data.assign, function(operation){
-      $.each($keys(Selection.current), function(){
-        Selection.toggle(this);
-      });
-      
-      go('tool=assign_agents;item=' + operation.id);
-    });
+    var agents = $keys(Selection.current);
+    if (demo) return Operation.group_assign_demo(agents, data.assign, Selection.clear);
+    Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '));
   },
   
   go_where: function() {
@@ -197,5 +219,5 @@ Viewer = App = {
   
   assess_mode: function() { App.setmode('assess'); },
   manage_mode: function() { App.setmode('manage'); },
-  dispatch_mode: function() { App.setmode(''); },
+  dispatch_mode: function() { App.setmode(''); }
 };

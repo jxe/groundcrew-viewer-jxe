@@ -12,25 +12,21 @@
       </div>
 
       <form id="radial_invite_form">
-        <fieldset style="margin-top: 15px; position: relative">
+        <fieldset style="margin-top: 15px; position: relative; padding: 0px 15px">
             <legend><b>Start something here</b></legend>    
             <!-- <p class="deemphasize">Agents will receive two text messages: first, an invitation, and then the instructions should they accept.</p> -->
           
-            <p>
+            <div>
               Invite agents within<br/>
-            <select>
-              <option>1 block &mdash; 3 agents</option>
-              <option>3 blocks &mdash; 7 agents</option>
-              <option>1/2 mile &mdash; 13 agents</option>
-              <option selected>1 mile &mdash; 26 agents</option>
-              <option>2 miles &mdash; 28 agents</option>
-            </select><br/>
-            <br/>
-          
-            This is an invitation to:<br> 
-            <input type="text" name="title"/> 
+              <select name="agents" fill="radius_options"></select>
+            </div>
             
-            <div class="button_dropdown" style="position: absolute; top:10px; right: 10px">
+            <div style="margin: 10px 0px">
+              Mission:<br> 
+              <input type="text" name="title"/> 
+            </div>
+            
+            <div if="demo_mode" class="button_dropdown" style="position: absolute; top:10px; right: 10px">
               <button type="button" class="idle">&#9660;</button>
               <div class="dropdown south">
                 <div class="select">
@@ -53,13 +49,12 @@
               </div>
             </div>
           
-            <br/>
-            <br/>
-            Instructions they'll receive if they say yes:<br/>
-            <textarea></textarea><br/>
+            <div style="margin: 10px 0px">
+            Instructions (for those who accept):<br/>
+            <input type="text" name="assignment">
+            </div>
 
             <button type="submit" class="submit right"> Send<strong>&rarr;</strong> </button>          
-            </p>
         </fieldset>
       </form>
 
