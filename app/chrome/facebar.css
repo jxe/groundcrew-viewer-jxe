@@ -93,34 +93,19 @@
 }
 
 
-#flexbar #ready_agents h2 {
-  background: #E56B0B;
-}
-#flexbar #yes_agents h2 {
-  background: #E56B0B;
-}
-#flexbar #neglected_agents h2 {
-  background: #B20000;
-}
-#flexbar #available_agents h2 { 
-  background: #A8BFBF;
-}
-#flexbar #assigned_agents   h2 {
-  background: #00ACD4;
-}
-#flexbar #no_agents h2 {
-  background: #A8BFBF;
-}
-#flexbar #unknown_agents   h2 {
-  background: #A8BFBF;
-}
-#flexbar #inaccessible_agents h2 { 
-  background: #222621;
-  color:#4C4C4C;
-}
-#flexbar #agents #inaccessible_agent_thumbs .athumb img.th {
-  opacity:.5;
-}
+#flexbar div h2 { background: #E56B0B; }
+
+#flexbar div h2.red    { background: #B20000; }
+#flexbar div h2.orange { background: #A8BFBF; }
+#flexbar div h2.green  { background: #00ACD4; }
+#flexbar div h2.yellow { background: #E56B0B; }
+#flexbar div h2.brown  { background: #E56B0B; }
+#flexbar div h2.grey   { background: #A8BFBF; }
+
+#flexbar #unknown_agents   h2 { background: #A8BFBF; }
+#flexbar #inaccessible_agents h2 { background: #222621; color:#4C4C4C; }
+#flexbar #agents #inaccessible_agent_thumbs .athumb img.th { opacity:.5; }
+
 
 
 #flexbar #agents .athumb.selected { 

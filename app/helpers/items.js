@@ -9,7 +9,9 @@ LiveHTML.widgets.push({
   
   
   item_status: function() {
-    return This._item.availability_status;
+    if (!This._item.fab_state) return "unknown";
+    if (!This._item.fab_state == 'assigned') return "assigned";
+    return "available";
   },
   
   is_latched: function() {
@@ -17,7 +19,7 @@ LiveHTML.widgets.push({
   },
   
   has_problem: function() {
-    return This._item.availability_status == 'problem';
+    return ['indicating', 'concerns', 'addressable'].contains(This._item.fab_state);
   },
   
   problem: function() {
@@ -26,11 +28,11 @@ LiveHTML.widgets.push({
   
   agent_assignable: function() {
     // return true;
-    return This._item.availability_status != 'inaccessible';
+    return This._item.fab_state != 'inaccessible';
   },
 
   agent_latched_and_assigned: function() {
-    return This._item.availability_status == 'assigned';
+    return This._item.fab_state == 'assigned';
   },
   
   agent_unlatched: function() {
@@ -50,7 +52,7 @@ LiveHTML.widgets.push({
   // operational involvements
 
   item_current_operation_title: function() {
-    if (This._item.availability_status != 'assigned') return " ";
+    if (This._item.fab_state != 'assigned') return " ";
     return This._item.latch.split(' ')[2].resource().title;
   },
   
@@ -60,12 +62,12 @@ LiveHTML.widgets.push({
   },
   
   item_current_assignment: function() {
-    if (This._item.availability_status != 'assigned') return " ";
+    if (This._item.fab_state != 'assigned') return " ";
     return This._item.latch.split(' ')[2].resource().body;
   },
   
   agent_assign_prompt: function() {
-    if (This._item.availability_status == 'assigned') {
+    if (This._item.fab_state == 'assigned') {
       return "Change this agent's assignment?";
     } else {
       return "What would you like this agent to do?";
@@ -90,7 +92,7 @@ LiveHTML.widgets.push({
   },
   
   upfors_as_lis_and_agent_assignable: function(){
-    return This._item.upfor && This._item.availability_status != 'inaccessible';
+    return This._item.upfor && This._item.fab_state != 'inaccessible';
   },
   
   // answers: function() {
@@ -109,8 +111,9 @@ LiveHTML.widgets.push({
   
   answers: function() {
     var strings = [];
-    $.each(This._item.answers_h, function(k, v){
-      var q = Questions[k];
+    if (!This._item.answers) return '';
+    $.each(This._item.answers, function(k, v){
+      var q = k;
       var answer = v[0];
       var tstamp = $time(v[1]);
       strings.push('<h6 class="question">Q. '+q+'</h6><div class="answer">A. &ldquo;'+answer+'&rdquo;<span class="timestamp">'+tstamp+'</span></div>');

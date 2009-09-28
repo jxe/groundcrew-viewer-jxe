@@ -44,7 +44,8 @@ Frame = {
     
   populate_flexbar_agents: function(agents) {
     if (!agents) return;
-    var groups = agents.group_by('availability_status');
+    var groups = agents.group_by('fab_state');
+    console.log(groups);
     $('#agents > div').hide();
     $.each($keys(groups), function(){
       if (this == null || this == "null") return;

@@ -15,6 +15,7 @@ Actions = {
 LiveHTML.widgets.push({
   
   recent_events: function(state) {
+    $.each(Anncs.all, function(){ Event.improve(this); });
     return Actions.event_t.tt(Anncs.all);
   },
   

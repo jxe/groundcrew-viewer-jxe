@@ -31,11 +31,18 @@
   
   <h1>Ask a Question</h1>
   <h2>To: all available agents, <b fill="city_name"></b></h2>
-  <input type="text" class="big" style="width: 100%">
-  <div class="rbuttons clear">
-    <a href="##ask_it">ask</a>
-    <a href="##back">back</a>
-  </div>
+  
+  <form id="ask_question_form" class="xspace">
+    <input name="question"
+      class="text"
+      type="text"
+      observe="switch_to_question"
+      style="width: 75%"
+    /><button type="submit" class="submit">
+        Send<strong>&rarr;</strong>
+      </button>
+    <!-- no white space between the above <input> and <button> -->
+  </form>
 </div>
 
 

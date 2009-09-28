@@ -119,6 +119,7 @@ Viewer = App = {
   },
 
   live_event_info: function (state) {
+    $.each(This._item.children, function(){ Event.improve(this); });
     return Actions.event_t.tt(This._item.children);
   },
   
@@ -168,15 +169,35 @@ Viewer = App = {
   },
   
   help_form_submitted: function(data) {
-    alert(data.issue);
-    alert('Thanks!');
-    go('tool=')
+    $.post('/api/bugreport', {issue: data.issue}, function(){
+      alert('Submitted.  Thanks!');
+      go('tool=');
+    });
   },
   
-  radial_invite_form_submitted: function(data, state) {
+  radial_invite_form_submitted: function(data) {
     var agents = data.agents;
     if (demo) return Operation.invite_demo(This.item, data.title, data.assignment);
-    Operation.exec(CEML.script_for_invite(data.title, data.assignment), agents, This.item);
+    Operation.exec(CEML.script_for_invite(data.title, data.assignment), agents, This.item, function(){
+      $('#radial_invite_form').html('message sent!');
+    });
+  },
+  
+  send_landmark_form_submitted: function(data) {
+    var lm_id = 'l' + authority + '_' + new Date().getTime();
+    data.lat = 
+    data.lng = 
+    $.post('/api/items/'+current_stream+'/'+lm_id, data, function(){
+      alert('open it now.');
+    });
+  },
+  
+  ask_question_form_submitted: function(data) {
+    var agents = Agents.here().map('.id').join(' ').replace(/Person__/g, '');
+    // if (demo) return Operation.invite_demo(This.item, data.title, data.assignment);
+    Operation.exec(CEML.script_for('question', data.question), agents, agents, function(){
+      $('#ask_question_form').html('Message sent!');
+    });
   },
   
   setmode: function(mode) {
@@ -192,13 +213,18 @@ Viewer = App = {
     if (demo && data.kind == "question") return alert("asking a question");
     if (demo && data.kind == "msg")      return alert("sending a msg");
     if (demo && data.kind == "mission")  return Operation.assign_demo(This.item, data.assign);
-    Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item);
+    Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item, function(){
+      $('#make_it_happen_form').html('Message sent!');
+    });
   },
   
   group_interact_form_submitted: function(data, state, form) {
     var agents = $keys(Selection.current);
     if (demo) return Operation.group_assign_demo(agents, data.assign, Selection.clear);
-    Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '));
+    Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
+      $('#group_interact_form').html('Message sent!');
+      Selection.clear();
+    });
   },
   
   go_where: function() {

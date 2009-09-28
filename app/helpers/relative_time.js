@@ -31,6 +31,8 @@ function $from_now_(n){
 function $long_ago(t){
   var now = Math.floor(new Date().getTime() / 1000);
   var delta = now - Number(t);
+  if (delta < 5) delta = 5;
+  if (delta < 60) return delta + " seconds";
   var minutes = Math.round(delta / 60);
   if (minutes > 90) {
      var hours = Math.floor(minutes / 6) / 10;
