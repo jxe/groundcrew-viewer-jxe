@@ -44,8 +44,8 @@ gcapi:
 gcapi_transplant: gcapi
 	cp BUILD/gcapi.js /g/static/site/js/gcapi.js
 
-
-
+local_demo_data:
+	cp reference/data/vstart-demo.js BUILD/demostart.js
 
 
 # setup
@@ -73,5 +73,5 @@ BUILD:
 
 # deploy_uncompressed: uncompressed
 #   rsync -avL BUILD/{i,viewer.*} joe@groundcrew.us:apps/groundcrew/current/public/
-# 
+#
 
