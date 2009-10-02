@@ -11,8 +11,8 @@ body { overflow: hidden; }
 #console {
   background: #4C4C4C;
     background-image: -webkit-gradient(
-     linear, 0% 0%, 0% 90%, 
-     from(transparent), 
+     linear, 0% 0%, 0% 90%,
+     from(transparent),
      to(rgba(12,12,12,.3)));
 }
 #flexbar_banner {
@@ -20,8 +20,8 @@ body { overflow: hidden; }
   height: 93px;
   background:#111;
   background-image: -webkit-gradient(
-    linear, 0% 0%, 0% 100%, 
-    from(transparent), 
+    linear, 0% 0%, 0% 100%,
+    from(transparent),
     to(rgba(51,51,51,.9)));
 }
 #flexbar {
@@ -45,16 +45,16 @@ body { overflow: hidden; }
   color: #999;
    z-index:9900;
    background-image: -webkit-gradient(
-    linear, 0% 0%, 0% 90%, 
-    from(transparent), 
+    linear, 0% 0%, 0% 90%,
+    from(transparent),
     to(rgba(12,12,12,.3)));
-   
+
     background:#1B224D;
     background-image: -webkit-gradient(
-      linear, 0% 0%, 0% 40%, 
+      linear, 0% 0%, 0% 40%,
       from(rgba(12,12,12,.1)),
       to(rgba(12,12,12,.3)));
-   
+
    border-left: solid 1px #669;
 /*   background:transparent;*/
 }
@@ -69,8 +69,8 @@ body { overflow: hidden; }
 /*.rside { right:0; }*/
 /*.lside { left:0; }*/
 
-.rsidep, .lsidep { 
-  position: absolute; 
+.rsidep, .lsidep {
+  position: absolute;
 /*  opacity: 0;
   -moz-opacity: 0;
   filter:alpha(opacity=0);
@@ -98,10 +98,10 @@ img[reveal]:hover {
 }
 
 #squad_and_search_navigation {
-   position: absolute; 
+   position: absolute;
    top: 10px;
    left: 16em;
-   margin:0; 
+   margin:0;
    display: block;
    font-size:14px;
    background:#112;
@@ -117,8 +117,10 @@ img[reveal]:hover {
    cursor:pointer;
    margin-right:15px;
 }
-#search_form {
+#search_form,
+#search_form a {
   display: inline;
+  color: #b0b0b0;
 }
 #search {
   -webkit-border-radius: 9px;
