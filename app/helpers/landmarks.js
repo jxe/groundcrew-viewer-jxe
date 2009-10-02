@@ -16,7 +16,11 @@ LiveHTML.widgets.push({
   
   live_ops: function(state) {
     return Ops.here().reverse().map(function(x){
-      return '<dl href="#@#{id}"><dd class="img"><img src="#{thumb_url}"/></dd><dt>#{title}</dt><hr/></dl>'.t(x);
+      if (x.thumb_url) {
+        return '<dl href="#@#{id}"><dd class="img"><img src="#{thumb_url}"/></dd><dt>#{title}</dt><hr/></dl>'.t(x);
+      } else {
+        return '<dl href="#@#{id}"><dt>#{title}</dt><hr/></dl>'.t(x);
+      }
     }).join('');
   },
   

@@ -131,6 +131,7 @@ Viewer = App = {
   init: function() {
     // init the UI
     Frame.init();
+    if (demo) $('body').addClass('demo_mode');
     LiveHTML.init();
     $('body').removeClass('loading');
     Map.establish();
@@ -185,8 +186,9 @@ Viewer = App = {
   
   send_landmark_form_submitted: function(data) {
     var lm_id = 'l' + authority + '_' + new Date().getTime();
-    data.lat = 
-    data.lng = 
+    data.kind = 'l';
+    data.lat = This.click_lat;
+    data.lng = This.click_lng;
     $.post('/api/items/'+current_stream+'/'+lm_id, data, function(){
       alert('open it now.');
     });

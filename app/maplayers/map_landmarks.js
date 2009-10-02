@@ -1,8 +1,8 @@
 Map.layers.landmarks_f = function(){ 
-  var lms = Landmarks.in_city(This.city.resource_id());
+  var lms = Landmarks.here();
   if (!lms) return [];
-  return lms.map(function(){
-    return MapLandmarks.marker_for_lm(this);
+  return lms.map(function(x){
+    return MapLandmarks.marker_for_lm(x);
   });
 };
 

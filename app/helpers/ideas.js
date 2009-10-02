@@ -13,7 +13,7 @@ LiveHTML.widgets.push({
   },
     
   rssfeed: function(state) {
-    alert('rss feeds do not work in demo mode.');
+    alert('Contact us to activate RSS feeds for your account.');
   },
   
   adventures: function(state) {

@@ -122,15 +122,13 @@ LiveHTML.widgets.push({
   },
   
   current_question: function() {
-    var q = Q.current();
-    if (q) return Questions[q];
-    else return "no current question";
+    return Q.current();
   },
   
   questions_as_lis: function() {
     var qs = $keys(Answers.here());
     return qs.map(function(x){
-      var q = Questions[x];
+      var q = x;
       return "<li href='#tool=show_answers;question="+x+"'>" + q + "</li>";
     }).join('');
   },

@@ -21,6 +21,10 @@ body.zoomed_out .local_only {display:none;}
   top:-8px;
 }
 
+/* for now, disable approve deputies except in demo mode */
+a.approve_deputies_tool { display: none; }
+body.demo_mode a.approve_deputies_tool { display: inline; }
+
 #mode_buttons a#coordinate_mode_button.active {
   padding-bottom: 20px;
   padding-top: 8px;

@@ -12,6 +12,7 @@ Frame = {
 
     $(document).keypress(function(e){
       if ($(e.target).is('input,textarea')) return;
+      if (e.metaKey) return;
       var ch = String.fromCharCode(e.which);
       if (ch == 'x') go('@' + This.city); //Map.Gmap.closeInfoWindow();
       if (ch == 'p') return Map.Gmap.setMapType(G_SATELLITE_MAP);
@@ -44,7 +45,7 @@ Frame = {
     
   populate_flexbar_agents: function(agents) {
     if (!agents) return;
-    var groups = agents.group_by('fab_state');
+    var groups = agents.sort_by('.last_ts_ago').group_by('fab_state');
     console.log(groups);
     $('#agents > div').hide();
     $.each($keys(groups), function(){

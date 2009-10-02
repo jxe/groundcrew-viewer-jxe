@@ -1,7 +1,7 @@
-App.tools.approve_deputies = {
+App.tools.lat_lng = {
   
   map_clicked: function() {
-    alert("You clicked the fuckin map, at "+This.click_lat+", "+This.click_lng+".");
+    alert("You clicked the map, at "+This.click_lat+", "+This.click_lng+".");
   }
   
 };
@@ -9,7 +9,7 @@ App.tools.approve_deputies = {
 App.tools.add_landmark = {
   
   map_clicked: function() {
-    map.openInfoWindow(This.click_latlng, $.template('#new_landmark_template')[0]);
+    map.openInfoWindow(This.click_latlng, $.template('#new_landmark_template').app_paint()[0]);
   },
   
   reveal: function(changed) {
@@ -20,11 +20,3 @@ App.tools.add_landmark = {
   
 };
 
-App.tools.assign_agents = {
-    
-  
-};
-
-App.tools.interact_selected = {
-
-};
