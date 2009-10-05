@@ -3,14 +3,21 @@ LiveHTML.widgets.push({
   // item state:  latch status, problems, etc
   
   item_comm_ts: function() {
+    if (!This._item.comm) return "a while ago";
     var comm_ts = This._item.comm.split(' ')[1];
     return $long_ago(comm_ts) + " ago";
   },
   
+
+  location_is_stale: function() {
+    if (!This._item.loc_ts) return true;
+    if (Date.within(This._item.loc_ts, 60 * 60)) return true;
+    return false;
+  },
   
   item_status: function() {
     if (!This._item.fab_state) return "unknown";
-    if (!This._item.fab_state == 'assigned') return "assigned";
+    if (This._item.fab_state == 'assigned') return "assigned";
     return "available";
   },
   

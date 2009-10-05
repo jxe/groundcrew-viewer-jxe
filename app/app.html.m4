@@ -6,12 +6,13 @@
   <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAGqp2ukVwjWFfmC-XmCCZFRRGsPIMf82DrFSwJZKzmHDVn9CoiRSfPwbMs9LeX9Qw4ba2CuYyrEQBZw&amp;hl="></script> 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
   <!-- // <script src="../vendor/jquery/jquery.min.js"></script> -->
-  <script src="/api/auth.js"></script>
+  <script src="http://groundcrew.us/api/auth.js"></script>
   <script src="viewer.js"></script>
-  <script src="VIEWER_INITIAL_JS"></script>
+  <script src="http://groundcrew.us/api/stream.js"></script>
   <script>
-    var base_uri = 'VIEWER_INITIAL_JS';
-    var demo = (base_uri[0] != '/');
+    if (!window.current_stream) window.current_stream = 'demo';
+    var demo = (current_stream == 'demo');
+    if (demo) $.getScript('demostart.js', App.init);
     login_by_cookie(); 
   </script>
 </head>
@@ -34,7 +35,7 @@
     m4_include(`app/chrome/navigation_menus.html')
   </div>
 
-  m4_syscmd(`cat app/{toolbox,focii}/*.html')
+  m4_syscmd(`cat app/tools/*.html')
 
   <div id="offscreen" style="display:none">
     m4_syscmd(`cat app/maplayers/*.html')
@@ -42,7 +43,7 @@
 
   <script>
   if($.browser.msie) $('#unsupported').show();
-  $(function(){ App.init(); });
+  if (!demo) $(function(){ App.init(); });
   </script>
 </body>
 </html>

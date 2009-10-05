@@ -21,6 +21,8 @@ Viewer = App = {
   },
 
   update: function(changed) {
+    if (!This.prev_url) changed.tool = changed.item = changed.city = true;
+        
     if (changed.tool && This.tool && This._item && !changed.item) set('item', This.city);
 
     if (changed.item) {
@@ -47,7 +49,6 @@ Viewer = App = {
 
     if (changed.agents) {
       Frame.populate_flexbar_agents(This.agents);
-      trigger('city_changed', This.city);
       Map.clear_layer('agents');
     }
 
@@ -59,22 +60,17 @@ Viewer = App = {
 
       This.first_responders[0] = {};
       This.first_responders[1] = App.modes[This.mode.toLowerCase()] || {};
-
-      // if (!changed.tool) set('tool', App.most_recent_tool[This.mode] || Console.tools[This.mode] && Console.tools[This.mode][0].split('//')[0]);
-
-      // trigger(This.mode + "_mode_activated");
     }
 
     if (changed.tool) {
       App.most_recent_tool[This.mode] = This.tool;
       $('.' + This.tool + '_tool').activate('tool');
       This.first_responders[0] = App.tools[This.tool] || {};
-      // trigger(This.tool + "_tool_activated");
     }
 
     set('map_layers', Console.map_layers_for_current_settings());
 
-    $.each($w('cities agents landmarks wishes'), function(){
+    $.each($w('cities agents landmarks'), function(){
       if (This.map_layers.contains(this)) {
         Map.show_layer(this);
       } else {
@@ -83,11 +79,24 @@ Viewer = App = {
     });
 
     if (changed.item || changed.tool) App.refresh_mapwindow();
-
+        
     $('.magic').app_paint();
     $('.hud:visible').app_paint();
 
   },
+
+  go_login: function() {
+    $.cookie('back', window.location.href);
+    window.location = '/login';
+  },
+  
+  request_agent_update_location: function() {
+    // TODO: check comm3 and don't allow if we bugged them recently
+    Operation.exec("askfor location: Our location for you looks old.  Where are you?", This.item, This.item, function(){
+      $('#make_it_happen_form').html('Message sent!');
+    });
+  },
+  
 
   demo_mode: function() {
     return demo;
@@ -100,9 +109,10 @@ Viewer = App = {
     }
     else {
       var thing = This.item.split('__')[0].toLowerCase();
-      var best_mapwindow_template = $.template('#' + thing + '_for_' + This.tool + '_tool') || $.template('#' + thing + '_for_' + This.mode.toLowerCase() + '_mode') || $.template('#' + thing + '_for_any_mode');
-      if (best_mapwindow_template) MapMarkers.window(best_mapwindow_template);
-      else {
+      var best_mapwindow_template = $.template('#' + thing + '_for_' + This.tool + '_tool') || $.template('#' + thing + '_for_any_mode');
+      if (best_mapwindow_template) {
+        MapMarkers.window(best_mapwindow_template);
+      } else {
         //TODO:  if there's no template, there should be no selection
         console.log('no template found.  closing map window.');
         Map.Gmap.closeInfoWindow();
@@ -132,6 +142,7 @@ Viewer = App = {
     // init the UI
     Frame.init();
     if (demo) $('body').addClass('demo_mode');
+    $('body').addClass('stream_role_' + window.stream_role);
     LiveHTML.init();
     $('body').removeClass('loading');
     Map.establish();
@@ -149,7 +160,7 @@ Viewer = App = {
       delete agents_by_city[0];
       var active_cities = $keys(agents_by_city);
       if (active_cities.length == 1) start_city = "City__" + active_cities[0];
-      Ajax.go_on_load = 'squad=demo;item=' + start_city;
+      Ajax.go_on_load = 'item=' + start_city;
     }
 
     Ajax.maybe_trigger_load();
@@ -195,8 +206,9 @@ Viewer = App = {
   },
 
   ask_question_form_submitted: function(data) {
-    var agents = Agents.here().map('.id').join(' ').replace(/Person__/g, '');
-    if (demo) return Operation.question_demo(data.question, agents);
+    var agent_ids = Agents.here().map('.id');
+    if (demo) return Operation.question_demo(data.question, agent_ids);
+    agent_ids = agent_ids.join(' ').agent_ids.replace(/Person__/g, '').split(' ');
     Operation.exec(CEML.script_for('question', data.question), agents, agents, function(){
       $('#ask_question_form').html('Message sent!');
     });
@@ -212,10 +224,7 @@ Viewer = App = {
   },
 
   make_it_happen_form_submitted: function(data) {
-    if (demo && data.kind == "question")
-    {
-      return Operation.question_demo(data.assign, [This.item]);
-    }
+    if (demo && data.kind == "question") return Operation.question_demo(data.assign, [This.item]);
     if (demo && data.kind == "msg")      return alert("sending a msg");
     if (demo && data.kind == "mission")  return Operation.assign_demo(This.item, data.assign);
     Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item, function(){

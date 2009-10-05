@@ -16,7 +16,7 @@ Console = {
 
 $.each([
   'assess     show_answers//scroll     ask_a_question            view_events//scroll',
-  'manage     add_landmark//landmark21  approve_deputies     chat//chat_icon18',
+  'manage     add_landmark//landmark21  approve_deputies     chat//chat_icon18    squad_settings',
   'dispatch     assign_agents            start_something           join_something'
 ], function(){
   

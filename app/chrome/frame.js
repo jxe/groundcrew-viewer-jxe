@@ -46,7 +46,6 @@ Frame = {
   populate_flexbar_agents: function(agents) {
     if (!agents) return;
     var groups = agents.sort_by('.last_ts_ago').group_by('fab_state');
-    console.log(groups);
     $('#agents > div').hide();
     $.each($keys(groups), function(){
       if (this == null || this == "null") return;

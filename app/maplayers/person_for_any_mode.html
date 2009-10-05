@@ -39,6 +39,14 @@
         <ul fill="upfors_as_lis" class="tags upfor"></ul>
       </div>
       
+      <div if="location_is_stale">
+        Location is stale.  <a href="##request_agent_update_location">ask for updated location</a>
+      </div>
+
+      <div if="!location_is_stale">
+        Location is fresh.
+      </div>
+      
       <div class="xspace" if="twitter_status" fill="twitter_status"></div>
       
       <div class="xspace" if="twitter_bio" fill="twitter_bio"></div>

@@ -30,7 +30,7 @@ body.logged_in .lio {
   display: none;
 }
 
-body.logged_out .m_item.loo {
+body.logged_out .loo {
   display: inline;
 }
 
