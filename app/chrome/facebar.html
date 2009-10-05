@@ -7,26 +7,35 @@ m4_define(`fab_state_div', `<div id="$2_agents"><div id="$2_agent_thumbs"></div>
   </div>
   
   <div id="flexbar">
+    <div id="big1" style="display:none; float: left; color: white; font-size: 48px">
+      &#9312;
+    </div>
     <div id="agents">
+
+      <!-- bookmarks -->
+      fab_state_div(red,    group1,     Group 1)
 
       <!-- live states -->
       fab_state_div(red,    neglected,     neglected)
-      fab_state_div(orange, indicating,    indicating)
       fab_state_div(orange, concerns,      questions / concerns)
-      fab_state_div(green,  ready,         requesting assignment)
 
       fab_state_div(green, responded,     responded)
       fab_state_div(green, responded_yes, responded "yes")
       fab_state_div(red,   responded_no,  responded "no")
 
-      fab_state_div(yellow, updates,       updates)
+      fab_state_div(yellow, reporting,       reporting)
+
+      fab_state_div(green,  in_dialogue,         in dialogue)
 
       fab_state_div(brown, assigned,      on assignment)
-      fab_state_div(brown, active,        active)
+
 
       <!-- parked states -->
       fab_state_div(orange, addressable,   addressable needs)
-      fab_state_div(green,  reserve,       reserve)
+      fab_state_div(green,  available,       available)
+
+      fab_state_div(grey,  pending,       pending)
+      fab_state_div(grey,  unresponsive,  unresponsive)
 
       <!-- people you don't like -->
       fab_state_div(grey, retired,       retired)

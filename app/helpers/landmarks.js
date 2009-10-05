@@ -15,13 +15,13 @@ LiveHTML.widgets.push({
   },
   
   live_ops: function(state) {
-    return Ops.here().reverse().map(function(x){
+    return Ops.here().map(function(x){
       if (x.thumb_url) {
         return '<dl href="#@#{id}"><dd class="img"><img src="#{thumb_url}"/></dd><dt>#{title}</dt><hr/></dl>'.t(x);
       } else {
         return '<dl href="#@#{id}"><dt>#{title}</dt><hr/></dl>'.t(x);
       }
-    }).join('');
+    }).reverse().join('');
   },
   
   radius_options: function() {

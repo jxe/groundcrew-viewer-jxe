@@ -1,3 +1,13 @@
+function sms_count(){};
+
+// placeholder
+Chats = [];
+function rem(who, when, what, oids, msg){
+  who = who.replace(/^/, 'Person__');
+  var title = who.resource() && who.resource().title;
+  if (what == "chat") Chats.push({ actor_title: title, actor_tag: who, what: msg, when: when });
+};
+
 Actions = {
   
   event_t:
@@ -8,7 +18,7 @@ Actions = {
      </div>',
      
    chat_t:
-     '<li title="#{when}"><a href="#@#{actor_tag}">#{actor_title}</a>#{what}</li>'
+     '<li title="#{when}"><a href="#@#{actor_tag}">#{actor_title}</a>: #{what}</li>'
   
 };
 
@@ -20,17 +30,17 @@ LiveHTML.widgets.push({
   },
   
   latest_chats: function(state) {
-    var chats = Anncs.find('=atype said');
-    if (chats.length > 9) chats = chats.slice(chats.length - 9);
-    return Actions.chat_t.tt(chats);
+    if (Chats.length > 9) Chats = Chats.slice(Chats.length - 9);
+    return Actions.chat_t.tt(Chats);
   },
   
   chat_form_submitted: function(data, state, form) {
     var input = $(form).find('input');
-    $.post("/gc/said", {msg: data.msg}, function(x){ 
+    $.post("http://groundcrew.us/api/remark", {kind: 'chat', msg: data.msg}, function(x){ 
       input.val('');
       $(form).enable();
       eval(x);
+      $('#chat_palette').app_paint();
     });
   }
   

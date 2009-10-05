@@ -3,7 +3,7 @@ LANG=C
 
 # basic builds
 
-uncompressed: html_demo raw_js buildcss
+uncompressed: html raw_js buildcss
 
 test: BUILD buildcss raw_js
 	m4 -P tests/test.html.m4 > BUILD/test.html
@@ -20,20 +20,14 @@ buildcss: BUILD
 
 # versions
 
-html: BUILD
-	m4 -P -DVIEWER_INITIAL_JS='/api/stream.js' app/app.html.m4 > BUILD/index.html
+deploy: html raw_js buildcss
+	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,index.html,viewer.*,demostart.js} joe@groundcrew.us:gc/public/viewer/
 
-html_demo: BUILD
-	m4 -P -DVIEWER_INITIAL_JS='demostart.js' app/app.html.m4 > BUILD/viewer.html
+html: BUILD
+	m4 -P app/app.html.m4 > BUILD/index.html
 
 deploy_twitter: html min_js buildcss
 	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,viewer.*} joe@groundcrew.us:gc/gvs/twitter/
-
-deploy_noho: html raw_js buildcss
-	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,index.html,viewer.*} joe@groundcrew.us:gc/gvs/noho/
-
-deploy_demo: html_demo min_js buildcss
-	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,viewer.*,demostart.js} joe@groundcrew.us:gc/gv/
 
 gcapi:
 	cat lib/{jsappkit,gc_api}/*.js  | jsmin > BUILD/gcapi.js
