@@ -22,7 +22,7 @@ Viewer = App = {
 
   update: function(changed) {
     if (!This.prev_url) changed.tool = changed.item = changed.city = true;
-        
+
     if (changed.tool && This.tool && This._item && !changed.item) set('item', This.city);
 
     if (changed.item) {
@@ -79,7 +79,7 @@ Viewer = App = {
     });
 
     if (changed.item || changed.tool) App.refresh_mapwindow();
-        
+
     $('.magic').app_paint();
     $('.hud:visible').app_paint();
 
@@ -89,14 +89,14 @@ Viewer = App = {
     $.cookie('back', window.location.href);
     window.location = '/login';
   },
-  
+
   request_agent_update_location: function() {
     // TODO: check comm3 and don't allow if we bugged them recently
     Operation.exec("askfor location: Our location for you looks old.  Where are you?", This.item, This.item, function(){
       $('#make_it_happen_form').html('Message sent!');
     });
   },
-  
+
 
   demo_mode: function() {
     return demo;
@@ -234,7 +234,10 @@ Viewer = App = {
 
   group_interact_form_submitted: function(data, state, form) {
     var agents = $keys(Selection.current);
-    if (demo) return Operation.group_assign_demo(agents, data.assign, Selection.clear);
+
+    if (demo && data.kind == "question") return Operation.question_demo(data.assign, agents);
+    if (demo && data.kind == "msg")      return alert("sending a msg to " + agents);
+    if (demo && data.kind == "mission")  return Operation.group_assign_demo(agents, data.assign, Selection.clear);
     Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
       $('#group_interact_form').html('Message sent!');
       Selection.clear();
