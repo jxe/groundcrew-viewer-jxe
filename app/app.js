@@ -189,7 +189,7 @@ Viewer = App = {
 
   radial_invite_form_submitted: function(data) {
     var agents = data.agents;
-    if (demo) return Operation.invite_demo(This.item, data.title, data.assignment);
+    if (demo) return Demo.invite_demo(This.item, data.title, data.assignment);
     Operation.exec(CEML.script_for_invite(data.title, data.assignment), agents, This.item, function(){
       $('#radial_invite_form').html('message sent!');
     });
@@ -207,7 +207,7 @@ Viewer = App = {
 
   ask_question_form_submitted: function(data) {
     var agent_ids = Agents.here().map('.id');
-    if (demo) return Operation.question_demo(data.question, agent_ids);
+    if (demo) return Demo.question_demo(data.question, agent_ids);
     agent_ids = agent_ids.join(' ').agent_ids.replace(/Person__/g, '').split(' ');
     Operation.exec(CEML.script_for('question', data.question), agents, agents, function(){
       $('#ask_question_form').html('Message sent!');
@@ -224,9 +224,9 @@ Viewer = App = {
   },
 
   make_it_happen_form_submitted: function(data) {
-    if (demo && data.kind == "question") return Operation.question_demo(data.assign, [This.item]);
+    if (demo && data.kind == "question") return Demo.question_demo(data.assign, [This.item]);
     if (demo && data.kind == "msg")      return alert("sending a msg");
-    if (demo && data.kind == "mission")  return Operation.assign_demo(This.item, data.assign);
+    if (demo && data.kind == "mission")  return Demo.assign_demo(This.item, data.assign);
     Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item, function(){
       $('#make_it_happen_form').html('Message sent!');
     });
@@ -235,9 +235,9 @@ Viewer = App = {
   group_interact_form_submitted: function(data, state, form) {
     var agents = $keys(Selection.current);
 
-    if (demo && data.kind == "question") return Operation.question_demo(data.assign, agents);
+    if (demo && data.kind == "question") return Demo.question_demo(data.assign, agents);
     if (demo && data.kind == "msg")      return alert("sending a msg to " + agents);
-    if (demo && data.kind == "mission")  return Operation.group_assign_demo(agents, data.assign, Selection.clear);
+    if (demo && data.kind == "mission")  return Demo.group_assign_demo(agents, data.assign, Selection.clear);
     Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
       $('#group_interact_form').html('Message sent!');
       Selection.clear();
