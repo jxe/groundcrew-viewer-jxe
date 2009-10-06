@@ -85,6 +85,7 @@ p.deemphasize {
   height: 100px;
   width: 100px;
   margin-right: 20px;
+  margin-bottom: 10px;
   overflow: hidden;
   padding:6px;
   text-align:center;
