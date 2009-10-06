@@ -1,10 +1,8 @@
-function sms_count(){};
-
 // placeholder
 Chats = [];
 function rem(who, when, what, oids, msg){
   who = who.replace(/^/, 'Person__');
-  var title = who.resource() && who.resource().title;
+  var title = who.resource() && who.resource().title || 'Unknown Organizer';
   if (what == "chat") Chats.push({ actor_title: title, actor_tag: who, what: msg, when: when });
 };
 
@@ -13,7 +11,7 @@ Actions = {
   event_t:
     '<div class="event #{color}">\
      <span class="time">#{when}</span>\
-     <a href="#item=#{actor_tag}">#{actor_title}</a>\
+     <a href="#@#{actor_tag}">#{actor_title}</a>\
      #{what}\
      </div>',
      

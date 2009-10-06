@@ -21,6 +21,10 @@ Selection = {
     else Selection.select(tag);
   },
   
+  update_all: function() {
+    $.each($keys(Selection.current), function(){ Selection.update(this); });
+  },
+  
   update: function(tag) {
     if (Selection.current[tag]) $('.athumb.' + tag).addClass('selected');
     else $('.athumb.' + tag).removeClass('selected');

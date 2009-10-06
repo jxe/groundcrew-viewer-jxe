@@ -34,7 +34,7 @@
   padding: 3px 4px 1px 4px;
   color: #191919;
   font-weight:bold;
-  
+  cursor: pointer;
 }
 
 #flexbar #agents .athumb img.th {

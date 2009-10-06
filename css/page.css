@@ -6,7 +6,9 @@ form {margin:0;padding:0;}
 
 body #load_spinner {
   display:none;
-  padding:0px 3px;
+  position: absolute;
+  left: 200px;
+  top: 20px;
 }
 
 body.refresh #load_spinner {

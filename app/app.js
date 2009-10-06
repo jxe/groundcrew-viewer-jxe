@@ -20,6 +20,10 @@ Viewer = App = {
     return This.q;
   },
 
+  zoomed_out: function() {
+    return !This.city;
+  },
+
   update: function(changed) {
     if (!This.prev_url) changed.tool = changed.item = changed.city = true;
 
@@ -172,7 +176,6 @@ Viewer = App = {
   switch_to_question: function(value, ch) {
     if (ch == '?') {
       $('form input[value=question]').attr('checked', 'checked');
-      $('form input[name=kind]').val('question');
     }
   },
 
@@ -222,6 +225,7 @@ Viewer = App = {
       Frame.resize();
     }
   },
+
 
   make_it_happen_form_submitted: function(data) {
     if (demo && data.kind == "question") return Demo.question(data.assign, [This.item]);

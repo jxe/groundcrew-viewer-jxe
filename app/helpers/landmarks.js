@@ -25,8 +25,9 @@ LiveHTML.widgets.push({
   },
   
   radius_options: function() {
+        
     // [label, meters]
-    return [ ["1 block", 200], 
+    var options = [ ["1 block", 200], 
       ["3 blocks", 600], 
       ["1/2 mile", 800], 
       ["1 mile", 1600], 
@@ -37,7 +38,15 @@ LiveHTML.widgets.push({
       var option_label = x[0] + " &mdash; " + agents.length + " agents";
       var agent_tags = agents.map('.id').join(' ');
       return "<option value='"+agent_tags+"'>" + option_label + "</option>";
-    }).join('');
-  }  
+    });
     
+    if (!isEmpty(Selection.current)) {
+      var agent_tags = $keys(Selection.current);
+      options.unshift("<option value='"+agent_tags.join(' ')+"'>selected agents &mdash; "+agent_tags.length+" agents");
+    }
+    
+    if (options.length == 0) options.push('<option>No nearby agents!</option>');
+    return options.join('');
+  }
+
 });

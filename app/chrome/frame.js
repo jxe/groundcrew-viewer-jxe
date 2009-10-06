@@ -10,11 +10,14 @@ Frame = {
     });
     $('.startupmagic').app_paint();
 
-    $(document).keypress(function(e){
+    $(document).keyup(function(e){
       if ($(e.target).is('input,textarea')) return;
       if (e.metaKey) return;
+      if (e.keyCode == 27 || e.keyCode == e.DOM_VK_ESCAPE) {
+        go('@' + This.city);
+        return false;
+      }
       var ch = String.fromCharCode(e.which);
-      if (ch == 'x') go('@' + This.city); //Map.Gmap.closeInfoWindow();
       if (ch == 'p') return Map.Gmap.setMapType(G_SATELLITE_MAP);
       if (ch == 'm') return Map.Gmap.setMapType(G_NORMAL_MAP);
       if (ch == 'h') return Map.Gmap.setMapType(G_HYBRID_MAP);
@@ -53,6 +56,7 @@ Frame = {
       $('#' + this + '_agent_thumbs').html(Frame.agent_thumb.tt(groups[this]));
     });
     $('#flexbar').scrollLeft(0).app_paint();
+    Selection.update_all();
   }
   
 };

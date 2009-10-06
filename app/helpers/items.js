@@ -11,8 +11,8 @@ LiveHTML.widgets.push({
 
   location_is_stale: function() {
     if (!This._item.loc_ts) return true;
-    if (Date.within(This._item.loc_ts, 60 * 60)) return true;
-    return false;
+    if (Date.within(This._item.loc_ts, 60 * 60)) return false;
+    return true;
   },
   
   item_status: function() {
@@ -69,8 +69,15 @@ LiveHTML.widgets.push({
   },
   
   item_current_assignment: function() {
-    if (This._item.fab_state != 'assigned') return " ";
-    return This._item.latch.split(' ')[2].resource().body;
+    var latch2 = This._item.latch && This._item.latch.split(' ')[2];
+    var latch_op = latch2 && latch2.resource();
+    if (!latch_op) return;
+    if (latch_op.atype.contains('question')) {
+      // TODO: questions should link to the show_answers display, as well as the live feed
+      return "Question: " + latch_op.body;
+    } else {
+      return latch_op && latch_op.body;
+    }
   },
   
   agent_assign_prompt: function() {
