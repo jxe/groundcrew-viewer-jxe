@@ -226,7 +226,7 @@ Viewer = App = {
   make_it_happen_form_submitted: function(data) {
     if (demo && data.kind == "question") return Demo.question(data.assign, [This.item]);
     if (demo && data.kind == "msg")      return alert("sending a msg");
-    if (demo && data.kind == "mission")  return Demo.assign(This.item, data.assign);
+    if (demo && data.kind == "mission")  return Demo.assign([This.item], data.assign);
     Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item, function(){
       $('#make_it_happen_form').html('Message sent!');
     });
@@ -237,7 +237,7 @@ Viewer = App = {
 
     if (demo && data.kind == "question") return Demo.question(data.assign, agents);
     if (demo && data.kind == "msg")      return alert("sending a msg to " + agents);
-    if (demo && data.kind == "mission")  return Demo.group_assign(agents, data.assign, Selection.clear);
+    if (demo && data.kind == "mission")  return Demo.assign(agents, data.assign, Selection.clear);
     Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
       $('#group_interact_form').html('Message sent!');
       Selection.clear();
