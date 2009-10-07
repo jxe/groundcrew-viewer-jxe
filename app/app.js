@@ -166,6 +166,11 @@ Viewer = App = {
       delete agents_by_city[0];
       var active_cities = $keys(agents_by_city);
       if (active_cities.length == 1) start_city = "City__" + active_cities[0];
+      if (active_cities.length == 0) {
+        if (most_recent_item) {
+          start_city = "City__" + most_recent_item.city_id;
+        }
+      }
       Ajax.go_on_load = 'item=' + start_city;
     }
 

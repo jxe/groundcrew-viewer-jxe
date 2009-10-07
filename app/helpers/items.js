@@ -157,18 +157,4 @@ LiveHTML.widgets.push({
     return Agents.all && Agents.all.length;
   }
   
-  
-  // agents_to_guide6: function() {
-  //   return Tiles.agent_tile.tt(This.agents.slice(0,6));
-  // },
-  // 
-  // agents_to_guide_all: function() {
-  //   return Tiles.agent_tile.tt(This.agents.slice(0, 6*7));
-  // },
-  
-  // TODO: make dynamic
-  // item_squad: function() {
-  //   return "Demo Squad";
-  // },
-  
 });
