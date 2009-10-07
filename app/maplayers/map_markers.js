@@ -1,11 +1,31 @@
 MapMarkers = {
   cache: {},
+  should_update: {},
 
-  iw_marker: null,
-  
+  update_delayed_markers: function() {
+    $.each($keys(MapMarkers.should_update), function(){
+      MapMarkers.update_marker(this);
+    });
+    MapMarkers.should_update = {};
+  },
+
   update_marker: function(tag) {
     var marker = MapMarkers.cache[tag] || tag.resource().map_marker;
-    // if (marker) marker.setImage('i/map/' + tag.resource().map_icon + '.png');
+    var is_open = Map.open_marker == marker;
+    if (!marker || !marker.mgr || !marker.info_data) return;
+    if (is_open) {
+      MapMarkers.should_update[tag] = true;
+      return;
+    }
+    
+    // update it's image & location
+    Map.Gmap.addOverlay(marker);  // TODO:  encapsulation error
+    marker.setImage(MapIcons.for_type(marker.info_data.map_icon).image);
+    marker.setLatLng(new GLatLng(marker.info_data.lat, marker.info_data.lng));
+    
+    // then remove and add back to manager to update position
+    marker.mgr.removeMarker(marker);
+    marker.mgr.addMarker(marker);
   },
   
   window: function(tmpl, min_zoom) {
@@ -26,16 +46,7 @@ MapMarkers = {
     }
     
     if (!marker) return alert('no marker found for ' + item);
-    
     Map.open(marker, content);
-    
-    
-    // rezoom (unless the user has changed the zoom recently)
-    // if (Map.Gmap.getZoom() < min_zoom && Map.Gmap.getZoom() == Map.last_zoom_auto_set) {
-    //   Map.last_zoom_auto_set = min_zoom;
-    //   Map.Gmap.setCenter(marker.getLatLng(), min_zoom);
-    // }
-
   }
   
 };

@@ -55,7 +55,7 @@ Frame = {
       $('#' + this + '_agents').show();
       $('#' + this + '_agent_thumbs').html(Frame.agent_thumb.tt(groups[this]));
     });
-    $('#flexbar').scrollLeft(0).app_paint();
+    $('#flexbar').app_paint();
     Selection.update_all();
   }
   

@@ -1,8 +1,8 @@
 // placeholder
 Chats = [];
-function rem(who, when, what, oids, msg){
+function rem(who, when, what, oids, msg, title){
   who = who.replace(/^/, 'Person__');
-  var title = who.resource() && who.resource().title || 'Unknown Organizer';
+  title = title || (who.resource() && who.resource().title) || 'Unknown Organizer';
   if (what == "chat") Chats.push({ actor_title: title, actor_tag: who, what: msg, when: when });
 };
 
