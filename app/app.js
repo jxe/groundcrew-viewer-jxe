@@ -110,11 +110,13 @@ Viewer = App = {
     if (!This._item) {
       console.log('closing info window');
       Map.Gmap.closeInfoWindow();
+      MapMarkers.update_delayed_markers();
     }
     else {
       var thing = This.item.split('__')[0].toLowerCase();
       var best_mapwindow_template = $.template('#' + thing + '_for_' + This.tool + '_tool') || $.template('#' + thing + '_for_any_mode');
       if (best_mapwindow_template) {
+        MapMarkers.update_delayed_markers();
         MapMarkers.window(best_mapwindow_template);
       } else {
         //TODO:  if there's no template, there should be no selection
@@ -192,6 +194,10 @@ Viewer = App = {
 
   radial_invite_form_submitted: function(data) {
     var agents = data.agents;
+    if (!data.assignment) {
+      alert('Please provide an assignment!');
+      return "redo";
+    }
     if (demo) return Demo.invite(This.item, data.title, data.assignment);
     Operation.exec(CEML.script_for_invite(data.title, data.assignment), agents, This.item, function(){
       $('#radial_invite_form').html('message sent!');
@@ -203,9 +209,10 @@ Viewer = App = {
     data.kind = 'l';
     data.lat = This.click_lat;
     data.lng = This.click_lng;
-    $.post('/api/items/'+current_stream+'/'+lm_id, data, function(){
-      alert('open it now.');
-    });
+    $.post('/api/items/'+current_stream+'/'+lm_id, data, function(landmark_js){
+      eval(landmark_js);
+      go('@' + most_recent_item.id);
+    }, 'text');
   },
 
   ask_question_form_submitted: function(data) {
@@ -228,6 +235,10 @@ Viewer = App = {
 
 
   make_it_happen_form_submitted: function(data) {
+    if (!data.assign) {
+      alert('Please provide an assignment!');
+      return "redo";
+    }
     if (demo && data.kind == "question") return Demo.question(data.assign, [This.item]);
     if (demo && data.kind == "msg")      return alert("sending a msg");
     if (demo && data.kind == "mission")  return Demo.assign([This.item], data.assign);
@@ -238,6 +249,11 @@ Viewer = App = {
 
   group_interact_form_submitted: function(data, state, form) {
     var agents = $keys(Selection.current);
+
+    if (!data.assign) {
+      alert('Please provide an assignment!');
+      return "redo";
+    }
 
     if (demo && data.kind == "question") return Demo.question(data.assign, agents);
     if (demo && data.kind == "msg")      return alert("sending a msg to " + agents);
