@@ -10,27 +10,27 @@
         Location is fresh.
       </div>
     </div>
-    
+
     <div style="float:left; max-width: 450px">
       <h2 fill="item_title"></h2>  <ul class="tags skills" if="agent_skills_as_lis" fill="agent_skills_as_lis"></ul>
-      
+
       <div class="grayish">
         This agent is <b class="highlight" fill="item_status"></b>.  Last heard from <b class="highlight" fill="item_comm_ts"></b>.
         <!-- Squad Info: and on <b><span fill="item_squad"></span></b>. -->
       </div>
-      
+
       <!-- <div class="xspace" fill="recent_dialogue">
       </div> -->
-      
+
       <div class="xspace" if="is_latched">
         Currently engaged with: <a href="##jump_to_op" class="highlight" fill="item_current_assignment"></a>
       </div>
-      
+
       <form id="make_it_happen_form" if="agent_assignable">
         <input name="assign"
           class="text"
           type="text"
-          hint="#agent_assign_prompt" 
+          hint="#agent_assign_prompt"
           observe="switch_to_question"
         /><button type="submit" class="submit">
             Send<strong>&rarr;</strong>
@@ -41,14 +41,20 @@
         <input type="radio" name="kind" value="question">question
       </form>
 
-      <div if="upfors_as_lis_and_agent_assignable" class="grayish right" style="padding-right:20px">
-        Give them:
+      <div if="twitter_status" class="iwbox">
+        <h4>status</h4>
+        <span fill="twitter_status"></span>
+      </div>
+
+      <div if="upfors_as_lis_and_agent_assignable" class="iwbox">
+        <h4>tags</h4>
         <ul fill="upfors_as_lis" class="tags upfor"></ul>
       </div>
-            
-      <div class="xspace" if="twitter_status" fill="twitter_status"></div>
-      
-      <div class="xspace" if="twitter_bio" fill="twitter_bio"></div>
+
+      <div if="twitter_bio" class="iwbox">
+        <h4>bio</h4>
+        <span fill="twitter_bio"></span>
+      </div>
 
       <div if="answers" id="q-and-a">
         <h6>What They've Said</h6>
