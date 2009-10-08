@@ -48,6 +48,11 @@ Frame = {
     
   populate_flexbar_agents: function(agents) {
     if (!agents) return;
+    if (agents.length == 0) {
+      $('#flexbar').addClass('empty');
+    } else {
+      $('#flexbar').removeClass('empty');
+    }
     var groups = agents.sort_by('.last_ts_ago').group_by('fab_state');
     $('#agents > div').hide();
     $.each($keys(groups), function(){

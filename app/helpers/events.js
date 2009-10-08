@@ -16,7 +16,7 @@ Actions = {
      </div>',
      
    chat_t:
-     '<li title="#{when}"><a href="#@#{actor_tag}">#{actor_title}</a>: #{what}</li>'
+     '<li title="#{when}"><b>#{actor_title}</b>: #{what}</li>'
   
 };
 

@@ -101,8 +101,10 @@ LiveHTML.widgets.push({
   },
   
   upfors_as_lis: function() {
-    var upfor = This._item.upfor || ' ';
-    return "<li>" + $w(upfor).join(',</li> <li>') + "</li>";
+    var upfor = This._item.upfor || '';
+    return "<li>" + $w(upfor).map(function(x){
+      return "<a href='#q="+x+"'>"+x+"</a>";
+    }).join(',</li> <li>') + "</li>";
   },
   
   upfors_as_lis_and_agent_assignable: function(){

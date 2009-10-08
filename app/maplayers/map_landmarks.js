@@ -52,10 +52,9 @@ MapLandmarks = {
     var marker = new GMarker(new GLatLng(lm.lat, lm.lng), {icon: MapIcons.for_landmark(lm), title: lm.title});
     GEvent.addListener(marker, "click", function(){ go("@" + lm.id); });
     GEvent.addListener( marker, "infowindowclose", function() { 
-      if (Map.open_in_progress) return true;
-      if (!This._item) return true;
-      // if (This.item != lm.id) { alert('not closing; landmark is not item'); return; };
-      go('@' + This.city);
+      setTimeout(function(){
+        if (This.item && Map.Gmap.getInfoWindow().isHidden()) go('@' + This.city);
+      }, 50);
     });
     
     lm.map_marker = marker;
