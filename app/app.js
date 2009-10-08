@@ -109,13 +109,13 @@ Viewer = App = {
   refresh_mapwindow: function() {
     if (!This._item) {
       Map.Gmap.closeInfoWindow();
-      MapMarkers.update_delayed_markers();
+      setTimeout(MapMarkers.update_delayed_markers, 400);
     }
     else {
       var thing = This.item.split('__')[0].toLowerCase();
       var best_mapwindow_template = $.template('#' + thing + '_for_' + This.mode + '_mode') || $.template('#' + thing + '_for_any_mode');
       if (best_mapwindow_template) {
-        MapMarkers.update_delayed_markers();
+        setTimeout(MapMarkers.update_delayed_markers, 400);
         MapMarkers.window(best_mapwindow_template);
       } else {
         //TODO:  if there's no template, there should be no selection

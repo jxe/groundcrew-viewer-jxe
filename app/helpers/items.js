@@ -5,6 +5,7 @@ LiveHTML.widgets.push({
   item_comm_ts: function() {
     if (!This._item.comm) return "a while ago";
     var comm_ts = This._item.comm.split(' ')[1];
+    if (!comm_ts) return "just now";
     return $long_ago(comm_ts) + " ago";
   },
   

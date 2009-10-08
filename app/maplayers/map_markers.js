@@ -10,7 +10,6 @@ MapMarkers = {
   },
 
   update_marker: function(tag) {
-    alert("updating marker for "+ tag);
     var marker = MapMarkers.cache[tag] || tag.resource().map_marker;
     var is_open = Map.open_marker == marker;
     if (!marker || !marker.mgr || !marker.info_data) return;
@@ -20,13 +19,19 @@ MapMarkers = {
     }
     
     // update it's image & location
-    Map.Gmap.addOverlay(marker);  // TODO:  encapsulation error
+    // marker.hide();
+    // marker.mgr.removeMarker(marker);
+    var old_pt = marker.getPoint();
+    var new_pt = new GLatLng(marker.info_data.lat, marker.info_data.lng);
+    marker.setLatLng(new_pt);
+    marker.mgr.onMarkerMoved_(marker, old_pt, new_pt);
     marker.setImage(MapIcons.for_type(marker.info_data.map_icon).image);
-    marker.setLatLng(new GLatLng(marker.info_data.lat, marker.info_data.lng));
     
     // then remove and add back to manager to update position
-    marker.mgr.removeMarker(marker);
     marker.mgr.addMarker(marker);
+    // Map.Gmap.addOverlay(marker);  // TODO:  encapsulation error
+    marker.show();
+    // alert("updating marker for "+ tag);
   },
   
   window: function(tmpl, min_zoom) {
