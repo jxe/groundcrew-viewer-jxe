@@ -10,6 +10,7 @@ MapMarkers = {
   },
 
   update_marker: function(tag) {
+    alert("updating marker for "+ tag);
     var marker = MapMarkers.cache[tag] || tag.resource().map_marker;
     var is_open = Map.open_marker == marker;
     if (!marker || !marker.mgr || !marker.info_data) return;

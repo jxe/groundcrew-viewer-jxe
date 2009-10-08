@@ -91,7 +91,7 @@ Viewer = App = {
 
   go_login: function() {
     $.cookie('back', window.location.href);
-    window.location = '/login';
+    window.location = '../login';
   },
 
   request_agent_update_location: function() {
@@ -201,6 +201,10 @@ Viewer = App = {
       alert('Please provide an assignment!');
       return "redo";
     }
+    if (!data.agents) {
+      alert('There are no agents to invite!');
+      return "redo";
+    }
     if (demo) return Demo.invite(This.item, data.title, data.assignment);
     Operation.exec(CEML.script_for_invite(data.title, data.assignment), agents, This.item, function(){
       $('#radial_invite_form').html('message sent!');
@@ -234,7 +238,11 @@ Viewer = App = {
   ask_question_form_submitted: function(data) {
     if (!This.city) {
       alert('Sorry, asking a question worldwide is not permitted at this time.');
-      return;
+      return "redo";
+    }
+    if (!data.question || data.question.length < 5) {
+      alert('Please provide a question to ask!');
+      return "redo";
     }
     var agent_ids = Agents.here().map('.id');
     if (demo) return Demo.question(data.question, agent_ids);

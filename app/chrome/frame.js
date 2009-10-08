@@ -29,7 +29,14 @@ Frame = {
       if (ch == 'g') return go('#go_where');
       if (ch == 'f') return $('#search').focus() && false;
       if (ch == 'y') return $('#floaty').toggleClass('appeared');
-      if (ch == 'T') { test = !test; if (test) alert('test mode active'); }
+      if (ch == 'T') { test = !test; if (test) alert('test mode active'); };
+      if (ch == 'M') { 
+        // move sample guy live.  for testing.
+        var lat = 42.3281968 + (Math.rand(100)/1000);
+        var lng = -72.6328569+ (Math.rand(100)/1000);
+        item(220,"Person__pm83a6463e2e7","OwenFD",null,lat,lng,"health.walk","unlatched","reachable 1254586695 1254585532",null,{});
+      }
+      
     });
 
   },

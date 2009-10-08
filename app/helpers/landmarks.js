@@ -49,7 +49,7 @@ LiveHTML.widgets.push({
     }
     
     options = options.join('');
-    if (!options || options.length == 0) return '<option>No nearby agents!</option>';
+    if (!options || options.length == 0) return '<option value="">No nearby agents!</option>';
     else return options;
   }
 
