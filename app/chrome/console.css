@@ -6,8 +6,8 @@ body.zoomed_out .local_only {display:none;}
   background:#BFBFBF;
   background:#111;
   background-image: -webkit-gradient(
-    linear, 0% 0%, 0% 80%, 
-    from(rgba(51,51,51,.5)), 
+    linear, 0% 0%, 0% 80%,
+    from(rgba(51,51,51,.5)),
     to(transparent));
   height: 35px;
   display: none;
@@ -21,8 +21,8 @@ body.zoomed_out .local_only {display:none;}
   top:-8px;
 }
 
-/* for now, disable approve deputies except in demo mode */
-a.approve_deputies_tool { display: none; }
+/* for now, disable approve deputies and squad settings */
+a.approve_deputies_tool, a.squad_settings_tool { display: none; }
 body#viewer .demo_mode_only { display: none; }
 body#viewer.demo_mode .demo_mode_only { display: inline; }
 body#viewer.demo_mode #sms_counter {display:none;}
@@ -51,14 +51,14 @@ body#viewer.stream_role_organizer a.squad_settings_tool, body#viewer.stream_role
   border-right:solid 1px rgba(12,12,12,.2);
   border-left:solid 1px rgba(12,12,12,.2);
   border-bottom:none;
-  
+
   -webkit-border-top-left-radius: 3px;
   -webkit-border-top-right-radius: 3px;
-  
+
 }
 
-#mode_buttons a.active { 
-  color: #fff; 
+#mode_buttons a.active {
+  color: #fff;
 /*  border-top: solid 1px #7F7F7F;*/
   border-right:solid 1px #595959;
   border-left:solid 1px #595959;
