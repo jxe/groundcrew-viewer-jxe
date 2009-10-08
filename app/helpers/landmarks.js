@@ -10,7 +10,11 @@ LiveHTML.widgets.push({
   
   landmark_dropdown: function() {
     return Landmarks.here().map(function(x){
-      return '<dl href="#@#{id}"><dd class="img"><img src="#{thumb_url}"/></dd><dt>#{title}</dt><hr/></dl>'.t(x);
+      if (x.thumb_url) {
+        return '<dl href="#@#{id}"><dd class="img"><img src="#{thumb_url}"/></dd><dt>#{title}</dt><hr/></dl>'.t(x);
+      } else {
+        return '<dl href="#@#{id}"><dt>#{title}</dt><hr/></dl>'.t(x);
+      }
     }).join('');
   },
   
@@ -25,7 +29,6 @@ LiveHTML.widgets.push({
   },
   
   radius_options: function() {
-        
     // [label, meters]
     var options = [ ["1 block", 200], 
       ["3 blocks", 600], 
@@ -45,8 +48,9 @@ LiveHTML.widgets.push({
       options.unshift("<option value='"+agent_tags.join(' ')+"'>selected agents &mdash; "+agent_tags.length+" agents");
     }
     
-    if (options.length == 0) options.push('<option>No nearby agents!</option>');
-    return options.join('');
+    options = options.join('');
+    if (!options || options.length == 0) return '<option>No nearby agents!</option>';
+    else return options;
   }
 
 });

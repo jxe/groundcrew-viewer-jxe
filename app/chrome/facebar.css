@@ -12,6 +12,21 @@
   -webkit-box-shadow: 3px 3px 7px #0C0C0C;
 }
 
+#flexbar #empty_text {
+  display:none;
+}
+
+body.loading #flexbar.empty #empty_text {
+  display:none;
+}
+
+#flexbar.empty #empty_text {
+  display:block;
+  position: absolute;
+  color: white;
+  font-size: 18px;
+}
+
 #flexbar #agents { 
    width: 40000px; 
    background-color:#7A9FBF;

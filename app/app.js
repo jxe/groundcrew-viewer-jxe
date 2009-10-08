@@ -82,7 +82,7 @@ Viewer = App = {
       }
     });
 
-    if (changed.item || changed.tool) App.refresh_mapwindow();
+    if (changed.item || changed.mode || changed.tool) App.refresh_mapwindow();
 
     $('.magic').app_paint();
     $('.hud:visible').app_paint();
@@ -108,19 +108,18 @@ Viewer = App = {
 
   refresh_mapwindow: function() {
     if (!This._item) {
-      console.log('closing info window');
       Map.Gmap.closeInfoWindow();
       MapMarkers.update_delayed_markers();
     }
     else {
       var thing = This.item.split('__')[0].toLowerCase();
-      var best_mapwindow_template = $.template('#' + thing + '_for_' + This.tool + '_tool') || $.template('#' + thing + '_for_any_mode');
+      var best_mapwindow_template = $.template('#' + thing + '_for_' + This.mode + '_mode') || $.template('#' + thing + '_for_any_mode');
       if (best_mapwindow_template) {
         MapMarkers.update_delayed_markers();
         MapMarkers.window(best_mapwindow_template);
       } else {
         //TODO:  if there's no template, there should be no selection
-        console.log('no template found.  closing map window.');
+        alert('no good template for ' + thing);
         Map.Gmap.closeInfoWindow();
       }
     }
@@ -162,7 +161,6 @@ Viewer = App = {
     else {
       var start_city = '';
       var agents_by_city = Agents.find('=city_id');
-      // console.log(agents_by_city);
       delete agents_by_city[0];
       var active_cities = $keys(agents_by_city);
       if (active_cities.length == 1) start_city = "City__" + active_cities[0];
@@ -210,17 +208,34 @@ Viewer = App = {
   },
 
   send_landmark_form_submitted: function(data) {
-    var lm_id = 'l' + authority + '_' + new Date().getTime();
+    var lm_id;
+    if (This.item && This.item.startsWith('Landmark__')) {
+      lm_id = This.item.replace('Landmark__', '');
+      data.lat = This._item.lat;
+      data.lng = This._item.lng;
+      data.thumb_url = This._item.thumb_url;
+    } else {
+      lm_id = 'l' + authority + '_' + Date.unix();
+      data.lat = This.click_lat;
+      data.lng = This.click_lng;
+    }
+    
     data.kind = 'l';
-    data.lat = This.click_lat;
-    data.lng = This.click_lng;
-    $.post('/api/items/'+current_stream+'/'+lm_id, data, function(landmark_js){
-      eval(landmark_js);
+    data.city = This.city_id;
+    data.latch = "unlatched";
+    data['float'] = "onmap";
+    $.post('/api/items/'+lm_id, data, function(landmark_js){
+      Map.add_to_layer('landmarks', MapLandmarks.marker_for_lm(eval(landmark_js)));
       go('@' + most_recent_item.id);
+      // setTimeout(function(){}, 0);
     }, 'text');
   },
 
   ask_question_form_submitted: function(data) {
+    if (!This.city) {
+      alert('Sorry, asking a question worldwide is not permitted at this time.');
+      return;
+    }
     var agent_ids = Agents.here().map('.id');
     if (demo) return Demo.question(data.question, agent_ids);
     agent_ids = agent_ids.join(' ').agent_ids.replace(/Person__/g, '').split(' ');

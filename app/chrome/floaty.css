@@ -41,7 +41,7 @@
     filter:alpha(opacity=00);
 }
 
-#floaty.appeared { display: block; left:0px; color: white;  opacity: 1.0; -moz-opacity: 1.0; filter:alpha(opacity=100); top: 113px; }
+#floaty.active { display: block; left:0px; color: white;  opacity: 1.0; -moz-opacity: 1.0; filter:alpha(opacity=100); top: 113px; }
 
 #floaty #floaty_asterisk {
   text-shadow: #004122 1px 1px 0px;
