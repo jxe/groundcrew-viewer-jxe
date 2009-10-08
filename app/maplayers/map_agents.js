@@ -10,8 +10,8 @@ Map.layers.agents_f = function(){
     GEvent.addListener( marker, "click", function() { go('@' + agent.id); });
     GEvent.addListener( marker, "infowindowclose", function() { 
       setTimeout(function(){
-        if (This.item && Map.Gmap.getInfoWindow().isHidden()) go('@' + This.city);
-      }, 50);
+        if (This.item == agent.id && Map.Gmap.getInfoWindow().isHidden()) go('@' + This.city);
+      }, 150);
     });
     GEvent.addListener( marker, "dblclick", function() {
       Map.Gmap.setCenter( marker.getPoint(), 15 ); 

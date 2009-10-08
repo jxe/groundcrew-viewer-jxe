@@ -53,8 +53,8 @@ MapLandmarks = {
     GEvent.addListener(marker, "click", function(){ go("@" + lm.id); });
     GEvent.addListener( marker, "infowindowclose", function() { 
       setTimeout(function(){
-        if (This.item && Map.Gmap.getInfoWindow().isHidden()) go('@' + This.city);
-      }, 50);
+        if (This.item == lm.id && Map.Gmap.getInfoWindow().isHidden()) go('@' + This.city);
+      }, 150);
     });
     
     lm.map_marker = marker;
