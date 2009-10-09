@@ -229,8 +229,10 @@ Viewer = App = {
     data.latch = "unlatched";
     data['float'] = "onmap";
     $.post('/api/items/'+lm_id, data, function(landmark_js){
-      Map.add_to_layer('landmarks', MapLandmarks.marker_for_lm(eval(landmark_js)));
-      go('@' + most_recent_item.id);
+      var lm = eval(landmark_js);
+      Map.add_to_layer('landmarks', MapLandmarks.marker_for_lm(lm));
+      go('@' + "Landmark__"+lm_id);
+      App.refresh_mapwindow();
       // setTimeout(function(){}, 0);
     }, 'text');
   },

@@ -150,6 +150,10 @@ LiveHTML.widgets.push({
     }).join('');
   },
   
+  lm_first_tag: function() {
+    return This._item.atags.split(' ')[0];
+  },
+  
   answers_for_question: function() {
     return QuestionAnswers.t.tt(Answers.for_q_here(Q.current()));
   },
