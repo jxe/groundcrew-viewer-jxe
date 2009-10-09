@@ -1,2 +1,3 @@
-item(220,"Landmark__lpm5e14d0042bf_1254267888742","pulaski park",null,"42.31739206683722","-72.63312578201294","park","unlatched",null,null,{});
-at(1);
+city(13,"Sydney, Australia",-33.8833,151.217); 
+item(13,"Landmark__l_testoct8_import_initial_lm","GetUp Headquarters","/images/90/c4/90c4eace117d925cab60824a0f8fb21b_thumb.gif",-33.885293,151.211351,"","unlatched",null,null,{}); 
+at(2);

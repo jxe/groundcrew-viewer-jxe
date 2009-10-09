@@ -236,6 +236,11 @@ Viewer = App = {
   },
 
   ask_question_form_submitted: function(data) {
+    var agent_ids = Agents.here().map('.id');
+    if (!agent_ids || agent_ids.length < 1) {
+      alert('There are no agents to ask!');
+      return "redo";
+    }
     if (!This.city) {
       alert('Sorry, asking a question worldwide is not permitted at this time.');
       return "redo";
@@ -244,7 +249,6 @@ Viewer = App = {
       alert('Please provide a question to ask!');
       return "redo";
     }
-    var agent_ids = Agents.here().map('.id');
     if (demo) return Demo.question(data.question, agent_ids);
     agent_ids = agent_ids.join(' ').agent_ids.replace(/Person__/g, '').split(' ');
     Operation.exec(CEML.script_for('question', data.question), agents, agents, function(){

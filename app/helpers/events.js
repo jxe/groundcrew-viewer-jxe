@@ -1,6 +1,12 @@
 // placeholder
 Chats = [];
+var last_msg = null;
+var last_when = null;
 function rem(who, when, what, oids, msg, title){
+  if (last_msg == msg && last_when == when) return;
+  last_msg = msg;
+  last_when = when;
+  
   who = who.replace(/^/, 'Person__');
   title = title || (who.resource() && who.resource().title) || 'Unknown Organizer';
   if (what == "chat") Chats.push({ actor_title: title, actor_tag: who, what: msg, when: when });
@@ -40,6 +46,7 @@ LiveHTML.widgets.push({
       eval(x);
       $('#chat_palette').app_paint();
     });
+    return "redo";
   }
   
 });

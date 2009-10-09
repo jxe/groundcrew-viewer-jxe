@@ -17,7 +17,7 @@ LiveHTML.widgets.push({
     return streams.map(function(stream){
       if (stream == current_stream) return '';
       var name = stream_names[stream];
-      var switch_url = "http://groundcrew.us/api/organizers/update?current_stream=" + stream;
+      var switch_url = "http://groundcrew.us/" + stream + "/live/";
       return '<li href="'+switch_url+'">' + name + '</li>';
     }).join('');
   },

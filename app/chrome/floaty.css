@@ -17,7 +17,7 @@
   	-webkit-border-top-right-radius: 5px;
     -webkit-border-bottom-right-radius: 5px;
 
-    -webkit-transition: left 0.2s ease-in-out, opacity 0.2s ease-in-out, top 0.2s ease-in-out;  
+    -webkit-transition: left 0.2s ease-in-out, opacity 0.2s ease-in-out, top 0.2s ease-in-out;
 
 /*    background-image: -webkit-gradient(
      linear, 0% 0%, 100% 0%,
@@ -25,6 +25,8 @@
      to(rgba(0,128,64,.85))
      );
 */
+    background-color: rgba(123,166,94,.90);
+
      background-image: -webkit-gradient(
       linear, 0% 0%, 100% 0%,
       from(rgba(123,166,94,.95)),
@@ -35,7 +37,7 @@
     z-index: 450;
 
     max-width: 500px;
-    
+
     opacity: 0.0;
     -moz-opacity: 0.0;
     filter:alpha(opacity=00);

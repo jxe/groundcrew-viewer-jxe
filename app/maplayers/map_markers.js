@@ -21,15 +21,18 @@ MapMarkers = {
     // update it's image & location
     // marker.hide();
     // marker.mgr.removeMarker(marker);
-    var old_pt = marker.getPoint();
-    var new_pt = new GLatLng(marker.info_data.lat, marker.info_data.lng);
-    marker.setLatLng(new_pt);
-    marker.mgr.onMarkerMoved_(marker, old_pt, new_pt);
-    marker.setImage(MapIcons.for_type(marker.info_data.map_icon).image);
+    if (marker.info_data) {
+      var old_pt = marker.getPoint();
+      var new_pt = new GLatLng(marker.info_data.lat, marker.info_data.lng);
+      marker.setLatLng(new_pt);
+      marker.mgr.onMarkerMoved_(marker, old_pt, new_pt);
+      var new_image = MapIcons.for_type(marker.info_data.map_icon).image;
+      Map.Gmap.addOverlay(marker);  // TODO:  encapsulation error
+      marker.setImage(new_image);
+    }
     
     // then remove and add back to manager to update position
     marker.mgr.addMarker(marker);
-    // Map.Gmap.addOverlay(marker);  // TODO:  encapsulation error
     marker.show();
     // alert("updating marker for "+ tag);
   },
