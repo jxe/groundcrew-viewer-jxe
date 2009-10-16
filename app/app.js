@@ -45,6 +45,7 @@ Viewer = App = {
     if (changed.city || changed.q) {
       This.city_id = This.city && This.city.resource_id();
       set('agents', Agents.here());
+      $('#flexbar').scrollLeft(0);
       if (This.city) $('body').removeClass('zoomed_out');
       else $('body').addClass('zoomed_out');
     }

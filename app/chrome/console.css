@@ -26,6 +26,7 @@ a.approve_deputies_tool, a.squad_settings_tool { display: none; }
 body#viewer .demo_mode_only { display: none; }
 body#viewer.demo_mode .demo_mode_only { display: inline; }
 body#viewer.demo_mode #sms_counter {display:none;}
+body#viewer.demo_mode #home {display:none;}
 body#viewer .demo_mode a.approve_deputies_tool { display: inline; }
 body#viewer .demo_mode a.squad_settings_tool   { display: none; }
 body#viewer.stream_role_organizer a.squad_settings_tool, body#viewer.stream_role_read_only a.squad_settings_tool { display: none; }
