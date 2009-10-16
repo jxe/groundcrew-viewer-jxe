@@ -40,7 +40,7 @@ LiveHTML.widgets.push({
   
   chat_form_submitted: function(data, state, form) {
     var input = $(form).find('input');
-    $.post("http://groundcrew.us/api/remark", {kind: 'chat', msg: data.msg}, function(x){ 
+    $.post("/api/remark", {kind: 'chat', msg: data.msg}, function(x){ 
       input.val('');
       $(form).enable();
       eval(x);

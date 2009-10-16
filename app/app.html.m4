@@ -6,9 +6,9 @@
   <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAGqp2ukVwjWFfmC-XmCCZFRRGsPIMf82DrFSwJZKzmHDVn9CoiRSfPwbMs9LeX9Qw4ba2CuYyrEQBZw&amp;hl="></script> 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
   <!-- // <script src="../vendor/jquery/jquery.min.js"></script> -->
-  <script src="http://groundcrew.us/api/auth.js"></script>
+  <script src="/api/auth.js"></script>
   <script src="viewer.js"></script>
-  <script src="http://groundcrew.us/api/stream.js"></script>
+  <script src="/api/stream.js"></script>
   <script>
     if (!window.current_stream) window.current_stream = 'demo';
     var demo = (current_stream == 'demo');

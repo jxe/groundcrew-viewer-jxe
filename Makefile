@@ -41,12 +41,6 @@ local_demo_data:
 
 # setup
 
-grab: BUILD
-	mkdir -p BUILD/data
-	wget "http://groundcrew.us/auth_js?codename=$(GCUN)&password=$(GCPW)" -O BUILD/data/auth.js
-	wget "http://groundcrew.us/data/vstart.js" -O BUILD/data/vstart_snapshot.js
-	cat BUILD/data/{auth,vstart_snapshot}.js > BUILD/data/vstart.js
-
 BUILD:
 	mkdir -p BUILD
 	(cd BUILD && ln -s ../i)
