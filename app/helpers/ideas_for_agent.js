@@ -37,7 +37,7 @@ IdeaUtils = {
 HTML = {
   
   dog: function(label) {
-    return tag('span.dog', { content: label[0].toUpperCase(), style: "background-color:" + label.to_color(), title: label });
+    return tag('span.dog', { content: label.charAt(0).toUpperCase(), style: "background-color:" + label.to_color(), title: label });
   },
   
   spinner: function(reveal_what) {
