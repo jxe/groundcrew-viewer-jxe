@@ -19,17 +19,18 @@ Frame = {
       if ($(e.target).is('input,textarea')) return;
       if (e.metaKey) return;
       var ch = String.fromCharCode(e.which);
-      if (ch == 'p') return Map.Gmap.setMapType(G_SATELLITE_MAP);
-      if (ch == 'm') return Map.Gmap.setMapType(G_NORMAL_MAP);
-      if (ch == 'h') return Map.Gmap.setMapType(G_HYBRID_MAP);
-      if (ch == 't') return Map.Gmap.setMapType(G_PHYSICAL_MAP);
-      // if (ch == 's') return go('mode=sketch');
-      // if (ch == 'c') return go('mode=connect');
-      // if (ch == 'd') return go('mode=dispatch');
-      if (ch == 'w') return go('item=');
-      if (ch == 'g') return go('#go_where');
+      if (ch == 'S') return Map.Gmap.setMapType(G_SATELLITE_MAP);
+      if (ch == 'N') return Map.Gmap.setMapType(G_NORMAL_MAP);
+      if (ch == 'H') return Map.Gmap.setMapType(G_HYBRID_MAP);
+      if (ch == 'T') return Map.Gmap.setMapType(G_PHYSICAL_MAP);
+      if (ch == 'c') return go('mode=');
+      if (ch == 'a') return go('mode=assess');
+      if (ch == 'm') return go('mode=manage');
+      if (ch == 'w') return go('item=') && false;
+      if (ch == 'g') return go('#go_where') && false;
       if (ch == 'f') return $('#search').focus() && false;
-      if (ch == 'T') { test = !test; if (test) alert('test mode active'); };
+      if (ch == 't') return(setTimeout(function(){go('tool=tag_group')},0) && false);
+      if (ch == '$') { test = !test; if (test) alert('test mode active'); };
     });
 
   },

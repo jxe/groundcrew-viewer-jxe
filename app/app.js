@@ -259,6 +259,22 @@ Viewer = App = {
     });
   },
 
+  tag_group_form_submitted: function(data) {
+    var agents = $keys(Selection.current);
+    if (!agents || agents.length == 0) {alert('Please select some agents to tag.'); return "redo";}
+    if (!data.tags) { alert('Please provide some tags!'); return "redo"; }
+    
+    var params = { agent_ids: agents.join(' ').replace(/Person__/g, '') };
+    if (data.tags.startsWith('stream:')) {
+      params['with_stream'] = data.tags.replace(/^stream:/, '');
+    } else {
+      params['with_tag'] = data.tags;
+    }
+    $.post('/api/agents/update_all', params, function(){
+      go('tool=');
+    });
+  },
+
   setmode: function(mode) {
     if (This.mode != mode) return go('mode=' + mode);
     else {
