@@ -19,10 +19,10 @@ Frame = {
       if ($(e.target).is('input,textarea')) return;
       if (e.metaKey) return;
       var ch = String.fromCharCode(e.which);
-      if (ch == 'S') return Map.Gmap.setMapType(G_SATELLITE_MAP);
-      if (ch == 'N') return Map.Gmap.setMapType(G_NORMAL_MAP);
-      if (ch == 'H') return Map.Gmap.setMapType(G_HYBRID_MAP);
-      if (ch == 'T') return Map.Gmap.setMapType(G_PHYSICAL_MAP);
+      if (ch == 'S') return GM.setMapType(G_SATELLITE_MAP);
+      if (ch == 'N') return GM.setMapType(G_NORMAL_MAP);
+      if (ch == 'H') return GM.setMapType(G_HYBRID_MAP);
+      if (ch == 'T') return GM.setMapType(G_PHYSICAL_MAP);
       if (ch == 'c') return go('mode=');
       if (ch == 'a') return go('mode=assess');
       if (ch == 'm') return go('mode=manage');
@@ -44,7 +44,7 @@ Frame = {
     
     // make the adjustment
     $('#map_div').height(page_height - junk);
-    Map.Gmap && Map.Gmap.checkResize();
+    GM && GM.checkResize();
   },
     
   populate_flexbar_agents: function(agents) {

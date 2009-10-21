@@ -1,21 +1,17 @@
-Map.layers.landmarks_f = function(){ 
-  var lms = Landmarks.here();
-  if (!lms) return [];
-  return lms.map(function(x){
-    return MapLandmarks.marker_for_lm(x);
+// return a mapping from sites => markers
+Map.layer_calculators['landmarks'] = function(){
+  var mapping = {};
+  $.each(Landmarks.here(), function(){
+    mapping[this.id] = MapLandmarks.marker_for_lm(this);
   });
-};
-
-Map.layers.wishes_f = function(){ return []; };
+  return mapping;
+}
 
 MapLandmarks = {
   
   map_init: function(map) {
     GEvent.addListener(map, "moveend", function() {
-      if (!This.map_layers.contains('landmarks')) return;
       var bounds = map.getBounds();
-      // var zoom = map.getBoundsZoomLevel(bounds);
-      // if (zoom <= 9) return MapLandmarks.off();
       MapLandmarks.fetch_landmarks_in_bounds(bounds);
     });
     GEvent.trigger(map, "moveend");
@@ -51,13 +47,6 @@ MapLandmarks = {
   marker_for_lm: function(lm) {
     var marker = new GMarker(new GLatLng(lm.lat, lm.lng), {icon: MapIcons.for_landmark(lm), title: lm.title});
     GEvent.addListener(marker, "click", function(){ go("@" + lm.id); });
-    GEvent.addListener( marker, "infowindowclose", function() { 
-      setTimeout(function(){
-        if (This.item == lm.id && Map.Gmap.getInfoWindow().isHidden()) go('@' + This.city);
-      }, 150);
-    });
-    
-    lm.map_marker = marker;
     return marker;
   }
   
