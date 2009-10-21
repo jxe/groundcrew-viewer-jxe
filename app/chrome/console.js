@@ -1,15 +1,6 @@
 Console = {
   modes: [],
-  tools: {},
-  
-  map_layers_for_current_settings: function() {
-    if (!This.item) return 'cities';
-    // if (This.mode == 'sketch') return 'wishes landmarks';
-    // if (This.mode == 'connect') return 'agents';
-    // if (This.mode == 'dispatch') return 'agents landmarks';
-    return 'agents landmarks';
-  }
-  
+  tools: {}  
 };
 
 // add_action_idea//wand30  edit_activities//lightbulb_icon29  identify_resource//gift23  upload_landmarks//landmark21

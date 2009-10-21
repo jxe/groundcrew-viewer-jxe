@@ -28,8 +28,10 @@ Selection = {
   update: function(tag) {
     if (Selection.current[tag]) $('.athumb.' + tag).addClass('selected');
     else $('.athumb.' + tag).removeClass('selected');
-    Item.calculate_fields(tag.resource());
-    MapMarkers.update_marker(tag);
+    var guy = tag.resource();
+    if (!guy) return;
+    Item.calculate_fields(guy);
+    Map.site_set_image('agents', tag, MapIcons.for_type(guy.map_icon).image);
     Selection.hide_or_show_options();
   },
   

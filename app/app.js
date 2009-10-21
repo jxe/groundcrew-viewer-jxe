@@ -24,6 +24,10 @@ Viewer = App = {
     return !This.city;
   },
 
+  closeclick: function() {
+    go('@' + This.city);
+  },
+
   update: function(changed) {
     if (!This.prev_url) changed.tool = changed.item = changed.city = true;
 
@@ -50,11 +54,14 @@ Viewer = App = {
       else $('body').addClass('zoomed_out');
     }
 
-    if (changed.city) Map.clear_layer('landmarks');
+    if (changed.city) {
+      if (This.city) Map.set_focus_on_city();
+      else Map.set_focus_worldwide();
+    }
 
     if (changed.agents) {
       Frame.populate_flexbar_agents(This.agents);
-      Map.clear_layer('agents');
+      if (!changed.city) Map.layer_recalculate('agents');
     }
 
     if (changed.mode) {
@@ -72,16 +79,6 @@ Viewer = App = {
       $('.' + This.tool + '_tool').activate('tool');
       This.first_responders[0] = App.tools[This.tool] || {};
     }
-
-    set('map_layers', Console.map_layers_for_current_settings());
-
-    $.each($w('cities agents landmarks'), function(){
-      if (This.map_layers.contains(this)) {
-        Map.show_layer(this);
-      } else {
-        Map.hide_layer(this);
-      }
-    });
 
     if (changed.item || changed.mode || changed.tool) App.refresh_mapwindow();
 
@@ -109,19 +106,17 @@ Viewer = App = {
 
   refresh_mapwindow: function() {
     if (!This._item) {
-      Map.Gmap.closeInfoWindow();
-      setTimeout(MapMarkers.update_delayed_markers, 400);
+      GM.closeInfoWindow();
     }
     else {
       var thing = This.item.split('__')[0].toLowerCase();
       var best_mapwindow_template = $.template('#' + thing + '_for_' + This.mode + '_mode') || $.template('#' + thing + '_for_any_mode');
       if (best_mapwindow_template) {
-        setTimeout(MapMarkers.update_delayed_markers, 400);
         MapMarkers.window(best_mapwindow_template);
       } else {
         //TODO:  if there's no template, there should be no selection
         alert('no good template for ' + thing);
-        Map.Gmap.closeInfoWindow();
+        GM.closeInfoWindow();
       }
     }
   },
@@ -221,8 +216,8 @@ Viewer = App = {
       data.thumb_url = This._item.thumb_url;
     } else {
       lm_id = 'l' + authority + '_' + Date.unix();
-      data.lat = This.click_lat;
-      data.lng = This.click_lng;
+      data.lat = This.click_latlng.lat();
+      data.lng = This.click_latlng.lng();
     }
     
     data.kind = 'l';
