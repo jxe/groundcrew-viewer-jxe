@@ -207,6 +207,11 @@ Viewer = App = {
     });
   },
 
+  decorate_map: function() {
+    if (Map.layer_visible['landmarks'])
+      MapLandmarks.fetch_landmarks_in_bounds(GM.getBounds());
+  },
+
   send_landmark_form_submitted: function(data) {
     var lm_id;
     if (This.item && This.item.startsWith('Landmark__')) {
