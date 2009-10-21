@@ -29,8 +29,9 @@ Frame = {
       if (ch == 'w') return go('item=') && false;
       if (ch == 'g') return go('#go_where') && false;
       if (ch == 'f') return $('#search').focus() && false;
-      if (ch == 't') return(setTimeout(function(){go('tool=tag_group')},0) && false);
+      if (ch == 't') return(setTimeout(function(){go('tool=tag_group');},0) && false);
       if (ch == '$') { test = !test; if (test) alert('test mode active'); };
+      if (demo) Demo.qa_keypresses(ch);
     });
 
   },
