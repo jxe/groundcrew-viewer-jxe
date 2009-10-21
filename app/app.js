@@ -254,7 +254,7 @@ Viewer = App = {
       return "redo";
     }
     if (demo) return Demo.question(data.question, agent_ids);
-    agent_ids = agent_ids.join(' ').agent_ids.replace(/Person__/g, '').split(' ');
+    agent_ids = agent_ids.join(' ').replace(/Person__/g, '').split(' ');
     Operation.exec(CEML.script_for('question', data.question), agents, agents, function(){
       $('#ask_question_form').html('Message sent!');
     });
