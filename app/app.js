@@ -84,7 +84,8 @@ Viewer = App = {
 
     $('.magic').app_paint();
     $('.hud:visible').app_paint();
-
+    App.loaded = true;
+    
   },
 
   go_login: function() {
