@@ -5,18 +5,10 @@ Map.layer_calculators['landmarks'] = function(){
     mapping[this.id] = MapLandmarks.marker_for_lm(this);
   });
   return mapping;
-}
+};
 
 MapLandmarks = {
   
-  map_init: function(map) {
-    GEvent.addListener(map, "moveend", function() {
-      var bounds = map.getBounds();
-      MapLandmarks.fetch_landmarks_in_bounds(bounds);
-    });
-    GEvent.trigger(map, "moveend");
-  },
-
   fetch_landmarks_in_bounds: function(bounds) {
     // alert('fetchifying');
     var southWest = bounds.getSouthWest();
@@ -25,10 +17,13 @@ MapLandmarks = {
       order: "popularity",  set: "public",  from: "0",  to: "20",  size: "small",
       maxy: northEast.lat(),  miny: southWest.lat(),  maxx: northEast.lng(),  minx: southWest.lng()
     }, function(data){
-      Map.add_to_layer('landmarks', data.photos.map(function(row){
-        if (Landmarks.id("p" + row.photo_id)) return;
-        return MapLandmarks.marker_for_lm(MapLandmarks.lm_from_pano(row));
-      }).compact());
+      $.each(data.photos, function(){
+        var row = this;
+        if (Landmarks.id("lP" + row.photo_id)) return;
+        var lm = MapLandmarks.lm_from_pano(row);
+        var marker = MapLandmarks.marker_for_lm(lm);
+        Map.site_add('landmarks', lm.id, marker);
+      });
       $('#landmarks_button_dropdown').app_paint();
     });
   },
@@ -45,8 +40,10 @@ MapLandmarks = {
   },
   
   marker_for_lm: function(lm) {
+    var id = lm.id;
+    if (!id) console.log(lm);
     var marker = new GMarker(new GLatLng(lm.lat, lm.lng), {icon: MapIcons.for_landmark(lm), title: lm.title});
-    GEvent.addListener(marker, "click", function(){ go("@" + lm.id); });
+    GEvent.addListener(marker, "click", function(){ go("@" + id); });
     return marker;
   }
   

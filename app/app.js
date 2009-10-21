@@ -216,8 +216,8 @@ Viewer = App = {
       data.thumb_url = This._item.thumb_url;
     } else {
       lm_id = 'l' + authority + '_' + Date.unix();
-      data.lat = This.click_lat;
-      data.lng = This.click_lng;
+      data.lat = This.click_latlng.lat();
+      data.lng = This.click_latlng.lng();
     }
     
     data.kind = 'l';
