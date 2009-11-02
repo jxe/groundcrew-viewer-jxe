@@ -85,7 +85,7 @@ Viewer = App = {
     $('.magic').app_paint();
     $('.hud:visible').app_paint();
     App.loaded = true;
-    
+
   },
 
   go_login: function() {
@@ -135,12 +135,29 @@ Viewer = App = {
     return Actions.event_t.tt(This._item.children);
   },
 
+  report_error: function(desc, page, line) {
+    var error =  'Viewer js error occurred:' +
+      '\nError description: \t' + desc +
+      '\nPage address:      \t' + page +
+      '\nLine number:       \t' + line;
+
+    $.post('/api/bugreport', {issue: error}, function(){
+      alert('A bug occurred in the Groundcrew viewer!' +
+        '\n\nIt has been reported to our developers, but you might need to reload the viewer. Sorry!');
+    });
+
+    return false; // don't suppress the error
+  },
+
 
   // ======================
   // = App initialization =
   // ======================
 
   init: function() {
+    // error handling
+    window.onerror = App.report_error;
+
     // init the UI
     Frame.init();
     if (demo) $('body').addClass('demo_mode');
@@ -225,7 +242,7 @@ Viewer = App = {
       data.lat = This.click_latlng.lat();
       data.lng = This.click_latlng.lng();
     }
-    
+
     data.kind = 'l';
     data.city = This.city_id;
     data.latch = "unlatched";
@@ -264,7 +281,7 @@ Viewer = App = {
     var agents = $keys(Selection.current);
     if (!agents || agents.length == 0) {alert('Please select some agents to tag.'); return "redo";}
     if (!data.tags) { alert('Please provide some tags!'); return "redo"; }
-    
+
     var params = { agent_ids: agents.join(' ').replace(/Person__/g, '') };
     if (data.tags.startsWith('stream:')) {
       params['with_stream'] = data.tags.replace(/^stream:/, '');
