@@ -13,7 +13,7 @@ Map.layer_calculators['cities'] = function(){
     var icon = MapIcons.for_type('ninjaguy');
     var marker = new GMarker( new GLatLng(lat, lng), { 'title': cities[city_id], 'icon': icon } );
     GEvent.addListener( marker, "click", function() { go("@City__" + city_id); });
-    mapping[this.id] = marker;
+    mapping[city_id] = marker;
   });
   
   return mapping;

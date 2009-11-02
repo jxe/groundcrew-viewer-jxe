@@ -7,20 +7,27 @@ Notifier = {
 
     // don't report if we're watching the thing
     if (ev.re == This.item) return;
+    var go = ev.item_tag;
 
-    if (ev.atype == 'reported')     Notifier.growl( ev.actor_title + " reports: [["+ ev.msg +"]]" );
-    if (ev.atype == 'answered')     Notifier.growl( ev.actor_title + " responded: [["+ ev.msg +"]]" );
-    if (ev.atype == 'answered_yes') Notifier.growl( ev.actor_title + " responded: [["+ ev.msg +"]]" );
-    if (ev.atype == 'answered_no')  Notifier.growl( ev.actor_title + " responded: [["+ ev.msg +"]]" );
-    if (ev.atype == 'accepted')     Notifier.growl( ev.actor_title + " has accepted your assignment" );
-    if (ev.atype == 'declined')     Notifier.growl( ev.actor_title + " has declined your assignment" );
-    if (ev.atype == 'completed')    Notifier.growl( ev.actor_title + " has completed your assignment" );
-    if (ev.atype == 'appreciated')  Notifier.growl( ev.actor_title + " has appreciated you" );
-    if (ev.atype == 'blocked')      Notifier.growl( ev.actor_title + " has blocked you" );
+    if (ev.atype == 'signup')       Notifier.growl( go, ev.actor_title + " signed up: &ldquo;"+ ev.msg   +"&rdquo;" );
+    if (ev.atype == 'reported')     Notifier.growl( go, ev.actor_title + " reports: &ldquo;"+ ev.msg   +"&rdquo;" );
+    if (ev.atype == 'answered')     Notifier.growl( go, ev.actor_title + " responded: &ldquo;"+ ev.msg +"&rdquo;" );
+    if (ev.atype == 'answered_yes') Notifier.growl( go, ev.actor_title + " responded: &ldquo;"+ ev.msg +"&rdquo;" );
+    if (ev.atype == 'answered_no')  Notifier.growl( go, ev.actor_title + " responded: &ldquo;"+ ev.msg +"&rdquo;" );
+    if (ev.atype == 'accepted')     Notifier.growl( go, ev.actor_title + " has accepted your assignment" );
+    if (ev.atype == 'declined')     Notifier.growl( go, ev.actor_title + " has declined your assignment" );
+    if (ev.atype == 'completed')    Notifier.growl( go, ev.actor_title + " has completed your assignment" );
+    if (ev.atype == 'appreciated')  Notifier.growl( go, ev.actor_title + " has appreciated you" );
+    if (ev.atype == 'blocked')      Notifier.growl( go, ev.actor_title + " has blocked you" );
   },
 
-  growl: function(msg, options){
-    $.jGrowl(msg, {life: 15*1000});
+  growl: function(go, msg, options){
+    $.jGrowl(msg, {
+      life: 15*1000, 
+      open: function(e,m,o){
+        if (go) e.onclick = function(){ go('@' + go); };
+      }
+    });
   }
 
 };
