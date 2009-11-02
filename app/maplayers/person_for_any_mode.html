@@ -2,13 +2,7 @@
   <div class="group">
     <div style="float: left; max-width: 130px; font-size: 11px">
       <img class="niw_thumb"  fill="item_thumb_url src" />
-      <div if="location_is_stale">
-        Location is stale.  <a href="##request_agent_update_location">ask for updated location</a>
-      </div>
-
-      <div if="!location_is_stale">
-        Location is fresh.
-      </div>
+      <div fill="location_stmt"></div>
     </div>
 
     <div style="float:left; max-width: 450px">
