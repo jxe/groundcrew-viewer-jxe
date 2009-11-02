@@ -23,7 +23,7 @@ Notifier = {
 
   growl: function(go, msg, options){
     $.jGrowl(msg, {
-      life: 15*1000, 
+      life: 15*1000,
       open: function(e,m,o){
         if (go) e.onclick = function(){ go('@' + go); };
       }

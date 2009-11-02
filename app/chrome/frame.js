@@ -1,6 +1,6 @@
 Frame = {
   agent_thumb: '<div href="#@#{id}" class="athumb agent_photo #{id}"><img class="th" src="#{thumb_url}" title="#{title}"/><b>#{title}</b></div>',
-  
+
   init: function() {
     Frame.resize();
     // setInterval(function(){ $('.from_now').update_times(); }, 20000);
@@ -35,20 +35,22 @@ Frame = {
       if (demo) Demo.qa_keypresses(ch);
     });
 
+    $.jGrowl.defaults.pool = 7;
+
   },
-  
+
   // NOTE: this function doesn't use jquery cause we like our resize FAST
   resize: function() {
     var page_height = window.innerHeight || window.document.body.clientHeight;
     var junk = 59;
     junk += document.getElementById('modetray').offsetHeight;
     junk += document.getElementById('flexbar_banner').offsetHeight;
-    
+
     // make the adjustment
     $('#map_div').height(page_height - junk);
     GM && GM.checkResize();
   },
-    
+
   populate_flexbar_agents: function(agents) {
     if (!agents) return;
     if (agents.length == 0) {
@@ -66,5 +68,5 @@ Frame = {
     $('#flexbar').app_paint();
     Selection.update_all();
   }
-  
+
 };
