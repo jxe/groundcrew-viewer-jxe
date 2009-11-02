@@ -135,12 +135,11 @@ Viewer = App = {
     return Actions.event_t.tt(This._item.children);
   },
 
-  report_error: function(desc, page, line) {
-    var error =  'Viewer js error occurred:' +
-      '\nError description: \t' + desc +
-      '\nPage address:      \t' + page +
-      '\nLine number:       \t' + line;
+  report_error: function(msg, uri, line) {
+    // map script loading fails sometimes, but seems to automatically reload
+    if (uri.indexOf("maps.google.com") >= 0 && msg == "Error loading script") return false;
 
+    var error = msg + "\n at " + uri + ": " + line;
     $.post('/api/bugreport', {issue: error}, function(){
       alert('A bug occurred in the Groundcrew viewer!' +
         '\n\nIt has been reported to our developers, but you might need to reload the viewer. Sorry!');
