@@ -134,17 +134,26 @@ Viewer = App = {
     $.each(This._item.children, function(){ Event.improve(this); });
     return Actions.event_t.tt(This._item.children);
   },
-
-  report_error: function(msg, uri, line) {
-    // map script loading fails sometimes, but seems to automatically reload
-    if (uri.indexOf("http://maps") >= 0 && msg == "Error loading script") return false;
-
-    var error = msg + "\n at " + uri + ": " + line;
-    $.post('/api/bugreport', {issue: error}, function(){
-      alert('A bug occurred in the Groundcrew viewer!' +
-        '\n\nIt has been reported to our developers, but you might need to reload the viewer. Sorry!');
+  
+  // TODO: get stack trace (see http://eriwen.com/javascript/js-stack-trace/)
+  // and include some state like This.url, form submitted, etc.
+  report_error: function(msg, e) {
+    if (e != null) msg += "\nException: " + e;
+    console.log(msg);
+    $.post('/api/bugreport', {issue: msg}, function(){
+      // TODO: turn user alerts back on (and make them not call alert()) when we're confident
+      // that spurious errors are being handled
+      
+      // alert('A bug occurred in the Groundcrew viewer!' +
+      //   '\n\nIt has been reported to our developers, but you might need to reload the viewer. Sorry!');
     });
+  },
 
+  handle_error: function(msg, uri, line) {
+    // map script loading fails sometimes, but seems to automatically reload
+    if (uri != null && uri.indexOf("http://maps") >= 0 && msg == "Error loading script") return false;
+
+    App.report_error(msg + "\n at " + uri + ": " + line);
     return false; // don't suppress the error
   },
 
@@ -155,7 +164,7 @@ Viewer = App = {
 
   init: function() {
     // error handling
-    window.onerror = App.report_error;
+    window.onerror = App.handle_error;
 
     // init the UI
     Frame.init();
@@ -165,8 +174,7 @@ Viewer = App = {
     $('body').removeClass('loading');
     Map.establish();
     $('._mode').activate('mode');
-
-
+    
     // start communication with server
     Ajax.init();
 
