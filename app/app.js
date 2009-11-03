@@ -137,7 +137,7 @@ Viewer = App = {
 
   report_error: function(msg, uri, line) {
     // map script loading fails sometimes, but seems to automatically reload
-    if (uri.indexOf("maps.google.com") >= 0 && msg == "Error loading script") return false;
+    if (uri.indexOf("http://maps") >= 0 && msg == "Error loading script") return false;
 
     var error = msg + "\n at " + uri + ": " + line;
     $.post('/api/bugreport', {issue: error}, function(){
