@@ -21,7 +21,7 @@ buildcss: BUILD
 # versions
 
 deploy: html raw_js buildcss
-	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,index.html,viewer.*,demostart.js} joe@groundcrew.us:gc/public/viewer/
+	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,index.html,viewer.*,demo*.js} joe@groundcrew.us:gc/public/viewer/
 
 html: BUILD
 	m4 -P app/app.html.m4 > BUILD/index.html
@@ -36,7 +36,7 @@ gcapi_transplant: gcapi
 	cp BUILD/gcapi.js /g/static/site/js/gcapi.js
 
 local_demo_data:
-	cp reference/data/vstart-demo.js BUILD/demo.js
+	cp reference/data/demo*.js BUILD/
 
 
 # setup
