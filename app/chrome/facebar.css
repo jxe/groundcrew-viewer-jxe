@@ -95,17 +95,13 @@ body.loading #flexbar.empty #empty_text {
   filter:alpha(opacity=90);
 }
 
-#flexbar #agents div.thumbs {
-  display: none;
-}
-
 #flexbar #agents div.group {
-/*  display: none;*/
+  display: none;
   width: 126px;
 }
 
 #flexbar #agents div.group:hover div.tesselation {
-  opacity:1;
+  opacity:.8;
 }
 
 #flexbar #agents div.count {
@@ -131,14 +127,26 @@ body.loading #flexbar.empty #empty_text {
   color: #ccc;
 }
 
+#flexbar #agents div.tesselation_selector {
+  overflow: hidden;
+  position: absolute;
+  height: 60px;
+  width: 116px;
+  margin-right: 4px;
+  border-style: solid;
+  border-width: 6px 4px;
+}
+
 #flexbar #agents div.tesselation {
   overflow: hidden;
   position: absolute;
   height: 58px;
-  width: 116px;
+  width: 114px;
   opacity: 0.5;
-  margin-right:3px;
-  padding:6px 4px 4px;
+  background: black;
+  border-left:solid 1px #212121;
+  border-bottom:solid 1px #2B2B2B;
+  border-right:solid 1px #2B2B2B;
 }
 
 #flexbar #agents img.tess_th {
@@ -147,6 +155,12 @@ body.loading #flexbar.empty #empty_text {
   border-left:solid 1px #212121;
   border-right:solid 1px #212121;
   position: float;
+}
+
+#flexbar #agents div h2.status span {
+  position: relative;
+  padding-right: 23px;
+  white-space: nowrap;
 }
 
 #flexbar #agents div h2.status {
@@ -160,8 +174,6 @@ body.loading #flexbar.empty #empty_text {
   font-weight:bold;
   cursor: pointer;
   background: #E56B0B;
-  position: relative;
-  padding-right: 23px;
 }
 
 #flexbar #agents div h2.red    { background: #B20000; }
@@ -177,22 +189,24 @@ body.loading #flexbar.empty #empty_text {
 
 #flexbar div img.toggle_opened {
   position: absolute;
-  margin-left: 3px;
-  top: 1px;
-  display: none;
+  right: 2px;
+  top: -2px;
 }
 
 #flexbar div img.toggle_closed {
   position: absolute;
-  right: 4px;
-  top: 1px;
-/*  display: none;*/
+  right: 2px;
+  top:-2px;
+  display: none;
 }
 
 
-#flexbar #agents .athumb.selected,
-#flexbar #agents div.tesselation.selected {
+#flexbar #agents .athumb.selected {
   background-color: yellow;
+}
+
+#flexbar #agents div.tesselation_selector.selected {
+  border-color: #dd0;
 }
 
 
