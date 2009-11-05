@@ -27,8 +27,8 @@ body.loading #flexbar.empty #empty_text {
   font-size: 18px;
 }
 
-#flexbar #agents { 
-   width: 40000px; 
+#flexbar #agents {
+   width: 40000px;
    background-color:#7A9FBF;
 }
 
@@ -38,18 +38,6 @@ body.loading #flexbar.empty #empty_text {
 
 #flexbar #agents > div > div {
   height: 73px;
-}
-
-#flexbar #agents h2 {
-  margin: 0px 3px 0px 0px;
-  font-family: helvetica, arial;
-  font-size: 12px;
-  font-weight:normal;
-  -webkit-border-bottom-right-radius: 8px;
-  padding: 3px 4px 1px 4px;
-  color: #191919;
-  font-weight:bold;
-  cursor: pointer;
 }
 
 #flexbar #agents .athumb img.th {
@@ -85,8 +73,8 @@ body.loading #flexbar.empty #empty_text {
   z-index: 10;
 }
 
-#flexbar #agents .athumb { 
-  margin-right: 3px; 
+#flexbar #agents .athumb {
+  margin-right: 3px;
   overflow: hidden;
   float: left;
   position: relative;
@@ -95,8 +83,8 @@ body.loading #flexbar.empty #empty_text {
   text-align:center;
   background:#262626;
   background-image: -webkit-gradient(
-    linear, 0% 0%, 0% 100%, 
-    from(transparent), 
+    linear, 0% 0%, 0% 100%,
+    from(transparent),
     to(#2D2D2D));
   cursor:pointer;
 }
@@ -107,30 +95,110 @@ body.loading #flexbar.empty #empty_text {
   filter:alpha(opacity=90);
 }
 
+#flexbar #agents div.thumbs {
+  display: none;
+}
 
-#flexbar div h2 { background: #E56B0B; }
+#flexbar #agents div.group {
+/*  display: none;*/
+  width: 126px;
+}
 
-#flexbar div h2.red    { background: #B20000; }
-#flexbar div h2.orange { background: #A8BFBF; }
-#flexbar div h2.green  { background: #00ACD4; }
-#flexbar div h2.yellow { background: #E56B0B; }
-#flexbar div h2.brown  { background: #E56B0B; }
-#flexbar div h2.grey   { background: #A8BFBF; }
+#flexbar #agents div.group:hover div.tesselation {
+  opacity:1;
+}
+
+#flexbar #agents div.count {
+  overflow: hidden;
+  position: absolute;
+  height: 58px;
+  top: 14px;
+  width: 116px;
+  text-align:center;
+  text-shadow: #000 0px 1px 2px;
+  z-index: 10;
+}
+
+#flexbar #agents div.count h2 {
+  margin: 0px;
+  font-size: 24px;
+  color: #eee;
+}
+
+#flexbar #agents div.count h3.selection_count {
+  margin: 0px;
+  font-size: 12px;
+  color: #ccc;
+}
+
+#flexbar #agents div.tesselation {
+  overflow: hidden;
+  position: absolute;
+  height: 58px;
+  width: 116px;
+  opacity: 0.5;
+  margin-right:3px;
+  padding:6px 4px 4px;
+}
+
+#flexbar #agents img.tess_th {
+  width:27px;
+  height:27px;
+  border-left:solid 1px #212121;
+  border-right:solid 1px #212121;
+  position: float;
+}
+
+#flexbar #agents div h2.status {
+  margin: 0px 3px 0px 0px;
+  font-family: helvetica, arial;
+  font-size: 12px;
+  font-weight:normal;
+  -webkit-border-bottom-right-radius: 8px;
+  padding: 3px 4px 1px 4px;
+  color: #191919;
+  font-weight:bold;
+  cursor: pointer;
+  background: #E56B0B;
+  position: relative;
+  padding-right: 23px;
+}
+
+#flexbar #agents div h2.red    { background: #B20000; }
+#flexbar #agents div h2.orange { background: #A8BFBF; }
+#flexbar #agents div h2.green  { background: #00ACD4; }
+#flexbar #agents div h2.yellow { background: #E56B0B; }
+#flexbar #agents div h2.brown  { background: #E56B0B; }
+#flexbar #agents div h2.grey   { background: #A8BFBF; }
 
 #flexbar #unknown_agents   h2 { background: #A8BFBF; }
 #flexbar #inaccessible_agents h2 { background: #222621; color:#4C4C4C; }
 #flexbar #agents #inaccessible_agent_thumbs .athumb img.th { opacity:.5; }
 
+#flexbar div img.toggle_opened {
+  position: absolute;
+  margin-left: 3px;
+  top: 1px;
+  display: none;
+}
+
+#flexbar div img.toggle_closed {
+  position: absolute;
+  right: 4px;
+  top: 1px;
+/*  display: none;*/
+}
 
 
-#flexbar #agents .athumb.selected { 
+#flexbar #agents .athumb.selected,
+#flexbar #agents div.tesselation.selected {
   background-color: yellow;
 }
 
 
 .agent.busy { color: #82c; }
-.agent.yellow { 
-  background: #ff9; 
+.agent.yellow {
+  background: #ff9;
   color: #440;
   border: #ff0 solid thin;
 }

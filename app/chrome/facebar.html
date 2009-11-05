@@ -1,4 +1,20 @@
-m4_define(`fab_state_div', `<div id="$2_agents"><div id="$2_agent_thumbs"></div><h2 class="$1" href="##select_group?$2">$3</h2></div>')
+m4_define(`fab_state_div',
+`<div id="$2_agents">
+  <div id="$2_agent_thumbs" class="thumbs"></div>
+  <div id="$2_agent_group" class="group">
+    <div id="$2_agent_tesselation" class="tesselation selected"></div>
+    <div class="count">
+      <h2 id="$2_agent_count"></h2>
+      <h3 id="$2_agent_selection_count" class="selection_count">12847 selected</h3>
+    </div>
+  </div>
+  <h2 class="$1 status" href="##select_group?$2">$3
+    <a id="$2_agents_toggle" href="javascript:void(0)">
+      <img src="i/arrows/larrows.png" class="toggle_opened" title="Hide faces in status"/>
+      <img src="i/arrows/rarrows.png" class="toggle_closed" title="Show faces in status"/>
+    </a>
+  </h2>
+</div>')
 
 <div id="flexbar_banner">
   <div id="flexbar_arrows">

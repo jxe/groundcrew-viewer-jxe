@@ -26,6 +26,8 @@ Selection = {
   },
   
   update: function(tag) {
+    // TODO: apply or remove 'selected' to $('#' + state + '_agent_tesselation')
+    // and update selection count in $('#' + state + '_agent_selection_count')
     if (Selection.current[tag]) $('.athumb.' + tag).addClass('selected');
     else $('.athumb.' + tag).removeClass('selected');
     var guy = tag.resource();
