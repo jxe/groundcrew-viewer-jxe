@@ -11,8 +11,8 @@
   <script src="/api/stream.js"></script>
   <script>
     if (!window.current_stream) window.current_stream = 'demo';
-    var demo = (current_stream == 'demo');
-    if (demo) $.getScript('demostart.js', App.init);
+    var demo = (current_stream == 'demo' || current_stream.indexOf('demo-') == 0);
+    if (demo) $.getScript(current_stream + '.js', App.init);
     login_by_cookie(); 
   </script>
 </head>

@@ -36,7 +36,7 @@ gcapi_transplant: gcapi
 	cp BUILD/gcapi.js /g/static/site/js/gcapi.js
 
 local_demo_data:
-	cp reference/data/vstart-demo.js BUILD/demostart.js
+	cp reference/data/vstart-demo.js BUILD/demo.js
 
 
 # setup
