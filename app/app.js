@@ -284,6 +284,25 @@ Viewer = App = {
     });
   },
 
+  blast_message_form_submitted: function(data) {
+    if (Agents.here().length < 1) {
+      alert('There are no agents to message!');
+      return "redo";
+    }
+    if (!data.message || data.message.length < 5) {
+      alert('Please provide a message that\'s at least 5 characters!');
+      return "redo";
+    }
+    params = { msg: data.message, city: This.city_id };
+    if (demo) return alert("Blasting message to all agents");
+    $.post('/api/blast_message', params, function(data){
+      go('tool=');
+      // TODO: replace this with a nicer way to respond when 
+      // $('#make_it_happen_form').html('Message sent!'); bug is fixed.
+      alert("Message sent to " + data + " agents!");
+    });
+  },
+
   tag_group_form_submitted: function(data) {
     var agents = $keys(Selection.current);
     if (!agents || agents.length == 0) {alert('Please select some agents to tag.'); return "redo";}
