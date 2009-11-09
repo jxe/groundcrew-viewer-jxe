@@ -137,10 +137,17 @@ Viewer = App = {
   
   // TODO: get stack trace (see http://eriwen.com/javascript/js-stack-trace/)
   // and include some state like This.url, form submitted, etc.
-  report_error: function(msg, e) {
-    if (e != null) msg += "\nException: " + e;
+  report_error: function(msg, e, place) {
     console.log(msg);
-    $.post('/api/bugreport', {issue: msg}, function(){
+    console.log(e);
+    console.log(place);
+    var report = '';
+    report += msg;
+    report += " at " + place;
+    if (e) report += "\nException: " + e;
+    if (e && e.stack) report += "\nStack trace: " + e.stack;
+    
+    $.post('/api/bugreport', {issue: report}, function(){
       // TODO: turn user alerts back on (and make them not call alert()) when we're confident
       // that spurious errors are being handled
       
@@ -151,9 +158,13 @@ Viewer = App = {
 
   handle_error: function(msg, uri, line) {
     // map script loading fails sometimes, but seems to automatically reload
-    if (uri != null && uri.indexOf("http://maps") >= 0 && msg == "Error loading script") return false;
+    if (msg.type == 'error') {
+      uri = msg.target && msg.target.src;
+      if (uri && uri.indexOf("http://maps") >= 0) return false;
+    }
+    if (uri && uri.indexOf("http://maps") >= 0 && msg == "Error loading script") return false;
 
-    App.report_error(msg + "\n at " + uri + ": " + line);
+    App.report_error(msg, null, uri + ": " + line);
     return false; // don't suppress the error
   },
 
@@ -164,7 +175,7 @@ Viewer = App = {
 
   init: function() {
     // error handling
-    window.onerror = App.handle_error;
+    $(window).error(App.handle_error);
 
     // init the UI
     Frame.init();
