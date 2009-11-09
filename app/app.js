@@ -268,7 +268,7 @@ Viewer = App = {
     data['float'] = "onmap";
     $.post('/api/items/'+lm_id, data, function(landmark_js){
       var lm = eval(landmark_js);
-      Map.add_to_layer('landmarks', MapLandmarks.marker_for_lm(lm));
+      Map.site_add('landmarks', lm_id, MapLandmarks.marker_for_lm(lm));
       go('@' + "Landmark__"+lm_id);
       App.refresh_mapwindow();
       // setTimeout(function(){}, 0);
