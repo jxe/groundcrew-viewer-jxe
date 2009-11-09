@@ -149,7 +149,7 @@ LiveHTML.widgets.push({
     var qs = $keys(Answers.here());
     return qs.map(function(x){
       var q = x;
-      return "<li href='#tool=show_answers;question="+x+"'>" + q + "</li>";
+      return "<li href='#tool=show_answers;question="+escape(x)+"'>" + q + "</li>";
     }).join('');
   },
   

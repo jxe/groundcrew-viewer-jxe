@@ -6,7 +6,7 @@ Console = {
 // add_action_idea//wand30  edit_activities//lightbulb_icon29  identify_resource//gift23  upload_landmarks//landmark21
 
 $.each([
-  'assess     show_answers//scroll     ask_a_question     blast_message       view_events//scroll',
+  'assess     show_answers//scroll     ask_a_question        view_events//scroll',  // blast_message
   'manage     add_landmark//landmark21  approve_deputies     chat//chat_icon18    squad_settings',
   'dispatch     assign_agents            start_something           join_something'
 ], function(){

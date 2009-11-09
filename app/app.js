@@ -162,6 +162,7 @@ Viewer = App = {
       uri = msg.target && msg.target.src;
       if (uri && uri.indexOf("http://maps") >= 0) return false;
     }
+    if (uri && uri.indexOf("http://www.panoramio.com/map/get_panoramas.php") >= 0) return false;
     if (uri && uri.indexOf("http://maps") >= 0 && msg == "Error loading script") return false;
 
     App.report_error(msg, null, uri + ": " + line);
