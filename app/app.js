@@ -292,7 +292,7 @@ Viewer = App = {
     if (demo) return Demo.question(data.question, agent_ids);
     agent_ids = agent_ids.join(' ').replace(/Person__/g, '');
     Operation.exec(CEML.script_for('question', data.question), agent_ids, agent_ids, function(){
-      $('#ask_question_form').html('Message sent!');
+      // $('#ask_question_form').html('Message sent!');
     });
   },
 
@@ -366,7 +366,8 @@ Viewer = App = {
     if (demo && data.kind == "msg")      return alert("sending a msg to " + agents);
     if (demo && data.kind == "mission")  return Demo.assign(agents, data.assign, Selection.clear);
     Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
-      $('#group_interact_form').html('Message sent!');
+      alert('Message sent!');
+      // $('#group_interact_form').html('Message sent!');
       Selection.clear();
     });
   },
