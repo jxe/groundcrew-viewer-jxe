@@ -1,0 +1,18 @@
+<div class="blast_message_tool hidden_unless_active hud" style="top: 170px; min-height: 300px">
+  <img src="i/buttons/close.gif" href="##back" class="closebox"/>
+
+  <h1>Send a Message</h1>
+  <h2 if="zoomed_out">To: all available agents worldwide</h2>
+  <h2 if="!zoomed_out">To: all available agents, <b fill="city_name"></b></h2>
+
+  <form id="blast_message_form" class="xspace">
+    <input name="message"
+      class="text"
+      type="text"
+      style="width: 75%"
+    /><button type="submit" class="submit">
+        Send<strong>&rarr;</strong>
+      </button>
+    <!-- no white space between the above <input> and <button> -->
+  </form>
+</div>
