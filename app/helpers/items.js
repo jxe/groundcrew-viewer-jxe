@@ -10,12 +10,13 @@ LiveHTML.widgets.push({
   },
 
   location_stmt: function() {
+    var loc_update = '<a href="##request_agent_update_location">ask for updated location</a>';
     var stale_loc = !This._item.loc_ts || !Date.within(This._item.loc_ts, 60 * 60);
     if (This._item.acc) {
-      if (This._item.acc == 'zip') return "Approximate location: by zipcode";
-      if (This._item.acc == 'city') return "Approximate location: by city";
+      if (This._item.acc == 'zip') return "Approximate location: by zipcode. " + loc_update;
+      if (This._item.acc == 'city') return "Approximate location: by city. " + loc_update;
     }
-    if (stale_loc) return 'Location is stale.  <a href="##request_agent_update_location">ask for updated location</a>';
+    if (stale_loc) return 'Location is stale. ' + loc_update
     else return "Location is fresh.";
   },
     
