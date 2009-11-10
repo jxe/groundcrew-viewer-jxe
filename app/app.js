@@ -371,6 +371,18 @@ Viewer = App = {
     });
   },
 
+  invite_agents_form_submitted: function(data, state) {
+    var today = (new Date()).toDateString().slice(4).toLowerCase().replace(/ /g, '_');
+    $.post('/api/people/invite', {
+      emails: data.emails,
+      groups: 'organizers',
+      with_tags: 'group:organizers invited_on_' + today
+    }, function(){
+      go('tool=view_events;mode=assess');
+    });
+  },
+  
+
   go_where: function() {
     var where = prompt("Find:");
     if (!where) return;

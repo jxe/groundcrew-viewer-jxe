@@ -70,6 +70,13 @@ Frame = {
     });
     $('#flexbar').app_paint();
     Selection.update_all();
+    
+    var total_agents = Agents.everything().length;
+    if (total_agents == 0) {
+      $('#empty_text').show();
+    } else {
+      $('#empty_text').hide();
+    }
   }
 
 };
