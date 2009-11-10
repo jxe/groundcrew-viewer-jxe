@@ -130,6 +130,7 @@ Viewer = App = {
 
   did_add_events: function(state) {
     App.refresh_mapwindow();
+    if (This.tool = 'view_events') $('.view_events_tool').app_paint();
   },
 
   live_event_info: function (state) {
