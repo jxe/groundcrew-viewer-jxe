@@ -22,10 +22,11 @@ Notifier = {
   },
 
   growl: function(go, msg, options){
+    msg = "<a href='#@"+go+"'>"+msg+"</a>";
     $.jGrowl(msg, {
       life: 15*1000,
       open: function(e,m,o){
-        if (go) e.onclick = function(){ go('@' + go); };
+        $(e).app_paint();
       }
     });
   }
