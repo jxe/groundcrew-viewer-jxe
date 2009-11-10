@@ -32,6 +32,7 @@ Frame = {
       if (ch == 't') return(setTimeout(function(){go('tool=tag_group');},0) && false);
       if (ch == '$') { test = !test; if (test) alert('test mode active'); };
       if (ch == '#') { window.open('/api/stream.js?stream=' + current_stream); return false; };
+      if (ch == 'Q') { clearTimeout(Ajax.timer); };
       if (demo) Demo.qa_keypresses(ch);
     });
 
