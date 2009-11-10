@@ -1,12 +1,13 @@
 // return a mapping from sites => markers
 Map.layer_calculators['cities'] = function(){
-  var mapping = {};
-  var cities = $keys(Agents.find("=city_id"));
-  
-  $.each(cities, function(){
-    var city_id = this;
-    if (city_id == "undefined") return;
+  var mapping = {};  
+  var done = {};
+  $.each(City.all_ids(), function(){
+    if (this == "undefined") return;
+    var city_id = Number(this);
     if (!city_locs[city_id]) return;
+    if (done[city_id]) return;
+    done[city_id] = true;
 
     var lat = city_locs[city_id][0];
     var lng = city_locs[city_id][1];

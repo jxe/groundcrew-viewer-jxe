@@ -230,7 +230,7 @@ Viewer = App = {
 
   radial_invite_form_submitted: function(data) {
     var agents = data.agents;
-    if (!data.assignment) {
+    if (!data.title) {
       alert('Please provide an assignment!');
       return "redo";
     }
