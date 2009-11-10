@@ -116,7 +116,7 @@ Viewer = App = {
         MapMarkers.window(best_mapwindow_template);
       } else {
         //TODO:  if there's no template, there should be no selection
-        alert('no good template for ' + thing);
+        console.log('no good template for ' + thing);
         GM.closeInfoWindow();
       }
     }
@@ -268,10 +268,9 @@ Viewer = App = {
     data['float'] = "onmap";
     $.post('/api/items/'+lm_id, data, function(landmark_js){
       var lm = eval(landmark_js);
-      Map.site_add('landmarks', lm_id, MapLandmarks.marker_for_lm(lm));
-      go('@' + "Landmark__"+lm_id);
-      App.refresh_mapwindow();
-      // setTimeout(function(){}, 0);
+      Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
+      go('@'+lm.id);
+      // App.refresh_mapwindow();
     }, 'text');
   },
 

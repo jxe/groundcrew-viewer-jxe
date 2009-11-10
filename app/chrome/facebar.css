@@ -27,8 +27,8 @@ body.loading #flexbar.empty #empty_text {
   font-size: 18px;
 }
 
-#flexbar #agents { 
-   width: 40000px; 
+#flexbar #agents {
+   width: 300000px; /*100 * 3000 = 300 000*/
    background-color:#7A9FBF;
 }
 
@@ -85,8 +85,8 @@ body.loading #flexbar.empty #empty_text {
   z-index: 10;
 }
 
-#flexbar #agents .athumb { 
-  margin-right: 3px; 
+#flexbar #agents .athumb {
+  margin-right: 3px;
   overflow: hidden;
   float: left;
   position: relative;
@@ -95,8 +95,8 @@ body.loading #flexbar.empty #empty_text {
   text-align:center;
   background:#262626;
   background-image: -webkit-gradient(
-    linear, 0% 0%, 0% 100%, 
-    from(transparent), 
+    linear, 0% 0%, 0% 100%,
+    from(transparent),
     to(#2D2D2D));
   cursor:pointer;
 }
@@ -123,14 +123,14 @@ body.loading #flexbar.empty #empty_text {
 
 
 
-#flexbar #agents .athumb.selected { 
+#flexbar #agents .athumb.selected {
   background-color: yellow;
 }
 
 
 .agent.busy { color: #82c; }
-.agent.yellow { 
-  background: #ff9; 
+.agent.yellow {
+  background: #ff9;
   color: #440;
   border: #ff0 solid thin;
 }

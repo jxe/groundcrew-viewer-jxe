@@ -58,7 +58,9 @@ Frame = {
     } else {
       $('#flexbar').removeClass('empty');
     }
-    var groups = agents.sort_by('.last_ts_ago').group_by('fab_state');
+    agents = agents.sort_by('.last_ts_ago');
+    if (agents.length > 3000) agents = agents.slice(0, 3000);
+    var groups = agents.group_by('fab_state');
     $('#agents > div').hide();
     $.each($keys(groups), function(){
       if (this == null || this == "null") return;

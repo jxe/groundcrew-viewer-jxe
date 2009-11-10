@@ -1,63 +1,61 @@
 <div id="landmark_for_any_mode" class="mapwindow">
-  <div class="group">
-    <img style="height: 100px; width: 100px; float: left"
-      class="niw_thumb"
-      fill="item_thumb_url src" />
+  <img style="height: 100px; width: 100px; float: left"
+    class="niw_thumb"
+    fill="item_thumb_url src" />
 
-    <div style="float:left; max-width: 450px">
-      <h2 fill="item_title"></h2>
+  <div style="width: 450px">
+    <h2 fill="item_title"></h2>
 
-      <div class="grayish">
-        This is a landmark.  <img src="i/icons/edit.png" href="#mode=edit" width="12" height="12" alt="Edit this"/>
-      </div>
+    <div class="grayish">
+      This is a <span fill="lm_first_tag">landmark</span>.  <img src="i/icons/edit.png" href="#mode=edit" width="12" height="12" alt="Edit this"/>
+    </div>
 
-      <form id="radial_invite_form">
-        <fieldset style="margin-top: 8px; position: relative; padding: 0px 15px; padding-bottom: 8px">
-            <legend><b>Start something here</b></legend>
-            <!-- <p class="deemphasize">Agents will receive two text messages: first, an invitation, and then the instructions should they accept.</p> -->
+    <form id="radial_invite_form">
+      <fieldset style="margin-top: 8px; position: relative; padding: 0px 15px; padding-bottom: 8px">
+          <legend><b>Start something here</b></legend>
+          <!-- <p class="deemphasize">Agents will receive two text messages: first, an invitation, and then the instructions should they accept.</p> -->
 
-            <div>
-              Invite agents within<br/>
-              <select name="agents" fill="radius_options"></select>
-            </div>
+          <div>
+            Invite agents within<br/>
+            <select name="agents" fill="radius_options"></select>
+          </div>
 
-            <div style="margin: 10px 0px">
-              Mission:<br>
-              <input type="text" name="title"/>
-            </div>
+          <div style="margin: 10px 0px">
+            Mission:<br>
+            <input type="text" name="title"/>
+          </div>
 
-            <div if="demo_mode" class="button_dropdown" style="position: absolute; top:10px; right: 10px">
-              <button type="button" class="idle">&#9660;</button>
-              <div class="dropdown south">
-                <div class="select">
-                  <dl>
-                    <dt>a citizen investigation in teams</dt>
-                  </dl>
-                  <dl>
-                    <dt>a street cleanup</dt>
-                  </dl>
-                  <dl>
-                    <dt>a potluck in the park</dt>
-                  </dl>
-                  <dl>
-                    <dt>a brainstorm about municipal issues</dt>
-                  </dl>
-                </div>
-                <div class="more">
-                  <a href="">Create a new activity template&hellip;</a>
-                </div>
+          <div if="demo_mode" class="button_dropdown" style="position: absolute; top:10px; right: 10px">
+            <button type="button" class="idle">&#9660;</button>
+            <div class="dropdown south">
+              <div class="select">
+                <dl>
+                  <dt>a citizen investigation in teams</dt>
+                </dl>
+                <dl>
+                  <dt>a street cleanup</dt>
+                </dl>
+                <dl>
+                  <dt>a potluck in the park</dt>
+                </dl>
+                <dl>
+                  <dt>a brainstorm about municipal issues</dt>
+                </dl>
+              </div>
+              <div class="more">
+                <a href="">Create a new activity template&hellip;</a>
               </div>
             </div>
+          </div>
 
-            <div style="margin: 10px 0px">
-            Instructions (for those who accept):<br/>
-            <input type="text" name="assignment">
-            </div>
+          <div style="margin: 10px 0px">
+          Instructions (for those who accept):<br/>
+          <input type="text" name="assignment">
+          </div>
 
-            <button type="submit" class="submit right"> Send<strong>&rarr;</strong> </button>
-        </fieldset>
-      </form>
+          <button type="submit" class="submit right"> Send<strong>&rarr;</strong> </button>
+      </fieldset>
+    </form>
 
-    </div>
   </div>
 </div>

@@ -76,20 +76,10 @@ div#idea_catalog {
     background-color: transparent;
 }
 	.stanza.last {
-		border-bottom: none;	
+		border-bottom: none;
 	}
 
 
 #assignment_editor_iw {
   max-width: 400px;
 }
-
-/* self-clear floats */
-
-.group:after {
-	content: "."; 
-    display: block; 
-    height: 0; 
-    clear: both; 
-    visibility: hidden;
-    }

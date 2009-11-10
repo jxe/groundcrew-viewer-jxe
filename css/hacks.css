@@ -26,3 +26,11 @@ body.no_city .city_level, body.loading .city_level {
   background: white;
   border: solid thick green;
 }
+
+.group:after {
+	content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    }
