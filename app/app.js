@@ -271,7 +271,7 @@ Viewer = App = {
     data['float'] = "onmap";
 
     if (demo) {
-      lm = item(data['city'], "Landmark__" + Date.unix(), data['name'], null,
+      lm = item(data['city'], "Landmark__" + data['lat'] + data['lng'], data['name'], null,
         data['lat'], data['lng'], data['with_tags'], "unlatched", null, null, {});
       Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
       return go('@'+lm.id);
