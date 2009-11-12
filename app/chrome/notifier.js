@@ -19,10 +19,12 @@ Notifier = {
     if (ev.atype == 'completed')    Notifier.growl( go, ev.actor_title + " has completed your assignment" );
     if (ev.atype == 'appreciated')  Notifier.growl( go, ev.actor_title + " has appreciated you" );
     if (ev.atype == 'blocked')      Notifier.growl( go, ev.actor_title + " has blocked you" );
+    // TODO: move this to a better notification format
+    if (ev.atype == 'error')        Notifier.growl( go, "An error occurred!\n\n" + ev.msg );
   },
 
   growl: function(go, msg, options){
-    msg = "<a href='#@"+go+"'>"+msg+"</a>";
+    if (go) msg = "<a href='#@"+go+"'>"+msg+"</a>";
     $.jGrowl(msg, {
       life: 15*1000,
       open: function(e,m,o){
