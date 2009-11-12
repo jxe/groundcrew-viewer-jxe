@@ -221,7 +221,7 @@ Viewer = App = {
   },
 
   go_to_self: function() {
-    go('@' + This.user.tag);
+    go('@' + This.user.vtag);
   },
 
   help_form_submitted: function(data) {
