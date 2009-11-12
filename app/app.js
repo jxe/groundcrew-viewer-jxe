@@ -309,6 +309,14 @@ Viewer = App = {
     }
     params = { msg: data.message, city: This.city_id };
     if (demo) return alert("Blasting message to all agents");
+
+    if (window.remaining <= 0) {
+      $.post('/api/bugreport', {issue: window.current_stream + ' has run out of text messages!'});
+      alert('You have reached your limit on text messages!  ' +
+        'Please contact Groundcrew support to purchase more.');
+      return false;
+    }
+
     $.post('/api/blast_message', params, function(data){
       go('tool=');
       // TODO: replace this with a nicer way to respond when 

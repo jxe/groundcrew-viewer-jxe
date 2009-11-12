@@ -87,6 +87,14 @@ body { overflow: hidden; }
     to(rgba(12,12,12,.5)));
 }
 
+#sms_limited, #sms_limited_comma {
+  display: none;
+}
+
+#sms_limited.warning {
+  color: #C87;
+}
+
 .rside, .lside { position: absolute; cursor: pointer;}
 /*.rside { right:0; }*/
 /*.lside { left:0; }*/
