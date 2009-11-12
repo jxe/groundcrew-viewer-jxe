@@ -3,7 +3,7 @@ Notifier = {
   did_add_new_event: function(ev) {
     Event.improve(ev);
     // we only notify on items that are latched to us.  TODO: turn back on
-    // if (!ev.re || ev.re.resource().architect != This.user.tag) return;
+    // if (!ev.re || ev.re.resource().architect != This.user.vtag) return;
 
     // don't report if we're watching the thing
     if (ev.re == This.item) return;
