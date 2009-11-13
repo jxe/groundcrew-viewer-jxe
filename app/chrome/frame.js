@@ -16,24 +16,25 @@ Frame = {
         return false;
       }
     }).keypress(function(e){
-      if ($(e.target).is('input,textarea')) return;
-      if (e.metaKey) return;
+      if ($(e.target).is('input,textarea')) return true;
+      if (e.metaKey) return true;
       var ch = String.fromCharCode(e.which);
-      if (ch == 'S') return GM.setMapType(G_SATELLITE_MAP);
-      if (ch == 'N') return GM.setMapType(G_NORMAL_MAP);
-      if (ch == 'H') return GM.setMapType(G_HYBRID_MAP);
-      if (ch == 'T') return GM.setMapType(G_PHYSICAL_MAP);
-      if (ch == 'c') return go('mode=');
-      if (ch == 'a') return go('mode=assess');
-      if (ch == 'm') return go('mode=manage');
-      if (ch == 'w') return go('item=') && false;
-      if (ch == 'g') return go('#go_where') && false;
-      if (ch == 'f') return $('#search').focus() && false;
-      if (ch == 't') return(setTimeout(function(){go('tool=tag_group');},0) && false);
-      if (ch == '$') { test = !test; if (test) alert('test mode active'); };
-      if (ch == '#') { window.open('/api/stream.js?stream=' + current_stream); return false; };
-      if (ch == 'Q') { clearTimeout(Ajax.timer); };
-      if (demo) Demo.qa_keypresses(ch);
+      if (ch == 'S') { GM.setMapType(G_SATELLITE_MAP); return false; }
+      if (ch == 'N') { GM.setMapType(G_NORMAL_MAP); return false; }
+      if (ch == 'H') { GM.setMapType(G_HYBRID_MAP); return false; }
+      if (ch == 'T') { GM.setMapType(G_PHYSICAL_MAP); return false; }
+      if (ch == 'c') { go('mode='); return false; }
+      if (ch == 'a') { go('mode=assess'); return false; }
+      if (ch == 'm') { go('mode=manage'); return false; }
+      if (ch == 'w') { go('item='); return false; }
+      if (ch == 'g') { go('#go_where'); return false; }
+      if (ch == 'f') { $('#search').focus(); return false; }
+      if (ch == 't') { setTimeout(function(){go('tool=tag_group');},0); return false; }
+      if (ch == '$') { test = !test; if (test) alert('test mode active'); return false; }
+      if (ch == '#') { window.open('/api/stream.js?stream=' + current_stream); return false; }
+      if (ch == 'Q') { clearTimeout(Ajax.timer); return false; }
+      if (demo) return Demo.qa_keypresses(ch);
+      return true;
     });
 
     $.jGrowl.defaults.pool = 7;
