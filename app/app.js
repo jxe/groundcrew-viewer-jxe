@@ -154,7 +154,7 @@ Viewer = App = {
       // TODO: turn user alerts back on (and make them not call alert()) when we're confident
       // that spurious errors are being handled
       
-      // alert('A bug occurred in the Groundcrew viewer!' +
+      // Notifier.error('A bug occurred in the Groundcrew viewer!' +
       //   '\n\nIt has been reported to our developers, but you might need to reload the viewer. Sorry!');
     });
   },
@@ -226,7 +226,7 @@ Viewer = App = {
 
   help_form_submitted: function(data) {
     $.post('/api/bugreport', {issue: data.issue}, function(){
-      alert('Submitted.  Thanks!');
+      Notifier.success('Thanks!', 'Submitted');
       go('tool=');
     });
   },
@@ -296,14 +296,12 @@ Viewer = App = {
       return "redo";
     }
     if (!data.question || data.question.length < 5) {
-      alert('Please provide a question to ask!');
+      alert('Please provide a question to ask that\'s at least 5 characters!');
       return "redo";
     }
     if (demo) return Demo.question(data.question, agent_ids);
     agent_ids = agent_ids.join(' ').replace(/Person__/g, '');
-    Operation.exec(CEML.script_for('question', data.question), agent_ids, agent_ids, function(){
-      // $('#ask_question_form').html('Message sent!');
-    });
+    Operation.exec(CEML.script_for('question', data.question), agent_ids, agent_ids);
   },
 
   blast_message_form_submitted: function(data) {
@@ -316,7 +314,7 @@ Viewer = App = {
       return "redo";
     }
     params = { msg: data.message, city: This.city_id };
-    if (demo) return alert("Blasting message to all agents");
+    if (demo) return Notifier.success("Blasting message to all agents!");
 
     if (window.remaining <= 0) {
       $.post('/api/bugreport', {issue: window.current_stream + ' has run out of text messages!'});
@@ -327,9 +325,7 @@ Viewer = App = {
 
     $.post('/api/blast_message', params, function(data){
       go('tool=');
-      // TODO: replace this with a nicer way to respond when 
-      // $('#make_it_happen_form').html('Message sent!'); bug is fixed.
-      alert("Message sent to " + data + " agents!");
+      Notifier.success("Blasting message to " + data + " agents!");
     });
   },
 
@@ -365,7 +361,7 @@ Viewer = App = {
       return "redo";
     }
     if (demo && data.kind == "question") return Demo.question(data.assign, [This.item]);
-    if (demo && data.kind == "msg")      return alert("sending a msg");
+    if (demo && data.kind == "msg")      return $('#make_it_happen_form').html('Message sent!');
     if (demo && data.kind == "mission")  return Demo.assign([This.item], data.assign);
     Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item, function(){
       $('#make_it_happen_form').html('Message sent!');
@@ -381,11 +377,11 @@ Viewer = App = {
     }
 
     if (demo && data.kind == "question") return Demo.question(data.assign, agents);
-    if (demo && data.kind == "msg")      return alert("sending a msg to " + agents);
+    if (demo && data.kind == "msg")      {go('tool='); return Notifier.success("Message sent!");}
     if (demo && data.kind == "mission")  return Demo.assign(agents, data.assign, Selection.clear);
     Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
-      alert('Message sent!');
-      // $('#group_interact_form').html('Message sent!');
+      go('tool=');
+      Notifier.success('Message sent!');
       Selection.clear();
     });
   },

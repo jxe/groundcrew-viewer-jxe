@@ -77,3 +77,27 @@ blockquote.assignment {
 .event a:hover {
   text-decoration: underline;
 }
+
+/* Notifications */
+
+body > div.jGrowl.top-right {
+  top: 120px;
+}
+
+div.jGrowl div.jGrowl-notification a {
+  color: #8BA2CD;
+}
+
+div.jGrowl div.jGrowl-notification a:hover {
+  text-decoration: underline;
+}
+
+div.jGrowl div.jGrowl-notification.success div.header {
+  color: #5B729D;
+  font-size: 120%;
+}
+
+div.jGrowl div.jGrowl-notification.error div.header {
+  color: #C87;
+  font-size: 120%;
+}
