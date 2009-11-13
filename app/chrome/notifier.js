@@ -2,14 +2,14 @@ Notifier = {
 
   did_add_new_event: function(ev) {
     Event.improve(ev);
+    var go = ev.item_tag;
     // we only notify on items that are latched to us.  TODO: turn back on
     // if (!ev.re || ev.re.resource().architect != This.user.vtag) return;
 
-    if (ev.atype == 'error')        Notifier.error( ev.msg );
+    if (ev.atype == 'error')        Notifier.error( go, ev.msg, ev.actor_title );
 
     // don't report if we're watching the thing
     if (ev.re == This.item) return;
-    var go = ev.item_tag;
 
     if (ev.atype == 'signup')       Notifier.growl( go, ev.actor_title + " signed up!" );
     if (ev.atype == 'reported')     Notifier.growl( go, ev.actor_title + " reports: &ldquo;"+ ev.msg   +"&rdquo;" );
@@ -33,10 +33,11 @@ Notifier = {
     });
   },
 
-  error: function(msg) {
-    Notifier.growl(null, msg, {
-      header: 'Error',
-      life: 20*1000,
+  error: function(go, msg, actor) {
+    header = actor ? 'Error for ' + actor : 'Error';
+    Notifier.growl(go, msg, {
+      header: header,
+      life: 25*1000,
       glue: 'before',
       theme: 'error'
     });
