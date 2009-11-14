@@ -241,7 +241,7 @@ Viewer = App = {
       alert('There are no agents to invite!');
       return "redo";
     }
-    if (demo) return Demo.invite(This.item, data.title, data.assignment);
+    if (demo) return Demo.invite(agents.split(' '), This.item, data.title, data.assignment);
     Operation.exec(CEML.script_for_invite(data.title, data.assignment), agents, This.item, function(){
       $('#radial_invite_form').html('message sent!');
     });
