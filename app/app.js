@@ -137,7 +137,7 @@ Viewer = App = {
     $.each(This._item.children, function(){ Event.improve(this); });
     return Actions.event_t.tt(This._item.children);
   },
-  
+
   // TODO: get stack trace (see http://eriwen.com/javascript/js-stack-trace/)
   // and include some state like This.url, form submitted, etc.
   report_error: function(msg, e, place) {
@@ -149,11 +149,11 @@ Viewer = App = {
     report += " at " + place;
     if (e) report += "\nException: " + e;
     if (e && e.stack) report += "\nStack trace: " + e.stack;
-    
+
     $.post('/api/bugreport', {issue: report}, function(){
       // TODO: turn user alerts back on (and make them not call alert()) when we're confident
       // that spurious errors are being handled
-      
+
       // Notifier.error('A bug occurred in the Groundcrew viewer!' +
       //   '\n\nIt has been reported to our developers, but you might need to reload the viewer. Sorry!');
     });
@@ -189,7 +189,7 @@ Viewer = App = {
     $('body').removeClass('loading');
     Map.establish();
     $('._mode').activate('mode');
-    
+
     // start communication with server
     Ajax.init();
 
@@ -209,6 +209,8 @@ Viewer = App = {
     }
 
     Ajax.maybe_trigger_load();
+
+    if (demo) Demo.init_random_events();
 
     // set up app state
     // CEML.parse($('#idea_bank').html());
@@ -361,7 +363,8 @@ Viewer = App = {
       return "redo";
     }
     if (demo && data.kind == "question") return Demo.question(data.assign, [This.item]);
-    if (demo && data.kind == "msg")      return $('#make_it_happen_form').html('Message sent!');
+    if (demo && data.kind == "msg")      return Demo.message([This.item], data.assign,
+      function() {$('#make_it_happen_form').html('Message sent!');});
     if (demo && data.kind == "mission")  return Demo.assign([This.item], data.assign);
     Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item, function(){
       $('#make_it_happen_form').html('Message sent!');
@@ -377,7 +380,8 @@ Viewer = App = {
     }
 
     if (demo && data.kind == "question") return Demo.question(data.assign, agents);
-    if (demo && data.kind == "msg")      {go('tool='); return Notifier.success("Message sent!");}
+    if (demo && data.kind == "msg")      return Demo.message(agents, data.assign,
+      function(){go('tool='); return Notifier.success("Message sent!");});
     if (demo && data.kind == "mission")  return Demo.assign(agents, data.assign, Selection.clear);
     Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
       go('tool=');
@@ -396,7 +400,7 @@ Viewer = App = {
       go('tool=view_events;mode=assess');
     });
   },
-  
+
 
   go_where: function() {
     var where = prompt("Find:");
