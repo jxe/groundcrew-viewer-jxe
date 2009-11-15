@@ -210,7 +210,7 @@ Viewer = App = {
 
     Ajax.maybe_trigger_load();
 
-    if (demo) Demo.init_random_events();
+    if (demo) Demo.init_manual();
 
     // set up app state
     // CEML.parse($('#idea_bank').html());
