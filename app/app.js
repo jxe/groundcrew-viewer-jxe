@@ -95,6 +95,7 @@ Viewer = App = {
 
   request_agent_update_location: function() {
     // TODO: check comm3 and don't allow if we bugged them recently
+    if (demo) return Demo.update_loc(This.item);
     Operation.exec(CEML.script_for("msg", "Our location for you looks old or imprecise. " +
         "Where are you? Please respond with 'at' and then your address."),
       This.item, This.item, function(){
