@@ -23,6 +23,7 @@ Frame = {
       if (ch == 'N') { GM.setMapType(G_NORMAL_MAP); return false; }
       if (ch == 'H') { GM.setMapType(G_HYBRID_MAP); return false; }
       if (ch == 'T') { GM.setMapType(G_PHYSICAL_MAP); return false; }
+      if (ch == '?') { go('tool=help_keyboard'); return false; }
       if (ch == 'c') { go('mode='); return false; }
       if (ch == 'a') { go('mode=assess'); return false; }
       if (ch == 'm') { go('mode=manage'); return false; }
