@@ -16,7 +16,7 @@ LiveHTML.widgets.push({
       if (This._item.acc == 'zip') return "Approximate location: by zipcode. " + loc_update;
       if (This._item.acc == 'city') return "Approximate location: by city. " + loc_update;
     }
-    if (stale_loc) return 'Location is stale. ' + loc_update
+    if (stale_loc) return 'Location is stale. ' + loc_update;
     else return "Location is fresh.";
   },
     
