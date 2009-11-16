@@ -30,7 +30,7 @@ Frame = {
       if (ch == 'w') { go('item='); return false; }
       if (ch == 'g') { go('#go_where'); return false; }
       if (ch == 'f') { $('#search').focus(); return false; }
-      if (ch == 't') { setTimeout(function(){go('tool=tag_group');},0); return false; }
+      if (ch == 't') { setTimeout(function(){go('tool=tag_agents');},0); return false; }
       if (ch == '$') { test = !test; if (test) alert('test mode active'); return false; }
       if (ch == '#') { window.open('/api/stream.js?stream=' + current_stream); return false; }
       if (ch == 'Q') { clearTimeout(Ajax.timer); return false; }
