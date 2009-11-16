@@ -342,6 +342,7 @@ Viewer = App = {
     } else {
       params['with_tag'] = data.tags;
     }
+    if (demo) return Demo.tag(agents, data.tags, function(){go('tool=');});
     $.post('/api/agents/update_all', params, function(){
       go('tool=');
     });
