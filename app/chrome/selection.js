@@ -78,7 +78,7 @@ LiveHTML.widgets.push({
   },
 
   require_selection: function() {
-    return "Please select (option-click) some agents in the facebar";
+    return "Please select (option- or command-click) some agents";
   }
 
 });
