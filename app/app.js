@@ -393,6 +393,7 @@ Viewer = App = {
   },
 
   invite_agents_form_submitted: function(data, state) {
+    if (demo) {Notifier.success('Invitations sent!'); return go('tool=;mode=');}
     var today = (new Date()).toDateString().slice(4).toLowerCase().replace(/ /g, '_');
     $.post('/api/people/invite', {
       emails: data.emails,
