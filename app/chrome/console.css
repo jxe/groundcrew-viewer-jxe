@@ -96,11 +96,10 @@ body#viewer.stream_role_organizer a.squad_settings_tool, body#viewer.stream_role
   color: #E5E5E5;
 }
 */
-/*.hud a {
-  color: #9595df;
-  font-weight: bold;
+.hud a {
+  color: #8BA2CD;
 }
-*/
+
 .rbuttons a img, #tray_buttons a img {
   height: 12px;
   position: relative;

@@ -30,6 +30,11 @@ body.loading #flexbar.empty #empty_text {
   font-size: 18px;
 }
 
+#flexbar.empty #empty_text a {
+  font-weight: bold;
+  color: #8BA2CD;
+}
+
 #flexbar #agents {
    width: 300000px; /*100 * 3000 = 300 000*/
    background-color:#7A9FBF;
