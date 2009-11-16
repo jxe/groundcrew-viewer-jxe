@@ -60,7 +60,7 @@ Viewer = App = {
     }
 
     if (changed.agents) {
-      Frame.populate_flexbar_agents(This.agents);
+      Facebar.populate(This.agents);
       if (!changed.city) Map.layer_recalculate('agents');
     }
 
@@ -285,7 +285,7 @@ Viewer = App = {
   },
 
   tag_group_form_submitted: function(data) {
-    var agents = $keys(Selection.current);
+    var agents = Selection.agent_ids();
     if (!agents || agents.length == 0) {alert('Please select some agents to tag.'); return "redo";}
     if (!data.tags) { alert('Please provide some tags!'); return "redo"; }
 
@@ -324,7 +324,7 @@ Viewer = App = {
   },
 
   group_interact_form_submitted: function(data, state, form) {
-    var agents = $keys(Selection.current);
+    var agents = Selection.agent_ids();
 
     if (!data.assign) {
       alert('Please provide an assignment!');

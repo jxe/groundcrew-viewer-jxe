@@ -14,21 +14,18 @@
 
 #flexbar #empty_text {
   display:none;
+  position: relative;
+  top: 20px;
+  left: 30px;
+  color: white;
 }
 
-body.loading #flexbar.empty #empty_text {
+body.loading #flexbar #empty_text {
   display:none;
 }
 
-#flexbar.empty #empty_text {
-  display:block;
-  position: absolute;
-  color: white;
-  font-size: 18px;
-}
-
 #flexbar #agents {
-   width: 40000px;
+   width: 300000px; /*100 * 3000 = 300 000*/
    background-color:#7A9FBF;
 }
 
@@ -95,75 +92,8 @@ body.loading #flexbar.empty #empty_text {
   filter:alpha(opacity=90);
 }
 
-#flexbar #agents div.group {
-  display: none;
-  width: 126px;
-}
 
-#flexbar #agents div.group:hover div.tesselation {
-  opacity:.8;
-}
-
-#flexbar #agents div.count {
-  overflow: hidden;
-  position: absolute;
-  height: 58px;
-  top: 14px;
-  width: 116px;
-  text-align:center;
-  text-shadow: #000 0px 1px 2px;
-  z-index: 10;
-}
-
-#flexbar #agents div.count h2 {
-  margin: 0px;
-  font-size: 24px;
-  color: #eee;
-}
-
-#flexbar #agents div.count h3.selection_count {
-  margin: 0px;
-  font-size: 12px;
-  color: #ccc;
-}
-
-#flexbar #agents div.tesselation_selector {
-  overflow: hidden;
-  position: absolute;
-  height: 60px;
-  width: 116px;
-  margin-right: 4px;
-  border-style: solid;
-  border-width: 6px 4px;
-}
-
-#flexbar #agents div.tesselation {
-  overflow: hidden;
-  position: absolute;
-  height: 58px;
-  width: 114px;
-  opacity: 0.5;
-  background: black;
-  border-left:solid 1px #212121;
-  border-bottom:solid 1px #2B2B2B;
-  border-right:solid 1px #2B2B2B;
-}
-
-#flexbar #agents img.tess_th {
-  width:27px;
-  height:27px;
-  border-left:solid 1px #212121;
-  border-right:solid 1px #212121;
-  position: float;
-}
-
-#flexbar #agents div h2.status span {
-  position: relative;
-  padding-right: 23px;
-  white-space: nowrap;
-}
-
-#flexbar #agents div h2.status {
+#flexbar #agents div h2 {
   margin: 0px 3px 0px 0px;
   font-family: helvetica, arial;
   font-size: 12px;
@@ -174,6 +104,91 @@ body.loading #flexbar.empty #empty_text {
   font-weight:bold;
   cursor: pointer;
   background: #E56B0B;
+}
+
+#flexbar #agents div a {
+  color: white;
+  font-weight: bold;
+  text-shadow: #fff 0px -1px 0px;
+  -webkit-box-shadow: 0px 0px 2px #888;
+      -moz-box-shadow: 0px 0px 2px #888;
+  padding: 0px 4px;
+  margin-left: 6px;
+  position: relative;
+  top: -1px;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from(rgba(255,255,255,0.1)),
+    to(transparent));
+}
+
+#flexbar #agents div a:hover {
+  background-color: rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0px 0px 2px #000;
+  -moz-box-shadow: 0px 0px 2px #000;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from(rgba(255,255,255,0.4)),
+    to(transparent));
+}
+
+#flexbar #agents div.folded {
+  width: 126px;
+}
+
+#flexbar #agents div.folded:hover img {
+  opacity:.8;
+}
+
+#flexbar #agents div.count {
+  overflow: hidden;
+  position: absolute;
+  height: 58px;
+  top: 14px;
+  width: 116px;
+  text-align:center;
+  text-shadow: #000 0px 0px 6px;
+  z-index: 10;
+  font-size: 24px;
+  color: #eee;
+  font-weight: bold;
+}
+
+
+#flexbar #agents div.selected_count {
+  font-weight: bold;
+  font-size: 12px;
+  color: #ff9;
+  overflow: hidden;
+  position: absolute;
+  bottom: 31px;
+  width: 116px;
+  text-align:center;
+  text-shadow: #000 0px 1px 2px;
+  z-index: 10;
+}
+
+#flexbar #agents div.folded {
+  overflow: hidden;
+  border-left:solid 1px #212121;
+  border-bottom:solid 1px #2B2B2B;
+  border-right:solid 1px #2B2B2B;
+  height: 60px;
+  width: 116px;
+  margin-right: 4px;
+  border-style: solid;
+  border-width: 6px 4px;
+}
+
+#flexbar #agents div.folded img {
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter:alpha(opacity=50);
+  width:27px;
+  height:27px;
+  border-left:solid 1px #212121;
+  border-right:solid 1px #212121;
+  position: float;
 }
 
 #flexbar #agents div h2.red    { background: #B20000; }
@@ -200,15 +215,16 @@ body.loading #flexbar.empty #empty_text {
   display: none;
 }
 
+#flexbar #agents div.selected {
+  background-color: rgba(255,255,0,0.4);
+  opacity: 1;
+  -moz-opacity: 0.9;
+  filter:alpha(opacity=90);
+}
 
 #flexbar #agents .athumb.selected {
   background-color: yellow;
 }
-
-#flexbar #agents div.tesselation_selector.selected {
-  border-color: #dd0;
-}
-
 
 .agent.busy { color: #82c; }
 .agent.yellow {
