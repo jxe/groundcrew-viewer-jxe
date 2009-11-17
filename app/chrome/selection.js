@@ -38,8 +38,10 @@ Selection = {
   hide_or_show_options: function() {
     if (isEmpty(Selection.current)){
       $('#group_actions').hide();
+      $('.require_selection').show();
     } else {
       $('#group_actions').show().center();
+      $('.require_selection').hide();
     }
   }
   
@@ -73,6 +75,10 @@ LiveHTML.widgets.push({
       return x.resource();
     });
     return Tiles.agent_tile.tt(agents);
+  },
+
+  require_selection: function() {
+    return "Please select (option- or command-click) some agents";
   }
 
 });

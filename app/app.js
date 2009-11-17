@@ -332,7 +332,7 @@ Viewer = App = {
     });
   },
 
-  tag_group_form_submitted: function(data) {
+  tag_agents_form_submitted: function(data) {
     var agents = $keys(Selection.current);
     if (!agents || agents.length == 0) {alert('Please select some agents to tag.'); return "redo";}
     if (!data.tags) { alert('Please provide some tags!'); return "redo"; }
