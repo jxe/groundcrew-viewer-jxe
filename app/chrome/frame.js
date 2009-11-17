@@ -1,5 +1,4 @@
 Frame = {
-  agent_thumb: '<div href="#@#{id}" class="athumb agent_photo #{id}"><img class="th" src="#{thumb_url}" title="#{title}"/><b>#{title}</b></div>',
 
   init: function() {
     Frame.resize();
@@ -52,33 +51,6 @@ Frame = {
     // make the adjustment
     $('#map_div').height(page_height - junk);
     GM && GM.checkResize();
-  },
-
-  populate_flexbar_agents: function(agents) {
-    if (!agents) return;
-    if (agents.length == 0) {
-      $('#flexbar').addClass('empty');
-    } else {
-      $('#flexbar').removeClass('empty');
-    }
-    agents = agents.sort_by('.last_ts_ago');
-    if (agents.length > 3000) agents = agents.slice(0, 3000);
-    var groups = agents.group_by('fab_state');
-    $('#agents > div').hide();
-    $.each($keys(groups), function(){
-      if (this == null || this == "null") return;
-      $('#' + this + '_agents').show();
-      $('#' + this + '_agent_thumbs').html(Frame.agent_thumb.tt(groups[this]));
-    });
-    $('#flexbar').app_paint();
-    Selection.update_all();
-    
-    var total_agents = Agents.everything().length;
-    if (total_agents == 0) {
-      $('#empty_text').show();
-    } else {
-      $('#empty_text').hide();
-    }
   }
 
 };
