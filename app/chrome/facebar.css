@@ -17,9 +17,10 @@
   position: relative;
   top: 20px;
   left: 30px;
+  color: white;
 }
 
-body.loading #flexbar.empty #empty_text {
+body.loading #flexbar #empty_text {
   display:none;
 }
 
@@ -48,18 +49,6 @@ body.loading #flexbar.empty #empty_text {
   height: 73px;
 }
 
-#flexbar #agents h2 {
-  margin: 0px 3px 0px 0px;
-  font-family: helvetica, arial;
-  font-size: 12px;
-  font-weight:normal;
-  -webkit-border-bottom-right-radius: 8px;
-  padding: 3px 4px 1px 4px;
-  color: #191919;
-  font-weight:bold;
-  cursor: pointer;
-}
-
 #flexbar #agents .athumb img.th {
   width:58px;
   height:58px;
@@ -86,10 +75,8 @@ body.loading #flexbar.empty #empty_text {
 
 #flexbar #agents .athumb b {
   position: absolute;
-  width: 64px;
   right: 2px; bottom: 2px;
   font-size: 10px;
-  text-align: right;
   color: #ccc;
   text-shadow: #000 0px 1px 2px;
   z-index: 10;
@@ -118,25 +105,138 @@ body.loading #flexbar.empty #empty_text {
 }
 
 
-#flexbar div h2 { background: #E56B0B; }
+#flexbar #agents div h2 {
+  margin: 0px 3px 0px 0px;
+  font-family: helvetica, arial;
+  font-size: 12px;
+  font-weight:normal;
+  -webkit-border-bottom-right-radius: 8px;
+  padding: 3px 4px 1px 4px;
+  color: #191919;
+  font-weight:bold;
+  cursor: pointer;
+  background: #E56B0B;
+}
 
-#flexbar div h2.red    { background: #B20000; }
-#flexbar div h2.orange { background: #A8BFBF; }
-#flexbar div h2.green  { background: #00ACD4; }
-#flexbar div h2.yellow { background: #E56B0B; }
-#flexbar div h2.brown  { background: #E56B0B; }
-#flexbar div h2.grey   { background: #A8BFBF; }
+#flexbar #agents div a {
+  color: white;
+  font-weight: bold;
+  text-shadow: #fff 0px -1px 0px;
+  -webkit-box-shadow: 0px 0px 2px #888;
+      -moz-box-shadow: 0px 0px 2px #888;
+  padding: 0px 4px;
+  margin-left: 6px;
+  position: relative;
+  top: -1px;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from(rgba(255,255,255,0.1)),
+    to(transparent));
+}
+
+#flexbar #agents div a:hover {
+  background-color: rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0px 0px 2px #000;
+  -moz-box-shadow: 0px 0px 2px #000;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from(rgba(255,255,255,0.4)),
+    to(transparent));
+}
+
+#flexbar #agents div.folded {
+  width: 126px;
+}
+
+#flexbar #agents div.folded:hover img {
+  opacity:.8;
+}
+
+#flexbar #agents div.count {
+  overflow: hidden;
+  position: absolute;
+  height: 58px;
+  top: 14px;
+  width: 116px;
+  text-align:center;
+  text-shadow: #000 0px 0px 6px;
+  z-index: 10;
+  font-size: 24px;
+  color: #eee;
+  font-weight: bold;
+}
+
+
+#flexbar #agents div.selected_count {
+  font-weight: bold;
+  font-size: 12px;
+  color: #ff9;
+  overflow: hidden;
+  position: absolute;
+  bottom: 31px;
+  width: 116px;
+  text-align:center;
+  text-shadow: #000 0px 1px 2px;
+  z-index: 10;
+}
+
+#flexbar #agents div.folded {
+  overflow: hidden;
+  border-left:solid 1px #212121;
+  border-bottom:solid 1px #2B2B2B;
+  border-right:solid 1px #2B2B2B;
+  height: 60px;
+  width: 116px;
+  margin-right: 4px;
+  border-style: solid;
+  border-width: 6px 4px;
+}
+
+#flexbar #agents div.folded img {
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter:alpha(opacity=50);
+  width:27px;
+  height:27px;
+  border-left:solid 1px #212121;
+  border-right:solid 1px #212121;
+  position: float;
+}
+
+#flexbar #agents div h2.red    { background: #B20000; }
+#flexbar #agents div h2.orange { background: #A8BFBF; }
+#flexbar #agents div h2.green  { background: #00ACD4; }
+#flexbar #agents div h2.yellow { background: #E56B0B; }
+#flexbar #agents div h2.brown  { background: #E56B0B; }
+#flexbar #agents div h2.grey   { background: #A8BFBF; }
 
 #flexbar #unknown_agents   h2 { background: #A8BFBF; }
 #flexbar #inaccessible_agents h2 { background: #222621; color:#4C4C4C; }
 #flexbar #agents #inaccessible_agent_thumbs .athumb img.th { opacity:.5; }
 
+#flexbar div img.toggle_opened {
+  position: absolute;
+  right: 2px;
+  top: -2px;
+}
 
+#flexbar div img.toggle_closed {
+  position: absolute;
+  right: 2px;
+  top:-2px;
+  display: none;
+}
+
+#flexbar #agents div.selected {
+  background-color: rgba(255,255,0,0.4);
+  opacity: 1;
+  -moz-opacity: 0.9;
+  filter:alpha(opacity=90);
+}
 
 #flexbar #agents .athumb.selected {
   background-color: yellow;
 }
-
 
 .agent.busy { color: #82c; }
 .agent.yellow {

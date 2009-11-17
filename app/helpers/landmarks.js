@@ -45,8 +45,8 @@ LiveHTML.widgets.push({
       return "<option value='"+agent_tags+"'>" + option_label + "</option>";
     });
     
-    if (!isEmpty(Selection.current)) {
-      var agent_tags = $keys(Selection.current);
+    var agent_tags = Selection.agent_ids();
+    if (!isEmpty(agent_tags)) {
       options.unshift("<option value='"+agent_tags.join(' ')+"'>selected agents &mdash; "+agent_tags.length+" agents");
     }
     
