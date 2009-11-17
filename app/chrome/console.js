@@ -1,34 +1,47 @@
 Console = {
   modes: [],
-  tools: {}  
+  tools: {}
 };
 
 // add_action_idea//wand30  edit_activities//lightbulb_icon29  identify_resource//gift23  upload_landmarks//landmark21
+// 'dispatch     assign_agents            start_something           join_something'
 
 $.each([
-  'assess     show_answers//scroll     ask_a_question        view_events//scroll',  // blast_message
-  'manage     add_landmark//landmark21  approve_deputies     chat//chat_icon18    squad_settings  invite_agents  tag_agents',
-  'dispatch     assign_agents            start_something           join_something'
+  {mode: 'assess', tools: [
+    {tool: 'show_answers',  img: 'scroll'},
+    {tool: 'ask_a_question'},
+    {tool: 'blast_message', module: 'blast_message'},
+    {tool: 'view_events', img: 'scroll'}
+  ]},
+  {mode: 'manage', tools: [
+    {tool: 'add_landmark', img: 'landmark21'},
+    {tool: 'approve_deputies'},
+    {tool: 'chat', img: 'chat_icon18'},
+    {tool: 'squad_settings'},
+    {tool: 'invite_agents'},
+    {tool: 'tag_agents'}
+  ]}
 ], function(){
-  
-  var words = this.split(/\s+/);
-  var mode = words.shift();
+  var mode = this['mode'];
   Console.modes.push(mode);
-  Console.tools[mode] = words;
-  
+  Console.tools[mode] = this['tools'];
 });
 
 
 LiveHTML.widgets.push({
-  
+
   tool_buttons: function() {
     if (!This.mode || !Console.tools[This.mode]) return '';
-    return Console.tools[This.mode].map(function(x){
-      var parts = x.split('//');
-      var tool = parts[0];
-      var tname = tool.replace(/_/g, ' ');
-      var img = parts[1] && '<img src="i/icons/'+parts[1]+'.png"/>' || '';
-      return '<a class="'+tool+'_tool" href="#tool='+tool+'">'+img+tname+'</a>';
+    return Console.tools[This.mode].map(function(tool){
+      if (tool['module']) {
+        if (!window.current_stream_modules || current_stream_modules.indexOf(tool['module']) == -1) {
+          return '';
+        }
+      }
+      var tval = tool['tool'];
+      var tname = tval.replace(/_/g, ' ');
+      var img = tool['img'] && '<img src="i/icons/'+tool['img']+'.png"/>' || '';
+      return '<a class="'+tval+'_tool" href="#tool='+tval+'">'+img+tname+'</a>';
     }).join('');
   }
 
@@ -40,7 +53,7 @@ LiveHTML.widgets.push({
 
 
 // <div id="coordinate_mode_buttons">
-//   <img reveal="places_palette" src="i/icons/landmark21.png" title="see local places"/>      
+//   <img reveal="places_palette" src="i/icons/landmark21.png" title="see local places"/>
 //   <img reveal="recent_content" src="i/icons/scroll.png" title="view recent events"/>
 // </div>
 // <div id="listen_mode_buttons">
