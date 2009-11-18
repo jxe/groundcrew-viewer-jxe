@@ -31,6 +31,10 @@ blockquote.assignment {
   background: #7c7;
 }
 
+.event span.error {
+  color: #DC7867;
+}
+
 .event  .shout {
   background: #c77;
 }
