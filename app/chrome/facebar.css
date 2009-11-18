@@ -75,8 +75,10 @@ body.loading #flexbar #empty_text {
 
 #flexbar #agents .athumb b {
   position: absolute;
+  width: 64px;
   right: 2px; bottom: 2px;
   font-size: 10px;
+  text-align: right;
   color: #ccc;
   text-shadow: #000 0px 1px 2px;
   z-index: 10;
