@@ -362,7 +362,8 @@ Viewer = App = {
       alert('Please provide a message that\'s at least 5 characters!');
       return "redo";
     }
-    params = { msg: data.message, city: This.city_id };
+    params = { msg: data.message }
+    if (This.city_id) params['city'] = This.city_id;
     if (demo) return Notifier.success("Blasting message to all agents!");
 
     if (window.remaining <= 0) {
