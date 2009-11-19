@@ -130,7 +130,9 @@ Viewer = App = {
   },
 
   did_add_events: function(state) {
-    App.refresh_mapwindow();
+    // TODO: temp fix.  Need to make events intelligently cause related windows to refresh
+    // (e.g. agent window refreshes if agent reported)
+    if (This.item && This.item.startsWith('Op')) App.refresh_mapwindow();
     if (This.tool == 'view_events') $('.view_events_tool').app_paint();
   },
 
