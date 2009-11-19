@@ -8,6 +8,7 @@ Console = {
 
 $.each([
   {mode: 'assess', tools: [
+    {tool: 'add_mission_landmark', name: 'start mission'},
     {tool: 'show_answers',  img: 'scroll'},
     {tool: 'ask_a_question'},
     {tool: 'blast_message', module: 'blast_message'},
@@ -39,7 +40,7 @@ LiveHTML.widgets.push({
         }
       }
       var tval = tool['tool'];
-      var tname = tval.replace(/_/g, ' ');
+      var tname = tool['name'] ? tool['name'] : tval.replace(/_/g, ' ');
       var img = tool['img'] && '<img src="i/icons/'+tool['img']+'.png"/>' || '';
       return '<a class="'+tval+'_tool" href="#tool='+tval+'">'+img+tname+'</a>';
     }).join('');

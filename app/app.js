@@ -223,6 +223,10 @@ Viewer = App = {
     }
   },
 
+  require_selection: function(value) {
+    $('#require_selection').toggle(value == 'require_selection');
+  },
+
   go_to_self: function() {
     go('@' + This.user.vtag);
   },
@@ -235,7 +239,7 @@ Viewer = App = {
   },
 
   radial_invite_form_submitted: function(data) {
-    var agents = data.agents;
+    if (data.agents == "require_selection") data.agents = Selection.agent_ids().join(' ');
     if (!data.title) {
       alert('Please provide an assignment!');
       return "redo";
@@ -244,10 +248,50 @@ Viewer = App = {
       alert('There are no agents to invite!');
       return "redo";
     }
-    if (demo) return Demo.invite(agents.split(' '), This.item, data.title, data.assignment);
-    Operation.exec(CEML.script_for_invite(data.title, data.assignment), agents, This.item, function(){
+    if (demo) return Demo.invite(data.agents.split(' '), This.item, data.title, data.assignment);
+    Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, This.item, function(){
       $('#radial_invite_form').html('message sent!');
     });
+  },
+
+  mission_landmark_invite_form_submitted: function(data) {
+    if (data.agents == "require_selection") data.agents = Selection.agent_ids().join(' ');
+    if (!data.title) {
+      alert('Please provide an assignment!');
+      return "redo";
+    }
+    if (!data.name) {
+      alert('Please provide a location name!');
+      return "redo";
+    }
+    if (!data.agents || data.agents.size == 0) {
+      alert('There are no agents to invite!');
+      return "redo";
+    }
+
+    var lm_id = 'l' + authority + '_' + Date.unix();
+    data.lat = This.click_latlng.lat();
+    data.lng = This.click_latlng.lng();
+    data.kind = 'l';
+    data.city = This.city_id;
+    data.latch = "unlatched";
+    data['float'] = "onmap";
+
+    if (demo) {
+      lm = item(data['city'], "Landmark__" + lm_id, data['name'], null,
+        data['lat'], data['lng'], data['with_tags'], "unlatched", null, null, {});
+      Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
+
+      return Demo.invite(data.agents.split(' '), lm.id, data.title, data.assignment);
+    }
+
+    $.post('/api/items/'+lm_id, data, function(landmark_js){
+      var lm = eval(landmark_js);
+      Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
+
+      Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, lm.id,
+        function(){ $('#mission_landmark_invite_form').html('message sent!'); });
+    }, 'text');
   },
 
   decorate_map: function() {
