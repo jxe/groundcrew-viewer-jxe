@@ -25,7 +25,7 @@ Viewer = App = {
   },
 
   closeclick: function() {
-    go('@' + This.city);
+    This.city ? go('@' + This.city) : go('tool=');
   },
 
   update: function(changed) {
