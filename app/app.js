@@ -270,6 +270,10 @@ Viewer = App = {
       alert('There are no agents to invite!');
       return "redo";
     }
+    if (!This.city) {
+      alert('Sorry, landmark missions can only be started in a city.');
+      return "redo";
+    }
 
     var lm_id = 'l' + authority + '_' + Date.unix();
     data.lat = This.click_latlng.lat();
@@ -302,6 +306,10 @@ Viewer = App = {
   },
 
   send_landmark_form_submitted: function(data) {
+    if (!This.city) {
+      alert('Sorry, landmarks can only be created in a city.');
+      return "redo";
+    }
     var lm_id;
     if (This.item && This.item.startsWith('Landmark__')) {
       lm_id = This.item.replace('Landmark__', '');

@@ -8,14 +8,14 @@ Console = {
 
 $.each([
   {mode: 'assess', tools: [
-    {tool: 'add_mission_landmark', name: 'start mission'},
+    {tool: 'add_mission_landmark', name: 'start mission', local_only: true},
     {tool: 'show_answers',  img: 'scroll'},
-    {tool: 'ask_a_question'},
+    {tool: 'ask_a_question', local_only: true},
     {tool: 'blast_message', flag: 'blast_message'},
     {tool: 'view_events', img: 'scroll'}
   ]},
   {mode: 'manage', tools: [
-    {tool: 'add_landmark', img: 'landmark21'},
+    {tool: 'add_landmark', img: 'landmark21', local_only: true},
     {tool: 'approve_deputies'},
     {tool: 'chat', img: 'chat_icon18'},
     {tool: 'squad_settings'},
@@ -42,7 +42,10 @@ LiveHTML.widgets.push({
       var tval = tool['tool'];
       var tname = tool['name'] ? tool['name'] : tval.replace(/_/g, ' ');
       var img = tool['img'] && '<img src="i/icons/'+tool['img']+'.png"/>' || '';
-      return '<a class="'+tval+'_tool" href="#tool='+tval+'">'+img+tname+'</a>';
+      var t_if = tool['local_only'] && ' if="!zoomed_out" ' || '';
+      var tclass = tool['local_only'] && ' local_only ' || '';
+      return '<a class="'+tval+'_tool '+ tclass + '" ' + t_if +
+        ' href="#tool='+tval+'">'+img+tname+'</a>';
     }).join('');
   }
 
