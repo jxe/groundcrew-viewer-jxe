@@ -8,6 +8,20 @@ function $time(t){
   return hour + ":" + minutes + " " + ampm;
 }
 
+var month3LetterNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+function $time_and_or_date(t){
+  time = $time(t);
+  var delta = Math.floor(new Date().getTime() / 1000) - Number(t);
+  var hours = delta / (60*60);
+  if (hours < 20) return time;
+
+  var x = new Date(t  * 1000);
+  date = month3LetterNames[x.getMonth()] + " " + x.getDate();
+  if (hours < 7*24) return date + " " + time;
+  return date;
+}
+
 function $from_now(n){
   return "<span class='from_now' t='" +n+ "'>" + $from_now_(n) + "</span>";
 }
