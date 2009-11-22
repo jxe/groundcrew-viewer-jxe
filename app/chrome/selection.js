@@ -102,21 +102,14 @@ LiveHTML.widgets.push({
   },
   
   no_selection: function(state) {
-    return isEmpty(Selection.current);
+    return isEmpty(Selection.current) && isEmpty(Selection.groups);
   },
 
   has_selection: function(state) {
-    return !isEmpty(Selection.current);
-  },
-  
-  selected_agent_tiles: function(state) {
-    var agents = $keys(Selection.current).map(function(x){
-      return x.resource();
-    });
-    return Tiles.agent_tile.tt(agents);
+    return !isEmpty(Selection.current) || !isEmpty(Selection.groups);
   },
 
-  require_selection: function() {
+  require_selection_str: function() {
     return "Please select (option- or command-click) some agents";
   }
 

@@ -17,7 +17,10 @@
 
           <div>
             Invite agents within<br/>
-            <select name="agents" fill="radius_options"></select>
+            <select name="agents" fill="radius_options" observe="require_selection"></select>
+            <div id="require_selection" style="height: 1.8em">
+              <p class="require_selection deemphasize" if="no_selection" fill="require_selection_str"></p>
+            </div>
           </div>
 
           <div style="margin: 10px 0px">

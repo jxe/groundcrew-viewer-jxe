@@ -1,0 +1,38 @@
+<div id="new_mission_landmark" class="mapwindow">
+
+  <div class="intro">
+    <h2>NEW MISSION</h2>
+  </div>
+
+  <form id="mission_landmark_invite_form" >
+    <div style="margin: 10px 0px">
+      Mission:<br>
+      <input class="text" type="text" name="title"/>
+    </div>
+
+    <div style="margin: 10px 0px">
+      Instructions (for those who accept):<br/>
+      <input class="text" type="text" name="assignment">
+    </div>
+
+    <div>
+      Invite agents within<br/>
+      <select name="agents" fill="radius_options" observe="require_selection"></select>
+      <div id="require_selection" style="height: 0.9em">
+        <p class="require_selection deemphasize" if="no_selection" fill="require_selection_str"></p>
+      </div>
+    </div>
+
+    <div style="margin: 10px 0px">
+      Name of this location:<br/>
+      <input class="text" type="text" name="name">
+    </div>
+
+    <div class="xspace right">
+      <button type="submit" class="submit right"> Send<strong>&rarr;</strong> </button>
+      <a href="##back" style="float:left">&laquo; cancel</a>
+    </div>
+  </form>
+
+  </div>
+</div>

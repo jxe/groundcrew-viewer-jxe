@@ -8,9 +8,10 @@ Console = {
 
 $.each([
   {mode: 'assess', tools: [
+    {tool: 'add_mission_landmark', name: 'start mission'},
     {tool: 'show_answers',  img: 'scroll'},
     {tool: 'ask_a_question'},
-    {tool: 'blast_message', module: 'blast_message'},
+    {tool: 'blast_message', flag: 'blast_message'},
     {tool: 'view_events', img: 'scroll'}
   ]},
   {mode: 'manage', tools: [
@@ -33,13 +34,13 @@ LiveHTML.widgets.push({
   tool_buttons: function() {
     if (!This.mode || !Console.tools[This.mode]) return '';
     return Console.tools[This.mode].map(function(tool){
-      if (tool['module']) {
-        if (!window.current_stream_modules || current_stream_modules.indexOf(tool['module']) == -1) {
+      if (tool['flag']) {
+        if (!window.current_stream_flags || current_stream_flags.indexOf(tool['flag']) == -1) {
           return '';
         }
       }
       var tval = tool['tool'];
-      var tname = tval.replace(/_/g, ' ');
+      var tname = tool['name'] ? tool['name'] : tval.replace(/_/g, ' ');
       var img = tool['img'] && '<img src="i/icons/'+tool['img']+'.png"/>' || '';
       return '<a class="'+tval+'_tool" href="#tool='+tval+'">'+img+tname+'</a>';
     }).join('');
