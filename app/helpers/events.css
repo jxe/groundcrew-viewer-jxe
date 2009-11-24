@@ -31,7 +31,8 @@ blockquote.assignment {
   background: #7c7;
 }
 
-.event span.error {
+.event span.error,
+.event span.warning {
   color: #DC7867;
 }
 
@@ -101,7 +102,8 @@ div.jGrowl div.jGrowl-notification.success div.header {
   font-size: 120%;
 }
 
-div.jGrowl div.jGrowl-notification.error div.header {
+div.jGrowl div.jGrowl-notification.error div.header,
+div.jGrowl div.jGrowl-notification.warning div.header {
   color: #C87;
   font-size: 120%;
 }

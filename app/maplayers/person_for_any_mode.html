@@ -18,7 +18,9 @@
       <div class="xspace" if="is_latched">
         Currently engaged with: <a href="##jump_to_op" class="highlight" fill="item_current_assignment"></a>
       </div>
-
+      <p id="concern" if="has_concern">
+        <span class="heading">concern</span> <b fill="concern" class="highlight"></b>
+      </p>
       <form id="make_it_happen_form" if="agent_assignable">
         <input name="assign"
           class="text"
