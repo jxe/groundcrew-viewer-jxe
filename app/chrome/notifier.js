@@ -7,6 +7,7 @@ Notifier = {
     // if (!ev.re || ev.re.resource().architect != This.user.vtag) return;
 
     if (ev.atype == 'error')        Notifier.error( go, ev.msg, ev.actor_title );
+    if (ev.atype == 'warning')      Notifier.warning( go, ev.msg, ev.actor_title );
 
     // don't report if we're watching the thing
     if (ev.re == This.item) return;
@@ -40,6 +41,16 @@ Notifier = {
       life: 25*1000,
       glue: 'before',
       theme: 'error'
+    });
+  },
+
+  warning: function(go, msg, actor) {
+    header = actor ? 'Warning for ' + actor : 'Warning';
+    Notifier.growl(go, msg, {
+      header: header,
+      life: 25*1000,
+      glue: 'before',
+      theme: 'warning'
     });
   },
 

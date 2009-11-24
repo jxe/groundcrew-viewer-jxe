@@ -25,7 +25,7 @@ Viewer = App = {
   },
 
   closeclick: function() {
-    go('@' + This.city);
+    This.city ? go('@' + This.city) : go('tool=');
   },
 
   update: function(changed) {
@@ -270,6 +270,10 @@ Viewer = App = {
       alert('There are no agents to invite!');
       return "redo";
     }
+    if (!This.city) {
+      alert('Sorry, landmark missions can only be started in a city.');
+      return "redo";
+    }
 
     var lm_id = 'l' + authority + '_' + Date.unix();
     data.lat = This.click_latlng.lat();
@@ -302,6 +306,10 @@ Viewer = App = {
   },
 
   send_landmark_form_submitted: function(data) {
+    if (!This.city) {
+      alert('Sorry, landmarks can only be created in a city.');
+      return "redo";
+    }
     var lm_id;
     if (This.item && This.item.startsWith('Landmark__')) {
       lm_id = This.item.replace('Landmark__', '');
@@ -442,10 +450,12 @@ Viewer = App = {
   invite_agents_form_submitted: function(data, state) {
     if (demo) {Notifier.success('Invitations sent!'); return go('tool=;mode=');}
     var today = (new Date()).toDateString().slice(4).toLowerCase().replace(/ /g, '_');
+    tags = 'invited_on_' + today;
+    if (data.groups && data.groups.match(/organizers/)) tags += ' group:organizers';
     $.post('/api/people/invite', {
       emails: data.emails,
-      groups: 'organizers',
-      with_tags: 'group:organizers invited_on_' + today
+      groups: data.groups || null,
+      with_tags: tags
     }, function(){
       go('tool=view_events;mode=assess');
     });
@@ -467,6 +477,7 @@ Viewer = App = {
     });
   },
 
+  stream_role_leader: function() { return demo || window.stream_role == 'leader'; },
 
   assess_mode: function() { App.setmode('assess'); },
   manage_mode: function() { App.setmode('manage'); },

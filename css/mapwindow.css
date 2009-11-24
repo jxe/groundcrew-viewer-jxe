@@ -217,11 +217,11 @@ p.deemphasize {
   background:#FFFEE4;
   padding:0 2px;
 }
-.mapwindow #problem .heading {
+.mapwindow #concern .heading {
   background:#B20000;
   color:#fff;
 }
-.mapwindow #problem .highlight {
+.mapwindow #concern .highlight {
   padding:0 4px;
   color:#B20000;
   font-weight:bold;

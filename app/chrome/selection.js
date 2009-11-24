@@ -109,14 +109,6 @@ LiveHTML.widgets.push({
     return !isEmpty(Selection.current) || !isEmpty(Selection.groups);
   },
 
-  // TODO: this should probably be calling Selection.agent_ids
-  selected_agent_tiles: function(state) {
-    var agents = $keys(Selection.current).map(function(x){
-      return x.resource();
-    });
-    return Tiles.agent_tile.tt(agents);
-  },
-
   require_selection_str: function() {
     return "Please select (option- or command-click) some agents";
   }

@@ -1,7 +1,7 @@
 LiveHTML.widgets.push({
 
   // item state:  latch status, problems, etc
-  
+
   item_comm_ts: function() {
     if (!This._item.comm) return "a while ago";
     var comm_ts = This._item.comm.split(' ')[1];
@@ -19,25 +19,26 @@ LiveHTML.widgets.push({
     if (stale_loc) return 'Location is stale. ' + loc_update;
     else return "Location is fresh.";
   },
-    
+
   item_status: function() {
     if (!This._item.fab_state) return "unknown";
     if (This._item.fab_state == 'assigned') return "assigned";
     return "available";
   },
-  
+
   is_latched: function() {
     return This._item.latch.contains('Op__');
   },
-  
-  has_problem: function() {
-    return ['indicating', 'concerns', 'addressable'].contains(This._item.fab_state);
+
+  has_concern: function() {
+    return ['neglected', 'concerns', 'addressable'].contains(This._item.fab_state) &&
+      (Agents.has_question(This._item) || Agents.has_problem(This._item));
   },
-  
-  problem: function() {
-    return "i can't feel my feet!";
+
+  concern: function() {
+    return Agents.concern(This._item);
   },
-  
+
   agent_assignable: function() {
     // return true;
     return This._item.fab_state != 'inaccessible';
@@ -46,33 +47,33 @@ LiveHTML.widgets.push({
   agent_latched_and_assigned: function() {
     return This._item.fab_state == 'assigned';
   },
-  
+
   agent_unlatched: function() {
     return true;
   },
-  
+
   twitter_status: function() {
     return This._item.update;
   },
-  
+
   twitter_bio: function() {
     return This._item.bio;
   },
-  
-  
-  
+
+
+
   // operational involvements
 
   item_current_operation_title: function() {
     if (This._item.fab_state != 'assigned') return " ";
     return This._item.latch.split(' ')[2].resource().title;
   },
-  
+
   jump_to_op: function() {
     var op = This._item.latch.split(' ')[2];
     if (op) go('@' + op);
   },
-  
+
   item_current_assignment: function() {
     var latch2 = This._item.latch && This._item.latch.split(' ')[2];
     var latch_op = latch2 && latch2.resource();
@@ -84,7 +85,7 @@ LiveHTML.widgets.push({
       return latch_op && latch_op.body;
     }
   },
-  
+
   agent_assign_prompt: function() {
     if (This._item.fab_state == 'assigned') {
       return "Change this agent's assignment?";
@@ -92,9 +93,9 @@ LiveHTML.widgets.push({
       return "What would you like this agent to do?";
     }
   },
-  
-  
-  
+
+
+
   // other data
 
   agent_skills_as_lis: function() {
@@ -104,18 +105,18 @@ LiveHTML.widgets.push({
       return "<a href='#q="+x+"'>"+x+"</a>";
     }).join(',</li> <li>') + "</li>";
   },
-  
+
   upfors_as_lis: function() {
     var upfor = This._item.upfor || '';
     return "<li>" + $w(upfor).map(function(x){
       return "<a href='#q="+x+"'>"+x+"</a>";
     }).join(',</li> <li>') + "</li>";
   },
-  
+
   upfors_as_lis_and_agent_assignable: function(){
     return This._item.upfor && This._item.fab_state != 'inaccessible';
   },
-  
+
   // answers: function() {
   //   if (!This._item.answers) return '';
   //   var answers = This._item.answers.split(/;; ?/);
@@ -129,23 +130,23 @@ LiveHTML.widgets.push({
   //     return '<h6 class="question">Q. '+q+'</h6><div class="answer">A. &ldquo;'+answer+'&rdquo;<span class="timestamp">'+tstamp+'</span></div>';
   //   }).join('');
   // },
-  
+
   answers: function() {
     var strings = [];
     if (!This._item.answers) return '';
     $.each(This._item.answers, function(k, v){
       var q = k;
       var answer = v[0];
-      var tstamp = $time(v[1]);
+      var tstamp = $time_and_or_date(v[1]);
       strings.push('<h6 class="question">Q. '+q+'</h6><div class="answer">A. &ldquo;'+answer+'&rdquo;<span class="timestamp">'+tstamp+'</span></div>');
     });
     return strings.join('');
   },
-  
+
   current_question: function() {
     return Q.current();
   },
-  
+
   questions_as_lis: function() {
     var qs = $keys(Answers.here());
     return qs.map(function(x){
@@ -153,19 +154,19 @@ LiveHTML.widgets.push({
       return "<li href='#tool=show_answers;question="+escape(x)+"'>" + q + "</li>";
     }).join('');
   },
-  
+
   lm_first_tag: function() {
     return This._item.atags && This._item.atags.split(' ')[0];
   },
-  
+
   answers_for_question: function() {
     return QuestionAnswers.t.tt(Answers.for_q_here(Q.current()));
   },
-  
+
   // masses of agents
-  
+
   agents_count: function() {
     return Agents.all && Agents.all.length;
   }
-  
+
 });
