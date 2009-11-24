@@ -3,7 +3,7 @@
 <head>
 	<title>Groundcrew Viewer</title>
 	<link href="viewer.css" media="screen" rel="stylesheet" type="text/css"/>
-  <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAGqp2ukVwjWFfmC-XmCCZFRRGsPIMf82DrFSwJZKzmHDVn9CoiRSfPwbMs9LeX9Qw4ba2CuYyrEQBZw&amp;hl="></script> 
+  <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAGqp2ukVwjWFfmC-XmCCZFRRGsPIMf82DrFSwJZKzmHDVn9CoiRSfPwbMs9LeX9Qw4ba2CuYyrEQBZw&amp;hl=&amp;indexing=true"></script> 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
   <!-- // <script src="../vendor/jquery/jquery.min.js"></script> -->
   <script src="/api/auth.js"></script>
