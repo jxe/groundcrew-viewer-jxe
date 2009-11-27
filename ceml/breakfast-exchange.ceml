@@ -12,8 +12,8 @@ after 30m {
   link agent ==> agent {
     ask location: Where did you hide your breakfast?
   }
-  
+
   tell agents {
-    Go find your breakfast at |location|.  Eat it in peace.  Thanks for playing!
+    Go find your breakfast at |location|.  Send back any reports.  Thanks for playing!
   }
 }
