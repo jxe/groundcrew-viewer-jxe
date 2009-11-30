@@ -117,23 +117,28 @@
   margin-top:3px;
 }
 
-.hud.outstanding_invites_tool table {
+.hud.current_invitations_tool table {
   margin-top: 20px;
   border-collapse:collapse;
   width: 780px;
 }
 
-.hud.outstanding_invites_tool div {
+.hud.current_invitations_tool div {
   overflow-y: auto;
   max-height: 370px;
 }
 
-.hud.outstanding_invites_tool th {
+.hud.current_invitations_tool th {
   color: red;
   text-align: left;
 }
 
-.hud.outstanding_invites_tool td {
+.hud.current_invitations_tool p {
+  margin:0;
+  color: #999;
+}
+
+.hud.current_invitations_tool td {
   border: 1px solid #444;
   padding: 2px 5px;
 }

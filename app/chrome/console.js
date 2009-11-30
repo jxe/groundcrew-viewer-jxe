@@ -20,7 +20,7 @@ $.each([
     {tool: 'chat', img: 'chat_icon18'},
     {tool: 'squad_settings'},
     {tool: 'invite_agents'},
-    {tool: 'outstanding_invites'},
+    {tool: 'current_invitations'},
     {tool: 'tag_agents'}
   ]}
 ], function(){
