@@ -7,7 +7,13 @@
     <h2 fill="item_title"></h2>
 
     <div class="grayish">
-      This is a <span fill="lm_first_tag">landmark</span>.  <img src="i/icons/edit.png" href="#mode=edit" width="12" height="12" alt="Edit this"/>
+      This is a <span fill="lm_first_tag">landmark</span>.
+      <img src="i/icons/edit.png" href="#mode=edit" width="12" height="12" alt="Edit this"/>
+      <a class="delete" href="##delete_landmark">x</a>
+    </div>
+
+    <div class="xspace" if="landmark_has_op">
+      Most recent mission here: <span class="highlight" fill="landmark_op"></span>
     </div>
 
     <form id="radial_invite_form">
