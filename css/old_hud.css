@@ -120,8 +120,12 @@
 .hud.outstanding_invites_tool table {
   margin-top: 20px;
   border-collapse:collapse;
-  overflow: auto;
-  width: 90%;
+  width: 780px;
+}
+
+.hud.outstanding_invites_tool div {
+  overflow-y: auto;
+  max-height: 370px;
 }
 
 .hud.outstanding_invites_tool th {
