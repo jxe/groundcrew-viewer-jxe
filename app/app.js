@@ -250,8 +250,10 @@ Viewer = App = {
       alert('There are no agents to invite!');
       return "redo";
     }
+    var players = data.agents + " " + Aggregates.players(data.agg_count).join(' ');
+
     if (demo) return Demo.invite(data.agents.split(' '), This.item, data.title, data.assignment);
-    Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, This.item, function(){
+    Operation.exec(CEML.script_for_invite(data.title, data.assignment), players, This.item, function(){
       $('#radial_invite_form').html('message sent!');
     });
   },
@@ -295,7 +297,8 @@ Viewer = App = {
       var lm = eval(landmark_js);
       Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
 
-      Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, lm.id,
+      var players = data.agents + " " + Aggregates.players(data.agg_count).join(' ');
+      Operation.exec(CEML.script_for_invite(data.title, data.assignment), players, lm.id,
         function(){ $('#mission_landmark_invite_form').html('message sent!'); });
     }, 'text');
   },

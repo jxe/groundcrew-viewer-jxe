@@ -17,7 +17,7 @@ LiveHTML.widgets.push({
       }
     }).join('');
   },
-  
+
   landmark_has_op: function() {
     return Landmarks.has_op(This.item);
   },

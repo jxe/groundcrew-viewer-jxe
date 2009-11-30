@@ -1,6 +1,5 @@
-<div id="aggs" class="agg">
-  x agents in y aggregates
+<div id="aggs_magic" class="magic">
+  <div id="aggs" if="aggs_exist_here">
+    <span id="aggs_total" fill="aggs_here">0</span> other contacts
+  </div>
 </div>
-
-<!-- TODO: When aggs are read from the stream, make .agg visible and update the value of #aggs with:
-  total_agents + " agents in " + total_aggs + " aggregates"; -->
