@@ -117,6 +117,23 @@
   margin-top:3px;
 }
 
+.hud.outstanding_invites_tool table {
+  margin-top: 20px;
+  border-collapse:collapse;
+  overflow: auto;
+  width: 90%;
+}
+
+.hud.outstanding_invites_tool th {
+  color: red;
+  text-align: left;
+}
+
+.hud.outstanding_invites_tool td {
+  border: 1px solid #444;
+  padding: 2px 5px;
+}
+
 .hud.help_keyboard_tool th {
   padding-top: 10px;
   text-align: left;
@@ -131,3 +148,4 @@
   font-size: 110%;
 }
 
+.hud
