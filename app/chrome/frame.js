@@ -11,7 +11,7 @@ Frame = {
 
     $(document).keyup(function(e){
       if (e.keyCode == 27 || e.keyCode == e.DOM_VK_ESCAPE) {
-        go('@' + This.city);
+        App.closeclick();
         return false;
       }
     }).keypress(function(e){
