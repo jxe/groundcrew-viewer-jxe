@@ -17,6 +17,15 @@ LiveHTML.widgets.push({
       }
     }).join('');
   },
+  
+  landmark_has_op: function() {
+    return Landmarks.has_op(This.item);
+  },
+
+  landmark_op: function() {
+    var op = Landmarks.op(This.item);
+    return op && '<a href="#@#{id}">#{title}</a>'.t(op);
+  },
 
   live_ops: function(state) {
     return Ops.here().map(function(x){
