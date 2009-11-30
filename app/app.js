@@ -499,4 +499,5 @@ Viewer = App = {
   assess_mode: function() { App.setmode('assess'); },
   manage_mode: function() { App.setmode('manage'); },
   dispatch_mode: function() { App.setmode(''); }
+
 };

@@ -1,3 +1,17 @@
+#aggs {
+/*  display: none;*/
+  display: block;
+  position: absolute;
+  top: 95px;
+  left: 0px;
+  z-index: 450;
+  padding: 0 8px 3px;
+
+  background: #262626;
+  color: #CCCCCC;
+  font-size:11px;
+}
+
 #group_actions {
   background: yellow;
   color: black;

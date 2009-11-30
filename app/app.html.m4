@@ -29,6 +29,7 @@
   <div id="screen">
     m4_include(`app/chrome/facebar.html')
     m4_include(`app/chrome/selection_tools.html')
+    m4_include(`app/chrome/aggs.html')
     <div id="map_div"></div>
     m4_include(`app/chrome/help_prompt.html')
     m4_include(`app/chrome/console.html')
