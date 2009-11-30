@@ -342,6 +342,23 @@ Viewer = App = {
     }, 'text');
   },
 
+  delete_landmark: function(data) {
+    var r = confirm("Are you sure you wish to remove the landmark?  You will no longer be able " +
+      "to view missions that took place at it.");
+    if (!r) return "redo";
+
+    if (demo) {
+      off(This.item);
+      return App.closeclick();
+    }
+
+    lm_id = This.item.replace('Landmark__', '');
+    $.delete_('/api/items/' + lm_id, null, function() {
+      off(This.item);
+      App.closeclick();
+    });
+  },
+
   ask_question_form_submitted: function(data) {
     var agent_ids = Agents.here().map('.id');
     if (!agent_ids || agent_ids.length < 1) {
@@ -370,7 +387,7 @@ Viewer = App = {
       alert('Please provide a message that\'s at least 5 characters!');
       return "redo";
     }
-    params = { msg: data.message }
+    params = { msg: data.message };
     if (This.city_id) params['city'] = This.city_id;
     if (demo) return Notifier.success("Blasting message to all agents!");
 
