@@ -36,7 +36,7 @@ LiveHTML.widgets.push({
   },
   
   invites_table: function() {
-    $.getJSON('/api/signups.json', function(data){
+    $.getJSON('/api/people/signups.json', function(data){
       var html = table(['date', 'role', 'email', 'mobile'], data.results.sort_by('.ts'), function(row){
         var ps = row.points.group_by('sys');
         return [ $time_and_or_date(row.ts), row.groups.join(', '), Signups.qual_sysid(ps.e && ps.e[0]), Signups.qual_sysid(ps.m && ps.m[0]), '<a href="##reinvite">re-invite</a>' ];
