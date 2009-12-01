@@ -1,6 +1,11 @@
 .hidden_unless_active { display: none; }
 .hidden_unless_active.active { display: block; }
-body.zoomed_out .local_only {display:none;}
+body.zoomed_out #tray_buttons a.local_only {
+  color: #666666;
+  text-decoration: none;
+  cursor: default;
+  border-bottom: none;
+}
 
 #modetray {
   background:#BFBFBF;
