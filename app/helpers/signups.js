@@ -1,6 +1,6 @@
 function table(cols, data, func, blank_msg){
   var table = $('<table/>');
-  table.append(tag('tr', cols.map(function(col){ return tag('th', col); })));
+  table.append(tag('tr', cols.map(function(col){ return tag('th', col); }).join('')));
   $.each(data, function(){
     var row_data = this;
     var row = $(tag('tr', func(row_data).map(function(col){ return tag('td', col); }).join('')));
