@@ -1,5 +1,5 @@
 m4_define(`fab_state_div',
-`<div id="$2_agents"><div></div><h2 class="$1">$3 <a>&ndash;</a></h2></div>')
+`<div class="fab_state" id="$2_agents"><div></div><h2 class="$1">$3 <a>&ndash;</a></h2></div>')
 
 <div id="flexbar_banner">
   <div id="flexbar_arrows">
@@ -49,7 +49,7 @@ m4_define(`fab_state_div',
       fab_state_div(grey, unknown,       unknown)
       fab_state_div(grey, inaccessible,  inaccessible)
 
+      <div id="flexbar_end" style="display:block; float:left;"></div>
     </div>
-    <div id="flexbar_end" style="display:block; float:left;"></div>
   </div>
 </div>
