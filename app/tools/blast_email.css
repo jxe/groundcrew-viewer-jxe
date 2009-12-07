@@ -1,0 +1,23 @@
+#blast_email_form table {
+  width: 100%;
+}
+
+#blast_email_form td.label {
+  width: 20%;
+  font-weight: bold;
+}
+
+#blast_email_form table input {
+  width: 93%;
+}
+
+#blast_email_form textarea {
+  width: 95%;
+}
+
+#blast_email_form button.submit {
+  float:right;
+  margin-right:17px;
+  margin-top:8px;
+  font-size:14px;
+}

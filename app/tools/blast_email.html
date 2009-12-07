@@ -1,0 +1,25 @@
+<div class="blast_email_tool hidden_unless_active hud" style="top: 170px; min-height: 300px">
+  <img src="i/buttons/close.gif" href="##back" class="closebox"/>
+
+  <h1>Send a Mass Email</h1>
+  <h2 if="zoomed_out">To: all agents worldwide</h2>
+  <h2 if="!zoomed_out">To: all agents, <b fill="city_name"></b></h2>
+
+  <form id="blast_email_form" class="xspace">
+    <table>
+      <tr><td class="label">From</td>
+        <td><input name="from" type="text" hint="do-not-reply@citizenlogistics.com"></td>
+      </tr>
+      <tr>
+        <td class="label">Reply-To</td>
+        <td><input name="reply_to" type="text" hint="do-not-reply@citizenlogistics.com"></td>
+      </tr>
+      <tr><td class="label">Subject</td>   <td><input name="subject"   type="text"></td></tr>
+      <tr><td class="label">Message</td></tr>
+    </table>
+
+    <textarea name="body" class="text" rows="10"></textarea><br/>
+
+    <button type="submit" class="submit">Send</button>
+  </form>
+</div>

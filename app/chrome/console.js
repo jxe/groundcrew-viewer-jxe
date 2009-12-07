@@ -11,6 +11,7 @@ $.each([
     {tool: 'add_mission_landmark', name: 'start mission', classes: 'local_only'},
     {tool: 'show_answers',  img: 'scroll'},
     {tool: 'ask_a_question', classes: 'local_only'},
+    {tool: 'blast_email'},
     {tool: 'blast_message', flag: 'blast_message'},
     {tool: 'view_events', img: 'scroll'}
   ]},

@@ -15,7 +15,7 @@ min_js: BUILD
 	cat lib/*/*.js app/*.js app/*/*.js | jsmin > BUILD/viewer.js
 
 buildcss: BUILD
-	cat css/*.css app/{chrome,helpers}/*.css > BUILD/viewer.css
+	cat css/*.css app/{chrome,helpers,tools}/*.css > BUILD/viewer.css
 
 
 # versions

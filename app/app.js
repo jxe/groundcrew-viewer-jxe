@@ -379,17 +379,13 @@ Viewer = App = {
   },
 
   blast_message_form_submitted: function(data) {
-    if (Agents.here().length < 1) {
-      alert('There are no agents to message!');
-      return "redo";
-    }
     if (!data.message || data.message.length < 5) {
       alert('Please provide a message that\'s at least 5 characters!');
       return "redo";
     }
-    params = { msg: data.message };
+    params = { msg: data.message, sys: 'm' };
     if (This.city_id) params['city'] = This.city_id;
-    if (demo) return Notifier.success("Blasting message to all agents!");
+    if (demo) { Notifier.success("Blasting message to all agents!"); return go('tool='); }
 
     if (window.remaining <= 0) {
       $.post('/api/bugreport', {issue: window.current_stream + ' has run out of text messages!'});
@@ -401,6 +397,21 @@ Viewer = App = {
     $.post('/api/blast_message', params, function(data){
       go('tool=');
       Notifier.success("Blasting message to " + data + " agents!");
+    });
+  },
+
+  blast_email_form_submitted: function(data) {
+    if (!data.subject || !data.body || data.body.length < 5) {
+      alert('Please provide a subject and a message body!');
+      return "redo";
+    }
+    if (This.city_id) data['city'] = This.city_id;
+
+    if (demo) { Notifier.success("Blasting email to all agents!"); return go('tool='); }
+
+    $.post('/api/blast_email', data, function(data){
+      go('tool=');
+      Notifier.success("Blasting email to " + data + " agents!");
     });
   },
 
