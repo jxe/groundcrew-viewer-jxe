@@ -1,3 +1,19 @@
+div.blast_email_tool.hud {
+  top: 170px;
+  min-height: 300px;
+  width: 600px;
+}
+
+#blast_email_form_input {
+  float: left;
+  width: 50%;
+}
+
+#blast_email_form_query {
+  float: left;
+  width: 50%;
+}
+
 #blast_email_form table {
   width: 100%;
 }
@@ -7,7 +23,7 @@
   font-weight: bold;
 }
 
-#blast_email_form table input {
+#blast_email_form input {
   width: 93%;
 }
 
@@ -20,4 +36,8 @@
   margin-right:17px;
   margin-top:8px;
   font-size:14px;
+}
+
+#blast_email_form_query h3 {
+  margin-top: 0px;
 }

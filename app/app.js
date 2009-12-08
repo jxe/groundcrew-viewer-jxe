@@ -384,8 +384,11 @@ Viewer = App = {
       return "redo";
     }
     params = { msg: data.message, sys: 'm' };
+    if (data.tags) {
+      params['query'] = data.tags.split(/[,\s]+/).map(function(tag) {return 'tag:' + tag;}).join(' ');
+    }
     if (This.city_id) params['city'] = This.city_id;
-    if (demo) { Notifier.success("Blasting message to all agents!"); return go('tool='); }
+    if (demo) { Notifier.success("Blasting message to agents!"); return go('tool='); }
 
     if (window.remaining <= 0) {
       $.post('/api/bugreport', {issue: window.current_stream + ' has run out of text messages!'});
@@ -406,8 +409,11 @@ Viewer = App = {
       return "redo";
     }
     if (This.city_id) data['city'] = This.city_id;
+    if (data.tags) {
+      data['query'] = data.tags.split(/[,\s]+/).map(function(tag) {return 'tag:' + tag;}).join(' ');
+    }
 
-    if (demo) { Notifier.success("Blasting email to all agents!"); return go('tool='); }
+    if (demo) { Notifier.success("Blasting email to agents!"); return go('tool='); }
 
     $.post('/api/blast_email', data, function(data){
       go('tool=');

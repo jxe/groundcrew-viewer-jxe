@@ -1,4 +1,4 @@
-<div class="blast_email_tool hidden_unless_active hud" style="top: 170px; min-height: 300px">
+<div class="blast_email_tool hidden_unless_active hud">
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
 
   <h1>Send a Mass Email</h1>
@@ -6,20 +6,34 @@
   <h2 if="!zoomed_out">To: all agents, <b fill="city_name"></b></h2>
 
   <form id="blast_email_form" class="xspace">
-    <table>
-      <tr><td class="label">From</td>
-        <td><input name="from" type="text" hint="do-not-reply@citizenlogistics.com"></td>
-      </tr>
-      <tr>
-        <td class="label">Reply-To</td>
-        <td><input name="reply_to" type="text" hint="do-not-reply@citizenlogistics.com"></td>
-      </tr>
-      <tr><td class="label">Subject</td>   <td><input name="subject"   type="text"></td></tr>
-      <tr><td class="label">Message</td></tr>
-    </table>
+    <div id="blast_email_form_input">
+      <table>
+        <tr><td class="label">From</td>
+          <td><input name="from" type="text" hint="do-not-reply@citizenlogistics.com"></td>
+        </tr>
+        <tr>
+          <td class="label">Reply-To</td>
+          <td><input name="reply_to" type="text" hint="do-not-reply@citizenlogistics.com"></td>
+        </tr>
+        <tr><td class="label">Subject</td>   <td><input name="subject"   type="text"></td></tr>
+        <tr><td class="label">Message</td></tr>
+      </table>
 
-    <textarea name="body" class="text" rows="10"></textarea><br/>
+      <textarea name="body" class="text" rows="10"></textarea><br/>
 
-    <button type="submit" class="submit">Send</button>
+      <button type="submit" class="submit">Send</button>
+    </div>
+
+    <div id="blast_email_form_query">
+      <h3>Limit recipients</h3>
+
+      <p>This message will be sent to everyone, even if they are not visible on the map.
+        You can limit the recipients below:</p>
+
+      <label><b>Tags</b><br/>
+        <input name="tags" type="text" hint='space separated tags, e.g. "tag1 tag2"'/>
+      </label>
+    </div>
+
   </form>
 </div>
