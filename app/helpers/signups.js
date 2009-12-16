@@ -26,11 +26,15 @@ Signups = {
   },
 
   sent_missing_reply: function(signup) {
-    var sent = signup.sent;
-    if (!sent || sent.length < 1 || signup.sent_ts < signup.msg_ts) return null;
+    sent_p = signup.points.sort_by('.sent_ts').last();
+    msg_p = signup.points.sort_by('.msg_ts').last();
+    var sent = sent_p && sent_p.sent;
+    var sent_ts = sent_p && sent_p.sent_ts;
+    var msg_ts = msg_p && msg_p.msg_ts;
+    if (!sent || sent.length < 1 || sent_ts < msg_ts) return null;
 
     if (sent.match(/[^'"]\?/) || (!sent.match(/^ok/i) && !sent.match(/^okay/i)))
-      return "&nbsp;&nbsp;<i>no reply:</i> " + signup.sent;
+      return "&nbsp;&nbsp;<i>no reply:</i> " + sent;
 
     return null;
   }
