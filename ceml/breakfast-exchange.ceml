@@ -14,6 +14,10 @@ after 30m {
   }
 
   tell agents {
-    Go find your breakfast at |location|.  Send back any reports.  Thanks for playing!
+    Go find your breakfast at |location|.  Send back any reports.
+    Thanks for playing!
   }
 }
+
+
+
