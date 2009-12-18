@@ -12,7 +12,6 @@
   <script>
     if (!window.current_stream) window.current_stream = 'demo';
     var demo = (current_stream == 'demo' || current_stream.indexOf('demo-') == 0);
-    if (demo) $.getScript(current_stream + '.js', App.init);
     login_by_cookie();
   </script>
 </head>
@@ -43,7 +42,8 @@
 
   <script>
   if($.browser.msie) $('#unsupported').show();
-  if (!demo) $(function(){ App.init(); });
+  if (demo) $.getScript(current_stream + '.js', App.init);
+  else $(function(){ App.init(); });
   </script>
 </body>
 </html>

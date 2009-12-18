@@ -2,6 +2,7 @@
 // This is the "Application" controller
 //
 Viewer = App = {
+  initted: false,
   modes: {},
   tools: {},
   most_recent_tool: {},
@@ -181,6 +182,9 @@ Viewer = App = {
   // ======================
 
   init: function() {
+    if (App.initted) return;
+    App.initted = true;
+    
     // error handling
     $(window).error(App.handle_error);
 
