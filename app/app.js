@@ -145,15 +145,13 @@ Viewer = App = {
   // TODO: get stack trace (see http://eriwen.com/javascript/js-stack-trace/)
   // and include some state like This.url, form submitted, etc.
   report_error: function(msg, e, place) {
-    console.log(msg);
     console.log(e);
-    console.log(place);
     var report = '';
     report += msg;
     report += " at " + place;
     if (e) report += "\nException: " + e;
     if (e && e.stack) report += "\nStack trace: " + e.stack;
-
+    console.log(report);
     $.post('/api/bugreport', {issue: report}, function(){
       // TODO: turn user alerts back on (and make them not call alert()) when we're confident
       // that spurious errors are being handled
