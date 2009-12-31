@@ -54,7 +54,7 @@ LiveHTML.widgets.push({
   invites_table: function() {
     if (demo) return "Demo mode does not show recent invitations";
     $.getJSON('/api/people/signups.json', function(data){
-      var html = table(['date', 'role', 'email', 'mobile', 'city'], data.results.sort_by('.ts'),
+      var html = table(['date', 'role', 'email', 'mobile', 'city'], data.results.sort_by('.ts', -1),
         function(signup){
           var ps = signup.points.group_by('sys');
           var row1 = [
