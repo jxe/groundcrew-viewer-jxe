@@ -7,7 +7,7 @@ Console = {
 // 'dispatch     assign_agents            start_something           join_something'
 
 $.each([
-  {mode: 'assess', tools: [
+  {mode: 'interact', tools: [
     {tool: 'add_mission_landmark', name: 'start mission', classes: 'local_only'},
     {tool: 'show_answers',  img: 'scroll'},
     {tool: 'ask_a_question', classes: 'local_only'},

@@ -24,7 +24,7 @@ Frame = {
       if (ch == 'T') { GM.setMapType(G_PHYSICAL_MAP); return false; }
       if (ch == '?') { go('tool=help_keyboard'); return false; }
       if (ch == 'c') { go('mode='); return false; }
-      if (ch == 'a') { go('mode=assess'); return false; }
+      if (ch == 'i') { go('mode=interact'); return false; }
       if (ch == 'm') { go('mode=manage'); return false; }
       if (ch == 'w') { go('item='); return false; }
       if (ch == 'g') { go('#go_where'); return false; }

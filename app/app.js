@@ -493,7 +493,7 @@ Viewer = App = {
       groups: data.groups || null,
       with_tags: tags
     }, function(){
-      go('tool=view_events;mode=assess');
+      go('tool=view_events;mode=interact');
     });
   },
 
@@ -515,7 +515,7 @@ Viewer = App = {
 
   stream_role_leader: function() { return demo || window.stream_role == 'leader'; },
 
-  assess_mode: function() { App.setmode('assess'); },
+  interact_mode: function() { App.setmode('interact'); },
   manage_mode: function() { App.setmode('manage'); },
   dispatch_mode: function() { App.setmode(''); }
 };
