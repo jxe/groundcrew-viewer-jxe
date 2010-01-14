@@ -226,7 +226,17 @@ Viewer = App = {
       $('form input[value=question]').attr('checked', 'checked');
     }
   },
-
+  
+  maxchar: function(max, where, value, chr, obj) {
+    setTimeout(function(){
+      var current = obj.val().length;
+      var diff = Number(max) - Number(current);
+      $(where).html(diff);
+      if (diff < 5) $(where).addClass('red');
+      else $(where).removeClass('red');
+    }, 50);
+  },
+  
   require_selection: function(value) {
     $('#require_selection').toggle(value == 'require_selection');
   },
