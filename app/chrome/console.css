@@ -30,6 +30,7 @@ body.zoomed_out #tray_buttons a.local_only {
 a.approve_deputies_tool, a.squad_settings_tool { display: none; }
 body#viewer .demo_mode_only { display: none; }
 body#viewer.demo_mode .demo_mode_only { display: inline; }
+body#viewer.demo_mode .not_demo_mode { display: none; }
 body#viewer.demo_mode #sms_counter {display:none;}
 body#viewer.demo_mode #home {display:none;}
 body#viewer.demo_mode a.approve_deputies_tool { display: inline; }
