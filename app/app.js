@@ -156,7 +156,7 @@ Viewer = App = {
       // TODO: turn user alerts back on (and make them not call alert()) when we're confident
       // that spurious errors are being handled
 
-      // Notifier.error('A bug occurred in the Groundcrew viewer!' +
+      // Notifier.error(null, 'A bug occurred in the Groundcrew viewer!' +
       //   '\n\nIt has been reported to our developers, but you might need to reload the viewer. Sorry!');
     });
   },
