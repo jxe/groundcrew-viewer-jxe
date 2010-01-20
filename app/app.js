@@ -477,6 +477,10 @@ Viewer = App = {
   group_interact_form_submitted: function(data, state, form) {
     var agents = Selection.agent_ids();
 
+    if (!This.city) {
+      alert('Sorry, interactions can only be started in a city.');
+      return "redo";
+    }
     if (!data.assign) {
       alert('Please provide an assignment!');
       return "redo";
