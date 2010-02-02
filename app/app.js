@@ -503,9 +503,10 @@ Viewer = App = {
     tags = 'invited_on_' + today;
     if (data.groups && data.groups.match(/organizers/)) tags += ' group:organizers';
     $.post('/api/people/invite', {
-      emails: data.emails,
-      groups: data.groups || null,
-      with_tags: tags
+      emails:     data.emails,
+      groups:     data.groups   || null,
+      reply_to:   data.reply_to,
+      with_tags:  tags
     }, function(){
       go('tool=view_events;mode=interact');
     });
