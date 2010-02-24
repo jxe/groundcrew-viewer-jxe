@@ -27,7 +27,7 @@ LiveHTML.widgets.push({
   },
 
   is_latched: function() {
-    return This._item.latch.contains('Op__');
+    return This._item.latch.contains(' v') || This._item.latch.contains(' Op__');
   },
 
   has_concern: function() {
@@ -71,7 +71,7 @@ LiveHTML.widgets.push({
 
   jump_to_op: function() {
     var op = This._item.latch.split(' ')[2];
-    if (op) go('@' + op);
+    if (op) go('@' + op.oldid());
   },
 
   item_current_assignment: function() {
