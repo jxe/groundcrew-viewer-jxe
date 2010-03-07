@@ -138,8 +138,8 @@ Viewer = App = {
   },
 
   live_event_info: function (state) {
-    $.each(This._item.children, function(){ Event.improve(this); });
-    return Actions.event_t.tt(This._item.children);
+    $.each(op_children[This.item] || [], function(){ Event.improve(this); });
+    return Actions.event_t.tt(op_children[This.item]);
   },
 
   // TODO: get stack trace (see http://eriwen.com/javascript/js-stack-trace/)

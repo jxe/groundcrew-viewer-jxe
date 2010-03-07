@@ -16,8 +16,21 @@ MapMarkers = {
     
     // resolve site
     if (type == 'operation') {
-      site = This._item.focii.split(' ')[0];
-      layer = MapMarkers.type(site);
+      if (This._item.focii) {
+        site = This._item.focii.split(' ')[0];
+        layer = MapMarkers.type(site);
+      } else if (This._item.lat) {
+        // make an emergency landmark, for now
+        // TODO: fix... real operations layer, I guess
+        lmid = "Landmark__l" + site;
+        lm = item(This._item.city, lmid, This._item.loc, null,
+          This._item.lat, This._item.lng, '', "unlatched", null, null, {});
+        Map.site_add('landmarks', lmid, MapLandmarks.marker_for_lm(lm));
+        site = lmid;
+        layer = 'landmarks';
+      } else {
+        alert('Unable to locate operation.');
+      }
     }
     
     // consider reopening same window?
