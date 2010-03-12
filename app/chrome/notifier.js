@@ -6,8 +6,8 @@ Notifier = {
     // we only notify on items that are latched to us.  TODO: turn back on
     // if (!ev.re || ev.re.resource().architect != This.user.vtag) return;
 
-    if (ev.atype == 'error')        Notifier.error( go, ev.msg, ev.actor_title );
-    if (ev.atype == 'warning')      Notifier.warning( go, ev.msg, ev.actor_title );
+    if (ev.atype == 'error')        Notifier.error( ev.msg, go, ev.actor_title );
+    if (ev.atype == 'warning')      Notifier.warning( ev.msg, go, ev.actor_title );
 
     // don't report if we're watching the thing
     if (ev.re == This.item) return;
@@ -34,7 +34,7 @@ Notifier = {
     });
   },
 
-  error: function(go, msg, actor) {
+  error: function(msg, go, actor) {
     header = actor ? 'Error for ' + actor : 'Error';
     Notifier.growl(go, msg, {
       header: header,
@@ -44,7 +44,7 @@ Notifier = {
     });
   },
 
-  warning: function(go, msg, actor) {
+  warning: function(msg, go, actor) {
     header = actor ? 'Warning for ' + actor : 'Warning';
     Notifier.growl(go, msg, {
       header: header,

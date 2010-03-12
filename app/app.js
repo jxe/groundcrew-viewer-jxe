@@ -156,7 +156,7 @@ Viewer = App = {
       // TODO: turn user alerts back on (and make them not call alert()) when we're confident
       // that spurious errors are being handled
 
-      // Notifier.error(null, 'A bug occurred in the Groundcrew viewer!' +
+      // Notifier.error('A bug occurred in the Groundcrew viewer!' +
       //   '\n\nIt has been reported to our developers, but you might need to reload the viewer. Sorry!');
     });
   },
@@ -302,6 +302,8 @@ Viewer = App = {
 
       return Demo.invite(data.agents.split(' '), lm.id, data.title, data.assignment);
     }
+    
+    if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to run operations.");
 
     $.post('/api/items/'+lm_id, data, function(landmark_js){
       var lm = eval(landmark_js);
@@ -345,6 +347,8 @@ Viewer = App = {
       Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
       return go('@'+lm.id);
     }
+    
+    if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to add landmarks.");
 
     $.post('/api/items/'+lm_id, data, function(landmark_js){
       var lm = eval(landmark_js);
@@ -409,6 +413,8 @@ Viewer = App = {
       return false;
     }
 
+    if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to blast messages.");
+
     $.post('/api/blast_message', params, function(data){
       go('tool=');
       Notifier.success("Blasting message to " + data + " agents!");
@@ -426,6 +432,8 @@ Viewer = App = {
     }
 
     if (demo) { Notifier.success("Blasting email to agents!"); return go('tool='); }
+
+    if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to blast messages.");
 
     $.post('/api/blast_email', data, function(data){
       go('tool=');
@@ -445,6 +453,7 @@ Viewer = App = {
       params['with_tag'] = data.tags;
     }
     if (demo) return Demo.tag(agents, data.tags, function(){go('tool=');});
+    if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to tag agents.");
     $.post('/api/agents/update_all', params, function(){
       go('tool=');
     });
@@ -499,6 +508,7 @@ Viewer = App = {
 
   invite_agents_form_submitted: function(data, state) {
     if (demo) {Notifier.success('Invitations sent!'); return go('tool=;mode=');}
+    if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to invite agents.");
     var today = (new Date()).toDateString().slice(4).toLowerCase().replace(/ /g, '_');
     tags = 'invited_on_' + today;
     if (data.groups && data.groups.match(/organizers/)) tags += ' group:organizers';
@@ -529,7 +539,8 @@ Viewer = App = {
   },
 
   stream_role_leader: function() { return demo || window.stream_role == 'leader'; },
-
+  stream_role_organizer: function() { return demo || window.stream_role == 'leader' || window.stream_role == 'organizer'; },
+  
   interact_mode: function() { App.setmode('interact'); },
   manage_mode: function() { App.setmode('manage'); },
   dispatch_mode: function() { App.setmode(''); }

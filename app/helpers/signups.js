@@ -53,6 +53,8 @@ LiveHTML.widgets.push({
 
   invites_table: function() {
     if (demo) return "Demo mode does not show recent invitations";
+    if (!App.stream_role_organizer()) return "You must be an organizer on this squad to see recent invitations";
+    
     $.getJSON('/api/people/signups.json', function(data){
       var html = table(['date', 'role', 'email', 'mobile', 'city'], data.results.sort_by('.ts', -1),
         function(signup){
