@@ -44,7 +44,8 @@ LiveHTML.widgets.push({
       ["1/2 mile", 800],
       ["1 mile", 1600],
       ["2 miles", 3200],
-      ["5 miles", 8000]
+      ["5 miles", 8000],
+      ["10 miles", 16000]
 
     ].map(function(x){
       var agents = Agents.nearby(
