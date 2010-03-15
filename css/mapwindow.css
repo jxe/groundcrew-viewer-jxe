@@ -117,6 +117,10 @@ textarea.big {
   max-width: 94%;
 }
 
+.live {
+  font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
 p.deemphasize {
 	margin: 0px;
 	font-size: 11px;

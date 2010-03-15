@@ -26,11 +26,12 @@
           class="text"
           type="text"
           hint="#agent_assign_prompt"
-          observe="switch_to_question"
+          observe="switch_to_question METHOD_SPACER maxchar(100, '#make_it_happen_form .right.big')"
         /><button type="submit" class="submit">
             Send<strong>&rarr;</strong>
           </button>
         <!-- no white space between the above <input> and <button> -->
+        <div class="right big" style="float:right; margin-right:90px">100</div>
         <br>Send as: <input type="radio" name="kind" value="msg" checked='checked'>msg
         <input type="radio" name="kind" value="mission">mission
         <input type="radio" name="kind" value="question">question

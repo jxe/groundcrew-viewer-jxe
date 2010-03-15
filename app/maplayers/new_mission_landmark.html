@@ -11,14 +11,20 @@
       <input class="text" type="text" name="name">
     </div>
 
-    <div style="margin: 10px 0px">
+    <div id="mission" style="margin: 10px 0px">
+      <div class="right live" style="float:right">100</div>
       Mission:<br>
-      <input class="text" type="text" name="title"/>
+      <input class="text" type="text" name="title"
+        observe="maxchar(100, '#mission_landmark_invite_form #mission .right.live')"
+      />
     </div>
 
-    <div style="margin: 10px 0px">
+    <div id="instructions" style="margin: 10px 0px">
+      <div class="right live" style="float:right">150</div>
       Instructions (for those who accept):<br/>
-      <input class="text" type="text" name="assignment">
+      <input class="text" type="text" name="assignment"
+        observe="maxchar(150, '#mission_landmark_invite_form #instructions .right.live')"
+      />
     </div>
 
     <div>
