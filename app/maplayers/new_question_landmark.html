@@ -14,11 +14,10 @@
       />
     </div>
 
-    <!-- TODO: hide this when 'require_selection' is chosen -->
-    <!-- TODO: when this is changed, update the radius_options values -->
+    <!-- TODO: this option doesn't make sense when 'require_selection' is chosen below -->
     <div if="use_slow_agents">
       Send this question to those who<br/>
-      <select name="agents" observe="change_pick('#question_landmark_agents select')">
+      <select name="agents" observe="change_pick">
         <option value="pick_any">can be reached immediately and/or by email</option>
         <option value="pick_fast">can be reached immediately</option>
         <option value="pick_slow">can be reached only by email</option>
@@ -27,10 +26,10 @@
 
     <div id="question_landmark_agents">
       Ask agents within<br/>
-      <select name="agents" fill="radius_options" observe="require_selection"></select>
-      <div id="require_selection" style="height:0.9em">
+      <select id="radial_select" name="agents" fill="radius_options" observe="radial_select_require_selection"></select>
+      <div style="height:0.9em;"><div style="display:none;" class="radial_select_require_selection">
         <p class="require_selection deemphasize" if="no_selection" fill="require_selection_str"></p>
-      </div>
+      </div></div>
     </div>
 
     <div class="xspace right">

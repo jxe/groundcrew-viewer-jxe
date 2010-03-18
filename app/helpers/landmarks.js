@@ -41,7 +41,11 @@ LiveHTML.widgets.push({
     return Landmarks.radius_options();
   },
   
-  change_pick: function(where, value) {
+  radial_select_require_selection: function() {
+    $('.radial_select_require_selection').toggle($('#radial_select').val() == 'require_selection');
+  },
+  
+  change_pick: function(value) {
     var via_any_sys = null;
     var via_only_sys = null;
     if (value == 'pick_fast') {
@@ -51,8 +55,8 @@ LiveHTML.widgets.push({
     }
 
     options = Landmarks.radius_options(via_any_sys, via_only_sys);
-    $(where).html(options);
-    App.require_selection('require_selection');
+    $('#radial_select').html(options);
+    $('.radial_select_require_selection').toggle($('#radial_select').val() == 'require_selection');
   }
 
 });

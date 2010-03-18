@@ -23,10 +23,10 @@
 
           <div>
             Invite agents within<br/>
-            <select name="agents" fill="radius_options" observe="require_selection"></select>
-            <div id="require_selection" style="height: 1.8em">
+            <select id="radial_select" name="agents" fill="radius_options" observe="radial_select_require_selection"></select>
+            <div style="height:1.8em"><div style="display:none;" class="radial_select_require_selection">
               <p class="require_selection deemphasize" if="no_selection" fill="require_selection_str"></p>
-            </div>
+            </div></div>
           </div>
 
           <div id="mission" style="margin: 10px 0px">

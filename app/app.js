@@ -238,7 +238,7 @@ Viewer = App = {
   },
 
   require_selection: function(value) {
-    $('#require_selection').toggle(value == 'require_selection');
+    $('.require_selection').toggle(value == 'require_selection');
   },
 
   go_to_self: function() {
