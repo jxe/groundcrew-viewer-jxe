@@ -383,10 +383,9 @@ Viewer = App = {
     }
 
     return App.post_landmark(data, function(lm) {
-      if (demo) return Demo.question(data.question, agent_ids, lm.id);
+      if (demo) return Demo.question(data.question, data.agents.split(' '), lm.id);
 
-      agent_ids = agent_ids.join(' ').replace(/Person__/g, '');
-      return Operation.exec(CEML.script_for('question', data.question), agent_ids, lm.id);
+      return Operation.exec(CEML.script_for('question', data.question), data.agents, lm.id);
     });
   },
 
