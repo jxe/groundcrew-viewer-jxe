@@ -166,7 +166,8 @@ p.deemphasize {
   margin-bottom:1em;
 }
 #make_it_happen_form input.text,
-#mission_landmark_invite_form input.text {
+#mission_landmark_invite_form input.text,
+#question_landmark_form input.text {
   padding:0;
   margin:0;
   border:solid 1px #000;
@@ -180,7 +181,8 @@ p.deemphasize {
   border-right:solid 1px #CCCCCC;
 }
 
-#mission_landmark_invite_form input.text {
+#mission_landmark_invite_form input.text,
+#question_landmark_form input.text {
   width: 310px;
 }
 

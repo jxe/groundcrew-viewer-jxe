@@ -38,28 +38,21 @@ LiveHTML.widgets.push({
   },
 
   radius_options: function() {
-    // [label, meters]
-    var options = [ ["1 block", 200],
-      ["3 blocks", 600],
-      ["1/2 mile", 800],
-      ["1 mile", 1600],
-      ["2 miles", 3200],
-      ["5 miles", 8000],
-      ["10 miles", 16000]
+    return Landmarks.radius_options();
+  },
+  
+  change_pick: function(where, value) {
+    var via_any_sys = null;
+    var via_only_sys = null;
+    if (value == 'pick_fast') {
+      via_any_sys = window.current_stream_systems.replace('e', '');
+    } else if (value == 'pick_slow') {
+      via_only_sys = 'e';
+    }
 
-    ].map(function(x){
-      var agents = Agents.nearby(
-        This._item ? This._item.lat : This.click_latlng.lat(),
-        This._item ? This._item.lng : This.click_latlng.lng(), x[1]);
-      if (agents.length == 0) return '';
-      var option_label = x[0] + " &mdash; " + agents.length + " agents";
-      var agent_tags = agents.map('.id').join(' ');
-      return "<option value='"+agent_tags+"'>" + option_label + "</option>";
-    });
-
-    options.unshift("<option value='require_selection'>all selected agents</option>");
-
-    return options.join('');
+    options = Landmarks.radius_options(via_any_sys, via_only_sys);
+    $(where).html(options);
+    App.require_selection('require_selection');
   }
 
 });
