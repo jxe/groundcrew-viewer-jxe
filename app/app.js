@@ -280,6 +280,7 @@ Viewer = App = {
     }
 
     if (!data.lm_id)  data.lm_id = 'l' + authority + '_' + Date.unix();
+    if (!data.name)   data.name = '-'; // will initiate reverse geocode
     if (!data.lat)    data.lat = This.click_latlng.lat();
     if (!data.lng)    data.lng = This.click_latlng.lng();
     if (!data.kind)   data.kind = 'l';
