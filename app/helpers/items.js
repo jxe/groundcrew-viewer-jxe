@@ -9,6 +9,12 @@ LiveHTML.widgets.push({
     return $long_ago(comm_ts) + " ago";
   },
 
+  slow_stmt: function() {
+    if (This._item.immediate) return "";
+    return '<img src="i/icons/turtle.png" class="niw_slow_thumb" align="right"/>' +
+      'Reachable only by email.';
+  },
+
   location_stmt: function() {
     if (! This._item.immediate) return "";
     var loc_update = '<a href="##request_agent_update_location">ask for updated location</a>';

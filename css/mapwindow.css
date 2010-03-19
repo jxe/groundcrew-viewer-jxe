@@ -148,6 +148,13 @@ p.deemphasize {
   -webkit-border-radius: 3px;
 }
 
+.niw_slow_thumb {
+  height: 24px;
+  width: 24px;
+  padding: 2px;
+  margin-right: 15px;
+}
+
 .mapwindow a {
 	color:#333;
 	}
