@@ -94,7 +94,22 @@ Viewer = App = {
     window.location = '../login';
   },
 
+  error_on_non_immediate: function(item_ids) {
+    if (!App.use_slow_agents) return false;
+    var items = item_ids.map(function(id) { return id && id.resource(); }).compact();
+    var slow_items = items.grep(function(item) { return !item.immediate; });
+    if (slow_items.length == 0) return false;
+
+    var slow_names = slow_items.map(function(item) { return item.title || "unnamed agent"; }).join(', ');
+    var msg = slow_names + (slow_items.length > 1 ? ' are' : ' is') +
+      ' reachable only via email, which does not support this operation.';
+    alert(msg);
+    return true;
+  },
+
   request_agent_update_location: function() {
+    if (App.error_on_non_immediate([This.item])) return "redo";
+
     // TODO: check comm3 and don't allow if we bugged them recently
     if (demo) return Demo.update_loc(This.item);
     return Operation.exec(CEML.script_for("msg", "Our location for you looks old or imprecise. " +
@@ -321,6 +336,7 @@ Viewer = App = {
 
   radial_invite_form_submitted: function(data) {
     if (data.agents == "require_selection") data.agents = Selection.agent_ids().join(' ');
+    if (App.error_on_non_immediate(data.agents.split(' '))) return "redo";
     if (!data.title) {
       alert('Please provide an assignment!');
       return "redo";
@@ -338,6 +354,7 @@ Viewer = App = {
   mission_landmark_invite_form_submitted: function(data) {
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to run operations.");
     if (data.agents == "require_selection") data.agents = Selection.agent_ids().join(' ');
+    if (App.error_on_non_immediate(data.agents.split(' '))) return "redo";
     if (!data.title) {
       alert('Please provide an assignment!');
       return "redo";
@@ -492,6 +509,7 @@ Viewer = App = {
     if (demo && data.kind == "msg")      return Demo.message([This.item], data.assign,
       function() {$('#make_it_happen_form').html('Message sent!');});
     if (demo && data.kind == "mission")  return Demo.assign([This.item], data.assign);
+    if (data.kind == "mission" && App.error_on_non_immediate([This.item])) return "redo";
     return Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item, function(){
       $('#make_it_happen_form').html('Message sent!');
     });
@@ -513,6 +531,7 @@ Viewer = App = {
     if (demo && data.kind == "msg")      return Demo.message(agents, data.assign,
       function(){go('tool='); return Notifier.success("Message sent!");});
     if (demo && data.kind == "mission")  return Demo.assign(agents, data.assign, Selection.clear);
+    if (data.kind == "mission" && App.error_on_non_immediate(agents)) return "redo";
     return Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
       go('tool=');
       Notifier.success('Message sent!');
