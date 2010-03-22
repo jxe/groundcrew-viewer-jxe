@@ -147,7 +147,7 @@
   color: #DC7867;
 }
 
-.hud.op_contacts_tool div.contacts {
+.hud.op_agents_tool div.agents {
   overflow-y: auto;
   max-height: 370px;
 }

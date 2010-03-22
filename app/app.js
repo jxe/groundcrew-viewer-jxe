@@ -157,8 +157,8 @@ Viewer = App = {
     return Actions.event_t.tt(op_children[This.item]);
   },
 
-  link_to_op_contacts: function() {
-    return "#tool=op_contacts;op=" + This.item;
+  link_to_op_agents: function() {
+    return "#tool=op_agents;op=" + This.item;
   },
   
   // TODO: get stack trace (see http://eriwen.com/javascript/js-stack-trace/)
@@ -597,7 +597,7 @@ Viewer = App = {
   },
 
   current_stream_systems: function() {
-    if (demo) return 'm';
+    if (window.demo) return 'm';
     return window.current_stream_systems || '';
   },
 

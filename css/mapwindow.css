@@ -31,6 +31,11 @@
   color: #555;
 }
 
+#op_for_any_mode a#op_agents {
+    float:right;
+    margin-top:5px;
+    margin-right:20px;
+}
 
 .mapwindow .iwbox {
   margin-top: 5px;

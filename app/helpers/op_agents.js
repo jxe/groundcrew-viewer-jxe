@@ -1,4 +1,4 @@
-Contacts = {
+Op_Agents = {
 
   qual_sysid: function(pt) {
     if (!pt) return 'unknown';
@@ -60,19 +60,18 @@ LiveHTML.widgets.push({
     return This.op && This.op.resource() && This.op.resource().title;
   },
 
-  contact_list: function() {
+  op_agents_list: function() {
     var op = This.op;
-    if (!App.stream_role_organizer()) return "You must be an organizer on this squad to see contact information.";
 
     var metadata = {};
     $.each(op_children[op] || [], function(){ 
       Event.improve(this);
-      Contacts.event_to_item_info(metadata, this);
+      Op_Agents.event_to_item_info(metadata, this);
     });
     var metadata_a = $values(metadata);
     if (metadata_a.length == 0) return "No agents have participated.";
     
-    if (demo || !App.stream_role_leader()) return Contacts.metadata_to_html(metadata_a);
+    if (demo || !App.stream_role_leader()) return Op_Agents.metadata_to_html(metadata_a);
     
     var ids = metadata_a.map('.id').join(' ').replace(/Person__/g, '');
     $.getJSON('/api/people.json?ids=' + ids, function(data){
@@ -83,7 +82,7 @@ LiveHTML.widgets.push({
         meta.e_sysid = meta.e_sysid || item.email;
       });
       
-      $('.op_contacts_tool div.contacts').html(Contacts.metadata_to_html(metadata_a));
+      $('.op_agents_tool div.op_agents').html(Op_Agents.metadata_to_html(metadata_a));
     });
     
     return "loading...";
