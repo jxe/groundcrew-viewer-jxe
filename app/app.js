@@ -593,7 +593,12 @@ Viewer = App = {
   },
 
   use_slow_agents: function() {
-    return window.current_stream_systems && window.current_stream_systems.indexOf('e') >= 0;
+    return App.current_stream_systems().indexOf('e') >= 0;
+  },
+
+  current_stream_systems: function() {
+    if (demo) return 'm';
+    return window.current_stream_systems || '';
   },
 
   stream_role_leader: function() { return demo || window.stream_role == 'leader'; },

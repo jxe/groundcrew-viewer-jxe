@@ -49,11 +49,11 @@ LiveHTML.widgets.push({
     var via_any_sys = null;
     var via_only_sys = null;
     if (value == 'pick_fast') {
-      via_any_sys = window.current_stream_systems.replace('e', '');
+      via_any_sys = App.current_stream_systems().replace('e', '');
     } else if (value == 'pick_slow') {
       via_only_sys = 'e';
     } else {
-      via_any_sys = window.current_stream_systems;
+      via_any_sys = App.current_stream_systems();
     }
 
     options = Landmarks.radius_options(via_any_sys, via_only_sys);
