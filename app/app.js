@@ -275,6 +275,17 @@ Viewer = App = {
       go('tool=');
     });
   },
+  
+  reverse_geocode_landmark: function(data) {
+    var geocoder = new GClientGeocoder();
+    geocoder.getLocations(new GLatLng(data.lat, data.lng), function(response) {
+      if (response && response.Status.code==200) {
+        var place = response.Placemark[0];
+        data.name = place.address;
+        App.post_landmark(data);
+      }
+    });
+  },
 
   post_landmark: function(data, callback) {
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to edit landmarks.");
@@ -284,13 +295,18 @@ Viewer = App = {
     }
 
     if (!data.lm_id)  data.lm_id = 'l' + authority + '_' + Date.unix();
-    if (!data.name)   data.name = '-'; // will initiate reverse geocode
     if (!data.lat)    data.lat = This.click_latlng.lat();
     if (!data.lng)    data.lng = This.click_latlng.lng();
     if (!data.kind)   data.kind = 'l';
     if (!data.city)   data.city = This.city_id;
     if (!data.latch)  data.latch = "unlatched";
     if (!data['float']) data['float'] = "onmap";
+
+    if (!data.name) {
+      App.reverse_geocode_landmark(data);
+      data.name = "Landmark at " + Math.round(data.lat*100)/100 + " latitude and " + 
+        Math.round(data.lng*100)/100 + " longitude";
+    }
 
     if (demo) {
       lm = item(data['city'], "Landmark__" + data['lm_id'], data['name'] || 'A landmark', null,
