@@ -157,6 +157,10 @@ Viewer = App = {
     return Actions.event_t.tt(op_children[This.item]);
   },
 
+  link_to_op_contacts: function() {
+    return "#tool=op_contacts;op=" + This.item;
+  },
+  
   // TODO: get stack trace (see http://eriwen.com/javascript/js-stack-trace/)
   // and include some state like This.url, form submitted, etc.
   report_error: function(msg, e, place) {
