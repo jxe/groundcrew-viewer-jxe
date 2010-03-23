@@ -1,17 +1,15 @@
 Op_Agents = {
 
-  qual_sysid: function(pt) {
-    if (!pt) return 'unknown';
-    if (!pt.stage) return pt.sysid;
-    if (pt.stage == 'confirmed') return pt.sysid + " (confirmed)";
-    return pt.sysid + " (unconfirmed)";
-  },
-  
+  op_contacts_html: '<!DOCTYPE html><html><head><title>Agent Details</title> \
+    <link href="viewer.css" media="screen" rel="stylesheet" type="text/css"/></head> \
+    <body class="popup"><h1>Agent Details</h1><h2>#{op_title}</h2> \
+    <div class="op_agents">#{op_agents_list}</div></body></html>',
+
   event_to_item_info: function(metadata, ev) {
     if (!ev.item_tag || !ev.item_tag.resource()) return;
     if (!metadata[ev.item_tag]) metadata[ev.item_tag] = {};
     var meta = metadata[ev.item_tag];
-    
+
     meta.id     = meta.id     || ev.item_tag;
     meta.name   = meta.name   || ev.actor_title;
     meta.state  = meta.state  || ev.atype;
@@ -21,7 +19,7 @@ Op_Agents = {
       if (!meta.reports) meta.reports = [];
       meta.reports.push(ev.msg);
     }
-    
+
     if (window.current_stream == 'highlandvalley') {
       var _item = meta.id.resource();
       var hv_phone_a = _item && _item.answers && _item.answers['What phone number can we provide to the elders you wish to help?'];
@@ -29,63 +27,78 @@ Op_Agents = {
       if (hv_phone) meta.m_sysid = hv_phone;
     }
   },
-  
+
   metadata_to_html: function(metadata) {
-    var groups = metadata.group_by('state');
+    var metadata_grouped = metadata.group_by('state');
+    var groups = $keys(metadata_grouped).sort();
     var html = '';
-    $.each(groups, function(state, group){
-      html += "<h4>" + state + "</h4>";
+    $.each(groups, function(i, state){
+      var group = metadata_grouped[state];
+      html += '<div class="op_state_group ' + state + '"><h3 class="op_state">' + state + '</h3>';
 
       html += group.map(function(meta) {
-        var html = "<h5>" + meta.name + "</h5>";
-        if (meta.m_sysid) html += '<div class="m_sysid">Phone: ' + meta.m_sysid + '</div>'; 
-        if (meta.e_sysid) html += '<div class="e_sysid">Email: ' + meta.e_sysid + '</div>';
-        if (meta.answer) html += '<div class="answer">Answer: ' + meta.answer + '</div>'; 
+        var html = '<div class="agent"><h4 class="name">' + meta.name + '</h4>';
+        if (meta.m_sysid) html += '<div class="sysid m"><span class="header">Phone: </span>' + meta.m_sysid + '</div>';
+        if (meta.e_sysid) html += '<div class="sysid e"><span class="header">Email: </span>' + meta.e_sysid + '</div>';
+        if (meta.answer) html += '<div class="answer"><span class="header">Answer: </span>' + meta.answer + '</div>';
         if (meta.reports) {
-          html += '<div class="reports">Reports: <ul><li>' + 
-            meta.reports.join('</li><li>') + '</li></ul></div>'; 
+          html += '<div class="reports"><span class="header">Reports: </span><ul><li>' +
+            meta.reports.join('</li><li>') + '</li></ul></div>';
         }
-        return html;
-      }).join('');
+        return html + '</div>';
+      }).join('') + '</div>';
     });
     return html;
+  },
+
+  update_op_agents_window: function(win, data) {
+    win.document.open();
+    win.document.write(Op_Agents.op_contacts_html.t(data));
+    win.document.close();
+    if (window.focus) win.focus();
   }
-  
 };
 
 
 LiveHTML.widgets.push({
-  
-  op_title: function() {
-    return This.op && This.op.resource() && This.op.resource().title;
-  },
 
-  op_agents_list: function() {
-    var op = This.op;
+  op_agents_window: function() {
+    var op = This.item;
+    if (!op) return;
+
+    var win = window.open("", "OperationAgents", ",width=630,height=700,location=0,resizable=1,scrollbars=1");
+    var win_data = { op_title: op.resource() && op.resource().title };
 
     var metadata = {};
-    $.each(op_children[op] || [], function(){ 
+    $.each(op_children[op] || [], function(){
       Event.improve(this);
       Op_Agents.event_to_item_info(metadata, this);
     });
     var metadata_a = $values(metadata);
-    if (metadata_a.length == 0) return "No agents have participated.";
-    
-    if (demo || !App.stream_role_leader()) return Op_Agents.metadata_to_html(metadata_a);
-    
+    if (metadata_a.length == 0) {
+      win_data.op_agents_list = "No agents have participated.";
+      Op_Agents.update_op_agents_window(win, win_data);
+      return;
+    }
+
+    if (demo || ! (App.stream_role_leader() || App.stream_has_flag('organizer_people_permission'))) {
+      win_data.op_agents_list = Op_Agents.metadata_to_html(metadata_a);
+      Op_Agents.update_op_agents_window(win, win_data);
+      return;
+    }
+
     var ids = metadata_a.map('.id').join(' ').replace(/Person__/g, '');
     $.getJSON('/api/people.json?ids=' + ids, function(data){
-      
+
       $.each(data.results, function(i, item) {
         var meta = metadata['Person__' + item.id];
         meta.m_sysid = meta.m_sysid || item.phone;
         meta.e_sysid = meta.e_sysid || item.email;
       });
-      
-      $('.op_agents_tool div.op_agents').html(Op_Agents.metadata_to_html(metadata_a));
+
+      win_data.op_agents_list = Op_Agents.metadata_to_html(metadata_a);
+      Op_Agents.update_op_agents_window(win, win_data);
     });
-    
-    return "loading...";
   }
 
 });

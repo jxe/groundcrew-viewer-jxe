@@ -156,10 +156,6 @@ Viewer = App = {
     $.each(op_children[This.item] || [], function(){ Event.improve(this); });
     return Actions.event_t.tt(op_children[This.item]);
   },
-
-  link_to_op_agents: function() {
-    return "#tool=op_agents;op=" + This.item;
-  },
   
   // TODO: get stack trace (see http://eriwen.com/javascript/js-stack-trace/)
   // and include some state like This.url, form submitted, etc.
@@ -594,6 +590,11 @@ Viewer = App = {
 
   use_slow_agents: function() {
     return App.current_stream_systems().indexOf('e') >= 0;
+  },
+
+  stream_has_flag: function(flag) {
+    if (!window.current_stream_systems) return false;
+    return window.current_stream_flags.indexOf(flag) >= 0;
   },
 
   current_stream_systems: function() {

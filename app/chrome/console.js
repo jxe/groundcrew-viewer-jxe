@@ -36,11 +36,7 @@ LiveHTML.widgets.push({
   tool_buttons: function() {
     if (!This.mode || !Console.tools[This.mode]) return '';
     return Console.tools[This.mode].map(function(tool){
-      if (tool['flag']) {
-        if (!window.current_stream_flags || current_stream_flags.indexOf(tool['flag']) == -1) {
-          return '';
-        }
-      }
+      if (tool['flag'] && !App.stream_has_flag(tool['flag'])) return '';
       var tval = tool['tool'];
       var tname = tool['name'] ? tool['name'] : tval.replace(/_/g, ' ');
       var img = tool['img'] && '<img src="i/icons/'+tool['img']+'.png"/>' || '';

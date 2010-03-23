@@ -147,11 +147,6 @@
   color: #DC7867;
 }
 
-.hud.op_agents_tool div.agents {
-  overflow-y: auto;
-  max-height: 370px;
-}
-
 .hud.help_keyboard_tool th {
   padding-top: 10px;
   text-align: left;

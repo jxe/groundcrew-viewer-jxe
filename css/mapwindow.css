@@ -31,6 +31,10 @@
   color: #555;
 }
 
+#op_for_any_mode {
+  min-width: 330px;
+}
+
 #op_for_any_mode a#op_agents {
     float:right;
     margin-top:5px;
@@ -79,9 +83,6 @@ ul.tags li {
 ul.tags li a {
   color:#777;
 }
-
-
-
 
 .mapwindow h3 {
   font: 13px "Helvetica", Verdana, sans-serif;
@@ -162,12 +163,24 @@ p.deemphasize {
 
 .mapwindow a {
 	color:#333;
-	}
-	.mapwindow a:hover {
-		color:black;
-		background: #ccc;
-		text-decoration: none ;
-		}
+}
+.mapwindow a:hover {
+	color:black;
+	background: #ccc;
+	text-decoration: none ;
+}
+
+.mapwindow a.popup {
+  color:#3366BB;
+  background:url("i/icons/popup.png") no-repeat scroll right center transparent;
+  padding-right:13px;
+}
+
+.mapwindow a.popup:hover {
+  color:#114499;
+  background:#DDEEFF url("i/icons/popup.png") no-repeat scroll right center;
+}
+
 .current-assignment {
   font-weight:bold;
   font-size:14px;
