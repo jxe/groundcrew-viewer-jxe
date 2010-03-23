@@ -6,12 +6,14 @@
   <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAGqp2ukVwjWFfmC-XmCCZFRRGsPIMf82DrFSwJZKzmHDVn9CoiRSfPwbMs9LeX9Qw4ba2CuYyrEQBZw&amp;hl=&amp;indexing=true"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
   <!-- // <script src="../vendor/jquery/jquery.min.js"></script> -->
-  <script src="/api/auth.js"></script>
-  <script src="viewer.js"></script>
-  <script src="/api/stream.js"></script>
   <script>
-    if (!window.current_stream) window.current_stream = 'demo';
+    window.current_stream = window.location.href.split('/')[3];
     var demo = (current_stream == 'demo' || current_stream.indexOf('demo-') == 0);
+    $.ajax({ async: false, url: '/api/auth.js?stream=' + window.current_stream, dataType: 'script' });
+  </script>
+  <script src="viewer.js"></script>
+  <script>
+    if (!demo) $.ajax({ async: false, url: '/api/stream.js?stream=' + window.current_stream, dataType: 'script' });
     login_by_cookie();
   </script>
 </head>
