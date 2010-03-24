@@ -1,17 +1,3 @@
-// placeholder
-Chats = [];
-var last_msg = null;
-var last_when = null;
-function rem(who, when, what, oids, msg, title){
-  if (last_msg == msg && last_when == when) return;
-  last_msg = msg;
-  last_when = when;
-  
-  if (who) who = who.replace(/^/, 'Person__');
-  title = title || (who && who.resource() && who.resource().title) || 'Unknown Organizer';
-  if (what == "chat") Chats.push({ actor_title: title, actor_tag: who, what: msg, when: when });
-};
-
 Actions = {
   
   event_t:
@@ -30,7 +16,7 @@ LiveHTML.widgets.push({
   
   recent_events: function(state) {
     $.each(Anncs.all, function(){ Event.improve(this); });
-    return Actions.event_t.tt(Anncs.all.slice(0).reverse());
+    return Actions.event_t.tt(Anncs.all.grep(function(x){ return x && x.atype != 'chat'; }).reverse());
   },
   
   latest_chats: function(state) {
@@ -40,11 +26,11 @@ LiveHTML.widgets.push({
   
   chat_form_submitted: function(data, state, form) {
     var input = $(form).find('input');
-    $.post("/api/remark", {kind: 'chat', msg: data.msg}, function(x){ 
+    data.type = 'chat';
+    Event.post(data, function(x) {
       input.val('');
       $(form).enable();
-      eval(x);
-      $('#chat_palette').app_paint();
+      $('#chat_palette').app_paint();      
     });
     return "redo";
   }

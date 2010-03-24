@@ -184,7 +184,7 @@ Viewer = App = {
     App.initted = true;
     
     // error handling
-    $(window).error(App.handle_error);
+    // $(window).error(App.handle_error);
 
     // init the UI
     Frame.init();

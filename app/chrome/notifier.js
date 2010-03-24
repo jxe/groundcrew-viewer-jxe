@@ -22,6 +22,9 @@ Notifier = {
     if (ev.atype == 'completed')    Notifier.growl( go, ev.actor_title + " has completed your assignment" );
     if (ev.atype == 'appreciated')  Notifier.growl( go, ev.actor_title + " has appreciated you" );
     if (ev.atype == 'blocked')      Notifier.growl( go, ev.actor_title + " has blocked you" );
+    if (ev.atype == 'chat' && This.tool != 'chat') {
+      Notifier.growl( "#tool=chat", ev.actor_title + ": &ldquo;"+ ev.msg +"&rdquo;" );
+    }
   },
 
   success: function(msg, header) {
@@ -61,7 +64,8 @@ Notifier = {
 
   growl: function(go, msg, options){
     options = $.extend({}, this.growl_defaults, options);
-    if (go) msg = "<a href='#@"+go+"'>"+msg+"</a>";
+    if (go && go.charAt(0) != '#' && go.charAt(0) != '@') go = "#@" + go;
+    if (go) msg = "<a href='"+go+"'>"+msg+"</a>";
     $.jGrowl(msg, options);
   }
 
