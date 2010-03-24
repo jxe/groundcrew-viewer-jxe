@@ -24,7 +24,22 @@ LiveHTML.widgets.push({
     return Actions.chat_t.tt(Chats);
   },
   
+  note_form_submitted: function(data, state, form) {
+    if (!data.msg || data.msg.length == 0) return "redo";
+    var input = $(form).find('input');
+    data.type = 'note';
+    data.venture = This.item && This.item.replace(/^Op__/, '');
+    data.city = This.city && This.city.replace(/^City__/, '');
+    Event.post(data, function(x) {
+      input && input.val('');
+      $(form).enable();
+      $('#op_for_any_mode').app_paint();
+    });
+    return "redo";
+  },
+
   chat_form_submitted: function(data, state, form) {
+    if (!data.msg || data.msg.length == 0) return "redo";
     var input = $(form).find('input');
     data.type = 'chat';
     Event.post(data, function(x) {

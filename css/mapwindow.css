@@ -165,6 +165,7 @@ p.deemphasize {
   white-space:nowrap;
   margin-bottom:1em;
 }
+#note_form input.text,
 #make_it_happen_form input.text,
 #mission_landmark_invite_form input.text {
   padding:0;
@@ -197,6 +198,12 @@ p.deemphasize {
   border:solid 1px #2D355D;
   border-bottom:solid 1px #0F1633;
   border-right:solid 2px #0F1633;
+}
+
+.mapwindow button.smaller {
+  font-size: 12px;
+  padding: 2px 5px;
+  font-weight: bold;
 }
 
 #q-and-a {

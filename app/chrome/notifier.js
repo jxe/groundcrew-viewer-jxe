@@ -22,6 +22,7 @@ Notifier = {
     if (ev.atype == 'completed')    Notifier.growl( go, ev.actor_title + " has completed your assignment" );
     if (ev.atype == 'appreciated')  Notifier.growl( go, ev.actor_title + " has appreciated you" );
     if (ev.atype == 'blocked')      Notifier.growl( go, ev.actor_title + " has blocked you" );
+    if (ev.atype == 'note')         Notifier.growl( ev.re || go, ev.actor_title + " commented: &ldquo;"+ ev.msg   +"&rdquo;" );
     if (ev.atype == 'chat' && This.tool != 'chat') {
       Notifier.growl( "#tool=chat", ev.actor_title + ": &ldquo;"+ ev.msg +"&rdquo;" );
     }
