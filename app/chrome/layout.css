@@ -10,10 +10,10 @@ body { overflow: hidden; }
 }
 #console {
   background: #4C4C4C;
-    background-image: -webkit-gradient(
-     linear, 0% 0%, 0% 90%,
-     from(transparent),
-     to(rgba(12,12,12,.3)));
+  background-image: -webkit-gradient(
+   linear, 0% 0%, 0% 90%,
+   from(transparent),
+   to(rgba(12,12,12,.3)));
 }
 #flexbar_banner {
   position: relative;
@@ -49,11 +49,11 @@ body { overflow: hidden; }
     from(transparent),
     to(rgba(12,12,12,.3)));
 
-    background:#1B224D;
-    background-image: -webkit-gradient(
-      linear, 0% 0%, 0% 40%,
-      from(rgba(12,12,12,.1)),
-      to(rgba(12,12,12,.3)));
+  background:#1B224D;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 40%,
+    from(rgba(12,12,12,.1)),
+    to(rgba(12,12,12,.3)));
 
    border-left: solid 1px #669;
 /*   background:transparent;*/

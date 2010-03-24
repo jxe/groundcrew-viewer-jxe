@@ -50,7 +50,6 @@ body.loading #flexbar #empty_text {
 }
 
 #flexbar #agents .athumb img.th {
-  width:58px;
   height:58px;
   opacity:.8;
   border-left:solid 1px #212121;
@@ -89,6 +88,7 @@ body.loading #flexbar #empty_text {
   overflow: hidden;
   float: left;
   position: relative;
+  width: 60px;
   padding:4px;
   padding-top:6px;
   text-align:center;
