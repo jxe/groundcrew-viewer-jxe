@@ -53,8 +53,9 @@ Selection = {
   },
   
   deselect: function(tag) {
-    var fab_state = tag.resource().fab_state;
-    if (Selection.groups[fab_state]) {
+    var guy = tag.resource();
+    var fab_state = guy && guy.fab_state;
+    if (fab_state && Selection.groups[fab_state]) {
       // convert to individual selections
       Selection.groups[fab_state] = false;
       $.each(This.agents, function(){

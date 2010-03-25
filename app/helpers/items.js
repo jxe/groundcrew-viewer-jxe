@@ -9,7 +9,14 @@ LiveHTML.widgets.push({
     return $long_ago(comm_ts) + " ago";
   },
 
+  slow_stmt: function() {
+    if (This._item.immediate) return "";
+    return '<img src="i/icons/turtle.png" class="niw_slow_thumb" align="right"/>' +
+      'Reachable only by email.';
+  },
+
   location_stmt: function() {
+    if (! This._item.immediate) return "";
     var loc_update = '<a href="##request_agent_update_location">ask for updated location</a>';
     var stale_loc = !This._item.loc_ts || !Date.within(This._item.loc_ts, 60 * 60);
     if (This._item.acc) {
@@ -60,6 +67,10 @@ LiveHTML.widgets.push({
     return This._item.bio;
   },
 
+  immediate: function() {
+    return This._item.immediate;
+  },
+
 
 
   // operational involvements
@@ -77,7 +88,7 @@ LiveHTML.widgets.push({
   item_current_assignment: function() {
     var latch2 = This._item.latch && This._item.latch.split(' ')[2];
     var latch_op = latch2 && latch2.resource();
-    if (!latch_op) return;
+    if (!latch_op) return "";
     if (latch_op.atype.contains('question')) {
       // TODO: questions should link to the show_answers display, as well as the live feed
       return "Question: " + latch_op.body;

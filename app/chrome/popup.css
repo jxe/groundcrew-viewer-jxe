@@ -1,0 +1,53 @@
+body.popup {
+  background: white;
+  margin: 10px;
+  overflow: visible;
+}
+
+div.op_state_group {
+  margin-bottom:20px;
+}
+
+h3.op_state {
+  width:500px;
+  border-bottom:1px solid #999999;
+  margin-bottom:8px;
+  color:#333333;
+  font-size:22px;
+  font-weight:bold;
+}
+
+div.agent {
+  margin-bottom: 12px;
+}
+
+span.header {
+  color:#444444;
+  font-weight:normal;
+}
+
+h4.name {
+  display: inline-block;
+  margin:0 70px 0 0;
+  font-weight: bold;
+}
+
+div.sysid {
+  display: inline-block;
+  margin-right: 30px;
+  font-weight: bold;
+}
+
+div.answer {
+}
+
+div.reports {
+}
+
+div.reports ul {
+  margin: 0px;
+}
+
+div.reports li {
+  list-style-type: none;
+}

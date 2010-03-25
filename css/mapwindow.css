@@ -31,6 +31,15 @@
   color: #555;
 }
 
+#op_for_any_mode {
+  min-width: 330px;
+}
+
+#op_for_any_mode a#op_agents {
+    float:right;
+    margin-top:5px;
+    margin-right:20px;
+}
 
 .mapwindow .iwbox {
   margin-top: 5px;
@@ -74,9 +83,6 @@ ul.tags li {
 ul.tags li a {
   color:#777;
 }
-
-
-
 
 .mapwindow h3 {
   font: 13px "Helvetica", Verdana, sans-serif;
@@ -148,14 +154,33 @@ p.deemphasize {
   -webkit-border-radius: 3px;
 }
 
+.niw_slow_thumb {
+  height: 24px;
+  width: 24px;
+  padding: 2px;
+  margin-right: 15px;
+}
+
 .mapwindow a {
 	color:#333;
-	}
-	.mapwindow a:hover {
-		color:black;
-		background: #ccc;
-		text-decoration: none ;
-		}
+}
+.mapwindow a:hover {
+	color:black;
+	background: #ccc;
+	text-decoration: none ;
+}
+
+.mapwindow a.popup {
+  color:#3366BB;
+  background:url("i/icons/popup.png") no-repeat scroll right center transparent;
+  padding-right:13px;
+}
+
+.mapwindow a.popup:hover {
+  color:#114499;
+  background:#DDEEFF url("i/icons/popup.png") no-repeat scroll right center;
+}
+
 .current-assignment {
   font-weight:bold;
   font-size:14px;
@@ -167,7 +192,8 @@ p.deemphasize {
 }
 #note_form input.text,
 #make_it_happen_form input.text,
-#mission_landmark_invite_form input.text {
+#mission_landmark_invite_form input.text,
+#question_landmark_form input.text {
   padding:0;
   margin:0;
   border:solid 1px #000;
@@ -181,7 +207,8 @@ p.deemphasize {
   border-right:solid 1px #CCCCCC;
 }
 
-#mission_landmark_invite_form input.text {
+#mission_landmark_invite_form input.text,
+#question_landmark_form input.text {
   width: 310px;
 }
 

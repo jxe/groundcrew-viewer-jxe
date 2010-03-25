@@ -1,0 +1,41 @@
+<div id="new_question_landmark" class="mapwindow">
+
+  <div class="intro">
+    <h2>ASK A QUESTION</h2>
+  </div>
+
+  <form id="question_landmark_form" >
+
+    <div id="question" style="margin: 10px 0px">
+      <div class="right live" style="float:right">140</div>
+      Question:<br>
+      <input class="text" type="text" name="question"
+        observe="maxchar(140, '#question_landmark_form #question .right.live')"
+      />
+    </div>
+
+    <!-- TODO: this option doesn't make sense when 'require_selection' is chosen below -->
+    <div if="use_slow_agents">
+      Send this question to those who<br/>
+      <select name="agents" observe="change_pick">
+        <option value="pick_fast">can be reached immediately</option>
+        <option value="pick_any">can be reached immediately and/or by email</option>
+        <option value="pick_slow">can be reached only by email</option>
+      </select><br/>
+    </div>
+
+    <div id="question_landmark_agents">
+      Ask agents within<br/>
+      <select id="radial_select" name="agents" fill="radius_options" observe="radial_select_require_selection"></select>
+      <div style="height:0.9em;"><div style="display:none;" class="radial_select_require_selection">
+        <p class="require_selection deemphasize" if="no_selection" fill="require_selection_str"></p>
+      </div></div>
+    </div>
+
+    <div class="xspace right">
+      <button type="submit" class="submit right"> Send<strong>&rarr;</strong> </button>
+      <a href="##back" style="float:left">&laquo; cancel</a>
+    </div>
+  </form>
+
+</div>

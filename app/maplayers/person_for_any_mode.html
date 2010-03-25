@@ -1,6 +1,7 @@
 <div id="person_for_any_mode" class="mapwindow template" style="max-width: 800px">
     <div style="float: left; width: 130px; font-size: 11px">
       <img class="niw_thumb"  fill="item_thumb_url src" />
+      <div fill="slow_stmt"></div>
       <div fill="location_stmt"></div>
     </div>
 
@@ -33,7 +34,7 @@
         <!-- no white space between the above <input> and <button> -->
         <div class="right big" style="float:right; margin-right:90px">100</div>
         <br>Send as: <input type="radio" name="kind" value="msg" checked='checked'>msg
-        <input type="radio" name="kind" value="mission">mission
+        <span if="immediate"><input type="radio" name="kind" value="mission">mission</span>
         <input type="radio" name="kind" value="question">question
       </form>
 

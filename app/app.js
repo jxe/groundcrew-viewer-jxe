@@ -94,10 +94,25 @@ Viewer = App = {
     window.location = '../login';
   },
 
+  error_on_non_immediate: function(item_ids) {
+    if (!App.use_slow_agents) return false;
+    var items = item_ids.map(function(id) { return id && id.resource(); }).compact();
+    var slow_items = items.grep(function(item) { return !item.immediate; });
+    if (slow_items.length == 0) return false;
+
+    var slow_names = slow_items.map(function(item) { return item.title || "unnamed agent"; }).join(', ');
+    var msg = slow_names + (slow_items.length > 1 ? ' are' : ' is') +
+      ' reachable only via email, which does not support this operation.';
+    alert(msg);
+    return true;
+  },
+
   request_agent_update_location: function() {
+    if (App.error_on_non_immediate([This.item])) return "redo";
+
     // TODO: check comm3 and don't allow if we bugged them recently
     if (demo) return Demo.update_loc(This.item);
-    Operation.exec(CEML.script_for("msg", "Our location for you looks old or imprecise. " +
+    return Operation.exec(CEML.script_for("msg", "Our location for you looks old or imprecise. " +
         "Where are you? Please respond with 'at' and then your address."),
       This.item, This.item, function(){
       $('#make_it_happen_form').html('Message sent!');
@@ -141,7 +156,7 @@ Viewer = App = {
     $.each(op_children[This.item] || [], function(){ Event.improve(this); });
     return Actions.event_t.tt(op_children[This.item]);
   },
-
+  
   // TODO: get stack trace (see http://eriwen.com/javascript/js-stack-trace/)
   // and include some state like This.url, form submitted, etc.
   report_error: function(msg, e, place) {
@@ -182,7 +197,7 @@ Viewer = App = {
   init: function() {
     if (App.initted) return;
     App.initted = true;
-    
+
     // error handling
     // $(window).error(App.handle_error);
 
@@ -226,7 +241,7 @@ Viewer = App = {
       $('form input[value=question]').attr('checked', 'checked');
     }
   },
-  
+
   maxchar: function(max, where, value, chr, obj) {
     setTimeout(function(){
       var current = obj.val().length;
@@ -236,13 +251,18 @@ Viewer = App = {
       else $(where).removeClass('red');
     }, 50);
   },
-  
+
   require_selection: function(value) {
-    $('#require_selection').toggle(value == 'require_selection');
+    $('.require_selection').toggle(value == 'require_selection');
   },
 
   go_to_self: function() {
     go('@' + This.user.vtag);
+  },
+
+  decorate_map: function() {
+    if (Map.layer_visible['landmarks'])
+      MapLandmarks.fetch_landmarks_in_bounds(GM.getBounds());
   },
 
   help_form_submitted: function(data) {
@@ -251,9 +271,89 @@ Viewer = App = {
       go('tool=');
     });
   },
+  
+  reverse_geocode_landmark: function(data) {
+    var geocoder = new GClientGeocoder();
+    geocoder.getLocations(new GLatLng(data.lat, data.lng), function(response) {
+      if (response && response.Status.code==200) {
+        var place = response.Placemark[0];
+        data.name = place.address;
+        App.post_landmark(data);
+      }
+    });
+  },
+
+  post_landmark: function(data, callback) {
+    if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to edit landmarks.");
+    if (!This.city) {
+      alert('Sorry, landmarks can only be created in a city.');
+      return "redo";
+    }
+
+    if (!data.lm_id)  data.lm_id = 'l' + authority + '_' + Date.unix();
+    if (!data.lat)    data.lat = This.click_latlng.lat();
+    if (!data.lng)    data.lng = This.click_latlng.lng();
+    if (!data.kind)   data.kind = 'l';
+    if (!data.city)   data.city = This.city_id;
+    if (!data.latch)  data.latch = "unlatched";
+    if (!data['float']) data['float'] = "onmap";
+
+    if (!data.name) {
+      App.reverse_geocode_landmark(data);
+      data.name = "Landmark at " + Math.round(data.lat*100)/100 + " latitude and " + 
+        Math.round(data.lng*100)/100 + " longitude";
+    }
+
+    if (demo) {
+      lm = item(data['city'], "Landmark__" + data['lm_id'], data['name'] || 'A landmark', null,
+        data['lat'], data['lng'], data['with_tags'], "unlatched", null, null, {});
+      Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
+
+      callback && callback(lm);
+      return true;
+    }
+
+    return $.post('/api/items/'+data.lm_id, data, function(landmark_js){
+      var lm = eval(landmark_js);
+      Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
+
+      callback && callback(lm);
+    }, 'text');
+  },
+
+  send_landmark_form_submitted: function(data) {
+    if (!data.name) {
+      alert('Please provide a location name!');
+      return "redo";
+    }
+    if (This.item && This.item.startsWith('Landmark__')) {
+      data.lm_id = This.item.replace('Landmark__', '');
+      data.lat = This._item.lat;
+      data.lng = This._item.lng;
+    }
+    return App.post_landmark(data, function(lm) { go('@'+lm.id); });
+  },
+
+  delete_landmark: function(data) {
+    var r = confirm("Are you sure you wish to remove the landmark?  You will no longer be able " +
+      "to view missions that took place at it.");
+    if (!r) return "redo";
+
+    if (demo) {
+      off(This.item);
+      return App.closeclick();
+    }
+
+    lm_id = This.item.replace('Landmark__', '');
+    return $.delete_('/api/items/' + lm_id, null, function() {
+      off(This.item);
+      App.closeclick();
+    });
+  },
 
   radial_invite_form_submitted: function(data) {
     if (data.agents == "require_selection") data.agents = Selection.agent_ids().join(' ');
+    if (App.error_on_non_immediate(data.agents.split(' '))) return "redo";
     if (!data.title) {
       alert('Please provide an assignment!');
       return "redo";
@@ -263,13 +363,15 @@ Viewer = App = {
       return "redo";
     }
     if (demo) return Demo.invite(data.agents.split(' '), This.item, data.title, data.assignment);
-    Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, This.item, function(){
+    return Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, This.item, function(){
       $('#radial_invite_form').html('message sent!');
     });
   },
 
   mission_landmark_invite_form_submitted: function(data) {
+    if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to run operations.");
     if (data.agents == "require_selection") data.agents = Selection.agent_ids().join(' ');
+    if (App.error_on_non_immediate(data.agents.split(' '))) return "redo";
     if (!data.title) {
       alert('Please provide an assignment!');
       return "redo";
@@ -287,91 +389,37 @@ Viewer = App = {
       return "redo";
     }
 
-    var lm_id = 'l' + authority + '_' + Date.unix();
-    data.lat = This.click_latlng.lat();
-    data.lng = This.click_latlng.lng();
-    data.kind = 'l';
-    data.city = This.city_id;
-    data.latch = "unlatched";
-    data['float'] = "onmap";
+    return App.post_landmark(data, function(lm) {
+      if (demo) return Demo.invite(data.agents.split(' '), lm.id, data.title, data.assignment);
 
-    if (demo) {
-      lm = item(data['city'], "Landmark__" + lm_id, data['name'], null,
-        data['lat'], data['lng'], data['with_tags'], "unlatched", null, null, {});
-      Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
-
-      return Demo.invite(data.agents.split(' '), lm.id, data.title, data.assignment);
-    }
-    
-    if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to run operations.");
-
-    $.post('/api/items/'+lm_id, data, function(landmark_js){
-      var lm = eval(landmark_js);
-      Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
-
-      Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, lm.id,
+      return Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, lm.id,
         function(){ $('#mission_landmark_invite_form').html('message sent!'); });
-    }, 'text');
+    });
   },
 
-  decorate_map: function() {
-    if (Map.layer_visible['landmarks'])
-      MapLandmarks.fetch_landmarks_in_bounds(GM.getBounds());
-  },
+  question_landmark_form_submitted: function(data) {
+    if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to ask questions.");
 
-  send_landmark_form_submitted: function(data) {
-    if (!This.city) {
-      alert('Sorry, landmarks can only be created in a city.');
+    if (!data.question || data.question.length < 5) {
+      alert('Please provide a question to ask that\'s at least 5 characters!');
       return "redo";
     }
-    var lm_id;
-    if (This.item && This.item.startsWith('Landmark__')) {
-      lm_id = This.item.replace('Landmark__', '');
-      data.lat = This._item.lat;
-      data.lng = This._item.lng;
-      data.thumb_url = This._item.thumb_url;
-    } else {
-      lm_id = 'l' + authority + '_' + Date.unix();
-      data.lat = This.click_latlng.lat();
-      data.lng = This.click_latlng.lng();
+    if (!This.city) {
+      alert('Sorry, landmark-based questions can only be asked in a city.');
+      return "redo";
     }
 
-    data.kind = 'l';
-    data.city = This.city_id;
-    data.latch = "unlatched";
-    data['float'] = "onmap";
+    if (data.agents == "require_selection") data.agents = Selection.agent_ids().join(' ');
 
-    if (demo) {
-      lm = item(data['city'], "Landmark__" + data['lat'] + data['lng'], data['name'], null,
-        data['lat'], data['lng'], data['with_tags'], "unlatched", null, null, {});
-      Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
-      return go('@'+lm.id);
-    }
-    
-    if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to add landmarks.");
-
-    $.post('/api/items/'+lm_id, data, function(landmark_js){
-      var lm = eval(landmark_js);
-      Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
-      go('@'+lm.id);
-      // App.refresh_mapwindow();
-    }, 'text');
-  },
-
-  delete_landmark: function(data) {
-    var r = confirm("Are you sure you wish to remove the landmark?  You will no longer be able " +
-      "to view missions that took place at it.");
-    if (!r) return "redo";
-
-    if (demo) {
-      off(This.item);
-      return App.closeclick();
+    if (!data.agents || data.agents.size == 0) {
+      alert('There are no agents to ask!');
+      return "redo";
     }
 
-    lm_id = This.item.replace('Landmark__', '');
-    $.delete_('/api/items/' + lm_id, null, function() {
-      off(This.item);
-      App.closeclick();
+    return App.post_landmark(data, function(lm) {
+      if (demo) return Demo.question(data.question, data.agents.split(' '), lm.id);
+
+      return Operation.exec(CEML.script_for('question', data.question), data.agents, lm.id);
     });
   },
 
@@ -390,8 +438,8 @@ Viewer = App = {
       return "redo";
     }
     if (demo) return Demo.question(data.question, agent_ids);
-    agent_ids = agent_ids.join(' ').replace(/Person__/g, '');
-    Operation.exec(CEML.script_for('question', data.question), agent_ids, agent_ids);
+    agent_ids = agent_ids.join(' ');
+    return Operation.exec(CEML.script_for('question', data.question), agent_ids, agent_ids);
   },
 
   blast_message_form_submitted: function(data) {
@@ -415,7 +463,7 @@ Viewer = App = {
 
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to blast messages.");
 
-    $.post('/api/blast_message', params, function(data){
+    return $.post('/api/blast_message', params, function(data){
       go('tool=');
       Notifier.success("Blasting message to " + data + " agents!");
     });
@@ -435,7 +483,7 @@ Viewer = App = {
 
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to blast messages.");
 
-    $.post('/api/blast_email', data, function(data){
+    return $.post('/api/blast_email', data, function(data){
       go('tool=');
       Notifier.success("Blasting email to " + data + " agents!");
     });
@@ -454,7 +502,7 @@ Viewer = App = {
     }
     if (demo) return Demo.tag(agents, data.tags, function(){go('tool=');});
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to tag agents.");
-    $.post('/api/agents/update_all', params, function(){
+    return $.post('/api/agents/update_all', params, function(){
       go('tool=');
     });
   },
@@ -462,9 +510,9 @@ Viewer = App = {
   setmode: function(mode) {
     if (This.mode != mode) return go('mode=' + mode);
     else {
-      if (mode == 'dispatch') return;
+      if (mode == 'dispatch') return true;
       $('#modetray').toggle();
-      Frame.resize();
+      return Frame.resize();
     }
   },
 
@@ -478,7 +526,8 @@ Viewer = App = {
     if (demo && data.kind == "msg")      return Demo.message([This.item], data.assign,
       function() {$('#make_it_happen_form').html('Message sent!');});
     if (demo && data.kind == "mission")  return Demo.assign([This.item], data.assign);
-    Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item, function(){
+    if (data.kind == "mission" && App.error_on_non_immediate([This.item])) return "redo";
+    return Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item, function(){
       $('#make_it_happen_form').html('Message sent!');
     });
   },
@@ -499,7 +548,8 @@ Viewer = App = {
     if (demo && data.kind == "msg")      return Demo.message(agents, data.assign,
       function(){go('tool='); return Notifier.success("Message sent!");});
     if (demo && data.kind == "mission")  return Demo.assign(agents, data.assign, Selection.clear);
-    Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
+    if (data.kind == "mission" && App.error_on_non_immediate(agents)) return "redo";
+    return Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
       go('tool=');
       Notifier.success('Message sent!');
       Selection.clear();
@@ -512,7 +562,7 @@ Viewer = App = {
     var today = (new Date()).toDateString().slice(4).toLowerCase().replace(/ /g, '_');
     tags = 'invited_on_' + today;
     if (data.groups && data.groups.match(/organizers/)) tags += ' group:organizers';
-    $.post('/api/people/invite', {
+    return $.post('/api/people/invite', {
       emails:     data.emails,
       groups:     data.groups   || null,
       reply_to:   data.reply_to,
@@ -538,9 +588,23 @@ Viewer = App = {
     });
   },
 
+  use_slow_agents: function() {
+    return App.current_stream_systems().indexOf('e') >= 0;
+  },
+
+  stream_has_flag: function(flag) {
+    if (!window.current_stream_systems) return false;
+    return window.current_stream_flags.indexOf(flag) >= 0;
+  },
+
+  current_stream_systems: function() {
+    if (window.demo) return 'm';
+    return window.current_stream_systems || '';
+  },
+
   stream_role_leader: function() { return demo || window.stream_role == 'leader'; },
   stream_role_organizer: function() { return demo || window.stream_role == 'leader' || window.stream_role == 'organizer'; },
-  
+
   interact_mode: function() { App.setmode('interact'); },
   manage_mode: function() { App.setmode('manage'); },
   dispatch_mode: function() { App.setmode(''); }

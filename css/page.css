@@ -67,7 +67,8 @@ body.logged_out .loo {
   z-index: 5000;
 }
 
-#loading_data {
+#loading_data,
+#loading_data_failed {
   text-align:center;
   top: 40%;
   left: 500px;

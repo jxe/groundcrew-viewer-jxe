@@ -2,7 +2,9 @@ Facebar = {
   
   fold_state: {},
   
-  agent_thumb: '<div href="#@#{id}" class="athumb agent_photo #{selected} #{id}"><img class="th" src="#{thumb_url}" title="#{title}"/><b>#{title}</b></div>',
+  agent_thumb: '<div href="#@#{id}" class="athumb agent_photo #{selected} #{id}">' +
+    '#{badges}<img class="th" src="#{thumb_url}" title="#{title}"/>' +
+    '<b>#{title}</b></div>',
 
   //     <div class="count">
   //       <h2 id="$2_agent_count"></h2>
