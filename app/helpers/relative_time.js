@@ -22,6 +22,7 @@ function $is_today(ts) {
 }
 
 function $time_and_or_date(ts){
+  if (!ts || ts == 0) return null;
   if ($is_today(ts)) return $time(ts);
   var hours_delta = (Math.floor(new Date().getTime() / 1000) - Number(ts)) / (60*60);
   if (hours_delta < 7*24) return $mon_date(ts) + " " + $time(ts);

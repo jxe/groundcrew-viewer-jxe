@@ -28,13 +28,18 @@ LiveHTML.widgets.push({
   },
 
   live_ops: function(state) {
-    return Ops.here().map(function(x){
+    return Ops.here().sort_by(function(x){
+      return Operation.last_update_ts(x);
+    }, -1).map(function(x){
+      var op_ts = $time_and_or_date(Operation.last_update_ts(x));
+      var op_ts_html = op_ts ? '<div class="ts">' + op_ts + '</div>' : '';
+      var op_html = '<dt>' + op_ts_html + '#{title}</dt>';
       if (x.thumb_url) {
-        return '<dl href="#@#{id}"><dd class="img"><img src="#{thumb_url}"/></dd><dt>#{title}</dt><hr/></dl>'.t(x);
+        return ('<dl href="#@#{id}"><dd class="img"><img src="#{thumb_url}"/></dd>' + op_html + '<hr/></dl>').t(x);
       } else {
-        return '<dl href="#@#{id}"><dt>#{title}</dt><hr/></dl>'.t(x);
+        return ('<dl href="#@#{id}">' + op_html + '<hr/></dl>').t(x);
       }
-    }).reverse().join('');
+    }).join('');
   },
 
   radius_options: function() {

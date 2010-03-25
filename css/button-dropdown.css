@@ -312,6 +312,17 @@ a {color:#000080;}
   color:#fff;
 }
 
+#objects_nav .button_dropdown .dropdown .select dl .ts {
+  font-size: 85%;
+  font-family: helvetica,arial;
+  font-style: italic;
+  color: #777;
+}
+#objects_nav .button_dropdown .dropdown .select dl:hover .ts {
+  color:#D8D8D8;
+}
+
+
 /* squad_and_search_navigation */
 #squad_and_search_navigation .button_dropdown button {
   padding:0;
