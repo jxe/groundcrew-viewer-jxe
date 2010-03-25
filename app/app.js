@@ -438,7 +438,7 @@ Viewer = App = {
       return "redo";
     }
     if (demo) return Demo.question(data.question, agent_ids);
-    agent_ids = agent_ids.join(' ').replace(/Person__/g, '');
+    agent_ids = agent_ids.join(' ');
     return Operation.exec(CEML.script_for('question', data.question), agent_ids, agent_ids);
   },
 
