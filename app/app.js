@@ -199,7 +199,7 @@ Viewer = App = {
     App.initted = true;
 
     // error handling
-    $(window).error(App.handle_error);
+    if (window.location.href.indexOf('localhost') < 0) $(window).error(App.handle_error);
 
     // init the UI
     Frame.init();
