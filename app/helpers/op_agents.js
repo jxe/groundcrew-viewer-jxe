@@ -34,7 +34,7 @@ Op_Agents = {
     var html = '';
     $.each(groups, function(i, state){
       var group = metadata_grouped[state];
-      html += '<div class="op_state_group ' + state + '"><h3 class="op_state">' + state + '</h3>';
+      html += '<div class="op_state_group ' + state + '"><h3 class="op_state">' + state.replace(/_/g, ' ') + '</h3>';
 
       html += group.map(function(meta) {
         var html = '<div class="agent"><h4 class="name">' + meta.name + '</h4>';
@@ -92,7 +92,7 @@ LiveHTML.widgets.push({
 
       $.each(data.results, function(i, item) {
         var meta = metadata['Person__' + item.id];
-        meta.m_sysid = meta.m_sysid || item.phone;
+        meta.m_sysid = meta.m_sysid || item.phone && item.phone.pretty_m_sysid();
         meta.e_sysid = meta.e_sysid || item.email;
       });
 
