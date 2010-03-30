@@ -8,7 +8,7 @@ Actions = {
      </div>',
      
    chat_t:
-     '<li title="#{when}"><b>#{actor_title}</b>: #{what}</li>'
+     '<li title="#{when}"><b>#{actor_title}</b>#{what}</li>'
   
 };
 
@@ -43,7 +43,8 @@ LiveHTML.widgets.push({
     var input = $(form).find('input');
     data.type = 'chat';
     Event.post(data, function(x) {
-      input.val('');
+      input && input.val('');
+      input && input.blur();
       $(form).enable();
       $('#chat_palette').app_paint();      
     });
