@@ -7,6 +7,7 @@ Op_Agents = {
 
   event_to_item_info: function(metadata, ev) {
     if (!ev.item_tag || !ev.item_tag.resource()) return;
+    if (ev.atype == 'note') return;
     if (!metadata[ev.item_tag]) metadata[ev.item_tag] = {};
     var meta = metadata[ev.item_tag];
 
