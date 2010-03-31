@@ -46,7 +46,7 @@ LiveHTML.widgets.push({
 
   reinvite: function(arg, elem) {
     var id = $(elem).parents('tr').data('row_data').id;
-    $.post('/api/people/reinvite', {signup_id:id}, function(){
+    $.post_with_squad('/people/reinvite', {signup_id:id}, function(){
       $('.current_invitations_tool').app_paint();
     });
   },
@@ -55,7 +55,7 @@ LiveHTML.widgets.push({
     if (demo) return "Demo mode does not show recent invitations";
     if (!App.stream_role_organizer()) return "You must be an organizer on this squad to see recent invitations";
     
-    $.getJSON('/api/people/signups.json', function(data){
+    $.getJSON_with_squad('/people/signups.json', function(data){
       var html = table(['date', 'role', 'email', 'mobile', 'city'], data.results.sort_by('.ts', -1),
         function(signup){
           var ps = signup.points.group_by('sys');

@@ -89,7 +89,7 @@ LiveHTML.widgets.push({
     }
 
     var ids = metadata_a.map('.id').join(' ');
-    $.getJSON('/api/people.json?ids=' + ids, function(data){
+    $.getJSON_with_squad('/people.json?ids=' + ids, function(data){
 
       $.each(data.results, function(i, item) {
         var meta = metadata[item.id];

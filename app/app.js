@@ -310,7 +310,7 @@ Viewer = App = {
       return true;
     }
 
-    return $.post('/api/items/'+data.lm_id, data, function(landmark_js){
+    return $.post_with_squad('/items/'+data.lm_id, data, function(landmark_js){
       var lm = eval(landmark_js);
       Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
 
@@ -341,7 +341,7 @@ Viewer = App = {
       return App.closeclick();
     }
 
-    return $.delete_('/api/items/' + This.item, null, function() {
+    return $.delete_with_squad('/items/' + This.item, function() {
       off(This.item);
       App.closeclick();
     });
@@ -459,7 +459,7 @@ Viewer = App = {
 
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to blast messages.");
 
-    return $.post('/api/blast_message', params, function(data){
+    return $.post_with_squad('/blast_message', params, function(data){
       go('tool=');
       Notifier.success("Blasting message to " + data + " agents!");
     });
@@ -479,7 +479,7 @@ Viewer = App = {
 
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to blast messages.");
 
-    return $.post('/api/blast_email', data, function(data){
+    return $.post_with_squad('/blast_email', data, function(data){
       go('tool=');
       Notifier.success("Blasting email to " + data + " agents!");
     });
@@ -498,7 +498,7 @@ Viewer = App = {
     }
     if (demo) return Demo.tag(agents, data.tags, function(){go('tool=');});
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to tag agents.");
-    return $.post('/api/agents/update_all', params, function(){
+    return $.post_with_squad('/agents/update_all', params, function(){
       go('tool=');
     });
   },
@@ -558,7 +558,7 @@ Viewer = App = {
     var today = (new Date()).toDateString().slice(4).toLowerCase().replace(/ /g, '_');
     tags = 'invited_on_' + today;
     if (data.groups && data.groups.match(/organizers/)) tags += ' group:organizers';
-    return $.post('/api/people/invite', {
+    return $.post_with_squad('/people/invite', {
       emails:     data.emails,
       groups:     data.groups   || null,
       reply_to:   data.reply_to,
