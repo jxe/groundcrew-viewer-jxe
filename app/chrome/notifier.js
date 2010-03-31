@@ -4,7 +4,7 @@ Notifier = {
     Event.improve(ev);
     var go = ev.item_tag;
     // we only notify on items that are latched to us.  TODO: turn back on
-    // if (!ev.re || ev.re.resource().architect != This.user.vtag) return;
+    // if (!ev.re || ev.re.resource().architect != This.user.tag) return;
 
     if (ev.atype == 'error')        Notifier.error( ev.msg, go, ev.actor_title );
     if (ev.atype == 'warning')      Notifier.warning( ev.msg, go, ev.actor_title );

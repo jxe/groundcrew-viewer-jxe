@@ -4,8 +4,8 @@ MapMarkers = {
   last_opened_type: null,
   
   type: function(thing) {
-    if (thing.startsWith('Op')) return 'operation';
-    else if (thing.startsWith('Landmark')) return 'landmarks';
+    if (thing.resource_type() == 'Op') return 'operation';
+    else if (thing.resource_type() == 'Landmark') return 'landmarks';
     else return 'agents';
   },
   
@@ -22,7 +22,7 @@ MapMarkers = {
       } else if (This._item.lat) {
         // make an emergency landmark, for now
         // TODO: fix... real operations layer, I guess
-        lmid = "Landmark__l" + site;
+        lmid = "l" + site;
         lm = item(This._item.city, lmid, This._item.loc, null,
           This._item.lat, This._item.lng, '', "unlatched", null, null, {});
         Map.site_add('landmarks', lmid, MapLandmarks.marker_for_lm(lm));

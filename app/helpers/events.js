@@ -28,8 +28,8 @@ LiveHTML.widgets.push({
     if (!data.msg || data.msg.length == 0) return "redo";
     var input = $(form).find('input');
     data.type = 'note';
-    data.venture = This.item && This.item.replace(/^Op__/, '');
-    data.city = This.city && This.city.replace(/^City__/, '');
+    data.venture = This.item;
+    data.city = This.city_id;
     Event.post(data, function(x) {
       input && input.val('');
       $(form).enable();

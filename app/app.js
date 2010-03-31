@@ -48,7 +48,7 @@ Viewer = App = {
     }
 
     if (changed.city || changed.q) {
-      This.city_id = This.city && This.city.resource_id();
+      This.city_id = This.city && This.city.replace('City__', '');
       set('agents', Agents.here());
       $('#flexbar').scrollLeft(0);
       if (This.city) $('body').removeClass('zoomed_out');
@@ -129,7 +129,7 @@ Viewer = App = {
       GM.closeInfoWindow();
     }
     else {
-      var thing = This.item.split('__')[0].toLowerCase();
+      var thing = This.item.resource_type().toLowerCase();
       var best_mapwindow_template = $.template('#' + thing + '_for_' + This.mode + '_mode') || $.template('#' + thing + '_for_any_mode');
       if (best_mapwindow_template) {
         MapMarkers.window(best_mapwindow_template);
@@ -148,7 +148,7 @@ Viewer = App = {
   did_add_events: function(state) {
     // TODO: temp fix.  Need to make events intelligently cause related windows to refresh
     // (e.g. agent window refreshes if agent reported)
-    if (This.item && This.item.startsWith('Op')) App.refresh_mapwindow();
+    if (This.item && This.item.resource_type() == 'Op') App.refresh_mapwindow();
     if (This.tool == 'view_events') $('.view_events_tool').app_paint();
   },
 
@@ -221,11 +221,9 @@ Viewer = App = {
       var agents_by_city = Agents.find('=city_id');
       delete agents_by_city[0];
       var active_cities = $keys(agents_by_city);
-      if (active_cities.length == 1) start_city = "City__" + active_cities[0];
-      if (active_cities.length == 0) {
-        if (most_recent_item) {
-          start_city = "City__" + most_recent_item.city_id;
-        }
+      if (active_cities.length == 1) start_city = active_cities[0];
+      if (active_cities.length == 0 && most_recent_item) {
+        start_city = 'City__' + most_recent_item.city_id;
       }
       Ajax.go_on_load = 'item=' + start_city;
     }
@@ -233,9 +231,6 @@ Viewer = App = {
     Ajax.maybe_trigger_load();
 
     if (demo) Demo.init_manual();
-
-    // set up app state
-    // CEML.parse($('#idea_bank').html());
   },
 
   switch_to_question: function(value, ch) {
@@ -259,7 +254,7 @@ Viewer = App = {
   },
 
   go_to_self: function() {
-    go('@' + This.user.vtag);
+    go('@' + This.user.tag);
   },
 
   decorate_map: function() {
@@ -307,7 +302,7 @@ Viewer = App = {
     }
 
     if (demo) {
-      lm = item(data['city'], "Landmark__" + data['lm_id'], data['name'] || 'A landmark', null,
+      lm = item(data['city'], data['lm_id'], data['name'] || 'A landmark', null,
         data['lat'], data['lng'], data['with_tags'], "unlatched", null, null, {});
       Map.site_add('landmarks', lm.id, MapLandmarks.marker_for_lm(lm));
 
@@ -328,8 +323,8 @@ Viewer = App = {
       alert('Please provide a location name!');
       return "redo";
     }
-    if (This.item && This.item.startsWith('Landmark__')) {
-      data.lm_id = This.item.replace('Landmark__', '');
+    if (This.item && This.item.resource_type() == 'Landmark') {
+      data.lm_id = This.item;
       data.lat = This._item.lat;
       data.lng = This._item.lng;
     }
@@ -346,8 +341,7 @@ Viewer = App = {
       return App.closeclick();
     }
 
-    lm_id = This.item.replace('Landmark__', '');
-    return $.delete_('/api/items/' + lm_id, null, function() {
+    return $.delete_('/api/items/' + This.item, null, function() {
       off(This.item);
       App.closeclick();
     });
@@ -496,7 +490,7 @@ Viewer = App = {
     if (!agents || agents.length == 0) {alert('Please select some agents to tag.'); return "redo";}
     if (!data.tags) { alert('Please provide some tags!'); return "redo"; }
 
-    var params = { agent_ids: agents.join(' ').replace(/Person__/g, '') };
+    var params = { agent_ids: agents.join(' ') };
     if (data.tags.startsWith('stream:')) {
       params['with_stream'] = data.tags.replace(/^stream:/, '');
     } else {

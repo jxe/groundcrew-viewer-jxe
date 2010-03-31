@@ -29,7 +29,7 @@ MapLandmarks = {
   },
   
   lm_from_pano: function(x) {
-    var tag = "Landmark__lP" + x.photo_id;
+    var tag = "lP" + x.photo_id;
     return item(This.city_id, tag, x.photo_title, x.photo_file_url, x.latitude, x.longitude, null, null, null, null, {
         map_thumb_url: 'http://www.panoramio.com/photos/mini_square/' + x.photo_id + '.jpg',
         thumb_height: x.height,

@@ -10,15 +10,15 @@ Internal URLs
 
 The viewer uses an internal URL scheme to keep track of state, to make buttons work, to simplify javascript transitions, etc.  So, from any viewer JavaScript, you can write:
 
-    go("mode=Dispatch;tool=assign_agents;item=Person__1");
+    go("mode=Dispatch;tool=assign_agents;item=p1");
 
 to select the given tool and the given item on the map.  This also works in HTML links, which are automagically rewired to support this scheme:
 
-    <a href="#mode=Dispatch;tool=assign_agents;item=Person__1">dispatch me!</a>
+    <a href="#mode=Dispatch;tool=assign_agents;item=p1">dispatch me!</a>
 
 and it will work when loading the viewer initially (useful for debugging or linking from other sites):
 
-    http://groundcrew.us/viewer#mode=Dispatch;tool=assign_agents;item=Person__1
+    http://groundcrew.us/viewer#mode=Dispatch;tool=assign_agents;item=p1
 
 ### Special Parameters
 

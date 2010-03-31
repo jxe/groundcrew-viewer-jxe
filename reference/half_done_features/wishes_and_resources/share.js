@@ -21,7 +21,7 @@ App.modes.listen = {
   share_form_submitted: function(data, state) {
     // send stuff to server
     // then display the item submitted on the map
-    // w/ url like /share/edit/City__220/Resource__13
+    // w/ url like /share/edit/city220/13
   },
 
   share_resources: function (state) {

@@ -34,7 +34,7 @@ LiveHTML.widgets.push({
   },
 
   is_latched: function() {
-    return This._item.latch.contains(' v') || This._item.latch.contains(' Op__');
+    return This._item.latch.contains(' v');
   },
 
   has_concern: function() {

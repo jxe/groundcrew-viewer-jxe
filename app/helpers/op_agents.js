@@ -87,11 +87,11 @@ LiveHTML.widgets.push({
       return;
     }
 
-    var ids = metadata_a.map('.id').join(' ').replace(/Person__/g, '');
+    var ids = metadata_a.map('.id').join(' ');
     $.getJSON('/api/people.json?ids=' + ids, function(data){
 
       $.each(data.results, function(i, item) {
-        var meta = metadata['Person__' + item.id];
+        var meta = metadata[item.id];
         meta.m_sysid = meta.m_sysid || item.phone && item.phone.pretty_m_sysid();
         meta.e_sysid = meta.e_sysid || item.email;
       });

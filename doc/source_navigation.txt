@@ -274,8 +274,6 @@ THE FOLLOWING WILL BECOME API DOCS AND BE MERGED INTO THE SOURCE AS JSDOC.
         returns the resource of this string (item).
       # resource_class:
         returns the resource class of this string (item).
-      # resource_id:
-        returns the id of this string (item).
 
     + viewer - this is the application controller and selection model
       # loc: current agent's location
