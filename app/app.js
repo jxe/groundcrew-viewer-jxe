@@ -165,7 +165,7 @@ Viewer = App = {
     report += msg;
     report += " at " + place;
     if (e) report += "\nException: " + e;
-    if (e && e.stack) report += "\nStack trace: " + e.stack;
+    report += '\nStack trace:\n' + printStackTrace({e:e}).join('\n') + '\n\n';
     console.log(report);
     $.post('/api/bugreport', {issue: report}, function(){
       // TODO: turn user alerts back on (and make them not call alert()) when we're confident
