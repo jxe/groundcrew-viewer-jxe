@@ -221,9 +221,9 @@ Viewer = App = {
       var agents_by_city = Agents.find('=city_id');
       delete agents_by_city[0];
       var active_cities = $keys(agents_by_city);
-      if (active_cities.length == 1) start_city = active_cities[0];
-      if (active_cities.length == 0 && most_recent_item) start_city = most_recent_item.city_id;
-      Ajax.go_on_load = 'item=City__' + start_city;
+      if (active_cities.length == 1) start_city = 'City__' + active_cities[0];
+      if (active_cities.length == 0 && most_recent_item) start_city = 'City__' + most_recent_item.city_id;
+      Ajax.go_on_load = 'item=' + start_city;
     }
 
     Ajax.maybe_trigger_load();
