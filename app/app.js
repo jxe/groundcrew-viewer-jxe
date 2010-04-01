@@ -198,10 +198,8 @@ Viewer = App = {
     if (App.initted) return;
     App.initted = true;
 
-    // error handling
-    if (window.location.href.indexOf('localhost') < 0 && window.authority != 'pedbe82b8576a') {
-      $(window).error(App.handle_error);
-    }
+    // error handling (don't use jquery: http://dev.jquery.com/ticket/3982)
+    window.onerror = App.handle_error;
 
     // init the UI
     Frame.init();
