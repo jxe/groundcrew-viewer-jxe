@@ -88,7 +88,7 @@ LiveHTML.widgets.push({
       return;
     }
 
-    var ids = metadata_a.map('.id').join(' ');
+    var ids = metadata_a.map('.id').join(',');
     $.getJSON_with_squad('/people.json?ids=' + ids, function(data){
 
       $.each(data.results, function(i, item) {
