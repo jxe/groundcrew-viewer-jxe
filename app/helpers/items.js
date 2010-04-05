@@ -82,7 +82,7 @@ LiveHTML.widgets.push({
 
   jump_to_op: function() {
     var op = This._item.latch.split(' ')[2];
-    if (op) go('@' + op.oldid());
+    if (op) go('@' + op);
   },
 
   item_current_assignment: function() {
