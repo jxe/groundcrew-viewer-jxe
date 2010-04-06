@@ -41,7 +41,7 @@ LiveHTML.widgets.push({
       var tname = tool['name'] ? tool['name'] : tval.replace(/_/g, ' ');
       var img = tool['img'] && '<img src="i/icons/'+tool['img']+'.png"/>' || '';
       var tclasses = tool['classes'] || '';
-      if (window.current_stream == 'highlandvalley' && tval == 'ask_a_question') {
+      if (window.current_stream.indexOf('highlandvalley') >= 0 && tval == 'ask_a_question') {
         tval = 'add_question_landmark';
       }
       return '<a class="'+tval+'_tool '+ tclasses + '" href="#tool='+tval+'">'+img+tname+'</a>';

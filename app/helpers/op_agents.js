@@ -21,7 +21,7 @@ Op_Agents = {
       meta.reports.push(ev.msg);
     }
 
-    if (window.current_stream == 'highlandvalley') {
+    if (window.current_stream.indexOf('highlandvalley') >= 0) {
       var _item = meta.id.resource();
       var hv_phone_a = _item && _item.answers && _item.answers['What phone number can we provide to the elders you wish to help?'];
       var hv_phone = hv_phone_a && hv_phone_a[0];
@@ -67,7 +67,7 @@ LiveHTML.widgets.push({
     var op = This.item;
     if (!op) return;
 
-    var win = window.open("", "OperationAgents", ",width=630,height=700,location=0,resizable=1,scrollbars=1");
+    var win = window.open("", "OperationAgents", ",width=800,height=700,location=0,resizable=1,scrollbars=1");
     var win_data = { op_title: op.resource() && op.resource().title };
 
     var metadata = {};
@@ -83,6 +83,14 @@ LiveHTML.widgets.push({
     }
 
     if (demo || ! (App.stream_role_leader() || App.stream_has_flag('organizer_people_permission'))) {
+
+      if (demo) {
+        $.each(metadata_a, function(i, meta) {
+          meta.m_sysid = meta.m_sysid || "888 123 4567";
+          meta.e_sysid = meta.e_sysid || meta.name + "@" + window.current_stream + ".org";
+        });
+      }
+
       win_data.op_agents_list = Op_Agents.metadata_to_html(metadata_a);
       Op_Agents.update_op_agents_window(win, win_data);
       return;
