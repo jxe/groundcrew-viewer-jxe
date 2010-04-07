@@ -71,14 +71,15 @@ Viewer = App = {
       $('.' + This.mode + '_mode').activate('mode');
       Frame.resize();
 
-      This.first_responders[0] = {};
       This.first_responders[1] = App.modes[This.mode.toLowerCase()] || {};
     }
 
     if (changed.tool) {
       App.most_recent_tool[This.mode] = This.tool;
       $('.' + This.tool + '_tool').activate('tool');
+      go('#tool_unselected');
       This.first_responders[0] = App.tools[This.tool] || {};
+      go('#tool_selected');
     }
 
     if (changed.item || changed.mode || changed.tool) App.refresh_mapwindow();
