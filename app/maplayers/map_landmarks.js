@@ -10,11 +10,11 @@ Map.layer_calculators['landmarks'] = function(){
 MapLandmarks = {
   
   fetch_landmarks_in_bounds: function(bounds) {
-    // alert('fetchifying');
+    var maxLms = Math.min(Math.round(map.getSize().width * map.getSize().height / 30000), 20);
     var southWest = bounds.getSouthWest();
     var northEast = bounds.getNorthEast();
     $.getJSON("http://www.panoramio.com/map/get_panoramas.php?callback=?", {
-      order: "popularity",  set: "public",  from: "0",  to: "20",  size: "small",
+      order: "popularity",  set: "public",  from: "0",  to: maxLms,  size: "small",
       maxy: northEast.lat(),  miny: southWest.lat(),  maxx: northEast.lng(),  minx: southWest.lng()
     }, function(data){
       $.each(data.photos, function(){
