@@ -16,10 +16,13 @@ MapMarkers = {
     
     // resolve site
     if (type == 'operation') {
+      var sited = false;
       if (This._item.focii) {
         site = This._item.focii.split(' ')[0];
         layer = MapMarkers.type(site);
-      } else if (This._item.lat) {
+        sited = Map.site_exists(layer, site);
+      }
+      if (!sited && This._item.lat) {
         // make an emergency landmark, for now
         // TODO: fix... real operations layer, I guess
         lmid = "l" + site;
@@ -28,8 +31,12 @@ MapMarkers = {
         Map.site_add('landmarks', lmid, MapLandmarks.marker_for_lm(lm));
         site = lmid;
         layer = 'landmarks';
-      } else {
+        sited = true;
+      }
+      if (!sited) {
+        App.report_error('No site for op ' + This.item);
         alert('Unable to locate operation.');
+        return;
       }
     }
     
