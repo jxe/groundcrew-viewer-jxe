@@ -490,7 +490,7 @@ Viewer = App = {
     if (data.tags.startsWith('stream:')) {
       params['with_stream'] = data.tags.replace(/^stream:/, '');
     } else {
-      params['with_tag'] = data.tags;
+      params['with_tags'] = data.tags;
     }
     if (demo) return Demo.tag(agents, data.tags, function(){go('tool=');});
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to tag agents.");
