@@ -149,9 +149,10 @@ LiveHTML.widgets.push({
       var q = k;
       var answer = v[0];
       var tstamp = $time_and_or_date(v[1]);
-      strings.push('<h6 class="question">Q. '+q+'</h6><div class="answer">A. &ldquo;'+answer+'&rdquo;<span class="timestamp">'+tstamp+'</span></div>');
+      var o = {ts: v[1], html: '<h6 class="question">Q. '+q+'</h6><div class="answer">A. &ldquo;'+answer+'&rdquo;<span class="timestamp">'+tstamp+'</span></div>'};
+      strings.push(o);
     });
-    return strings.join('');
+    return strings.sort_by('.ts', -1).map('.html').join('');
   },
 
   current_question: function() {
