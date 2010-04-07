@@ -11,6 +11,7 @@ MapMarkers = {
   
   window: function(tmpl, min_zoom) {
     var site = This.item;
+    var latlng = null;
     var type = MapMarkers.type(site);
     var layer = type;
     
@@ -23,14 +24,8 @@ MapMarkers = {
         sited = Map.site_exists(layer, site);
       }
       if (!sited && This._item.lat) {
-        // make an emergency landmark, for now
-        // TODO: fix... real operations layer, I guess
-        lmid = "l" + site;
-        lm = item(This._item.city, lmid, This._item.loc, null,
-          This._item.lat, This._item.lng, '', "unlatched", null, null, {});
-        Map.site_add('landmarks', lmid, MapLandmarks.marker_for_lm(lm));
-        site = lmid;
-        layer = 'landmarks';
+        layer = site = null;
+        latlng = new GLatLng(This._item.lat, This._item.lng);
         sited = true;
       }
       if (!sited) {
@@ -46,7 +41,10 @@ MapMarkers = {
       reopen = true;
     MapMarkers.last_opened = This.item;
     MapMarkers.last_opened_type = type;
-    Map.site_open(layer, site, tmpl.app_paint()[0], reopen);
+    if (latlng)
+      Map.latlng_open(latlng, tmpl.app_paint()[0], reopen);
+    else
+      Map.site_open(layer, site, tmpl.app_paint()[0], reopen);
   }
   
 };
