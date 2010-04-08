@@ -44,7 +44,25 @@
 
   <script>
   if($.browser.msie) $('#unsupported').show();
-  if (demo) $.getScript(current_stream + '.js', App.init);
+  if (demo) {
+    // try to load the static demo stream
+    $.ajax({ async: false, url: current_stream + '.js', dataType: 'script', success: App.init,
+      // if there's no static demo stream, try to load a real stream for demo data
+      error: function() {
+        var base_stream = current_stream.replace(/^demo-/, '');
+        if (base_stream.length > 0) {
+          $.ajax({ async: false, url: '/api/stream.js?stream=' + base_stream, dataType: 'script',
+            success: App.init,
+            // if there's still no stream, fail + alert the user
+            error: function() {
+              $('#loading_data').remove();
+              $('#loading_data_failed').show();
+            }
+          });
+        }
+      }});
+
+  }
   else $(function(){ App.init(); });
   </script>
 </body>
