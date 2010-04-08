@@ -11,10 +11,11 @@ LiveHTML.widgets.push({
   squads_dropdown: function() {
     if (!window.stream_names) window.stream_names = {};
     stream_names['demo'] = 'Demo Squad';
+    if (!demo) stream_names['demo-' + current_stream] = 'Demo ' + stream_names[current_stream];
     var streams = $keys(window.stream_names);
     // if (streams.length == 0) return "<li>You have no other squads available.</li>";
     
-    return streams.map(function(stream){
+    return streams.sort().map(function(stream){
       if (stream == current_stream) return '';
       var name = stream_names[stream];
       var switch_url = "/" + stream + "/live/";
