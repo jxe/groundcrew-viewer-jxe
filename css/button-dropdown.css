@@ -247,7 +247,7 @@ a {color:#000080;}
 /* CUSTOM STYLES */
 
 /* object_nav */
-#objects_nav .button_dropdown button {
+.compact_dropdowns .button_dropdown button {
   padding:1px 8px 3px 8px;
   font-size:11px;
   border:none;
@@ -255,70 +255,70 @@ a {color:#000080;}
   -webkit-border-bottom-left-radius:4px;
   -webkit-border-bottom-right-radius:4px;
 }
-#objects_nav .button_dropdown button.idle {
+.compact_dropdowns .button_dropdown button.idle {
   text-decoration:underline;
   color:#F2F2F2;
   background:transparent;
 }
 
-#objects_nav .button_dropdown button.idle.no_ul {
+.compact_dropdowns .button_dropdown button.idle.no_ul {
   text-decoration:none;
 }
-#objects_nav .button_dropdown button.idle:hover {
+.compact_dropdowns .button_dropdown button.idle:hover {
   color:#FFF;
   background:#4C4C4C;
 }
-#objects_nav .button_dropdown button.selected {
+.compact_dropdowns .button_dropdown button.selected {
   background:#BDBDBD;
 }
-#objects_nav .button_dropdown .dropdown {
+.compact_dropdowns .button_dropdown .dropdown {
   background:#BDBDBD;
   -webkit-box-shadow: 3px 0px 7px #3F3F3F;
 }
-#objects_nav .button_dropdown .dropdown .select {
+.compact_dropdowns .button_dropdown .dropdown .select {
   background:#CCCCCC;
 }
-#objects_nav .button_dropdown .dropdown .select a {
+.compact_dropdowns .button_dropdown .dropdown .select a {
   background:transparent;
   color:#3F3F3F;
 }
-#objects_nav .button_dropdown .dropdown .select a:hover {
+.compact_dropdowns .button_dropdown .dropdown .select a:hover {
   background:transparent;
   color:#fff;
 }
-#objects_nav .button_dropdown .dropdown .select li:hover {
+.compact_dropdowns .button_dropdown .dropdown .select li:hover {
   background:#1B224D;
   color:#fff;
 }
-#objects_nav .button_dropdown .dropdown .select li.hover {
+.compact_dropdowns .button_dropdown .dropdown .select li.hover {
   background:#1B224D;
   color:#fff;
 }
-#objects_nav .button_dropdown .dropdown .select dl:hover {
+.compact_dropdowns .button_dropdown .dropdown .select dl:hover {
   background:#1B224D;
   color:#fff;
 }
-#objects_nav .button_dropdown .dropdown .select dl:hover a {
+.compact_dropdowns .button_dropdown .dropdown .select dl:hover a {
   color:#fff;
 }
-#objects_nav .button_dropdown .dropdown .select dl:hover dd {
+.compact_dropdowns .button_dropdown .dropdown .select dl:hover dd {
   color:#D8D8D8;
 }
-#objects_nav .button_dropdown .dropdown .select dl.hover {
+.compact_dropdowns .button_dropdown .dropdown .select dl.hover {
   background:#1B224D;
   color:#E5E5E5;
 }
-#objects_nav .button_dropdown .dropdown .select dl.hover a {
+.compact_dropdowns .button_dropdown .dropdown .select dl.hover a {
   color:#fff;
 }
 
-#objects_nav .button_dropdown .dropdown .select dl .ts {
+.compact_dropdowns .button_dropdown .dropdown .select dl .ts {
   font-size: 85%;
   font-family: helvetica,arial;
   font-style: italic;
   color: #777;
 }
-#objects_nav .button_dropdown .dropdown .select dl:hover .ts {
+.compact_dropdowns .button_dropdown .dropdown .select dl:hover .ts {
   color:#D8D8D8;
 }
 
