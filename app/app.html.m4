@@ -8,6 +8,7 @@
   <!-- // <script src="../vendor/jquery/jquery.min.js"></script> -->
   <script>
     window.current_stream = window.location.href.split('/')[3];
+    if (window.location.protocol == 'file:') window.current_stream = 'demo';
     var demo = (current_stream == 'demo' || current_stream.indexOf('demo-') == 0);
     $.ajax({ async: false, url: '/api/auth.js?stream=' + window.current_stream, dataType: 'script' });
   </script>
