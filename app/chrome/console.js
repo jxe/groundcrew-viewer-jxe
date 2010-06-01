@@ -36,7 +36,7 @@ LiveHTML.widgets.push({
   tool_buttons: function() {
     if (!This.mode || !Console.tools[This.mode]) return '';
     return Console.tools[This.mode].map(function(tool){
-      if (tool['flag'] && !App.stream_has_flag(tool['flag'])) return '';
+      if (!demo && tool['flag'] && !App.stream_has_flag(tool['flag'])) return '';
       var tval = tool['tool'];
       var tname = tool['name'] ? tool['name'] : tval.replace(/_/g, ' ');
       var img = tool['img'] && '<img src="i/icons/'+tool['img']+'.png"/>' || '';
