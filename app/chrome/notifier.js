@@ -14,6 +14,7 @@ Notifier = {
 
     if (ev.atype == 'signup')       Notifier.growl( go, ev.actor_title + " signed up!" );
     if (ev.atype == 'reported')     Notifier.growl( go, ev.actor_title + " reports: &ldquo;"+ ev.msg   +"&rdquo;" );
+    if (ev.atype == 'pm')           Notifier.growl( go, ev.actor_title + " sent a private message: &ldquo;"+ ev.msg   +"&rdquo;" );
     if (ev.atype == 'answered')     Notifier.growl( go, ev.actor_title + " responded: &ldquo;"+ ev.msg +"&rdquo;" );
     if (ev.atype == 'answered_yes') Notifier.growl( go, ev.actor_title + " answered yes" );
     if (ev.atype == 'answered_no')  Notifier.growl( go, ev.actor_title + " answered no" );
