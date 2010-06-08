@@ -565,6 +565,11 @@ Viewer = App = {
     });
   },
 
+  rss_overlay: function() {
+    var url;
+    if (url = prompt("GeoRSS/KML URL:")) 
+      map.addOverlay(new GGeoXml(url));
+  },
 
   go_where: function() {
     var where = prompt("Find:");
