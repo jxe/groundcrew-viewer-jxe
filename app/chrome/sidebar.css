@@ -1,0 +1,32 @@
+#sidebar h2 {
+    color: #777;
+    text-transform: uppercase;
+    font-size: 10px;
+    padding: 3px 4px;
+}
+
+#sidebar .squad {
+    padding-left: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+#sidebar .squad h3 {
+    font-size: 12px;
+    margin-top: 0px;
+/*    font-weight: normal;*/
+    font-family: Arial, "MS Trebuchet", sans-serif;
+    color: #333;
+    margin-bottom: 0px;
+}
+
+#sidebar .squad a {
+    background: red;
+    color: white;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: solid thin #f99;
+    padding: 1px;
+    font-size: 11px;
+}

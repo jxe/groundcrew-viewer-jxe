@@ -1,0 +1,63 @@
+#mapnav {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 600;
+    text-align: center;
+}
+
+#map #mapnav #city_floater {
+    color: #eee;
+    text-shadow: #000 0px 1px 1px;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 4px;
+    padding: 3px 25px;
+    background-color: rgba(0,0,0, 0.5);
+}
+
+#map #mapnav .button_dropdown {
+    display: block;
+}
+
+#map #mapnav .select {
+    text-align: left;
+}
+
+
+#map #mapnav #city_floater:hover {
+    background-color: rgba(0,0,0, 0.8);
+}
+
+.da {
+    font-size: 11px;
+}
+
+#mapnav #landmarks_button_dropdown {
+    display: inline-block;
+}
+
+#mapnav #landmarks_button_dropdown button {
+    font-size: 9px;
+    text-transform: uppercase;
+    color: #eee;
+}
+
+#map #mapnav .button_dropdown button {
+    padding: 3px 10px;
+    background-color: rgba(0,0,0, 0.4);
+    -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    border: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#map #mapnav .button_dropdown button:hover, #map #mapnav .button_dropdown button.selected {
+    background-color: rgba(0,0,0, 0.8);
+}
+
+#mapnav .button_dropdown button.idle {
+  color:black;
+  background: none;
+}

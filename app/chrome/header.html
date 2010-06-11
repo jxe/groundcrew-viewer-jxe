@@ -1,18 +1,27 @@
-<div id="logo"><img src="i/gclogo_balls2_beta.png" /></div>
-<img id="load_spinner" src="i/spinner.gif"/>
-<div id="header_menubar">
-  <div id="youbox" class="lio magic demo_mode_only" href="##go_to_self">
-    You've been involved in <b fill="self_posx_pts">48</b> positive experiences.
+<div id="header" class="magic">
+  <div id="header_inside">
+    <div class="expando" href="##collapse_leftbar"></div>
+
+    <img id="load_spinner" src="i/spinner.gif"/>
+    <div id="header_menubar">
+      <div id="youbox" class="lio magic demo_mode_only" href="##go_to_self">
+        You've organized <b fill="self_posx_pts">48</b> positive experiences.
+      </div>
+      <a class="m_item loo not_demo_mode" href="../login">sign in</a>
+      <a class="m_item lio not_demo_mode" href="../home" id="home">home</a>
+      <a class="m_item lio" href="/api/logout">sign out</a>
+    </div>
+    <div id="sms_counter" class="lio">
+      This billing period:
+      <b id="sms_sent">...</b> SMS sent,
+      <b id="sms_received">...</b> received<span id="sms_limited_comma">,</span>
+      <span id="sms_limited"><b id="sms_remaining">...</b> remaining</span>
+    </div>
+    <div id="search_box">
+      <form id="search_form">
+        <input type="text" name="q" fill="query value" id="search" />
+        <a if="query" href="##clear_query">(X)</a>
+      </form>
+    </div>
   </div>
-  <a class="m_item" href="#tool=help">report a problem</a>
-  <a class="m_item" target="_blank" href="http://wiki.groundcrew.us/en/Help:Viewer">help</a>
-  <a class="m_item loo not_demo_mode" href="../login">sign in</a>
-  <a class="m_item lio not_demo_mode" href="../home" id="home">home</a>
-  <a class="m_item lio" href="/api/logout">sign out</a>
-</div>
-<div id="sms_counter" class="lio">
-  This billing period:
-  <b id="sms_sent">...</b> SMS sent,
-  <b id="sms_received">...</b> received<span id="sms_limited_comma">,</span>
-  <span id="sms_limited"><b id="sms_remaining">...</b> remaining</span>
 </div>

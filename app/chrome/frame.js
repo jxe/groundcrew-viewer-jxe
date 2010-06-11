@@ -23,9 +23,6 @@ Frame = {
       if (ch == 'H') { GM.setMapType(G_HYBRID_MAP); return false; }
       if (ch == 'T') { GM.setMapType(G_PHYSICAL_MAP); return false; }
       if (ch == '?') { go('tool=help_keyboard'); return false; }
-      if (ch == 'c') { go('mode='); return false; }
-      if (ch == 'i') { go('mode=interact'); return false; }
-      if (ch == 'm') { go('mode=manage'); return false; }
       if (ch == 'w') { go('item='); return false; }
       if (ch == 'g') { go('#go_where'); return false; }
       if (ch == 'O') { go('#rss_overlay'); return false; }
@@ -44,13 +41,6 @@ Frame = {
 
   // NOTE: this function doesn't use jquery cause we like our resize FAST
   resize: function() {
-    var page_height = window.innerHeight || window.document.body.clientHeight;
-    var junk = 59;
-    junk += document.getElementById('modetray').offsetHeight;
-    junk += document.getElementById('flexbar_banner').offsetHeight;
-
-    // make the adjustment
-    $('#map_div').height(page_height - junk);
     GM && GM.checkResize();
   }
 

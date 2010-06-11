@@ -66,11 +66,6 @@ Viewer = App = {
     }
 
     if (changed.mode) {
-      if (This.mode != '') $('#modetray').app_paint().show();
-      else $('#modetray').hide();
-      $('.' + This.mode + '_mode').activate('mode');
-      Frame.resize();
-
       This.first_responders[1] = App.modes[This.mode.toLowerCase()] || {};
     }
 
@@ -506,11 +501,14 @@ Viewer = App = {
     if (This.mode != mode) return go('mode=' + mode);
     else {
       if (mode == 'dispatch') return true;
-      $('#modetray').toggle();
       return Frame.resize();
     }
   },
 
+  collapse_leftbar: function() {
+    $('body').toggleClass('collapsed');
+  },
+  
 
   make_it_happen_form_submitted: function(data) {
     if (!data.assign) {

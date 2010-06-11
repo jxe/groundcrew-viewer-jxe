@@ -2,7 +2,7 @@
   background: yellow;
   color: black;
   position: absolute;
-  top: 95px;
+  top: 0px;
   padding: 4px 15px;
   font-weight: bold;
   font-size: 14px;
@@ -10,6 +10,50 @@
   -webkit-border-bottom-right-radius: 10px;
   -webkit-border-bottom-left-radius:  10px;
   -webkit-box-shadow: 3px 3px 7px #0C0C0C;
+}
+
+#facebar {
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from(transparent),
+    to(rgba(51,51,51,.9)));
+}
+#flexbar {
+  height: 94px;
+  overflow: hidden;
+  position: relative;
+  background:transparent;
+}
+#flexbar_arrows {
+  position: absolute;
+  right:0;
+  top: 0px;
+  width: 24px;
+  height: 64px;
+  padding: 4px 3px;
+  background: #ccc;
+  font-size: 24px;
+  text-shadow: #fff 0px 2px 3px;
+  color: #000;
+   z-index:99;
+
+   border-left: #669 solid thin;
+}
+
+
+#search_form,
+#search_form a {
+  display: inline;
+  color: #b0b0b0;
+}
+#search {
+  -webkit-border-radius: 9px;
+  border-top:solid 1px #BFBFBF;
+  border-left:solid 1px #BFBFBF;
+  border-right:solid 1px #E5E5E5;
+  border-bottom:solid 1px #E5E5E5;
+  background:#F2F2F2 url(i/icons/icon-search.gif) top 98% no-repeat;
+  padding:2px 20px 2px 5px;
 }
 
 #flexbar #empty_text {
@@ -51,7 +95,7 @@ body.loading #flexbar #empty_text {
 
 #flexbar #agents .athumb img.th {
   height:58px;
-  opacity:.8;
+  opacity:1;
   border-left:solid 1px #212121;
   border-bottom:solid 1px #2B2B2B;
   border-right:solid 1px #2B2B2B;
@@ -78,26 +122,29 @@ body.loading #flexbar #empty_text {
   right: 2px; bottom: 2px;
   font-size: 10px;
   text-align: right;
-  color: #ccc;
+  color: #ddd;
   text-shadow: #000 0px 1px 2px;
   z-index: 10;
 }
 
 #flexbar #agents .athumb {
-  margin-right: 3px;
   overflow: hidden;
   float: left;
   position: relative;
   width: 60px;
-  padding:4px;
+  padding:4px 6px;
   padding-top:6px;
   text-align:center;
   background:#262626;
+  background:#777;
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 100%,
     from(transparent),
     to(#2D2D2D));
   cursor:pointer;
+
+  border-left:solid 1px #333;
+
 }
 
 #flexbar #agents .athumb.selected img.th {
@@ -108,28 +155,36 @@ body.loading #flexbar #empty_text {
 
 
 #flexbar #agents div h2 {
-  margin: 0px 3px 0px 0px;
+  margin: 0px 0px 0px 0px;
   font-family: helvetica, arial;
   font-size: 12px;
   font-weight:normal;
-  -webkit-border-bottom-right-radius: 8px;
-  padding: 3px 4px 1px 4px;
-  color: #191919;
-  font-weight:bold;
+  padding: 3px 4px 2px 4px;
+  color: #eee;
+  text-shadow: #fff 0px 0px 1px;
+  border: solid thin gray;
+  border-right: none;
   cursor: pointer;
   background: #E56B0B;
+
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from(#fff),
+    to(transparent));
+
+}
+
+#flexbar #agents div {
+    position: relative;
 }
 
 #flexbar #agents div a {
-  color: white;
+  color: #888;
   font-weight: bold;
-  text-shadow: #fff 0px -1px 0px;
   -webkit-box-shadow: 0px 0px 2px #888;
       -moz-box-shadow: 0px 0px 2px #888;
   padding: 0px 4px;
   margin-left: 6px;
-  position: relative;
-  top: -1px;
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 100%,
     from(rgba(255,255,255,0.1)),
@@ -205,12 +260,16 @@ body.loading #flexbar #empty_text {
   position: float;
 }
 
-#flexbar #agents div h2.red    { background: #B20000; }
-#flexbar #agents div h2.orange { background: #A8BFBF; }
-#flexbar #agents div h2.green  { background: #00ACD4; }
-#flexbar #agents div h2.yellow { background: #E56B0B; }
-#flexbar #agents div h2.brown  { background: #E56B0B; }
-#flexbar #agents div h2.grey   { background: #A8BFBF; }
+#flexbar #agents div h2.red    { background: #CC2327; background-image: -webkit-gradient( linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.4)), to(transparent));   }
+#flexbar #agents div h2.orange  { background: #E2AE4B; background-image: -webkit-gradient( linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.4)), to(transparent));   }
+#flexbar #agents div h2.green  { background: #7BB037; background-image: -webkit-gradient( linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.4)), to(transparent));   }
+#flexbar #agents div h2.grey   { background: #A8BFBF; background-image: -webkit-gradient( linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.4)), to(transparent));   }
+
+#flexbar #agents div h2.red    { border-color:#CC2327; }
+#flexbar #agents div h2.orange { border-color:#DA8929; }
+#flexbar #agents div h2.green  { border-color:#83BA4A; }
+#flexbar #agents div h2.grey   { border-color:#889F9F; }
+
 
 #flexbar #unknown_agents   h2 { background: #A8BFBF; }
 #flexbar #inaccessible_agents h2 { background: #222621; color:#4C4C4C; }

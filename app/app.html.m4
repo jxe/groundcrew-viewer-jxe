@@ -5,7 +5,6 @@
 	<link href="viewer.css" media="screen" rel="stylesheet" type="text/css"/>
   <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAGqp2ukVwjWFfmC-XmCCZFRRGsPIMf82DrFSwJZKzmHDVn9CoiRSfPwbMs9LeX9Qw4ba2CuYyrEQBZw&amp;hl=&amp;indexing=true"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-  <!-- // <script src="../vendor/jquery/jquery.min.js"></script> -->
   <script>
     window.current_stream = window.location.href.split('/')[3];
     if (window.location.protocol == 'file:') window.current_stream = 'demo';
@@ -18,26 +17,32 @@
     login_by_cookie();
   </script>
 </head>
-<body id="viewer" class="loading">
 
-  <div id="header" class="magic">
-    m4_include(`app/chrome/header.html')
-    <div id="squad_and_search_navigation">
-  	  m4_include(`app/chrome/squad_selection_menu.html')
-  	  m4_include(`app/chrome/search_field.html')
-  	</div>
-  </div>
+<body id="viewer" class="loading notcollapsed">
+  <h1>Oil Spill Volunteering</h1>
+  m4_include(`app/chrome/sidebar.html')
 
-  <div id="screen">
+  m4_include(`app/chrome/header.html')
+  m4_include(`app/chrome/branding.html')
+
+  <!-- the main block is the main, chrome-y part of the viewer -->
+  <!-- it consists of the facebar, the map, and the console -->
+  <div id="tool">
     m4_include(`app/chrome/facebar.html')
-    m4_include(`app/chrome/selection_tools.html')
-    <div id="map_div"></div>
-    m4_include(`app/chrome/help_prompt.html')
+    <div id="map">
+      <div id="gmap"></div>
+      <!--> we put some stuff on top of the gmap <-->
+      m4_include(`app/chrome/selection_tools.html')
+      m4_include(`app/chrome/mapnav.html')
+      m4_include(`app/chrome/help_prompt.html')
+    </div>
     m4_include(`app/chrome/console.html')
-    m4_include(`app/chrome/navigation_menus.html')
   </div>
 
+  <!-- some offscreen stuff like templates -->
   m4_syscmd(`cat app/tools/*.html')
+  <div id="offscreen" style="display:none">m4_syscmd(`cat app/maplayers/*.html')</div>
+  <div id="screen"></div>
 
   <div id="offscreen" style="display:none">
     m4_syscmd(`cat app/maplayers/*.html')

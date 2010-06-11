@@ -19,7 +19,7 @@
 .palette h1 { font-size: 20px; text-align: center; margin:0; padding:0; }
 .palette h2 { font-size: 20px; margin:0; padding:0; margin-bottom: 10px; }
 .palette h4 { font-size: 15px; margin:0; padding:0; margin-top: 5px; }
-.palette #text p { font-size: 12px; margin:0; padding:0; margin-top: 15px; }  
+.palette #text p { font-size: 12px; margin:0; padding:0; margin-top: 15px; }
 
 /* images */
 .palette h2 img { position: relative; top: 10px; left: -10px; }
@@ -29,26 +29,6 @@
   color: #FF7D09;
   text-shadow: #FF4a00 0px 0px 4px;
 }
-
-/*.btn { 
-  display: block;
-  margin-top: 6px;
-  color: #FF7D09;
-  text-shadow: #FF4a00 0px 0px 4px;
-  text-align: right;
-  clear: both;
-}
-*/
-/*.btn:hover {
-  color: #fff;
-  text-shadow: #fff 0px 0px 8px;
-}
-*/
-/*#map_div .btn:hover {
-  color: #000;
-  text-shadow: #000 0px 0px 8px;
-}
-*/
 
 img.closebox {
   position: absolute;

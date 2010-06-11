@@ -1,0 +1,70 @@
+#header .expando {
+    font-size: 11px;
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    color: white;
+    z-index: 1000;
+}
+#header .expando:after {
+    content: "<";
+}
+
+.collapsed #header .expando:after {
+    content: ">";
+}
+
+.collapsed h1 {
+    left: 20px;
+}
+
+.m_item {
+  margin:0;
+  text-decoration: none;
+  font-size: 11px;
+/*  color: #fff;*/
+  padding: 0px 4px;
+}
+
+a.m_item:hover {
+  text-decoration: underline;
+/*  color: #fff;*/
+}
+
+#youbox {
+  display:inline;
+  color: #ccc;
+/*  margin-right:1em;
+  padding-right:1em;
+  border-right:dotted 1px #aaa;
+*/}
+
+#sms_counter {
+  position: absolute;
+  padding: 0px 15px;
+  padding-bottom: 2px;
+  top: 0px;
+  right: 300px;
+  font-size: 11px;
+  color: #999;
+  border: solid thin black;
+  border-top: none;
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 40%,
+    from(rgba(12,12,12,.2)),
+    to(rgba(12,12,12,.5)));
+}
+
+#sms_limited, #sms_limited_comma {
+  display: none;
+}
+
+#sms_limited.warning {
+  color: #C87;
+}

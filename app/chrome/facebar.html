@@ -1,7 +1,7 @@
 m4_define(`fab_state_div',
 `<div class="fab_state" id="$2_agents"><div></div><h2 class="$1">$3 <a>&ndash;</a></h2></div>')
 
-<div id="flexbar_banner">
+<div id="facebar">
   <div id="flexbar_arrows">
     <a scrollr="#flexbar" scroll_end="#flexbar_end">&#9654;</a><br>
     <a scrolll="#flexbar">&#9664;</a>
@@ -12,44 +12,40 @@ m4_define(`fab_state_div',
       <b>This is the facebar.</b><br>
       When you <a href="#mode=manage;tool=invite_agents">invite agents</a> they will appear here.
     </div>
-    <div id="big1" style="display:none; float: left; color: white; font-size: 48px">
-      &#9312;
-    </div>
     <div id="agents">
 
       <!-- bookmarks -->
       fab_state_div(red,    group1,     Group 1)
 
       <!-- live states -->
-      fab_state_div(red,    neglected,     neglected)
-      fab_state_div(orange, concerns,      questions / concerns)
+      fab_state_div(red,    neglected,     Neglected)
+      fab_state_div(red,    concerns,      Concerns)
 
-      fab_state_div(green, responded,     responded)
-      fab_state_div(green, responded_yes, responded "yes")
-      fab_state_div(red,   responded_no,  responded "no")
+      fab_state_div(orange, responded,     Responded)
+      fab_state_div(orange, responded_yes, Responded "yes")
+      fab_state_div(orange,   responded_no,  Responded "no")
+      fab_state_div(orange, reporting,       Reporting)
 
-      fab_state_div(yellow, reporting,       reporting)
+      fab_state_div(green,  in_dialogue,         In dialogue)
 
-      fab_state_div(green,  in_dialogue,         in dialogue)
+      fab_state_div(orange, assigned,      Assigned)
 
-      fab_state_div(brown, assigned,      on assignment)
-
-      fab_state_div(grey,  pending,       pending)
+      fab_state_div(grey,  pending,       Pending)
 
       <!-- parked states -->
-      fab_state_div(orange, addressable,   addressable needs)
-      fab_state_div(green,  available,       available)
+      fab_state_div(orange, addressable,   Needful)
+      fab_state_div(green,  available,       Available)
 
-      fab_state_div(green,  recruitable,       recruitable)
+      fab_state_div(green,  recruitable,       Recruitable)
 
-      fab_state_div(grey,  unresponsive,  unresponsive)
+      fab_state_div(grey,  unresponsive,  Unresponsive)
 
       <!-- people you don't like -->
-      fab_state_div(grey, retired,       retired)
+      fab_state_div(grey, retired,       Retired)
 
       <!-- special states -->
-      fab_state_div(grey, unknown,       unknown)
-      fab_state_div(grey, inaccessible,  inaccessible)
+      fab_state_div(grey, unknown,       Unknown)
+      fab_state_div(grey, inaccessible,  Inaccessible)
 
       <div id="flexbar_end" style="display:block; float:left;"></div>
     </div>
