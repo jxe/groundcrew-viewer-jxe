@@ -28,6 +28,7 @@ Frame = {
       if (ch == 'm') { go('mode=manage'); return false; }
       if (ch == 'w') { go('item='); return false; }
       if (ch == 'g') { go('#go_where'); return false; }
+      if (ch == 'O') { go('#rss_overlay'); return false; }
       if (ch == 'f') { $('#search').focus(); return false; }
       if (ch == 't') { setTimeout(function(){go('tool=tag_agents');},0); return false; }
       if (ch == '$') { test = !test; if (test) alert('test mode active'); return false; }
