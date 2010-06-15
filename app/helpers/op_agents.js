@@ -15,7 +15,7 @@ Op_Agents = {
     meta.name   = meta.name   || ev.actor_title;
     meta.state  = meta.state  || ev.atype;
     if (ev.atype == 'answered' || ev.atype == 'answered_yes' || ev.atype == 'answered_no') meta.answer = ev.msg;
-    if (ev.atype == 'completed') meta.state = ev.atype; // state overides others
+    if (ev.atype == 'completed' || ev.atype == 'answered' || ev.atype == 'answered_yes' || ev.atype == 'answered_no') meta.state = ev.atype; // completion states overide others
     if (ev.atype == 'reported') {
       if (!meta.reports) meta.reports = [];
       meta.reports.push(ev.msg);
