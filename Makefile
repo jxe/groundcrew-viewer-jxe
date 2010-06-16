@@ -23,6 +23,9 @@ buildcss: BUILD
 deploy: html raw_js buildcss
 	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,index.html,viewer.*,demo*.js} joe@groundcrew.us:gc/public/viewer/
 
+deploy_experimental: html raw_js buildcss
+	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,index.html,viewer.*,demo*.js} joe@groundcrew.us:gc/public/viewer_experimental/
+
 html: BUILD
 	m4 -P app/app.html.m4 > BUILD/index.html
 
