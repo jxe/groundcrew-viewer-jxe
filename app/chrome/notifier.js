@@ -40,7 +40,7 @@ Notifier = {
   },
 
   error: function(msg, go, actor) {
-    header = actor ? 'Error for ' + actor : 'Error';
+    var header = actor ? 'Error for ' + actor : 'Error';
     Notifier.growl(go, msg, {
       header: header,
       life: 25*1000,
@@ -50,7 +50,7 @@ Notifier = {
   },
 
   warning: function(msg, go, actor) {
-    header = actor ? 'Warning for ' + actor : 'Warning';
+    var header = actor ? 'Warning for ' + actor : 'Warning';
     Notifier.growl(go, msg, {
       header: header,
       life: 25*1000,
