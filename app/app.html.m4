@@ -44,7 +44,7 @@
   </div>
 
   <script>
-  if($.browser.msie) $('#unsupported').show();
+  if($.browser.msie || $.browser.opera) $('#unsupported').show();
   if (demo) {
     // try to load the static demo stream
     $.ajax({ async: false, url: current_stream + '.js', dataType: 'script', success: App.init,

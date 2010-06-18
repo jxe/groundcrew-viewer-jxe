@@ -55,16 +55,15 @@ body.logged_out .loo {
 
 #unsupported {
   position: absolute;
-  top: 10%;
-  left: 300px;
-  width: 400px;
-  height: 400px;
+  top: 4px;
+  left: 40%;
+  width: 220px;
   background: white;
   border: solid thin red;
   color: black;
-  font: 18px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+  font: 16px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
   text-align: center;
-  z-index: 5000;
+  z-index: 50000;
 }
 
 #loading_data,
