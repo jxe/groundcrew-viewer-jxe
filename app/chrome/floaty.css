@@ -1,7 +1,8 @@
 #floaty {
   display:none;
   top: 0px;
-  left: 0px;
+  left: auto;
+  right: auto;
   font-family: verdana;
   font-weight: bold;
   font-size: 12px;
@@ -9,7 +10,6 @@
   position: absolute;
 
   border: 2px solid #658C4A;
-  border-left: none;
   padding: 8.5px 16px;
   padding-left: 33px;
 
@@ -39,7 +39,8 @@
 
 #floaty.active {
   display: block;
-  left:0px;
+  left:auto;
+  right: auto;
   color: white;
   opacity: 1.0;
   -moz-opacity: 1.0;
