@@ -109,11 +109,10 @@ h1 {
 img#branding2 {
     display: none;
     left: 600px;
-    width: 160px;
     overflow: hidden;
     position: absolute;
-    bottom: 2px;
-    height: 26px;
+    bottom: 5px;
+    height: 20px;
 }
 
 .collapsed img#branding2 {
