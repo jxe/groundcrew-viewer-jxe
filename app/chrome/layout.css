@@ -29,16 +29,16 @@ h1, #blurb, #branding,
 /* move things over for sidebar */
 #tool, #header_inside { margin-left: 270px; }
 #sidebar, #branding   { width: 261px; padding: 5px;   }
-#blurb                { width: 251px; padding: 10px;  }
+#blurb                { width: 251px; padding: 30px 10px 5px 10px;  }
 h1                    { width: 246px; padding: 5px; }
 
 /* move sidebar down for h1 and blurb */
-h1 { top: 10px; left: 7px; bottom: auto; margin-top: 0px; }
-#blurb { bottom: auto; padding-top: 40px; }
-#sidebar { padding-top: 182px;}
+h1 { top: 0px; left: 7px; bottom: auto; }
+#blurb { bottom: auto; padding-top: 30px; }
+#sidebar { padding-top: 155px;}
 
 /* move sidebar up for branding */
-#branding { height: 55px; padding: 5px; }
+#branding { height: 55px; padding-left: 5px; }
 #sidebar { padding-bottom: 65px; }
 
 /* position facebar, map, and console within tool */
@@ -68,11 +68,11 @@ h1              { z-index:  2; }
 
 /* shadows */
 #header  { -webkit-box-shadow: 0px  5px 45px #111; -moz-box-shadow: 0px  5px 45px #111; }
-h1       { -webkit-box-shadow: 0px  2px 4px  #333; -moz-box-shadow: 0px  2px 4px  #333; }
-#facebar { -webkit-box-shadow: 0px  5px 5px  #333; -moz-box-shadow: 0px  5px 5px  #333; }
-#console { -webkit-box-shadow: 0px -2px 5px #333;  -moz-box-shadow: 0px -2px 5px #333; }
-#branding { -webkit-box-shadow: 0px -1px 2px #333;  -moz-box-shadow: 0px -1px 2px #333; }
-#blurb   { -webkit-box-shadow: 0px  1px 2px  #333; -moz-box-shadow: 0px  1px 2px  #333; }
+h1       { -webkit-box-shadow: 0px  2px 2px  #777; -moz-box-shadow: 0px  2px 2px  #777; }
+#facebar { -webkit-box-shadow: 0px  5px 5px  #777; -moz-box-shadow: 0px  5px 5px  #777; }
+#console { -webkit-box-shadow: 0px -2px 5px #777;  -moz-box-shadow: 0px -2px 5px #777; }
+/* #branding { -webkit-box-shadow: 0px -1px 2px #777;  -moz-box-shadow: 0px -1px 2px #777; } */
+#blurb   { -webkit-box-shadow: 0px  1px 2px  #777; -moz-box-shadow: 0px  1px 2px  #777; }
 #sidebar   { -webkit-box-shadow: 1px  0px 3px rgba(0,0,0,0.3); -moz-box-shadow: 1px  0px 3px  rgba(0,0,0,0.3); }
 
 /* colors */
@@ -87,9 +87,12 @@ h1       { -webkit-box-shadow: 0px  2px 4px  #333; -moz-box-shadow: 0px  2px 4px
 /* etc */
 #sidebar { overflow-y: auto; }
 
+p {
+	margin: 0 0 1em 0;
+}
+
 h1 {
   background: #2f70d0; color: white;
-  border-top: solid 1px #00d;
   text-shadow: #55a 0px -1px 1px;
   font-size: 20px; text-align: center; padding-top: 15px; padding-bottom: 7px;
   background-image: -webkit-gradient(
@@ -99,7 +102,7 @@ h1 {
 }
 
 #branding {
-    background: #e9e9e9 url(i/powered_by.png) no-repeat 5px 5px;
+    background: #e9e9e9 url(i/powered_by.png) no-repeat 10px 5px;
     text-align: center;
 }
 
