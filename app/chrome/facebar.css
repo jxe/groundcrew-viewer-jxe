@@ -161,7 +161,6 @@ body.loading #flexbar #empty_text {
   font-weight:normal;
   padding: 3px 4px 2px 4px;
   color: #eee;
-  text-shadow: #fff 0px 0px 1px;
   border: solid thin gray;
   border-right: none;
   cursor: pointer;
