@@ -6,7 +6,6 @@
 </head>
 
 <body id="viewer" class="loading notcollapsed">
-  <h1 class="magic"><span fill="current_stream_name">Oil Spill Volunteering</span></h1>
   m4_include(`app/chrome/sidebar.html')
   m4_include(`app/chrome/header.html')
 
