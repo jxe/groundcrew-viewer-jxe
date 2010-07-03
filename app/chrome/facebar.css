@@ -277,7 +277,7 @@ body.loading #flexbar #empty_text {
 
 #flexbar #agents div h2.red    { border-color:#CC2327; }
 #flexbar #agents div h2.orange { border-color:#DA8929; }
-#flexbar #agents div h2.green  { border-color:#83BA4A; }
+#flexbar #agents div h2.green  { border-color:#539A3A; } /* was #83BA4A */
 #flexbar #agents div h2.grey   { border-color:#889F9F; }
 
 

@@ -23,12 +23,6 @@
 #collapso { left: 5px; }
 #expando  { left: 5px; }
 
-
-
-.collapsed h1 {
-    left: 30px;
-}
-
 .m_item {
   margin:0;
   text-decoration: none;
