@@ -43,8 +43,8 @@ h1 { top: 0px; left: 7px; bottom: auto; }
 
 /* position facebar, map, and console within tool */
 #facebar { height: 92px; }
-#console { height: 30px; }
-#map     { margin-top: 92px; margin-bottom: 30px; }
+#console { height: 25px; }
+#map     { margin-top: 92px; margin-bottom: 25px; }
 
 /* pop some things up and down */
 #map, #tool     { z-index: -1; }
