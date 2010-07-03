@@ -1,12 +1,12 @@
 Frame = {
 
+  resize: function() {
+    GM && GM.checkResize();
+  },
+  
   init: function() {
+    $(window).resize(Frame.resize);
     Frame.resize();
-    // setInterval(function(){ $('.from_now').update_times(); }, 20000);
-    $(window).resize(function(){
-      Frame.resize();
-      $('.divcenter').center();
-    });
     $('.startupmagic').app_paint();
 
     $(document).keyup(function(e){
@@ -29,19 +29,13 @@ Frame = {
       if (ch == 'f') { $('#search').focus(); return false; }
       if (ch == 't') { setTimeout(function(){go('tool=tag_agents');},0); return false; }
       if (ch == '$') { test = !test; if (test) alert('test mode active'); return false; }
-      if (ch == '#') { window.open('/api/stream.js?stream=' + current_stream); return false; }
+      if (ch == '#') { window.open(stream_url); return false; }
       if (ch == 'Q') { clearTimeout(Ajax.timer); return false; }
       if (demo) return Demo.qa_keypresses(ch);
       return true;
     });
 
     $.jGrowl.defaults.pool = 7;
-
-  },
-
-  // NOTE: this function doesn't use jquery cause we like our resize FAST
-  resize: function() {
-    GM && GM.checkResize();
   }
 
 };
