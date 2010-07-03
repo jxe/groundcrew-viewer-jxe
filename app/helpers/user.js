@@ -7,6 +7,13 @@ LiveHTML.widgets.push({
   current_stream_desc: function() {
     return window.current_stream_desc || '';
   },
+  
+  youbox: function() {
+    if (window.remaining) return "<b>"+window.remaining+"</b> text messages remaining until we run out of money.";
+    else if (window.posx) return "You've organized <b>48</b> positive experiences.";
+    else return "Join squads to organize positive experiences.";
+  },
+  
     
   sidebar_content: function() {
     if (window.current_stream == 'oilspill') return "<h2>I am OilSpill</h2><ul><li>Hear me roar</li></ul>";
