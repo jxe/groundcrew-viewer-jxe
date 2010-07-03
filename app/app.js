@@ -214,10 +214,12 @@ Viewer = App = {
       window.current_stream = 'demo';
       window.stream_url = slug + '.js';
     } else {
+      window.demo = false;
       window.current_stream = slug;      
       window.stream_url = '/api/stream.js?stream=' + current_stream;
     }
     if (slug.startsWith('demo+')) {
+      window.demo = true;
       window.current_stream = slug.slice(5);
       window.stream_url = '/api/stream.js?stream=' + current_stream;
     };

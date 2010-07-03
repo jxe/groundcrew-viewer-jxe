@@ -7,13 +7,9 @@ LiveHTML.widgets.push({
   current_stream_desc: function() {
     return window.current_stream_desc || '';
   },
-  
-  oilspill_sidebar_content: function() {
-    return "<h2>I am OilSpill</h2><ul><li>Hear me roar</li></ul>";
-  },
-  
+    
   sidebar_content: function() {
-    if (current_stream == 'oilspill') return oilspill_sidebar_content();
+    if (window.current_stream == 'oilspill') return "<h2>I am OilSpill</h2><ul><li>Hear me roar</li></ul>";
     if (!window.stream_names) window.stream_names = {};
     stream_names['demo'] = 'Demo Squad';
     if (!demo) stream_names['demo-' + current_stream] = 'Demo ' + stream_names[current_stream];
