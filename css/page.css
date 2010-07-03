@@ -1,5 +1,6 @@
 /* some resets */
 img { border:0; }
+body { overflow: hidden; }
 h1, body { margin:0; padding:0; }
 a { text-decoration: none; }
 form {margin:0;padding:0;}
@@ -54,7 +55,5 @@ body.logged_out .loo {
 #loading_data,
 #loading_data_failed {
   text-align:center;
-  top: 40%;
-  left: 500px;
   width: 300px;
 }
