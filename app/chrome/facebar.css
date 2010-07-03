@@ -123,13 +123,17 @@ body.loading #flexbar #empty_text {
   display: block;
 }
 
+#flexbar #agents .athumb:hover b {
+    color: #eee;
+}
+
 #flexbar #agents .athumb b {
   position: absolute;
   width: 64px;
   right: 2px; bottom: 2px;
   font-size: 10px;
   text-align: right;
-  color: #ddd;
+  color: rgba(200,220,220,0.5);
   text-shadow: #000 0px 1px 2px;
   z-index: 10;
 }
