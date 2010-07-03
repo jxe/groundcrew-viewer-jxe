@@ -16,7 +16,12 @@ LiveHTML.widgets.push({
   
     
   sidebar_content: function() {
-    if (window.current_stream == 'oilspill') return "<h2>I am OilSpill</h2><ul><li>Hear me roar</li></ul>";
+    if (window.current_stream == 'oilspill' || demo) {
+      return "<h2>Large Organizations</h2><div class='squad'><h3>National Wildlife Fund</h3>" + 
+      "<div class='info'>100 people available; 25% utilization</div>"+
+      "<a href='#tool=join_squad' class='join_squad'>tell me more</a></div>"
+      ;
+    }
     if (!window.stream_names) window.stream_names = {};
     stream_names['demo'] = 'Demo Squad';
     if (!demo) stream_names['demo-' + current_stream] = 'Demo ' + stream_names[current_stream];
