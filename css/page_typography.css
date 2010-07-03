@@ -75,6 +75,11 @@ input.prompting, textarea.prompting {
   margin-bottom: 20px;
 }
 
+.no-bottom {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
 .button {
   text-decoration: none;
   background: green;
