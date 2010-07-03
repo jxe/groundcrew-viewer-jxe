@@ -13,10 +13,13 @@
 }
 
 #facebar {
-  background-image: -webkit-gradient(
-    linear, 0% 0%, 0% 100%,
-    from(transparent),
-    to(rgba(51,51,51,.9)));
+    background-color: black;
+    background-image: -webkit-gradient(
+        linear, 0% 0%, 0% 100%,
+        from(#555),
+        color-stop(70%, black),
+        color-stop(70%, rgba(51,51,51,.9)),
+        to(#bbb));
 }
 #flexbar {
   height: 94px;
@@ -87,6 +90,10 @@ body.loading #flexbar #empty_text {
 
 #flexbar #agents > div {
   float: left; display: none;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from(white),
+    to(rgba(51,51,51,.9)));
 }
 
 #flexbar #agents > div > div {
