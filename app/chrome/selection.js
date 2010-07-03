@@ -88,7 +88,7 @@ Selection = {
       $('#group_actions').hide();
       $('.require_selection').show();
     } else {
-      $('#group_actions').show().center();
+      $('#group_actions').show();
       $('.require_selection').hide();
     }
   }
