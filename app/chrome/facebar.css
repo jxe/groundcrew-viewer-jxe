@@ -13,10 +13,13 @@
 }
 
 #facebar {
-  background-image: -webkit-gradient(
-    linear, 0% 0%, 0% 100%,
-    from(transparent),
-    to(rgba(51,51,51,.9)));
+    background-color: black;
+    background-image: -webkit-gradient(
+        linear, 0% 0%, 0% 100%,
+        from(#555),
+        color-stop(70%, black),
+        color-stop(70%, rgba(51,51,51,.9)),
+        to(#bbb));
 }
 #flexbar {
   height: 94px;
@@ -87,10 +90,14 @@ body.loading #flexbar #empty_text {
 
 #flexbar #agents > div {
   float: left; display: none;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 100%,
+    from(white),
+    to(rgba(51,51,51,.9)));
 }
 
 #flexbar #agents > div > div {
-  height: 73px;
+  height: 72px;
 }
 
 #flexbar #agents .athumb img.th {
@@ -116,13 +123,17 @@ body.loading #flexbar #empty_text {
   display: block;
 }
 
+#flexbar #agents .athumb:hover b {
+    color: #eee;
+}
+
 #flexbar #agents .athumb b {
   position: absolute;
   width: 64px;
   right: 2px; bottom: 2px;
   font-size: 10px;
   text-align: right;
-  color: #ddd;
+  color: rgba(200,220,220,0.5);
   text-shadow: #000 0px 1px 2px;
   z-index: 10;
 }
@@ -266,7 +277,7 @@ body.loading #flexbar #empty_text {
 
 #flexbar #agents div h2.red    { border-color:#CC2327; }
 #flexbar #agents div h2.orange { border-color:#DA8929; }
-#flexbar #agents div h2.green  { border-color:#83BA4A; }
+#flexbar #agents div h2.green  { border-color:#539A3A; } /* was #83BA4A */
 #flexbar #agents div h2.grey   { border-color:#889F9F; }
 
 

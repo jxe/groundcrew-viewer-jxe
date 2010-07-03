@@ -1,19 +1,35 @@
 
-
 .hud {
-  position:absolute;
+  left:0px;
+  right:0px;
+  top:0px;
+  position: absolute;
+  z-index: 11000;
   width: 400px;
   background: rgb(25,25,25); /* fallback */
   background: rgba(25,25,25,.95);
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  z-index: 11000;
   color: #CCCCCC;
   padding: 10px;
   border-top: solid 1px #191919;
   border-left: solid 1px #191919;
   border-right: solid 1px #191919;
   border-bottom: solid 1px #191919;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  -webkit-box-shadow: 1px  1px 4px  #000;
+  -moz-box-shadow: 1px  1px 4px  #000; }
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+    left:0px;
+    right:0px;
+    top:0px;
+    position: absolute;
 }
 
 .hud a {

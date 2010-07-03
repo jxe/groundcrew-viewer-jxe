@@ -138,6 +138,12 @@ Viewer = App = {
   },
 
   map_clicked: function() {
+    // close any open dropdowns
+    $(".button_dropdown button.selected").each(function(){
+      $(this).removeClass('selected').addClass('idle');
+      $(this).parent().children('.dropdown').fadeOut('fast');
+      $('body').removeClass('dropdownOpen');
+    });
     return;
   },
 
@@ -191,37 +197,77 @@ Viewer = App = {
   // ======================
   // = App initialization =
   // ======================
-
-  init: function() {
-    if (App.initted) return;
-    App.initted = true;
-
-    // error handling (don't use jquery: http://dev.jquery.com/ticket/3982)
+  
+  initialize: function() {
+    if($.browser.msie) return $('#unsupported').show();
     window.onerror = App.handle_error;
+    App.decide_stream();
+    App.authenticate();
+    App.load_stream();
+  },
+  
+  decide_stream: function() {
+    var slug = window.location.href.split('/')[3];
+    if (location.protocol == 'file:') slug = 'demo';
+    if (slug.startsWith('demo')) {
+      window.demo = true;
+      window.current_stream = 'demo';
+      window.stream_url = slug + '.js';
+    } else {
+      window.demo = false;
+      window.current_stream = slug;      
+      window.stream_url = '/api/stream.js?stream=' + current_stream;
+    }
+    if (slug.startsWith('demo+')) {
+      window.demo = true;
+      window.current_stream = slug.slice(5);
+      window.stream_url = '/api/stream.js?stream=' + current_stream;
+    };
+    if (demo) $('body').addClass('demo_mode');
+  },
+  
+  authenticate: function() {
+    if (window.demo) { App.authenticated = true; return; }    
+    $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script', success: function(){
+      login_by_cookie();
+      App.authenticated = true;
+      if (App.stream_loaded) App.init_ui();
+    }});
+  },
+  
+  load_stream: function() {
+    $.ajax({ url: stream_url, dataType: 'script', success: function(){
+      App.stream_loaded = true;
+      if (App.authenticated) App.init_ui();
+    }});
+  },
+  
+  start_lrl: function() {
+    if (window.location.hash) return window.location.hash.slice(1);
+    else {
+      // find most active citites
+      var agents_by_city = Agents.find('=city_id');
+      delete agents_by_city[0];
+      var active_cities = $keys(agents_by_city);
+      var top_city = active_cities[0];
+      if (!top_city && most_recent_item) top_city = most_recent_item.city_id;
 
+      if (active_cities.length > 1) return 'item=';
+      else return 'item=City__' + top_city;
+    }
+  },
+  
+  init_ui: function() {
     // init the UI
     Frame.init();
-    if (demo) $('body').addClass('demo_mode');
     $('body').addClass('stream_role_' + window.stream_role);
     LiveHTML.init();
     $('body').removeClass('loading');
     Map.establish();
-    $('._mode').activate('mode');
 
     // start communication with server
     Ajax.init();
-
-    if (window.location.hash) Ajax.go_on_load = window.location.hash.slice(1);
-    else {
-      var start_city = '';
-      var agents_by_city = Agents.find('=city_id');
-      delete agents_by_city[0];
-      var active_cities = $keys(agents_by_city);
-      if (active_cities.length == 1) start_city = 'City__' + active_cities[0];
-      if (active_cities.length == 0 && most_recent_item) start_city = 'City__' + most_recent_item.city_id;
-      Ajax.go_on_load = 'item=' + start_city;
-    }
-
+    Ajax.go_on_load = App.start_lrl();
     Ajax.maybe_trigger_load();
 
     if (demo) Demo.init_manual();
