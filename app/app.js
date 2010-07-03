@@ -138,6 +138,12 @@ Viewer = App = {
   },
 
   map_clicked: function() {
+    // close any open dropdowns
+    $(".button_dropdown button.selected").each(function(){
+      $(this).removeClass('selected').addClass('idle');
+      $(this).parent().children('.dropdown').fadeOut('fast');
+      $('body').removeClass('dropdownOpen');
+    });
     return;
   },
 
