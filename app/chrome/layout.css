@@ -67,13 +67,11 @@
 #header  { -webkit-box-shadow: 0px  4px 7px #333; -moz-box-shadow: 0px  4px 7px #333; }
 #facebar { -webkit-box-shadow: 0px  3px 3px  #777; -moz-box-shadow: 0px  3px 3px  #777; }
 #console { -webkit-box-shadow: 0px -2px 5px #777;  -moz-box-shadow: 0px -2px 5px #777; }
-#blurb   { -webkit-box-shadow: 0px  1px 2px  #777; -moz-box-shadow: 0px  1px 2px  #777; }
 #sidebar_bg { -webkit-box-shadow: 1px  0px 3px rgba(0,0,0,0.3); -moz-box-shadow: 1px  0px 3px  rgba(0,0,0,0.3); }
 
 /* colors */
 #header  { background: url(i/background_header.png); }
 #console { background: url(i/background_console.png); }
-#blurb { background: white; color: #666; }
 #header, #console { color: white; }
 #header { text-shadow: #333 0px -1px 1px; }
 #console > div > button { text-shadow: #333 0px -1px 1px; }
