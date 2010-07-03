@@ -25,6 +25,10 @@ body#viewer.stream_role_organizer a.squad_settings_tool, body#viewer.stream_role
     border-left: 1px solid #6f7070;
 }
 
+#console #rconsole .select {
+    font-size: 12px;
+}
+
 #console .button_dropdown button.first, #console a.first {
     border-left: none;
 }
