@@ -53,7 +53,8 @@ body#viewer.stream_role_organizer a.squad_settings_tool, body#viewer.stream_role
 
 
 #console a.active {
-
+    color: white;
+    text-shadow: #ff8 0px 0px 3px;
 }
 
 .arr {
