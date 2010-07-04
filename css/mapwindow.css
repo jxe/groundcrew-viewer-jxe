@@ -31,6 +31,11 @@
   color: #555;
 }
 
+#person_for_any_mode .note {
+  color: #bbb;
+}
+
+
 #op_for_any_mode {
   min-width: 330px;
 }

@@ -18,8 +18,8 @@ LiveHTML.widgets.push({
   sidebar_content: function() {
     if (window.current_stream == 'oilspill' || demo) {
       return "<h2>Large Organizations</h2><div class='squad'><h3>National Wildlife Fund</h3>" + 
-      "<div class='info'>100 people available; 25% utilization</div>"+
-      "<a href='#tool=join_squad' class='join_squad'>tell me more</a></div>"
+      "<div class='info'>100 people available, 25% utilization</div>"+
+      "<a href='#tool=join_squad' class='join_squad'>Tell me more&hellip;</a></div>"
       ;
     }
     if (!window.stream_names) window.stream_names = {};

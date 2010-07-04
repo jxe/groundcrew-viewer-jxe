@@ -139,7 +139,7 @@
   padding-left: 0;
 }
 
-.hud ul.formlist li {
+.hud2 ul.formlist li {
   margin: 0 0 5px 0;
 }
 
@@ -149,20 +149,29 @@
 	text-align: right;
 	margin-right: 15px;
 	width: 100px;
-	line-height: 2;
+	line-height: 1.5;
+	padding-top: 3px;
 }
 
-.hud2 input {
+.hud2 input, .hud2 textarea {
   float: left;
   clear: right;
 }
 
-.hud .checkbox {
+.hud2 .form-descr {
+  clear: left;
+  font-size: 90%;
+  color: #aaa;
+  margin: 0 0 0 115px;
+  padding: 3px 0;
+}
+
+.hud2 .checkbox {
   width: auto;
   margin-left: 115px;
 }
 
-.hud .checkbox input {
+.hud2 .checkbox input {
   margin: 5px 5px 0 0;
 }
 
@@ -173,6 +182,7 @@
 
 .hud2 button {
   font-weight: bold;
+  font-size: 110%;
   color: #fff;
   background-color: #83BA4A;
   border: none;
