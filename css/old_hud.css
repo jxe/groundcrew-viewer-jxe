@@ -83,7 +83,8 @@
 
 .hud2 {
   width: 450px;
-  top: 60px;
+  top: 0px;
+  margin-top: 10px;
   padding: 0;
   color: #474848;
   -moz-border-radius: 10px;
