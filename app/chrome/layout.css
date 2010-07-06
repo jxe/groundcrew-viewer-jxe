@@ -29,7 +29,7 @@
 #sidebar, #sidebar_bg, #sidebar_fg  { width: 270px; }
 
 /* position facebar, map, and console within tool */
-#facebar { height: 92px; }
+#facebar { height: 93px; }
 #console { height: 25px; }
 #map     { margin-top: 92px; margin-bottom: 25px; }
 

@@ -17,8 +17,8 @@
     background-image: -webkit-gradient(
         linear, 0% 0%, 0% 100%,
         from(#555),
-        color-stop(70%, black),
-        color-stop(70%, rgba(51,51,51,.9)),
+        color-stop(80%, black),
+        color-stop(80%, rgba(80,80,80,.9)),
         to(#bbb));
 }
 #flexbar {
@@ -176,6 +176,7 @@ body.loading #flexbar #empty_text {
   border-right: none;
   cursor: pointer;
   background: #E56B0B;
+  height: 14px;
 
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 100%,
