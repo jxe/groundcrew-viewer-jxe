@@ -227,7 +227,11 @@ Viewer = App = {
   },
   
   authenticate: function() {
-    if (window.demo) { App.authenticated = true; return; }    
+    if (window.demo) { 
+      App.authenticated = true; 
+      login_by_cookie();
+      return; 
+    }    
     $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script', success: function(){
       login_by_cookie();
       App.authenticated = true;
@@ -245,16 +249,22 @@ Viewer = App = {
   start_lrl: function() {
     if (window.location.hash) return window.location.hash.slice(1);
     else {
-      // find most active citites
-      var agents_by_city = Agents.find('=city_id');
-      delete agents_by_city[0];
-      var active_cities = $keys(agents_by_city);
-      var top_city = active_cities[0];
-      if (!top_city && most_recent_item) top_city = most_recent_item.city_id;
-
-      if (active_cities.length > 1) return 'item=';
-      else return 'item=City__' + top_city;
+      var city = App.start_city();
+      if (window.authority || !AllSubsquads[window.current_stream]) return city;
+      else return city + ";tool=welcome";
     }
+  },
+    
+  start_city: function() {
+    // find most active citites
+    var agents_by_city = Agents.find('=city_id');
+    delete agents_by_city[0];
+    var active_cities = $keys(agents_by_city);
+    var top_city = active_cities[0];
+    if (!top_city && most_recent_item) top_city = most_recent_item.city_id;
+
+    if (active_cities.length > 1) return 'item=';
+    else return 'item=City__' + top_city;
   },
   
   init_ui: function() {

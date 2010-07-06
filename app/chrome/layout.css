@@ -32,6 +32,7 @@
 #facebar { height: 93px; }
 #console { height: 25px; }
 #map     { margin-top: 92px; margin-bottom: 25px; }
+.logged_out #map { margin-bottom: 0px; }
 
 /* pop some things up and down */
 #map, #tool { z-index: -1; }
@@ -51,29 +52,44 @@
 /* when collapsed, h1 goes over header */
 .collapsed #header h1 {
     position: absolute;
-    height: 16px;
-    margin-top: 2px;
+    height:14px;
+    margin-top: 1px;
     z-index: 2;
     right: auto; width: auto;
-    padding: 4px 20px;
+    padding: 6px 20px;
     font-size: 15px;
     left: 30px;
+    bottom: 0px;
+    border-bottom: solid 1px #138;
+    background-color: transparent;
+
+    border-bottom: solid thin #444;
+    border-top: solid thin #808080;
+    background-image: -webkit-gradient(
+     linear, 0% 0%, 100% 0%,
+     from(rgba(47,108,207,.0)),
+     color-stop(10%, rgba(47,108,207,.6)),
+     color-stop(50%, rgba(47,108,207,.85)),
+     color-stop(90%, rgba(47,108,207,.6)),
+     to(rgba(47,108,207,.0)));
+    text-shadow: #444 0px -1px 1px;
+
 }
 
 
 /* STYLING */
 
 /* shadows */
-#header  { -webkit-box-shadow: 0px  4px 7px #333; -moz-box-shadow: 0px  4px 7px #333; }
-#facebar { -webkit-box-shadow: 0px  3px 3px  #777; -moz-box-shadow: 0px  3px 3px  #777; }
-#console { -webkit-box-shadow: 0px -2px 5px #777;  -moz-box-shadow: 0px -2px 5px #777; }
+#header  { -webkit-box-shadow: 0px  4px 7px rgba(0,0,0,0.7); -moz-box-shadow: 0px  4px 7px rgba(0,0,0,0.7); }
+#facebar { -webkit-box-shadow: 0px  3px 3px rgba(0,0,0,0.5); -moz-box-shadow: 0px  3px 3px  rgba(0,0,0,0.5); }
+#console { -webkit-box-shadow: 0px -2px 5px rgba(0,0,0,0.5);  -moz-box-shadow: 0px -2px 5px rgba(0,0,0,0.5); }
 #sidebar_bg { -webkit-box-shadow: 1px  0px 3px rgba(0,0,0,0.3); -moz-box-shadow: 1px  0px 3px  rgba(0,0,0,0.3); }
 
 /* colors */
 #header  { background: url(i/background_header.png); }
 #console { background: url(i/background_console.png); }
 #header, #console { color: white; }
-#header { text-shadow: #333 0px -1px 1px; }
+/*#header { text-shadow: #333 0px -1px 1px; }*/
 #console > div > button { text-shadow: #333 0px -1px 1px; }
 
 p {
