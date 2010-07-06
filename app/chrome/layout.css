@@ -3,7 +3,7 @@
 
 #header, #header_inside, #header_menubar, #search_box,
 #sidebar, #sidebar_bg, #sidebar_fg, #tool, #map,
-#console, #lconsole, #rconsole {
+#console, #lconsole, #rconsole, #fog {
   position: absolute;
   left:0; bottom: 0; top: 0; right: 0;
   width: auto; height: auto;
@@ -104,3 +104,13 @@ img#branding2 {
 .collapsed img#branding2 {
     display: block;
 }
+#fog {
+    background: rgba(0,0,0,0.8);
+    z-index: 4;
+    display: none;
+}
+
+.fogged #fog {
+    display: block;
+}
+

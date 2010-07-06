@@ -18,6 +18,16 @@ App.tools.add_landmark = {
 
 };
 
+App.tools.welcome = {
+  tool_selected: function() { $('body').addClass('fogged'); },  
+  tool_unselected: function() { $('body').removeClass('fogged'); }  
+};
+
+App.tools.join_squad = {
+  tool_selected: function() { $('body').addClass('fogged'); },  
+  tool_unselected: function() { $('body').removeClass('fogged'); }  
+};
+
 App.tools.add_mission_landmark = $.extend({}, App.tools.add_landmark, {
   tool_template: function() { return '#new_mission_landmark'; }
 });

@@ -1,3 +1,6 @@
+.fogged #collapso, .fogged #mapnav, .fogged #youbox, .fogged #search_form { display: none; }
+
+
 #mapnav {
     position: absolute;
     top: 10px;

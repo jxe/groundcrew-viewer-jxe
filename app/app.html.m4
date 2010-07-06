@@ -13,6 +13,7 @@
   <div id="tool">
     m4_include(`app/chrome/facebar.html')
     <div id="map">
+      <div id="fog"></div>
       <div id="gmap"></div>
       <!-- we put some stuff on top of the gmap -->
       m4_include(`app/chrome/selection_tools.html')
