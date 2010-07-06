@@ -2,53 +2,62 @@
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
 
   <div class="hud_header">
-    <h2>Lend Your Volunteer Power</h2>
+    <h2><span if="!current_subsquad_member">Be Available for</span> &ldquo;<span fill="current_subsquad_name"></span>&rdquo;</h2>
   </div>
-  
+
   <div class="hud_content">
 
-    <h3>About [ORGANIZATION]'s activities:</h3>
-    <p>In the wake of widespread job loss, Habitat for Humanity is focusing on home rehabilitation projects throughout Mississippi and Alabama.</p>
-    <p class="no-bottom"><i>Volunteers will need:</i></p>
-    <ul>
-      <li>Sturdy work boots</li>
-      <li>Basic carpentry tools: hammer, screwdriver, hand saw, etc.</li>
-      <li>To be able to commit to at least 20 hours of work</li>
-    </ul>
+    <p fill="current_subsquad_desc"></p>
+
+    <p if="current_subsquad_member">You're a member of this squad.</p>
+
+    <div if="!current_subsquad_member">
 
     <hr />
 
-    <h3>Be available to help out</h3>
-    <p>If you're needed, you'll be offered an assignment by email or text message. Your first name will appear on the map, located at your zip code, to make coordination easier.</p>
+    <h3>Put yourself on the map</h3>
+    <p>Those who are needed can receive assignments by text message or iPhone. Your first name will appear on the map, located at your zip code, to make coordination easier.</p>
 
-    <form id="invite_agents_form" class="xspace">
+    <form id="join_squad_form" class="xspace">
 
-      <ul class="formlist">
+      <input type="hidden" name="target_page" value="confirm_setup"/>
+
+      <ul class="formlist loo">
         <li class="clearfix">
           <label for="name">Name</label>
-          <input id="name" style="width: 200px;" name="Name" type="text" fill=""/>
+          <input id="name" style="width: 200px;" name="name" type="text"/>
         </li>
         <li class="clearfix">
           <label for="email">Email</label>
-          <input id="email" style="width: 200px;" name="Name" type="text" fill=""/>
+          <input id="email" style="width: 200px;" name="e_sysid" type="text"/>
         </li>
         <li class="clearfix">
           <label for="phone">Phone Number</label>
-          <input id="phone" style="width: 100px;" name="Name" type="text" fill=""/>    
+          <input id="phone" style="width: 100px;" name="m_sysid" type="text"/>
         </li>
         <li class="clearfix">
           <label>Zip Code</label>
-          <input style="width: 100px;" name="Name" type="text" fill=""/>    
-        </li>
-        <li class="clearfix">
-          <label class="checkbox"><input name="" value="" type="checkbox">I'm willing to help with organizing</label>
+          <input style="width: 100px;" name="loc" type="text"/>
         </li>
       </ul>
-      <p>No need to fill out your details twice &mdash; we already have your contact information.</p>
-      <button type="submit" class="submit form">Sign me up!</button><br>
+
+      <p class="lio">No need to fill out your details twice &mdash; we already have your contact information.</p>
+
+      <button type="submit" class="submit form">Just this squad!</button>
+      <button type="submit" class="submit form">Sign me up for all squads!</button>
+
+      <ul>
+        <li class="clearfix">
+          <label class="checkbox">
+            <input name="" value="" type="checkbox">
+            I can be an organizer for this group.
+          </label>
+        </li>
+      </ul>
 
     </form>
+    </div>
   </div>
 
-  
+
 </div>

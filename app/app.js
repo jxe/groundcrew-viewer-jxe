@@ -312,6 +312,32 @@ Viewer = App = {
       MapLandmarks.fetch_landmarks_in_bounds(GM.getBounds());
   },
 
+  suggest_squad_form_submitted: function(data) {
+    data.kind = "Squad Suggestion";
+    data.suggest_for = window.current_stream_name || window.current_stream;
+    $.post('/api/fsubmit', data, function(){
+      Notifier.success('Thanks!', 'Submitted');
+      go('tool=');
+    });
+  },
+
+  join_squad_form_submitted: function(data) {
+    if (window.authority) {
+      $.post('/api/agents/update', {stream:This.subsquad}, function(){
+        Notifier.success('Thanks.  Check your email!', 'Submitted');
+        $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script' });
+        go('tool=');
+      });
+    } else {
+      data.stream = This.subsquad;
+      $.post('/api/people/join', data, function(){
+        Notifier.success('Thanks!', 'Submitted');
+        $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script' });
+        go('tool=');
+      });
+    }
+  },
+  
   help_form_submitted: function(data) {
     $.post('/api/bugreport', {issue: data.issue}, function(){
       Notifier.success('Thanks!', 'Submitted');
