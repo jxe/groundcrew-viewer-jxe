@@ -10,6 +10,10 @@
   -webkit-border-bottom-right-radius: 10px;
   -webkit-border-bottom-left-radius:  10px;
   -webkit-box-shadow: 3px 3px 7px #0C0C0C;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }
 
 #facebar {
@@ -17,9 +21,14 @@
     background-image: -webkit-gradient(
         linear, 0% 0%, 0% 100%,
         from(#555),
-        color-stop(80%, black),
-        color-stop(80%, rgba(80,80,80,.9)),
+        color-stop(77%, black),
+        color-stop(77%, rgba(80,80,80,.9)),
         to(#bbb));
+
+    background-image: -webkit-gradient(
+        linear, 0% 0%, 0% 100%,
+        from(#555),
+        to(black));
 }
 #flexbar {
   height: 94px;
@@ -32,15 +41,17 @@
   right:0;
   top: 0px;
   width: 24px;
-  height: 64px;
+  height: 55px;
   padding: 4px 3px;
-  background: #ccc;
-  font-size: 24px;
-  text-shadow: #fff 0px 2px 3px;
-  color: #000;
-   z-index:99;
-
-   border-left: #669 solid thin;
+  padding-top: 12px;
+  background: #555;
+  font-size: 23px;
+  text-shadow: #ccc 0px -1px 1px, #222 0px 1px 2px;
+  color: #999;
+  z-index:99;
+  line-height: 1.1em;
+  border-left: #777 solid thin;
+  border-bottom: #444 solid thin;
 }
 
 

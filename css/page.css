@@ -12,8 +12,7 @@ body #load_spinner {
 
 body.refresh #load_spinner {
   display:inline;
-  padding:0px 3px;
-  left: 20px;
+  right: 5px;
 }
 
 .hidden, .lio {

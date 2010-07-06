@@ -14,8 +14,7 @@
 
 /* put things in their corners */
 #console { top: auto; }
-#search_box { left: auto; top: auto; right: 40px; bottom: 3px; }
-#header_menubar { text-align: center; top: auto; bottom: 3px; }
+#header_menubar { text-align: center; top: auto; bottom: 4px; }
 #lconsole { left:  10px; right: auto; }
 #rconsole { right: 10px; left: auto; }
 #gmap { height: 100%; width: 100%; }
@@ -98,13 +97,13 @@ p {
 
 #sidebar_fg h1, #header h1 {
   background: #2f70d0; color: white;
-  text-shadow: #55a 0px -1px 1px;
+  text-shadow: #44c 0px -1px 2px;
   font-size: 20px; text-align: center; padding-top: 15px; padding-bottom: 7px;
+  border-top: solid 1px #25d;
   background-image: -webkit-gradient(
    linear, 0% 0%, 0% 100%,
    from(rgba(200,200,255,.3)),
    to(transparent));
-   -webkit-box-shadow: 0px  2px 2px  #777; -moz-box-shadow: 0px  2px 2px  #777;
 }
 
 
@@ -120,6 +119,27 @@ img#branding2 {
 .collapsed img#branding2 {
     display: block;
 }
+
+
+
+#search_box {
+    left: auto; top: auto; right: 30px; bottom: 0px;
+}
+
+#search_form {
+    padding: 4px 20px;
+    border-bottom: solid thin #444;
+    border-top: solid thin rgba(127,127,127,0.6);
+    background-image: -webkit-gradient(
+     linear, 0% 0%, 100% 0%,
+     from(rgba(255,255,255,.0)),
+     color-stop(20%, rgba(255,255,255,.2)),
+     color-stop(50%, rgba(255,255,255,.25)),
+     color-stop(80%, rgba(255,255,255,.2)),
+     to(rgba(255,255,255,.0)));
+    text-shadow: #999 0px 1px 1px;
+}
+
 #fog {
     background: rgba(0,0,0,0.8);
     z-index: 4;

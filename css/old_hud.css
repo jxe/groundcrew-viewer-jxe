@@ -84,7 +84,7 @@
 .hud2 {
   width: 450px;
   top: 0px;
-  margin-top: 10px;
+/*  margin-top: 10px;*/
   padding: 0;
   color: #474848;
   -moz-border-radius: 10px;
@@ -109,6 +109,12 @@
   -moz-border-radius: 0 0 5px 5px;
   -webkit-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
+}
+
+.hud2 .hud_header h3 {
+    margin: 0;
+    font-size: 13px;
+    color: #eee;
 }
 
 .hud2 h2 {
