@@ -229,9 +229,10 @@ Viewer = App = {
   authenticate: function() {
     if (window.demo) { 
       App.authenticated = true; 
+      window.authority = 'pChad';
       login_by_cookie();
       return; 
-    }    
+    }
     $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script', success: function(){
       login_by_cookie();
       App.authenticated = true;
