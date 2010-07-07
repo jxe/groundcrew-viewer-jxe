@@ -13,10 +13,9 @@
 
     <div if="!current_subsquad_member">
 
-    <hr />
+    <hr if="current_subsquad_member" />
 
-    <h3>Put yourself on the map</h3>
-    <p>Those who are needed can receive assignments by text message or iPhone. Your first name will appear on the map, located at your zip code, to make coordination easier.</p>
+    <p><strong>Put yourself on the map!</strong> If you're needed, you'll get an assignment by text message or <a href="http://itunes.apple.com/us/app/groundcrew/id358863993?mt=8" target="_blank">our iPhone app</a>. Your first name will appear on the map, located at your zip code, to make coordination easier.</p>
 
     <form id="join_squad_form" class="xspace">
 
@@ -43,17 +42,18 @@
 
       <p class="lio">No need to fill out your details twice &mdash; we already have your contact information.</p>
 
-      <button type="submit" class="submit form">Just this squad!</button>
-      <button type="submit" class="submit form">Sign me up for all squads!</button>
-
-      <ul>
+      <ul class="formlist">
         <li class="clearfix">
           <label class="checkbox">
             <input name="" value="" type="checkbox">
-            I can be an organizer for this group.
+            I'm willing to be an organizer for this group.
           </label>
         </li>
       </ul>
+
+      <button type="submit" class="submit form">Just this squad!</button>
+      <button type="submit" class="submit form">Sign me up for all squads!</button>
+
 
     </form>
     </div>
