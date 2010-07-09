@@ -1,9 +1,12 @@
+body.loading { display: none; }
+
 
 /* DEFAULTS FOR POSITIONING */
 
 #header, #header_inside, #header_menubar, #search_box,
-#sidebar, #sidebar_bg, #sidebar_fg, #tool, #map,
-#console, #lconsole, #rconsole, #fog {
+#sidebar, #sidebar_bg, #sidebar_fg,
+#tool, #map, #fog,
+#console, #lconsole, #rconsole {
   position: absolute;
   left:0; bottom: 0; top: 0; right: 0;
   width: auto; height: auto;

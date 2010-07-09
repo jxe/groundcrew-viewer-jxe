@@ -1,7 +1,9 @@
-<div id="sidebar_bg">
-</div>
+<div id="sidebar_bg"></div>
 <div id="sidebar_fg" class="magic">
-  <h1 fill="current_stream_name">Loading...</h1>
+  <h1 class="hoverable">
+    <span fill="current_stream_name"></span>
+    <span if="current_stream_desc"><div class="hoverbox south east" fill="current_stream_desc"></div></span>
+  </h1>
   <div id="branding" class="magic">
     <a href="#tool=suggest_squad">Add / Suggest an Organization</a>
     <hr />
@@ -17,9 +19,5 @@
 
 <div id="sidebar" class="magic">
   <h1 fill="current_stream_name">Loading...</h1>
-  <div id="blurb" fill="sidebar_blurb" if="current_stream_desc"></div>
   <div id="sidebar_content" fill="sidebar_content"></div>
-  <hr />
-  <h3><a href="#tool=join_squad;subsquad=all">Sign up for all squads</a> at once to be more generally available.</h3>
-  <hr />
 </div>

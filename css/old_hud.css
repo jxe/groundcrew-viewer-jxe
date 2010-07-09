@@ -84,7 +84,6 @@
 .hud2 {
   width: 470px;
   top: 0px;
- margin-top: 10px;
   padding: 0;
   color: #474848;
   -moz-border-radius: 10px;
@@ -140,9 +139,13 @@
 }
 
 .hud2 ul {
-  padding: 0 0 0 2em;
-  margin: 4px 0 0 0;
+    padding: 0px 0px 1em 2em;
   line-height: 1.2;
+  margin: 4px 0 0 0;
+}
+
+.hud2 form ul {
+    padding: 0 0 0 2em;
 }
 
 .hud ul.formlist {

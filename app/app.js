@@ -137,6 +137,30 @@ Viewer = App = {
     }
   },
 
+  toggle_squad: function(tag) {
+    if (!window.authority) return go('tool=join_squad;with_tag=' + tag);
+
+    var agent = Agents.id(This.user.tag) || This.user;
+    var agent_atags = agent.atags.split(' ').to_h();
+    if (!agent_atags[tag]) {
+      // add it
+      return $.post_with_squad('/agents/update', { with_tags: tag }, function(){ 
+        agent.atags += (" " + tag);
+        Agents.handle_change(agent);
+        go('tool='); 
+      });
+      
+    } else {
+      // remove it
+      return $.post_with_squad('/agents/update', { without_tags: tag }, function(){ 
+        delete agent_atags[tag];
+        agent.atags = $keys(agent_atags).join(' ');
+        Agents.handle_change(agent);
+        go('tool='); 
+      });
+    }
+  },
+
   map_clicked: function() {
     // close any open dropdowns
     $(".button_dropdown button.selected").each(function(){
@@ -252,7 +276,7 @@ Viewer = App = {
     if (window.location.hash) return window.location.hash.slice(1);
     else {
       var city = App.start_city();
-      if (window.authority || !AllSubsquads[window.current_stream]) return city;
+      if (window.authority || !SidebarTags[window.current_stream]) return city;
       else return city + ";tool=welcome";
     }
   },
@@ -324,20 +348,20 @@ Viewer = App = {
   },
 
   join_squad_form_submitted: function(data) {
-    if (window.authority) {
-      $.post('/api/agents/update', {stream:This.subsquad}, function(){
-        Notifier.success('Thanks.  Check your email!', 'Submitted');
-        $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script' });
-        go('tool=');
-      });
-    } else {
-      data.stream = This.subsquad;
-      $.post('/api/people/join', data, function(){
-        Notifier.success('Thanks!', 'Submitted');
-        $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script' });
-        go('tool=');
-      });
+    data.stream = window.current_stream;
+    if (This.with_tag) {
+      data.with_tags = This.with_tag;
+      delete This.with_tag;
     }
+    $.post('/api/people/join', data, function(){
+      Notifier.success('Thanks!', 'Loading your new account...');
+      $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script', success: function(){
+        login_by_cookie();
+        if (data.with_tags) { This.user.atags += data.with_tags; };
+        Notifier.success('Thanks!', 'Check your email to complete signup...');
+        go('tool=');
+      }});
+    });
   },
   
   help_form_submitted: function(data) {
@@ -685,9 +709,5 @@ Viewer = App = {
   },
 
   stream_role_leader: function() { return demo || window.stream_role == 'leader'; },
-  stream_role_organizer: function() { return demo || window.stream_role == 'leader' || window.stream_role == 'organizer'; },
-
-  interact_mode: function() { App.setmode('interact'); },
-  manage_mode: function() { App.setmode('manage'); },
-  dispatch_mode: function() { App.setmode(''); }
+  stream_role_organizer: function() { return demo || window.stream_role == 'leader' || window.stream_role == 'organizer'; }
 };

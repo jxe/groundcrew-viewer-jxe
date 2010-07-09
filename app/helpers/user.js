@@ -11,19 +11,13 @@ LiveHTML.widgets.push({
   },
   
   youbox: function() {
-    if (window.remaining) return "<b>"+window.remaining+"</b> text messages remaining until we run out of money.  <a href='#tool=donate'>Donate.</a>";
+    if (window.remaining) return "<b>"+window.remaining+"</b> text messages remaining until we run out of money.  <a target='_' href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NM3YQR6REFWHQ'>Donate.</a>";
     else if (window.posx) return "You've organized <b>48</b> positive experiences.";
     else return "Join squads to mobilize positive action.";
   },
-  
-  sidebar_blurb: function() {
-    if (!AllSubsquads[current_stream]) return window.current_stream_desc;
-    var desc = window.current_stream_desc || '';
-    return desc;
-  },
-  
+    
   sidebar_content: function() {
-    if (AllSubsquads[current_stream]) return Subsquads.sidebar_content();
+    if (SidebarTags[current_stream]) return Subsquads.sidebar_content();
     if (!window.stream_names) window.stream_names = {};
     stream_names['demo'] = 'Demo Squad';
     if (!demo) stream_names['demo-' + current_stream] = 'Demo ' + stream_names[current_stream];
