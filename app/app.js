@@ -213,6 +213,7 @@ Viewer = App = {
       window.demo = true;
       window.current_stream = 'demo';
       window.stream_url = slug + '.js';
+      window.current_stream = 'oilspill';
     } else {
       window.demo = false;
       window.current_stream = slug;      
