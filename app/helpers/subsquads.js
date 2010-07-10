@@ -1,6 +1,6 @@
 SidebarTags = {};
 SidebarTags['oilspill'] = [
-  ['Help w/ your stuff', [
+  ['Use your resources to help', [
     [ 'anything',  'Whatever needs doing', 
       'Be available to any org with a real-world, active use for you re: the oil spill.  '+
       'We\'ll evaluate orgs and exclude any that don\'t make good use of folks.' ],

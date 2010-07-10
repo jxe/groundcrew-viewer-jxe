@@ -1,0 +1,23 @@
+.hoverable { position: relative; }
+.hoverable:hover .hoverbox { display: block; }
+
+.hoverbox {
+    display: none;
+    position: absolute;
+    z-index: 11000;
+    background: rgb(25,25,25); /* fallback */
+    background: rgba(25,25,25,.95);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: #CCCCCC;
+    padding: 5px;
+    border: solid 1px #191919;
+    -webkit-box-shadow: 1px  1px 4px  #000;
+    -moz-box-shadow: 1px  1px 4px  #000;
+    font-size: 12px;
+    text-shadow: none;
+    width: 250px;
+}
+
+.hoverbox.east { left: 100%; }
+.hoverbox.south.east { top: 10%; }
