@@ -294,6 +294,8 @@ Viewer = App = {
   },
   
   init_ui: function() {
+    Agents.init_manual();
+
     // init the UI
     Frame.init();
     $('body').addClass('stream_role_' + window.stream_role);
