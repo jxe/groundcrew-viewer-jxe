@@ -606,6 +606,19 @@ Viewer = App = {
       go('tool=');
     });
   },
+  
+  squad_settings_form_submitted: function(data) {
+    if (!data.name || data.name.length == 0 || !data.desc || data.desc.length == 0) {
+      alert('Please provide both a name and a description!'); return "redo";
+    }
+    return $.post_with_squad('/update', data, function(){
+      if (window.stream_names) window.stream_names[current_stream] = data.name;
+      window.current_stream_name = data.name;
+      window.current_stream_desc = data.desc;
+      go('tool=');
+      $('.magic').app_paint();
+    });
+  },
 
   setmode: function(mode) {
     if (This.mode != mode) return go('mode=' + mode);
