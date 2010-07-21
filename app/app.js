@@ -704,6 +704,10 @@ Viewer = App = {
     if (!window.current_stream_systems) return false;
     return window.current_stream_flags.indexOf(flag) >= 0;
   },
+  
+  blast_message_flag: function() {
+    return App.stream_has_flag('blast_message');
+  },
 
   current_stream_systems: function() {
     if (window.demo) return 'm';
