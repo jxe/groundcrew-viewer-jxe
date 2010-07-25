@@ -228,6 +228,21 @@ Viewer = App = {
     App.decide_stream();
     App.authenticate();
     App.load_stream();
+    window.fbAsyncInit = App.init_facebook;
+  },
+  
+  init_facebook: function() {
+    FB.Event.subscribe('auth.sessionChange', function(response) {
+      if (response.session) {
+        $('body').addClass('fb_authed');
+        FB.api('/me', function(user) {
+          // alert(user.name);
+        });
+      } else {
+        $('body').removeClass('fb_authed');
+      }
+    });
+    FB.init({appId: '31986400134', apiKey: 'cbaf8df3f5953bdea9ce66f77c485c53', status: true, cookie: true, xfbml: true}); 
   },
   
   decide_stream: function() {
