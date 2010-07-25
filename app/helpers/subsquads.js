@@ -1,6 +1,6 @@
 SidebarTags = {};
 SidebarTags['oilspill'] = [
-  ['Use your resources to help', [
+  ['What can you help with?', [
     [ 'anything',  'Whatever needs doing', 
       'Be available to any org with a real-world, active use for you re: the oil spill.  '+
       'We\'ll evaluate orgs and exclude any that don\'t make good use of folks.' ],
@@ -9,7 +9,7 @@ SidebarTags['oilspill'] = [
     [ 'boattech', 'Volunteer your Nautical Tech Skills',
       'Help install GPS and tech equipment on boats' ]
   ]],
-  ['Help specific orgs', [
+  ['Which organizations can you help?', [
     [ 'btnep',  'Barataria-Terrebonne National Estuary Program', 
       'Get Direction from the Nat\'l Estuary Program.' ],
     [ 'lwf',  'Louisiana Wildlife Federation', 
@@ -30,12 +30,12 @@ Subsquads = {
     var agents_by_tag = Agents.find(':atags');
     return SidebarTags[current_stream].map(function(h2){
       return tag('h2', h2[0]) + h2[1].map(function(entry){
+        var me = '';
+        if (agent_atags[entry[0]]) { me = "<i>You &rsaquo;</i> "; }
         return tag('div.squad', {
           href: "##toggle_squad?" + entry[0],
-          content: tag('h3.hoverable', entry[1] + tag('div.hoverbox.east', entry[2])) + 
-            tag('div.info.clear', (agents_by_tag[entry[0]]||[]).length + " people available live" +  
-              (agent_atags[entry[0]] ? "<i>&mdash; you're joined!</i>" : ".")
-            )
+          content: tag('h3.hoverable', me + entry[1] + tag('div.hoverbox.east', entry[2])) + 
+            tag('div.info.clear', (agents_by_tag[entry[0]]||[]).length + " people available live.")
         });
       }).join('');
     }).join('');

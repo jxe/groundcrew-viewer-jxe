@@ -3,7 +3,7 @@
       xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 	<title>Groundcrew Viewer</title>
-  <base href='<!--# echo var="viewer" -->'/>
+  <base href='/<!--# echo var="viewer" -->/'/>
 	<link href="viewer.css" media="screen" rel="stylesheet" type="text/css"/>
 	<meta property="og:site_name" content="Groundcrew"/>
   <meta property="og:type" content="activity"/>
@@ -37,6 +37,7 @@
   <!-- some offscreen stuff like templates -->
   <div id="offscreen" style="display:none">m4_syscmd(`cat app/maplayers/*.html')</div>
   <div id="screen"></div>
+  <div id="fb-root"></div>
 
   <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAGqp2ukVwjWFfmC-XmCCZFRRGsPIMf82DrFSwJZKzmHDVn9CoiRSfPwbMs9LeX9Qw4ba2CuYyrEQBZw"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>

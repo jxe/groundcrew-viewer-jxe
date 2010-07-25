@@ -6,16 +6,15 @@
     <img id="load_spinner" src="i/spinner.gif"/>
     <div id="header_menubar">
       <div id="youbox" fill="youbox"></div>
-      <fb:login-button
-        perms="sms,email,user_location,user_interests,user_activities,user_about_me,user_website"
-        show-faces="true"
-      ></fb:login-button>
     </div>
-    <div id="search_box">
+    <div id="search_box" class="hide_until_loaded">
       <form id="search_form">
         <input type="text" name="q" fill="query value" id="search" />
         <a if="query" href="##clear_query">(X)</a>
       </form>
+      <div id="soc_logins">
+        <fb:login-button class="fbloo" perms="sms,email,user_location">Sign in</fb:login-button>
+      </div>
     </div>
   </div>
 </div>

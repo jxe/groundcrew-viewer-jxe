@@ -26,8 +26,8 @@ body.loading .hide_until_loaded { display: none; }
 #sidebar, #sidebar_bg, #tool  { margin-top: 30px; }
 
 /* move things over for sidebar */
-#tool, #header_inside { margin-left: 270px; }
-#sidebar, #sidebar_bg, #sidebar_fg  { width: 270px; }
+#tool, #header_inside { margin-left: 280px; }
+#sidebar, #sidebar_bg, #sidebar_fg  { width: 280px; }
 
 /* position facebar, map, and console within tool */
 #facebar { height: 93px; }
@@ -122,25 +122,6 @@ img#branding2 {
     display: block;
 }
 
-
-
-#search_box {
-    left: auto; top: auto; right: 30px; bottom: 0px;
-}
-
-#search_form {
-    padding: 4px 20px;
-    border-bottom: solid thin #444;
-    border-top: solid thin rgba(127,127,127,0.6);
-    background-image: -webkit-gradient(
-     linear, 0% 0%, 100% 0%,
-     from(rgba(255,255,255,.0)),
-     color-stop(20%, rgba(255,255,255,.2)),
-     color-stop(50%, rgba(255,255,255,.25)),
-     color-stop(80%, rgba(255,255,255,.2)),
-     to(rgba(255,255,255,.0)));
-    text-shadow: #999 0px 1px 1px;
-}
 
 #fog {
     background: rgba(0,0,0,0.8);

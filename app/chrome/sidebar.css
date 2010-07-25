@@ -104,9 +104,18 @@
   color: #888;
 }
 
-#sidebar .squad .info i {
-/*    font-style: normal;*/
-    color: #3c9;
+#sidebar .squad h3 i {
+    font-style: normal;
+    font-variant: small-caps;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: solid thin #ccc;
+    color: #ddd;
+    font-size: 12px;
+    padding: 1px 4px;
+    background-color: #292;
+    background-image: -webkit-gradient( linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.4)), to(transparent));
 }
 
 /*#sidebar .squad a {
