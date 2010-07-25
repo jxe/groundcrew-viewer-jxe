@@ -1,7 +1,7 @@
 
 #expando, #collapso {
     z-index: 10;
-    color: #333;
+    color: #aaa;
     padding: 3px 10px;
     padding: 2px 10px 3px 4px;
     font-size: 18px;
@@ -16,7 +16,7 @@
      linear, 0% 0%, 100% 0%,
      from(rgba(255,255,255,.15)),
      to(rgba(255,255,255,.0)));
-    text-shadow: #999 0px 1px 1px;
+    text-shadow: #333 0px -1px 1px;
 
 }
 
