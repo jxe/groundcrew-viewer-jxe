@@ -2,7 +2,7 @@
 .hidden_unless_active.active { display: block; }
 
 /* for now, disable approve deputies and squad settings */
-a.approve_deputies_tool, a.squad_settings_tool { display: none; }
+li.approve_deputies_tool, li.squad_settings_tool { display: none; }
 body#viewer .demo_mode_only { display: none; }
 body#viewer.demo_mode .demo_mode_only { display: inline; }
 body#viewer.demo_mode .not_demo_mode { display: none; }
