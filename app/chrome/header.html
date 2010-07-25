@@ -4,7 +4,13 @@
     <div id="collapso" href="##collapse_leftbar">&laquo;</div>
     <h1 fill="current_stream_name" class="hide_unless_collapsed"></h1>
     <img id="load_spinner" src="i/spinner.gif"/>
-    <div id="header_menubar"><div id="youbox" fill="youbox"></div></div>
+    <div id="header_menubar">
+      <div id="youbox" fill="youbox"></div>
+      <fb:login-button
+        perms="sms,email,user_location,user_interests,user_activities,user_about_me,user_website"
+        show-faces="true"
+      ></fb:login-button>
+    </div>
     <div id="search_box">
       <form id="search_form">
         <input type="text" name="q" fill="query value" id="search" />

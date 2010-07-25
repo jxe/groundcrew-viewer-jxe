@@ -228,6 +228,20 @@ Viewer = App = {
     App.decide_stream();
     App.authenticate();
     App.load_stream();
+    window.fbAsyncInit = App.init_facebook;
+  },
+  
+  init_facebook: function() {
+    FB.init({appId: '31986400134', apiKey: 'cbaf8df3f5953bdea9ce66f77c485c53', status: true, cookie: true, xfbml: true}); 
+    FB.Event.subscribe('auth.login', function(response) {
+      console.log("facebook login response");
+      console.log(response);
+      FB.api('/me', function(user) {
+        console.log("facebook user");
+        console.log(user);
+        alert(user.name);
+      });
+    });
   },
   
   decide_stream: function() {

@@ -1,8 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:og="http://opengraphprotocol.org/schema/"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 	<title>Groundcrew Viewer</title>
+  <base href='<!--# echo var="viewer" -->'/>
 	<link href="viewer.css" media="screen" rel="stylesheet" type="text/css"/>
+	<meta property="og:site_name" content="Groundcrew"/>
+  <meta property="og:type" content="activity"/>
+  <meta property="og:description" content="A Groundcrew Squad"/>
+  <meta property="fb:admins" content="514190"/>
+  <meta property="fb:app_id" content="31986400134"/>
+	<meta property="og:title" content='<!--# echo var="title" -->'/>
+  <meta property="og:url" content='<!--# echo var="cannon_url" -->'/>
+  <meta property="og:image" content='<!--# echo var="image_url" -->'/>
 </head>
 
 <body id="viewer" class="loading notcollapsed">
@@ -32,5 +42,6 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script src="viewer.js"></script>
   <script> App.initialize(); </script>
+  <script async="true" src="http://connect.facebook.net/en_US/all.js"></script>
 </body>
 </html>
