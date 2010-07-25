@@ -1,5 +1,4 @@
-body.loading { display: none; }
-
+body.loading .hide_until_loaded { display: none; }
 
 /* DEFAULTS FOR POSITIONING */
 
