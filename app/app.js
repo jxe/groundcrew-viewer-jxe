@@ -309,7 +309,8 @@ Viewer = App = {
   },
   
   init_ui: function() {
-    Agents.init_manual();
+    // TODO: Noah, this is slow.
+    // Agents.init_manual();
 
     // init the UI
     Frame.init();
