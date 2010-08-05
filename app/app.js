@@ -1,11 +1,11 @@
 ////
 // This is the "Application" controller
 //
-Viewer = App = {
+App = {
   initted: false,
-  modes: {},
   tools: {},
-  most_recent_tool: {},
+
+  back: function() { go('tool='); },
 
   search_form_submitted: function(data, state, form) {
     go('q=' + data.q);
@@ -30,7 +30,7 @@ Viewer = App = {
   },
 
   update: function(changed) {
-    if (!This.prev_url) changed.tool = changed.item = changed.city = true;
+    if (!This.prev_url) changed.item = changed.city = true;
 
     if (changed.tool && This.tool && This._item && !changed.item) set('item', This.city);
 
@@ -65,24 +65,7 @@ Viewer = App = {
       if (!changed.city) Map.layer_recalculate('agents');
     }
 
-    if (changed.mode) {
-      This.first_responders[1] = App.modes[This.mode.toLowerCase()] || {};
-    }
-
-    if (changed.tool) {
-      App.most_recent_tool[This.mode] = This.tool;
-      $('.' + This.tool + '_tool').activate('tool');
-      go('#tool_unselected');
-      This.first_responders[0] = App.tools[This.tool] || {};
-      go('#tool_selected');
-    }
-
-    if (changed.item || changed.mode || changed.tool) App.refresh_mapwindow();
-
-    $('.magic').app_paint();
-    $('.hud:visible').app_paint();
-    App.loaded = true;
-
+    if (changed.item || changed.tool) App.refresh_mapwindow();
   },
 
   go_login: function() {
@@ -315,7 +298,7 @@ Viewer = App = {
     // init the UI
     Frame.init();
     $('body').addClass('stream_role_' + window.stream_role);
-    LiveHTML.init();
+    UIExtras.init();
     $('body').removeClass('loading');
     Map.establish();
 
@@ -636,14 +619,6 @@ Viewer = App = {
     });
   },
 
-  setmode: function(mode) {
-    if (This.mode != mode) return go('mode=' + mode);
-    else {
-      if (mode == 'dispatch') return true;
-      return Frame.resize();
-    }
-  },
-
   collapse_leftbar: function() {
     $('body').toggleClass('collapsed');
   },
@@ -700,7 +675,7 @@ Viewer = App = {
       reply_to:   data.reply_to,
       with_tags:  tags
     }, function(){
-      go('tool=view_events;mode=interact');
+      go('tool=view_events');
     });
   },
 
