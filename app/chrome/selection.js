@@ -78,8 +78,7 @@ Selection = {
     var guy = tag.resource();
     if (!guy) return;
     Item.calculate_fields(guy);
-    Map.site_set_image('agents', tag, MapIcons.for_type(guy.map_icon).image);
-
+    Map.site_set_image('agents', tag, 'i/map/' + guy.map_icon + '.png');
     Selection.hide_or_show_options();
   },
   

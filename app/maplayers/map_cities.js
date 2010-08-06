@@ -10,10 +10,14 @@ Map.layer_calculators['cities'] = function(){
     done[city_id] = true;
 
     var lat = city_locs[city_id][0];
-    var lng = city_locs[city_id][1];
-    var icon = MapIcons.for_type('ninjaguy');
-    var marker = new GMarker( new GLatLng(lat, lng), { 'title': cities[city_id], 'icon': icon } );
-    GEvent.addListener( marker, "click", function() { go("@City__" + city_id); });
+    var lng = city_locs[city_id][1];    
+    var marker = new google.maps.Marker({
+      icon: 'i/map/' + 'ninjaguy' + '.png',
+      position: new google.maps.LatLng(lat, lng),
+      shadow: "i/map/man.shadow.png",
+      title: cities[city_id]
+    });
+    google.maps.event.addListener(marker, 'click', function() { go('@City__' + city_id); });
     mapping[city_id] = marker;
   });
   

@@ -49,7 +49,7 @@
   <div id="screen"></div>
   <div id="fb-root"></div>
 
-  <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAGqp2ukVwjWFfmC-XmCCZFRRGsPIMf82DrFSwJZKzmHDVn9CoiRSfPwbMs9LeX9Qw4ba2CuYyrEQBZw"></script>
+  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script src="viewer.js"></script>
   <script> App.initialize(); </script>

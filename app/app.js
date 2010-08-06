@@ -114,9 +114,7 @@ App = {
   },
 
   refresh_mapwindow: function() {
-    if (!This._item) {
-      GM.closeInfoWindow();
-    }
+    if (!This._item) GMIW.close();
     else {
       var thing = This.item.resource_type().toLowerCase();
       var best_mapwindow_template = $.template('#' + thing + '_for_' + This.mode + '_mode') || $.template('#' + thing + '_for_any_mode');
@@ -125,7 +123,7 @@ App = {
       } else {
         //TODO:  if there's no template, there should be no selection
         console.log('no good template for ' + thing);
-        GM.closeInfoWindow();
+        GMIW.close();
       }
     }
   },

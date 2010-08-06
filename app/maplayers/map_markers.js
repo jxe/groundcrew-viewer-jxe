@@ -25,7 +25,7 @@ MapMarkers = {
       }
       if (!sited && This._item.lat) {
         layer = site = null;
-        latlng = new GLatLng(This._item.lat, This._item.lng);
+        latlng = new google.maps.LatLng(This._item.lat, This._item.lng);
         sited = true;
       }
       if (!sited) {
