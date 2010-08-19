@@ -15,7 +15,7 @@
   <meta property="og:image" content='<!--# echo var="image_url" -->'/>
 </head>
 
-<body id="viewer" class="loading notcollapsed">
+<body id="viewer" class="loading collapsed">
   m4_include(`app/chrome/sidebar.html')
   m4_include(`app/chrome/header.html')
 
