@@ -153,6 +153,11 @@ App = {
     });
     return;
   },
+  
+  at_link: function(url) {
+    if (LiveHTML.metaOn && url.startsWith('@p')) return Selection.toggle(url.slice(1));
+    else return go('tool=;item=' + url.slice(1));
+  },
 
   did_add_events: function(state) {
     // TODO: temp fix.  Need to make events intelligently cause related windows to refresh
@@ -166,27 +171,6 @@ App = {
     return Actions.event_t.tt(op_children[This.item]);
   },
   
-  // TODO: get stack trace (see http://eriwen.com/javascript/js-stack-trace/)
-  // and include some state like This.url, form submitted, etc.
-  report_error: function(msg, e, place) {
-    console.log(e);
-    var report = '';
-    report += msg;
-    report += " at " + place;
-    if (e) report += "\nException: " + e;
-    try {
-      report += '\nStack trace:\n' + printStackTrace({e:e}).join('\n') + '\n\n';
-    } catch(ee) {}
-    console.log(report);
-    $.post('/api/bugreport', {issue: report}, function(){
-      // TODO: turn user alerts back on (and make them not call alert()) when we're confident
-      // that spurious errors are being handled
-
-      // Notifier.error('A bug occurred in the Groundcrew viewer!' +
-      //   '\n\nIt has been reported to our developers, but you might need to reload the viewer. Sorry!');
-    });
-  },
-
   handle_error: function(msg, uri, line) {
     // map script loading fails sometimes, but seems to automatically reload
     if (msg.type == 'error') {
@@ -196,8 +180,14 @@ App = {
     if (uri && uri.indexOf("http://www.panoramio.com/map/get_panoramas.php") >= 0) return false;
     if (uri && uri.indexOf("http://maps") >= 0 && msg == "Error loading script") return false;
 
-    App.report_error(msg, null, uri + ": " + line);
+    report_error(msg, null, uri + ": " + line);
     return false; // don't suppress the error
+  },
+
+  notify_error: function() {
+    var str = 'An error has occurred in this software.' +
+      '\n\nIt has been reported to our developers, but you might need to reload the page. Sorry!';
+    Notifier.error(str);
   },
 
 
@@ -211,23 +201,8 @@ App = {
     App.decide_stream();
     App.authenticate();
     App.load_stream();
-    window.fbAsyncInit = App.init_facebook;
   },
-  
-  init_facebook: function() {
-    FB.Event.subscribe('auth.sessionChange', function(response) {
-      if (response.session) {
-        $('body').addClass('fb_authed');
-        FB.api('/me', function(user) {
-          // alert(user.name);
-        });
-      } else {
-        $('body').removeClass('fb_authed');
-      }
-    });
-    FB.init({appId: '31986400134', apiKey: 'cbaf8df3f5953bdea9ce66f77c485c53', status: true, cookie: true, xfbml: true}); 
-  },
-  
+    
   decide_stream: function() {
     var slug = window.location.href.split('/')[3];
     if (location.protocol == 'file:') slug = 'demo';

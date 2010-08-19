@@ -27,12 +27,4 @@ body.no_city .city_level, body.loading .city_level {
   border: solid thick green;
 }
 
-.group:after {
-	content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-    }
-
 .clearfix:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}

@@ -9,13 +9,13 @@ test: BUILD buildcss raw_js
 	m4 -P tests/test.html.m4 > BUILD/test.html
 
 raw_js: BUILD
-	cat lib/*/*.js app/*.js app/*/*.js > BUILD/viewer.js
+	cat basetheme/BUILD/*.js lib/*/*.js app/*.js app/*/*.js > BUILD/viewer.js
 
 min_js: BUILD
-	cat lib/*/*.js app/*.js app/*/*.js | jsmin > BUILD/viewer.js
+	cat basetheme/BUILD/*.js lib/*/*.js app/*.js app/*/*.js | jsmin > BUILD/viewer.js
 
 buildcss: BUILD
-	cat css/*.css app/{chrome,helpers,tools}/*.css > BUILD/viewer.css
+	cat basetheme/BUILD/*.css css/*.css app/{chrome,helpers,tools}/*.css > BUILD/viewer.css
 
 
 # versions

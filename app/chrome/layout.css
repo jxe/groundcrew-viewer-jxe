@@ -1,8 +1,7 @@
-body.loading .hide_until_loaded { display: none; }
+/* ================ */
+/* = sidebar, etc = */
+/* ================ */
 
-/* DEFAULTS FOR POSITIONING */
-
-#header, #header_inside, #header_menubar, #search_box,
 #sidebar, #sidebar_bg, #sidebar_fg,
 #tool, #map, #fog,
 #console, #lconsole, #rconsole {
@@ -16,13 +15,11 @@ body.loading .hide_until_loaded { display: none; }
 
 /* put things in their corners */
 #console { top: auto; }
-#header_menubar { text-align: center; top: auto; bottom: 4px; }
 #lconsole { left:  10px; right: auto; }
 #rconsole { right: 10px; left: auto; }
 #gmap { height: 100%; width: 100%; }
 
 /* move things down for header */
-#header          { height: 30px; }
 #sidebar, #sidebar_bg, #tool  { margin-top: 30px; }
 
 /* move things over for sidebar */
@@ -37,7 +34,6 @@ body.loading .hide_until_loaded { display: none; }
 
 /* pop some things up and down */
 #map, #tool { z-index: -1; }
-#header     { z-index:  1; }
 #sidebar    { z-index:  2; }
 
 /* POSITIONING IN COLLAPSED STATE */
@@ -48,54 +44,20 @@ body.loading .hide_until_loaded { display: none; }
 .collapsed #sidebar { display: none; }
 .collapsed #sidebar_fg { display:none; }
 .collapsed #sidebar_bg { display:none; }
-.collapsed #tool, .collapsed #header_inside { margin-left: 0px;}
-
-/* when collapsed, h1 goes over header */
-.collapsed #header h1 {
-    position: absolute;
-    height:14px;
-    margin-top: 1px;
-    z-index: 2;
-    right: auto; width: auto;
-    padding: 6px 20px;
-    font-size: 15px;
-    left: 30px;
-    bottom: 0px;
-    border-bottom: solid 1px #138;
-    background-color: transparent;
-
-    border-bottom: solid thin #444;
-    border-top: solid thin #808080;
-    background-image: -webkit-gradient(
-     linear, 0% 0%, 100% 0%,
-     from(rgba(47,108,207,.0)),
-     color-stop(10%, rgba(47,108,207,.6)),
-     color-stop(50%, rgba(47,108,207,.85)),
-     color-stop(90%, rgba(47,108,207,.6)),
-     to(rgba(47,108,207,.0)));
-    text-shadow: #444 0px -1px 1px;
-
-}
+.collapsed #tool { margin-left: 0px;}
 
 
 /* STYLING */
 
 /* shadows */
-#header  { -webkit-box-shadow: 0px  4px 7px rgba(0,0,0,0.7); -moz-box-shadow: 0px  4px 7px rgba(0,0,0,0.7); }
 #facebar { -webkit-box-shadow: 0px  3px 3px rgba(0,0,0,0.5); -moz-box-shadow: 0px  3px 3px  rgba(0,0,0,0.5); }
 #console { -webkit-box-shadow: 0px -2px 5px rgba(0,0,0,0.5);  -moz-box-shadow: 0px -2px 5px rgba(0,0,0,0.5); }
 #sidebar_bg { -webkit-box-shadow: 1px  0px 3px rgba(0,0,0,0.3); -moz-box-shadow: 1px  0px 3px  rgba(0,0,0,0.3); }
 
 /* colors */
-#header  { background: url(i/background_header.png); }
 #console { background: url(i/background_console.png); }
-#header, #console { color: white; }
-/*#header { text-shadow: #333 0px -1px 1px; }*/
+#console { color: white; }
 #console > div > button { text-shadow: #333 0px -1px 1px; }
-
-p {
-	margin: 0 0 1em 0;
-}
 
 #sidebar_fg h1, #header h1 {
   background: #2f70d0; color: white;

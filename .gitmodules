@@ -1,0 +1,6 @@
+[submodule "gojs"]
+	path = gojs
+	url = git@github.com:citizenlogistics/go.js.git
+[submodule "basetheme"]
+	path = basetheme
+	url = git@github.com:citizenlogistics/basetheme.git
