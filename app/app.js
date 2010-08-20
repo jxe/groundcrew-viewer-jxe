@@ -87,7 +87,12 @@ Viewer = App = {
 
   go_login: function() {
     $.cookie('back', window.location.href);
-    window.location = './login';
+    window.location = '/' + current_stream+'/login';
+  },
+  
+  go_admin: function() {
+    var loc = 'http://groundcrew.us/'+current_stream+'/admin';
+    window.location = loc;
   },
 
   error_on_non_immediate: function(item_ids) {
