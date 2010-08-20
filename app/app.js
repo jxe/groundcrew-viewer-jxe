@@ -693,15 +693,10 @@ Viewer = App = {
   invite_agents_form_submitted: function(data, state) {
     if (demo) {Notifier.success('Invitations sent!'); return go('tool=;mode=');}
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to invite agents.");
-    var today = (new Date()).toDateString().slice(4).toLowerCase().replace(/ /g, '_');
-    tags = 'invited_on_' + today;
-    if (data.groups && data.groups.match(/organizers/)) tags += ' group:organizers';
-    return $.post_with_squad('/people/invite', {
-      emails:     data.emails,
-      groups:     data.groups   || null,
-      reply_to:   data.reply_to,
-      with_tags:  tags
-    }, function(){
+    // var today = (new Date()).toDateString().slice(4).toLowerCase().replace(/ /g, '_');
+    // tags = 'invited_on_' + today;
+    data.squad = window.current_stream;
+    return $.post_with_squad('/'+current_stream+'/invitations', data, function(){
       go('tool=view_events;mode=interact');
     });
   },
