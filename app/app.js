@@ -696,7 +696,7 @@ Viewer = App = {
     // var today = (new Date()).toDateString().slice(4).toLowerCase().replace(/ /g, '_');
     // tags = 'invited_on_' + today;
     data.squad = window.current_stream;
-    return $.post_with_squad('/'+current_stream+'/invitations', data, function(){
+    return $.post_with_squad('/s'+current_stream+'/invitations', data, function(){
       go('tool=view_events;mode=interact');
     });
   },
