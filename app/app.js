@@ -87,7 +87,7 @@ Viewer = App = {
 
   go_login: function() {
     $.cookie('back', window.location.href);
-    window.location = '../login';
+    window.location = './login';
   },
 
   error_on_non_immediate: function(item_ids) {
