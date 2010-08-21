@@ -314,3 +314,94 @@
   font-weight: bold;
   font-size: 110%;
 }
+
+/* Modal styling */
+.modal {
+  color: #474848;
+  background: #C2C2C2;
+  border: 4px solid #4D4E4E;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  left:0px;
+  right:0px;
+  top:0px;
+  position: absolute;
+  z-index: 11000;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  -webkit-box-shadow: 1px  1px 4px  #000;
+  -moz-box-shadow: 1px  1px 4px  #000;
+}
+
+.modal_wide {
+  width: 350px;
+}
+
+.modal_narrow {
+  width: 150px;
+}
+
+.modal .form_fields {
+  float: left;
+  padding: 10px 10px 0 0;
+  width: 220px;
+}
+
+.modal .sidebar {
+  float: left;
+  width: 100px;
+  padding: 10px 0 0 10px;
+}
+
+.modal img.closebox {
+  right: 10px;
+  top: 10px;
+}
+
+.modal a {
+  color: #0066CC;
+}
+
+.modal h2 {
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  text-shadow: 0px 1px 0px #F3F3F3;
+}
+
+.modal h3 {
+  margin: 0 0 5px 0;
+  font-size: 13px;
+}
+
+.modal input[type=text], .modal textarea {
+  width: 100%;
+  margin: 2px 0 7px;
+}
+
+
+/* Styles for specific modal windows */
+
+.make_poll_tool form {
+  margin: 2px 0 15px 0;
+}
+
+
+/* General styles - to be moved... */
+
+.nobold {
+  font-weight: normal;
+}
+
+.inline {
+  display: inline;
+}
+
+
+
+
+
+

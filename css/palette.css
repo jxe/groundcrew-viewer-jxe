@@ -32,14 +32,14 @@
 
 img.closebox {
   position: absolute;
-  top: 1px;
-  right: 1px;
+  top: 4px;
+  right: 4px;
 }
 
 a.closebox {
   position: absolute;
-  top: 1px;
-  right: 1px;
+  top: 4px;
+  right: 4px;
 }
 
 a.closebox img {
