@@ -6,7 +6,7 @@
 	<link href="viewer.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
 
-<body id="viewer" class="loading collapsed">
+<body id="viewer" class="loading notcollapsed">
   m4_include(`app/chrome/sidebar.html')
   m4_include(`app/chrome/header.html')
 

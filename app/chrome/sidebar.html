@@ -1,27 +1,21 @@
-<div id="sidebar_bg"></div>
-<div id="sidebar_fg" class="magic hide_until_loaded">
-  <h1 class="hoverable">
-    <span fill="current_stream_name"></span>
-    <span if="current_stream_desc"><div class="hoverbox south east" fill="current_stream_desc"></div></span>
-  </h1>
-  <div id="branding" class="magic">
-    <a href="#tool=suggest_squad">Add / Suggest an Organization</a>
-    <hr />
-    <a href="http://groundcrew.us/" style="display: block;"><img src="i/powered_by.png" /></a>
+<div id="sidebar" class="magic">
+  <h1 fill="current_stream_name">Loading...</h1>
+  <div id="sidebar_content">
+    <fb:like style="margin: 7px 15px; display:block" show_faces="no" width="250"></fb:like>
 
+    <div id="squad_desc" fill="current_stream_desc"></div>
+    <div id="squad_content" style="text-align:center; margin-top: 20px;">
+      <a href="##signup" class="loo button">Join this squad!</a>
+    </div>
+  </div>
+
+  <div id="branding" class="magic">
+    <hr />
     <div id="branding_menu">
       <a class="m_item loo not_demo_mode" href="##go_login">Sign In</a>
       <a class="m_item" href="#tool=help">Report a Problem</a>
       <a class="m_item" target="_blank" href="http://wiki.groundcrew.us/en/Help:Viewer">Get Help</a>
-      <fb:like href="http://developers.facebook.com/" width="450" height="80"/>
     </div>
+    <a href="http://groundcrew.us/" style="display: block;"><img src="i/powered_by.png" /></a>
   </div>
-</div>
-
-<div id="sidebar" class="magic">
-  <h1 fill="current_stream_name">Loading...</h1>
-  <div style="margin: 0px 15px; margin-top: 30px; margin-bottom -15px">
-    <fb:like show_faces="no" href='<!--# echo var="cannon_url" -->' width="250"></fb:like>
-  </div>
-  <div id="sidebar_content" fill="sidebar_content"></div>
 </div>

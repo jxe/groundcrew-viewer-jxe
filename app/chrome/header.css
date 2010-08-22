@@ -7,9 +7,7 @@
     font-size: 18px;
     line-height: 0.8em;
     height: 14px;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
+    margin-top: 9px;
     border-top: solid thin #808080;
     border-left: solid thin #555;
     background-image: -webkit-gradient(
@@ -39,10 +37,10 @@ a.m_item:hover {
 }
 
 #youbox {
-  display:inline;
+  display:inline-block;
+  margin-top:7px;
   color: #000;
   padding: 3px 40px;
-  border-bottom: solid thin #444;
   border-top: solid thin #808080;
   background-image: -webkit-gradient(
    linear, 0% 0%, 100% 0%,
@@ -63,31 +61,10 @@ a.m_item:hover {
 }
 
 
-#search_box {
-    left: auto; top: auto; right: 30px; bottom: 0px;
-    width: 100%;
-    float: right;
-}
-
 #search_form {
-    padding: 4px 20px;
-    border-bottom: solid thin #444;
-    border-top: solid thin rgba(127,127,127,0.6);
-    background-image: -webkit-gradient(
-     linear, 0% 0%, 100% 0%,
-     from(rgba(255,255,255,.0)),
-     color-stop(20%, rgba(255,255,255,.2)),
-     color-stop(50%, rgba(255,255,255,.25)),
-     color-stop(80%, rgba(255,255,255,.2)),
-     to(rgba(255,255,255,.0)));
+    padding: 4px 7px;
+    margin-top: 1px;
     text-shadow: #999 0px 1px 1px;
-    float: right;
-}
-
-#soc_logins {
-    float: right;
-    margin-top: 3px;
-    margin-right: 10px;
 }
 
 .fb_authed .fbloo { display: none; }

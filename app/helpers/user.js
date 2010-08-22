@@ -1,7 +1,6 @@
 LiveHTML.widgets.push({
   
   current_stream_name: function() {
-    if (demo) return "Oil Spill Volunteering";
     return window.current_stream_name || 'Demo Squad';
   },
   

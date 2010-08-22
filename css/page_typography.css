@@ -80,23 +80,32 @@ input.prompting, textarea.prompting {
   padding-bottom: 0;
 }
 
+#sidebar a.button {color: black;}
+
 .button {
   text-decoration: none;
   background: green;
-  color: black;
   font-weight: bold;
-  border: solid thin gold;
-  padding: 2px 5px;
-  font-size: 14px;
-  color:#050;
-  font-family:'trebuchet ms',helvetica,sans-serif;
-  font-weight:bold;
-  background-color:#fed;
+  padding: 4px 15px;
+  font-size: 16px;
   border:1px solid;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   border-top-color:#696;
   border-left-color:#696;
   border-right-color:#363;
   border-bottom-color:#363;
+  text-shadow: #444 0px -1px 1px;
+
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 40%,
+    from(rgba(255,255,255,0.3)),
+    to(transparent));
+
+ -webkit-box-shadow: 0px  3px 3px rgba(0,0,0,0.5);
+ -moz-box-shadow: 0px  3px 3px  rgba(0,0,0,0.5);
+
 }
 
 
