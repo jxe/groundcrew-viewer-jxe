@@ -128,7 +128,7 @@ p {
 #sidebar h1, #header h1 {
     margin-left: 5%; width: 90%;
   background: #2f70d0; color: #eee;
-  text-shadow: #555 0px 1px 2px, #fff 0px -1px 1px;
+  text-shadow: #555 0px 1px 2px, #777 0px -1px 1px;
   font-size: 20px; text-align: center; padding-top: 15px; padding-bottom: 7px;
   border-top: solid 1px #48f;
   border-bottom: solid 1px #25d;
