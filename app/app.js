@@ -95,6 +95,11 @@ Viewer = App = {
     window.location = loc;
   },
 
+  go_settings: function() {
+    var loc = 'http://groundcrew.us/'+current_stream+'/settings';
+    window.location = loc;
+  },
+
   error_on_non_immediate: function(item_ids) {
     if (!App.use_slow_agents) return false;
     var items = item_ids.map(function(id) { return id && id.resource(); }).compact();
@@ -247,6 +252,9 @@ Viewer = App = {
     FB.init({appId: '31986400134', apiKey: 'cbaf8df3f5953bdea9ce66f77c485c53', status: true, cookie: true, xfbml: true}); 
   },
   
+  signup: function() {
+    window.location = "http://groundcrew.us/" + current_stream + "/signup";
+  },
   decide_stream: function() {
     var slug = window.location.href.split('/')[3];
     if (location.protocol == 'file:') slug = 'demo';
