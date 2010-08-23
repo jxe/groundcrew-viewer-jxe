@@ -1,4 +1,3 @@
-
 .hud {
   left:0px;
   right:0px;
@@ -315,7 +314,7 @@
   font-size: 110%;
 }
 
-/* Modal styling */
+/* Modals */
 .modal {
   color: #474848;
   background: #C2C2C2;
@@ -341,7 +340,7 @@
 }
 
 .modal_narrow {
-  width: 150px;
+  width: 240px;
 }
 
 .modal .form_fields {
@@ -377,6 +376,16 @@
   font-size: 13px;
 }
 
+.modal form ul {
+  padding: 0;
+  margin: 0 0 2px 0;
+}
+
+.modal form li {
+  display: block;
+  margin-bottom: 5px;
+}
+
 .modal input[type=text], .modal textarea {
   width: 100%;
   margin: 2px 0 7px;
@@ -389,6 +398,152 @@
   margin: 2px 0 15px 0;
 }
 
+.apply_tags_tool button, .target_by_tags_tool button {
+  margin-top: 10px;
+}
+
+
+/* Dismissable tips */
+.tip {
+  color: #474848;
+  background: #FFF4C2;
+  border: 4px solid #4D4E4E;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  left:0px;
+  right:0px;
+  top:0px;
+  position: absolute;
+  z-index: 11000;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  -webkit-box-shadow: 1px  1px 4px  #000;
+  -moz-box-shadow: 1px  1px 4px  #000;
+}
+
+.tip_large {
+  width: 150px;
+  padding: 15px 15px 10px 15px;
+}
+
+.tip h2 {
+  font-size: 18px;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+.tip p {
+  margin: 0 0 .6em 0;
+}
+
+.tip_small {
+  width: 150px;
+  padding: 10px 10px 5px 10px;
+}
+
+.tip_small h2, .tip_small p {
+  font-size: 12px;
+}
+
+
+/* Prompt for semi-modes */
+
+.prompt {
+  color: #474848;
+  background-color: #c2c2c2;
+  border: 1px solid #999;  
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  left:0px;
+  right:0px;
+  top:0px;
+  position: absolute;
+  z-index: 11000;
+  padding: 4px 7px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  -webkit-box-shadow: 1px  1px 4px  #000;
+  -moz-box-shadow: 1px  1px 4px  #000;
+  width: 375px;
+}
+
+/* Popovers */
+
+.popover2 {
+  color: #474848;
+  background: white;
+  border: 4px solid #4D4E4E;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  left:0px;
+  right:0px;
+  top:0px;
+  position: absolute;
+  z-index: 11000;
+  padding: 10px 10px 5px 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  -webkit-box-shadow: 1px  1px 4px  #000;
+  -moz-box-shadow: 1px  1px 4px  #000;
+  width: 175px;
+}
+
+.popover2 h2 {
+  font-size: 15px;
+  margin: 0 0 3px 0;
+  padding: 0;
+}
+
+.popover2 ul {
+  margin: 0 0 15px 0;
+  list-style: none;
+  padding: 0;
+}
+
+.popover2 li {
+  margin: 0 0 3px 0;
+}
+
+/* Twitter signin / sign-up */
+
+.signup_twitter {
+  background-color: #66B8C9;
+  border: 1px solid #3C8DA3;
+  padding: 35px 15px 15px 15px;
+  color: white;
+  left:0px;
+  right:0px;
+  top:0px;
+  position: absolute;
+  z-index: 11000;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  -webkit-box-shadow: 1px  1px 4px  #000;
+  -moz-box-shadow: 1px  1px 4px  #000;
+  width: 375px;
+  font-size: 16px;
+}
+
+
+.signup_twitter h2 {
+  color: white;
+  font-size: 24px;
+  margin: 0 0 15px;
+  padding: 0;
+  text-shadow: 1px 1px 1px #266E8B;
+}
+
+.signup_twitter .buttons {
+  margin: 0 0 10px 0;
+}
 
 /* General styles - to be moved... */
 
@@ -399,9 +554,3 @@
 .inline {
   display: inline;
 }
-
-
-
-
-
-
