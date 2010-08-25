@@ -1,5 +1,9 @@
 body.loading .hide_until_loaded { display: none; }
 
+/* ================ */
+/* = sidebar, etc = */
+/* ================ */
+
 body {
     background-color: #ccc;
     background-image: -webkit-gradient(

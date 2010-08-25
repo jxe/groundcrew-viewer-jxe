@@ -1,11 +1,11 @@
 ////
 // This is the "Application" controller
 //
-Viewer = App = {
+App = {
   initted: false,
-  modes: {},
   tools: {},
-  most_recent_tool: {},
+
+  back: function() { go('tool='); },
 
   search_form_submitted: function(data, state, form) {
     go('q=' + data.q);
@@ -30,7 +30,7 @@ Viewer = App = {
   },
 
   update: function(changed) {
-    if (!This.prev_url) changed.tool = changed.item = changed.city = true;
+    if (!This.prev_url) changed.item = changed.city = true;
 
     if (changed.tool && This.tool && This._item && !changed.item) set('item', This.city);
 
@@ -65,24 +65,7 @@ Viewer = App = {
       if (!changed.city) Map.layer_recalculate('agents');
     }
 
-    if (changed.mode) {
-      This.first_responders[1] = App.modes[This.mode.toLowerCase()] || {};
-    }
-
-    if (changed.tool) {
-      App.most_recent_tool[This.mode] = This.tool;
-      $('.' + This.tool + '_tool').activate('tool');
-      go('#tool_unselected');
-      This.first_responders[0] = App.tools[This.tool] || {};
-      go('#tool_selected');
-    }
-
-    if (changed.item || changed.mode || changed.tool) App.refresh_mapwindow();
-
-    $('.magic').app_paint();
-    $('.hud:visible').app_paint();
-    App.loaded = true;
-
+    if (changed.item || changed.tool) App.refresh_mapwindow();
   },
 
   go_login: function() {
@@ -180,6 +163,11 @@ Viewer = App = {
     });
     return;
   },
+  
+  at_link: function(url) {
+    if (LiveHTML.metaOn && url.startsWith('@p')) return Selection.toggle(url.slice(1));
+    else return go('tool=;item=' + url.slice(1));
+  },
 
   did_add_events: function(state) {
     // TODO: temp fix.  Need to make events intelligently cause related windows to refresh
@@ -193,27 +181,6 @@ Viewer = App = {
     return Actions.event_t.tt(op_children[This.item]);
   },
   
-  // TODO: get stack trace (see http://eriwen.com/javascript/js-stack-trace/)
-  // and include some state like This.url, form submitted, etc.
-  report_error: function(msg, e, place) {
-    console.log(e);
-    var report = '';
-    report += msg;
-    report += " at " + place;
-    if (e) report += "\nException: " + e;
-    try {
-      report += '\nStack trace:\n' + printStackTrace({e:e}).join('\n') + '\n\n';
-    } catch(ee) {}
-    console.log(report);
-    $.post('/api/bugreport', {issue: report}, function(){
-      // TODO: turn user alerts back on (and make them not call alert()) when we're confident
-      // that spurious errors are being handled
-
-      // Notifier.error('A bug occurred in the Groundcrew viewer!' +
-      //   '\n\nIt has been reported to our developers, but you might need to reload the viewer. Sorry!');
-    });
-  },
-
   handle_error: function(msg, uri, line) {
     // map script loading fails sometimes, but seems to automatically reload
     if (msg.type == 'error') {
@@ -223,8 +190,14 @@ Viewer = App = {
     if (uri && uri.indexOf("http://www.panoramio.com/map/get_panoramas.php") >= 0) return false;
     if (uri && uri.indexOf("http://maps") >= 0 && msg == "Error loading script") return false;
 
-    App.report_error(msg, null, uri + ": " + line);
+    report_error(msg, null, uri + ": " + line);
     return false; // don't suppress the error
+  },
+
+  notify_error: function() {
+    var str = 'An error has occurred in this software.' +
+      '\n\nIt has been reported to our developers, but you might need to reload the page. Sorry!';
+    Notifier.error(str);
   },
 
 
@@ -240,21 +213,7 @@ Viewer = App = {
     App.load_stream();
     window.fbAsyncInit = App.init_facebook;
   },
-  
-  init_facebook: function() {
-    FB.Event.subscribe('auth.sessionChange', function(response) {
-      if (response.session) {
-        $('body').addClass('fb_authed');
-      } else {
-        $('body').removeClass('fb_authed');
-      }
-    });
-    FB.init({appId: '31986400134', apiKey: 'cbaf8df3f5953bdea9ce66f77c485c53', status: true, cookie: true, xfbml: true}); 
-  },
-  
-  signup: function() {
-    window.location = "http://groundcrew.us/" + current_stream + "/signup";
-  },
+    
   decide_stream: function() {
     var slug = window.location.href.split('/')[3];
     if (location.protocol == 'file:') slug = 'demo';
@@ -324,7 +283,7 @@ Viewer = App = {
     // init the UI
     Frame.init();
     $('body').addClass('stream_role_' + window.stream_role);
-    LiveHTML.init();
+    UIExtras.init();
     $('body').removeClass('loading');
     Map.establish();
 
@@ -643,14 +602,6 @@ Viewer = App = {
       go('tool=');
       $('.magic').app_paint();
     });
-  },
-
-  setmode: function(mode) {
-    if (This.mode != mode) return go('mode=' + mode);
-    else {
-      if (mode == 'dispatch') return true;
-      return Frame.resize();
-    }
   },
 
   collapse_leftbar: function() {

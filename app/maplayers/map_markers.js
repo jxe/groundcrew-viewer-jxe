@@ -29,7 +29,7 @@ MapMarkers = {
         sited = true;
       }
       if (!sited) {
-        App.report_error('No site for op ' + This.item);
+        report_error('No site for op ' + This.item);
         alert('Unable to locate operation.');
         return;
       }
