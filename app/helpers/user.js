@@ -5,7 +5,7 @@ LiveHTML.widgets.push({
   },
   
   current_stream_desc: function() {
-    if (demo) return "I'm a little tea pot, short and stout.  Tip me over in order to pour me out.";
+    if (demo) return "This is the groundcrew demo squad.  These are not real people, so you can send them whatever messages you like.";
     return window.current_stream_desc || '';
   },
   
