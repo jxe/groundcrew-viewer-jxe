@@ -3,60 +3,67 @@ LANG=C
 
 # basic builds
 
-uncompressed: html raw_js buildcss
+auto: uncompressed
 
-test: BUILD buildcss raw_js
-	m4 -P tests/test.html.m4 > BUILD/test.html
+BUILD/base.css: BUILD basetheme/css/*
+	cd basetheme; make css
+	cp basetheme/BUILD/base.css BUILD/
+	cp basetheme/i/* i/
 
-raw_js: BUILD
-	cat basetheme/BUILD/*.js lib/*/*.js app/*.js app/*/*.js > BUILD/viewer.js
-
-min_js: BUILD
-	cat basetheme/BUILD/*.js lib/*/*.js app/*.js app/*/*.js | jsmin > BUILD/viewer.js
-
-buildcss: BUILD
-	cat basetheme/BUILD/*.css css/*.css app/{chrome,helpers,tools}/*.css > BUILD/viewer.css
-
-
-# versions
-
-deploy: html raw_js buildcss
-	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,index.html,viewer.*,demo*.js} joe@groundcrew.us:gc/public/viewer_experimental/
-
-html: BUILD
-	m4 -P app/app.html.m4 > BUILD/index.html
-
-deploy_twitter: html min_js buildcss
-	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,viewer.*} joe@groundcrew.us:gc/gvs/twitter/
-
-gcapi:
-	cat lib/{jsappkit,gc_api}/*.js  | jsmin > BUILD/gcapi.js
-
-gcapi_transplant: gcapi
-	cp BUILD/gcapi.js /g/static/site/js/gcapi.js
-
-local_demo_data:
-	cp reference/data/demo*.js BUILD/
-
-
-# setup
+BUILD/base.js: BUILD basetheme/js/* basetheme/gojs/go.js
+	cd basetheme; make js
+	cp basetheme/BUILD/base.js BUILD/
 
 BUILD:
 	mkdir -p BUILD
 	(cd BUILD && ln -s ../i)
 
 
+# ============
+# = versions =
+# ============
+
+uncompressed: html raw_js buildcss
 
 
+# ========
+# = html =
+# ========
 
-# old stuff
+html: BUILD
+	m4 -P app/app.html.m4 > BUILD/index.html
 
-# debug: uncompressed
-#   cat BUILD/viewer.html | sed 's/.*maps\.google\.com.*/\<link href=\"..\/debug\/debug.css\" media=\"screen\" rel=\"stylesheet\" type=\"text\/css\" \/>/' | sed 's/http:\/\/ajax\.googleapis\.com\/ajax\/libs\/jquery\/1\.3\.1\/jquery\.min\.js/..\/vendor/jquery\/jquery\.min\.js/' > BUILD/debug.html
 
-# deploy
+# ======
+# = js =
+# ======
 
-# deploy_uncompressed: uncompressed
-#   rsync -avL BUILD/{i,viewer.*} joe@groundcrew.us:apps/groundcrew/current/public/
-#
+raw_js: BUILD/base.js
+	cat BUILD/base.js lib/*/*.js app/*.js app/*/*.js > BUILD/viewer.js
 
+min_js: BUILD/base.js
+	cat BUILD/base.js lib/*/*.js app/*.js app/*/*.js | jsmin > BUILD/viewer.js
+
+
+# =======
+# = css =
+# =======
+
+buildcss: BUILD/base.css
+	cat BUILD/base.css css/*.css app/{chrome,helpers,tools}/*.css > BUILD/viewer.css
+
+
+# ===========
+# = actions =
+# ===========
+
+deploy: html raw_js buildcss
+	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,index.html,viewer.*,demo*.js} joe@groundcrew.us:gc/public/viewer_experimental/
+
+
+# ==========
+# = random =
+# ==========
+
+local_demo_data:
+	cp reference/data/demo*.js BUILD/
