@@ -211,7 +211,6 @@ App = {
     App.decide_stream();
     App.authenticate();
     App.load_stream();
-    window.fbAsyncInit = App.init_facebook;
   },
     
   decide_stream: function() {
