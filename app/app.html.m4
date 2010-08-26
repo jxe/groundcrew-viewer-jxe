@@ -7,8 +7,27 @@
 </head>
 
 <body id="viewer" class="loading notcollapsed">
+  <div id="header" class="magic group">
+    <a id="expando" href="##collapse_leftbar">&raquo;</a>
+    <div id="header_sidebar">
+      <h1 fill="current_stream_name">Loading...</h1>
+    </div>
+    <a id="collapso" href="##collapse_leftbar">&laquo;</a>
+
+    <form id="search_form">
+      <input type="text" name="q" fill="query value" id="search" />
+      <a if="query" href="##clear_query">X</a>
+    </form>
+
+    <div id="youbox" fill="youbox"></div>
+
+    <img id="load_spinner" src="i/spinner.gif"/>
+    <div id="headermenu"></div>
+    <div id="soc_logins">
+      <fb:login-button class="hide_until_loaded fbloo" perms="sms,email,user_location">Sign in</fb:login-button>
+    </div>
+  </div>
   m4_include(`app/chrome/sidebar.html')
-  m4_include(`app/chrome/header.html')
 
   <!-- tool consists of the facebar, the map, and the console -->
   <div id="tool">
