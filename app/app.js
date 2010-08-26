@@ -200,6 +200,13 @@ App = {
     Notifier.error(str);
   },
 
+  // ===========
+  // = FB Auth =
+  // ===========
+  
+  fb_active_on_startup:  function(uid){User.fb_login_via_reload(uid);},
+  fb_login:              function(uid){User.fb_login_via_reload(uid);},
+  fb_logout:             function(){ window.location.href = '/api/logout'; },
 
   // ======================
   // = App initialization =
@@ -207,12 +214,13 @@ App = {
   
   initialize: function() {
     if($.browser.msie) return $('#unsupported').show();
+    UIExtras.init();
     window.onerror = App.handle_error;
     App.decide_stream();
     App.authenticate();
     App.load_stream();
   },
-    
+  
   decide_stream: function() {
     var slug = window.location.href.split('/')[3];
     if (location.protocol == 'file:') slug = 'demo';
@@ -282,7 +290,6 @@ App = {
     // init the UI
     Frame.init();
     $('body').addClass('stream_role_' + window.stream_role);
-    UIExtras.init();
     $('body').removeClass('loading');
     Map.establish();
 
