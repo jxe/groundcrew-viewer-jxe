@@ -19,7 +19,7 @@ LiveHTML.widgets.push({
     if (SidebarTags[current_stream]) return Subsquads.sidebar_content();
     if (!window.stream_names) window.stream_names = {};
     stream_names['demo'] = 'Demo Squad';
-    if (!demo) stream_names['demo-' + current_stream] = 'Demo ' + stream_names[current_stream];
+    if (!demo) stream_names['demo+' + current_stream] = 'Demo ' + stream_names[current_stream];
     var streams = $keys(window.stream_names);
     // if (streams.length == 0) return "<li>You have no other squads available.</li>";
     
