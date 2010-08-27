@@ -41,7 +41,7 @@ a {color:#000080;}
   position:absolute;
   z-index:99999;
   width:166px;
-  font-size:11px;
+  font-size:14px;
   color:#000;
   background:#F2F2F2;
   -webkit-box-shadow: 3px 3px 7px #BFBFBF;
@@ -87,7 +87,8 @@ a {color:#000080;}
   cursor:pointer;
 }
 .button_dropdown .select li:hover { /* Temporary */
-  background:#FFCC66;
+  background:#086BFF;
+  color: #fff;
 }
 .button_dropdown .select li.hover {
   background:#FFCC66;
@@ -151,7 +152,6 @@ a {color:#000080;}
 .button_dropdown .select dl.hover dd.img img {
   background-color:#E5E5E5;
 }
-
 
 /* MENU OPTIONS*/
 
@@ -256,7 +256,6 @@ a {color:#000080;}
   -webkit-border-bottom-right-radius:4px;
 }
 .compact_dropdowns .button_dropdown button.idle {
-  text-decoration:underline;
   color:#F2F2F2;
   background:transparent;
 }
@@ -323,51 +322,7 @@ a {color:#000080;}
 }
 
 
-/* squad_and_search_navigation */
-#squad_and_search_navigation .button_dropdown button {
-  padding:0;
-  border:none;
-  font-size:14px;
-  color:#BFBFBF;
-  background:transparent;
-}
-#squad_and_search_navigation .button_dropdown button.idle {
-/*  text-decoration:underline;*/
-  color:#BFBFBF;
-}
-#squad_and_search_navigation .button_dropdown button.idle:hover {
-  color:#FFF;
-}
-#squad_and_search_navigation .button_dropdown button.selected {
-  text-decoration:none;
-  color:#fff;
-}
-#squad_and_search_navigation .button_dropdown .dropdown {
-  background:#000;
-  -webkit-box-shadow: 3px 3px 7px #0C0C0C;
-}
-#squad_and_search_navigation .button_dropdown .dropdown .select {
-  background:#191919;
-  color:#E5E5E5;
-  border-top-color:#262626;
-  border-bottom-color:#262626;
-}
-#squad_and_search_navigation .button_dropdown .dropdown .select li:hover {
-  background:#262626;
-  color:#fff;
-}
-#squad_and_search_navigation .button_dropdown .dropdown .select li.hover {
-  background:#262626;
-  color:#fff;
-}
-#squad_and_search_navigation .button_dropdown .dropdown .select dl:hover {
-  background:#262626;
-  color:#fff;
-}
-#squad_and_search_navigation .button_dropdown .dropdown .select dl.hover {
-  background:#262626;
-  color:#fff;
-}
+
 
 /* hud */
 .hud .button_dropdown button {

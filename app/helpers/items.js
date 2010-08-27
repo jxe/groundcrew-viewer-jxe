@@ -17,7 +17,7 @@ LiveHTML.widgets.push({
 
   location_stmt: function() {
     if (! This._item.immediate) return "";
-    var loc_update = '<a href="##request_agent_update_location">ask for updated location</a>';
+    var loc_update = '<a class="lio" href="##request_agent_update_location">ask for updated location</a>';
     var stale_loc = !This._item.loc_ts || !Date.within(This._item.loc_ts, 60 * 60);
     if (This._item.acc) {
       if (This._item.acc == 'zip') return "Approximate location: by zipcode. " + loc_update;

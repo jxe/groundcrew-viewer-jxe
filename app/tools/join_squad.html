@@ -1,0 +1,38 @@
+<div class="hud hud2 join_squad_tool hidden_unless_active">
+  <img src="i/buttons/close.gif" href="##back" class="closebox"/>
+
+  <div class="hud_header">
+    <h2>Be Available for &ldquo;<span fill="current_stream_name"></span>&rdquo;</h2>
+  </div>
+
+  <div class="hud_content">
+    <p><strong>Put yourself on the map!</strong> If you're needed, you'll get an assignment by text message or <a href="http://itunes.apple.com/us/app/groundcrew/id358863993?mt=8" target="_blank">our iPhone app</a>. Your first name will appear on the map, located at your zip code, to make coordination easier.</p>
+
+    <form id="join_squad_form" class="xspace">
+
+      <input type="hidden" name="target_page" value="confirm_setup"/>
+
+      <ul class="formlist loo">
+        <li class="clearfix">
+          <label for="name">Name</label>
+          <input id="name" style="width: 200px;" name="name" type="text"/>
+        </li>
+        <li class="clearfix">
+          <label for="email">Email</label>
+          <input id="email" style="width: 200px;" name="e_sysid" type="text"/>
+        </li>
+        <li class="clearfix">
+          <label for="phone">Phone Number</label>
+          <input id="phone" style="width: 100px;" name="m_sysid" type="text"/>
+        </li>
+        <li class="clearfix">
+          <label>Zip Code</label>
+          <input style="width: 100px;" name="loc" type="text"/>
+        </li>
+      </ul>
+
+      <button type="submit" class="submit form">Sign me up!</button>
+
+    </form>
+  </div>
+</div>

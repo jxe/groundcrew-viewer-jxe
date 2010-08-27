@@ -1,3 +1,9 @@
+<div id="person_for_public_mode" class="mapwindow template">
+  <h2 fill="item_title"></h2>
+  <p>Available for [SQUAD1], [SQUAD2]</p>
+  <p class="note">approximate location (within 1 mile)</p>
+</div>
+
 <div id="person_for_any_mode" class="mapwindow template" style="max-width: 800px">
     <div style="float: left; width: 130px; font-size: 11px">
       <img class="niw_thumb"  fill="item_thumb_url src" />
@@ -22,7 +28,7 @@
       <p id="concern" if="has_concern">
         <span class="heading">concern</span> <b fill="concern" class="highlight"></b>
       </p>
-      <form id="make_it_happen_form" if="agent_assignable">
+      <form class="lio" id="make_it_happen_form" if="agent_assignable">
         <input name="assign"
           class="text"
           type="text"
@@ -38,7 +44,7 @@
         <input type="radio" name="kind" value="question">question
       </form>
 
-      <div if="twitter_status" class="iwbox">
+      <div if="twitter_status" class="lio iwbox">
         <h4>status</h4>
         <span fill="twitter_status"></span>
       </div>
@@ -53,7 +59,7 @@
         <span fill="twitter_bio"></span>
       </div>
 
-      <div if="answers" id="q-and-a">
+      <div if="answers" id="q-and-a" class="lio">
         <h6>Recent Questions</h6>
         <div fill="answers"></div>
       </div>

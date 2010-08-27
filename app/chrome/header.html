@@ -1,18 +1,20 @@
-<div id="logo"><img src="i/gclogo_balls2_beta.png" /></div>
-<img id="load_spinner" src="i/spinner.gif"/>
-<div id="header_menubar">
-  <div id="youbox" class="lio magic demo_mode_only" href="##go_to_self">
-    You've been involved in <b fill="self_posx_pts">48</b> positive experiences.
+<div id="header" class="magic group">
+  <div id="expando" href="##collapse_leftbar">&raquo;</div>
+  <div id="header_sidebar">
+    <h1 fill="current_stream_name">Loading...</h1>
   </div>
-  <a class="m_item" href="#tool=help">report a problem</a>
-  <a class="m_item" target="_blank" href="http://wiki.groundcrew.us/en/Help:Viewer">help</a>
-  <a class="m_item loo not_demo_mode" href="../login">sign in</a>
-  <a class="m_item lio not_demo_mode" href="../home" id="home">home</a>
-  <a class="m_item lio" href="/api/logout">sign out</a>
-</div>
-<div id="sms_counter" class="lio">
-  This billing period:
-  <b id="sms_sent">...</b> SMS sent,
-  <b id="sms_received">...</b> received<span id="sms_limited_comma">,</span>
-  <span id="sms_limited"><b id="sms_remaining">...</b> remaining</span>
+  <div id="collapso" href="##collapse_leftbar">&laquo;</div>
+
+  <form id="search_form">
+    <input type="text" name="q" fill="query value" id="search" />
+    <a if="query" href="##clear_query">X</a>
+  </form>
+
+  <div id="youbox" fill="youbox"></div>
+
+  <img id="load_spinner" src="i/spinner.gif"/>
+  <div id="headermenu"></div>
+  <div id="soc_logins">
+    <fb:login-button class="hide_until_loaded fbloo" perms="sms,email,user_location">Sign in</fb:login-button>
+  </div>
 </div>

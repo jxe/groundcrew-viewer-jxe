@@ -1,17 +1,35 @@
+
 .hud {
-  position:absolute;
+  left:0px;
+  right:0px;
+  top:0px;
+  position: absolute;
+  z-index: 11000;
   width: 400px;
   background: rgb(25,25,25); /* fallback */
   background: rgba(25,25,25,.95);
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  z-index: 100;
   color: #CCCCCC;
   padding: 10px;
   border-top: solid 1px #191919;
   border-left: solid 1px #191919;
   border-right: solid 1px #191919;
   border-bottom: solid 1px #191919;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  -webkit-box-shadow: 1px  1px 4px  #000;
+  -moz-box-shadow: 1px  1px 4px  #000; }
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+    left:0px;
+    right:0px;
+    top:0px;
+    position: absolute;
 }
 
 .hud a {
@@ -59,6 +77,141 @@
   background:#3A3A3A;
   color:#F2F2F2
 }
+
+
+/* New HUD style */
+
+.hud2 {
+  width: 470px;
+  top: 0px;
+  padding: 0;
+  color: #474848;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: solid 6px #4D4E4E;
+}
+
+.hud2 .hud_header {
+  color: #2E2E2E;
+  padding: 15px 15px 10px 15px;
+  background-color: #B5B5B5;
+  -moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 1px solid #9E9E9E;
+}
+
+.hud2 .hud_content {
+  background-color: #fff;
+  padding: 10px 15px;
+  -moz-border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+}
+
+.hud2 .hud_header h3 {
+    margin: 0;
+    font-size: 13px;
+    color: #eee;
+}
+
+.hud2 h2 {
+  color: #2E2E2E;
+}
+
+.hud2 h3 {
+  margin: .5em 0;
+}
+
+.hud2 p {
+  line-height: 1.2;
+  margin: .7em 0 0 0;
+}
+
+.hud2 strong {
+  color: #474848;
+}
+
+.hud2 hr {
+  border-color: #ccc;
+  margin: 1.2em 0;
+}
+
+.hud2 ul {
+    padding: 0px 0px 1em 2em;
+  line-height: 1.2;
+  margin: 4px 0 0 0;
+}
+
+.hud2 form ul {
+    padding: 0 0 0 2em;
+}
+
+.hud ul.formlist {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.hud2 ul.formlist li {
+  margin: 0 0 5px 0;
+}
+
+.hud2 label {
+	float: left;
+	clear: left;
+	text-align: right;
+	margin-right: 15px;
+	width: 100px;
+	line-height: 1.5;
+	padding-top: 3px;
+}
+
+.hud2 input, .hud2 textarea {
+  float: left;
+  clear: right;
+}
+
+.hud2 .form-descr {
+  clear: left;
+  font-size: 90%;
+  color: #aaa;
+  margin: 0 0 0 115px;
+  padding: 3px 0;
+}
+
+.hud2 .checkbox {
+  width: auto;
+  margin-left: 115px;
+  line-height: 2;
+}
+
+.hud2 .checkbox input {
+  margin: 5px 5px 0 0;
+}
+
+.hud2 img.closebox {
+  right: 6px;
+  top: 6px;
+}
+
+.hud2 button {
+  font-weight: bold;
+  font-size: 110%;
+  color: #fff;
+  background-color: #83BA4A;
+  border: none;
+  margin: 10px 0;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.hud2 button.form {
+  margin-left: 115px;
+}
+
 
 /* Approve Deputies */
 .approve_deputies_tool {

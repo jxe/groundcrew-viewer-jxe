@@ -1,0 +1,77 @@
+#sidebar_content {
+    height: auto;
+    padding-top: 20px;
+    margin-bottom: 78px;
+    overflow-y: auto;
+}
+
+#sidebar a {
+  color: #0066CC;
+}
+
+#squad_desc {
+    padding: 3px 5px;
+}
+
+/* placeholder h1 */
+#sidebar h1 { margin: 0px 10px -30px 10px; visibility:hidden; }
+
+
+#branding {
+    height: 78px;
+    padding: 0 10px;
+    position: absolute;
+    bottom: 0;
+    width: auto;
+    left: 0;
+    right: 0;
+}
+
+#branding_menu {
+  padding: 5px 0;
+}
+
+#sidebar h2 {
+    color: #666;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 3px 5px;
+    margin-top: 20px;
+}
+
+#sidebar .squad {
+    padding-left: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    cursor:pointer;
+}
+
+
+#sidebar .squad h3 {
+    font-weight: normal;
+    font-size: 15px;
+    margin-top: 0px;
+    color: #333;
+    margin-bottom: 0px;
+    color: #0066CC;
+    float: left;
+}
+
+#sidebar .squad .info {
+  margin: 3px 0 8px 0;
+  color: #888;
+}
+
+#sidebar .squad h3 i {
+    font-style: normal;
+    font-variant: small-caps;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: solid thin #ccc;
+    color: #ddd;
+    font-size: 12px;
+    padding: 1px 4px;
+    background-color: #292;
+    background-image: -webkit-gradient( linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.4)), to(transparent));
+}

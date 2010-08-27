@@ -60,6 +60,7 @@ Facebar = {
         $div.attr('class', 'thumbs').html(html);
         fold_expand_char = '&ndash;';
         opposite_state = 'folded';
+        if (group.length < 2) $a.hide();
       }
       
       if (group_selected) $div.addClass('selected');

@@ -1,4 +1,4 @@
-<div class="hud invite_agents_tool hidden_unless_active" style="top: 200px">
+<div class="hud invite_agents_tool hidden_unless_active">
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
   <h2>Invite agents and organizers</h2>
 
@@ -13,11 +13,12 @@
 
     <b>From / Reply-to</b><br/>
     (optional, helps bypass spam filters)<br/>
-    <input style="width: 90%;" name="reply_to" type="text" fill="user_name value"/>
+    <input style="width: 90%;" name="reply_to" type="text" fill="user_email value"/>
+    <input name="invite_page" type="hidden" value="signup"/>
 
     <div class="right xspace">
       <button style="text-align:right" type="submit" class="submit">Issue invitations<strong>&rarr;</strong></button><br>
-      <a target="_" href="../admin">advanced options...</a>
+      <a target="_" href="##go_admin">advanced options...</a>
     </div>
   </form>
 </div>

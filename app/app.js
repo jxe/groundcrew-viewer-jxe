@@ -66,11 +66,6 @@ Viewer = App = {
     }
 
     if (changed.mode) {
-      if (This.mode != '') $('#modetray').app_paint().show();
-      else $('#modetray').hide();
-      $('.' + This.mode + '_mode').activate('mode');
-      Frame.resize();
-
       This.first_responders[1] = App.modes[This.mode.toLowerCase()] || {};
     }
 
@@ -92,7 +87,17 @@ Viewer = App = {
 
   go_login: function() {
     $.cookie('back', window.location.href);
-    window.location = '../login';
+    window.location = '/' + current_stream+'/login';
+  },
+  
+  go_admin: function() {
+    var loc = 'http://groundcrew.us/'+current_stream+'/admin';
+    window.location = loc;
+  },
+
+  go_settings: function() {
+    var loc = 'http://groundcrew.us/'+current_stream+'/settings';
+    window.location = loc;
   },
 
   error_on_non_immediate: function(item_ids) {
@@ -142,7 +147,37 @@ Viewer = App = {
     }
   },
 
+  toggle_squad: function(tag) {
+    if (!window.authority) return go('tool=join_squad;with_tag=' + tag);
+
+    var agent = Agents.id(This.user.tag) || This.user;
+    var agent_atags = agent.atags.split(' ').to_h();
+    if (!agent_atags[tag]) {
+      // add it
+      return $.post_with_squad('/agents/update', { with_tags: tag }, function(){ 
+        agent.atags += (" " + tag);
+        Agents.handle_change(agent);
+        go('tool='); 
+      });
+      
+    } else {
+      // remove it
+      return $.post_with_squad('/agents/update', { without_tags: tag }, function(){ 
+        delete agent_atags[tag];
+        agent.atags = $keys(agent_atags).join(' ');
+        Agents.handle_change(agent);
+        go('tool='); 
+      });
+    }
+  },
+
   map_clicked: function() {
+    // close any open dropdowns
+    $(".button_dropdown button.selected").each(function(){
+      $(this).removeClass('selected').addClass('idle');
+      $(this).parent().children('.dropdown').fadeOut('fast');
+      $('body').removeClass('dropdownOpen');
+    });
     return;
   },
 
@@ -196,37 +231,106 @@ Viewer = App = {
   // ======================
   // = App initialization =
   // ======================
-
-  init: function() {
-    if (App.initted) return;
-    App.initted = true;
-
-    // error handling (don't use jquery: http://dev.jquery.com/ticket/3982)
+  
+  initialize: function() {
+    if($.browser.msie) return $('#unsupported').show();
     window.onerror = App.handle_error;
+    App.decide_stream();
+    App.authenticate();
+    App.load_stream();
+    window.fbAsyncInit = App.init_facebook;
+  },
+  
+  init_facebook: function() {
+    FB.Event.subscribe('auth.sessionChange', function(response) {
+      if (response.session) {
+        $('body').addClass('fb_authed');
+      } else {
+        $('body').removeClass('fb_authed');
+      }
+    });
+    FB.init({appId: '31986400134', apiKey: 'cbaf8df3f5953bdea9ce66f77c485c53', status: true, cookie: true, xfbml: true}); 
+  },
+  
+  signup: function() {
+    window.location = "http://groundcrew.us/" + current_stream + "/signup";
+  },
+  decide_stream: function() {
+    var slug = window.location.href.split('/')[3];
+    if (location.protocol == 'file:') slug = 'demo';
+    if (slug.startsWith('demo')) {
+      window.demo = true;
+      window.current_stream = 'demo';
+      window.stream_url = slug + '.js';
+    } else {
+      window.demo = false;
+      window.current_stream = slug;      
+      window.stream_url = '/api/stream.js?stream=' + current_stream;
+    }
+    if (slug.startsWith('demo+')) {
+      window.demo = true;
+      window.current_stream = slug.slice(5);
+      window.stream_url = '/api/stream.js?stream=' + current_stream;
+    };
+    if (demo) $('body').addClass('demo_mode');
+  },
+  
+  authenticate: function() {
+    if (window.demo) { 
+      App.authenticated = true; 
+      window.authority = 'pChad';
+      login_by_cookie();
+      return; 
+    }
+    $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script', success: function(){
+      login_by_cookie();
+      App.authenticated = true;
+      if (App.stream_loaded) App.init_ui();
+    }});
+  },
+  
+  load_stream: function() {
+    $.ajax({ url: stream_url, dataType: 'script', success: function(){
+      App.stream_loaded = true;
+      if (App.authenticated) App.init_ui();
+    }});
+  },
+  
+  start_lrl: function() {
+    if (window.location.hash) return window.location.hash.slice(1);
+    else {
+      var city = App.start_city();
+      if (window.authority || !SidebarTags[window.current_stream]) return city;
+      else return city + ";tool=welcome";
+    }
+  },
+    
+  start_city: function() {
+    // find most active citites
+    var agents_by_city = Agents.find('=city_id');
+    delete agents_by_city[0];
+    var active_cities = $keys(agents_by_city);
+    var top_city = active_cities[0];
+    if (!top_city && most_recent_item) top_city = most_recent_item.city_id;
+
+    if (active_cities.length > 1) return 'item=';
+    else return 'item=City__' + top_city;
+  },
+  
+  init_ui: function() {
+    // TODO: Noah, this is slow.
+    // Agents.init_manual();
 
     // init the UI
     Frame.init();
-    if (demo) $('body').addClass('demo_mode');
     $('body').addClass('stream_role_' + window.stream_role);
     LiveHTML.init();
     $('body').removeClass('loading');
     Map.establish();
-    $('._mode').activate('mode');
 
     // start communication with server
     Ajax.init();
-
-    if (window.location.hash) Ajax.go_on_load = window.location.hash.slice(1);
-    else {
-      var start_city = '';
-      var agents_by_city = Agents.find('=city_id');
-      delete agents_by_city[0];
-      var active_cities = $keys(agents_by_city);
-      if (active_cities.length == 1) start_city = 'City__' + active_cities[0];
-      if (active_cities.length == 0 && most_recent_item) start_city = 'City__' + most_recent_item.city_id;
-      Ajax.go_on_load = 'item=' + start_city;
-    }
-
+    Ajax.go_on_load = App.start_lrl();
     Ajax.maybe_trigger_load();
 
     if (demo) Demo.init_manual();
@@ -261,6 +365,32 @@ Viewer = App = {
       MapLandmarks.fetch_landmarks_in_bounds(GM.getBounds());
   },
 
+  suggest_squad_form_submitted: function(data) {
+    data.kind = "Squad Suggestion";
+    data.suggest_for = window.current_stream_name || window.current_stream;
+    $.post('/api/fsubmit', data, function(){
+      Notifier.success('Thanks!', 'Submitted');
+      go('tool=');
+    });
+  },
+
+  join_squad_form_submitted: function(data) {
+    data.stream = window.current_stream;
+    if (This.with_tag) {
+      data.with_tags = This.with_tag;
+      delete This.with_tag;
+    }
+    $.post('/api/people/join', data, function(){
+      Notifier.success('Thanks!', 'Loading your new account...');
+      $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script', success: function(){
+        login_by_cookie();
+        if (data.with_tags) { This.user.atags += data.with_tags; };
+        Notifier.success('Thanks!', 'Check your email to complete signup...');
+        go('tool=');
+      }});
+    });
+  },
+  
   help_form_submitted: function(data) {
     $.post('/api/bugreport', {issue: data.issue}, function(){
       Notifier.success('Thanks!', 'Submitted');
@@ -501,16 +631,32 @@ Viewer = App = {
       go('tool=');
     });
   },
+  
+  squad_settings_form_submitted: function(data) {
+    if (!data.name || data.name.length == 0 || !data.desc || data.desc.length == 0) {
+      alert('Please provide both a name and a description!'); return "redo";
+    }
+    return $.post_with_squad('/update', data, function(){
+      if (window.stream_names) window.stream_names[current_stream] = data.name;
+      window.current_stream_name = data.name;
+      window.current_stream_desc = data.desc;
+      go('tool=');
+      $('.magic').app_paint();
+    });
+  },
 
   setmode: function(mode) {
     if (This.mode != mode) return go('mode=' + mode);
     else {
       if (mode == 'dispatch') return true;
-      $('#modetray').toggle();
       return Frame.resize();
     }
   },
 
+  collapse_leftbar: function() {
+    $('body').toggleClass('collapsed');
+  },
+  
 
   make_it_happen_form_submitted: function(data) {
     if (!data.assign) {
@@ -554,15 +700,10 @@ Viewer = App = {
   invite_agents_form_submitted: function(data, state) {
     if (demo) {Notifier.success('Invitations sent!'); return go('tool=;mode=');}
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to invite agents.");
-    var today = (new Date()).toDateString().slice(4).toLowerCase().replace(/ /g, '_');
-    tags = 'invited_on_' + today;
-    if (data.groups && data.groups.match(/organizers/)) tags += ' group:organizers';
-    return $.post_with_squad('/people/invite', {
-      emails:     data.emails,
-      groups:     data.groups   || null,
-      reply_to:   data.reply_to,
-      with_tags:  tags
-    }, function(){
+    // var today = (new Date()).toDateString().slice(4).toLowerCase().replace(/ /g, '_');
+    // tags = 'invited_on_' + today;
+    data.squad = window.current_stream;
+    return $.post_with_squad('/s'+current_stream+'/invitations', data, function(){
       go('tool=view_events;mode=interact');
     });
   },
@@ -596,6 +737,10 @@ Viewer = App = {
     if (!window.current_stream_systems) return false;
     return window.current_stream_flags.indexOf(flag) >= 0;
   },
+  
+  blast_message_flag: function() {
+    return App.stream_has_flag('blast_message');
+  },
 
   current_stream_systems: function() {
     if (window.demo) return 'm';
@@ -603,9 +748,5 @@ Viewer = App = {
   },
 
   stream_role_leader: function() { return demo || window.stream_role == 'leader'; },
-  stream_role_organizer: function() { return demo || window.stream_role == 'leader' || window.stream_role == 'organizer'; },
-
-  interact_mode: function() { App.setmode('interact'); },
-  manage_mode: function() { App.setmode('manage'); },
-  dispatch_mode: function() { App.setmode(''); }
+  stream_role_organizer: function() { return demo || window.stream_role == 'leader' || window.stream_role == 'organizer'; }
 };
