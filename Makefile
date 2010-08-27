@@ -21,9 +21,6 @@ buildcss: BUILD
 # versions
 
 deploy: html raw_js buildcss
-	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,index.html,viewer.*,demo*.js} joe@groundcrew.us:gc/public/viewer/
-
-deploy_experimental: html raw_js buildcss
 	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,index.html,viewer.*,demo*.js} joe@groundcrew.us:gc/public/viewer_experimental/
 
 html: BUILD
