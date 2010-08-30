@@ -6,7 +6,11 @@ Map.layer_calculators['agents'] = function(){
     var marker = new google.maps.Marker({
       icon: 'i/map/' + this.map_icon + '.png',
       position: new google.maps.LatLng(this.lat, this.lng),
-      shadow: "i/map/man.shadow.png",
+      shadow: new google.maps.MarkerImage("i/map/man.shadow.png",
+        null,
+        null,
+        new google.maps.Point(15, 32)
+      ),
       title: this.title
     });
     google.maps.event.addListener(marker, 'click', function() { go('@' + id); });
