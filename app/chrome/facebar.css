@@ -21,14 +21,8 @@
     background-image: -webkit-gradient(
         linear, 0% 0%, 0% 100%,
         from(#555),
-        color-stop(77%, black),
-        color-stop(77%, rgba(80,80,80,.9)),
-        to(#bbb));
-
-    background-image: -webkit-gradient(
-        linear, 0% 0%, 0% 100%,
-        from(#555),
         to(black));
+    background-image: -moz-linear-gradient(#555,black);
 }
 #flexbar {
   height: 94px;
@@ -105,6 +99,7 @@ body.loading #flexbar #empty_text {
     linear, 0% 0%, 0% 100%,
     from(white),
     to(rgba(51,51,51,.9)));
+    background-image: -moz-linear-gradient(white, rgba(51,51,51,.9));
 }
 
 #flexbar #agents > div > div {
@@ -163,6 +158,7 @@ body.loading #flexbar #empty_text {
     linear, 0% 0%, 0% 100%,
     from(transparent),
     to(#2D2D2D));
+  background-image: -moz-linear-gradient(transparent, #2d2d2d);
   cursor:pointer;
 
   border-left:solid 1px #333;
@@ -188,12 +184,8 @@ body.loading #flexbar #empty_text {
   cursor: pointer;
   background: #E56B0B;
   height: 14px;
-
-  background-image: -webkit-gradient(
-    linear, 0% 0%, 0% 100%,
-    from(#fff),
-    to(transparent));
-
+  background-image: -webkit-gradient( linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.4)), to(transparent));
+  background-image: -moz-linear-gradient(rgba(255,255,255,0.4), transparent);
 }
 
 #flexbar #agents div {
@@ -211,6 +203,7 @@ body.loading #flexbar #empty_text {
     linear, 0% 0%, 0% 100%,
     from(rgba(255,255,255,0.1)),
     to(transparent));
+  background-image: -moz-linear-gradient(rgba(255,255,255,0.1), transparent);
 }
 
 #flexbar #agents div a:hover {
@@ -221,6 +214,7 @@ body.loading #flexbar #empty_text {
     linear, 0% 0%, 0% 100%,
     from(rgba(255,255,255,0.4)),
     to(transparent));
+  background-image: -moz-linear-gradient(rgba(255,255,255,0.4), transparent);
 }
 
 #flexbar #agents div.folded {
@@ -282,16 +276,10 @@ body.loading #flexbar #empty_text {
   position: float;
 }
 
-#flexbar #agents div h2.red    { background: #CC2327; background-image: -webkit-gradient( linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.4)), to(transparent));   }
-#flexbar #agents div h2.orange  { background: #E2AE4B; background-image: -webkit-gradient( linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.4)), to(transparent));   }
-#flexbar #agents div h2.green  { background: #7BB037; background-image: -webkit-gradient( linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.4)), to(transparent));   }
-#flexbar #agents div h2.grey   { background: #A8BFBF; background-image: -webkit-gradient( linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.4)), to(transparent));   }
-
-#flexbar #agents div h2.red    { border-color:#CC2327; }
-#flexbar #agents div h2.orange { border-color:#DA8929; }
-#flexbar #agents div h2.green  { border-color:#539A3A; } /* was #83BA4A */
-#flexbar #agents div h2.grey   { border-color:#889F9F; }
-
+#flexbar #agents div h2.red    { background-color: #CC2327; border-color:#CC2327; }
+#flexbar #agents div h2.orange { background-color: #E2AE4B; border-color:#DA8929; }
+#flexbar #agents div h2.green  { background-color: #7BB037; border-color:#539A3A; }
+#flexbar #agents div h2.grey   { background-color: #A8BFBF; border-color:#889F9F; }
 
 #flexbar #unknown_agents   h2 { background: #A8BFBF; }
 #flexbar #inaccessible_agents h2 { background: #222621; color:#4C4C4C; }
