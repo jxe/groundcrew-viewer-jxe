@@ -2,7 +2,7 @@
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 	<title>Groundcrew Viewer</title>
-  <script>document.write('<base href="http://'+window.location.host+'/viewer_experimental/">');</script>
+  <script>if (window.location.protocol == 'http') document.write('<base href="http://'+window.location.host+'/viewer_experimental/">');</script>
 	<link href="viewer.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
 
