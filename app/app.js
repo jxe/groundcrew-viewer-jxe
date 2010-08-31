@@ -35,9 +35,6 @@ App = {
   
   url_changed: function() {
     var changed = This.changed;
-    console.log('this changed');
-    console.log(changed);
-
     if (changed.tool && This.tool && This._item && !changed.item) go.set('item', This.city);
 
     if (changed.item) {
