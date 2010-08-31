@@ -28,28 +28,34 @@ App = {
   closeclick: function() {
     This.city ? go('@' + This.city) : go('tool=');
   },
+  
+  start: function() {
+    This.changed.item = This.changed.city = true;
+  },
+  
+  url_changed: function() {
+    var changed = This.changed;
+    console.log('this changed');
+    console.log(changed);
 
-  update: function(changed) {
-    if (!This.prev_url) changed.item = changed.city = true;
-
-    if (changed.tool && This.tool && This._item && !changed.item) set('item', This.city);
+    if (changed.tool && This.tool && This._item && !changed.item) go.set('item', This.city);
 
     if (changed.item) {
       if (!This.item) {
         This._item = null;
-        set('city', null);
+        go.set('city', null);
       } else if (This.item.startsWith('City__')) {
         This._item = null;
-        set('city', This.item);
+        go.set('city', This.item);
       } else {
         This._item = This.item && This.item.resource();
-        if (This._item) set('city', 'City__' + This._item.city_id);
+        if (This._item) go.set('city', 'City__' + This._item.city_id);
       }
     }
 
     if (changed.city || changed.q) {
       This.city_id = This.city && This.city.replace('City__', '');
-      set('agents', Agents.here());
+      go.set('agents', Agents.here());
       $('#flexbar').scrollLeft(0);
       if (This.city) $('body').removeClass('zoomed_out');
       else $('body').addClass('zoomed_out');
@@ -162,9 +168,10 @@ App = {
     return;
   },
   
-  at_link: function(url) {
-    if (LiveHTML.metaOn && url.startsWith('@p')) return Selection.toggle(url.slice(1));
-    else return go('tool=;item=' + url.slice(1));
+  at_item: function(url) {
+    var url = This.new_url.slice(1);
+    if (LiveHTML.metaOn && url.startsWith('p')) return Selection.toggle(url);
+    else return go('tool=;item=' + url);
   },
 
   did_add_events: function(state) {
@@ -188,7 +195,7 @@ App = {
     if (uri && uri.indexOf("http://www.panoramio.com/map/get_panoramas.php") >= 0) return false;
     if (uri && uri.indexOf("http://maps") >= 0 && msg == "Error loading script") return false;
 
-    report_error(msg, null, uri + ": " + line);
+    go.err(msg, null, uri + ": " + line);
     return false; // don't suppress the error
   },
 
@@ -198,19 +205,13 @@ App = {
     Notifier.error(str);
   },
 
-  // ===========
-  // = FB Auth =
-  // ===========
-  
-  fb_active_on_startup:  function(uid){User.fb_login_via_reload(uid);},
-  fb_login:              function(uid){User.fb_login_via_reload(uid);},
-  fb_logout:             function(){ window.location.href = '/api/logout'; },
 
   // ======================
   // = App initialization =
   // ======================
   
   initialize: function() {
+    go.trigger('start');
     if($.browser.msie) return $('#unsupported').show();
     UIExtras.init();
     window.onerror = App.handle_error;
@@ -218,20 +219,6 @@ App = {
     App.authenticate();
     App.load_stream();
     window.fbAsyncInit = App.init_facebook;
-  },
-  
-  init_facebook: function() {
-    FB.Event.subscribe('auth.sessionChange', function(response) {
-      if (response.session) {
-        $('body').addClass('fb_authed');
-        FB.api('/me', function(user) {
-          // alert(user.name);
-        });
-      } else {
-        $('body').removeClass('fb_authed');
-      }
-    });
-    FB.init({appId: '31986400134', apiKey: 'cbaf8df3f5953bdea9ce66f77c485c53', status: true, cookie: true, xfbml: true}); 
   },
   
   decide_stream: function() {
@@ -720,3 +707,6 @@ App = {
   stream_role_leader: function() { return demo || window.stream_role == 'leader'; },
   stream_role_organizer: function() { return demo || window.stream_role == 'leader' || window.stream_role == 'organizer'; }
 };
+
+
+go.push(App);

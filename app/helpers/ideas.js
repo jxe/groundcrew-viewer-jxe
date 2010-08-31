@@ -1,4 +1,4 @@
-LiveHTML.widgets.push({
+go.push({
   
   all_ideas: function(state) {
     return Ideas.all.map(function(idea){

@@ -48,11 +48,13 @@
   <div id="offscreen" style="display:none">m4_syscmd(`cat app/maplayers/*.html')</div>
   <div id="screen"></div>
   <div id="fb-root"></div>
-
+  <script src="http://connect.facebook.net/en_US/all.js"></script>
+  <script>
+    FB.init({appId: '31986400134', apiKey: 'cbaf8df3f5953bdea9ce66f77c485c53', cookie: true, xfbml: true});
+  </script>
   <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script src="viewer.js"></script>
   <script> App.initialize(); </script>
-  <script async="true" src="http://connect.facebook.net/en_US/all.js"></script>
 </body>
 </html>

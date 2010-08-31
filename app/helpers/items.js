@@ -1,4 +1,4 @@
-LiveHTML.widgets.push({
+go.push({
 
   // item state:  latch status, problems, etc
 

@@ -12,7 +12,7 @@ Actions = {
   
 };
 
-LiveHTML.widgets.push({
+go.push({
   
   recent_events: function(state) {
     $.each(Anncs.all, function(){ Event.improve(this); });

@@ -53,4 +53,4 @@ MapLandmarks = {
   
 };
 
-LiveHTML.widgets.push(MapLandmarks);
+go.push(MapLandmarks);

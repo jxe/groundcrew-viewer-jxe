@@ -1,4 +1,4 @@
-LiveHTML.widgets.push({
+go.push({
 
   places6: function(state) {
     return Tiles.place_tile.tt(Landmarks.here(6));

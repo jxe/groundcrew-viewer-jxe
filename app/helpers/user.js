@@ -1,4 +1,4 @@
-LiveHTML.widgets.push({
+go.push({
   
   current_stream_name: function() {
     return window.current_stream_name || 'Demo Squad';

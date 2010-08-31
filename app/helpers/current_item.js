@@ -1,4 +1,4 @@
-LiveHTML.widgets.push({
+go.push({
   blank:       function(){ return ''; },
   
   item_thumb_url: function(state) { if (This._item && This._item.thumb_url) return This._item.thumb_url.gcify_url(); },

@@ -65,7 +65,7 @@ Op_Agents = {
 };
 
 
-LiveHTML.widgets.push({
+go.push({
 
   op_agents_window: function() {
     var op = This.item;

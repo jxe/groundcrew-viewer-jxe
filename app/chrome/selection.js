@@ -95,7 +95,7 @@ Selection = {
 };
 
 
-LiveHTML.widgets.push({
+go.push({
     
   clear_selection: function(state) {
     Selection.clear();
