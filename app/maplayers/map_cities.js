@@ -17,9 +17,9 @@ Map.layer_calculators['cities'] = function(){
       shadow: "i/map/man.shadow.png",
       title: cities[city_id]
     });
+    
     google.maps.event.addListener(marker, 'click', function() { go('@City__' + city_id); });
-    mapping[city_id] = marker;
+    mapping[city_id.toString()] = marker;
   });
-  
   return mapping;
 };
