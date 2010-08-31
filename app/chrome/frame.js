@@ -1,12 +1,6 @@
 Frame = {
-
-  resize: function() {
-    GM && GM.checkResize();
-  },
   
   init: function() {
-    $(window).resize(Frame.resize);
-    Frame.resize();
     $('.startupmagic').app_paint();
 
     $(document).keyup(function(e){
