@@ -5,7 +5,7 @@ App = {
   initted: false,
   tools: {},
 
-  back: function() { go('tool='); },
+  back: function() { go('mode=;tool='); },
 
   search_form_submitted: function(data, state, form) {
     go('q=' + data.q);
@@ -68,7 +68,7 @@ App = {
       if (!changed.city) Map.layer_recalculate('agents');
     }
 
-    if (changed.item || changed.tool) App.refresh_mapwindow();
+    if (changed.item || changed.mode || changed.tool) App.refresh_mapwindow();
   },
 
   go_login: function() {
@@ -158,7 +158,7 @@ App = {
   at_item: function(url) {
     var url = This.new_url.slice(1);
     if (LiveHTML.metaOn && url.startsWith('p')) return Selection.toggle(url);
-    else return go('tool=;item=' + url);
+    else return go('mode=;tool=;item=' + url);
   },
 
   anncs_added: function(state) {
