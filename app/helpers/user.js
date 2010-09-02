@@ -10,7 +10,7 @@ go.push({
   },
   
   youbox: function() {
-    if (typeof window.sms_remaining == "number") return "<b>"+window.sms_remaining+"</b> text messages remaining until we run out of money.  <a target='_' href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NM3YQR6REFWHQ'>Donate.</a>";
+    if (typeof window.sms_remaining == "number") return "<b>"+window.sms_remaining+"</b> text messages remaining";
     else if (window.posx) return "You've organized <b>48</b> positive experiences.";
     else return "Join squads to mobilize positive action.";
   },
