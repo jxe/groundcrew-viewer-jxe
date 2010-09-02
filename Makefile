@@ -5,6 +5,9 @@ LANG=C
 
 auto: uncompressed
 
+open: uncompressed
+	open -a WebKit BUILD/index.html
+
 BUILD/base.css: BUILD basetheme/css/*
 	cd basetheme; make css
 	cp basetheme/BUILD/base.css BUILD/
