@@ -361,7 +361,7 @@ App = {
   
   reverse_geocode_landmark: function(data) {
     var geocoder = new GClientGeocoder();
-    geocoder.getLocations(new GLatLng(data.lat, data.lng), function(response) {
+    geocoder.getLocations(new google.maps.LatLng(data.lat, data.lng), function(response) {
       if (response && response.Status.code==200) {
         var place = response.Placemark[0];
         data.name = place.address;
@@ -676,7 +676,7 @@ App = {
       if(response.Status.code==200){
         place = response.Placemark[0];
         accuracy = place.AddressDetails.Accuracy;
-        map.setCenter(new GLatLng(place.Point.coordinates[1], place.Point.coordinates[0]), tabAccuracy[accuracy]);
+        map.setCenter(new google.maps.LatLng(place.Point.coordinates[1], place.Point.coordinates[0]), tabAccuracy[accuracy]);
         go('city=' + City.closest());
       }
     });
