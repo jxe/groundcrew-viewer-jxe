@@ -13,25 +13,25 @@
   border:none;
 }
 
-#person_for_any_mode h2 {
+#agent_for_any_mode h2 {
   display: inline;
   padding-right: 20px;
 }
 
-#person_for_any_mode .skills.tags {
+#agent_for_any_mode .skills.tags {
   float: right;
   padding-right: 20px;
 }
 
-#person_for_any_mode .upfor.tags {
+#agent_for_any_mode .upfor.tags {
   display: inline;
 }
 
-#person_for_any_mode .grayish {
+#agent_for_any_mode .grayish {
   color: #555;
 }
 
-#person_for_any_mode .note {
+#agent_for_any_mode .note {
   color: #bbb;
 }
 

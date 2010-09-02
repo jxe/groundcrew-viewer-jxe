@@ -77,3 +77,9 @@ Facebar = {
   }
   
 };
+
+go.push({
+  agents_here_changed: function() {
+    Facebar.populate(This.agents);
+  }
+});

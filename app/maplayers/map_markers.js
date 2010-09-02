@@ -48,3 +48,14 @@ MapMarkers = {
   }
   
 };
+
+go.push({
+  agents_added: function() {
+    if (Map.layer_visible['agents']) Map.layer_recalculate('agents');
+  },
+  
+  item_removed: function(tag) {
+    Map.site_remove(MapMarkers.type(tag), tag);
+  }
+  
+});

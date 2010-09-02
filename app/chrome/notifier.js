@@ -1,6 +1,9 @@
 Notifier = {
-
+  
   did_add_new_event: function(ev) {
+    // Don't notify events unless app is now looking for changes (as opposed to loading initial state)
+    if (!Resource.handle_changes) return;
+
     Event.improve(ev);
     var go = ev.item_tag;
     // we only notify on items that are latched to us.  TODO: turn back on

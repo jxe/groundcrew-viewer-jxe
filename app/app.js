@@ -171,11 +171,12 @@ App = {
     else return go('tool=;item=' + url);
   },
 
-  did_add_events: function(state) {
+  anncs_added: function(state) {
     // TODO: temp fix.  Need to make events intelligently cause related windows to refresh
     // (e.g. agent window refreshes if agent reported)
     if (This.item && This.item.resource_type() == 'Op') App.refresh_mapwindow();
     if (This.tool == 'view_events') $('.view_events_tool').app_paint();
+    if (This.tool == 'chat') $('#chat_palette').app_paint();
   },
 
   live_event_info: function (state) {
@@ -281,9 +282,6 @@ App = {
   },
   
   init_ui: function() {
-    // TODO: Noah, this is slow.
-    // Agents.init_manual();
-
     // init the UI
     Frame.init();
     $('body').addClass('stream_role_' + window.stream_role);
@@ -292,8 +290,9 @@ App = {
 
     // start communication with server
     Ajax.init();
-    Ajax.go_on_load = App.start_lrl();
-    Ajax.maybe_trigger_load();
+    StreamLoader.init();
+    StreamLoader.go_on_load = App.start_lrl();
+    StreamLoader.maybe_trigger_load();
 
     if (demo) Demo.init_manual();
   },
@@ -541,7 +540,7 @@ App = {
     if (This.city_id) params['city'] = This.city_id;
     if (demo) { Notifier.success("Blasting message to agents!"); return go('tool='); }
 
-    if (window.remaining <= 0) {
+    if (window.sms_remaining <= 0) {
       $.post('/api/bugreport', {issue: window.current_stream + ' has run out of text messages!'});
       alert('You have reached your limit on text messages!  ' +
         'Please contact Groundcrew support to purchase more.');

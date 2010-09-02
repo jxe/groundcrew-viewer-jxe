@@ -25,7 +25,7 @@ Frame = {
       if (ch == 't') { setTimeout(function(){go('tool=tag_agents');},0); return false; }
       if (ch == '$') { test = !test; if (test) alert('test mode active'); return false; }
       if (ch == '#') { window.open(stream_url); return false; }
-      if (ch == 'Q') { clearTimeout(Ajax.timer); return false; }
+      if (ch == 'Q') { clearTimeout(StreamLoader.timer); return false; }
       if (demo) return Demo.qa_keypresses(ch);
       return true;
     });

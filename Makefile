@@ -10,7 +10,7 @@ BUILD/base.css: BUILD basetheme/css/*
 	cp basetheme/BUILD/base.css BUILD/
 	cp basetheme/i/* i/
 
-BUILD/base.js: BUILD basetheme/js/* basetheme/gojs/go.js
+BUILD/base.js: BUILD basetheme/gcjs/*.js basetheme/gojs/*.js basetheme/js/*
 	cd basetheme; make js
 	cp basetheme/BUILD/base.js BUILD/
 
