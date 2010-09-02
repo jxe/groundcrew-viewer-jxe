@@ -244,6 +244,7 @@ App = {
   },
   
   load_stream: function() {
+    Ajax.init();
     $.ajax({ url: stream_url, dataType: 'script', success: function(){
       App.stream_loaded = true;
       if (App.authenticated) App.init_ui();
@@ -278,9 +279,8 @@ App = {
     $('body').removeClass('loading');
     Map.establish();
 
-    // start communication with server
-    Ajax.init();
-    StreamLoader.init();
+    // start refreshing the stream
+    StreamLoader.init(stream_url);
     StreamLoader.go_on_load = App.start_lrl();
     StreamLoader.maybe_trigger_load();
 
