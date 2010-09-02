@@ -33,7 +33,7 @@ App = {
     This.changed.item = This.changed.city = true;
   },
   
-  url_changed: function() {
+  change_state: function() {
     var changed = This.changed;
     if (changed.tool && This.tool && This._item && !changed.item) go.set('item', This.city);
 
