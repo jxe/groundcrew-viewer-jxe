@@ -77,13 +77,11 @@ App = {
   },
   
   go_admin: function() {
-    var loc = 'http://groundcrew.us/'+current_stream+'/admin';
-    window.location = loc;
+    window.location = '/' + current_stream + '/admin';
   },
 
   go_settings: function() {
-    var loc = 'http://groundcrew.us/'+current_stream+'/settings';
-    window.location = loc;
+    window.location = '/' + current_stream + '/settings';
   },
 
   error_on_non_immediate: function(item_ids) {
