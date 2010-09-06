@@ -32,14 +32,14 @@ html: BUILD
 # = js =
 # ======
 
-BUILD/base.js: BUILD ../basetheme/.git/HEAD
-	cp ../basetheme/BUILD/base.js BUILD/
+BUILD/super.js: BUILD ../basetheme/BUILD/super.js
+	cp ../basetheme/BUILD/super.js BUILD/
 
-raw_js: BUILD/base.js
-	cat BUILD/base.js lib/*/*.js app/*.js app/*/*.js > BUILD/viewer.js
+raw_js: BUILD/super.js
+	cat BUILD/super.js lib/*/*.js app/*.js app/*/*.js > BUILD/viewer.js
 
-min_js: BUILD/base.js
-	cat BUILD/base.js lib/*/*.js app/*.js app/*/*.js | jsmin > BUILD/viewer.js
+min_js: BUILD/super.js
+	cat BUILD/super.js lib/*/*.js app/*.js app/*/*.js | jsmin > BUILD/viewer.js
 
 
 # =======
