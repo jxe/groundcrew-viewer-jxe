@@ -278,7 +278,8 @@ App = {
     Map.establish();
 
     // start refreshing the stream
-    StreamLoader.init(stream_url);
+    Resource.handle_changes = true;
+    if (!demo) StreamLoader.init(stream_url);
     StreamLoader.go_on_load = App.start_lrl();
     StreamLoader.maybe_trigger_load();
 
