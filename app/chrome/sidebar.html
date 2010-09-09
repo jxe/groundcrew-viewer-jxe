@@ -1,21 +1,65 @@
 <div id="sidebar" class="magic">
   <h1 fill="current_stream_name">Loading...</h1>
   <div id="sidebar_content">
-    <fb:like style="margin: 7px 15px; display:block" show_faces="no" width="250"></fb:like>
+    <div style="display: none;"><fb:like style="margin: 7px 15px; display:block" show_faces="no" width="250"></fb:like></div>
 
-    <div id="squad_desc" fill="current_stream_desc"></div>
-    <div id="squad_content" style="text-align:center; margin-top: 20px;">
-      <a href="##signup" class="loo button">Join this squad!</a>
+    <div id="squad_desc" fill="current_stream_desc" style="display: none;"></div>
+    <div id="squad_content">
     </div>
+    <div id="getting_started">
+      <h2>Here's how to get started&hellip;</h2>
+      <h3 href="#sidebar=tutorial1">1. Send yourself a test message</h3>
+      <div class="tutorial1_sidebar hidden_unless_active">
+        <p>Click on yourself in the top bar (or on the map &ndash; either works). Type a message and hit 'Send'.</p> 
+        <p>You'll receive it as a notification if you've installed the iPhone app, or as a text message for other phones.</p>
+      </div>
+
+      <h3 href="#sidebar=tutorial2">2. Invite new agents</h3>
+      <div class="tutorial2_sidebar hidden_unless_active">
+        <p>Click on 'Recruit' down at the bottom. You can email invitations or share (via Twitter, Facebook, etc.) a link to a sign-up page.</p>
+
+        <p>Agents show up in the upper-right (you should see yourself there, too). Click on them to see them on the map.</p>
+      </div>
+
+      <h3 href="#sidebar=tutorial3">3. Try your first mission</h3>
+      <div class="tutorial3_sidebar hidden_unless_active">
+        <p>Try this on yourself if there are no other agents&hellip;</p>
+
+        <p>If location matters most: create a new mission by clicking the Send menu, then choose 'A Mission'. You'll choose where the mission happens, and people nearby will be invited.</p>
+
+        <p>If who's chosen matters most: click on people (in the top bar or on the map), then give them a mission.</p>
+
+        <p>You'll see all your in-progress missions from the 'Ongoing' menu at the bottom.</p>
+      </div>
+
+      <h3 href="#sidebar=tutorial4">4. Gather feedback from the group</h3>
+      <div class="tutorial4_sidebar hidden_unless_active">
+        <p>Send out a question or a message to everyone (from the 'Send' menu)</p>
+      </div>
+
+      <h3 href="#sidebar=tutorial5">5. Hide this sidebar</h3>
+      <div class="tutorial5_sidebar hidden_unless_active">
+        <p>Just off the upper-right corner of this sidebar is a button. That will hide (and show) this sidebar. </p>
+      </div>
+
+      <h3 href="#sidebar=tutorial6">6. Tell us what you're finding helpful (or confusing)</h3>
+      <div class="tutorial6_sidebar hidden_unless_active">
+        <p>Is this making sense so far?</p>
+      </div>
+
+      
+    
+    </div>
+
   </div>
 
   <div id="branding" class="magic">
     <hr />
     <div id="branding_menu">
       <a class="m_item loo not_demo_mode" href="##go_login">Sign In</a>
-      <a class="m_item" href="#tool=help">Report a Problem</a>
+      <a class="m_item" href="#tool=help">Report a Problem</a>&#183;
       <a class="m_item" target="_blank" href="http://wiki.groundcrew.us/en/Help:Viewer">Get Help</a>
     </div>
-    <a href="http://groundcrew.us/" style="display: block;"><img src="i/powered_by.png" /></a>
+    <a href="http://groundcrew.us/" style="display: none;"><img src="i/powered_by.png" /></a>
   </div>
 </div>
