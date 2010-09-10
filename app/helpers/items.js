@@ -160,10 +160,9 @@ LiveHTML.widgets.push({
   },
 
   questions_as_lis: function() {
-    var qs = $keys(Answers.here());
-    return qs.map(function(x){
-      var q = x;
-      return "<li href='#tool=show_answers;question="+escape(x)+"'>" + q + "</li>";
+    var qs = Q.here();
+    return qs.map(function(q){
+      return "<li href='#tool=show_answers;question="+escape(q)+"'>" + q + "</li>";
     }).join('');
   },
 
