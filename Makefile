@@ -24,7 +24,10 @@ uncompressed: html raw_js buildcss
 # = html =
 # ========
 
-html: BUILD
+BUILD/basetool.html: BUILD ../basetheme/BUILD/basetool.html
+	cp ../basetheme/BUILD/basetool.html BUILD/
+
+html: BUILD BUILD/basetool.html
 	m4 -P app/app.html.m4 > BUILD/index.html
 
 

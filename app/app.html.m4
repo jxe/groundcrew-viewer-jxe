@@ -40,6 +40,7 @@
       m4_include(`app/chrome/mapnav.html')
       m4_include(`app/chrome/help_prompt.html')
       m4_syscmd(`cat app/tools/*.html')
+      m4_syscmd(`cat BUILD/basetool.html')
     </div>
     m4_include(`app/chrome/console.html')
   </div>
