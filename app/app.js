@@ -231,11 +231,11 @@ App = {
     if (window.demo) { 
       App.authenticated = true; 
       window.authority = 'pChad';
-      login_by_cookie();
+      go("#complete_auth_from_cookie");
       return; 
     }
     $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script', success: function(){
-      login_by_cookie();
+      go("#auth_complete");
       App.authenticated = true;
       if (App.stream_loaded) App.init_ui();
     }});
@@ -333,7 +333,7 @@ App = {
     $.post('/api/people/join', data, function(){
       Notifier.success('Thanks!', 'Loading your new account...');
       $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script', success: function(){
-        login_by_cookie();
+        go("#auth_complete");
         if (data.with_tags) { This.user.atags += data.with_tags; };
         Notifier.success('Thanks!', 'Check your email to complete signup...');
         go('tool=');
