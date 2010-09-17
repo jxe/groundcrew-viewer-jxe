@@ -226,6 +226,10 @@ App = {
     };
     if (demo) $('body').addClass('demo_mode');
   },
+
+  user_ready: function() {
+    // do nothing, but prevent the user_ready default action
+  },
   
   authenticate: function() {
     if (window.demo) { 
