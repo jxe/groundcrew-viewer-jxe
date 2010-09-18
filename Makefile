@@ -49,7 +49,7 @@ min_js: BUILD/super.js
 # = css =
 # =======
 
-BUILD/base.css: BUILD ../basetheme/.git/HEAD
+BUILD/base.css: BUILD ../basetheme/css/*
 	cp ../basetheme/BUILD/base.css BUILD/
 	cp ../basetheme/i/* i/
 
