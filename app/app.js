@@ -601,6 +601,7 @@ App = {
 
   collapse_leftbar: function() {
     $('body').toggleClass('collapsed');
+    google.maps.event.trigger(GM, 'resize');
   },
   
 

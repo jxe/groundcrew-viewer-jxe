@@ -12,10 +12,10 @@ Frame = {
       if ($(e.target).is('input,textarea')) return true;
       if (e.metaKey) return true;
       var ch = String.fromCharCode(e.which);
-      if (ch == 'S') { GM.setMapType(G_SATELLITE_MAP); return false; }
-      if (ch == 'N') { GM.setMapType(G_NORMAL_MAP); return false; }
-      if (ch == 'H') { GM.setMapType(G_HYBRID_MAP); return false; }
-      if (ch == 'T') { GM.setMapType(G_PHYSICAL_MAP); return false; }
+      if (ch == 'S') { GM.setMapTypeId(google.maps.MapTypeId.SATELLITE); return false; }
+      if (ch == 'N') { GM.setMapTypeId(google.maps.MapTypeId.ROADMAP); return false; }
+      if (ch == 'H') { GM.setMapTypeId(google.maps.MapTypeId.HYBRID); return false; }
+      if (ch == 'T') { GM.setMapTypeId(google.maps.MapTypeId.TERRAIN); return false; }
       if (ch == '?') { go('tool=help_keyboard'); return false; }
       if (ch == 'w') { go('item='); return false; }
       if (ch == ',') { go('#collapse_leftbar'); return false; }
