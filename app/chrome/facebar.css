@@ -304,6 +304,10 @@ body.loading #flexbar #empty_text {
   background-color: yellow;
 }
 
+#flexbar #agents .athumb.active {
+  background-color: blue;
+}
+
 .agent.busy { color: #82c; }
 .agent.yellow {
   background: #ff9;
