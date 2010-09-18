@@ -64,6 +64,9 @@ buildcss: BUILD/base.css
 deploy: html raw_js buildcss
 	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,index.html,viewer.*,demo*.js} joe@groundcrew.us:gc/public/viewer_experimental/
 
+stage: html raw_js buildcss
+	rsync -avL --delete --exclude-from=.rsync_exclude BUILD/{i,index.html,viewer.*,demo*.js} deploy@b.groundcrew.us:/g/viewer/BUILD/
+
 
 # ==========
 # = random =
