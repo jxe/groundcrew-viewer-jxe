@@ -5,7 +5,8 @@ Frame = {
 
     $(document).keyup(function(e){
       if (e.keyCode == 27 || e.keyCode == e.DOM_VK_ESCAPE) {
-        App.closeclick();
+        if (This.tool || (This.item && !This.item.startsWith('City__'))) App.closeclick();
+        else go('#clear_selection');
         return false;
       }
     }).keypress(function(e){
