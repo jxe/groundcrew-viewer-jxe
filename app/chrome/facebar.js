@@ -13,9 +13,6 @@ Facebar = {
   
   populate: function(agents) {
     if (!agents) return;
-    if (Agents.everything().length == 0) return $('#empty_text').show(); 
-    else $('#empty_text').hide();
-
     var default_fold_state = agents.length > 300 ? 'folded' : 'straight';
     var groups = agents.group_by('fab_state');
     $('#agents > div.fab_state').hide();

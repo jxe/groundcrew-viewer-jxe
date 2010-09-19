@@ -64,30 +64,6 @@
   padding:2px 20px 2px 5px;
 }
 
-#flexbar #empty_text {
-  display:none;
-  position: relative;
-  top: 20px;
-  left: 30px;
-  color: white;
-}
-
-body.loading #flexbar #empty_text {
-  display:none;
-}
-
-#flexbar.empty #empty_text {
-  display:block;
-  position: absolute;
-  color: white;
-  font-size: 18px;
-}
-
-#flexbar.empty #empty_text a {
-  font-weight: bold;
-  color: #8BA2CD;
-}
-
 #flexbar #agents {
    width: 300000px; /*100 * 3000 = 300 000*/
    background-color:#7A9FBF;
