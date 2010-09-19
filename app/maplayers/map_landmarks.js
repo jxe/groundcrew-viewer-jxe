@@ -10,7 +10,7 @@ Map.layer_calculators['landmarks'] = function(){
 MapLandmarks = {
   
   fetch_landmarks_in_bounds: function(bounds) {
-    var maxLms = Math.min(Math.round(map.getSize().width * map.getSize().height / 30000), 20);
+    var maxLms = 20;
     var southWest = bounds.getSouthWest();
     var northEast = bounds.getNorthEast();
     $.getJSON("http://www.panoramio.com/map/get_panoramas.php?callback=?", {

@@ -314,11 +314,6 @@ App = {
     go('@' + This.user.tag);
   },
 
-  decorate_map: function() {
-    if (Map.layer_visible['landmarks'])
-      MapLandmarks.fetch_landmarks_in_bounds(GM.getBounds());
-  },
-
   suggest_squad_form_submitted: function(data) {
     data.kind = "Squad Suggestion";
     data.suggest_for = window.current_stream_name || window.current_stream;
