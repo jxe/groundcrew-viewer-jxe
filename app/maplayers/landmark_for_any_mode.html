@@ -1,17 +1,15 @@
 <div id="landmark_for_any_mode" class="mapwindow">
-  <img style="height: 100px; width: 100px; float: left"
-    class="niw_thumb"
-    fill="item_thumb_url src" />
+  <h2 fill="item_title"></h2>
+
+  <div class="grayish" style="width: 120px; float: left">
+    <img  class="niw_thumb" fill="item_thumb_url src" />
+    This is a <span fill="lm_first_tag">landmark</span>.<br>
+    <img src="i/icons/edit.png" href="#mode=edit" width="12" height="12" alt="Edit this"/>
+    <a class="delete" href="##delete_landmark">x</a>
+  </div>
+
 
   <div style="width: 450px">
-    <h2 fill="item_title"></h2>
-
-    <div class="grayish">
-      This is a <span fill="lm_first_tag">landmark</span>.
-      <img src="i/icons/edit.png" href="#mode=edit" width="12" height="12" alt="Edit this"/>
-      <a class="delete" href="##delete_landmark">x</a>
-    </div>
-
     <div class="xspace" if="landmark_has_op">
       Most recent mission here: <span class="highlight" fill="landmark_op"></span>
     </div>
@@ -21,15 +19,15 @@
           <legend><b>Start something here</b></legend>
           <!-- <p class="deemphasize">Agents will receive two text messages: first, an invitation, and then the instructions should they accept.</p> -->
 
-          <div>
+          <div style="margin: 3px 0px">
             Invite agents within<br/>
             <select id="radial_select" name="agents" fill="radius_options" observe="radial_select_require_selection"></select>
-            <div style="height:1.8em"><div style="display:none;" class="radial_select_require_selection">
+            <div style="display:none;" class="radial_select_require_selection">
               <p class="require_selection deemphasize" if="no_selection" fill="require_selection_str"></p>
-            </div></div>
+            </div>
           </div>
 
-          <div id="mission" style="margin: 10px 0px">
+          <div id="mission" style="margin: 3px 0px">
             <div class="right live" style="float:right">100</div>
             Mission:<br>
             <input style="width:99%;" type="text" name="title"
@@ -60,7 +58,7 @@
             </div>
           </div>
 
-          <div id="instructions" style="margin: 10px 0px">
+          <div id="instructions" style="margin: 3px 0px">
           <div class="right live" style="float:right">150</div>
           Instructions (for those who accept):<br/>
           <input style="width:99%;" type="text" name="assignment"
