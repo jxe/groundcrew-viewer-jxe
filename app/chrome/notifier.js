@@ -15,24 +15,24 @@ Notifier = {
     // don't report if we're watching the thing
     if (ev.re == This.item || This.tool == 'view_events') return;
 
-    if (ev.atype == 'signup')       Notifier.growl( go, ev.actor_title + " signed up!" );
-    if (ev.atype == 'reported')     Notifier.growl( go, ev.actor_title + " reports: &ldquo;"+ ev.msg   +"&rdquo;" );
-    if (ev.atype == 'pm')           Notifier.growl( go, ev.actor_title + " sent a private message: &ldquo;"+ ev.msg   +"&rdquo;" );
-    if (ev.atype == 'answered')     Notifier.growl( go, ev.actor_title + " answered: &ldquo;"+ ev.msg +"&rdquo;" );
-    if (ev.atype == 'accepted')     Notifier.growl( go, ev.actor_title + " has accepted your assignment" );
-    if (ev.atype == 'declined')     Notifier.growl( go, ev.actor_title + " has declined your assignment" );
-    if (ev.atype == 'completed')    Notifier.growl( go, ev.actor_title + " has completed your assignment" );
-    if (ev.atype == 'appreciated')  Notifier.growl( go, ev.actor_title + " has appreciated you" );
-    if (ev.atype == 'blocked')      Notifier.growl( go, ev.actor_title + " has blocked you" );
-    if (ev.atype == 'note')         Notifier.growl( ev.re || go, ev.actor_title + " commented: &ldquo;"+ ev.msg   +"&rdquo;" );
+    if (ev.atype == 'signup')       Notifier.growl(ev.actor_title + " signed up!", go);
+    if (ev.atype == 'reported')     Notifier.growl(ev.actor_title + " reports: &ldquo;" + ev.msg + "&rdquo;", go);
+    if (ev.atype == 'pm')           Notifier.growl(ev.actor_title + " sent a private message: &ldquo;" + ev.msg + "&rdquo;", go);
+    if (ev.atype == 'answered')     Notifier.growl(ev.actor_title + " answered: &ldquo;" + ev.msg + "&rdquo;", go);
+    if (ev.atype == 'accepted')     Notifier.growl(ev.actor_title + " has accepted your assignment", go);
+    if (ev.atype == 'declined')     Notifier.growl(ev.actor_title + " has declined your assignment", go);
+    if (ev.atype == 'completed')    Notifier.growl(ev.actor_title + " has completed your assignment", go);
+    if (ev.atype == 'appreciated')  Notifier.growl(ev.actor_title + " has appreciated you", go);
+    if (ev.atype == 'blocked')      Notifier.growl(ev.actor_title + " has blocked you", go);
+    if (ev.atype == 'note')         Notifier.growl(ev.actor_title + " commented: &ldquo;" + ev.msg +"&rdquo;", ev.re || go);
     if (ev.atype == 'chat' && This.tool != 'chat') {
-      Notifier.growl( "#tool=chat", ev.actor_title + ": &ldquo;"+ ev.msg +"&rdquo;" );
+      Notifier.growl(ev.actor_title + ": &ldquo;"+ ev.msg +"&rdquo;", "#tool=chat" );
     }
   },
 
   success: function(msg, header) {
     if (!header) header = 'Sent';
-    Notifier.growl(null, msg, {
+    Notifier.growl(msg, null, {
       header: header,
       life: 10*1000,
       glue: 'before',
@@ -42,7 +42,7 @@ Notifier = {
 
   error: function(msg, go, actor) {
     var header = actor ? 'Error for ' + actor : 'Error';
-    Notifier.growl(go, msg, {
+    Notifier.growl(msg, go, {
       header: header,
       life: 25*1000,
       glue: 'before',
@@ -52,7 +52,7 @@ Notifier = {
 
   warning: function(msg, go, actor) {
     var header = actor ? 'Warning for ' + actor : 'Warning';
-    Notifier.growl(go, msg, {
+    Notifier.growl(msg, go, {
       header: header,
       life: 25*1000,
       glue: 'before',
@@ -65,7 +65,7 @@ Notifier = {
     open: function(e,m,o){ $(e).app_paint(); }
   },
 
-  growl: function(go, msg, options){
+  growl: function(msg, go, options){
     options = $.extend({}, this.growl_defaults, options);
     if (go && go.charAt(0) != '#' && go.charAt(0) != '@') go = "#@" + go;
     if (go) msg = "<a href='"+go+"'>"+msg+"</a>";
