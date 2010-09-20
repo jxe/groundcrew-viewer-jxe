@@ -1,5 +1,8 @@
 <div id="landmark_for_any_mode" class="mapwindow">
-  <h2 fill="item_title"></h2>
+  <h2 fill="item_title" style="border-bottom: solid 2px #944"></h2>
+  <div class="xspace" if="landmark_has_op">
+    Most recent mission here: <span class="highlight" fill="landmark_op"></span>
+  </div>
 
   <div class="grayish" style="width: 120px; float: left">
     <img  class="niw_thumb" fill="item_thumb_url src" />
@@ -8,67 +11,47 @@
     <a class="delete" href="##delete_landmark">x</a>
   </div>
 
+  <form id="radial_invite_form" style="position: relative; width: 450px">
+    <div id="mission" style="margin: 3px 0px">
+      <div class="right live" style="float:right">100</div>
+      Start what?<br>
+      <input style="width:99%;" type="text" name="title"
+        observe="maxchar(100, '#radial_invite_form #mission .right.live')"
+      />
+    </div>
+    <!-- <p class="deemphasize">Agents will receive two text messages: first, an invitation, and then the instructions should they accept.</p> -->
 
-  <div style="width: 450px">
-    <div class="xspace" if="landmark_has_op">
-      Most recent mission here: <span class="highlight" fill="landmark_op"></span>
+    <div style="margin: 3px 0px">
+      Invite those within<br/>
+      <select id="radial_select" name="agents" fill="radius_options" observe="radial_select_require_selection"></select>
+      <div style="display:none;" class="radial_select_require_selection">
+        <p class="require_selection deemphasize" if="no_selection" fill="require_selection_str"></p>
+      </div>
     </div>
 
-    <form id="radial_invite_form">
-      <fieldset style="margin-top: 8px; position: relative; padding: 0px 15px; padding-bottom: 8px">
-          <legend><b>Start something here</b></legend>
-          <!-- <p class="deemphasize">Agents will receive two text messages: first, an invitation, and then the instructions should they accept.</p> -->
+    <div id="instructions" style="margin: 3px 0px">
+      <div class="right live" style="float:right">150</div>
+      Instructions, for those who accept<br/>
+      <input style="width:99%;" type="text" name="assignment"
+        observe="maxchar(150, '#radial_invite_form #instructions .right.live')"
+      />
+    </div>
 
-          <div style="margin: 3px 0px">
-            Invite agents within<br/>
-            <select id="radial_select" name="agents" fill="radius_options" observe="radial_select_require_selection"></select>
-            <div style="display:none;" class="radial_select_require_selection">
-              <p class="require_selection deemphasize" if="no_selection" fill="require_selection_str"></p>
-            </div>
-          </div>
+    <button type="submit" class="submit right"> Send<strong>&rarr;</strong> </button>
 
-          <div id="mission" style="margin: 3px 0px">
-            <div class="right live" style="float:right">100</div>
-            Mission:<br>
-            <input style="width:99%;" type="text" name="title"
-              observe="maxchar(100, '#radial_invite_form #mission .right.live')"
-            />
-          </div>
-
-          <div if="demo_mode" class="button_dropdown" style="position: absolute; top:10px; right: 10px">
-            <button type="button" class="idle">&#9660;</button>
-            <div class="dropdown south">
-              <div class="select">
-                <dl>
-                  <dt>a citizen investigation in teams</dt>
-                </dl>
-                <dl>
-                  <dt>a street cleanup</dt>
-                </dl>
-                <dl>
-                  <dt>a potluck in the park</dt>
-                </dl>
-                <dl>
-                  <dt>a brainstorm about municipal issues</dt>
-                </dl>
-              </div>
-              <div class="more">
-                <a href="">Create a new activity template&hellip;</a>
-              </div>
-            </div>
-          </div>
-
-          <div id="instructions" style="margin: 3px 0px">
-          <div class="right live" style="float:right">150</div>
-          Instructions (for those who accept):<br/>
-          <input style="width:99%;" type="text" name="assignment"
-            observe="maxchar(150, '#radial_invite_form #instructions .right.live')"
-          />
-          </div>
-
-          <button type="submit" class="submit right"> Send<strong>&rarr;</strong> </button>
-      </fieldset>
-    </form>
-
-  </div>
+    <div if="demo_mode" class="button_dropdown" style="position: absolute; top:10px; right: 10px">
+      <button type="button" class="idle">&#9660;</button>
+      <div class="dropdown south">
+        <div class="select">
+          <dl> <dt>a citizen investigation in teams</dt> </dl>
+          <dl> <dt>a street cleanup</dt> </dl>
+          <dl> <dt>a potluck in the park</dt> </dl>
+          <dl> <dt>a brainstorm about municipal issues</dt> </dl>
+        </div>
+        <div class="more">
+          <a href="">Create a new activity template&hellip;</a>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
