@@ -12,6 +12,13 @@ App = {
     $(form).enable();
   },
 
+  list_of_links: function(obj) {
+    if (!obj) return '';
+    else return $keys(obj).map(function(k){
+      return tag('li', { href: k, content: obj[k] });
+    }).join('');
+  },
+
   clear_query: function() {
     $('#search').val('');
     go('q=');
