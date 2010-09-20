@@ -15,7 +15,7 @@
     <a id="collapso" href="##collapse_leftbar">&laquo;</a>
 
     <form id="search_form">
-      <input type="text" name="q" fill="query value" id="search" />
+      <input type="search" name="q" fill="query value" id="search" />
       <a if="query" href="##clear_query">X</a>
     </form>
 
@@ -24,7 +24,10 @@
     <img id="load_spinner" src="i/spinner.gif"/>
     <div id="headermenu"></div>
     <div id="soc_logins">
-      <fb:login-button class="hide_until_loaded fbloo" perms="sms,email,user_location">Sign in</fb:login-button>
+      <span class="loo"><a href="#tool=login">Login</a></span>
+      <span class="lio">
+        <span fill="user_name"></span> &middot; <a href="##logout">Logout</a>
+      </span>
     </div>
   </div>
   m4_include(`app/chrome/sidebar.html')
