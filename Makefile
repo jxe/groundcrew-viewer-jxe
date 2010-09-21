@@ -24,10 +24,11 @@ uncompressed: html raw_js buildcss
 # = html =
 # ========
 
-BUILD/basetool.html: BUILD ../basetheme/BUILD/basetool.html
+base.html:
+	cd ../basetheme; make html
 	cp ../basetheme/BUILD/basetool.html BUILD/
 
-html: BUILD BUILD/basetool.html
+html: BUILD base.html
 	m4 -P app/app.html.m4 > BUILD/index.html
 
 
@@ -35,13 +36,14 @@ html: BUILD BUILD/basetool.html
 # = js =
 # ======
 
-BUILD/super.js: BUILD ../basetheme/BUILD/super.js
+super.js:
+	cd ../basetheme; make js
 	cp ../basetheme/BUILD/super.js BUILD/
 
-raw_js: BUILD/super.js
+raw_js: BUILD super.js
 	cat BUILD/super.js lib/*/*.js app/*.js app/*/*.js > BUILD/viewer.js
 
-min_js: BUILD/super.js
+min_js: BUILD super.js
 	cat BUILD/super.js lib/*/*.js app/*.js app/*/*.js | jsmin > BUILD/viewer.js
 
 
@@ -49,11 +51,12 @@ min_js: BUILD/super.js
 # = css =
 # =======
 
-BUILD/base.css: BUILD ../basetheme/css/*
+base.css:
+	cd ../basetheme; make css
 	cp ../basetheme/BUILD/base.css BUILD/
 	cp ../basetheme/i/* i/
 
-buildcss: BUILD/base.css
+buildcss: BUILD base.css
 	cat BUILD/base.css css/*.css app/{chrome,helpers,tools}/*.css > BUILD/viewer.css
 
 
