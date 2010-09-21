@@ -82,6 +82,10 @@ App = {
     window.location = '/' + current_stream + '/admin';
   },
 
+  go_home: function() {
+    window.location = '/' + current_stream + '/home';
+  },
+
   go_settings: function() {
     window.location = '/' + current_stream + '/settings';
   },

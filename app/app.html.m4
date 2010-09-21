@@ -26,7 +26,7 @@
     <div id="soc_logins">
       <span class="loo"><a href="#tool=login">Login</a></span>
       <span class="lio">
-        <span fill="user_name"></span> &middot; <a href="##logout">Logout</a>
+        <a href="##go_home" fill="user_name"></a> &middot; <a href="##logout">Logout</a>
       </span>
     </div>
   </div>
