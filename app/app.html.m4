@@ -15,7 +15,7 @@
     <a id="collapso" href="##collapse_leftbar">&laquo;</a>
 
     <form id="search_form">
-      <input type="search" name="q" fill="query value" id="search" />
+      <input type="search" name="q" hint="Search agents" fill="query value" id="search" />
       <a if="query" href="##clear_query">X</a>
     </form>
 
