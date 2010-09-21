@@ -78,11 +78,6 @@ App = {
     if (changed.item || changed.mode || changed.tool) App.refresh_mapwindow();
   },
 
-  go_login: function() {
-    $.cookie('back', window.location.href);
-    window.location = '/' + current_stream+'/login';
-  },
-  
   go_admin: function() {
     window.location = '/' + current_stream + '/admin';
   },
