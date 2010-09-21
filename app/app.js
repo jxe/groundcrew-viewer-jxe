@@ -573,15 +573,17 @@ App = {
   tag_agents_form_submitted: function(data) {
     var agents = Selection.agent_ids();
     if (!agents || agents.length == 0) {alert('Please select some agents to tag.'); return "redo";}
-    if (!data.tags) { alert('Please provide some tags!'); return "redo"; }
+    var tags = data['tags[]'];
+    if (!tags) { alert('Please provide some tags!'); return "redo"; }
+    tags = tags.join(' ');
 
     var params = { agent_ids: agents.join(' ') };
-    if (data.tags.startsWith('stream:')) {
-      params['with_stream'] = data.tags.replace(/^stream:/, '');
+    if (tags.startsWith('stream:')) { // hack for putting agents on a stream
+      params['with_stream'] = tags.replace(/^stream:/, '');
     } else {
-      params['with_tags'] = data.tags;
+      params['with_tags'] = tags;
     }
-    if (demo) return Demo.tag(agents, data.tags, function(){go('tool=');});
+    if (demo) return Demo.tag(agents, tags, function(){go('tool=');});
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to tag agents.");
     return $.post_with_squad('/agents/update_all', params, function(){
       go('tool=');

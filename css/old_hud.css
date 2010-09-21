@@ -346,7 +346,7 @@ a.closebox img:hover {
   margin: 2px 0 15px 0;
 }
 
-.apply_tags_tool button, .target_by_tags_tool button {
+.tag_agents_tool button, .target_by_tags_tool button {
   margin-top: 10px;
 }
 
@@ -402,7 +402,7 @@ a.closebox img:hover {
 .prompt {
   color: #474848;
   background-color: #c2c2c2;
-  border: 1px solid #999;  
+  border: 1px solid #999;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
