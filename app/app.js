@@ -9,7 +9,7 @@ App = {
 
   search_form_submitted: function(data, state, form) {
     go('q=' + data.q);
-    $(form).enable();
+    return "redo";
   },
 
   list_of_links: function(obj) {
