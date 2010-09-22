@@ -9,7 +9,7 @@ App = {
 
   search_form_submitted: function(data, state, form) {
     go('q=' + data.q);
-    $(form).enable();
+    return "redo";
   },
 
   list_of_links: function(obj) {
@@ -80,6 +80,10 @@ App = {
 
   go_admin: function() {
     window.location = '/' + current_stream + '/admin';
+  },
+
+  go_home: function() {
+    window.location = '/' + current_stream + '/home';
   },
 
   go_settings: function() {
