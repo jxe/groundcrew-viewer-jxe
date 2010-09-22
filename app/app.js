@@ -276,7 +276,7 @@ App = {
     var top_city = active_cities[0];
     if (!top_city && most_recent_item) top_city = most_recent_item.city_id;
 
-    if (active_cities.length > 1) return 'item=';
+    if (active_cities.length > 1 || !top_city) return 'item=';
     else return 'item=City__' + top_city;
   },
   
@@ -290,8 +290,8 @@ App = {
     // start refreshing the stream
     Resource.handle_changes = true;
     if (!demo) StreamLoader.init(stream_url);
-    StreamLoader.go_on_load = App.start_lrl();
-    StreamLoader.maybe_trigger_load();
+    $('#loading_data').remove();
+    go(App.start_lrl());
 
     if (demo) Demo.init_manual();
   },
