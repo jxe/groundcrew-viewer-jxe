@@ -67,6 +67,6 @@ If you have an info window that you want to display when the user clicks a certa
 
 for instance
 
-	<div id="person_for_assign_agents_tool" class="mapwindow template">...</div>
+	<div id="agent_for_assign_agents_tool" class="mapwindow template">...</div>
 
 it's that simple!

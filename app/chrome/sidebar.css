@@ -1,8 +1,27 @@
 #sidebar_content {
     height: auto;
-    padding-top: 20px;
+    padding-top: 10px;
     margin-bottom: 78px;
     overflow-y: auto;
+    color: #555;
+}
+
+#sidebar_content h3 {
+  margin: .9em 0 .5em;
+}
+
+#sidebar_content p {
+  margin: 0 0 .6em;
+}
+
+
+#sidebar hr {
+  height: 1px;
+  background-color: #b0b0b0;
+  color: #b0b0b0;
+  border: none;
+  padding: 0;
+  margin: .6em 0;
 }
 
 #sidebar a {
@@ -13,12 +32,16 @@
     padding: 3px 5px;
 }
 
+#squad_content {
+
+}
+
 /* placeholder h1 */
 #sidebar h1 { margin: 0px 10px -30px 10px; visibility:hidden; }
 
 
 #branding {
-    height: 78px;
+    height: 40px;
     padding: 0 10px;
     position: absolute;
     bottom: 0;
@@ -28,15 +51,29 @@
 }
 
 #branding_menu {
-  padding: 5px 0;
+/*   padding: 5px 0; */
 }
 
 #sidebar h2 {
     color: #666;
-    text-transform: uppercase;
-    font-size: 12px;
-    padding: 3px 5px;
-    margin-top: 20px;
+    font-size: 17px;
+    margin: 15px 0 6px 0;
+}
+
+#getting_started {
+  padding: 0 15px;
+}
+
+#getting_started h2 {
+}
+
+#getting_started h3 {
+  color: #0066CC;
+  cursor:pointer;
+  font-size: 14px;
+}
+
+#getting_started p {
 }
 
 #sidebar .squad {
@@ -74,4 +111,7 @@
     padding: 1px 4px;
     background-color: #292;
     background-image: -webkit-gradient( linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.4)), to(transparent));
+    background-image: -moz-linear-gradient(rgba(255,255,255,0.4),transparent);
 }
+
+#sidebar a.button {color: black;}

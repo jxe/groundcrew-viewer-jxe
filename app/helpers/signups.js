@@ -42,7 +42,7 @@ Signups = {
 };
 
 
-LiveHTML.widgets.push({
+go.push({
 
   reinvite: function(arg, elem) {
     var id = $(elem).parents('tr').data('row_data').id;

@@ -78,8 +78,7 @@ Selection = {
     var guy = tag.resource();
     if (!guy) return;
     Item.calculate_fields(guy);
-    Map.site_set_image('agents', tag, MapIcons.for_type(guy.map_icon).image);
-
+    Map.site_set_image('agents', tag, 'i/map/' + guy.map_icon + '.png');
     Selection.hide_or_show_options();
   },
   
@@ -96,14 +95,10 @@ Selection = {
 };
 
 
-LiveHTML.widgets.push({
+go.push({
     
   clear_selection: function(state) {
     Selection.clear();
-  },
-  
-  no_selection: function(state) {
-    return isEmpty(Selection.current) && isEmpty(Selection.groups);
   },
 
   has_selection: function(state) {
@@ -111,7 +106,7 @@ LiveHTML.widgets.push({
   },
 
   require_selection_str: function() {
-    return "Please select (option- or command-click) some agents";
+    return "Select agents first. Use control-click (PC) or command-click (Mac) for several.";
   }
 
 });

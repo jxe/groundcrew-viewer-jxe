@@ -1,4 +1,4 @@
-LiveHTML.widgets.push({
+go.push({
 
   // item state:  latch status, problems, etc
 
@@ -167,7 +167,7 @@ LiveHTML.widgets.push({
   },
 
   lm_first_tag: function() {
-    return This._item.atags && This._item.atags.split(' ')[0];
+    return This._item.atags && This._item.atags.split(' ')[0] || 'landmark';
   },
 
   answers_for_question: function() {

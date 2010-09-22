@@ -1,4 +1,4 @@
-LiveHTML.widgets.push({
+go.push({
   
   city_name: function() {
     return cities[This.city_id] || 'Worldwide';

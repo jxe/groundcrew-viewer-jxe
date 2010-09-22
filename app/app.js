@@ -1,15 +1,22 @@
 ////
 // This is the "Application" controller
 //
-Viewer = App = {
+App = {
   initted: false,
-  modes: {},
   tools: {},
-  most_recent_tool: {},
+
+  back: function() { go('mode=;tool='); },
 
   search_form_submitted: function(data, state, form) {
     go('q=' + data.q);
-    $(form).enable();
+    return "redo";
+  },
+
+  list_of_links: function(obj) {
+    if (!obj) return '';
+    else return $keys(obj).map(function(k){
+      return tag('li', { href: k, content: obj[k] });
+    }).join('');
   },
 
   clear_query: function() {
@@ -28,28 +35,31 @@ Viewer = App = {
   closeclick: function() {
     This.city ? go('@' + This.city) : go('tool=');
   },
-
-  update: function(changed) {
-    if (!This.prev_url) changed.tool = changed.item = changed.city = true;
-
-    if (changed.tool && This.tool && This._item && !changed.item) set('item', This.city);
+  
+  start: function() {
+    This.changed.item = This.changed.city = true;
+  },
+  
+  change_state: function() {
+    var changed = This.changed;
+    if (changed.tool && This.tool && This._item && !changed.item) go.set('item', This.city);
 
     if (changed.item) {
       if (!This.item) {
         This._item = null;
-        set('city', null);
+        go.set('city', null);
       } else if (This.item.startsWith('City__')) {
         This._item = null;
-        set('city', This.item);
+        go.set('city', This.item);
       } else {
         This._item = This.item && This.item.resource();
-        if (This._item) set('city', 'City__' + This._item.city_id);
+        if (This._item) go.set('city', 'City__' + This._item.city_id);
       }
     }
 
     if (changed.city || changed.q) {
       This.city_id = This.city && This.city.replace('City__', '');
-      set('agents', Agents.here());
+      go.set('agents', Agents.here());
       $('#flexbar').scrollLeft(0);
       if (This.city) $('body').removeClass('zoomed_out');
       else $('body').addClass('zoomed_out');
@@ -65,39 +75,19 @@ Viewer = App = {
       if (!changed.city) Map.layer_recalculate('agents');
     }
 
-    if (changed.mode) {
-      This.first_responders[1] = App.modes[This.mode.toLowerCase()] || {};
-    }
-
-    if (changed.tool) {
-      App.most_recent_tool[This.mode] = This.tool;
-      $('.' + This.tool + '_tool').activate('tool');
-      go('#tool_unselected');
-      This.first_responders[0] = App.tools[This.tool] || {};
-      go('#tool_selected');
-    }
-
     if (changed.item || changed.mode || changed.tool) App.refresh_mapwindow();
-
-    $('.magic').app_paint();
-    $('.hud:visible').app_paint();
-    App.loaded = true;
-
   },
 
-  go_login: function() {
-    $.cookie('back', window.location.href);
-    window.location = '/' + current_stream+'/login';
-  },
-  
   go_admin: function() {
-    var loc = 'http://groundcrew.us/'+current_stream+'/admin';
-    window.location = loc;
+    window.location = '/' + current_stream + '/admin';
+  },
+
+  go_home: function() {
+    window.location = '/' + current_stream + '/home';
   },
 
   go_settings: function() {
-    var loc = 'http://groundcrew.us/'+current_stream+'/settings';
-    window.location = loc;
+    window.location = '/' + current_stream + '/settings';
   },
 
   error_on_non_immediate: function(item_ids) {
@@ -131,9 +121,7 @@ Viewer = App = {
   },
 
   refresh_mapwindow: function() {
-    if (!This._item) {
-      GM.closeInfoWindow();
-    }
+    if (!This._item) GMIW.close();
     else {
       var thing = This.item.resource_type().toLowerCase();
       var best_mapwindow_template = $.template('#' + thing + '_for_' + This.mode + '_mode') || $.template('#' + thing + '_for_any_mode');
@@ -142,7 +130,7 @@ Viewer = App = {
       } else {
         //TODO:  if there's no template, there should be no selection
         console.log('no good template for ' + thing);
-        GM.closeInfoWindow();
+        GMIW.close();
       }
     }
   },
@@ -170,22 +158,19 @@ Viewer = App = {
       });
     }
   },
-
-  map_clicked: function() {
-    // close any open dropdowns
-    $(".button_dropdown button.selected").each(function(){
-      $(this).removeClass('selected').addClass('idle');
-      $(this).parent().children('.dropdown').fadeOut('fast');
-      $('body').removeClass('dropdownOpen');
-    });
-    return;
+  
+  at_item: function(url) {
+    var url = This.new_url.slice(1);
+    if (LiveHTML.metaOn && url.startsWith('p')) return Selection.toggle(url);
+    else return go('mode=;tool=;item=' + url);
   },
 
-  did_add_events: function(state) {
+  anncs_added: function(state) {
     // TODO: temp fix.  Need to make events intelligently cause related windows to refresh
     // (e.g. agent window refreshes if agent reported)
     if (This.item && This.item.resource_type() == 'Op') App.refresh_mapwindow();
     if (This.tool == 'view_events') $('.view_events_tool').app_paint();
+    if (This.tool == 'chat') $('#chat_palette').app_paint();
   },
 
   live_event_info: function (state) {
@@ -193,27 +178,6 @@ Viewer = App = {
     return Actions.event_t.tt(op_children[This.item]);
   },
   
-  // TODO: get stack trace (see http://eriwen.com/javascript/js-stack-trace/)
-  // and include some state like This.url, form submitted, etc.
-  report_error: function(msg, e, place) {
-    console.log(e);
-    var report = '';
-    report += msg;
-    report += " at " + place;
-    if (e) report += "\nException: " + e;
-    try {
-      report += '\nStack trace:\n' + printStackTrace({e:e}).join('\n') + '\n\n';
-    } catch(ee) {}
-    console.log(report);
-    $.post('/api/bugreport', {issue: report}, function(){
-      // TODO: turn user alerts back on (and make them not call alert()) when we're confident
-      // that spurious errors are being handled
-
-      // Notifier.error('A bug occurred in the Groundcrew viewer!' +
-      //   '\n\nIt has been reported to our developers, but you might need to reload the viewer. Sorry!');
-    });
-  },
-
   handle_error: function(msg, uri, line) {
     // map script loading fails sometimes, but seems to automatically reload
     if (msg.type == 'error') {
@@ -223,8 +187,14 @@ Viewer = App = {
     if (uri && uri.indexOf("http://www.panoramio.com/map/get_panoramas.php") >= 0) return false;
     if (uri && uri.indexOf("http://maps") >= 0 && msg == "Error loading script") return false;
 
-    App.report_error(msg, null, uri + ": " + line);
+    go.err(msg, null, uri + ": " + line);
     return false; // don't suppress the error
+  },
+
+  notify_error: function() {
+    var str = 'An error has occurred in this software.' +
+      '\n\nIt has been reported to our developers, but you might need to reload the page. Sorry!';
+    Notifier.error(str);
   },
 
 
@@ -233,7 +203,9 @@ Viewer = App = {
   // ======================
   
   initialize: function() {
+    go.trigger('start');
     if($.browser.msie) return $('#unsupported').show();
+    UIExtras.init();
     window.onerror = App.handle_error;
     App.decide_stream();
     App.authenticate();
@@ -241,27 +213,13 @@ Viewer = App = {
     window.fbAsyncInit = App.init_facebook;
   },
   
-  init_facebook: function() {
-    FB.Event.subscribe('auth.sessionChange', function(response) {
-      if (response.session) {
-        $('body').addClass('fb_authed');
-      } else {
-        $('body').removeClass('fb_authed');
-      }
-    });
-    FB.init({appId: '31986400134', apiKey: 'cbaf8df3f5953bdea9ce66f77c485c53', status: true, cookie: true, xfbml: true}); 
-  },
-  
-  signup: function() {
-    window.location = "http://groundcrew.us/" + current_stream + "/signup";
-  },
   decide_stream: function() {
     var slug = window.location.href.split('/')[3];
     if (location.protocol == 'file:') slug = 'demo';
     if (slug.startsWith('demo')) {
       window.demo = true;
       window.current_stream = 'demo';
-      window.stream_url = slug + '.js';
+      window.stream_url = '/viewer_experimental/' + slug + '.js';
     } else {
       window.demo = false;
       window.current_stream = slug;      
@@ -274,22 +232,27 @@ Viewer = App = {
     };
     if (demo) $('body').addClass('demo_mode');
   },
+
+  user_ready: function() {
+    // do nothing, but prevent the user_ready default action
+  },
   
   authenticate: function() {
     if (window.demo) { 
       App.authenticated = true; 
       window.authority = 'pChad';
-      login_by_cookie();
+      go("#complete_auth_from_cookie");
       return; 
     }
     $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script', success: function(){
-      login_by_cookie();
+      go("#auth_complete");
       App.authenticated = true;
       if (App.stream_loaded) App.init_ui();
     }});
   },
   
   load_stream: function() {
+    Ajax.init();
     $.ajax({ url: stream_url, dataType: 'script', success: function(){
       App.stream_loaded = true;
       if (App.authenticated) App.init_ui();
@@ -313,25 +276,22 @@ Viewer = App = {
     var top_city = active_cities[0];
     if (!top_city && most_recent_item) top_city = most_recent_item.city_id;
 
-    if (active_cities.length > 1) return 'item=';
+    if (active_cities.length > 1 || !top_city) return 'item=';
     else return 'item=City__' + top_city;
   },
   
   init_ui: function() {
-    // TODO: Noah, this is slow.
-    // Agents.init_manual();
-
     // init the UI
     Frame.init();
     $('body').addClass('stream_role_' + window.stream_role);
-    LiveHTML.init();
     $('body').removeClass('loading');
     Map.establish();
 
-    // start communication with server
-    Ajax.init();
-    Ajax.go_on_load = App.start_lrl();
-    Ajax.maybe_trigger_load();
+    // start refreshing the stream
+    Resource.handle_changes = true;
+    if (!demo) StreamLoader.init(stream_url);
+    $('#loading_data').remove();
+    go(App.start_lrl());
 
     if (demo) Demo.init_manual();
   },
@@ -352,17 +312,8 @@ Viewer = App = {
     }, 50);
   },
 
-  require_selection: function(value) {
-    $('.require_selection').toggle(value == 'require_selection');
-  },
-
   go_to_self: function() {
     go('@' + This.user.tag);
-  },
-
-  decorate_map: function() {
-    if (Map.layer_visible['landmarks'])
-      MapLandmarks.fetch_landmarks_in_bounds(GM.getBounds());
   },
 
   suggest_squad_form_submitted: function(data) {
@@ -383,7 +334,7 @@ Viewer = App = {
     $.post('/api/people/join', data, function(){
       Notifier.success('Thanks!', 'Loading your new account...');
       $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script', success: function(){
-        login_by_cookie();
+        go("#auth_complete");
         if (data.with_tags) { This.user.atags += data.with_tags; };
         Notifier.success('Thanks!', 'Check your email to complete signup...');
         go('tool=');
@@ -400,7 +351,7 @@ Viewer = App = {
   
   reverse_geocode_landmark: function(data) {
     var geocoder = new GClientGeocoder();
-    geocoder.getLocations(new GLatLng(data.lat, data.lng), function(response) {
+    geocoder.getLocations(new google.maps.LatLng(data.lat, data.lng), function(response) {
       if (response && response.Status.code==200) {
         var place = response.Placemark[0];
         data.name = place.address;
@@ -579,7 +530,7 @@ Viewer = App = {
     if (This.city_id) params['city'] = This.city_id;
     if (demo) { Notifier.success("Blasting message to agents!"); return go('tool='); }
 
-    if (window.remaining <= 0) {
+    if (window.sms_remaining <= 0) {
       $.post('/api/bugreport', {issue: window.current_stream + ' has run out of text messages!'});
       alert('You have reached your limit on text messages!  ' +
         'Please contact Groundcrew support to purchase more.');
@@ -617,15 +568,17 @@ Viewer = App = {
   tag_agents_form_submitted: function(data) {
     var agents = Selection.agent_ids();
     if (!agents || agents.length == 0) {alert('Please select some agents to tag.'); return "redo";}
-    if (!data.tags) { alert('Please provide some tags!'); return "redo"; }
+    var tags = data['tags[]'];
+    if (!tags) { alert('Please provide some tags!'); return "redo"; }
+    tags = tags.join(' ');
 
     var params = { agent_ids: agents.join(' ') };
-    if (data.tags.startsWith('stream:')) {
-      params['with_stream'] = data.tags.replace(/^stream:/, '');
+    if (tags.startsWith('stream:')) { // hack for putting agents on a stream
+      params['with_stream'] = tags.replace(/^stream:/, '');
     } else {
-      params['with_tags'] = data.tags;
+      params['with_tags'] = tags;
     }
-    if (demo) return Demo.tag(agents, data.tags, function(){go('tool=');});
+    if (demo) return Demo.tag(agents, tags, function(){go('tool=');});
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to tag agents.");
     return $.post_with_squad('/agents/update_all', params, function(){
       go('tool=');
@@ -645,16 +598,9 @@ Viewer = App = {
     });
   },
 
-  setmode: function(mode) {
-    if (This.mode != mode) return go('mode=' + mode);
-    else {
-      if (mode == 'dispatch') return true;
-      return Frame.resize();
-    }
-  },
-
   collapse_leftbar: function() {
     $('body').toggleClass('collapsed');
+    google.maps.event.trigger(GM, 'resize');
   },
   
 
@@ -723,7 +669,7 @@ Viewer = App = {
       if(response.Status.code==200){
         place = response.Placemark[0];
         accuracy = place.AddressDetails.Accuracy;
-        map.setCenter(new GLatLng(place.Point.coordinates[1], place.Point.coordinates[0]), tabAccuracy[accuracy]);
+        map.setCenter(new google.maps.LatLng(place.Point.coordinates[1], place.Point.coordinates[0]), tabAccuracy[accuracy]);
         go('city=' + City.closest());
       }
     });
@@ -750,3 +696,6 @@ Viewer = App = {
   stream_role_leader: function() { return demo || window.stream_role == 'leader'; },
   stream_role_organizer: function() { return demo || window.stream_role == 'leader' || window.stream_role == 'organizer'; }
 };
+
+
+go.push(App);

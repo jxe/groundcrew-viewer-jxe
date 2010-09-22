@@ -83,6 +83,12 @@ blockquote.assignment {
   text-decoration: underline;
 }
 
+.view_events_tool .time.divider {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 /* Notifications */
 
 body > div.jGrowl.top-right {

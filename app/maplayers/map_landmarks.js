@@ -10,7 +10,7 @@ Map.layer_calculators['landmarks'] = function(){
 MapLandmarks = {
   
   fetch_landmarks_in_bounds: function(bounds) {
-    var maxLms = Math.min(Math.round(map.getSize().width * map.getSize().height / 30000), 20);
+    var maxLms = 20;
     var southWest = bounds.getSouthWest();
     var northEast = bounds.getNorthEast();
     $.getJSON("http://www.panoramio.com/map/get_panoramas.php?callback=?", {
@@ -42,11 +42,15 @@ MapLandmarks = {
   marker_for_lm: function(lm) {
     var id = lm.id;
     if (!id) console.log(lm);
-    var marker = new GMarker(new GLatLng(lm.lat, lm.lng), {icon: MapIcons.for_landmark(lm), title: lm.title});
-    GEvent.addListener(marker, "click", function(){ go("@" + id); });
+    var marker = new google.maps.Marker({
+      icon: lm.map_thumb_url || "http://www.panoramio.com/img/panoramio-marker.png",
+      position: new google.maps.LatLng(lm.lat, lm.lng),
+      title: lm.title
+    });
+    google.maps.event.addListener(marker, 'click', function() { go('@' + id); });
     return marker;
   }
   
 };
 
-LiveHTML.widgets.push(MapLandmarks);
+go.push(MapLandmarks);

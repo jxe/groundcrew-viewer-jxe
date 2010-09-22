@@ -2,7 +2,7 @@ Facebar = {
   
   fold_state: {},
   
-  agent_thumb: '<div href="#@#{id}" class="athumb agent_photo #{selected} #{id}">' +
+  agent_thumb: '<div href="#@#{id}" class="athumb agent_photo #{selected} #{id} #{id}_item">' +
     '#{badges}<img class="th" src="#{thumb_url}" title="#{title}"/>' +
     '<b>#{title}</b></div>',
 
@@ -13,9 +13,6 @@ Facebar = {
   
   populate: function(agents) {
     if (!agents) return;
-    if (Agents.everything().length == 0) return $('#empty_text').show(); 
-    else $('#empty_text').hide();
-
     var default_fold_state = agents.length > 300 ? 'folded' : 'straight';
     var groups = agents.group_by('fab_state');
     $('#agents > div.fab_state').hide();
@@ -60,7 +57,6 @@ Facebar = {
         $div.attr('class', 'thumbs').html(html);
         fold_expand_char = '&ndash;';
         opposite_state = 'folded';
-        if (group.length < 2) $a.hide();
       }
       
       if (group_selected) $div.addClass('selected');
@@ -77,3 +73,9 @@ Facebar = {
   }
   
 };
+
+go.push({
+  agents_here_changed: function() {
+    Facebar.populate(This.agents);
+  }
+});

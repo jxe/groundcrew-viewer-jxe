@@ -48,7 +48,7 @@ HTML = {
 
 
 
-LiveHTML.widgets.push({
+go.push({
   
   ideas_for_agent: function(){
     var categories = [];

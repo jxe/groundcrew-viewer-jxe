@@ -1,11 +1,17 @@
-<div class="hud tag_agents_tool hidden_unless_active">
+<div class="tag_agents_tool modal modal_narrow hidden_unless_active">
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
-  <h2>Tag these agents</h2>
+  <h2>Apply tags to agents</h2>
 
-  <h4 class="require_selection" fill="require_selection_str"></h4>
+  <p class="require_selection flash" if="!has_selection" fill="require_selection_str"></p>
 
-  <form id="tag_agents_form" class="xspace">
-    <input name="tags" class="text w75" type="text" hint='space separated tags, e.g. "tag1 tag2"'
-      /><!-- no whitespace here --><button type="submit" class="submit">Tag<b>&rarr;</b></button>
+  <form id="tag_agents_form" class="form_fields">
+    <h3>Add these new tag(s)</h3>
+    <input name="tags[]" type="text" hint='tag_one tag_two'/>
+    <p class="descr">Make each tag one_long_word. Put spaces between multiple tags.</p>
+
+    <h3>Add these existing tags</h3>
+    <div fill="tags_as_cbs(5)"></div>
+
+    <button type="submit" class="submit">Apply tags</button>
   </form>
 </div>

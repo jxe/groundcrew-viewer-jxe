@@ -1,6 +1,3 @@
-.hidden_unless_active { display: none; }
-.hidden_unless_active.active { display: block; }
-
 /* for now, disable approve deputies and squad settings */
 li.approve_deputies_tool, li.squad_settings_tool { display: none; }
 body#viewer .demo_mode_only { display: none; }

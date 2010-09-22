@@ -25,11 +25,11 @@ MapMarkers = {
       }
       if (!sited && This._item.lat) {
         layer = site = null;
-        latlng = new GLatLng(This._item.lat, This._item.lng);
+        latlng = new google.maps.LatLng(This._item.lat, This._item.lng);
         sited = true;
       }
       if (!sited) {
-        App.report_error('No site for op ' + This.item);
+        go.err('No site for op ' + This.item);
         alert('Unable to locate operation.');
         return;
       }
@@ -48,3 +48,14 @@ MapMarkers = {
   }
   
 };
+
+go.push({
+  agents_added: function() {
+    if (Map.layer_visible['agents']) Map.layer_recalculate('agents');
+  },
+  
+  item_removed: function(tag) {
+    Map.site_remove(MapMarkers.type(tag), tag);
+  }
+  
+});

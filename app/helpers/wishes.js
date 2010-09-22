@@ -1,4 +1,4 @@
-LiveHTML.widgets.push({
+go.push({
 
   wishes_to_approve: function() {
   

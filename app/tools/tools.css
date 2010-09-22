@@ -1,2 +1,5 @@
 .welcome_tool .hud_content { font-size: 16px; }
 .welcome_tool { width: 600px; }
+
+.switch_squads_tool li { cursor: pointer; }
+.switch_squads_tool li:hover { text-decoration: underline; }

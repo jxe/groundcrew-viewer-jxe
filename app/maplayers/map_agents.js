@@ -3,12 +3,19 @@ Map.layer_calculators['agents'] = function(){
   var mapping = {};
   $.each(This.agents, function(){
     var id = this.id;
-    var icon = MapIcons.for_type(this.map_icon);
-    var marker = new GMarker( new GLatLng(this.lat, this.lng), { 'title': this.title, 'icon': icon } );
-    
-    GEvent.addListener( marker, "click", function() { go('@' + id); });
-    GEvent.addListener( marker, "dblclick", function() {
-      GM.setCenter( marker.getPoint(), 15 ); 
+    var marker = new google.maps.Marker({
+      icon: 'i/map/' + this.map_icon + '.png',
+      position: new google.maps.LatLng(this.lat, this.lng),
+      shadow: new google.maps.MarkerImage("i/map/man.shadow.png",
+        null,
+        null,
+        new google.maps.Point(15, 32)
+      ),
+      title: this.title
+    });
+    google.maps.event.addListener(marker, 'click', function() { go('@' + id); });
+    google.maps.event.addListener(marker, 'dblclick', function() { 
+      GM.setCenter( marker.getPosition(), 15 ); 
     });
     mapping[this.id] = marker;
   });
