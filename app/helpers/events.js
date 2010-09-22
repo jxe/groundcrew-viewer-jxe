@@ -6,17 +6,37 @@ Actions = {
      <a href="#@#{actor_tag}">#{actor_title}</a>\
      #{what}\
      </div>',
-     
-   chat_t:
-     '<li title="#{when}"><b>#{actor_title}</b>#{what}</li>'
-  
+
+  chat_t:
+     '<li title="#{when}"><b>#{actor_title}</b>#{what}</li>',
+
+  relative_time: function(ts) {
+    if      (Date.within(ts, 60 * 5))               return "Just now";
+    else if (Date.within(ts, 60 * 60))              return "Last hour";
+    else if ($is_today(ts))                         return "Today";
+    else if ($is_yesterday(ts))                     return "Yesterday";
+    else if (Date.within(ts, 60 * 60 * 24 * 7))     return "Last 7 days";
+    else if (Date.within(ts, 60 * 60 * 24 * 7 * 2)) return "Last 2 weeks";
+    else                                            return "2+ weeks ago";
+  }
 };
 
 go.push({
   
   recent_events: function(state) {
     $.each(Anncs.all, function(){ Event.improve(this); });
-    return Actions.event_t.tt(Anncs.all.grep(function(x){ return x && x.atype != 'chat'; }).reverse());
+    var events = Anncs.all.grep(function(x){ return x && x.atype != 'chat'; }).reverse();
+    var divs = [];
+    var prev_time = null;
+    $.each(events, function(){
+      var time = Actions.relative_time(this.created_at);
+      if (time != prev_time) {
+        divs.push(tag('div.time.divider', time));
+        prev_time = time;
+      }
+      divs.push(Actions.event_t.t(this));
+    });
+    return divs.join('');
   },
   
   latest_chats: function(state) {
