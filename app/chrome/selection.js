@@ -100,10 +100,6 @@ go.push({
   clear_selection: function(state) {
     Selection.clear();
   },
-  
-  no_selection: function(state) {
-    return isEmpty(Selection.current) && isEmpty(Selection.groups);
-  },
 
   has_selection: function(state) {
     return !isEmpty(Selection.current) || !isEmpty(Selection.groups);
