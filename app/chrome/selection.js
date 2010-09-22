@@ -110,7 +110,7 @@ go.push({
   },
 
   require_selection_str: function() {
-    return "Please select (option- or command-click) some agents";
+    return "Select agents first. Use control-click (PC) or command-click (Mac) for several.";
   }
 
 });

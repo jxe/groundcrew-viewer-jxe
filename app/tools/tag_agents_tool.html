@@ -2,14 +2,14 @@
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
   <h2>Apply tags to agents</h2>
 
-  <h4 class="require_selection" fill="require_selection_str"></h4>
+  <p class="require_selection flash" fill="require_selection_str"></p>
 
   <form id="tag_agents_form" class="form_fields">
-    <h3>New tag(s)</h3>
-    <input name="tags[]" type="text" hint='tag1 tag_two'/>
-    <p>Make each tag one_long_word. Separate multiple tags with spaces.</p>
+    <h3>Add these new tag(s)</h3>
+    <input name="tags[]" type="text" hint='tag_one tag_two'/>
+    <p class="descr">Make each tag one_long_word. Put spaces between multiple tags.</p>
 
-    <h3>Existing tags</h3>
+    <h3>Add these existing tags</h3>
     <div fill="tags_as_cbs(5)"></div>
 
     <button type="submit" class="submit">Apply tags</button>

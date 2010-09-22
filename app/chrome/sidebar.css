@@ -3,7 +3,11 @@
     padding-top: 10px;
     margin-bottom: 78px;
     overflow-y: auto;
-    color: #444;
+    color: #555;
+}
+
+#sidebar_content h3 {
+  margin: .9em 0 .5em;
 }
 
 #sidebar_content p {
@@ -70,7 +74,6 @@
 }
 
 #getting_started p {
-  margin-left: 18px;
 }
 
 #sidebar .squad {
