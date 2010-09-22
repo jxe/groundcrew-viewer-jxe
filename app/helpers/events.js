@@ -10,6 +10,20 @@ Actions = {
   chat_t:
      '<li title="#{when}"><b>#{actor_title}</b>#{what}</li>',
 
+   event_divs: function(events) {
+     var divs = [];
+     var prev_time = null;
+     $.each(events, function(){
+       var time = Actions.relative_time(this.created_at);
+       if (time != prev_time) {
+         divs.push(tag('div.time.divider', time));
+         prev_time = time;
+       }
+       divs.push(Actions.event_t.t(this));
+     });
+     return divs.join('');
+   },
+
   relative_time: function(ts) {
     if      (Date.within(ts, 60 * 5))               return "Just now";
     else if (Date.within(ts, 60 * 60))              return "Last hour";
@@ -22,21 +36,18 @@ Actions = {
 };
 
 go.push({
-  
-  recent_events: function(state) {
-    $.each(Anncs.all, function(){ Event.improve(this); });
-    var events = Anncs.all.grep(function(x){ return x && x.atype != 'chat'; }).reverse();
-    var divs = [];
-    var prev_time = null;
-    $.each(events, function(){
-      var time = Actions.relative_time(this.created_at);
-      if (time != prev_time) {
-        divs.push(tag('div.time.divider', time));
-        prev_time = time;
-      }
-      divs.push(Actions.event_t.t(this));
-    });
-    return divs.join('');
+
+  show_events: function(clazz, type) {
+    if (This.event_filter_type != type) {
+      This.event_filter_type = type;
+      $('.view_events_tool .active').removeClass('active');
+      $('.view_events_tool a[href*="' + clazz + '"]').addClass('active');
+      $('.view_events_tool').app_paint();
+    }
+  },
+
+  recent_events: function() {
+    return Actions.event_divs(Events.events(This.event_filter_type));
   },
   
   latest_chats: function(state) {

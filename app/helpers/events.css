@@ -83,6 +83,10 @@ blockquote.assignment {
   text-decoration: underline;
 }
 
+.view_events_tool a.active {
+  color: white;
+}
+
 .view_events_tool .time.divider {
   margin-top: 10px;
   font-size: 14px;
