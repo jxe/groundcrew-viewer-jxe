@@ -584,7 +584,20 @@ App = {
       go('tool=');
     });
   },
-  
+
+  tag_remove: function(agent_ids, tag) {
+    if (!demo && !App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to remove tags.");
+
+    var r = confirm("Are you sure you want to delete the tag " + tag + "?");
+    if (!r) return "redo";
+
+    // hide the tag el
+    $.each(agent_ids.split(' '), function(){ $('#' + this + tag).hide(); });
+
+    var params = { agent_ids: agent_ids, without_tag: tag };
+    return $.post_with_squad('/agents/update_all', params);
+  },
+
   squad_settings_form_submitted: function(data) {
     if (!data.name || data.name.length == 0 || !data.desc || data.desc.length == 0) {
       alert('Please provide both a name and a description!'); return "redo";
