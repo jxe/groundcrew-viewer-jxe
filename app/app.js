@@ -284,6 +284,7 @@ App = {
     // init the UI
     Frame.init();
     $('body').addClass('stream_role_' + window.stream_role);
+    if (current_stream != 'nrsp') $('body').removeClass('collapsed');
     $('body').removeClass('loading');
     Map.establish();
 

@@ -6,7 +6,7 @@
 	<link href="viewer.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
 
-<body id="viewer" class="loading notcollapsed">
+<body id="viewer" class="loading collapsed">
   <div id="header" class="magic group">
     <a id="expando" href="##collapse_leftbar">&raquo;</a>
     <div id="header_sidebar">
