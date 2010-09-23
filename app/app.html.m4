@@ -2,7 +2,7 @@
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 	<title>Groundcrew Viewer</title>
-  <script>if (window.location.protocol == 'http') document.write('<base href="http://'+window.location.host+'/viewer_experimental/">');</script>
+  <script>if (window.location.protocol == 'http:') document.write('<base href="http://'+window.location.host+'/viewer_experimental/">');</script>
 	<link href="viewer.css" media="screen" rel="stylesheet" type="text/css"/>
 </head>
 
@@ -19,16 +19,15 @@
       <a if="query" href="##clear_query">X</a>
     </form>
 
-    <div id="youbox" fill="youbox"></div>
-
-    <img id="load_spinner" src="i/spinner.gif"/>
-    <div id="headermenu"></div>
     <div id="soc_logins" class="hide_until_loaded">
       <span class="loo"><a href="#tool=login">Login</a></span>
       <span class="lio">
         <a href="##go_home" fill="user_name"></a> &middot; <a href="##logout">Logout</a>
       </span>
     </div>
+
+    <div id="youbox" fill="youbox"></div>
+    <img id="load_spinner" src="i/spinner.gif"/>
   </div>
   m4_include(`app/chrome/sidebar.html')
 
