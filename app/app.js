@@ -259,6 +259,11 @@ App = {
     }});
   },
   
+  default_invite_page: function() {
+    if (current_stream == 'nrsp') return 'join';
+    else return 'signup';
+  },
+  
   start_lrl: function() {
     var sidemode = 'tutorial';
     if (window.current_stream == 'nrsp') sidemode = '';
