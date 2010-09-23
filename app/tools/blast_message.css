@@ -2,8 +2,8 @@ div.blast_message_tool.hud {
   min-height: 300px;
 }
 
-#blast_message_form input {
-  width: 75%
+#blast_message_form .tags {
+  width: 50%;
 }
 
 .red {

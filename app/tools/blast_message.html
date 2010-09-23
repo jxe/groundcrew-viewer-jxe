@@ -1,24 +1,20 @@
-<div class="blast_message_tool hidden_unless_active hud">
+<div class="blast_message_tool hidden_unless_active modal wide">
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
 
-  <h1>Send a Mass Message</h1>
-  <h2 if="zoomed_out">To: all agents worldwide</h2>
-  <h2 if="!zoomed_out">To: all agents, <b fill="city_name"></b></h2>
+  <h2>Send a Mass Message</h2>
+  <h3 if="zoomed_out">Sending to all agents worldwide</h3>
+  <h3 if="!zoomed_out">Sending to all agents in <span fill="city_name"></span></h3>
 
   <form id="blast_message_form" class="xspace">
-    <input observe="maxchar(150, '#blast_message_form .right.big')" name="message" type="text" class="focus"
-      /><button type="submit" class="submit">
-        Send<strong>&rarr;</strong>
-    </button>
-    <!-- no white space between the above <input> and <button> -->
-    <div class="right big">150</div>
 
-    <p>This message will be sent to everyone, even if they are not visible on the map.
-      You can limit the recipients below:</p>
-
-    <label><b>Tags</b><br/>
-      <input name="tags" type="text" hint='space separated tags, e.g. "tag1 tag2"'/>
-    </label>
-
+    <h3 class="nobold">Or, limit to agents with these tags:</h3>
+    <input class="tags" name="tags" type="text" hint='tag1 tag2 etc'/>
+    
+    <input observe="maxchar(150, '#blast_message_form #BMFcounter')" name="message" type="text" class="focus"
+      />
+      <button type="submit" class="submit">Send</button>
+    <span id="BMFcounter">150</span>
   </form>
+  <p>Note: this message will be sent to everyone specified above, even if they are not currently visible on the map.</p>
+  
 </div>

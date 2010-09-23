@@ -1,23 +1,24 @@
-<div class="hud invite_agents_tool hidden_unless_active">
+<div class="invite_agents_tool hidden_unless_active modal">
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
   <h2>Invite agents and organizers</h2>
 
-  <form id="invite_agents_form" class="xspace">
+  <form id="invite_agents_form">
 
-    <b>Emails addresses to invite</b><br>
-    (comma separated.  no quotes please)
-    <textarea style="width: 90%;" name="emails"></textarea>
-    <label if="stream_role_leader">
-      <br/><input name="groups" value="organizers" type="checkbox"> allow these people to organize
-    </label><br/><br/>
+    <h3>Emails addresses to invite</h3>
+    <span class="descr">Comma separated and with no quotes, please</span>
+    <textarea name="emails"></textarea>
+    <div>
+      <label if="stream_role_leader">
+      <input name="groups" value="organizers" type="checkbox"> allow these people to organize
+      </label>
+    </div>
 
-    <b>From / Reply-to</b><br/>
-    (optional, helps bypass spam filters)<br/>
+    <h3 class="moretop">From / Reply-to <span class="descr">optional, helps bypass spam filters</span></h3>
     <input style="width: 90%;" name="reply_to" type="text" fill="user_email value"/>
     <input name="invite_page" type="hidden" value="signup"/>
 
-    <div class="right xspace">
-      <button style="text-align:right" type="submit" class="submit">Issue invitations<strong>&rarr;</strong></button><br>
+    <div class="moretop">
+      <button type="submit" class="submit">Email Invitations</button>
       <a target="_" href="##go_admin">advanced options...</a>
     </div>
   </form>

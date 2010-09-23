@@ -4,13 +4,9 @@ div.blast_email_tool.hud {
 }
 
 #blast_email_form_input {
-  float: left;
-  width: 50%;
 }
 
 #blast_email_form_query {
-  float: left;
-  width: 50%;
 }
 
 #blast_email_form table {
@@ -18,7 +14,7 @@ div.blast_email_tool.hud {
 }
 
 #blast_email_form td.label {
-  width: 20%;
+  width: 25%;
   font-weight: bold;
 }
 
