@@ -18,7 +18,7 @@
         <div class="select">
           <ul>
             <li href="#tool=invite_agents">Invite Agents</li>
-            <li href="#tool=current_invitations">View Open Invitations</li>
+            <li href="#tool=current_invitations">View Invitations & Signups</li>
             <li class="demo_mode_only" href="#tool=approve_deputies">Approve Deputies</li>
             <li href="#tool=tag_agents">Tag Agents</li>
           </ul>
@@ -30,7 +30,6 @@
         <div class="select">
           <ul>
             <li href="#tool=show_answers">Show Answers</li>
-            <li class="not_demo_mode" if="stream_role_leader" href="#tool=squad_settings">Squad Settings</li>
             <!-- map type tool is not yet implemented -->
             <!-- <li href="#tool=map_type">Change Map Type</li> -->
           </ul>
@@ -41,7 +40,8 @@
       <div class="dropdown north east no_filter no_more">
         <div class="select">
           <ul>
-            <li class="lio" href="##go_settings">Your Settings</li>
+            <li class="not_demo_mode" if="stream_role_leader" href="#tool=squad_settings">Squad Settings</li>
+            <li class="lio" href="##go_settings">Your Profile Settings</li>
             <li class="lio" href="#tool=switch_squads">Switch Squads</li>
           </ul>
         </div>

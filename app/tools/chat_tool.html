@@ -1,10 +1,11 @@
-<div class="chat_tool hidden_unless_active hud" id="chat_palette" style="bottom:75px">
+<div class="chat_tool hidden_unless_active modal" id="chat_palette" style="min-height: 425px;">
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
 
+  <h2>Chat with other organizers</h2>
   <form id="chat_form">
-    <input type="text" size="47" name="msg" hint="type here to chat with others"/>
+    <input type="text" size="47" name="msg" hint="Type here and then hit Return"/>
     <img src="i/arrows/up.png" style="top: 0px; display: none;"/>
     <img src="i/arrows/down.png" style="bottom:0px; display: none;"/>
   </form>
-  <ul fill="latest_chats"></ul>
+  <ul fill="latest_chats" id="latest_chats"></ul>
 </div>
