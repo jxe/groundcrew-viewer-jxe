@@ -35,19 +35,15 @@ Actions = {
   }
 };
 
+go('event_filter=all');
+
 go.push({
-
-  show_events: function(clazz, type) {
-    if (This.event_filter_type != type) {
-      This.event_filter_type = type;
-      $('.view_events_tool .active').removeClass('active');
-      $('.view_events_tool a[href*="' + clazz + '"]').addClass('active');
-      $('.view_events_tool').app_paint();
-    }
-  },
-
   recent_events: function() {
-    return Actions.event_divs(Events.events(This.event_filter_type));
+    var type = This.event_filter;
+    if (This.event_filter == 'all') type = null;
+    else if (This.event_filter == 'msgs') type = 'pm|msg';
+
+    return Actions.event_divs(Events.events(type));
   },
   
   latest_chats: function(state) {
