@@ -214,7 +214,7 @@ App = {
   },
   
   decide_stream: function() {
-    var slug = window.location.href.split('/')[3];
+    var slug = window.location.pathname.split('/')[1];
     if (location.protocol == 'file:') slug = 'demo';
     if (slug.startsWith('demo')) {
       window.demo = true;
