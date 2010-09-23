@@ -45,7 +45,7 @@
 
 /* shadows */
 #sidebar  { -webkit-box-shadow: 4px  0px 4px rgba(0,0,0,0.4); -moz-box-shadow: 4px  0px 4px rgba(0,0,0,0.4); }
-#facebar { -webkit-box-shadow: 0px  3px 3px rgba(0,0,0,0.5); -moz-box-shadow: 0px  3px 3px  rgba(0,0,0,0.5); }
+#facebar { -webkit-box-shadow: 0px  3px 3px rgba(0,0,0,0.5); -moz-box-shadow: 0px  3px 3px  rgba(0,0,0,0.5); clip: rect(auto,auto,auto,auto); }
 #console { -webkit-box-shadow: 0px -2px 5px rgba(0,0,0,0.5);  -moz-box-shadow: 0px -2px 5px rgba(0,0,0,0.5); }
 #tool { background: #850; }
 

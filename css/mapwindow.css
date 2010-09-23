@@ -69,9 +69,16 @@
   padding: 0px 4px 1px 4px;
 }
 
+.mapwindow a.delete {
+  text-align:center;
+  text-decoration:none;
+}
+
+.mapwindow a.delete:hover {
+  color:#CC3300;
+}
 
 ul.tags {
-/*  font-weight:bold;*/
   margin:0;
   padding:0;
   color: #bbb;
@@ -81,12 +88,28 @@ ul.tags li {
   display:inline;
   list-style-type:none;
   white-space:nowrap;
-/*  color:#3F3F3F;*/
-/*  background:#F2F2F2;*/
 }
 
-ul.tags li a {
+ul.tags li a.tag {
   color:#777;
+}
+
+ul.tags .delete {
+  display: none;
+  margin:0 2.5px 0 -1px;
+}
+
+ul.tags:hover .delete {
+  display: inline;
+}
+
+ul.tags .divider {
+  color: #333;
+  margin: 0px 2px;
+}
+
+ul.tags:hover .divider {
+  display: none;
 }
 
 .mapwindow h3 {
@@ -270,8 +293,8 @@ p.deemphasize {
   font-weight:bold;
   background:#fff;
 }
-a.delete {
-  color:#CC3300;
+
+#landmark_for_any_mode a.delete {
   font-size:15px;
   font-weight:bold;
   margin-left:3px;

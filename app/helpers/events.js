@@ -10,6 +10,20 @@ Actions = {
   chat_t:
      '<li title="#{when}"><b>#{actor_title}</b>#{what}</li>',
 
+   event_divs: function(events) {
+     var divs = [];
+     var prev_time = null;
+     $.each(events, function(){
+       var time = Actions.relative_time(this.created_at);
+       if (time != prev_time) {
+         divs.push(tag('div.time.divider', time));
+         prev_time = time;
+       }
+       divs.push(Actions.event_t.t(this));
+     });
+     return divs.join('');
+   },
+
   relative_time: function(ts) {
     if      (Date.within(ts, 60 * 5))               return "Just now";
     else if (Date.within(ts, 60 * 60))              return "Last hour";
@@ -21,22 +35,15 @@ Actions = {
   }
 };
 
+go('event_filter=all');
+
 go.push({
-  
-  recent_events: function(state) {
-    $.each(Anncs.all, function(){ Event.improve(this); });
-    var events = Anncs.all.grep(function(x){ return x && x.atype != 'chat'; }).reverse();
-    var divs = [];
-    var prev_time = null;
-    $.each(events, function(){
-      var time = Actions.relative_time(this.created_at);
-      if (time != prev_time) {
-        divs.push(tag('div.time.divider', time));
-        prev_time = time;
-      }
-      divs.push(Actions.event_t.t(this));
-    });
-    return divs.join('');
+  recent_events: function() {
+    var type = This.event_filter;
+    if (This.event_filter == 'all') type = null;
+    else if (This.event_filter == 'msgs') type = 'pm|msg';
+
+    return Actions.event_divs(Events.events(type));
   },
   
   latest_chats: function(state) {

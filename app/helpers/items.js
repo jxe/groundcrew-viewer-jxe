@@ -118,10 +118,15 @@ go.push({
   },
 
   upfors_as_lis: function() {
-    var upfor = This._item.upfor || '';
-    return "<li>" + $w(upfor).map(function(x){
-      return "<a href='#q="+x+"'>"+x+"</a>";
-    }).join(',</li> <li>') + "</li>";
+    var upfors = $w(This._item.upfor || '');
+
+    return upfors.map(function(x, i){
+      var id = This.item + x;
+      var content = '<a href="#q='+x+'" class="tag">'+x+'</a> ' +
+        '<a href="##tag_remove(\'' + This.item + '\',\'' + x +'\')" class="delete" title="Remove this tag?">x</a>';
+      if (i < upfors.length-1) content += '<span class="divider">&middot;</span>';
+      return tag('li', { id: id, content: content });
+    }).join(' ');
   },
 
   upfors_as_lis_and_agent_assignable: function(){

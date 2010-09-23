@@ -15,7 +15,7 @@
     <a id="collapso" href="##collapse_leftbar">&laquo;</a>
 
     <form id="search_form">
-      <input type="search" name="q" hint="Search agents" fill="query value" id="search" />
+      <input type="search" name="q" hint="Search agents" fill="query value" id="search" class="hide_until_loaded"/>
       <a if="query" href="##clear_query">X</a>
     </form>
 
@@ -23,7 +23,7 @@
 
     <img id="load_spinner" src="i/spinner.gif"/>
     <div id="headermenu"></div>
-    <div id="soc_logins">
+    <div id="soc_logins" class="hide_until_loaded">
       <span class="loo"><a href="#tool=login">Login</a></span>
       <span class="lio">
         <a href="##go_home" fill="user_name"></a> &middot; <a href="##logout">Logout</a>
