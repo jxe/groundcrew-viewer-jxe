@@ -1,4 +1,4 @@
-#sidebar,
+#sidebar, #sidebar_content,
 #tool, #map, #fog,
 #console, #lconsole, #rconsole {
   position: absolute;
@@ -20,6 +20,7 @@
 /* move things over for sidebar */
 #tool { margin-left: 280px; }
 #sidebar  { width: 280px; }
+#sidebar_content { margin-bottom: 40px; overflow-y: auto; }
 
 /* position facebar, map, and console within tool */
 #facebar { height: 93px; }

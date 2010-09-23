@@ -260,11 +260,13 @@ App = {
   },
   
   start_lrl: function() {
+    var sidemode = 'tutorial';
+    if (window.current_stream == 'nrsp') sidemode = '';
     if (window.location.hash) return window.location.hash.slice(1);
     else {
       var city = App.start_city();
-      if (window.authority || !SidebarTags[window.current_stream]) return city;
-      else return city + ";tool=welcome";
+      if (window.authority || !SidebarTags[window.current_stream]) return city + ";sidemode=" + sidemode;
+      else return city + ";tool=welcome;sidemode=" + sidemode;
     }
   },
     
