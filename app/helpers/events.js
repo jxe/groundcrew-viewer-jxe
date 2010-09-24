@@ -1,28 +1,30 @@
 Actions = {
-  
+
   event_t:
-    '<div class="event #{color}">\
-     <span class="time">#{when}</span>\
-     <a href="#@#{actor_tag}">#{actor_title}</a>\
-     #{what}\
-     </div>',
+    '<div class="event clearfix #{color}">\
+     <img href="#@#{actor_tag}" class="athumb" src="#{actor_thumb_url}" title="#{actor_title}"/>\
+     <div class="text">\
+       <a href="#@#{actor_tag}">#{actor_title}</a>\
+       #{what}\
+       <span class="ts">#{when}</span>\
+     </div></div>',
 
   chat_t:
      '<li title="#{when}"><b>#{actor_title}</b>#{what}</li>',
 
-   event_divs: function(events) {
-     var divs = [];
-     var prev_time = null;
-     $.each(events, function(){
-       var time = Actions.relative_time(this.created_at);
-       if (time != prev_time) {
-         divs.push(tag('div.time.divider', time));
-         prev_time = time;
-       }
-       divs.push(Actions.event_t.t(this));
-     });
-     return divs.join('');
-   },
+  event_divs: function(events) {
+    var divs = [];
+    var prev_time = null;
+    $.each(events, function(){
+      var time = Actions.relative_time(this.created_at);
+      if (time != prev_time) {
+        divs.push(tag('div.time.divider', time));
+        prev_time = time;
+      }
+      divs.push(Actions.event_t.t(this));
+    });
+    return divs.join('');
+  },
 
   relative_time: function(ts) {
     if      (Date.within(ts, 60 * 5))               return "Just now";

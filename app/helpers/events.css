@@ -1,77 +1,30 @@
-#recent_content {
-	width: 300px;
-	font-size: 11px;
-  max-height: 350px;
-  overflow: auto;
+.ts {
+  font-size: 85%;
+  font-family: helvetica,arial;
+  font-style: italic;
+  color: #777;
 }
 
-#recent_content .event span.assignment, #recent_content .event span.wish, #recent_content .event span.report, #recent_content .event span.shout {
-  margin-left: 10px;
-  display: block;
+.event {
+  margin: 0 0 7px 0;
 }
-
-#recent_content span.assignment, #recent_content span.wish, #recent_content span.report, #recent_content span.shout {
-  color: black;
-  padding: 2px 5px;
-}
-
-.event .assignment {
-  background: #aaf;
-}
-
-blockquote.assignment {
-  margin:0; padding: 3px;
-}
-
-.event .wish {
-  background: #79c;
-}
-
-.event  span.report {
-  background: #7c7;
-}
-
-.event span.error,
-.event span.warning {
-  color: #DC7867;
-}
-
-.event  .shout {
-  background: #c77;
-}
-
-.time {
-  font-size: 11px;
-  color: gray;
-}
-
 
 .event.invisible {
   display:none;
 }
 
-.event.grey, .event.grey a {
-  color: #aaa;
+.event img.athumb {
+  float: left;
+  width: 40px;
+  cursor: pointer;
 }
 
-.event.green, .event.green a {
-  color: green;
-/*  background: #cfc;*/
+.event div.text {
+  margin-left: 44px;
 }
 
-.event.red, .event.red a {
-  color: #c00;
-/*  background: #fcc;*/
-}
-
-.event.blue, .event.blue a {
-  color: #335577;
-/*  background: #bdf;*/
-}
-
-.event.purple, .event.purple a {
-/*  background: #dcf;*/
-  color: #82c;
+.event .ts {
+  display: block;
 }
 
 .event a {
@@ -83,8 +36,20 @@ blockquote.assignment {
   text-decoration: underline;
 }
 
+.event.red, .event.red a {
+  color: #D33;
+}
+
+.event.grey, .event.grey a {
+  color: #aaa;
+}
+
 .view_events_tool a.active {
   color: white;
+}
+
+.view_events_tool .event .msg {
+  display: block;
 }
 
 .view_events_tool .time.divider {
@@ -92,6 +57,11 @@ blockquote.assignment {
   font-size: 14px;
   font-weight: bold;
 }
+
+.view_events_tool .time.divider {
+  color: #333;
+}
+
 
 /* Notifications */
 
