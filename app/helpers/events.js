@@ -45,7 +45,7 @@ go.push({
     if (This.event_filter == 'all') type = null;
     else if (This.event_filter == 'msgs') type = 'pm|msg';
 
-    return Actions.event_divs(Events.events(type));
+    return Actions.event_divs(Events.events(type && '=atype ' + type));
   },
   
   latest_chats: function(state) {
