@@ -160,7 +160,7 @@ App = {
   },
   
   at_item: function(url) {
-    var url = This.new_url.slice(1);
+    url = This.new_url.slice(1);
     if (LiveHTML.metaOn && url.startsWith('p')) return Selection.toggle(url);
     else return go('mode=;tool=;item=' + url);
   },
@@ -204,7 +204,7 @@ App = {
   
   initialize: function() {
     go.trigger('start');
-    if($.browser.msie) return $('#unsupported').show();
+    if($.browser.msie) { $('#unsupported').show(); return; }
     UIExtras.init();
     window.onerror = App.handle_error;
     App.decide_stream();
@@ -668,9 +668,8 @@ App = {
   },
 
   rss_overlay: function() {
-    var url;
-    if (url = prompt("GeoRSS/KML URL:")) 
-      map.addOverlay(new GGeoXml(url));
+    var url = prompt("GeoRSS/KML URL:");
+    if (url) map.addOverlay(new GGeoXml(url));
   },
 
   go_where: function() {
