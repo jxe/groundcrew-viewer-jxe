@@ -180,6 +180,7 @@ App = {
 
   item_event_info: function() {
     if (!This.item) return '';
+    // TODO: add events that match "=item_tag This.item", but remove duplicates
     return Actions.event_t.tt(Events.events('=actor_tag ' + This.item));
   },
 
