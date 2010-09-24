@@ -177,7 +177,12 @@ App = {
     $.each(op_children[This.item] || [], function(){ Event.improve(this); });
     return Actions.event_t.tt(op_children[This.item]);
   },
-  
+
+  item_event_info: function() {
+    if (!This.item) return '';
+    return Actions.event_t.tt(Events.events('=actor_tag ' + This.item));
+  },
+
   handle_error: function(msg, uri, line) {
     // map script loading fails sometimes, but seems to automatically reload
     if (msg.type == 'error') {

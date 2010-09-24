@@ -4,7 +4,7 @@ Actions = {
     '<div class="event clearfix #{color}">\
      <img href="#@#{actor_tag}" class="athumb" src="#{actor_thumb_url}" title="#{actor_title}"/>\
      <div class="text">\
-       <a href="#@#{actor_tag}">#{actor_title}</a>\
+       <a href="#@#{actor_tag}" class="actor">#{actor_title}</a>\
        #{what}\
        <span class="ts">#{when}</span>\
      </div></div>',

@@ -13,6 +13,11 @@
   border:none;
 }
 
+
+/* =========================== */
+/* = agent                   = */
+/* =========================== */
+
 #agent_for_any_mode h2 {
   display: inline;
   padding-right: 20px;
@@ -35,6 +40,26 @@
   color: #bbb;
 }
 
+#agent_for_any_mode img.athumb {
+  display: none;
+}
+
+#agent_for_any_mode .event div.text {
+  margin-left: 0px;
+}
+
+#agent_for_any_mode .event .ts {
+  display: inline;
+}
+
+#agent_for_any_mode .event .actor {
+  display: none;
+}
+
+
+/* =========================== */
+/* = operation               = */
+/* =========================== */
 
 #op_for_any_mode {
   min-width: 330px;
