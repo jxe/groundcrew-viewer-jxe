@@ -37,8 +37,6 @@ Actions = {
   }
 };
 
-go('event_filter=all');
-
 go.push({
   recent_events: function() {
     var type = This.event_filter;

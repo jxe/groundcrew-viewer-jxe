@@ -59,11 +59,11 @@ go.push({
     return true;
   },
 
-  twitter_status: function() {
+  agent_status: function() {
     return This._item.update;
   },
 
-  twitter_bio: function() {
+  agent_bio: function() {
     return This._item.bio;
   },
 

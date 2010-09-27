@@ -29,40 +29,37 @@
     <div class="agent_body clearfix">
       <div class="agent_body_main">
 
-        <ul class="nav"><li><a class="toggles mostrecent_angentbody" href="#agentbody=mostrecent">Most recent</li> &middot; <li><a class="toggles history_agentbody" href="#agentbody=history">History</a></li> &middot; <li><a class="toggles questions_agentbody" href="#agentbody=questions">Questions</li></ul>
-
+        <ul class="nav">
+          <li><a class="mostrecent_agentbody active" href="#agentbody=mostrecent">Status</a></li> &middot;
+          <li><a class="history_agentbody" href="#agentbody=history">History</a></li> &middot;
+          <li><a class="questions_agentbody" href="#agentbody=questions">Answers</a></li>
+        </ul>
 
         <div class="mostrecent_agentbody hidden_unless_active active">
-          <p id="concern" if="has_concern"><span>Possible concern:</span> <span fill="concern"></span></p>
-      
-          <!-- <div class="xspace" fill="recent_dialogue"></div> -->
-  
-          <div if="twitter_status" class="lio">
-            <span fill="twitter_status"></span>
-          </div>
+          <p class="concern" if="has_concern">Possible concern: <span fill="concern"></span></p>
+          <div if="agent_status" class="lio" fill="agent_status"></div>
         </div>
 
         <div class="history_agentbody hidden_unless_active" fill="item_event_info"></div>
 
-        <div id="q-and-a" if="answers" class="questions_agentbody hidden_unless_active">
-          <div fill="answers"></div>
-        </div>
+        <div if="answers" class="questions_agentbody hidden_unless_active" fill="answers"></div>
 
       </div>
 
       <div class="agent_body_sidebar">
-        <ul class="nav"><li><a class="toggles tags_angentside" href="#agentside=tags">Tags</a></li> &middot; <li><a class="toggles bio_angentside" href="#agentside=bio">Bio</li></ul>
+        <ul class="nav">
+          <li><a class="tags_agentside active" href="#agentside=tags">Tags</a></li> &middot;
+          <li><a class="bio_agentside" href="#agentside=bio">Bio</a></li>
+        </ul>
 
         <div class="tags_agentside hidden_unless_active active">
           <ul class="tags skills" if="agent_skills_as_lis" fill="agent_skills_as_lis"></ul>
           <div if="upfors_as_lis_and_agent_assignable">
             <ul fill="upfors_as_lis" class="tags upfor"></ul>
-          </div>        
+          </div>
         </div>
-      
-  		  <div if="twitter_bio" class="bio_agentside hidden_unless_active">
-          <span fill="twitter_bio"></span>
-        </div>
+
+        <div class="bio_agentside hidden_unless_active" fill="agent_bio"></div>
 
       </div>
 
@@ -86,5 +83,5 @@
         <input type="radio" name="kind" value="question">question
       </form>
     </div>
-    
+
 </div>
