@@ -4,64 +4,87 @@
   <p class="note">approximate location (within 1 mile)</p>
 </div>
 
-<div id="agent_for_any_mode" class="mapwindow template" style="max-width: 800px">
-    <div style="float: left; width: 130px; font-size: 11px">
+<div id="agent_for_any_mode" class="mapwindow template" style="max-width: 700px">
+    <div class="agent_header">
       <img class="niw_thumb"  fill="item_thumb_url src" />
-      <div fill="slow_stmt"></div>
-      <div fill="location_stmt"></div>
+      <div>
+        <h2 fill="item_title"></h2>
+        <div>
+          <span fill="item_status"></span>. Last heard from <span fill="item_comm_ts"></span>.
+          <!-- Squad Info: and on <b><span fill="item_squad"></span></b>. -->
+        </div>
+        <div fill="slow_stmt"></div>
+        <div fill="location_stmt"></div>
+      </div>
     </div>
 
-    <div style="float:left; width: 450px">
-      <h2 fill="item_title"></h2>  <ul class="tags skills" if="agent_skills_as_lis" fill="agent_skills_as_lis"></ul>
+<hr />
 
-      <div class="grayish">
-        This agent is <b class="highlight" fill="item_status"></b>.  Last heard from <b class="highlight" fill="item_comm_ts"></b>.
-        <!-- Squad Info: and on <b><span fill="item_squad"></span></b>. -->
+    <div class="agent_availability" if="is_latched">
+      Currently engaged with: <a href="##jump_to_op" fill="item_current_assignment"></a>
+      <hr />
+    </div>
+
+
+    <div class="agent_body clearfix">
+      <div class="agent_body_main">
+
+        <ul class="nav"><li><a class="toggles mostrecent_angentbody" href="#agentbody=mostrecent">Most recent</li> &middot; <li><a class="toggles history_agentbody" href="#agentbody=history">History</a></li> &middot; <li><a class="toggles questions_agentbody" href="#agentbody=questions">Questions</li></ul>
+
+
+        <div class="mostrecent_agentbody hidden_unless_active active">
+          <p id="concern" if="has_concern"><span>Possible concern:</span> <span fill="concern"></span></p>
+      
+          <!-- <div class="xspace" fill="recent_dialogue"></div> -->
+  
+          <div if="twitter_status" class="lio">
+            <span fill="twitter_status"></span>
+          </div>
+        </div>
+
+        <div class="history_agentbody hidden_unless_active" fill="item_event_info"></div>
+
+        <div id="q-and-a" if="answers" class="questions_agentbody hidden_unless_active">
+          <div fill="answers"></div>
+        </div>
+
       </div>
 
-      <!-- <div class="xspace" fill="recent_dialogue">
-      </div> -->
+      <div class="agent_body_sidebar">
+        <ul class="nav"><li><a class="toggles tags_angentside" href="#agentside=tags">Tags</a></li> &middot; <li><a class="toggles bio_angentside" href="#agentside=bio">Bio</li></ul>
 
-      <div class="xspace" if="is_latched">
-        Currently engaged with: <a href="##jump_to_op" class="highlight" fill="item_current_assignment"></a>
+        <div class="tags_agentside hidden_unless_active active">
+          <ul class="tags skills" if="agent_skills_as_lis" fill="agent_skills_as_lis"></ul>
+          <div if="upfors_as_lis_and_agent_assignable">
+            <ul fill="upfors_as_lis" class="tags upfor"></ul>
+          </div>        
+        </div>
+      
+  		  <div if="twitter_bio" class="bio_agentside hidden_unless_active">
+          <span fill="twitter_bio"></span>
+        </div>
+
       </div>
-      <p id="concern" if="has_concern">
-        <span class="heading">concern</span> <b fill="concern" class="highlight"></b>
-      </p>
-      <form class="lio" id="make_it_happen_form" if="agent_assignable">
+
+    </div>
+
+<hr />
+
+    <div class="agent_actions">
+    	<form class="lio" id="make_it_happen_form" if="agent_assignable">
         <input name="assign"
           class="text"
           type="text"
           hint="#agent_assign_prompt"
           observe="switch_to_question METHOD_SPACER maxchar(100, '#make_it_happen_form .right.big')"
-        /><button type="submit" class="submit">
-            Send<strong>&rarr;</strong>
-          </button>
+        />
+        <button type="submit" class="submit">Send</button>
         <!-- no white space between the above <input> and <button> -->
         <div class="right big" style="float:right; margin-right:90px">100</div>
         <br>Send as: <input type="radio" name="kind" value="msg" checked='checked'>msg
         <span if="immediate"><input type="radio" name="kind" value="mission">mission</span>
         <input type="radio" name="kind" value="question">question
       </form>
-
-      <div if="twitter_status" class="lio iwbox">
-        <h4>status</h4>
-        <span fill="twitter_status"></span>
-      </div>
-
-      <div if="upfors_as_lis_and_agent_assignable" class="iwbox">
-        <h4>tags</h4>
-        <ul fill="upfors_as_lis" class="tags upfor"></ul>
-      </div>
-
-      <div if="twitter_bio" class="iwbox">
-        <h4>bio</h4>
-        <span fill="twitter_bio"></span>
-      </div>
-
-      <div if="answers" id="q-and-a" class="lio">
-        <h6>Recent Questions</h6>
-        <div fill="answers"></div>
-      </div>
     </div>
+    
 </div>

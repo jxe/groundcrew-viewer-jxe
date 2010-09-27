@@ -1,22 +1,84 @@
 .mapwindow h1 {
-	color: #333;
+	color: #474848;
 	display: inline;
 	padding-bottom: 3px;
 	}
 
 .mapwindow h2 {
   font-size: 17px;
-  color: #000;
+	color: #474848;
   font-weight:bold;
   padding:0;
   margin: 0 0 .25em 0;
   border:none;
 }
 
+.mapwindow h3 {
+  font-weight: bold;
+	color: #474848;
+  padding: 0;
+  margin: 0;
+}
+
+.mapwindow h6 {
+  font-size:13px;
+  font-weight:bold;
+	color: #474848;
+  padding:0;
+  margin-top:.75em;
+  margin-bottom:.25em;
+}
+
 
 /* =========================== */
 /* = agent                   = */
 /* =========================== */
+
+#agent_for_any_mode {
+  font-size: 13px;
+}
+
+#agent_for_any_mode .agent_header a,
+#agent_for_any_mode .agent_availability a,
+#agent_for_any_mode .nav a {
+  color: #0066CC;
+}
+
+#agent_for_any_mode .agent_body {
+  overflow-y: auto; 
+  max-height: 250px;
+}
+
+#agent_for_any_mode .agent_body_main {
+  float: left;
+  width: 70%;
+}
+
+#agent_for_any_mode .agent_body_sidebar {
+  float: left;
+  width: 25%;
+}
+
+#agent_for_any_mode .agent_body_main .nav li, #agent_for_any_mode .agent_body_sidebar .nav li {
+  display: inline;
+  list-style: none;
+}
+
+#agent_for_any_mode ul.nav {
+  margin: 0 0 10px;
+}
+
+#agent_for_any_mode ul.nav a.active {
+  font-weight: bold;
+}
+
+#agent_for_any_mode hr {
+  margin: 6px 0;
+}
+
+#agent_for_any_mode .agent_loc_update {
+  display: inline;
+}
 
 #agent_for_any_mode h2 {
   display: inline;
@@ -150,27 +212,9 @@ ul.tags:hover .divider {
   display: none;
 }
 
-.mapwindow h3 {
-  font: 13px "Helvetica", Verdana, sans-serif;
-  text-transform: uppercase;
-  color: #333333;
-  padding: 0;
-  margin: 0;
-}
-
-.mapwindow h6 {
-  font-size:11px;
-  font-weight:bold;
-  padding:0;
-  margin-top:.75em;
-  margin-bottom:.25em;
-  color:#191919;
-}
-
 textarea.big {
   font-size: 18px;
   padding: 5px;
-  font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
   width: 94%;
 }
 
@@ -179,18 +223,12 @@ textarea.big {
 /*  display: block;*/
   font-size: 18px;
   padding: 5px;
-  font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
   max-width: 94%;
 }
 
 .big {
   font-size: 15px;
-  font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
   max-width: 94%;
-}
-
-.live {
-  font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
 p.deemphasize {
@@ -205,13 +243,11 @@ p.deemphasize {
 
 .niw_thumb {
   float: left;
-  height: 100px;
-  width: 100px;
-  margin-right: 20px;
-  margin-bottom: 10px;
+  height: 48px;
+  width: 48px;
+  margin-right: 10px;
+  margin-bottom: 5px;
   overflow: hidden;
-  padding:6px;
-  text-align:center;
   background:#BFBFBF;
   background-image: -webkit-gradient(
     linear, 0% 0%, 0% 90%,
@@ -249,7 +285,6 @@ p.deemphasize {
 
 .current-assignment {
   font-weight:bold;
-  font-size:14px;
   color:#7F7F7F;
 }
 #make_it_happen_form {
@@ -263,7 +298,6 @@ p.deemphasize {
   padding:0;
   margin:0;
   border:solid 1px #000;
-  font-size:14px;
   margin-top:.5em;
   padding:3px 0px;
   width: 365px;
@@ -281,16 +315,16 @@ p.deemphasize {
 .w75 {width: 75%}
 
 .mapwindow button {
-  font-size:14px;
+/*   font-size:14px; */
   padding:3px 5px;
   margin:0 0 0 2px;
   cursor:pointer;
   color:white;
-  background:#1B224D;
+  background: #FF763C;
   font-weight:normal;
-  border:solid 1px #2D355D;
-  border-bottom:solid 1px #0F1633;
-  border-right:solid 2px #0F1633;
+  border:solid 1px #FF763C;
+  border-bottom:solid 1px #FF763C;
+  border-right:solid 2px #FF763C;
 }
 
 .mapwindow button.smaller {
@@ -310,11 +344,9 @@ p.deemphasize {
 }
 #q-and-a .answer {
   color:#3F3F3F;
-  font-size:10px;
 }
 #q-and-a .timestamp {
   color:#BFBFBF;
-  font-size:9px;
   margin-left: 5px;
 }
 .mapwindow .highlight {
