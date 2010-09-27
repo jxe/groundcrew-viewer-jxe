@@ -16,7 +16,7 @@
 
     <form id="search_form">
       <input type="search" name="q" hint="Search agents" fill="query value" id="search" class="hide_until_loaded"/>
-      <a if="query" href="##clear_query">X</a>
+      <a if="query" href="##clear_query" class="hide_until_loaded">X</a>
     </form>
 
     <div id="youbox" fill="youbox"></div>
