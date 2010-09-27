@@ -179,9 +179,9 @@ App = {
   },
 
   item_event_info: function() {
-    if (!This.item) return '';
-    // TODO: add events that match "=item_tag This.item", but remove duplicates
-    return Actions.event_t.tt(Events.events('=actor_tag ' + This.item));
+    if (!This.item || !item_children[This.item]) return '';
+    $.each(item_children[This.item], function(){ Event.improve(this); });
+    return Actions.event_t.tt(item_children[This.item].slice(0).reverse());
   },
 
   handle_error: function(msg, uri, line) {
