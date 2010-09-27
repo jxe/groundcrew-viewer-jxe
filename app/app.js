@@ -132,6 +132,14 @@ App = {
         console.log('no good template for ' + thing);
         GMIW.close();
       }
+
+      // LATER: generalize this and move it into go
+      if (This.item) {
+        $.each($w('agentbody agentside'), function() {
+          var space = this;
+          if (This[space]) $('.' + This[space] + '_' + space).activate(space);
+        });
+      }
     }
   },
 
