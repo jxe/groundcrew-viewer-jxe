@@ -12,7 +12,7 @@ go.push({
   youbox: function() {
     if (typeof window.sms_remaining == "number") return "<b>"+window.sms_remaining+"</b> text messages remaining";
     else if (window.posx) return "You've organized <b>48</b> positive experiences.";
-    else return "Join squads to mobilize positive action.";
+    else return ""; //"Join squads to mobilize positive action.";
   },
     
   sidebar_content: function() {

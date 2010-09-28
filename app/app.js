@@ -273,12 +273,19 @@ App = {
     }});
   },
   
+  default_invite_page: function() {
+    if (current_stream == 'nrsp') return 'join';
+    else return 'signup';
+  },
+  
   start_lrl: function() {
+    var sidemode = 'tutorial';
+    if (window.current_stream == 'nrsp') sidemode = '';
     if (window.location.hash) return window.location.hash.slice(1);
     else {
       var city = App.start_city();
-      if (window.authority || !SidebarTags[window.current_stream]) return city;
-      else return city + ";tool=welcome";
+      if (window.authority || !SidebarTags[window.current_stream]) return city + ";sidemode=" + sidemode;
+      else return city + ";tool=welcome;sidemode=" + sidemode;
     }
   },
     
@@ -298,6 +305,7 @@ App = {
     // init the UI
     Frame.init();
     $('body').addClass('stream_role_' + window.stream_role);
+    if (current_stream != 'nrsp') $('body').removeClass('collapsed');
     $('body').removeClass('loading');
     Map.establish();
 

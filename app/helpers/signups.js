@@ -44,8 +44,7 @@ Signups = {
 
 go.push({
 
-  reinvite: function(arg, elem) {
-    var id = $(elem).parents('tr').data('row_data').id;
+  reinvite: function(id) {
     $.post_with_squad('/people/reinvite', {signup_id:id}, function(){
       $('.current_invitations_tool').app_paint();
     });
@@ -65,7 +64,7 @@ go.push({
             Signups.qual_sysid(ps.e && ps.e[0]),
             Signups.qual_sysid(ps.m && ps.m[0]),
             signup.city || 'no location',
-            '<a href="##reinvite">re-invite</a>' ];
+            '<a href="##reinvite(\'' + signup.id + '\')">re-invite</a>' ];
           var sent = Signups.sent_missing_reply(signup);
           if (sent) {
             var row2 = [{content: sent, colspan: '6', 'class': 'warning'}];

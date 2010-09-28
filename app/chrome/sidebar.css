@@ -1,8 +1,4 @@
 #sidebar_content {
-    height: auto;
-    padding-top: 10px;
-    margin-bottom: 78px;
-    overflow-y: auto;
     color: #555;
 }
 
@@ -30,10 +26,6 @@
 
 #squad_desc {
     padding: 3px 5px;
-}
-
-#squad_content {
-
 }
 
 /* placeholder h1 */
