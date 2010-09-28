@@ -56,7 +56,7 @@ go.push({
     if (!App.stream_role_organizer()) return "You must be an organizer on this squad to see recent invitations";
     
     $.getJSON_with_squad('/people/signups.json', function(data){
-      var html = table(['date', 'role', 'email', 'mobile', 'city'], data.results.sort_by('.ts', -1),
+      var html = table(['date', 'role', 'email', 'mobile', 'city'], data.results.sort_by('.ts', { order: 'desc' }),
         function(signup){
           var ps = signup.points.group_by('sys');
           var row1 = [
