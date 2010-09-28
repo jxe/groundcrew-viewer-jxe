@@ -54,7 +54,7 @@ min_js: BUILD super.js
 base.css:
 	cd ../basetheme; make css
 	cp ../basetheme/BUILD/base.css BUILD/
-	cp ../basetheme/i/* i/
+	cp -R ../basetheme/i/* i/
 
 buildcss: BUILD base.css
 	cat BUILD/base.css css/*.css app/{chrome,helpers,tools}/*.css > BUILD/viewer.css
