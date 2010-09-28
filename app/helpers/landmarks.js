@@ -30,7 +30,7 @@ go.push({
   live_ops: function(state) {
     return Ops.here().sort_by(function(x){
       return Operation.last_update_ts(x);
-    }, -1).map(function(x){
+    }, { order: 'desc' }).map(function(x){
       var op_ts = $time_and_or_date(Operation.last_update_ts(x));
       var op_ts_html = op_ts ? '<div class="ts">' + op_ts + '</div>' : '';
       var op_html = '<dt>' + op_ts_html + '#{title}</dt>';
