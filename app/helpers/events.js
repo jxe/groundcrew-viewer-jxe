@@ -16,7 +16,7 @@ Actions = {
     var divs = [];
     var prev_time = null;
     $.each(events, function(){
-      var time = Actions.relative_time(this.created_at);
+      var time = Actions.relative_time(this.created_ts);
       if (time != prev_time) {
         divs.push(tag('div.time.divider', time));
         prev_time = time;

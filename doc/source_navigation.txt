@@ -403,7 +403,7 @@ THE FOLLOWING WILL BECOME API DOCS AND BE MERGED INTO THE SOURCE AS JSDOC.
         events, the hash by_tag, the hash watched and the boolean
         new_events_are_new.
       # event:
-        takes an annc_tag, created_at, atype, actor_tag, re, atags, city_id,
+        takes an annc_tag, created_ts, atype, actor_tag, re, atags, city_id,
         item_tag, item_changes and additional data as arguments.
         defines an event and adds it to the event database.
         returns the event
