@@ -30,12 +30,12 @@
       <div class="agent_body_main">
 
         <ul class="nav">
-          <li><a class="mostrecent_agentbody active" href="#agentbody=mostrecent">Status</a></li> &middot;
+          <li><a class="status_agentbody active" href="#agentbody=status">Status</a></li> &middot;
           <li><a class="history_agentbody" href="#agentbody=history">History</a></li> &middot;
           <li><a class="questions_agentbody" href="#agentbody=questions">Answers</a></li>
         </ul>
 
-        <div class="mostrecent_agentbody hidden_unless_active active">
+        <div class="status_agentbody hidden_unless_active active">
           <p class="concern" if="has_concern">Possible concern: <span fill="concern"></span></p>
           <div if="agent_status" class="lio" fill="agent_status"></div>
         </div>
