@@ -9,19 +9,28 @@ Actions = {
        <span class="ts">#{when}</span>\
      </div></div>',
 
+  op_t:
+    '<div class="event clearfix">\
+     <img class="athumb" src="#{thumb_url}"/>\
+     <div class="text">\
+       #{what}\
+       <span class="ts">#{when}</span>\
+     </div></div>',
+
   chat_t:
      '<li title="#{when}"><b>#{actor_title}</b>#{what}</li>',
 
-  event_divs: function(events) {
+  activity_divs: function(activity) {
     var divs = [];
     var prev_time = null;
-    $.each(events, function(){
+    $.each(activity, function(){
       var time = Actions.relative_time(this.created_ts);
       if (time != prev_time) {
         divs.push(tag('div.time.divider', time));
         prev_time = time;
       }
-      divs.push(Actions.event_t.t(this));
+      var template = this.id.resource_type() == 'Op' ? Actions.op_t : Actions.event_t;
+      divs.push(template.t(this));
     });
     return divs.join('');
   },
@@ -38,12 +47,25 @@ Actions = {
 };
 
 go.push({
-  recent_events: function() {
-    var type = This.event_filter;
-    if (This.event_filter == 'all') type = null;
-    else if (This.event_filter == 'msgs') type = 'pm|msg';
+  recent_activity: function() {
+    var activity;
+    if (!This.activity_filter || This.activity_filter == 'all') {
+      activity = Anncs.everything().concat(Ops.everything());
+    }
+    else if (This.activity_filter == 'op') {
+      activity = Ops.everything();
+    }
+    else if (This.activity_filter == 'msgs') {
+      activity = Anncs.find('=atype pm|msg');
+    }
+    else {
+      activity = Anncs.find('=atype ' + This.activity_filter);
+    }
+    activity = activity.sort_by('.created_ts', { order: 'desc' });
+    if (activity.length > 500) activity = activity.slice(0, 500);
+    $.each(activity, function(){ (this.id.resource_type() == 'Op' ? Operation : Event).improve(this); });
 
-    return Actions.event_divs(Events.events(type && '=atype ' + type));
+    return Actions.activity_divs(activity);
   },
   
   latest_chats: function(state) {

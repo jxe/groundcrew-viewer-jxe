@@ -177,7 +177,7 @@ App = {
     // TODO: temp fix.  Need to make events intelligently cause related windows to refresh
     // (e.g. agent window refreshes if agent reported)
     if (This.item && This.item.resource_type() == 'Op') App.refresh_mapwindow();
-    if (This.tool == 'view_events') $('.view_events_tool').app_paint();
+    if (This.tool == 'view_activity') $('.view_activity_tool').app_paint();
     if (This.tool == 'chat') $('#chat_palette').app_paint();
   },
 
@@ -685,7 +685,7 @@ App = {
     // tags = 'invited_on_' + today;
     data.squad = window.current_stream;
     return $.post_with_squad('/s'+current_stream+'/invitations', data, function(){
-      go('tool=view_events;mode=interact');
+      go('tool=view_activity');
     });
   },
 

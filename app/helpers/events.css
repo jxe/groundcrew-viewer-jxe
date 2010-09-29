@@ -16,6 +16,9 @@
 .event img.athumb {
   float: left;
   width: 40px;
+}
+
+.event img.athumb[href] {
   cursor: pointer;
 }
 
@@ -44,21 +47,21 @@
   color: #aaa;
 }
 
-.view_events_tool a.active {
+.view_activity_tool a.active {
   color: white;
 }
 
-.view_events_tool .event .msg {
+.view_activity_tool .event .msg {
   display: block;
 }
 
-.view_events_tool .time.divider {
+.view_activity_tool .time.divider {
   margin-top: 10px;
   font-size: 14px;
   font-weight: bold;
 }
 
-.view_events_tool .time.divider {
+.view_activity_tool .time.divider {
   color: #333;
 }
 

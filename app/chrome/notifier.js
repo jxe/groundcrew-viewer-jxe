@@ -13,7 +13,7 @@ Notifier = {
     if (ev.atype == 'warning')      Notifier.warning( ev.msg, go, ev.actor_title );
 
     // don't report if we're watching the thing
-    if (ev.re == This.item || This.tool == 'view_events') return;
+    if (ev.re == This.item || This.tool == 'view_activity') return;
 
     if (ev.atype == 'signup')       Notifier.growl(ev.actor_title + " signed up!", go);
     if (ev.atype == 'reported')     Notifier.growl(ev.actor_title + " reports: &ldquo;" + ev.msg + "&rdquo;", go);
