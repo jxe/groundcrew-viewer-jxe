@@ -1,10 +1,28 @@
 <div id="op_for_any_mode" class="mapwindow template">
-  <a id="op_agents" class="popup" href="##op_agents_window">view agents</a>
-  <h2>Live event stream <a href="##rssfeed"><img src="i/rss.jpg"/></a><br/> <span fill="item_title"></span></h2>
+  <h2 fill="item_title"></h2>
 
-  <div class="live_events">
-    <span fill="op_event_info"></span>
+  <hr />
+
+  <div class="op_body clearfix">
+    <ul class="nav">
+      <li><a class="history_opbody active" href="#opbody=history">Activity</a></li> &middot;
+      <li><a class="status_opbody" href="#opbody=status">Status</a></li> &middot;
+      <li><a class="roster_opbody" href="#opbody=roster">Roster</a></li>
+    </ul>
+
+    <div class="op_body_content">
+      <div class="history_opbody live_events hidden_unless_active active" fill="op_event_info"></div>
+      <div class="status_opbody hidden_unless_active">
+        Started <span fill="op_created_ts"></span> by <span fill="op_organizer_name"></span><br />
+        Lastest activity <span fill="op_updated_ts"></span>
+      </div>
+      <div class="roster_opbody hidden_unless_active">Roster
+      </div>
+    </div>
+
   </div>
+
+  <hr />
 
   <div style="margin-top: 8px;">
     <form id="note_form">
