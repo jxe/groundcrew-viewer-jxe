@@ -78,6 +78,13 @@ App = {
     if (changed.item || changed.mode || changed.tool) App.refresh_mapwindow();
   },
 
+  did_change_state: function() {
+    // LATER: generalize state spaces that require a map window refresh
+    if (This.changed.agentbody || This.changed.agentside) {
+      App.resize_mapwindow();
+    }
+  },
+
   go_admin: function() {
     window.location = '/' + current_stream + '/admin';
   },
@@ -134,12 +141,35 @@ App = {
       }
 
       // LATER: generalize this and move it into go
-      if (This.item) {
-        $.each($w('agentbody agentside'), function() {
-          var space = this;
-          if (This[space]) $('.' + This[space] + '_' + space).activate(space);
-        });
-      }
+      $.each($w('agentbody agentside'), function() {
+        if (This[this]) $('.' + This[this] + '_' + this).activate(this);
+      });
+      App.resize_mapwindow();
+    }
+  },
+
+  resize_mapwindow: function() {
+    if (This.item) GMIW.setContent(GMIW.getContent());
+  },
+
+  // new events trigger tool/window repainting
+  anncs_changed: function() {
+    if ($('.live_events:visible').length > 0) {
+      $.each(Anncs.what_changed, function(k, ev){
+        if (This.item && (ev.re == This.item || ev.item_tag == This.item || ev.actor_tag == This.item)) {
+          App.refresh_mapwindow();
+          return false;
+        }
+        // LATER: only repaint if type matches current filter
+        if (This.tool == 'view_activity') {
+          $('.view_activity_tool').app_paint();
+          return false;
+        }
+        if (This.tool == 'chat' && ev.atype == 'chat') {
+          $('#chat_palette').app_paint();
+          return false;
+        }
+      });
     }
   },
 
@@ -173,15 +203,7 @@ App = {
     else return go('mode=;tool=;item=' + url);
   },
 
-  anncs_added: function(state) {
-    // TODO: temp fix.  Need to make events intelligently cause related windows to refresh
-    // (e.g. agent window refreshes if agent reported)
-    if (This.item && This.item.resource_type() == 'Op') App.refresh_mapwindow();
-    if (This.tool == 'view_activity') $('.view_activity_tool').app_paint();
-    if (This.tool == 'chat') $('#chat_palette').app_paint();
-  },
-
-  live_event_info: function (state) {
+  op_event_info: function (state) {
     $.each(op_children[This.item] || [], function(){ Event.improve(this); });
     return Actions.event_t.tt(op_children[This.item]);
   },
