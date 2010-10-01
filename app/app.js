@@ -651,6 +651,26 @@ App = {
     });
   },
 
+  quick_mission_title: function() {
+    This.quick_title = prompt("Quick title:", This.quick_title || '');
+  },
+
+  quick_mission: function() {
+    This.quick_instructions = prompt("Instructions:", This.quick_instructions || '');
+    if (!This.quick_instructions) return;
+    if (!This.quick_title) { alert('No title set!'); return; }
+
+    var agents = Selection.agent_ids().join(' ');
+    var mission = CEML.sanitize(This.quick_title);
+    var script = "\""+mission+"\"\ntell agents: "+This.quick_instructions;
+
+    return Operation.exec(scripts, agents, agents, function(){
+      go('tool=');
+      Notifier.success('Message sent!');
+      Selection.clear();
+    });
+  },
+
   invite_agents_form_submitted: function(data, state) {
     if (demo) {Notifier.success('Invitations sent!'); return go('tool=;mode=');}
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to invite agents.");

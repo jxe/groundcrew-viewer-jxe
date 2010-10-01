@@ -22,6 +22,10 @@ Frame = {
       if (ch == ',') { go('#collapse_leftbar'); return false; }
       if (ch == 'g') { go('#go_where'); return false; }
       if (ch == 'O') { go('#rss_overlay'); return false; }
+
+      if (ch == 'm') { go('#quick_mission_title'); return false; }
+      if (ch == '!') { go('#quick_mission'); return false; }
+
       if (ch == 'f') { $('#search').focus(); return false; }
       if (ch == 't') { setTimeout(function(){go('tool=tag_agents');},0); return false; }
       if (ch == '$') { test = !test; if (test) alert('test mode active'); return false; }
