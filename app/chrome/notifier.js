@@ -12,8 +12,8 @@ Notifier = {
     if (ev.atype == 'error')        Notifier.error( ev.msg, go, ev.actor_title );
     if (ev.atype == 'warning')      Notifier.warning( ev.msg, go, ev.actor_title );
 
-    // don't report if we're watching the thing
-    if (ev.re == This.item || This.tool == 'view_activity') return;
+    // don't report if we're watching the thing.  TODO: turn back on, but based on type
+    // if (ev.re == This.item || This.tool == 'view_activity') return;
 
     if (ev.atype == 'signup')       Notifier.growl(ev.actor_title + " signed up!", go);
     if (ev.atype == 'reported')     Notifier.growl(ev.actor_title + " reports: &ldquo;" + ev.msg + "&rdquo;", go);
