@@ -656,15 +656,16 @@ App = {
   },
 
   quick_mission: function() {
-    This.quick_instructions = prompt("Instructions:", This.quick_instructions || '');
-    if (!This.quick_instructions) return;
     if (!This.quick_title) { alert('No title set!'); return; }
+    var msg = prompt("Instructions:", This.quick_instructions || '');
+    if (!msg) return;
+    This.quick_instructions = msg;
 
     var agents = Selection.agent_ids().join(' ');
     var mission = CEML.sanitize(This.quick_title);
     var script = "\""+mission+"\"\ntell agents: "+This.quick_instructions;
 
-    return Operation.exec(scripts, agents, agents, function(){
+    return Operation.exec(script, agents, agents, function(){
       go('tool=');
       Notifier.success('Message sent!');
       Selection.clear();
