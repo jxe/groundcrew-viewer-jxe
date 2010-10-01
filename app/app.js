@@ -35,11 +35,7 @@ App = {
   closeclick: function() {
     This.city ? go('@' + This.city) : go('tool=');
   },
-  
-  start: function() {
-    This.changed.item = This.changed.city = true;
-  },
-  
+
   change_state: function() {
     var changed = This.changed;
     if (changed.tool && This.tool && This._item && !changed.item) go.set('item', This.city);
@@ -65,7 +61,7 @@ App = {
       else $('body').addClass('zoomed_out');
     }
 
-    if (changed.city) {
+    if (changed.city && window.GM) {
       if (This.city) Map.set_focus_on_city();
       else Map.set_focus_worldwide();
     }
@@ -128,6 +124,7 @@ App = {
   },
 
   refresh_mapwindow: function() {
+    if (!window.GMIW) return;
     if (!This._item) GMIW.close();
     else {
       var thing = This.item.resource_type().toLowerCase();
@@ -149,6 +146,7 @@ App = {
   },
 
   resize_mapwindow: function() {
+    if (!window.GMIW) return;
     if (This.item) GMIW.setContent(GMIW.getContent());
   },
 
@@ -290,6 +288,7 @@ App = {
   load_stream: function() {
     Ajax.init();
     $.ajax({ url: stream_url, dataType: 'script', success: function(){
+      This.changed.item = This.changed.city = true;
       App.stream_loaded = true;
       if (App.authenticated) App.init_ui();
     }});
