@@ -40,12 +40,12 @@
 #floaty.active {
   display: block;
   left:auto;
-  right: auto;
+  right: 40%;;
   color: white;
   opacity: 1.0;
   -moz-opacity: 1.0;
   filter:alpha(opacity=100);
-  top: 63px;
+  top: 20px;
 }
 
 #floaty #floaty_asterisk {
