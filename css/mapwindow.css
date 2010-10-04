@@ -330,7 +330,7 @@ p.deemphasize {
   font-weight: bold;
 }
 
-.history_agentbody, .questions_agentbody {
+.agent_body_main > div, .agent_body_sidebar > div {
   margin-top:1em;
   overflow:auto;
   max-height:8em;
