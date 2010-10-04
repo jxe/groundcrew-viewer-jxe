@@ -726,7 +726,8 @@ App = {
     // tags = 'invited_on_' + today;
     data.squad = window.current_stream;
     return $.post_with_squad('/s'+current_stream+'/invitations', data, function(){
-      go('tool=view_activity');
+      go('tool=');
+      Notifier.success('Invitations sent!');
     });
   },
 
