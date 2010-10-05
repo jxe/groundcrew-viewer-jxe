@@ -35,7 +35,7 @@ Tags = {
     return Tags.tag_cloud(tags, n);
   },
 
-  tag_t: '#{t} <span class="count">#{count}</span>',
+  tag_t: '#{t} <span class="count descr">#{count}</span>',
 
   tags_as_cbs: function(n) {
     return Tags.agent_tags(n).map(function(t){
