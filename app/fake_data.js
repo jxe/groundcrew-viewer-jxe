@@ -58,8 +58,12 @@ Wishes = {
 };
 
 QuestionAnswers = {
-  t: '<div class="wish"><div class="thumb"><img src="#{thumb_url}" /></div>\
-      <div class="info"><strong><a href="#@#{guy}">#{answer}</a></strong><div class="xtra_info">from agent <b>#{agent}</b> at #{time}</div></div><hr class="clear spacer" />'
+  t: '<div class="wish clearfix">\
+        <div class="thumb"><img src="#{thumb_url}" /></div>\
+        <div class="info"><strong>#{answer}</strong>\
+          <div class="xtra_info">from agent <a href="#@#{guy}">#{agent}</a> at #{time}</div>\
+        </div>\
+      </div>'
 };
 
 

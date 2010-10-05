@@ -254,10 +254,6 @@ a.closebox img:hover {
   margin-top:1em;
   overflow:auto;
 }
-.hud .wish {
-  margin-bottom:1.5em;
-}
-
 .hud .wish strong {
   font-size: 15px;
 }
