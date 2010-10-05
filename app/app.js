@@ -625,6 +625,7 @@ App = {
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to tag agents.");
     return $.post_with_squad('/agents/update_all', params, function(){
       go('tool=');
+      Notifier.success("Tagged agents");
     });
   },
 
