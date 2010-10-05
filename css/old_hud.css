@@ -194,12 +194,6 @@
   top: 6px;
 }
 
-img.closebox {
-  position: absolute;
-  top: 1px;
-  right: 1px;
-}
-
 a.closebox {
   position: absolute;
   top: 1px;
