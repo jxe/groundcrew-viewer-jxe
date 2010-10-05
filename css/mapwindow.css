@@ -121,7 +121,14 @@
 /* =========================== */
 
 #op_for_any_mode {
-  min-width: 330px;
+  min-width: 500px;
+  max-width: 600px;
+}
+
+#op_for_any_mode .live_events{
+  min-height: 120px;
+  max-height: 220px;
+  overflow-y: auto;
 }
 
 #op_for_any_mode a#op_agents {
