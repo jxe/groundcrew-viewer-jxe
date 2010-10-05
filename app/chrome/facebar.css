@@ -276,12 +276,13 @@
   filter:alpha(opacity=90);
 }
 
-#flexbar #agents .athumb.selected {
-  background-color: yellow;
-}
-
 #flexbar #agents .athumb.active {
   background-color: blue;
+}
+
+#flexbar #agents .athumb.selected,
+#flexbar #agents .athumb.active.selected {
+  background-color: yellow;
 }
 
 .agent.busy { color: #82c; }
