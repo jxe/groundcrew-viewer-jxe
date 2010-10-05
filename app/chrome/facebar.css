@@ -101,7 +101,7 @@
 }
 
 #flexbar #agents .athumb:hover b {
-    color: #eee;
+    color: #E8E8E8;
 }
 
 #flexbar #agents .athumb b {
@@ -110,7 +110,7 @@
   right: 2px; bottom: 2px;
   font-size: 10px;
   text-align: right;
-  color: rgba(200,220,220,0.5);
+  color: rgba(200,220,220,0.7);
   text-shadow: #000 0px 1px 2px;
   z-index: 10;
 }
