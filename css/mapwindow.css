@@ -78,7 +78,7 @@
 
 #agent_for_any_mode h2 {
   display: inline;
-  padding-right: 20px;
+  padding-right: 6px;
 }
 
 #agent_for_any_mode .skills.tags {
@@ -176,6 +176,17 @@
 
 .mapwindow a.delete:hover {
   color:#CC3300;
+}
+
+.mapwindow a.delete.item {
+  font-size:15px;
+  font-weight:bold;
+}
+
+#landmark_for_any_mode a.delete.item {
+  margin-left:3px;
+  margin-top:-4px;
+  position:absolute;
 }
 
 ul.tags {
@@ -361,14 +372,4 @@ p.deemphasize {
   color:#B20000;
   font-weight:bold;
   background:#fff;
-}
-
-#landmark_for_any_mode a.delete {
-  font-size:15px;
-  font-weight:bold;
-  margin-left:3px;
-  margin-top:-4px;
-  position:absolute;
-  text-align:center;
-  text-decoration:none;
 }

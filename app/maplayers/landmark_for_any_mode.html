@@ -7,8 +7,8 @@
   <div class="grayish" style="width: 130px; float: left">
     <img  class="niw_thumb" fill="item_thumb_url src" />
     This is a <span fill="lm_first_tag">landmark</span>.<br>
-    <img src="i/icons/edit.png" href="#mode=edit" width="12" height="12" alt="Edit this"/>
-    <a class="delete" href="##delete_landmark">x</a>
+    <img src="i/icons/edit.png" href="#mode=edit" width="12" height="12" alt="Edit this" if="stream_role_organizer"/>
+    <a class="item delete" href="##remove_item" if="stream_role_leader" title="Remove this landmark?">x</a>
   </div>
 
   <form id="radial_invite_form" style="float: left; width: 320px">

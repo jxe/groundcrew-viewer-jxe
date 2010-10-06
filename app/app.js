@@ -454,9 +454,10 @@ App = {
     return App.post_landmark(data, function(lm) { go('@'+lm.id); });
   },
 
-  delete_landmark: function(data) {
-    var r = confirm("Are you sure you wish to remove the landmark?  You will no longer be able " +
-      "to view missions that took place at it.");
+  remove_item: function(data) {
+    if (!This.item) return "redo";
+    if (!App.stream_role_organizer()) return Notifier.error("You must be a leader of this squad to remove this item.");
+    var r = confirm("Are you sure you wish to remove this " + This.item.resource_type().toLowerCase() + " from your squad?");
     if (!r) return "redo";
 
     if (demo) {
