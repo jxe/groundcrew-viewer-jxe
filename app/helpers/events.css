@@ -34,11 +34,6 @@
   text-decoration: none;
   font-weight: bold;
 }
-
-.event a:hover {
-  text-decoration: underline;
-}
-
 .event.red, .event.red a {
   color: #D33;
 }
@@ -49,6 +44,10 @@
 
 .view_activity_tool a.active {
   color: white;
+}
+
+.view_activity_tool .event a:hover {
+  text-decoration: underline;
 }
 
 .view_activity_tool .event .msg {

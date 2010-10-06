@@ -38,11 +38,6 @@
   font-size: 13px;
 }
 
-#agent_for_any_mode .agent_header a,
-#agent_for_any_mode .agent_availability a,
-#agent_for_any_mode .nav a {
-  color: #0066CC;
-}
 
 #agent_for_any_mode .agent_body {
   overflow-y: auto;
@@ -176,6 +171,7 @@
 .mapwindow a.delete {
   text-align:center;
   text-decoration:none;
+  color: #333333;
 }
 
 .mapwindow a.delete:hover {
@@ -268,12 +264,11 @@ p.deemphasize {
 }
 
 .mapwindow a {
-	color:#333;
+	color: #0066CC;
 }
 .mapwindow a:hover {
-	color:black;
 	background: #ccc;
-	text-decoration: none ;
+	text-decoration: none;
 }
 
 .mapwindow a.popup {
