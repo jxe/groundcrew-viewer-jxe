@@ -302,6 +302,7 @@ App = {
   start_lrl: function() {
     var sidemode = 'tutorial';
     if (window.current_stream == 'nrsp') sidemode = '';
+    if (demo) sidemode = 'demo';
     if (window.location.hash) return window.location.hash.slice(1);
     else {
       var city = App.start_city();

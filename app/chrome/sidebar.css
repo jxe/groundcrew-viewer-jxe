@@ -52,20 +52,20 @@
     margin: 15px 0 6px 0;
 }
 
-#getting_started {
+.sidetut {
   padding: 0 15px;
 }
 
-#getting_started h2 {
+.sidetut h2 {
 }
 
-#getting_started h3 {
+.sidetut h3 {
   color: #0066CC;
   cursor:pointer;
   font-size: 14px;
 }
 
-#getting_started p {
+.sidetut p {
 }
 
 #sidebar .squad {

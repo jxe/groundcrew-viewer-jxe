@@ -2,7 +2,7 @@
   <div id="sidebar_content">
     <h1 fill="current_stream_name">Loading...</h1>
 
-    <div id="sidemode_selector" style="text-align:center; margin-top: 10px">
+    <div id="sidemode_selector" style="text-align:center; margin-top: 10px" class="not_demo_mode">
       <a href="#sidemode=tutorial" class="tutorial_sidemode toggles">&#9664;</a>
       <span style="min-width: 150px; display:inline-block">
         <span class="hidden_unless_active tutorial_sidemode">Tutorial</span>
@@ -15,6 +15,7 @@
       <div id="squad_desc" fill="current_stream_desc"></div>
     </div>
     m4_include(`app/tutorials/getting_started.html')
+    m4_include(`app/tutorials/demo_tutorial.html')
   </div>
 
   <div id="branding" class="magic">
