@@ -15,7 +15,7 @@ App = {
   list_of_links: function(obj) {
     if (!obj) return '';
     else return $pairs(obj).sort_by('.val', { compare: 'alpha' }).map(function(x){
-      return tag('li', { href: x.key, content: x.val });
+      return tag('li', { href: '/'+x.key, content: x.val });
     }).join('');
   },
 
