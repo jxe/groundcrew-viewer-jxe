@@ -395,11 +395,10 @@ App = {
   },
   
   reverse_geocode_landmark: function(data) {
-    var geocoder = new GClientGeocoder();
-    geocoder.getLocations(new google.maps.LatLng(data.lat, data.lng), function(response) {
-      if (response && response.Status.code==200) {
-        var place = response.Placemark[0];
-        data.name = place.address;
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ location: new google.maps.LatLng(data.lat, data.lng) }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK && results[0]) {
+        data.name = results[0].formatted_address;
         App.post_landmark(data);
       }
     });
