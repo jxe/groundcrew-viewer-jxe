@@ -237,7 +237,7 @@ App = {
   // ======================
   
   initialize: function() {
-    go.trigger('start');
+    window.dontloadcookieonstart = true;
     if($.browser.msie) { $('#unsupported').show(); return; }
     UIExtras.init();
     window.onerror = App.handle_error;
@@ -270,12 +270,13 @@ App = {
   user_ready: function() {
     // do nothing, but prevent the user_ready default action
   },
+    
   
   authenticate: function() {
     if (window.demo) { 
       App.authenticated = true; 
       window.authority = 'pChad';
-      go("#complete_auth_from_cookie");
+      go("#auth_complete");
       return; 
     }
     $.ajax({ url: '/api/auth.js?stream=' + current_stream, dataType: 'script', success: function(){
