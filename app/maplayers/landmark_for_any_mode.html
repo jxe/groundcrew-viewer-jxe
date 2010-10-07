@@ -1,21 +1,26 @@
 <div id="landmark_for_any_mode" class="mapwindow clearfix">
-  <h2 fill="item_title" style="border-bottom: solid 2px #944"></h2>
+  <h2 fill="item_title"></h2>
   <div class="xspace" if="landmark_has_op">
     Most recent mission here: <span class="highlight" fill="landmark_op"></span>
   </div>
 
-  <div class="grayish" style="width: 130px; float: left">
-    <img  class="niw_thumb" fill="item_thumb_url src" />
-    This is a <span fill="lm_first_tag">landmark</span>.<br>
-    <img src="i/icons/edit.png" href="#mode=edit" width="12" height="12" alt="Edit this" if="stream_role_organizer"/>
-    <a class="item delete" href="##remove_item" if="stream_role_leader" title="Remove this landmark?">x</a>
+  <div class="grayish" style="width: 72px; float: left">
+    <img  class="landmark_thumb" fill="item_thumb_url src" />
+    <span fill="lm_first_tag">Landmark</span><br>
+    
+    <div class="landmark_edit">
+      <a href="#mode=edit" if="stream_role_organizer">edit</a>
+      <a href="##remove_item" if="stream_role_leader" title="Remove this landmark?">x</a>
+    </div>
+    
+    
   </div>
 
-  <form id="radial_invite_form" style="float: left; width: 320px">
+  <form id="radial_invite_form" style="float: left; width: 300px">
     <div id="mission" style="margin: 3px 0px">
       <div class="right live" style="float:right">100</div>
-      Want to start something here?  What?<br>
-      <input style="width:99%;" type="text" name="title"
+      Name a mission to start here<br>
+      <input style="width:97%;" type="text" name="title"
         observe="maxchar(100, '#radial_invite_form #mission .right.live')"
       />
     </div>
@@ -23,13 +28,13 @@
 
     <div id="instructions" style="margin: 7px 0px">
       <div class="right live" style="float:right">150</div>
-      Additional instructions, for those who accept<br/>
-      <input style="width:99%;" type="text" name="assignment"
+       Instructions, for those who accept<br/>
+      <input style="width:97%;" type="text" name="assignment"
         observe="maxchar(150, '#radial_invite_form #instructions .right.live')"
       />
     </div>
 
-    <button type="submit" class="submit" style="float:right"> Send<strong>&rarr;</strong> </button>
+    <button type="submit" class="submit" style="float:right">Send</button>
 
     <div style="margin: 7px 0px;">
       Invite those within<br/>
@@ -39,9 +44,9 @@
       </div>
     </div>
 
-    <div if="demo_mode" class="button_dropdown" style="position: absolute; top:10px; right: 10px">
-      <button type="button" class="idle">&#9660;</button>
-      <div class="dropdown south">
+    <div if="demo_mode" class="button_dropdown" style="position: absolute; top:0px; right: 12px;">
+      <button type="button" class="idle" style="display: none;">&#9660;</button>
+      <div class="dropdown south west">
         <div class="select">
           <dl> <dt>a citizen investigation in teams</dt> </dl>
           <dl> <dt>a street cleanup</dt> </dl>
