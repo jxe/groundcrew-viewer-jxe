@@ -29,15 +29,13 @@
   margin-bottom:.25em;
 }
 
+.mapwindow {
+  font-size: 13px;
+}
 
 /* =========================== */
 /* = agent                   = */
 /* =========================== */
-
-#agent_for_any_mode {
-  font-size: 13px;
-}
-
 
 #agent_for_any_mode .agent_body {
 /*   max-height: 550px; */
@@ -55,23 +53,6 @@
   width: 30%;
 /*   height: 100px; */
 /*   overflow-y: auto; */
-}
-
-#agent_for_any_mode .agent_body_main .nav li, #agent_for_any_mode .agent_body_sidebar .nav li {
-  display: inline;
-  list-style: none;
-}
-
-#agent_for_any_mode ul.nav {
-  margin: 0 0 7px;
-}
-
-#agent_for_any_mode ul.nav a.active {
-  font-weight: bold;
-}
-
-#agent_for_any_mode hr {
-  margin: 6px 0;
 }
 
 #agent_for_any_mode .agent_loc_update {
@@ -122,16 +103,14 @@
   max-width: 600px;
 }
 
-#op_for_any_mode .live_events{
+#op_for_any_mode .op_body_content{
   min-height: 120px;
   max-height: 220px;
   overflow-y: auto;
 }
 
-#op_for_any_mode a#op_agents {
-  float:right;
-  margin-top:5px;
-  margin-right:20px;
+#op_for_any_mode div.text {
+  margin-left: 32px;
 }
 
 #op_for_any_mode img.athumb {
@@ -139,13 +118,32 @@
   cursor: pointer;
 }
 
-#op_for_any_mode .event div.text {
-  margin-left: 32px;
-}
-
 #op_for_any_mode .event .re {
   display: none;
 }
+
+#op_for_any_mode  .counts li {
+  display: inline;
+  list-style: none;
+  margin-right:5px;
+}
+
+#op_for_any_mode  .counts .count {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#op_for_any_mode .roster_opbody div.agent {
+  margin-bottom: 2px;
+}
+
+#op_for_any_mode .roster_opbody div.state {
+  margin-bottom: 4px;
+}
+
+/* =========================== */
+/* = map window              = */
+/* =========================== */
 
 .mapwindow .iwbox {
   margin-top: 5px;
@@ -191,6 +189,10 @@
   position:absolute;
 }
 
+.mapwindow hr {
+  margin: 6px 0;
+}
+
 ul.tags {
   margin:0;
   padding:0;
@@ -223,6 +225,23 @@ ul.tags .divider {
 
 ul.tags:hover .divider {
   display: none;
+}
+
+.mapwindow ul.nav {
+  margin: 0 0 10px;
+}
+
+.mapwindow ul.nav a.active {
+  font-weight: bold;
+}
+
+.mapwindow .nav a {
+  color: #0066CC;
+}
+
+.mapwindow .nav li {
+  display: inline;
+  list-style: none;
 }
 
 textarea.big {

@@ -76,7 +76,7 @@ App = {
 
   did_change_state: function() {
     // LATER: generalize state spaces that require a map window refresh
-    if (This.changed.agentbody || This.changed.agentside) {
+    if (This.changed.agentbody || This.changed.agentside || This.changed.opbody) {
       App.resize_mapwindow();
     }
   },
@@ -138,7 +138,7 @@ App = {
       }
 
       // LATER: generalize this and move it into go
-      $.each($w('agentbody agentside'), function() {
+      $.each($w('agentbody agentside opbody'), function() {
         if (This[this]) $('.' + This[this] + '_' + this).activate(this);
       });
       App.resize_mapwindow();

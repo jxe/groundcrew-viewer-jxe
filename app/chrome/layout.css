@@ -33,6 +33,15 @@
 #header    { z-index:  2; }
 /*#sidebar    { z-index:  1; }*/
 
+img.athumb {
+  float: left;
+  width: 40px;
+}
+
+img.athumb[href] {
+  cursor: pointer;
+}
+
 /* POSITIONING IN COLLAPSED STATE */
 
 /* when collapsed, no sidebar */
