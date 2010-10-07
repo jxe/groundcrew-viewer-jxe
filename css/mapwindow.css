@@ -40,19 +40,21 @@
 
 
 #agent_for_any_mode .agent_body {
-  overflow-y: auto;
-  max-height: 250px;
+/*   max-height: 550px; */
 }
 
 #agent_for_any_mode .agent_body_main {
   float: left;
   width: 70%;
-  margin-right: 9px;
+/*   height: 100px; */
+/*   overflow-y: auto; */
 }
 
 #agent_for_any_mode .agent_body_sidebar {
   float: left;
-  width: 25%;
+  width: 30%;
+/*   height: 100px; */
+/*   overflow-y: auto; */
 }
 
 #agent_for_any_mode .agent_body_main .nav li, #agent_for_any_mode .agent_body_sidebar .nav li {
@@ -61,7 +63,7 @@
 }
 
 #agent_for_any_mode ul.nav {
-  margin: 0 0 10px;
+  margin: 0 0 7px;
 }
 
 #agent_for_any_mode ul.nav a.active {
@@ -310,7 +312,7 @@ p.deemphasize {
   border:solid 1px #000;
   margin-top:.5em;
   padding:3px 0px;
-  width: 365px;
+  width: 350px;
   border-left:solid 1px #B2B2B2;
   border-top:solid 1px #A5A5A5;
   border-bottom:solid 1px #CCCCCC;
@@ -344,9 +346,11 @@ p.deemphasize {
 }
 
 .agent_body_main > div, .agent_body_sidebar > div {
+/*
   margin-top:1em;
-  overflow:auto;
-  max-height:8em;
+  overflow-y:auto;
+*/
+/*   max-height:8em; */
 }
 .questions_agentbody .question {
   margin-top:.5em;
