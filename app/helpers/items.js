@@ -9,6 +9,15 @@ go.push({
     return $long_ago(comm_ts) + " ago";
   },
 
+  is_agent: function() {
+    return This.item && This.item.startsWith('p');
+  },
+  
+  can_delete: function() {
+    if (!This.item || !This.item.startsWith('p')) return false;
+    if (window.stream_role != 'leader') return false;
+  },
+
   slow_stmt: function() {
     if (This._item.immediate) return "";
     return '<img src="i/icons/turtle.png" class="niw_slow_thumb" align="right"/>' +

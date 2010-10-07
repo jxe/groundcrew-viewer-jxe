@@ -9,7 +9,6 @@
       <img class="niw_thumb"  fill="item_thumb_url src" />
       <div>
         <h2 fill="item_title"></h2>
-        <a class="item delete" href="##remove_item" if="stream_role_leader" title="Remove this agent?">x</a>
         <div>
           <span fill="item_status"></span>. Last heard from <span fill="item_comm_ts"></span>.
           <!-- Squad Info: and on <b><span fill="item_squad"></span></b>. -->
@@ -69,20 +68,19 @@
 <hr />
 
     <div class="agent_actions">
-    	<form class="lio" id="make_it_happen_form" if="agent_assignable">
+    	<form class="lio" id="make_it_happen_form" if="agent_assignable" style="position:relative">
         <input name="assign"
           class="text"
           type="text"
           hint="#agent_assign_prompt"
-          observe="switch_to_question METHOD_SPACER maxchar(100, '#make_it_happen_form .right.big')"
+          observe="switch_to_question METHOD_SPACER maxchar(100, '#make_it_happen_form .counter')"
         />
         <button type="submit" class="submit">Send</button>
         <!-- no white space between the above <input> and <button> -->
-        <div class="right big" style="float:right; margin-top:4px">100</div>
+        <div class="counter" style="position:absolute; right: 40px; top: 30px">100</div>
         <br>Send as: <input type="radio" name="kind" value="msg" checked='checked'>msg
         <span if="immediate"><input type="radio" name="kind" value="mission">mission</span>
         <input type="radio" name="kind" value="question">question
       </form>
     </div>
-
 </div>
