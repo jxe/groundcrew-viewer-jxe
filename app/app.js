@@ -395,11 +395,10 @@ App = {
   },
   
   reverse_geocode_landmark: function(data) {
-    var geocoder = new GClientGeocoder();
-    geocoder.getLocations(new google.maps.LatLng(data.lat, data.lng), function(response) {
-      if (response && response.Status.code==200) {
-        var place = response.Placemark[0];
-        data.name = place.address;
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ location: new google.maps.LatLng(data.lat, data.lng) }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK && results[0]) {
+        data.name = results[0].formatted_address;
         App.post_landmark(data);
       }
     });
@@ -744,14 +743,13 @@ App = {
   go_where: function() {
     var where = prompt("Find:");
     if (!where) return;
-    var tabAccuracy = new Array(2,4,6,10,12,13,16,16,17);
-    var geocoder = new GClientGeocoder();
-    geocoder.getLocations(where, function(response) {
-      if(response.Status.code==200){
-        place = response.Placemark[0];
-        accuracy = place.AddressDetails.Accuracy;
-        map.setCenter(new google.maps.LatLng(place.Point.coordinates[1], place.Point.coordinates[0]), tabAccuracy[accuracy]);
-        go('city=' + City.closest());
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address: where }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK && results[0]) {
+        go('item=;city=' + City.closest(results[0].geometry.location));
+        map.fitBounds(results[0].geometry.viewport);
+      } else {
+        Notifier.error('No location could be found for that address');
       }
     });
   },
