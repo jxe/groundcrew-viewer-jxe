@@ -1,34 +1,40 @@
-<div id="op_for_any_mode" class="mapwindow template">
+<div id="op_for_any_mode" class="mapwindow template live_events">
   <h2 fill="item_title"></h2>
+  <div>
+    Started <span fill="op_created_ts"></span> by <span fill="op_organizer_name"></span><br />
+    Lastest activity <span fill="op_updated_ts"></span>
 
-  <hr />
+    <hr if="has_op_counts" />
 
-  <div class="op_body clearfix">
-    <ul class="nav">
-      <li><a class="history_opbody active" href="#opbody=history">Activity</a></li> &middot;
-      <li><a class="status_opbody" href="#opbody=status">Status</a></li> &middot;
-      <li><a class="roster_opbody" href="#opbody=roster">Roster</a></li>
-    </ul>
-
-    <div class="op_body_content">
-      <div class="history_opbody live_events hidden_unless_active active" fill="op_event_info"></div>
-      <div class="status_opbody hidden_unless_active">
-        Started <span fill="op_created_ts"></span> by <span fill="op_organizer_name"></span><br />
-        Lastest activity <span fill="op_updated_ts"></span>
-        <span fill="op_counts"></span>
-      </div>
-      <div class="roster_opbody hidden_unless_active">Roster
-      </div>
-    </div>
-
+    <div class="counts" fill="op_counts"></div>
   </div>
 
   <hr />
 
-  <div style="margin-top: 8px;">
-    <form id="note_form">
-      <input type="text" size="47" name="msg" hint="add a private comment for yourself and other organizers"
-      /><!-- no whitespace here --><button type="submit" class="submit smaller">Notate</button>
-    </form>
+  <div class="op_body clearfix">
+
+    <ul class="nav">
+      <li><a class="history_opbody active" href="#opbody=history">Activity</a></li> &middot;
+      <li><a class="roster_opbody" href="#opbody=roster">Roster</a></li> &middot;
+      <li><a class="comm_opbody" href="#opbody=comm">Communication</a></li>
+    </ul>
+
+    <div class="op_body_content">
+      <div class="history_opbody hidden_unless_active active" fill="op_event_info"></div>
+      <div class="roster_opbody hidden_unless_active" fill="op_roster"></div>
+
+      <div class="comm_opbody hidden_unless_active">
+        <!-- TODO: implement sending message to agents -->
+        <form style="display:none">
+          <input type="text" size="60" name="msg" hint="contact all agents in this mission"
+          /><!-- no whitespace here --><button type="submit" class="submit smaller">Contact</button>
+        </form>
+        <form id="note_form">
+          <input type="text" size="60" name="msg" hint="add a private comment for yourself and other organizers"
+          /><!-- no whitespace here --><button type="submit" class="submit smaller">Notate</button>
+        </form>
+      </div>
+    </div>
+
   </div>
 </div>

@@ -29,15 +29,13 @@
   margin-bottom:.25em;
 }
 
+.mapwindow {
+  font-size: 13px;
+}
 
 /* =========================== */
 /* = agent                   = */
 /* =========================== */
-
-#agent_for_any_mode {
-  font-size: 13px;
-}
-
 
 #agent_for_any_mode .agent_body {
   overflow-y: auto;
@@ -109,10 +107,8 @@
   overflow-y: auto;
 }
 
-#op_for_any_mode a#op_agents {
-  float:right;
-  margin-top:5px;
-  margin-right:20px;
+#op_for_any_mode div.text {
+  margin-left: 32px;
 }
 
 #op_for_any_mode img.athumb {
@@ -120,14 +116,28 @@
   cursor: pointer;
 }
 
-#op_for_any_mode .event div.text {
-  margin-left: 32px;
-}
-
 #op_for_any_mode .event .re {
   display: none;
 }
 
+#op_for_any_mode  .counts li {
+  display: inline;
+  list-style: none;
+  margin-right:5px;
+}
+
+#op_for_any_mode  .counts .count {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#op_for_any_mode .roster_opbody div.agent {
+  margin-bottom: 2px;
+}
+
+#op_for_any_mode .roster_opbody div.state {
+  margin-bottom: 4px;
+}
 
 /* =========================== */
 /* = map window              = */

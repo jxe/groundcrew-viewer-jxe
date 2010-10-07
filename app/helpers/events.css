@@ -13,15 +13,6 @@
   display:none;
 }
 
-.event img.athumb {
-  float: left;
-  width: 40px;
-}
-
-.event img.athumb[href] {
-  cursor: pointer;
-}
-
 .event div.text {
   margin-left: 44px;
 }
