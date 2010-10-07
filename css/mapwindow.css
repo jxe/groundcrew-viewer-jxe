@@ -99,8 +99,11 @@
 /* =========================== */
 
 #op_for_any_mode {
-  min-width: 500px;
-  max-width: 600px;
+/*
+  min-width: 350px;
+  max-width: 500px;
+*/
+  width: 350px;
 }
 
 #op_for_any_mode .op_body_content{
