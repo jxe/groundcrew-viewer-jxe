@@ -103,11 +103,7 @@
 /* =========================== */
 
 #op_for_any_mode {
-/*
-  min-width: 350px;
-  max-width: 500px;
-*/
-  width: 350px;
+  width: 420px;
 }
 
 #op_for_any_mode .op_body_content{
@@ -328,10 +324,7 @@ p.deemphasize {
 #make_it_happen_form {
   white-space:nowrap;
 }
-#note_form input.text,
-#make_it_happen_form input.text,
-#mission_landmark_invite_form input.text,
-#question_landmark_form input.text {
+.mapwindow input.text {
   padding:0;
   margin:0;
   border:solid 1px #000;

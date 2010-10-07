@@ -17,21 +17,27 @@
     <ul class="nav">
       <li><a class="history_opbody active" href="#opbody=history">Activity</a></li> &middot;
       <li><a class="roster_opbody" href="#opbody=roster">Roster</a></li> &middot;
-      <li><a class="comm_opbody" href="#opbody=comm">Communication</a></li>
+      <li><a class="note_opbody" href="#opbody=note">Notate</a></li>
     </ul>
 
     <div class="op_body_content">
-      <div class="history_opbody hidden_unless_active active" fill="op_event_info"></div>
+      <div class="history_opbody hidden_unless_active active">
+        <div fill="op_event_info"></div>
+        <div>
+          <form id="message_op_agents_form" if="has_op_counts" style="position:relative">
+            <input type="text" class="text" name="assign" hint="message all the agents who have participated"
+            observe="maxchar(150, '#message_op_agents_form .counter')"
+            /><!-- no whitespace here --><button type="submit" class="submit smaller">Send</button>
+            <div class="counter" style="position:absolute; right: 54px; top: 30px">150</div>
+          </form>
+        </div>
+      </div>
+
       <div class="roster_opbody hidden_unless_active" fill="op_roster"></div>
 
-      <div class="comm_opbody hidden_unless_active">
-        <!-- TODO: implement sending message to agents -->
-        <form style="display:none">
-          <input type="text" size="60" name="msg" hint="contact all agents in this mission"
-          /><!-- no whitespace here --><button type="submit" class="submit smaller">Contact</button>
-        </form>
+      <div class="note_opbody hidden_unless_active">
         <form id="note_form">
-          <input type="text" size="60" name="msg" hint="add a private comment for yourself and other organizers"
+          <input type="text" class="text" name="msg" hint="add a private comment for yourself and other organizers"
           /><!-- no whitespace here --><button type="submit" class="submit smaller">Notate</button>
         </form>
       </div>

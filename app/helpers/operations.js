@@ -35,5 +35,29 @@ go.push({
       var agents = agent_hashes.map(function(h){ return h.key.resource(); }).compact();
       return tag('div.state', tag('h3', state.capitalize()) + Operation.agent_t.tt(agents));
     }).join('');
+  },
+
+  message_op_agents_form_submitted: function(data) {
+    // get agent id's for all agents who have calc'd states, unless they declined
+    var agents = $pairs(Operation.agents(This.item)).grep(function(x){
+      return x.val != 'declined';
+    }).map('.key');
+
+    if (!agents || agents.length < 1) {
+      alert('There are no agents to contact');
+      return "redo";
+    }
+    if (!data.assign) {
+      alert('Please provide a message!');
+      return "redo";
+    }
+
+    if (demo) return Demo.message(agents, data.assign, function(){
+      return Notifier.success("Message sent!");
+    });
+
+    return Operation.exec(CEML.script_for('msg', data.assign), agents.join(' '), agents.join(' '), function(){
+      Notifier.success('Message sent!');
+    });
   }
 });
