@@ -45,22 +45,23 @@
 /* = agent                   = */
 /* =========================== */
 
-#agent_for_any_mode .agent_body {
-/*   max-height: 550px; */
+#agent_for_any_mode {
+  max-width: 600px;
+}
+
+.agent_body_main > div, .agent_body_sidebar > div {
+  max-height: 10em;
+  overflow-y: auto;
 }
 
 #agent_for_any_mode .agent_body_main {
   float: left;
   width: 70%;
-/*   height: 100px; */
-/*   overflow-y: auto; */
 }
 
 #agent_for_any_mode .agent_body_sidebar {
-  float: left;
-  width: 30%;
-/*   height: 100px; */
-/*   overflow-y: auto; */
+  float: right;
+  width: 27%;
 }
 
 #agent_for_any_mode .agent_loc_update {
@@ -377,13 +378,6 @@ p.deemphasize {
   font-weight: bold;
 }
 
-.agent_body_main > div, .agent_body_sidebar > div {
-/*
-  margin-top:1em;
-  overflow-y:auto;
-*/
-/*   max-height:8em; */
-}
 .questions_agentbody .question {
   margin-top:.5em;
   font-weight: normal;
