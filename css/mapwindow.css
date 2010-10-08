@@ -110,9 +110,15 @@
   width: 420px;
 }
 
-#op_for_any_mode .op_body_content{
+#op_for_any_mode .op_body_content {
   min-height: 120px;
   max-height: 220px;
+  overflow-y: auto;
+}
+
+#op_for_any_mode .events {
+  min-height: 120px;
+  max-height: 190px;
   overflow-y: auto;
 }
 
