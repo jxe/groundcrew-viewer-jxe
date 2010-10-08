@@ -36,6 +36,10 @@ go.push({
       return tag('div.state', tag('h3', state.capitalize()) + Operation.agent_t.tt(agents));
     }).join('');
   },
+  op_page_link: function() {
+    if (!This.item || This.item.resource_type() != 'Op') return '';
+    return '/' + current_stream + '/mission?id=' + This.item;
+  },
 
   message_op_agents_form_submitted: function(data) {
     // get agent id's for all agents who have calc'd states, unless they declined
