@@ -201,9 +201,11 @@ App = {
     else return go('mode=;tool=;item=' + url);
   },
 
-  op_event_info: function (state) {
-    $.each(op_children[This.item] || [], function(){ Event.improve(this); });
-    return Actions.event_t.tt(op_children[This.item]);
+  op_event_info: function (type) {
+    var events = op_children[This.item] || [];
+    if (typeof type == 'string') events = events.grep(function(ev){ return ev.atype == type; });
+    $.each(events, function(){ Event.improve(this); });
+    return Actions.event_t.tt(events);
   },
 
   item_event_info: function() {
