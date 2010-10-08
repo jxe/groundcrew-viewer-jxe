@@ -1,9 +1,9 @@
 <div id="op_for_any_mode" class="mapwindow template live_events">
   <h2 fill="item_title"></h2>
   <div>
-    Latest activity <span fill="op_updated_ts"></span> &middot;
-    Started <span fill="op_created_ts"></span> by <span fill="op_organizer_name"></span>
-    <a id="op_agents" class="popup" href="##op_agents_window">view agents</a>
+    Latest activity <span fill="op_updated_ts"></span> &middot; 
+    Started <span fill="op_created_ts"></span> by <span fill="op_organizer_name"></span> &middot; 
+    <a id="op_agents" class="popup" href="##op_agents_window">View&nbsp;agents</a>
 
     <hr if="has_op_counts" />
 
@@ -17,7 +17,7 @@
     <ul class="nav">
       <li><a class="history_opbody active" href="#opbody=history">Activity</a></li> &middot;
       <li><a class="roster_opbody" href="#opbody=roster">Roster</a></li> &middot;
-      <li><a class="note_opbody" href="#opbody=note">Notate</a></li>
+      <li><a class="note_opbody" href="#opbody=note">Notes</a></li>
     </ul>
 
     <div class="op_body_content">
@@ -25,10 +25,10 @@
         <div fill="op_event_info"></div>
         <div>
           <form id="message_op_agents_form" if="has_op_counts" style="position:relative">
-            <input type="text" class="text" name="assign" hint="message all the agents who have participated"
+            <input type="text" class="text short" name="assign" hint="message all the agents who have participated"
             observe="maxchar(150, '#message_op_agents_form .counter')"
             /><!-- no whitespace here --><button type="submit" class="submit smaller">Send</button>
-            <div class="counter" style="position:absolute; right: 54px; top: 30px">150</div>
+            <div class="counter" style="position:absolute; right: 0px; top: 10px">150</div>
           </form>
         </div>
       </div>
@@ -38,7 +38,7 @@
       <div class="note_opbody hidden_unless_active">
         <form id="note_form">
           <input type="text" class="text" name="msg" hint="add a private comment for yourself and other organizers"
-          /><!-- no whitespace here --><button type="submit" class="submit smaller">Notate</button>
+          /><!-- no whitespace here --><button type="submit" class="submit smaller">Add note</button>
         </form>
       </div>
     </div>
