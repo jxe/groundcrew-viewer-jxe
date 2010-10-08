@@ -1,25 +1,23 @@
-<div class="hud interact_selected_tool hidden_unless_active">
+<div class="modal interact_selected_tool hidden_unless_active">
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
   <h2>Interact with this group</h2>
 
   <div style="color:red" if="zoomed_out">
-    World-wide interactions are currently disabled.  Please zoom to a city.
+    World-wide interactions are currently disabled. Please zoom to a city.
   </div>
 
   <h4 class="require_selection" if="!has_selection" fill="require_selection_str"></h4>
 
-  <form id="group_interact_form" class="xspace">
+  <form id="group_interact_form">
     <input name="assign"
       class="text"
       type="text"
       observe="switch_to_question METHOD_SPACER maxchar(100, '#group_interact_form .right.big')"
-      style="width: 75%"
-    /><button type="submit" class="submit">
-        Send<strong>&rarr;</strong>
-      </button>
+      style="width: 75%; margin-right: 3px;"
+    /><button type="submit" class="submit">Send</button>
     <!-- no white space between the above <input> and <button> -->
     <div class="right big">100</div>
-    <br>Send as: <input type="radio" name="kind" value="msg" checked='checked'>msg
+    Send as: <input type="radio" name="kind" value="msg" checked='checked'>msg
     <input type="radio" name="kind" value="mission">mission
     <input type="radio" name="kind" value="question">question
   </form>
