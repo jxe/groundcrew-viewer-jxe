@@ -16,6 +16,7 @@ go.push({
   can_delete: function() {
     if (!This.item || !This.item.startsWith('p')) return false;
     if (window.stream_role != 'leader') return false;
+    return true;
   },
 
   slow_stmt: function() {
