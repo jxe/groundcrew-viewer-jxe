@@ -774,6 +774,31 @@ App = {
     return window.current_stream_systems || '';
   },
 
+  image_upload_action: function() {
+    return '/api/squad/' + window.current_stream + '/items/' + This.item + '?no_redirect=1&fmt=json';
+  },
+
+  image_selected: function(value, ch, obj) {
+    if (ch) return; // ignore key-press events
+    if (!This.item) return;
+
+    var form = obj.parent();
+    form.iframePostForm({
+      post: function() {
+        form.addClass('uploading');
+      },
+      complete: function(response) {
+        try {
+          eval('var x = ' + response);
+          if (x && x.error) Notifier.error('Image upload failed: ' + x.error);
+        } catch(e) { go.err('image upload failed'); }
+        form.removeClass('uploading');
+      }
+    });
+
+    form.submit();
+  },
+
   stream_role_leader: function() { return demo || window.stream_role == 'leader'; },
   stream_role_organizer: function() { return demo || window.stream_role == 'leader' || window.stream_role == 'organizer'; }
 };

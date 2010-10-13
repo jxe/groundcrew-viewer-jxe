@@ -37,6 +37,33 @@
   font-size: 13px;
 }
 
+form.file_upload {
+  overflow:hidden;
+  position:relative;
+}
+
+form.file_upload.uploading a {
+  display: none;
+}
+
+form.file_upload .msg {
+  display: none;
+}
+
+form.file_upload.uploading .msg {
+  display: block;
+}
+
+form.file_upload input {
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 1;
+  cursor: pointer;
+  font-size: 100px; /* make it big to catch clicks */
+}
+
 /* used in many places */
 .counter { color: #888; }
 
