@@ -49,7 +49,7 @@ App = {
         go.set('city', This.item);
       } else {
         This._item = This.item && This.item.resource();
-        if (This._item) go.set('city', 'City__' + This._item.city_id);
+        if (This._item && This._item.city_id) go.set('city', 'City__' + This._item.city_id);
       }
     }
 
@@ -71,13 +71,13 @@ App = {
       if (!changed.city) Map.layer_recalculate('agents');
     }
 
-    if (changed.item || changed.mode || changed.tool) App.refresh_mapwindow();
+    if (changed.item || changed.mode || changed.tool) App.refresh_itemwindow();
   },
 
   did_change_state: function() {
-    // LATER: generalize state spaces that require a map window refresh
+    // LATER: generalize state spaces that require an item window refresh
     if (This.changed.agentbody || This.changed.agentside || This.changed.opbody) {
-      App.resize_mapwindow();
+      App.resize_itemwindow();
     }
   },
 
@@ -123,31 +123,43 @@ App = {
     return demo;
   },
 
-  refresh_mapwindow: function() {
-    if (!window.GMIW) return;
-    if (!This._item) GMIW.close();
+  refresh_itemwindow: function() {
+    if (!This._item) App.close_itemwindow();
     else {
       var thing = This.item.resource_type().toLowerCase();
-      var best_mapwindow_template = $.template('#' + thing + '_for_' + This.mode + '_mode') || $.template('#' + thing + '_for_any_mode');
-      if (best_mapwindow_template) {
-        MapMarkers.window(best_mapwindow_template);
+      var best_template = $.template('#' + thing + '_for_' + This.mode + '_mode') || $.template('#' + thing + '_for_any_mode');
+      if (best_template) {
+        if (MapMarkers.has_loc(This._item)) {
+          $('#itemwindow').hide();
+          MapMarkers.window(best_template);
+        }
+        else {
+          window.GMIW && GMIW.close();
+          var container = $('#itemwindow');
+          $('.content', container).html(best_template.app_paint()[0]);
+          container.show();
+        }
       } else {
         //TODO:  if there's no template, there should be no selection
         console.log('no good template for ' + thing);
-        GMIW.close();
+        App.close_itemwindow();
       }
 
       // LATER: generalize this and move it into go
       $.each($w('agentbody agentside opbody'), function() {
         if (This[this]) $('.' + This[this] + '_' + this).activate(this);
       });
-      App.resize_mapwindow();
+      App.resize_itemwindow();
     }
   },
 
-  resize_mapwindow: function() {
-    if (!window.GMIW) return;
-    if (This.item) GMIW.setContent(GMIW.getContent());
+  close_itemwindow: function() {
+    $('#itemwindow').hide();
+    window.GMIW && GMIW.close();
+  },
+
+  resize_itemwindow: function() {
+    if (This.item) window.GMIW && GMIW.setContent(GMIW.getContent());
   },
 
   // new events trigger tool/window repainting
@@ -155,7 +167,7 @@ App = {
     if ($('.live_events:visible').length > 0) {
       $.each(Anncs.what_changed, function(k, ev){
         if (This.item && (ev.re == This.item || ev.item_tag == This.item || ev.actor_tag == This.item)) {
-          App.refresh_mapwindow();
+          App.refresh_itemwindow();
           return false;
         }
         // LATER: only repaint if type matches current filter

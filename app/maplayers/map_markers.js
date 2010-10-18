@@ -8,7 +8,18 @@ MapMarkers = {
     else if (thing.resource_type() == 'Landmark') return 'landmarks';
     else return 'agents';
   },
-  
+
+  has_loc: function(item) {
+    if (!item) return false;
+    if (item.focii) {
+      var focus = This._item.focii.split(' ')[0];
+      focus = focus && focus.resource();
+      if (focus != item && MapMarkers.has_loc(focus)) return true;
+    }
+    if (item.lat && item.lng) return true;
+    return false;
+  },
+
   window: function(tmpl, min_zoom) {
     var site = This.item;
     var latlng = null;

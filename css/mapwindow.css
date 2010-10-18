@@ -70,6 +70,34 @@ form.file_upload input {
 
 
 /* =========================== */
+/* = item window             = */
+/* =========================== */
+
+#itemwindow {
+  display: none;
+  position: absolute;
+  left:50px;
+  top:0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  padding: 16px;
+  background: white;
+  border: 1px solid #999;
+  -moz-border-radius: 35px;
+  -webkit-border-radius: 35px;
+  z-index: 10;
+}
+
+#itemwindow img.closebox {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  cursor: pointer;
+}
+
+
+/* =========================== */
 /* = agent                   = */
 /* =========================== */
 
