@@ -40,6 +40,7 @@
 form.file_upload {
   overflow:hidden;
   position:relative;
+  width: 85px;
 }
 
 form.file_upload.uploading a {
