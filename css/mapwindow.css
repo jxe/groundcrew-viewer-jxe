@@ -37,33 +37,6 @@
   font-size: 13px;
 }
 
-form.file_upload {
-  overflow:hidden;
-  position:relative;
-}
-
-form.file_upload.uploading a {
-  display: none;
-}
-
-form.file_upload .msg {
-  display: none;
-}
-
-form.file_upload.uploading .msg {
-  display: block;
-}
-
-form.file_upload input {
-  opacity: 0;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  z-index: 1;
-  cursor: pointer;
-  font-size: 100px; /* make it big to catch clicks */
-}
-
 /* used in many places */
 .counter { color: #888; }
 
@@ -72,23 +45,22 @@ form.file_upload input {
 /* = agent                   = */
 /* =========================== */
 
-#agent_for_any_mode {
-  max-width: 600px;
-}
-
-.agent_body_main > div, .agent_body_sidebar > div {
-  max-height: 10em;
-  overflow-y: auto;
+#agent_for_any_mode .agent_body {
+/*   max-height: 550px; */
 }
 
 #agent_for_any_mode .agent_body_main {
   float: left;
   width: 70%;
+/*   height: 100px; */
+/*   overflow-y: auto; */
 }
 
 #agent_for_any_mode .agent_body_sidebar {
-  float: right;
-  width: 27%;
+  float: left;
+  width: 30%;
+/*   height: 100px; */
+/*   overflow-y: auto; */
 }
 
 #agent_for_any_mode .agent_loc_update {
@@ -138,15 +110,9 @@ form.file_upload input {
   width: 420px;
 }
 
-#op_for_any_mode .op_body_content {
+#op_for_any_mode .op_body_content{
   min-height: 120px;
   max-height: 220px;
-  overflow-y: auto;
-}
-
-#op_for_any_mode .events {
-  min-height: 120px;
-  max-height: 190px;
   overflow-y: auto;
 }
 
@@ -314,6 +280,38 @@ p.deemphasize {
 	font-size: 10px;
 }
 
+.agent_thumb {
+  float: left;
+  width: 48px;
+  height: 48px;
+  position: relative;
+  }
+
+.upload_agentimg {
+  display: none;
+}
+
+.agent_thumb:hover .upload_agentimg {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 48px;
+  width: 48px;
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, .4);
+}
+
+.upload_agentimg p {
+  margin: 10px 0 0 0;
+  text-align: center;
+}
+
+.upload_agentimg p a, .upload_agentimg p a:hover {
+  color: #000;
+  background: none;
+}
+
 .niw_thumb {
   float: left;
   height: 48px;
@@ -376,7 +374,7 @@ p.deemphasize {
 }
 
 .mapwindow input.text.short {
-  width: 320px;
+  width: 340px;
 }
 
 #mission_landmark_invite_form input.text,
@@ -405,6 +403,13 @@ p.deemphasize {
   font-weight: bold;
 }
 
+.agent_body_main > div, .agent_body_sidebar > div {
+/*
+  margin-top:1em;
+  overflow-y:auto;
+*/
+/*   max-height:8em; */
+}
 .questions_agentbody .question {
   margin-top:.5em;
   font-weight: normal;
@@ -435,17 +440,41 @@ p.deemphasize {
 
 .landmark_thumb {
   float: left;
+  position: relative;
   height: 64px;
   width: 64px;
   margin-right: 10px;
   margin-bottom: 5px;
-  overflow: hidden;
-  background:#BFBFBF;
-  background-image: -webkit-gradient(
-    linear, 0% 0%, 0% 90%,
-    from(transparent),
-    to(#B2B2B2));
-  -webkit-border-radius: 3px;
+}
+
+.landmark_img {
+  height: 64px;
+  width: 64px;
+}
+
+.upload_landmark_img {
+  display: none;
+}
+
+.landmark_thumb:hover .upload_landmark_img {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 64px;
+  width: 64px;
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, .4);
+}
+
+.upload_landmark_img p {
+  margin: 20px 0 0 0;
+  text-align: center;
+}
+
+.upload_landmark_img p a, .upload_landmark_img p a:hover {
+  color: #000;
+  background: none;
 }
 
 .landmark_edit a {
