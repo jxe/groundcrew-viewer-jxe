@@ -5,8 +5,15 @@
 </div>
 
 <div id="agent_for_any_mode" class="mapwindow template">
-    <div class="agent_header">
-      <img class="niw_thumb"  fill="item_thumb_url src" />
+    <div class="agent_header clearfix">
+      <div class="agent_thumb">
+        <img class="niw_thumb"  fill="item_thumb_url src" />
+        <div class="upload_agentimg">
+          <p><a>Add image</a></p>
+          <p style="display: none;"><a>Uploading&hellip;</a></p>
+          <p style="display: none;"><a>Change image</a></p>
+        </div>
+      </div>
       <form class="file_upload" fill="image_upload_action action" if="stream_role_leader"
         enctype="multipart/form-data" method="post" >
         <a>Upload image</a>
