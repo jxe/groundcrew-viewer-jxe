@@ -5,27 +5,30 @@
   </div>
 
   <div style="width: 72px; float: left;">
-    <div class="landmark_thumb">
-      <img class="landmark_img" fill="item_thumb_url src" />
-      <div class="upload_landmark_img">
-        <p><a>Add<br />image</a></p>
-        <p style="display: none;"><a>Uploading&hellip;</a></p>
-        <p style="display: none;"><a>Change<br />image</a></p>
-      </div>    
+    <div class="thumb">
+      <img class="thumb" fill="item_thumb_url src" />
+      <form class="upload" fill="image_upload_action action" if="stream_role_leader"
+        enctype="multipart/form-data" method="post" >
+        <input type="file" name="avatar" observe="image_selected" />
+        <div class="overlay">
+          <a class="btn">Upload image</a>
+          <p class="msg">Uploading &hellip;</p>
+        </div>
+      </form>
     </div>
     <span fill="lm_first_tag">Landmark</span><br>
-    
+
     <div class="landmark_edit">
       <a href="#mode=edit" if="stream_role_organizer">edit</a>
-      <a href="##remove_item" if="stream_role_leader" title="Remove this landmark?">x</a>
+      <a href="##remove_item" if="stream_role_leader" title="Remove this landmark?" class="delete item">x</a>
     </div>
-    
-    
+
+
   </div>
 
   <form id="radial_invite_form" style="float: left; width: 300px">
     <div id="mission" style="margin: 3px 0px">
-      <div class="right live" style="float:right">100</div>
+      <div class="right live counter" style="float:right">100</div>
       Name a mission to start here<br>
       <input style="width:97%;" type="text" name="title"
         observe="maxchar(100, '#radial_invite_form #mission .right.live')"
@@ -34,7 +37,7 @@
     <!-- <p class="deemphasize">Agents will receive two text messages: first, an invitation, and then the instructions should they accept.</p> -->
 
     <div id="instructions" style="margin: 7px 0px">
-      <div class="right live" style="float:right">150</div>
+      <div class="right live counter" style="float:right">150</div>
        Instructions, for those who accept<br/>
       <input style="width:97%;" type="text" name="assignment"
         observe="maxchar(150, '#radial_invite_form #instructions .right.live')"

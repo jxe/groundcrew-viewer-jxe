@@ -6,20 +6,17 @@
 
 <div id="agent_for_any_mode" class="mapwindow template">
     <div class="agent_header clearfix">
-      <div class="agent_thumb">
-        <img class="niw_thumb"  fill="item_thumb_url src" />
-        <div class="upload_agentimg">
-          <p><a>Add image</a></p>
-          <p style="display: none;"><a>Uploading&hellip;</a></p>
-          <p style="display: none;"><a>Change image</a></p>
-        </div>
+      <div class="thumb">
+        <img class="thumb" fill="item_thumb_url src" />
+        <form class="upload" fill="image_upload_action action" if="stream_role_leader"
+          enctype="multipart/form-data" method="post" >
+          <input type="file" name="avatar" observe="image_selected" />
+          <div class="overlay">
+            <a class="btn">Upload image</a>
+            <p class="msg">Uploading &hellip;</p>
+          </div>
+        </form>
       </div>
-      <form class="file_upload" fill="image_upload_action action" if="stream_role_leader"
-        enctype="multipart/form-data" method="post" >
-        <a>Upload image</a>
-        <span class="msg">Uploading...</span>
-        <input type="file"name="avatar" observe="image_selected" />
-      </form>
       <div>
         <h2 fill="item_title"></h2>
         <div>

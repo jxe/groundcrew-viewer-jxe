@@ -37,8 +37,86 @@
   font-size: 13px;
 }
 
-/* used in many places */
-.counter { color: #888; }
+.mapwindow div.thumb {
+  float: left;
+  width: 58px;
+  height: 58px;
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  background:#BFBFBF;
+  background-image: -webkit-gradient(
+    linear, 0% 0%, 0% 90%,
+    from(transparent),
+    to(#B2B2B2));
+  -webkit-border-radius: 3px;
+}
+
+.mapwindow img.thumb {
+  height: 58px;
+}
+
+form.upload {
+  overflow:hidden;
+  position:absolute;
+  top: 0;
+  left: 0;
+  height: 58px;
+  width: 58px;
+}
+
+form.upload .overlay {
+ display: none;
+}
+
+form.upload input:hover + div.overlay,
+form.upload.uploading div.overlay {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 58px;
+  width: 58px;
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, .7);
+  text-align: center;
+}
+
+form.upload .btn {
+  margin-top: 15px;
+  display: block;
+}
+
+form.upload.uploading .btn {
+  display: none;
+}
+
+form.upload .msg {
+  display: none;
+}
+
+form.upload.uploading .msg {
+  margin-top: 19px;
+  display: block;
+  color: #555;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+form.upload input {
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 1;
+  cursor: pointer;
+  font-size: 100px; /* make it big to catch clicks */
+}
+
+form.upload.uploading input {
+  display: none;
+}
 
 
 /* =========================== */
@@ -128,6 +206,42 @@
 
 #agent_for_any_mode .event .ts {
   display: inline;
+}
+
+.niw_slow_thumb {
+  height: 24px;
+  width: 24px;
+  padding: 2px;
+  margin-right: 15px;
+}
+
+.questions_agentbody .question {
+  margin-top:.5em;
+  font-weight: normal;
+}
+
+.questions_agentbody .answer {
+  color:#3F3F3F;
+}
+
+.questions_agentbody .timestamp {
+  color:#BFBFBF;
+  margin-left: 5px;
+}
+
+
+/* =========================== */
+/* = landmark                = */
+/* =========================== */
+
+.landmark_edit a {
+  color: #ccc;
+}
+
+#landmark_for_any_mode a.delete.item {
+  margin-left:3px;
+  margin-top:-3px;
+  position:absolute;
 }
 
 
@@ -225,12 +339,6 @@
   color: #888;
 }
 
-#landmark_for_any_mode a.delete.item {
-  margin-left:3px;
-  margin-top:-4px;
-  position:absolute;
-}
-
 .mapwindow hr {
   margin: 6px 0;
 }
@@ -315,60 +423,6 @@ p.deemphasize {
 	font-size: 10px;
 }
 
-.agent_thumb {
-  float: left;
-  width: 48px;
-  height: 48px;
-  position: relative;
-  }
-
-.upload_agentimg {
-  display: none;
-}
-
-.agent_thumb:hover .upload_agentimg {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 48px;
-  width: 48px;
-  background: rgb(255, 255, 255);
-  background: rgba(255, 255, 255, .4);
-}
-
-.upload_agentimg p {
-  margin: 10px 0 0 0;
-  text-align: center;
-}
-
-.upload_agentimg p a, .upload_agentimg p a:hover {
-  color: #000;
-  background: none;
-}
-
-.niw_thumb {
-  float: left;
-  height: 48px;
-  width: 48px;
-  margin-right: 10px;
-  margin-bottom: 5px;
-  overflow: hidden;
-  background:#BFBFBF;
-  background-image: -webkit-gradient(
-    linear, 0% 0%, 0% 90%,
-    from(transparent),
-    to(#B2B2B2));
-  -webkit-border-radius: 3px;
-}
-
-.niw_slow_thumb {
-  height: 24px;
-  width: 24px;
-  padding: 2px;
-  margin-right: 15px;
-}
-
 .mapwindow a {
 	color: #0066CC;
 }
@@ -438,17 +492,6 @@ p.deemphasize {
   font-weight: bold;
 }
 
-.questions_agentbody .question {
-  margin-top:.5em;
-  font-weight: normal;
-}
-.questions_agentbody .answer {
-  color:#3F3F3F;
-}
-.questions_agentbody .timestamp {
-  color:#BFBFBF;
-  margin-left: 5px;
-}
 .mapwindow .highlight {
   background:#FFFEE4;
   padding:0 2px;
@@ -462,49 +505,4 @@ p.deemphasize {
   color:#B20000;
   font-weight:bold;
   background:#fff;
-}
-
-/* Landmarks */
-
-.landmark_thumb {
-  float: left;
-  position: relative;
-  height: 64px;
-  width: 64px;
-  margin-right: 10px;
-  margin-bottom: 5px;
-}
-
-.landmark_img {
-  height: 64px;
-  width: 64px;
-}
-
-.upload_landmark_img {
-  display: none;
-}
-
-.landmark_thumb:hover .upload_landmark_img {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 64px;
-  width: 64px;
-  background: rgb(255, 255, 255);
-  background: rgba(255, 255, 255, .4);
-}
-
-.upload_landmark_img p {
-  margin: 20px 0 0 0;
-  text-align: center;
-}
-
-.upload_landmark_img p a, .upload_landmark_img p a:hover {
-  color: #000;
-  background: none;
-}
-
-.landmark_edit a {
-  color: #ccc;
 }

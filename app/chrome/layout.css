@@ -97,3 +97,5 @@ img#branding2 {
 
 /* For now, hide confirmation tool in viewer */
 #sys_confirmation_outer { display:none; }
+
+.counter { color: #888; }
