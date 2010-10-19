@@ -13,9 +13,10 @@ go.push({
     return This.item && This.item.startsWith('p');
   },
   
-  can_delete: function() {
+  can_remove: function() {
     if (!This.item || !This.item.startsWith('p')) return false;
     if (window.stream_role != 'leader') return false;
+    return true;
   },
 
   slow_stmt: function() {
