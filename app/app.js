@@ -498,9 +498,7 @@ App = {
       return "redo";
     }
     if (demo) return Demo.invite(data.agents.split(' '), This.item, data.title, data.assignment);
-    return Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, This.item, function(){
-      $('#radial_invite_form').html('message sent!');
-    });
+    return Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, This.item);
   },
 
   mission_landmark_invite_form_submitted: function(data) {
@@ -527,8 +525,7 @@ App = {
     return App.post_landmark(data, function(lm) {
       if (demo) return Demo.invite(data.agents.split(' '), lm.id, data.title, data.assignment);
 
-      return Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, lm.id,
-        function(){ $('#mission_landmark_invite_form').html('message sent!'); });
+      return Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, lm.id);
     });
   },
 
@@ -688,7 +685,7 @@ App = {
     if (demo && data.kind == "mission")  return Demo.assign([This.item], data.assign);
     if (data.kind == "mission" && App.error_on_non_immediate([This.item])) return "redo";
     return Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item, function(){
-      $('#make_it_happen_form').html('Message sent!');
+      if (data.kind == "msg") { $('#make_it_happen_form').html('Message sent!'); }
     });
   },
 
@@ -710,9 +707,11 @@ App = {
     if (demo && data.kind == "mission")  return Demo.assign(agents, data.assign, Selection.clear);
     if (data.kind == "mission" && App.error_on_non_immediate(agents)) return "redo";
     return Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
-      go('tool=');
-      Notifier.success('Message sent!');
-      Selection.clear();
+      if (data.kind == "msg") {
+        go('tool=');
+        Notifier.success('Message sent!');
+        Selection.clear();        
+      }
     });
   },
 
@@ -730,11 +729,7 @@ App = {
     var mission = CEML.sanitize(This.quick_title);
     var script = "\""+mission+"\"\ntell agents: "+This.quick_instructions;
 
-    return Operation.exec(script, agents, agents, function(){
-      go('tool=');
-      Notifier.success('Message sent!');
-      Selection.clear();
-    });
+    return Operation.exec(script, agents, agents);
   },
 
   invite_agents_form_submitted: function(data, state) {
