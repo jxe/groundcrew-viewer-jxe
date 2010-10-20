@@ -580,6 +580,11 @@ App = {
     return Operation.exec(CEML.script_for('question', data.question), agent_ids, agent_ids);
   },
 
+  public_request_form_submitted: function(data) {
+    return Operation.exec(CEML.script_for_invite(data.title, data.assignment), null, null,
+      function(op){ $.post_with_squad('/' + op.id + '/broadcasts', { msg: data.msg, sys: 't' }); });
+  },
+
   blast_message_form_submitted: function(data) {
     if (!data.message || data.message.length < 5) {
       alert('Please provide a message that\'s at least 5 characters!');
@@ -781,6 +786,8 @@ App = {
   blast_message_flag: function() {
     return App.stream_has_flag('blast_message');
   },
+
+  twitter_squad: function() { return App.current_stream_systems().contains('t'); },
 
   current_stream_systems: function() {
     if (window.demo) return 'm';

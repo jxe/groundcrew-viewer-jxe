@@ -1,0 +1,27 @@
+<div class="public_request_tool modal modal_wide hidden_unless_active clearfix">
+  <img src="i/buttons/close.gif" href="##back" class="closebox" />
+  <h2>Make a Request</h2>
+  <form id="public_request_form" class="form_fields">
+    <h3>The tweet invitation</h3>
+    <textarea name="msg" rows="2" title="invitation" required="true"
+      observe="maxchar(110, '#public_request_form .counter')"></textarea>
+    <div class="counter" style="position:absolute; left: 225px; top: 102px">110</div>
+    <p>A link to the mission page will be added on to the end of this tweet.</p>
+
+    <hr />
+
+    <h3>Request title</h3>
+    <input name="title" type="text" title="request title" required="true" />
+
+    <h3>Request details</h3>
+    <textarea name="assignment" rows="5"></textarea>
+
+    <button type="submit" class="submit">Send it</button>
+
+  </form>
+  <div class="sidebar">
+    <h3>Examples</h3>
+    <a href="http://groundcrew.us/pickup/mission?id=ve5001" target="_blank">Play a game</a><br />
+    <a href="http://groundcrew.us/teameveryone/mission?id=ve3601" target="_blank">Give out compliments</a>
+  </div>
+</div>
