@@ -302,13 +302,19 @@ App = {
   
   load_stream: function() {
     Ajax.init();
-    $.ajax({ url: stream_url, dataType: 'script', success: function(){
+    StreamLoader.stream_url = stream_url;
+    StreamLoader.load(function(){
       This.changed.item = This.changed.city = true;
       App.stream_loaded = true;
       if (App.authenticated) App.init_ui();
-    }});
+    }, App.stream_load_failed);
   },
-  
+
+  stream_load_failed: function() {
+    $('#loading_data').remove();
+    $('#loading_data_failed').show();
+  },
+
   default_invite_page: function() {
     if (current_stream == 'nrsp') return 'join';
     else return 'signup';
@@ -348,7 +354,7 @@ App = {
 
     // start refreshing the stream
     Resource.handle_changes = true;
-    if (!demo) StreamLoader.init(stream_url);
+    if (!demo) StreamLoader.init_autoload();
     $('#loading_data').remove();
     go(App.start_lrl());
 
