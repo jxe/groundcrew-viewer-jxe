@@ -33,7 +33,7 @@ App = {
   },
 
   closeclick: function() {
-    This.city ? go('@' + This.city) : go('tool=');
+    This.city ? go('@' + This.city) : go('tool=;item=');
   },
 
   change_state: function() {
