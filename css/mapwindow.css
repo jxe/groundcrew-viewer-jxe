@@ -431,15 +431,12 @@ p.deemphasize {
 	text-decoration: none;
 }
 
-.mapwindow a.popup {
+a.popup {
   color:#3366BB;
-  background:url("i/icons/popup.png") no-repeat scroll right center transparent;
-  padding-right:13px;
 }
 
-.mapwindow a.popup:hover {
+a.popup:hover {
   color:#114499;
-  background:#DDEEFF url("i/icons/popup.png") no-repeat scroll right center;
 }
 
 .current-assignment {

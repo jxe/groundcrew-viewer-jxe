@@ -99,3 +99,12 @@ img#branding2 {
 #sys_confirmation_outer { display:none; }
 
 .counter { color: #888; }
+
+a.popup {
+  background:url("i/icons/popup.png") no-repeat scroll right center transparent;
+  padding-right:13px;
+}
+
+a.popup:hover {
+  background:#DDEEFF url("i/icons/popup.png") no-repeat scroll right center;
+}
