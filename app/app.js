@@ -307,7 +307,7 @@ App = {
       This.changed.item = This.changed.city = true;
       App.stream_loaded = true;
       if (App.authenticated) App.init_ui();
-    }, App.stream_load_failed);
+    }, Ajax.error);
   },
 
   stream_load_failed: function() {
