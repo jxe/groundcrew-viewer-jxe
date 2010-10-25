@@ -33,7 +33,7 @@ App = {
   },
 
   closeclick: function() {
-    This.city ? go('@' + This.city) : go('tool=');
+    This.city ? go('@' + This.city) : go('tool=;item=');
   },
 
   change_state: function() {
@@ -302,13 +302,19 @@ App = {
   
   load_stream: function() {
     Ajax.init();
-    $.ajax({ url: stream_url, dataType: 'script', success: function(){
+    StreamLoader.stream_url = stream_url;
+    StreamLoader.load(function(){
       This.changed.item = This.changed.city = true;
       App.stream_loaded = true;
       if (App.authenticated) App.init_ui();
-    }});
+    }, App.stream_load_failed);
   },
-  
+
+  stream_load_failed: function() {
+    $('#loading_data').remove();
+    $('#loading_data_failed').show();
+  },
+
   default_invite_page: function() {
     if (current_stream == 'nrsp') return 'join';
     else return 'signup';
@@ -348,7 +354,7 @@ App = {
 
     // start refreshing the stream
     Resource.handle_changes = true;
-    if (!demo) StreamLoader.init(stream_url);
+    if (!demo) StreamLoader.init_autoload();
     $('#loading_data').remove();
     go(App.start_lrl());
 
@@ -498,9 +504,7 @@ App = {
       return "redo";
     }
     if (demo) return Demo.invite(data.agents.split(' '), This.item, data.title, data.assignment);
-    return Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, This.item, function(){
-      $('#radial_invite_form').html('message sent!');
-    });
+    return Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, This.item);
   },
 
   mission_landmark_invite_form_submitted: function(data) {
@@ -527,8 +531,7 @@ App = {
     return App.post_landmark(data, function(lm) {
       if (demo) return Demo.invite(data.agents.split(' '), lm.id, data.title, data.assignment);
 
-      return Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, lm.id,
-        function(){ $('#mission_landmark_invite_form').html('message sent!'); });
+      return Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, lm.id);
     });
   },
 
@@ -575,6 +578,11 @@ App = {
     if (demo) return Demo.question(data.question, agent_ids);
     agent_ids = agent_ids.join(' ');
     return Operation.exec(CEML.script_for('question', data.question), agent_ids, agent_ids);
+  },
+
+  public_request_form_submitted: function(data) {
+    return Operation.exec(CEML.script_for_invite(data.title, data.assignment), null, null,
+      function(op){ $.post_with_squad('/' + op.id + '/broadcasts', { msg: data.msg, sys: 't' }); });
   },
 
   blast_message_form_submitted: function(data) {
@@ -688,7 +696,7 @@ App = {
     if (demo && data.kind == "mission")  return Demo.assign([This.item], data.assign);
     if (data.kind == "mission" && App.error_on_non_immediate([This.item])) return "redo";
     return Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item, function(){
-      $('#make_it_happen_form').html('Message sent!');
+      if (data.kind == "msg") { $('#make_it_happen_form').html('Message sent!'); }
     });
   },
 
@@ -710,9 +718,11 @@ App = {
     if (demo && data.kind == "mission")  return Demo.assign(agents, data.assign, Selection.clear);
     if (data.kind == "mission" && App.error_on_non_immediate(agents)) return "redo";
     return Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
-      go('tool=');
-      Notifier.success('Message sent!');
-      Selection.clear();
+      if (data.kind == "msg") {
+        go('tool=');
+        Notifier.success('Message sent!');
+        Selection.clear();        
+      }
     });
   },
 
@@ -730,11 +740,7 @@ App = {
     var mission = CEML.sanitize(This.quick_title);
     var script = "\""+mission+"\"\ntell agents: "+This.quick_instructions;
 
-    return Operation.exec(script, agents, agents, function(){
-      go('tool=');
-      Notifier.success('Message sent!');
-      Selection.clear();
-    });
+    return Operation.exec(script, agents, agents);
   },
 
   invite_agents_form_submitted: function(data, state) {
@@ -780,6 +786,8 @@ App = {
   blast_message_flag: function() {
     return App.stream_has_flag('blast_message');
   },
+
+  twitter_squad: function() { return App.current_stream_systems().contains('t'); },
 
   current_stream_systems: function() {
     if (window.demo) return 'm';
