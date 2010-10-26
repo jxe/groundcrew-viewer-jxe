@@ -2,24 +2,24 @@
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
   <h2>Edit Agent's Information</h2>
 
-  <form id="edit_agent_form">
+  <form id="edit_agent_form" goes="#update_current_agent #thanks">
     <h3>Name</h3>
-    <input name="" type="text" hint='First Last' class="short"/>
+    <input name="name" type="text" hint='First Last' class="short"/>
     <span class="descr">Visible to other agents at times</span>
 
     <h3>Email address</h3>
-    <input name="" type="text" class="medium"/>
+    <input name="email" type="text" class="medium"/>
 
     <h3>Phone number</h3>
-    <input name="" type="text" hint='XXX-XXX-XXXX' class="short"/>
+    <input name="mobile" type="text" hint='XXX-XXX-XXXX' class="short"/>
     <span class="descr">Please include area code</span>
 
     <h3>Starting location</h3>
-    <input name="" type="text" style="width: 75%;"/>    
+    <input name="loc" type="text" style="width: 75%;"/>
     <button type="submit" class="submit">Verify</button>
     <p class="descr" style="display:none;">OK!</p>
     <p class="descr">Not found. Reformat or try a new address?</p>
-    
+
 
     <button type="submit" class="submit">Save</button>
   </form>
