@@ -108,3 +108,4 @@ rem("p7902ed13860",1286292958,"chat",null,"okay, all set, let's get out there", 
 rem("pf1b5a149b72",1286292959,"chat",null,"we're starting to receive trouble reports. Stay tuned for assignments.", "Sandy");
 var demo_random_reports = ["All smooth at Ward 6","I'm available!","there's a ton of people here","Heavy police presence at downtown precincts","100 voters in line currently","3 problems in the last half hour, 2 solved, 1 pending","can you send assistance to the lobby of the middle school? too many voters all over with problems","who's nearby Ward 8?","we could use help organizing problems at city hall. anyone available?","can you send 2 more to city library? getting overwhelmed."];
 var demo_replies = ["what?","yes","yup","y","n","sure","I don't understand..."];
+at(1);
