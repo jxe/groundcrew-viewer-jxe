@@ -315,6 +315,10 @@ App = {
     $('#loading_data_failed').show();
   },
 
+  update_current_agent: function() {
+    $.post('/api/i' + This.item, This.form_data, go.onwards);
+  },
+
   default_invite_page: function() {
     if (current_stream == 'nrsp') return 'join';
     else return 'signup';
