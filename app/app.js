@@ -38,7 +38,10 @@ App = {
 
   change_state: function() {
     var changed = This.changed;
-    if (changed.tool && This.tool && This._item && !changed.item) go.set('item', This.city);
+    if (changed.tool && This.tool && This._item && !changed.item) {
+      This.prev_item = This.item;
+      go.set('item', This.city);
+    }
 
     if (changed.item) {
       if (!This.item) {
@@ -316,7 +319,8 @@ App = {
   },
 
   update_current_agent: function() {
-    $.post('/api/i' + This.item, This.form_data, go.onwards);
+    This.form_data.stream = current_stream;
+    $.post('/api/i' + This.prev_item, This.form_data, go.onwards);
   },
 
   default_invite_page: function() {
