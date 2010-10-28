@@ -1,21 +1,3 @@
-function table(cols, data, func, blank_msg){
-  var table = $('<table/>');
-  table.append(tag('tr', cols.map(function(col){ return tag('th', col); }).join('')));
-  $.each(data, function(){
-    var row_data = this;
-    $.each(func(row_data), function() {
-      var row = $(tag('tr', this.map(function(col){ return tag('td', col); }).join('')));
-      row.data('row_data', row_data);
-      table.append(row);
-    });
-  });
-  if (data.length == 0) {
-    table.append('<tr><td colspan="'+cols.length+'">'+blank_msg+'</td></tr>');
-  }
-  return table;
-}
-
-
 Signups = {
 
   qual_sysid: function(pt) {
