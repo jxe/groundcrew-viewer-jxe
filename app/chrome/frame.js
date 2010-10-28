@@ -6,7 +6,8 @@ Frame = {
     $(document).keyup(function(e){
       if (e.keyCode == 27 || e.keyCode == e.DOM_VK_ESCAPE) {
         if (This.tool || (This.item && !This.item.startsWith('City__'))) App.closeclick();
-        else go('#clear_selection');
+        else if (go.value('has_selection')) go('#clear_selection');
+        else App.clear_query();
         return false;
       }
     }).keypress(function(e){
@@ -19,6 +20,8 @@ Frame = {
       if (ch == 'T') { GM.setMapTypeId(google.maps.MapTypeId.TERRAIN); return false; }
       if (ch == '?') { go('tool=help_keyboard'); return false; }
       if (ch == 'w') { go('item='); return false; }
+      if (ch == 'e') { go('tool=view_activity'); return false; }
+      if (ch == 'c') { go('tool=chat'); return false; }
       if (ch == ',') { go('#collapse_leftbar'); return false; }
       if (ch == 'g') { go('#go_where'); return false; }
       if (ch == 'O') { go('#rss_overlay'); return false; }
