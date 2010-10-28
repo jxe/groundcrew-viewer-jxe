@@ -270,7 +270,7 @@ App = {
     if (slug.startsWith('demo')) {
       window.demo = true;
       window.current_stream = 'demo';
-      window.stream_url = '/viewer_experimental/' + slug + '.js';
+      window.stream_url = slug + '.js';
     } else {
       window.demo = false;
       window.current_stream = slug;      
