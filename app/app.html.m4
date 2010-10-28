@@ -14,9 +14,17 @@
     </div>
     <a id="collapso" href="##collapse_leftbar">&laquo;</a>
 
-    <form id="search_form">
+    <form id="search_form" class="compact_dropdowns">
       <input type="search" name="q" hint="Search agents" fill="query value" id="search" class="hide_until_loaded"/>
       <a if="query" href="##clear_query" class="hide_until_loaded">X</a>
+
+      <div class="button_dropdown">
+        <button class="idle">&#9660;</button>
+        <div class="dropdown south east no_filter no_more">
+          <div class="select"><ul fill="tags_as_lis"></ul></div>
+        </div>
+      </div>
+
     </form>
 
     <div id="soc_logins" class="hide_until_loaded">

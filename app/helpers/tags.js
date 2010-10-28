@@ -36,13 +36,29 @@ Tags = {
   },
 
   tag_t: '#{t} <span class="count descr">#{count}</span>',
+  tag2_t: '#{t} (#{count} agents)',
 
   tags_as_cbs: function(n) {
     return Tags.agent_tags(n).map(function(t){
       var display = Tags.tag_t.t(t);
       return tag('div.tag', tag('input', { type: 'checkbox', name: 'tags[]', value: t.t, content: display } ));
     }).join('');
+  },
+  
+  tags_as_opts: function() {
+    return Tags.agent_tags(20).map(function(t){
+      var display = Tags.tag2_t.t(t);
+      return tag('option', {value: t.t, content: display});
+    }).join('');
+  },
+  
+  tags_as_lis: function() {
+    return Tags.agent_tags(30).map(function(t){
+      var display = Tags.tag2_t.t(t);
+      return tag('li', {href: "#q=" + t.t, content: display});
+    }).join('');
   }
+  
 };
 
 go.push(Tags);
