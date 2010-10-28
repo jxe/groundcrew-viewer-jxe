@@ -19,7 +19,7 @@
       <a if="query" href="##clear_query" class="hide_until_loaded">X</a>
 
       <div class="button_dropdown">
-        <button class="idle">&#9660;</button>
+        <button type="button" class="idle">&#9660;</button>
         <div class="dropdown south east no_filter no_more">
           <div class="select"><ul fill="tags_as_lis"></ul></div>
         </div>
