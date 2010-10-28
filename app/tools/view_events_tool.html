@@ -1,7 +1,11 @@
 <div class="view_activity_tool hidden_unless_active modal superwide" style="min-height: 300px;">
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
 
-  <h2>Recent Activity</h2>
+  <h2>
+    Recent Activity
+    <span style="font-weight:normal" if="query">- limited to agents with tag <span fill="query"></span></span>
+  </h2>
+
   <a href="#activity_filter=all"       class="all_activity_filter active">everything</a> &middot;
   <a href="#activity_filter=op"        class="op_activity_filter">missions</a> &middot;
   <a href="#activity_filter=reported"  class="reported_activity_filter">reports</a> &middot;

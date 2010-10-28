@@ -61,9 +61,19 @@ go.push({
     else {
       activity = Anncs.find('=atype ' + This.activity_filter);
     }
-    activity = activity.sort_by('.created_ts', { order: 'desc' });
-    if (activity.length > 500) activity = activity.slice(0, 500);
+
+    if (activity.length > 1500) activity = activity.slice(0, 1500);
     $.each(activity, function(){ (this.id.resource_type() == 'Op' ? Operation : Event).improve(this); });
+    
+    // QUICK HACK.  MAKE PERFORMANT BY GENERATING MIXED RESOURCE QUERIES
+    // BASE ON THE ABOVE.
+    if (This.q && This.q.length > 0) {
+      activity = activity.grep(function(a){
+        return a.item && a.item.atags && a.item.atags.contains(This.q);
+      });
+    }
+    
+    activity = activity.sort_by('.created_ts', { order: 'desc' });
 
     return Actions.activity_divs(activity);
   },
