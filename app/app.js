@@ -484,18 +484,21 @@ App = {
   },
 
   remove_item: function(data) {
-    if (!This.item) return "redo";
+    var item;
+    if (!This.item || This.item.startsWith('City')) item = This.prev_item;
+    else item = This.item;
+    if (!item) return "redo";
     if (!App.stream_role_organizer()) return Notifier.error("You must be a leader of this squad to remove this item.");
-    var r = confirm("Are you sure you wish to remove this " + This.item.resource_type().toLowerCase() + " from your squad?");
+    var r = confirm("Are you sure you wish to remove this " + item.resource_type().toLowerCase() + " from your squad?");
     if (!r) return "redo";
 
     if (demo) {
-      off(This.item);
+      off(item);
       return App.closeclick();
     }
 
-    return $.delete_with_squad('/items/' + This.item, function() {
-      off(This.item);
+    return $.delete_with_squad('/items/' + item, function() {
+      off(item);
       App.closeclick();
     });
   },
