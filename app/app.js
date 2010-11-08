@@ -681,6 +681,9 @@ App = {
     if (!data.name || data.name.length == 0 || !data.desc || data.desc.length == 0) {
       alert('Please provide both a name and a description!'); return "redo";
     }
+    $.post_with_squad('/me/reports', data.period ? { period: data.period } : {}, function(){
+      window.squad_reports[current_stream] = data.period ? Number(data.period) : null;
+    });
     return $.post_with_squad('/update', data, function(){
       if (window.stream_names) window.stream_names[current_stream] = data.name;
       window.current_stream_name = data.name;
@@ -688,6 +691,23 @@ App = {
       go('tool=');
       $('.magic').app_paint();
     });
+  },
+
+  squad_settings_report_inputs: function() {
+    var curr_period = window.squad_reports[current_stream] || null;
+    var periods = [86400, 604800, null];
+    var names = ['Daily', 'Weekly', 'Never'];
+    if (!periods.contains(curr_period)) periods.push(curr_period);
+    return periods.map(function(period, i){
+      var name = names[i];
+      // handle custom settings
+      if (!name) {
+        name = "Every " + Math.round((period*10) / (60*60*(period < 60*60*24 ? 1 : 24)))/10 +
+          (period < 60*60*24 ? " hours" : " days");
+      }
+      var checked = curr_period == period ? 'checked' : '';
+      return '<input type="radio" value="' + (period ? period : '') + '" name="period" ' + checked + '>' + name + '</input>';
+    }).join(' ');
   },
 
   collapse_leftbar: function() {
