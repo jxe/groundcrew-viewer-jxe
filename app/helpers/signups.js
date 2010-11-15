@@ -28,7 +28,7 @@ go.push({
 
   reinvite: function(id) {
     $.post_with_squad('/people/reinvite', {signup_id:id}, function(){
-      $('.current_invitations_tool').app_paint();
+      Notifier.success("Invitation resent!");
     });
   },
 
@@ -37,16 +37,21 @@ go.push({
     if (!App.stream_role_organizer()) return "You must be an organizer on this squad to see recent invitations";
     
     $.getJSON_with_squad('/people/signups.json', function(data){
-      var html = table(['date', 'role', 'email', 'mobile', 'city'], data.results.sort_by('.ts', { order: 'desc' }),
+      var html = table(['date', 'role', 'name', 'email', 'mobile', 'city'], data.results.sort_by('.ts', { order: 'desc' }),
         function(signup){
           var ps = signup.points.group_by('sys');
+          var ept = ps.e && ps.e[0];
+          var mpt = ps.m && ps.m[0];
+          var reinvite_link = ((ept && ept.stage == 'tentative') || (mpt && mpt.stage == 'tentative')) ?
+            '<a href="##reinvite(\'' + signup.id + '\')">re-invite</a>' : '';
           var row1 = [
             $time_and_or_date(signup.ts),
             signup.groups.join(', '),
-            Signups.qual_sysid(ps.e && ps.e[0]),
-            Signups.qual_sysid(ps.m && ps.m[0]),
+            signup.name || 'unknown',
+            Signups.qual_sysid(ept),
+            Signups.qual_sysid(mpt),
             signup.city || 'no location',
-            '<a href="##reinvite(\'' + signup.id + '\')">re-invite</a>' ];
+            reinvite_link ];
           var sent = Signups.sent_missing_reply(signup);
           if (sent) {
             var row2 = [{content: sent, colspan: '6', 'class': 'warning'}];

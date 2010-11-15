@@ -9,7 +9,13 @@
 
     <h4>Squad description</h4>
     <input fill="current_stream_desc value" name="desc" type="text" style="width: 75%">
-    
+
+    <div if="user_email"></div>
+    <h4>Email Updates</h4>
+    Send me activity updates: <span fill="squad_settings_report_inputs"></span>
+    <p>Updates will be sent to <span fill="user_email">you</span> only when
+      there's new squad activity to report, such as agent signups, reports or organizer chats.</p>
+
     <button type="submit" class="submit">Change squad settings<strong>&rarr;</strong></button>
   </form>
 </div>
