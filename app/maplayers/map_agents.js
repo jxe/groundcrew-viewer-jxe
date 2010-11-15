@@ -2,6 +2,7 @@
 Map.layer_calculators['agents'] = function(){
   var mapping = {};
   $.each(This.agents, function(){
+    if (this.hidden) return;
     var id = this.id;
     var marker = new google.maps.Marker({
       icon: 'i/map/' + this.map_icon + '.png',
