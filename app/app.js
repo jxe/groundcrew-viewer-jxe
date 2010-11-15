@@ -328,8 +328,13 @@ App = {
     else return 'signup';
   },
   
+  twitter_squad: function(){
+    return window.current_stream.contains('_followers');
+  },
+  
   start_lrl: function() {
     var sidemode = 'tutorial';
+    if (window.current_stream.contains('_followers')) sidemode = 'twit_tutorial';
     if (window.current_stream == 'nrsp') sidemode = '';
     if (demo) sidemode = 'demo';
     if (window.location.hash) return window.location.hash.slice(1);
