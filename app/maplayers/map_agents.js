@@ -2,7 +2,6 @@
 Map.layer_calculators['agents'] = function(){
   var mapping = {};
   $.each(This.agents, function(){
-    if (this.hidden) return;
     var id = this.id;
     var marker = new google.maps.Marker({
       icon: 'i/map/' + this.map_icon + '.png',
@@ -14,6 +13,10 @@ Map.layer_calculators['agents'] = function(){
       ),
       title: this.title
     });
+    if (this.hidden) {
+      marker.setVisible(false);
+      marker.hidden = true;
+    }
     google.maps.event.addListener(marker, 'click', function() { go('@' + id); });
     google.maps.event.addListener(marker, 'dblclick', function() { 
       GM.setCenter( marker.getPosition(), 15 ); 
