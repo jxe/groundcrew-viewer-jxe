@@ -604,7 +604,8 @@ App = {
 
   public_request_form_submitted: function(data) {
     return Operation.exec(CEML.script_for_invite(data.title, data.assignment), null, null,
-      function(op){ $.post_with_squad('/' + op.id + '/broadcasts', { msg: data.msg, sys: 't' }); });
+      function(op){ $.post_with_squad('/' + op.id + '/broadcasts', { msg: data.msg, sys: 't' }); },
+    data.desc);
   },
 
   blast_message_form_submitted: function(data) {
