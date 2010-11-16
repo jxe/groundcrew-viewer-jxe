@@ -45,6 +45,8 @@ App = {
     if (changed.tool && This.tool && This._item && !changed.item) {
       This.prev_item = This.item;
       go.set('item', This.city);
+    } else {
+      This.prev_item = null;
     }
 
     if (changed.item) {
