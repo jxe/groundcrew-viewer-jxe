@@ -31,7 +31,7 @@ Notifier = {
   },
 
   success: function(msg, header) {
-    if (!header) header = 'Sent';
+    if (!header) header = 'Done';
     Notifier.growl(msg, null, {
       header: header,
       life: 10*1000,
