@@ -28,6 +28,10 @@ App = {
     return This.q;
   },
 
+  query_watcher: function(value, chr, obj) {
+    if (value == '') return App.clear_query();
+  },
+  
   zoomed_out: function() {
     return !This.city;
   },
