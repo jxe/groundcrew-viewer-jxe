@@ -29,7 +29,9 @@ App = {
   },
 
   query_watcher: function(value, chr, obj) {
-    if (value == '') return App.clear_query();
+    setTimeout(function(){
+      if (obj.val() == '') return go('q=');
+    }, 0);
   },
   
   zoomed_out: function() {
