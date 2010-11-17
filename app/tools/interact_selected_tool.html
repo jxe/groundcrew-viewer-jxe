@@ -2,9 +2,9 @@
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
   <h2>Interact with this group</h2>
 
-  <div style="color:red" if="zoomed_out">
-    World-wide interactions are currently disabled. Please zoom to a city.
-  </div>
+  <p style="color:red" if="zoomed_out">
+    World-wide interactions are currently disabled.<br>Please zoom to a city.
+  </p>
 
   <h4 class="require_selection" if="!has_selection" fill="require_selection_str"></h4>
 
@@ -21,5 +21,6 @@
     <input type="radio" name="kind" value="mission">mission
     <input type="radio" name="kind" value="question">question
   </form>
+  <div>Or <a href="#tool=tag_agents">tag these agents</a></div>
 
 </div>

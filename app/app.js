@@ -28,6 +28,12 @@ App = {
     return This.q;
   },
 
+  query_watcher: function(value, chr, obj) {
+    setTimeout(function(){
+      if (obj.val() == '') return go('q=');
+    }, 0);
+  },
+  
   zoomed_out: function() {
     return !This.city;
   },
@@ -41,6 +47,8 @@ App = {
     if (changed.tool && This.tool && This._item && !changed.item) {
       This.prev_item = This.item;
       go.set('item', This.city);
+    } else {
+      This.prev_item = null;
     }
 
     if (changed.item) {
@@ -328,8 +336,13 @@ App = {
     else return 'signup';
   },
   
+  twitter_squad: function(){
+    return window.current_stream.contains('_followers');
+  },
+  
   start_lrl: function() {
     var sidemode = 'tutorial';
+    if (window.current_stream.contains('_followers')) sidemode = 'twit_tutorial';
     if (window.current_stream == 'nrsp') sidemode = '';
     if (demo) sidemode = 'demo';
     if (window.location.hash) return window.location.hash.slice(1);
@@ -593,7 +606,8 @@ App = {
 
   public_request_form_submitted: function(data) {
     return Operation.exec(CEML.script_for_invite(data.title, data.assignment), null, null,
-      function(op){ $.post_with_squad('/' + op.id + '/broadcasts', { msg: data.msg, sys: 't' }); });
+      function(op){ $.post_with_squad('/' + op.id + '/broadcasts', { msg: data.msg, sys: 't' }); },
+    data.desc);
   },
 
   blast_message_form_submitted: function(data) {
@@ -660,7 +674,7 @@ App = {
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to tag agents.");
     return $.post_with_squad('/agents/update_all', params, function(){
       go('tool=');
-      Notifier.success("Tagged agents");
+      Notifier.success("Tagged agents", 'Done');
     });
   },
 

@@ -104,6 +104,12 @@ go.push({
   has_selection: function(state) {
     return !isEmpty(Selection.current) || !isEmpty(Selection.groups);
   },
+  
+  can_get_selection: function() {
+    if (!isEmpty(Selection.current) || !isEmpty(Selection.groups)) return true;
+    if (This.prev_item) { Selection.select(This.prev_item); return true; }
+    return false;
+  },
 
   require_selection_str: function() {
     return "Select agents first. Use control-click (PC) or command-click (Mac) for several.";

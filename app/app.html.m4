@@ -15,7 +15,7 @@
     <a id="collapso" href="##collapse_leftbar">&laquo;</a>
 
     <form id="search_form" class="compact_dropdowns">
-      <input type="search" name="q" hint="Search agents" fill="query value" id="search" class="hide_until_loaded"/>
+      <input type="search" name="q" hint="Search agents" fill="query value" id="search" class="hide_until_loaded" observe="query_watcher"/>
       <a if="query" href="##clear_query" class="hide_until_loaded">X</a>
 
       <div class="button_dropdown">

@@ -6,8 +6,9 @@
       <a href="#sidemode=tutorial" class="tutorial_sidemode toggles">&#9664;</a>
       <a href="#sidemode=tutorial" class="tutorial_sidemode toggles">&#9654;</a>
       <span style="min-width: 150px; display:inline-block">
-        <span class="hidden_unless_active tutorial_sidemode">Tutorial</span>
-        <span class="hidden_unless_active _sidemode">About</span>
+        <span class="hidden_unless_active twit_tutorial_sidemode" if="twitter_squad">Twitter Tutorial</span>
+        <span class="hidden_unless_active tutorial_sidemode" if="!twitter_squad">Tutorial</span>
+        <span class="hidden_unless_active _sidemode">About</span>        
       </span>
 
     </div>
@@ -17,6 +18,7 @@
     </div>
     m4_include(`app/tutorials/getting_started.html')
     m4_include(`app/tutorials/demo_tutorial.html')
+    m4_include(`app/tutorials/twit_getting_started.html')    
   </div>
 
   <div id="branding" class="magic">
