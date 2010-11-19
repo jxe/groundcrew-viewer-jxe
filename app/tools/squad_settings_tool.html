@@ -1,21 +1,21 @@
-<div class="hud squad_settings_tool hidden_unless_active">
+<div class="squad_settings_tool modal hidden_unless_active">
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
-  <h2>Adjust squad settings</h2>
+  <h2>Squad Settings</h2>
 
   <form id="squad_settings_form" class="xspace">
 
-    <h4>Squad name</h4>
+    <h3>Squad name</h3>
     <input fill="current_stream_name value" name="name" type="text" style="width: 75%">
 
-    <h4>Squad description</h4>
+    <h3>Squad description</h3>
     <input fill="current_stream_desc value" name="desc" type="text" style="width: 75%">
 
     <div if="user_email"></div>
-    <h4>Email Updates</h4>
-    Send me activity updates: <span fill="squad_settings_report_inputs"></span>
-    <p>Updates will be sent to <span fill="user_email">you</span> only when
+    <h3>Send me activity updates:</h3>
+    <p fill="squad_settings_report_inputs"></p>
+    <p>Updates will be sent to <em fill="user_email">you</em> only when
       there's new squad activity to report, such as agent signups, reports or organizer chats.</p>
 
-    <button type="submit" class="submit">Change squad settings<strong>&rarr;</strong></button>
+    <button type="submit" class="submit">Change squad settings</button>
   </form>
 </div>
