@@ -44,7 +44,8 @@
         <div class="select">
           <ul>
             <li class="not_demo_mode" if="stream_role_leader" href="#tool=squad_settings">Squad Settings</li>
-            <li class="lio" href="##go_settings">Your Profile Settings</li>
+            <li if="stream_role_leader" target="_" href="##go_admin">Squad Administration</a>
+            <li class="lio" href="##go_settings">Your Personal Settings</li>
             <li class="lio" href="#tool=switch_squads">Switch Squads</li>
           </ul>
         </div>
