@@ -162,8 +162,9 @@ form.upload.uploading input {
   display: none;
 }
 
-#agent_for_any_mode h2:hover a { 
+#agent_for_any_mode h2 a { 
   display: inline; 
+  color: #777;
 }
 
 .agent_body_main > div, .agent_body_sidebar > div {
