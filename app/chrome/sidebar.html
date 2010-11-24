@@ -2,13 +2,13 @@
   <div id="sidebar_content">
     <h1 fill="current_stream_name">Loading...</h1>
 
-    <div id="sidemode_selector" style="text-align:center; margin-top: 10px" class="not_demo_mode">
+    <div id="sidemode_selector" style="margin: 10px 15px 0 15px;" class="not_demo_mode">
       <a href="#sidemode=tutorial" class="tutorial_sidemode toggles">&#9664;</a>
       <a href="#sidemode=tutorial" class="tutorial_sidemode toggles">&#9654;</a>
       <span style="min-width: 150px; display:inline-block">
-        <span class="hidden_unless_active twit_tutorial_sidemode" if="twitter_squad">Twitter Tutorial</span>
-        <span class="hidden_unless_active tutorial_sidemode" if="!twitter_squad">Tutorial</span>
-        <span class="hidden_unless_active _sidemode">About</span>        
+        <span if="twitter_squad"><span class="hidden_unless_active twit_tutorial_sidemode">Twitter Tutorial</span></span>
+        <span if="!twitter_squad"><span class="hidden_unless_active tutorial_sidemode">Tutorial</span></span>
+        <span class="hidden_unless_active _sidemode">About this Squad</span>        
       </span>
 
     </div>
