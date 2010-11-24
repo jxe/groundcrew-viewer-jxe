@@ -16,7 +16,7 @@
 
     <form id="search_form" class="compact_dropdowns">
       <input type="search" name="q" hint="Search agents" fill="query value" id="search" class="hide_until_loaded" observe="query_watcher"/>
-      <a if="query" href="##clear_query" class="hide_until_loaded">X</a>
+      <a if="query" href="##clear_query" class="hide_until_loaded"><img src="i/clear_query.png"></a>
 
       <div class="button_dropdown">
         <button type="button" class="idle">&#9660;</button>
