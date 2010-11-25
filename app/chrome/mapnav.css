@@ -45,6 +45,9 @@
     color: #eee;
 }
 
+#map #mapnav .landmark_list {height: 400px;}
+body.shortview #map #mapnav .landmark_list {height: 200px;}
+
 #map #mapnav .button_dropdown button {
     padding: 3px 10px;
     background-color: rgba(0,0,0, 0.4);

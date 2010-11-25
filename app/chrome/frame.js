@@ -3,6 +3,9 @@ Frame = {
   init: function() {
     $('.startupmagic').app_paint();
 
+    var page_height = window.innerHeight || window.document.body.clientHeight;
+    if (page_height < 600) $('body').addClass('shortview');
+
     $(document).keyup(function(e){
       if (e.keyCode == 27 || e.keyCode == e.DOM_VK_ESCAPE) {
         if (This.tool || (This.item && !This.item.startsWith('City__'))) App.closeclick();
