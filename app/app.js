@@ -261,6 +261,10 @@ App = {
   // = App initialization =
   // ======================
   
+  login_complete: function() {
+    go('tool=');
+  },
+  
   initialize: function() {
     window.dontloadcookieonstart = true;
     if($.browser.msie) { $('#unsupported').show(); return; }
