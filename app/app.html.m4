@@ -34,7 +34,7 @@
       </span>
     </div>
 
-    <div id="youbox" fill="youbox"></div>
+    <div id="youbox" fill="youbox_text"></div>
     <img id="load_spinner" src="i/spinner.gif"/>
   </div>
   m4_include(`app/chrome/sidebar.html')
