@@ -345,15 +345,15 @@ App = {
   },
   
   start_lrl: function() {
-    var sidemode = 'tutorial';
-    if (window.current_stream.contains('_followers')) sidemode = 'twit_tutorial';
-    if (window.current_stream == 'nrsp') sidemode = '';
-    if (demo) sidemode = 'demo';
+    var sidemode = 'sidemode=tutorial;tutmode=tutorial1';
+    if (window.current_stream.contains('_followers')) sidemode = 'sidemode=twit_tutorial';
+    if (window.current_stream == 'nrsp') sidemode = 'sidemode=';
+    if (demo) sidemode = 'sidemode=demo';
     if (window.location.hash) return window.location.hash.slice(1);
     else {
       var city = App.start_city();
-      if (window.authority || !SidebarTags[window.current_stream]) return city + ";sidemode=" + sidemode;
-      else return city + ";tool=welcome;sidemode=" + sidemode;
+      if (window.authority || !SidebarTags[window.current_stream]) return city + ";" + sidemode;
+      else return city + ";tool=welcome;" + sidemode;
     }
   },
     
