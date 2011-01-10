@@ -674,11 +674,12 @@ App = {
     } else {
       params['with_tags'] = tags;
     }
-    if (demo) return Demo.tag(agents, tags, function(){go('tool=');});
+    if (demo) return Demo.tag(agents, tags, function(){go('tool='); Selection.clear();});
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to tag agents.");
     return $.post_with_squad('/agents/update_all', params, function(){
       go('tool=');
       Notifier.success("Tagged agents", 'Done');
+      Selection.clear();
     });
   },
 
@@ -763,7 +764,7 @@ App = {
 
     if (demo && data.kind == "question") return Demo.question(data.assign, agents);
     if (demo && data.kind == "msg")      return Demo.message(agents, data.assign,
-      function(){go('tool='); return Notifier.success("Message sent!");});
+      function(){go('tool='); Notifier.success("Message sent!"); Selection.clear(); });
     if (demo && data.kind == "mission")  return Demo.assign(agents, data.assign, Selection.clear);
     if (data.kind == "mission" && App.error_on_non_immediate(agents)) return "redo";
     return Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
