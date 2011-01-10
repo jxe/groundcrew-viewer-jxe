@@ -6,9 +6,14 @@
 
   <form id="mission_landmark_invite_form" >
 
+    <div style="margin: 10px 0px">
+      Name of this location:<br/>
+      <input class="text" type="text" name="name">
+    </div>
+
     <div id="mission" style="margin: 10px 0px">
       <div class="right live" style="float:right">100</div>
-      Mission &nbsp;&nbsp;<span class="descr">include the address</span><br>
+      Mission:<br>
       <input class="text" type="text" name="title"
         observe="maxchar(100, '#mission_landmark_invite_form #mission .right.live')"
       />
@@ -16,54 +21,19 @@
 
     <div id="instructions" style="margin: 10px 0px">
       <div class="right live" style="float:right">150</div>
-      Instructions &nbsp;&nbsp;<span class="descr">followup sent to those who accept</span><br/>
+      Instructions (for those who accept):<br/>
       <input class="text" type="text" name="assignment"
         observe="maxchar(150, '#mission_landmark_invite_form #instructions .right.live')"
       />
     </div>
 
-    <div style="margin: 10px 0px">
-      Name this location &nbsp;&nbsp;<span class="descr">visible only to organizers</span><br/>
-      <input class="text" type="text" name="name">
-    </div>
-
     <div>
-      Invite agents within &nbsp;
+      Invite agents within<br/>
       <select id="radial_select" name="agents" fill="radius_options" observe="radial_select_require_selection"></select>
-      <div>
-        <div style="display:none;" class="radial_select_require_selection">
-          <p class="require_selection deemphasize" if="!has_selection" fill="require_selection_str" style="margin: 5px 0;"></p>
-        </div>
-      </div>
+      <div style="height:0.9em;"><div style="display:none;" class="radial_select_require_selection">
+        <p class="require_selection deemphasize" if="!has_selection" fill="require_selection_str"></p>
+      </div></div>
     </div>
-
-
-    <div style="margin: 6px 0 8px;">
-      <input type="checkbox">A minimum number of agents need to accept&hellip;
-      <div style="margin: 6px 0 2px 21px;">
-        <select>
-          <option value="1">1</option>
-          <option value="1">2</option>
-          <option value="1">3</option>
-          <option value="1">4</option>
-          <option value="1">5</option>
-        </select>
-        to 
-        <select>
-          <option value="1">any number</option>
-          <option value="1">1</option>
-          <option value="1">2</option>
-          <option value="1">3</option>
-          <option value="1">4</option>
-          <option value="1">5</option>
-        </select>        
-      </div> 
-    </div>
-
-
-
-
-
 
     <div>
       <button type="submit" class="submit right">Send</button>
