@@ -112,7 +112,7 @@ go.push({
   },
 
   require_selection_str: function() {
-    return "Select agents first. Use control-click (PC) or command-click (Mac) for several.";
+    return "Select agents first. Use control-click (PC) or command-click (Mac) for several at once.";
   }
 
 });
