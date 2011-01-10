@@ -828,7 +828,6 @@ App = {
   },
 
   stream_has_flag: function(flag) {
-    if (!window.current_stream_systems) return false;
     return window.current_stream_flags.indexOf(flag) >= 0;
   },
   
