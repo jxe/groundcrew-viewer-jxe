@@ -828,7 +828,7 @@ App = {
   },
 
   stream_has_flag: function(flag) {
-    return window.current_stream_flags.indexOf(flag) >= 0;
+    return window.current_stream_flags && window.current_stream_flags.indexOf(flag) >= 0;
   },
   
   blast_message_flag: function() {
