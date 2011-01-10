@@ -80,18 +80,44 @@
 
     <div class="agent_actions">
     	<form class="lio" id="make_it_happen_form" if="agent_assignable" style="position:relative">
-        <input name="assign"
-          class="text"
-          type="text"
-          hint="#agent_assign_prompt"
-          observe="switch_to_question METHOD_SPACER maxchar(100, '#make_it_happen_form .counter')"
-        />
-        <button type="submit" class="submit">Send</button>
+        <ul class="nav bottom">
+          <li><a class="message_agentactions active" href="#agentactions=message">Message</a></li> &middot;
+          <li><a class="mission_agentactions" href="#agentactions=mission">Mission</a></li>
+        </ul>
+        
+        <div class="message_agentactions hidden_unless_active active">
+          <input name="assign"
+            class="text"
+            type="text"
+            hint="#agent_assign_prompt"
+            observe="switch_to_question METHOD_SPACER maxchar(100, '#make_it_happen_form .counter')"
+          />
+          <div class="counter" style="position:absolute; left: 320px; top: 0px">100</div>
+        </div>
+        
+        <div class="mission_agentactions hidden_unless_active">
+          <div id="mission" style="margin: 10px 0px">
+            <div class="right live counter" style="float:right">100</div>
+            Mission &nbsp;&nbsp;<span class="descr">include an address if needed</span><br>
+            <input class="text" type="text" name="title"
+            observe="maxchar(100, '#mission_landmark_invite_form #mission .right.live')"
+            />
+          </div>
+  
+          <div id="instructions" style="margin: 10px 0px">
+            <div class="right live counter" style="float:right">150</div>
+            Instructions &nbsp;&nbsp;<span class="descr">optional - followup sent if they accept</span><br/>
+            <input class="text" type="text" name="assignment"
+              observe="maxchar(150, '#mission_landmark_invite_form #instructions .right.live')"
+            />
+          </div>
+        </div>
+        
+        
+        <button type="submit" class="submit" style="display:block; margin-top: 10px;">Send</button>
         <!-- no white space between the above <input> and <button> -->
-        <div class="counter" style="position:absolute; left: 320px; top: 30px">100</div>
-        <br>Send as: <input type="radio" name="kind" value="msg" checked='checked'>msg
-        <span if="immediate"><input type="radio" name="kind" value="mission">mission</span>
-        <input type="radio" name="kind" value="question">question
+        
+    
       </form>
     </div>
 </div>
