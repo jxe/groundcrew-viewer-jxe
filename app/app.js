@@ -815,7 +815,7 @@ App = {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({ address: where }, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK && results[0]) {
-        go('item=;city=' + City.closest(results[0].geometry.location));
+        go('item=' + City.closest(results[0].geometry.location));
         map.fitBounds(results[0].geometry.viewport);
       } else {
         Notifier.error('No location could be found for that address');
