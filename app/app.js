@@ -807,7 +807,10 @@ App = {
 
   rss_overlay: function() {
     var url = prompt("GeoRSS/KML URL:");
-    if (url) map.addOverlay(new GGeoXml(url));
+    if (url) {
+      var layer = new google.maps.KmlLayer( url );
+      layer.setMap(map);
+    }
   },
 
   go_where: function() {
