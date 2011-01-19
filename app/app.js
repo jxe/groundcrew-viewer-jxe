@@ -812,6 +812,17 @@ App = {
       layer.setMap(map);
     }
   },
+  
+  esri_tileset: function() {
+    $.ajax({
+      url: 'http://groundcrew.us/viewer_experimental/viewer.arcgislink_compressed.js',
+      async: false, data: 'script'
+    });
+    var url = 'http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer';
+    var agsType = new  gmaps.ags.MapType(url,{name:'ArcGIS'});
+    map.mapTypes.set('arcgis', agsType);
+    map.setMapTypeId('arcgis');
+  },  
 
   go_where: function() {
     var where = prompt("Find:");

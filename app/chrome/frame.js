@@ -28,6 +28,7 @@ Frame = {
       if (ch == ',') { go('#collapse_leftbar'); return false; }
       if (ch == 'g') { go('#go_where'); return false; }
       if (ch == 'O') { go('#rss_overlay'); return false; }
+      if (ch == 'E') { go('#esri_tileset'); return false; }
       if (ch == '\\') { alert(This.item); return false; }
 
       if (ch == 'm') { go('#quick_mission_title'); return false; }
