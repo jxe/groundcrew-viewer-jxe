@@ -382,6 +382,7 @@ App = {
     if (!demo) StreamLoader.init_autoload();
     $('#loading_data').remove();
     go(App.start_lrl());
+    go.trigger('map_loaded');
 
     if (demo) Demo.init_manual();
   },
