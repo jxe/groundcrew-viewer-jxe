@@ -1,6 +1,10 @@
 <div id="mapnav" class="magic hide_until_loaded">
   <div class="button_dropdown">
-    <button id="city_floater" class="idle no_ul"><span fill="city_name"></span> <span class="da">&#9660;</span></button>
+    <button id="city_floater" class="idle no_ul">
+      <span fill="city_name"></span> <span class="da">&#9660;</span><br>
+      <span if="some_agents_elsewhere" style="font-size: 11px;"><span fill="agents_elsewhere_count">X</span> more elsewhere</span>
+    </button>
+    
     <div class="dropdown south west no_filter columns_3">
       <div class="select" fill="cities_dropdown" style="height: 400px"></div>
       <div class="more">
