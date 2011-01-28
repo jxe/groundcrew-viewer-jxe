@@ -198,7 +198,7 @@ go.push({
   },
 
   agents_elsewhere_count: function() {
-    if (Agents.all) { return Agents.all.length - Agents.here().length; }
+    if (Agents.all) { return String(Agents.all.length - Agents.here().length); }
   },
 
   agents_count: function() {
