@@ -191,6 +191,16 @@ go.push({
 
   // masses of agents
 
+  some_agents_elsewhere: function() {
+    if (!This.city) return false;
+    if (!Agents.all) return false;
+    return Agents.all.length - Agents.here().length;
+  },
+
+  agents_elsewhere_count: function() {
+    if (Agents.all) { return Agents.all.length - Agents.here().length; }
+  },
+
   agents_count: function() {
     return Agents.all && Agents.all.length;
   }
