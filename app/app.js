@@ -523,7 +523,7 @@ App = {
 
   radial_invite_form_submitted: function(data) {
     if (data.agents == "require_selection") data.agents = Selection.agent_ids().join(' ');
-    if (App.error_on_non_immediate(data.agents.split(' '))) return "redo";
+    // if (App.error_on_non_immediate(data.agents.split(' '))) return "redo";
     if (!data.title) {
       alert('Please provide an assignment!');
       return "redo";
@@ -539,7 +539,7 @@ App = {
   mission_landmark_invite_form_submitted: function(data) {
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to run operations.");
     if (data.agents == "require_selection") data.agents = Selection.agent_ids().join(' ');
-    if (App.error_on_non_immediate(data.agents.split(' '))) return "redo";
+    // if (App.error_on_non_immediate(data.agents.split(' '))) return "redo";
     if (!data.title) {
       alert('Please provide an assignment!');
       return "redo";
@@ -745,7 +745,7 @@ App = {
     if (demo && data.kind == "msg")      return Demo.message([This.item], data.assign,
       function() {$('#make_it_happen_form').html('Message sent!');});
     if (demo && data.kind == "mission")  return Demo.assign([This.item], data.assign);
-    if (data.kind == "mission" && App.error_on_non_immediate([This.item])) return "redo";
+    // if (data.kind == "mission" && App.error_on_non_immediate([This.item])) return "redo";
     return Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item, function(){
       if (data.kind == "msg") { $('#make_it_happen_form').html('Message sent!'); }
     });
@@ -767,7 +767,7 @@ App = {
     if (demo && data.kind == "msg")      return Demo.message(agents, data.assign,
       function(){go('tool='); Notifier.success("Message sent!"); Selection.clear(); });
     if (demo && data.kind == "mission")  return Demo.assign(agents, data.assign, Selection.clear);
-    if (data.kind == "mission" && App.error_on_non_immediate(agents)) return "redo";
+    // if (data.kind == "mission" && App.error_on_non_immediate(agents)) return "redo";
     return Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
       if (data.kind == "msg") {
         go('tool=');
