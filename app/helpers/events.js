@@ -62,7 +62,7 @@ go.push({
       activity = Anncs.find('=atype ' + This.activity_filter);
     }
 
-    if (activity.length > 1500) activity = activity.slice(0, 1500);
+    if (activity.length > 3500) activity = activity.slice(0, 3500);
     $.each(activity, function(){ (this.id.resource_type() == 'Op' ? Operation : Event).improve(this); });
     
     // QUICK HACK.  MAKE PERFORMANT BY GENERATING MIXED RESOURCE QUERIES
