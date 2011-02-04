@@ -10,7 +10,7 @@ Map.layer_calculators['landmarks'] = function(){
 MapLandmarks = {
   
   fetch_landmarks_in_bounds: function(bounds) {
-    if (App.stream_has_flag('hide_panoramio')) return;
+    if (!App.stream_has_flag('show_panoramio')) return;
     var maxLms = 20;
     var southWest = bounds.getSouthWest();
     var northEast = bounds.getNorthEast();
