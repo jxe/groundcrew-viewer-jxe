@@ -532,8 +532,12 @@ App = {
       alert('There are no agents to invite!');
       return "redo";
     }
-    if (demo) return Demo.invite(data.agents.split(' '), This.item, data.title, data.assignment);
-    return Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, This.item);
+    if (demo) {
+      Demo.invite(data.agents.split(' '), This.item, data.title, data.assignment);
+    } else {
+      Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, This.item);
+    }
+    Selection.clear()
   },
 
   mission_landmark_invite_form_submitted: function(data) {
@@ -558,9 +562,12 @@ App = {
     }
 
     return App.post_landmark(data, function(lm) {
-      if (demo) return Demo.invite(data.agents.split(' '), lm.id, data.title, data.assignment);
-
-      return Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, lm.id);
+      if (demo) {
+        Demo.invite(data.agents.split(' '), lm.id, data.title, data.assignment);
+      } else {
+        Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, lm.id);
+      }
+      Selection.clear()
     });
   },
 
@@ -584,9 +591,12 @@ App = {
     }
 
     return App.post_landmark(data, function(lm) {
-      if (demo) return Demo.question(data.question, data.agents.split(' '), lm.id);
-
-      return Operation.exec(CEML.script_for('question', data.question), data.agents, lm.id);
+      if (demo) {
+        Demo.question(data.question, data.agents.split(' '), lm.id);
+      } else {
+        Operation.exec(CEML.script_for('question', data.question), data.agents, lm.id);
+      }
+      Selection.clear()
     });
   },
 
@@ -604,9 +614,13 @@ App = {
       alert('Please provide a question to ask that\'s at least 5 characters!');
       return "redo";
     }
-    if (demo) return Demo.question(data.question, agent_ids);
-    agent_ids = agent_ids.join(' ');
-    return Operation.exec(CEML.script_for('question', data.question), agent_ids, agent_ids);
+    if (demo) {
+      Demo.question(data.question, agent_ids);
+    } else {
+      agent_ids = agent_ids.join(' ');
+      Operation.exec(CEML.script_for('question', data.question), agent_ids, agent_ids);
+    }
+    Selection.clear()
   },
 
   public_request_form_submitted: function(data) {
@@ -772,8 +786,8 @@ App = {
       if (data.kind == "msg") {
         go('tool=');
         Notifier.success('Message sent!');
-        Selection.clear();        
       }
+      Selection.clear();
     });
   },
 
