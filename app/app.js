@@ -138,14 +138,15 @@ App = {
     if (!This._item) App.close_itemwindow();
     else {
       var thing = This.item.resource_type().toLowerCase();
+      var type = 'unknown';
       var best_template = $.template('#' + thing + '_for_' + This.mode + '_mode') || $.template('#' + thing + '_for_any_mode');
       if (best_template) {
         if (MapMarkers.has_loc(This._item)) {
           $('#itemwindow').hide();
-          MapMarkers.window(best_template);
+          MapMarkers.window(best_template, type);
         }
         else {
-          window.GMIW && GMIW.close();
+          Map.close_all_windows();
           var container = $('#itemwindow');
           $('.content', container).html(best_template.app_paint()[0]);
           container.show();
@@ -166,7 +167,7 @@ App = {
 
   close_itemwindow: function() {
     $('#itemwindow').hide();
-    window.GMIW && GMIW.close();
+    Map.close_all_windows();
   },
 
   resize_itemwindow: function() {
@@ -220,8 +221,24 @@ App = {
   
   at_item: function(url) {
     url = This.new_url.slice(1);
-    if (LiveHTML.metaOn && url.startsWith('p')) return Selection.toggle(url);
-    else return go('mode=;tool=;item=' + url);
+    if (LiveHTML.metaOn && url.startsWith('p')) 
+      return Selection.toggle(url);
+    if (Map.open_window_type == '#new_mission_landmark' && url.startsWith('p')) 
+      return Selection.toggle(url);
+    return go('mode=;tool=;item=' + url);
+  },
+
+  selection_changed: function() {
+    if (Map.open_window_type == '#new_mission_landmark') {
+      $('#group_actions').hide();
+      $('.require_selection').show();
+    } else if (isEmpty(Selection.current) && isEmpty(Selection.groups)) {
+      $('#group_actions').hide();
+      $('.require_selection').show();
+    } else {
+      $('#group_actions').show();
+      $('.require_selection').hide();
+    }
   },
 
   op_event_info: function (type) {
@@ -537,7 +554,7 @@ App = {
     } else {
       Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, This.item);
     }
-    Selection.clear()
+    Selection.clear();
   },
 
   mission_landmark_invite_form_submitted: function(data) {
@@ -567,7 +584,7 @@ App = {
       } else {
         Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, lm.id);
       }
-      Selection.clear()
+      Selection.clear();
     });
   },
 
@@ -596,7 +613,7 @@ App = {
       } else {
         Operation.exec(CEML.script_for('question', data.question), data.agents, lm.id);
       }
-      Selection.clear()
+      Selection.clear();
     });
   },
 
@@ -620,7 +637,7 @@ App = {
       agent_ids = agent_ids.join(' ');
       Operation.exec(CEML.script_for('question', data.question), agent_ids, agent_ids);
     }
-    Selection.clear()
+    Selection.clear();
   },
 
   public_request_form_submitted: function(data) {

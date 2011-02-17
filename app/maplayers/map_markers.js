@@ -20,7 +20,7 @@ MapMarkers = {
     return false;
   },
 
-  window: function(tmpl, min_zoom) {
+  window: function(tmpl, type, min_zoom) {
     var site = This.item;
     var latlng = null;
     var type = MapMarkers.type(site);
@@ -53,9 +53,9 @@ MapMarkers = {
     MapMarkers.last_opened = This.item;
     MapMarkers.last_opened_type = type;
     if (latlng)
-      Map.latlng_open(latlng, tmpl.app_paint()[0], reopen);
+      Map.latlng_open(latlng, type, tmpl.app_paint()[0], reopen);
     else
-      Map.site_open(layer, site, tmpl.app_paint()[0], reopen);
+      Map.site_open(layer, type, site, tmpl.app_paint()[0], reopen);
   }
   
 };

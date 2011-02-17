@@ -69,7 +69,7 @@ Facebar = {
       });
       $('#' + group_name + '_agents').show();
     });
-    Selection.hide_or_show_options();
+    go.trigger('selection_changed');
   }
   
 };

@@ -80,17 +80,7 @@ Selection = {
     if (!guy) return;
     Item.calculate_fields(guy);
     Map.site_set_image('agents', tag, 'i/map/' + guy.map_icon + '.png');
-    Selection.hide_or_show_options();
-  },
-  
-  hide_or_show_options: function() {
-    if (isEmpty(Selection.current) && isEmpty(Selection.groups)){
-      $('#group_actions').hide();
-      $('.require_selection').show();
-    } else {
-      $('#group_actions').show();
-      $('.require_selection').hide();
-    }
+    go.trigger('selection_changed');
   }
   
 };
