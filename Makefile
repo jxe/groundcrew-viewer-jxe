@@ -38,13 +38,14 @@ html: BUILD base.html
 
 super.js:
 	cd ../basetheme; make js
+	cp ../basetheme/BUILD/base.js BUILD/
 	cp ../basetheme/BUILD/super.js BUILD/
 
 raw_js: BUILD super.js
-	cat BUILD/super.js lib/*/*.js app/*.js app/*/*.js > BUILD/viewer.js
+	cat BUILD/base.js BUILD/super.js lib/*/*.js app/*.js app/*/*.js > BUILD/viewer.js
 
 min_js: BUILD super.js
-	cat BUILD/super.js lib/*/*.js app/*.js app/*/*.js | jsmin > BUILD/viewer.js
+	cat BUILD/base.js BUILD/super.js lib/*/*.js app/*.js app/*/*.js  | jsmin > BUILD/viewer.js
 
 
 # =======
