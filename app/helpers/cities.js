@@ -11,8 +11,8 @@ go.push({
     var cities_by_num_agents = $keys(agents_by_city).sort_by(function (x){
       return cities[x];
     }).sort_by(function(x){
-      return -agents_by_city[x].length;
-    });
+      return agents_by_city[x].length;
+    }, {desc:true});
     
     var html = '';
     
