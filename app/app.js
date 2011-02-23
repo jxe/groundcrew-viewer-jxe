@@ -914,6 +914,11 @@ App = {
     form.submit();
   },
 
+  new_cities: function(args) {
+    Map.layer_recalculate('cities');
+    $('#mapnav').app_paint();
+  },
+
   stream_role_leader: function() { return demo || window.stream_role == 'leader'; },
   stream_role_organizer: function() { return demo || window.stream_role == 'leader' || window.stream_role == 'organizer'; }
 };
