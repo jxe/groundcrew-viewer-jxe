@@ -12,7 +12,7 @@ go.push({
       return cities[x];
     }).sort_by(function(x){
       return agents_by_city[x].length;
-    }, {desc:true});
+    }, {order:'desc'});
     
     var html = '';
     
