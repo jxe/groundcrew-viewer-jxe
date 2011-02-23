@@ -6,10 +6,12 @@ go.push({
   
   cities_dropdown: function() {  
     var agents_by_city = Agents.find('=city_id');
-    var cities_by_num_agents = $keys(agents_by_city).sort_by(function(x){ 
+
+    // sort by number of agents first, then the city name
+    var cities_by_num_agents = $keys(agents_by_city).sort_by(function (x){
+      return cities[x];
+    }).sort_by(function(x){
       return -agents_by_city[x].length;
-      // sort by number of agents first, then the city name
-      // return [0-agents_by_city[x].length, cities[x]]; 
     });
     
     var html = '';
