@@ -17,7 +17,7 @@ go.push({
     var html = '';
     
     $.each(cities_by_num_agents, function(){
-      var city_id = this;      
+      var city_id = this;
       var city_name = cities[city_id];
       var num_agents = agents_by_city[city_id].length;
       

@@ -914,7 +914,7 @@ App = {
     form.submit();
   },
 
-  new_cities: function(args) {
+  redraw_cities: function(args) {
     Map.layer_recalculate('cities');
     $('#mapnav').app_paint();
   },
