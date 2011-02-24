@@ -232,7 +232,6 @@ App = {
     if (Map.open_window_type == '#new_mission_landmark') {
       $('#group_actions').hide();
       $('.require_selection').show();
-      $('.anyone_agentpicker .selected_count').html(Selection.count());
     } else if (isEmpty(Selection.current) && isEmpty(Selection.groups)) {
       $('#group_actions').hide();
       $('.require_selection').show();
@@ -240,6 +239,7 @@ App = {
       $('#group_actions').show();
       $('.require_selection').hide();
     }
+    $('.anyone_agentpicker .selected_count').html(Selection.count());
   },
 
   op_event_info: function (type) {
