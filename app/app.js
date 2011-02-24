@@ -364,7 +364,6 @@ App = {
   start_lrl: function() {
     var sidemode = 'sidemode=tutorial;tutmode=tutorial1';
     if (window.current_stream.contains('_followers')) sidemode = 'sidemode=twit_tutorial';
-    if (window.current_stream == 'nrsp') sidemode = 'sidemode=';
     if (demo) sidemode = 'sidemode=demo;tutmode=tutorial1';
     if (window.location.hash) return window.location.hash.slice(1);
     else {
