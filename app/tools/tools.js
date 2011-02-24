@@ -22,10 +22,14 @@ App.tools.join_squad = {
 };
 
 App.tools.add_mission_landmark = $.extend({}, App.tools.add_landmark, {
-  tool_template: function() { return '#new_mission_landmark'; }
+/*   tool_template: function() { return '#new_mission_landmark'; } */
+  tool_template: function() { return '#new_mission_landmark2'; }
+
 });
 
 App.tools.add_question_landmark = $.extend({}, App.tools.add_landmark, {
   tool_template: function() { return '#new_question_landmark'; }
 });
+
+
 

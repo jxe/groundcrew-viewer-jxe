@@ -1,5 +1,6 @@
 .mapwindow {
     margin: 3px;
+    font-size: 13px;
 }
 
 .mapwindow h1 {
@@ -31,10 +32,6 @@
   padding:0;
   margin-top:.75em;
   margin-bottom:.25em;
-}
-
-.mapwindow {
-  font-size: 13px;
 }
 
 .mapwindow div.thumb {
@@ -515,3 +512,48 @@ a.popup:hover {
   font-weight:bold;
   background:#fff;
 }
+
+
+/* =========================== */
+/* = mission window          = */
+/* =========================== */
+
+.mapwindow_wide {
+  max-width: 350px;
+  min-width: 350px;
+}
+
+.mapwindow .agentpicker {
+  float: left;
+  width: 49%;
+  margin: 5px 0 5px 0;
+}
+
+.agentpicker select, .agentpicker .anyone_agentpicker {
+  margin-top: 8px;
+}
+
+.anyone_agentpicker span {
+  font-weight: bold;
+  }
+  
+.anyone_agentpicker p {
+  margin: 7px 0 0 0;
+}
+
+.mapwindow .fieldoption {
+  margin: 5px 0 0 0;
+}
+
+.tooltip_icon {
+  margin-bottom: -4px;
+}
+
+.mapwindow #range {
+  height: 23px;
+}
+
+.mapwindow #range input.text {
+  width: 20px;
+}
+
