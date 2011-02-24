@@ -19,6 +19,10 @@ Selection = {
     return foo.uniq();
   },
   
+  count: function() {
+    return this.agent_ids().length || 0;
+  },
+
   is_item_selected: function(id){
     if (Selection.current[id]) return true;
     if (isEmpty(Selection.groups)) return false;
@@ -104,6 +108,10 @@ go.push({
 
   require_selection_str: function() {
     return "Select agents first. Use control-click (PC) or command-click (Mac) for several at once.";
+  },
+
+  new_mission_require_selection_str: function() {
+    return "Select agents by clicking on them.";
   }
 
 });

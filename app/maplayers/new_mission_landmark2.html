@@ -1,4 +1,4 @@
-<div id="new_mission_landmark2" class="mapwindow mapwindow_wide">
+<div id="new_mission_landmark" class="mapwindow mapwindow_wide">
 
   <div class="intro">
     <h2>New Mission</h2>
@@ -12,10 +12,10 @@
       <input class="text" type="text" name="title"
         observe="maxchar(100, '#mission_landmark_invite_form #mission .right.live')"
       />
-      <div class="fieldoption"><a href="#">Add followup instructions</a> <span class="descr">sent to those who accept</span></div>
     </div>
 
-    <div id="instructions" style="margin: 10px 0px; display: none;">
+    <div class="fieldoption"><a href="##expand_extra('instructions_extra')">Add followup instructions</a> <span class="descr">sent to those who accept</span></div>
+    <div class="instructions_extra hidden_unless_active" style="margin: 10px 0px;">
       <div class="right live descr" style="float:right">150</div>
       Instructions &nbsp;&nbsp;<span class="descr">&nbsp;&nbsp;followup sent to those who accept</span><br/>
       <input class="text" type="text" name="assignment"
@@ -23,14 +23,15 @@
       />
     </div>
 
-    <div style="margin: 10px 0px; display: none;">
+    <!-- <div class="fieldoption"><a href="##expand_extra('location_extra')">Add location name</a> <span class="descr">visible only to organizers</span></div>
+    <div class="location_extra hidden_unless_active" style="margin: 10px 0px;">
       Name this location &nbsp;&nbsp;<span class="descr">visible only to organizers</span><br/>
       <input class="text" type="text" name="name">
-    </div>
-
+    </div> -->
 
     <div class="clearfix">
-      <div class="agentpicker">
+      <!-- Hidden until the backend supports min/max -->
+      <!-- <div class="agentpicker">
         <strong>How many to accept: <img class="tooltip_icon" src="/i/question.png"/></strong><br>
         <div style="position: absolute; display: none;">If there&rsquo;s a limit, non-responders and late responders will be notified that the mission is full.</div>
         <select>
@@ -40,11 +41,11 @@
           <option value="1">Within a range&hellip;</option>
         </select>
         <div id="range">
-          <div class="exactly" style="display: none;"><input class="text" type="text" /> agents</div>          
-          <div class="at_least" style="display: none;"><input class="text" type="text" /> agents</div>          
-          <div class="within_range" style="display: none;"><input class="text" type="text" /> to <input class="text" type="text" /> agents</div>          
+          <div class="exactly" style="display: none;"><input class="text" type="text" /> agents</div>
+          <div class="at_least" style="display: none;"><input class="text" type="text" /> agents</div>
+          <div class="within_range" style="display: none;"><input class="text" type="text" /> to <input class="text" type="text" /> agents</div>
         </div>
-      </div>
+      </div> -->
 
 
       <div class="agentpicker">
@@ -53,20 +54,19 @@
           <li><a class="anyone_agentpicker" href="#agentpicker=anyone">Anyone</a></li>
         </ul>
       
-        <div class="nearest_agentpicker hidden_unless_active active">  
+        <div class="nearest_agentpicker hidden_unless_active active">
           <select id="radial_select" name="agents" fill="radius_options" observe="radial_select_require_selection"></select>
           <div>
             <div style="display:none;" class="radial_select_require_selection">
-              <p class="require_selection deemphasize" if="!has_selection" fill="require_selection_str" style="margin: 5px 0;"></p>
+              <p class="require_selection deemphasize" if="!has_selection" fill="new_mission_require_selection_str" style="margin: 5px 0;"></p>
             </div>
           </div>
         </div>
         
         <div class="anyone_agentpicker hidden_unless_active">
-          <p><span>0</span> selected so far</p>
+          <p><span class="selected_count">0</span> selected so far</p>
           <p class="descr">Select from facebar or map</p>
         </div>
-        
 
       </div>
     </div>

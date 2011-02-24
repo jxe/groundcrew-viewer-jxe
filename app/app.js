@@ -232,6 +232,7 @@ App = {
     if (Map.open_window_type == '#new_mission_landmark') {
       $('#group_actions').hide();
       $('.require_selection').show();
+      $('.anyone_agentpicker .selected_count').html(Selection.count());
     } else if (isEmpty(Selection.current) && isEmpty(Selection.groups)) {
       $('#group_actions').hide();
       $('.require_selection').show();
@@ -564,10 +565,6 @@ App = {
       alert('Please provide an assignment!');
       return "redo";
     }
-    if (!data.name) {
-      alert('Please provide a location name!');
-      return "redo";
-    }
     if (!data.agents || data.agents.size == 0) {
       alert('There are no agents to invite!');
       return "redo";
@@ -575,6 +572,9 @@ App = {
     if (!This.city) {
       alert('Sorry, landmark missions can only be started in a city.');
       return "redo";
+    }
+    if (!data.name) {
+      data.name = 'Location for "' + data.title + '" mission';
     }
 
     return App.post_landmark(data, function(lm) {
