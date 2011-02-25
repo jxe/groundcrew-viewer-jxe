@@ -30,10 +30,13 @@ App.tools.add_question_landmark = $.extend({}, App.tools.add_landmark, {
 });
 
 go.push({
+  // these two used in new mission tool
   expand_extra: function (a) {
-    // used in new mission tool
     $('.' + a).show();
     $(This.clicked).parent().hide();
+  },
+  selected_agents_count: function () {
+    return String(Selection.count());
   }
 });
 
