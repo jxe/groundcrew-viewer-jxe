@@ -559,7 +559,9 @@ App = {
 
   mission_landmark_invite_form_submitted: function(data) {
     if (!App.stream_role_organizer()) return Notifier.error("You must be an organizer on this squad to run operations.");
-    if (data.agents == "require_selection") data.agents = Selection.agent_ids().join(' ');
+    if ($('div.anyone_agentpicker').css('display') != 'none') {
+      data.agents = Selection.agent_ids().join(' ');
+    }
     // if (App.error_on_non_immediate(data.agents.split(' '))) return "redo";
     if (!data.title) {
       alert('Please provide an assignment!');
