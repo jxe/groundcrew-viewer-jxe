@@ -111,7 +111,7 @@ go.push({
     if (This._item.fab_state == 'assigned') {
       return "Change this agent's assignment?";
     } else {
-      return "What would you like this agent to do?";
+      return "Send a message to this agent";
     }
   },
 

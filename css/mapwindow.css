@@ -13,8 +13,8 @@
   font-size: 17px;
 	color: #474848;
   font-weight:bold;
-  padding:0;
-  margin: 0 0 .25em 0;
+  padding: 0 13px 0 0;
+  margin: 0 0 .4em 0;
   border:none;
 }
 
@@ -524,7 +524,7 @@ a.popup:hover {
 }
 
 .mapwindow #mission {
-  margin: 10px 0 5px;
+  margin: 10px 0 0;
 }
 
 .mapwindow .counter {
@@ -551,6 +551,7 @@ a.popup:hover {
 }
 
 .mapwindow .fieldoption {
+  margin-top: 4px;
 }
 
 .tooltip_icon {
