@@ -30,13 +30,23 @@ App.tools.add_question_landmark = $.extend({}, App.tools.add_landmark, {
 });
 
 go.push({
-  // these two used in new mission tool
+  // the next four are used in new mission landmark tool
   expand_extra: function (a) {
     $('.' + a).show();
     $(This.clicked).parent().hide();
   },
   selected_agents_count: function () {
     return String(Selection.count());
+  },
+  show_anyone_agentpicker: function () {
+    var ap = $(This.clicked).parents('.agentpicker');
+    $('.nearest_agentpicker', ap).removeClass('active');
+    $('.anyone_agentpicker', ap).addClass('active');
+  },
+  show_nearest_agentpicker: function () {
+    var ap = $(This.clicked).parents('.agentpicker');
+    $('.anyone_agentpicker', ap).removeClass('active');
+    $('.nearest_agentpicker', ap).addClass('active');
   }
 });
 
