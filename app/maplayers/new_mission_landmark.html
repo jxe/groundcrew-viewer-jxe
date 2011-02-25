@@ -6,17 +6,19 @@
 
   <form id="mission_landmark_invite_form" >
 
-    <div id="mission" style="margin: 10px 0px">
-      <div class="right live descr" style="float:right">100</div>
+    <div id="mission">
+      <div class="counter live descr">100</div>
       Mission Description&nbsp;&nbsp;<span class="descr">include the address</span><br>
       <input class="text" type="text" name="title"
         observe="maxchar(100, '#mission_landmark_invite_form #mission .right.live')"
       />
     </div>
 
-    <div class="fieldoption"><a href="##expand_extra('instructions_extra')">Add followup instructions</a> <span class="descr">sent to those who accept</span></div>
+    <div class="fieldoption">
+      <a href="##expand_extra('instructions_extra')">Add followup instructions</a> <span class="descr">sent to those who accept</span>
+    </div>
     <div class="instructions_extra hidden_unless_active" style="margin: 10px 0px;">
-      <div class="right live descr" style="float:right">150</div>
+      <div class="counter live descr">150</div>
       Instructions &nbsp;&nbsp;<span class="descr">&nbsp;&nbsp;followup sent to those who accept</span><br/>
       <input class="text" type="text" name="assignment"
         observe="maxchar(150, '#mission_landmark_invite_form #instructions .right.live')"

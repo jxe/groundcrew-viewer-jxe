@@ -474,7 +474,6 @@ a.popup:hover {
 
 #mission_landmark_invite_form input.text,
 #question_landmark_form input.text {
-  width: 310px;
 }
 
 .w75 {width: 75%}
@@ -521,12 +520,22 @@ a.popup:hover {
 .mapwindow_wide {
   max-width: 350px;
   min-width: 350px;
+  padding-right: 15px;
+}
+
+.mapwindow #mission {
+  margin: 10px 0 5px;
+}
+
+.mapwindow .counter {
+  float: right;
+  margin-right: 10px;
 }
 
 .mapwindow .agentpicker {
   float: left;
   width: 49%;
-  margin: 5px 0 5px 0;
+  margin: 13px 0 10px 0;
 }
 
 .agentpicker select, .agentpicker .anyone_agentpicker {
@@ -542,7 +551,6 @@ a.popup:hover {
 }
 
 .mapwindow .fieldoption {
-  margin: 5px 0 0 0;
 }
 
 .tooltip_icon {
