@@ -47,6 +47,11 @@ go.push({
     var ap = $(This.clicked).parents('.agentpicker');
     $('.anyone_agentpicker', ap).removeClass('active');
     $('.nearest_agentpicker', ap).addClass('active');
+  },
+  // This is used in the ask a question tool
+  selected_count_or_all_available: function () {
+    var c = Selection.count();
+    return String( c || "all available") + ' agent' + (c == 1 ? '' : 's');
   }
 });
 

@@ -240,6 +240,7 @@ App = {
       $('#group_actions').show();
       $('.require_selection').hide();
     }
+    $('.ask_a_question_tool').app_paint();
   },
 
   op_event_info: function (type) {
