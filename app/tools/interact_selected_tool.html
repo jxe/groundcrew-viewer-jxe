@@ -1,13 +1,12 @@
 <div class="modal interact_selected_tool hidden_unless_active">
   <img src="i/buttons/close.gif" href="##back" class="closebox"/>
-  <h2>Interact with this group</h2>
+  <h2>Message to <span>X</span> selected</h2>
 
-  <p style="color:red" if="zoomed_out">
-    World-wide interactions are currently disabled.<br>Please zoom to a city.
-  </p>
+  <p style="color:red" if="zoomed_out">World-wide interactions are currently disabled.<br>Please zoom to a city.</p>
 
   <h4 class="require_selection" if="!has_selection" fill="require_selection_str"></h4>
 
+  
   <form id="group_interact_form">
     <input name="assign"
       class="text"
@@ -17,9 +16,5 @@
     /><button type="submit" class="submit">Send</button>
     <!-- no white space between the above <input> and <button> -->
     <div class="right big">100</div>
-    Send as: <input type="radio" name="kind" value="msg" checked='checked'>msg
-    <input type="radio" name="kind" value="question">question
   </form>
-  <div><a href="#tool=add_mission_landmark" class="button">Send these agents on a mission</a> or <a href="#tool=tag_agents">tag these agents.</a></div>
-
 </div>
