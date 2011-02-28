@@ -792,27 +792,30 @@ App = {
   send_a_message_form_submitted: function(data, state, form) {
     var agents = Selection.agent_ids();
 
+    if (!agents || agents.length == 0) {
+      alert('Please select some agents first!');
+      return "redo";
+    }
     if (!This.city) {
-      alert('Sorry, interactions can only be started in a city.');
+      alert('Sorry, messages can only be sent in a city.');
       return "redo";
     }
     if (!data.assign) {
-      alert('Please provide an assignment!');
+      alert('Please enter a message!');
       return "redo";
     }
 
-    if (demo && data.kind == "question") return Demo.question(data.assign, agents);
-    if (demo && data.kind == "msg")      return Demo.message(agents, data.assign,
-      function(){go('tool='); Notifier.success("Message sent!"); Selection.clear(); });
-    if (demo && data.kind == "mission")  return Demo.assign(agents, data.assign, Selection.clear);
-    // if (data.kind == "mission" && App.error_on_non_immediate(agents)) return "redo";
-    return Operation.exec(CEML.script_for(data.kind, data.assign), agents.join(' '), agents.join(' '), function(){
-      if (data.kind == "msg") {
+    if (demo && data.kind == "msg") {
+      return Demo.message(agents, data.assign, function () {
+        go('tool='); Notifier.success("Message sent!"); Selection.clear();
+      });
+    } else {
+      return Operation.exec(CEML.script_for('msg', data.assign), agents.join(' '), agents.join(' '), function () {
+        Selection.clear();
         go('tool=');
         Notifier.success('Message sent!');
-      }
-      Selection.clear();
-    });
+      });
+    }
   },
 
   quick_mission_title: function() {
