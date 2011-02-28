@@ -240,6 +240,7 @@ App = {
       $('#group_actions').show();
       $('.require_selection').hide();
     }
+    $('.ask_a_question_tool').app_paint();
   },
 
   op_event_info: function (type) {
@@ -619,8 +620,11 @@ App = {
   },
 
   ask_question_form_submitted: function(data) {
-    var agent_ids = Agents.here().map('.id');
-    if (!agent_ids || agent_ids.length < 1) {
+    var agent_ids = Selection.agent_ids();
+    if (!agent_ids.length) {
+      agent_ids = Agents.here().map('.id');
+    }
+    if (!agent_ids.length) {
       alert('There are no agents to ask!');
       return "redo";
     }
