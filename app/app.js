@@ -241,6 +241,7 @@ App = {
       $('.require_selection').hide();
     }
     $('.ask_a_question_tool').app_paint();
+    $('#group_actions').app_paint();
   },
 
   op_event_info: function (type) {
