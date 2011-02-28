@@ -18,8 +18,8 @@
       <input type="search" name="q" hint="Search agents" fill="query value" id="search" class="hide_until_loaded" observe="query_watcher"/>
       <a if="query" href="##clear_query" class="hide_until_loaded"><img src="i/clear_query.png"></a>
 
-      <div class="button_dropdown">
-        <button type="button" class="idle">&#9660;</button>
+      <div class="button_dropdown" id="tags">
+        <button type="button" class="idle">Tags <span style="font-size: 9px;">&#9660;</span></button>
         <div class="dropdown south east no_filter no_more">
           <div class="select"><ul fill="tags_as_lis"></ul></div>
         </div>

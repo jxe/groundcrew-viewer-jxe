@@ -63,6 +63,16 @@
   padding:2px 20px 2px 5px;
 }
 
+#search_form #tags {
+  color: red;
+  font-size: 14px;
+}
+
+#search_form #tags span {
+  font-size: 11px;
+}
+
+
 #flexbar #agents {
    width: 300000px; /*100 * 3000 = 300 000*/
    background-color:#7A9FBF;
