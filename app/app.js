@@ -935,3 +935,19 @@ App = {
 
 
 go.push(App);
+
+
+$(document).ready(function () {
+  // Tie the floaty to the cursor
+  $('#map').mousemove(function (e){
+    var map = $('#map');
+    var floaty = $('#floaty');
+    var x = e.pageX - map.offset().left;
+    var w = floaty.width()
+    floaty.css({
+      'left' : Math.min(Math.max(              x - w/2, 0), map.width() - w),
+      'right': Math.min(Math.max(map.width() - x - w/2, 0), map.width() - w),
+      'top': Math.max(e.pageY - map.offset().top, 0) + 16
+    })
+  });
+});
