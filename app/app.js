@@ -241,7 +241,7 @@ App = {
       $('.require_selection').hide();
     }
     $('.ask_a_question_tool').app_paint();
-    $('.interact_selected_tool').app_paint();
+    $('.send_a_message_tool').app_paint();
     $('#group_actions').app_paint();
   },
 
@@ -789,7 +789,7 @@ App = {
     });
   },
 
-  group_interact_form_submitted: function(data, state, form) {
+  send_a_message_form_submitted: function(data, state, form) {
     var agents = Selection.agent_ids();
 
     if (!This.city) {
