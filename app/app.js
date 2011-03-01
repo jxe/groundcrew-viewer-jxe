@@ -42,6 +42,20 @@ App = {
     This.city ? go('@' + This.city) : go('tool=;item=');
   },
 
+  reposition_floaty: function (e) {
+    // Tie the floaty to the cursor
+    console.debug('repositioning der floaty');
+    var map = $('#map');
+    var floaty = $('#floaty');
+    var x = e.pageX - map.offset().left;
+    var w = floaty.width()
+    floaty.css({
+      'left' : Math.min(Math.max(              x - w/2, 0), map.width() - w),
+      'right': Math.min(Math.max(map.width() - x - w/2, 0), map.width() - w),
+      'top': Math.max(e.pageY - map.offset().top, 0) + 16
+    })
+  },
+
   change_state: function() {
     var changed = This.changed;
     if (changed.tool && This.tool && This._item && !changed.item) {
@@ -83,6 +97,12 @@ App = {
     }
 
     if (changed.item || changed.mode || changed.tool) App.refresh_itemwindow();
+    if (changed.tool && This.tool && This.tool.indexOf('_landmark') >= 0) {
+      App.reposition_floaty(This.event);
+      $('#map').mousemove(App.reposition_floaty);
+    } else if (changed.tool) {
+      $('#map').unbind('mousemove', App.reposition_floaty);
+    }
   },
 
   did_change_state: function() {
@@ -937,17 +957,3 @@ App = {
 go.push(App);
 
 
-$(document).ready(function () {
-  // Tie the floaty to the cursor
-  $('#map').mousemove(function (e){
-    var map = $('#map');
-    var floaty = $('#floaty');
-    var x = e.pageX - map.offset().left;
-    var w = floaty.width()
-    floaty.css({
-      'left' : Math.min(Math.max(              x - w/2, 0), map.width() - w),
-      'right': Math.min(Math.max(map.width() - x - w/2, 0), map.width() - w),
-      'top': Math.max(e.pageY - map.offset().top, 0) + 16
-    })
-  });
-});
