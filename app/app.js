@@ -44,7 +44,6 @@ App = {
 
   reposition_floaty: function (e) {
     // Tie the floaty to the cursor
-    console.debug('repositioning der floaty');
     var map = $('#map');
     var floaty = $('#floaty');
     var x = e.pageX - map.offset().left;
