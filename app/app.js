@@ -159,6 +159,13 @@ App = {
       var thing = This.item.resource_type().toLowerCase();
       var type = 'unknown';
       var best_template = $.template('#' + thing + '_for_' + This.mode + '_mode') || $.template('#' + thing + '_for_any_mode');
+
+      // HACK
+      if (thing == 'landmark' && This.mode == 'new_mission') {
+        best_template = $.template('#new_mission_landmark');
+      }
+      // End HACK
+
       if (best_template) {
         if (MapMarkers.has_loc(This._item)) {
           $('#itemwindow').hide();
@@ -601,14 +608,20 @@ App = {
       data.name = 'Location for "' + data.title + '" mission';
     }
 
-    return App.post_landmark(data, function(lm) {
+    var make_mission = function(lm) {
       if (demo) {
         Demo.invite(data.agents.split(' '), lm.id, data.title, data.assignment);
       } else {
         Operation.exec(CEML.script_for_invite(data.title, data.assignment), data.agents, lm.id);
       }
       Selection.clear();
-    });
+    };
+
+    if (This.item.resource_type() == 'Landmark') {
+      return make_mission({id: This.item});
+    } else {
+      return App.post_landmark(data, make_mission);
+    }
   },
 
   question_landmark_form_submitted: function(data) {
