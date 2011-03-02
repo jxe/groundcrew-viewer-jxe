@@ -102,6 +102,16 @@ App = {
     } else if (changed.tool) {
       $('#map').unbind('mousemove', App.reposition_floaty);
     }
+
+    if (This.tool == 'ask_a_question') {
+      $('.ask_a_question_tool').app_paint();
+    } else if (This.tool == 'send_a_message') {
+      $('.send_a_message_tool').app_paint();
+    }
+    if ($('#group_actions').is(':visible')) {
+      $('#group_actions').app_paint();
+    }
+
   },
 
   did_change_state: function() {
@@ -266,9 +276,15 @@ App = {
       $('#group_actions').show();
       $('.require_selection').hide();
     }
-    $('.ask_a_question_tool').app_paint();
-    $('.send_a_message_tool').app_paint();
-    $('#group_actions').app_paint();
+
+    if (This.tool == 'ask_a_question') {
+      $('.ask_a_question_tool').app_paint();
+    } else if (This.tool == 'send_a_message') {
+      $('.send_a_message_tool').app_paint();
+    }
+    if ($('#group_actions').is(':visible')) {
+      $('#group_actions').app_paint();
+    }
   },
 
   op_event_info: function (type) {
