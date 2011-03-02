@@ -171,7 +171,10 @@ App = {
       var best_template = $.template('#' + thing + '_for_' + This.mode + '_mode') || $.template('#' + thing + '_for_any_mode');
 
       // HACK
-      if (thing == 'landmark' && This.mode == 'new_mission') {
+      if ((thing == 'landmark' || thing == 'agent') && This.mode == 'new_mission') {
+        if (thing == 'agent') {
+          Selection.select(This.item);
+        }
         best_template = $.template('#new_mission_landmark');
       }
       // End HACK
@@ -633,7 +636,7 @@ App = {
       Selection.clear();
     };
 
-    if (This.item.resource_type() == 'Landmark') {
+    if (This.item.resource_type() == 'Landmark' || This.item.resource_type() == 'Agent') {
       return make_mission({id: This.item});
     } else {
       return App.post_landmark(data, make_mission);
