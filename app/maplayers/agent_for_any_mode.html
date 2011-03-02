@@ -79,12 +79,12 @@
 <hr />
 
     <div class="agent_actions">
-    	<form class="lio" id="make_it_happen_form" if="agent_assignable" style="position:relative">
+      <form class="lio" id="send_a_message_to_agent" if="agent_assignable" style="position:relative">
         <input name="assign"
           class="text"
           type="text"
           hint="#agent_assign_prompt"
-          observe="maxchar(100, '#make_it_happen_form .counter')"
+          observe="maxchar(100, '#send_a_message_to_agent .counter')"
         />
         <button type="submit" class="submit">Send</button>
         <!-- no white space between the above <input> and <button> -->

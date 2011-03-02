@@ -154,7 +154,7 @@ App = {
     return Operation.exec(CEML.script_for("msg", "Our location for you looks old or imprecise. " +
         "Where are you? Please respond with 'at' and then your address."),
       This.item, This.item, function(){
-      $('#make_it_happen_form').html('Message sent!');
+      $('#send_a_message_to_agent').html('Message sent!');
     });
   },
 
@@ -822,19 +822,21 @@ App = {
   },
   
 
-  make_it_happen_form_submitted: function(data) {
+  send_a_message_to_agent_submitted: function(data) {
     if (!data.assign) {
       alert('Please provide an assignment!');
       return "redo";
     }
-    if (demo && data.kind == "question") return Demo.question(data.assign, [This.item]);
-    if (demo && data.kind == "msg")      return Demo.message([This.item], data.assign,
-      function() {$('#make_it_happen_form').html('Message sent!');});
-    if (demo && data.kind == "mission")  return Demo.assign([This.item], data.assign);
-    // if (data.kind == "mission" && App.error_on_non_immediate([This.item])) return "redo";
-    return Operation.exec(CEML.script_for(data.kind, data.assign), This.item, This.item, function(){
-      if (data.kind == "msg") { $('#make_it_happen_form').html('Message sent!'); }
-    });
+
+    if (demo) {
+      return Demo.message([This.item], data.assign, function () {
+        $('#send_a_message_to_agent').html('Message sent!');
+      });
+    } else {
+      return Operation.exec(CEML.script_for('msg', data.assign), This.item, This.item, function(){
+        $('#send_a_message_to_agent').html('Message sent!');
+      });
+    }
   },
 
   send_a_message_form_submitted: function(data, state, form) {
@@ -853,7 +855,7 @@ App = {
       return "redo";
     }
 
-    if (demo && data.kind == "msg") {
+    if (demo) {
       return Demo.message(agents, data.assign, function () {
         go('tool='); Notifier.success("Message sent!"); Selection.clear();
       });
