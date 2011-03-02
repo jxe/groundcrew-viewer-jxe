@@ -951,25 +951,22 @@ App = {
     return '/api/squad/' + window.current_stream + '/items/' + This.item + '?no_redirect=1&fmt=json';
   },
 
-  image_selected: function(value, ch, obj) {
-    if (ch) return; // ignore key-press events
-    if (!This.item) return;
-
-    var form = obj.parent();
-    form.iframePostForm({
-      post: function() {
-        form.addClass('uploading');
-      },
-      complete: function(response) {
-        try {
-          eval('var x = ' + response);
-          if (x && x.error) Notifier.error('Image upload failed: ' + x.error);
-        } catch(e) { go.err('image upload failed'); }
-        form.removeClass('uploading');
-      }
+  image_upload_widget: function(form) {
+    $("input[type='file']", form).change(function(){
+      form.iframePostForm({
+        post: function() {
+          form.addClass('uploading');
+        },
+        complete: function(response) {
+          try {
+            eval('var x = ' + response);
+            if (x && x.error) Notifier.error('Image upload failed: ' + x.error);
+          } catch(e) { go.err('image upload failed'); }
+          form.removeClass('uploading');
+        }
+      });
+      form.submit();
     });
-
-    form.submit();
   },
 
   redraw_cities: function(args) {

@@ -8,8 +8,8 @@
     <div class="thumb">
       <img class="thumb" fill="item_thumb_url src" />
       <form class="upload" fill="image_upload_action action" if="stream_role_leader"
-        enctype="multipart/form-data" method="post" >
-        <input type="file" name="avatar" observe="image_selected" />
+        enctype="multipart/form-data" method="post" make="image_upload_widget" >
+        <input type="file" name="avatar" />
         <div class="overlay">
           <a class="btn">Upload image</a>
           <p class="msg">Uploading &hellip;</p>
