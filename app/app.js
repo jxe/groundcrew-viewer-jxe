@@ -272,7 +272,7 @@ App = {
     if (Map.open_window_type == '#new_mission_landmark') {
       $('#group_actions').hide();
       $('.require_selection').show();
-      $('#new_mission_landmark').app_paint();
+      $('#new_mission_landmark .anyone_agentpicker').app_paint();
     } else if (isEmpty(Selection.current) && isEmpty(Selection.groups)) {
       $('#group_actions').hide();
       $('.require_selection').show();
