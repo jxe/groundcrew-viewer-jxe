@@ -669,7 +669,7 @@ App = {
     });
   },
 
-  ask_question_form_submitted: function(data) {
+  ask_a_question_form_submitted: function(data) {
     var agent_ids = Selection.agent_ids();
     if (!agent_ids.length) {
       agent_ids = Agents.here().map('.id');
