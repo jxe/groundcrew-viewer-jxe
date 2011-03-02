@@ -5,8 +5,8 @@ App.tools.add_landmark = {
   map_clicked: function() {
     if (App.zoomed_out()) return alert("Please zoom to a city.");
     go('tool=');
-    var type = this.tool_template();
-    Map.latlng_open(This.click_latlng, type, $.template(type).app_paint()[0]);
+    var window_type = this.tool_template();
+    Map.latlng_open(This.click_latlng, window_type, $.template(window_type).app_paint()[0]);
     // go.trigger('selection_changed');
   }
 };

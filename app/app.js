@@ -167,7 +167,7 @@ App = {
     if (!This._item) App.close_itemwindow();
     else {
       var thing = This.item.resource_type().toLowerCase();
-      var type = 'unknown';
+      var window_type = 'unknown'; // someday this will be accurate for all window types
       var best_template = $.template('#' + thing + '_for_' + This.mode + '_mode') || $.template('#' + thing + '_for_any_mode');
 
       // HACK
@@ -175,14 +175,15 @@ App = {
         if (thing == 'agent') {
           Selection.select(This.item);
         }
-        best_template = $.template('#new_mission_landmark');
+        window_type = '#new_mission_landmark';
+        best_template = $.template(window_type);
       }
       // End HACK
 
       if (best_template) {
         if (MapMarkers.has_loc(This._item)) {
           $('#itemwindow').hide();
-          MapMarkers.window(best_template, type);
+          MapMarkers.window(best_template, window_type);
         }
         else {
           Map.close_all_windows();

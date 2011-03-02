@@ -20,14 +20,14 @@ MapMarkers = {
     return false;
   },
 
-  window: function(tmpl, type, min_zoom) {
+  window: function(tmpl, window_type, min_zoom) {
     var site = This.item;
     var latlng = null;
-    var type = MapMarkers.type(site);
-    var layer = type;
+    var site_type = MapMarkers.type(site);
+    var layer = site_type;
     
     // resolve site
-    if (type == 'operation') {
+    if (site_type == 'operation') {
       var sited = false;
       if (This._item.focii) {
         site = This._item.focii.split(' ')[0];
@@ -48,14 +48,14 @@ MapMarkers = {
     
     // consider reopening same window?
     var reopen = false;
-    if (This.item == MapMarkers.last_opened && MapMarkers.last_opened_type == type)
+    if (This.item == MapMarkers.last_opened && MapMarkers.last_opened_type == site_type)
       reopen = true;
     MapMarkers.last_opened = This.item;
-    MapMarkers.last_opened_type = type;
+    MapMarkers.last_opened_type = site_type;
     if (latlng)
-      Map.latlng_open(latlng, type, tmpl.app_paint()[0], reopen);
+      Map.latlng_open(latlng, window_type, tmpl.app_paint()[0], reopen);
     else
-      Map.site_open(layer, type, site, tmpl.app_paint()[0], reopen);
+      Map.site_open(layer, window_type, site, tmpl.app_paint()[0], reopen);
   }
   
 };
