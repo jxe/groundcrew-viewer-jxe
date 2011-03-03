@@ -50,13 +50,13 @@
       </div> -->
 
 
-      <div class="agentpicker">
+      <div class="agentpicker" make="agent_picker_widget">
         <ul class="nav" style="margin-bottom: 0;">
-          <li><a class="nearest_agentpicker active" href="##show_nearest_agentpicker">Nearest</a></li> &middot;
+          <li><a class="nearest_agentpicker" href="##show_nearest_agentpicker">Nearest</a></li> &middot;
           <li><a class="anyone_agentpicker" href="##show_anyone_agentpicker">Anyone</a></li>
         </ul>
       
-        <div class="nearest_agentpicker hidden_unless_active active">
+        <div class="nearest_agentpicker hidden_unless_active">
           <select id="radial_select" name="agents" fill="radius_options" observe="radial_select_require_selection"></select>
           <div>
             <div style="display:none;" class="radial_select_require_selection">

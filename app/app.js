@@ -975,6 +975,14 @@ App = {
     });
   },
 
+  agent_picker_widget: function (agentpicker) {
+    if (Selection.count() > 0) {
+      $('.anyone_agentpicker', agentpicker).activate('_agentpicker');
+    } else {
+      $('.nearest_agentpicker', agentpicker).activate('_agentpicker');
+    }
+  },
+
   redraw_cities: function(args) {
     Map.layer_recalculate('cities');
     $('#mapnav').app_paint();
