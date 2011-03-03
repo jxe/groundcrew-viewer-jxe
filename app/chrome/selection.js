@@ -7,7 +7,7 @@ Selection = {
     $.each($keys(Selection.current), function(){ Selection.deselect(this); });
     Facebar.populate(This.agents);
     Map.layer_refresh_icons('agents');
-    console.log('selection cleared');
+    // console.log('selection cleared');
   },
   
   agent_ids: function() {
