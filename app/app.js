@@ -111,13 +111,12 @@ App = {
 
     if ($('#group_actions').is(':visible')) {
       $('#group_actions').app_paint();
-      if (This.tool || Map.open_window_type) {
-        $('#action_list').hide();
-      } else {
-        $('#action_list').show();
-      }
     }
-
+    if (This.tool || Map.open_window_type) {
+      $('#action_list').hide();
+    } else {
+      $('#action_list').show();
+    }
   },
 
   did_change_state: function() {
