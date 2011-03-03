@@ -135,13 +135,20 @@ App = {
   selection_mode_changed: function () {
     $('#group_actions').app_paint();
   },
-  
+
   selection_mode_help_text: function () {
     msg = "Select more";
     if (Selection.mode() == 'default') {
-      msg += ' using the command key'; // TODO: change the key name based on OS
+      // change the key name based on OS
+      msg += ' using the ' + App.selection_modifier_key_name() + ' key';
+    } else {
+      msg += ' by clicking on them'
     }
     return msg;
+  },
+
+  selection_modifier_key_name: function () {
+    return navigator.userAgent.indexOf('Macintosh') >= 0 ? 'command' : 'control';
   },
 
   did_change_state: function() {

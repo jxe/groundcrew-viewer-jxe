@@ -118,10 +118,10 @@ go.push({
   },
 
   require_selection_str: function() {
-    return "Select agents first. Use control-click (PC) or command-click (Mac) for several at once.";
+    return "Select agents first. Use " + App.selection_modifier_key_name() + "-click for several at once.";
   },
 
-  new_mission_require_selection_str: function() {
+  multi_require_selection_str: function() {
     return "Select agents by clicking on them.";
   }
 
