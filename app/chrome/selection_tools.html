@@ -1,9 +1,11 @@
 <div id="group_actions" class="magic" style="display:none; width: 520px;">
   <strong><span fill="selected_agents_count">0</span> agent(s) selected</strong>. Select more using the <span>command</span> key, or <a href="##clear_selection">clear selection</a>.<br>
-  <a href="#tool=add_mission_landmark" class="button">Send a mission</a> &middot;
-  <span if="blast_message_flag">
-    <a href="#tool=send_a_message" class="button">Send a message</a> &middot;
+  <span id="action_list">
+    <a href="#tool=add_mission_landmark" class="button">Send a mission</a> &middot;
+    <span if="blast_message_flag">
+      <a href="#tool=send_a_message" class="button">Send a message</a> &middot;
+    </span>
+    <a href="#tool=ask_a_question" class="button">Send a question</a> &middot;
+    <a href="#tool=tag_agents" class="button">Assign tags</a>
   </span>
-  <a href="#tool=ask_a_question" class="button">Send a question</a> &middot;
-  <a href="#tool=tag_agents" class="button">Assign tags</a>
 </div>
