@@ -1,7 +1,18 @@
 Selection = {
   current: {},
   groups: {},
-  
+
+  _mode: 'default',
+  _allowed_modes: ['default', 'multi'],
+
+  mode: function (new_mode) {
+    if (new_mode && new_mode != this._mode && this._allowed_modes.indexOf(new_mode) >= 0) {
+      this._mode = new_mode;
+      go.trigger('selection_mode_changed');
+    }
+    return this._mode;
+  },
+
   clear: function() {
     Selection.groups = {};
     $.each($keys(Selection.current), function(){ Selection.deselect(this); });

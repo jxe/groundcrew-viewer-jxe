@@ -117,6 +117,31 @@ App = {
     } else {
       $('#action_list').show();
     }
+
+    App.check_selection_mode();
+  },
+
+  check_selection_mode: function () {
+    if (Map.open_window_type == '#new_mission_landmark' ||
+        This.tool == 'send_a_message' ||
+        This.tool == 'ask_a_question' ||
+        This.tool == 'tag_agents') {
+      Selection.mode('multi');
+    } else {
+      Selection.mode('default');
+    }
+  },
+
+  selection_mode_changed: function () {
+    $('#group_actions').app_paint();
+  },
+  
+  selection_mode_help_text: function () {
+    msg = "Select more";
+    if (Selection.mode() == 'default') {
+      msg += ' using the command key'; // TODO: change the key name based on OS
+    }
+    return msg;
   },
 
   did_change_state: function() {
@@ -268,12 +293,7 @@ App = {
     url = This.new_url.slice(1);
     if (LiveHTML.metaOn && url.startsWith('p')) 
       return Selection.toggle(url);
-    if ((
-      Map.open_window_type == '#new_mission_landmark' ||
-      This.tool == 'send_a_message' ||
-      This.tool == 'ask_a_question' ||
-      This.tool == 'tag_agents'
-      ) && url.startsWith('p')) 
+    if (Selection.mode() == 'multi' && url.startsWith('p')) 
       return Selection.toggle(url);
     return go('mode=;tool=;item=' + url);
   },
