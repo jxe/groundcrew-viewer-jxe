@@ -268,17 +268,18 @@ App = {
     url = This.new_url.slice(1);
     if (LiveHTML.metaOn && url.startsWith('p')) 
       return Selection.toggle(url);
-    if (Map.open_window_type == '#new_mission_landmark' && url.startsWith('p')) 
+    if ((
+      Map.open_window_type == '#new_mission_landmark' ||
+      This.tool == 'send_a_message' ||
+      This.tool == 'ask_a_question' ||
+      This.tool == 'tag_agents'
+      ) && url.startsWith('p')) 
       return Selection.toggle(url);
     return go('mode=;tool=;item=' + url);
   },
 
   selection_changed: function() {
-    if (Map.open_window_type == '#new_mission_landmark') {
-      $('#group_actions').hide();
-      $('.require_selection').show();
-      $('#new_mission_landmark .anyone_agentpicker').app_paint();
-    } else if (isEmpty(Selection.current) && isEmpty(Selection.groups)) {
+    if (isEmpty(Selection.current) && isEmpty(Selection.groups)) {
       $('#group_actions').hide();
       $('.require_selection').show();
     } else {
@@ -286,6 +287,9 @@ App = {
       $('.require_selection').hide();
     }
 
+    if (Map.open_window_type == '#new_mission_landmark') {
+      $('#new_mission_landmark .anyone_agentpicker').app_paint();
+    }
     if (This.tool == 'ask_a_question') {
       $('.ask_a_question_tool').app_paint();
     } else if (This.tool == 'send_a_message') {
