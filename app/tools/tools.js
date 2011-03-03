@@ -7,6 +7,7 @@ App.tools.add_landmark = {
     go('tool=');
     var window_type = this.tool_template();
     Map.latlng_open(This.click_latlng, window_type, $.template(window_type).app_paint()[0]);
+    $('#action_list').hide(); // This window is opened outside of the normal flow and bypasses change_state so we have to put this extra logic here
     // go.trigger('selection_changed');
   }
 };
