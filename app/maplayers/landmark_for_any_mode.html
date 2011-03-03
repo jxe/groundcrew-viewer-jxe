@@ -1,8 +1,5 @@
 <div id="landmark_for_any_mode" class="mapwindow clearfix">
   <h2 fill="item_title"></h2>
-  <div class="xspace" if="landmark_has_op">
-    Most recent mission here: <span class="highlight" fill="landmark_op"></span>
-  </div>
 
   <div style="width: 72px; float: left;">
     <div class="thumb">
@@ -22,10 +19,15 @@
       <a href="#mode=edit" if="stream_role_organizer">edit</a> &middot; <a href="##remove_item" if="stream_role_organizer" title="Remove this landmark?">delete</a>
     </div>
 
-
   </div>
 
   <a href="#mode=new_mission" class="button">Create a new mission from this landmark&hellip;</a>
+
+  <div class="xspace" if="landmark_has_op">
+    <h3>Missions at this landmark:</h3>
+    <ul style="padding-left:72px;" fill="landmark_ops"></ul>
+  </div>
+
 
 <!--
   <form id="radial_invite_form" style="float: left; width: 300px">

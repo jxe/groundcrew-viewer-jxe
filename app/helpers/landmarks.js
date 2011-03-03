@@ -22,9 +22,13 @@ go.push({
     return Landmarks.has_op(This.item);
   },
 
-  landmark_op: function() {
-    var op = Landmarks.op(This.item);
-    return op && '<a href="#@#{id}">#{title}</a>'.t(op);
+  landmark_ops: function() {
+    var r = '';
+    var ops = Landmarks.ops(This.item);
+    $.each(ops, function(i, op) {
+      r += '<li><a href="#@#{id}">#{title}</a></li>'.t(op);
+    });
+    return r;
   },
 
   live_ops: function(state) {
