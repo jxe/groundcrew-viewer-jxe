@@ -73,7 +73,7 @@ Selection = {
     var fab_state = guy && guy.fab_state;
     if (fab_state && Selection.groups[fab_state]) {
       // convert to individual selections
-      Selection.groups[fab_state] = false;
+      delete Selection.groups[fab_state];
       $.each(This.agents, function(){
         if (this.fab_state == fab_state) Selection.select(this.id);
       });
