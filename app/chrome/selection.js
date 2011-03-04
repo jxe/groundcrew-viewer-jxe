@@ -34,6 +34,10 @@ Selection = {
     return this.agent_ids().length || 0;
   },
 
+  has_selection: function() {
+    return !isEmpty(Selection.current) || !isEmpty(Selection.groups);
+  },
+
   is_item_selected: function(id){
     if (Selection.current[id]) return true;
     if (isEmpty(Selection.groups)) return false;
@@ -108,12 +112,17 @@ go.push({
   },
 
   has_selection: function(state) {
-    return !isEmpty(Selection.current) || !isEmpty(Selection.groups);
+    return Selection.has_selection();
   },
   
   can_get_selection: function() {
-    if (!isEmpty(Selection.current) || !isEmpty(Selection.groups)) return true;
-    if (This.prev_item) { Selection.select(This.prev_item); return true; }
+    if (Selection.has_selection()) {
+      return true;
+    }
+    if (This.prev_item) {
+      Selection.select(This.prev_item);
+      return true;
+    }
     return false;
   },
 

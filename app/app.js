@@ -306,12 +306,13 @@ App = {
   },
 
   selection_changed: function() {
-    if (isEmpty(Selection.current) && isEmpty(Selection.groups)) {
-      $('#group_actions').hide();
-      $('.require_selection').show();
-    } else {
+    console.debug("Selection changed ka-blam!", Selection.count());
+    if (Selection.has_selection()) {
       $('#group_actions').show();
       $('.require_selection').hide();
+    } else {
+      $('#group_actions').hide();
+      $('.require_selection').show();
     }
 
     if (Map.open_window_type == '#new_mission_landmark') {
