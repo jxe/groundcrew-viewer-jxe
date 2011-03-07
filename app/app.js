@@ -122,7 +122,9 @@ App = {
   },
 
   check_selection_mode: function () {
-    if (Map.open_window_type == '#new_mission_landmark' ||
+    if (Map.open_window_type == '#new_mission_landmark'  ||
+        // TODO: uncomment this once we widgetize the Nearest/Anyone agentpicker from the new mission landmark
+        // Map.open_window_type == '#new_question_landmark' ||
         This.tool == 'send_a_message' ||
         This.tool == 'ask_a_question' ||
         This.tool == 'tag_agents') {
